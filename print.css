@@ -1,0 +1,33 @@
+﻿body {
+	font-family: "Verdana", Geneva, sans-serif
+}
+h1 {}
+h2 {}
+p, table {
+	font-size: 8pt !important;
+	color: #000 !important;
+}
+
+#container
+{
+	background: #ffffff;
+}
+ 
+#navigation, #section-navigation, #mapContent, #aside, #textboxes
+{
+	display: none;
+}
+ 
+#nextPhaseButton, #gameStatusText, #hexagonText, #terrainText, #counterText, #promptText, #instructions
+{
+	display: none;
+}
+ 
+
+
+ 
+#footer
+{
+	background: #ffffff;
+	font-size: 1em;
+}

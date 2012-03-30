@@ -1,0 +1,183 @@
+﻿body {font-size: 100%; font-family: "Verdana", Geneva, sans-serif}
+h1 { font-size: 2em;}
+h2 {}
+p {}
+
+table
+{
+
+}
+
+#container
+{
+	margin: 0 auto;
+	width: 800px;
+	background: #ffffff;
+}
+ 
+#header
+{
+	background: #ffffff;
+	margin: 0px; 
+	padding: 0px;
+}
+ 
+#header h1 
+{ 
+	display: block;
+	color: black;
+	margin: 0px; 
+	padding: 0px 0px;
+	text-decoration: none;
+}
+
+#header h1 a
+{ 
+	display: block;
+	color: black;
+	margin: 0px; 
+	padding: 0px 0px;
+	text-decoration: none;
+}
+ 
+ 
+#navigation
+{
+	float: left;
+	background: white;
+	color: black;
+	font-size: 0.75em;
+	background: #ffffff;
+}
+ 
+#navigation ul
+{
+	margin: 0px;
+	padding: 0px;
+}
+ 
+#navigation ul li
+{
+	list-style-type: none;
+	display: inline;
+	color: black;
+}
+ 
+#navigation li a
+{
+	display: block;
+	float: left;
+	padding: 5px 0px;
+	text-align: center;
+	width: 158px;
+	color: black;
+	text-decoration: none;
+	border-top: 2px solid black;
+	border-right: 1px solid white;
+	border-bottom: 1px solid black;
+	border-left: 1px solid white;
+	background: #ffffff;
+}
+ 
+#navigation li a:hover { 
+	color: black; 	
+	background: #cccccc;
+}
+ 
+#content-container
+{
+	float: left;
+	width: 800px;
+	background: #ffffff;
+	font-size: 0.625em;
+}
+
+#section-navigation
+{
+	float: left;
+	width: 100px;
+	padding: 0px 0px 0px 0px;
+	margin: 10px 0px 10px 0px;
+	display: inline;
+	background: #ffffff;
+}
+ 
+#section-navigation ul
+{
+	margin: 0px;
+	padding: 20px;
+}
+ 
+#section-navigation ul li
+{
+	margin: 0em 0em 1em;
+	padding: 0px;
+	list-style-type: none;
+}
+ 
+#mapContent
+{
+	float: left;
+	width: 252px;
+	height: 260px;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+}
+
+#content
+{
+	float: left;
+	width: 590px;
+	padding: 10px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	background: #ffffff;
+}
+ 
+#content h2 { margin: 0; }
+ 
+#aside
+{
+	float: right;
+	width: 100px;
+	padding: 0px 0px;
+	margin: 10px 0px 0px 0px;
+	display: inline;
+	background: #ffffff;
+}
+ 
+#aside h3 { margin: 0; }
+ 
+#footer
+{
+	clear: left;
+	background: #ffffff;
+	text-align: right;
+	padding: 10px;
+	height: 1%;
+}
+
+.button {
+	background: #dddddd;
+	color: #000;
+	font-weight: bold;
+	padding: 3px;
+	border-width: 2px;
+	border-style: solid;
+	border-top-color: #EFEFEF;
+	border-right-color: #EFEFEF;
+	border-bottom-color: #858585;
+	border-left-color: #858585;
+}
+	
+.button:hover {
+	color: black; 	
+	background: #cccccc;
+}
+
+.counter:hover {
+	cursor: pointer;
+}
+
+#nextPhaseButton:hover {
+	cursor: pointer;
+}

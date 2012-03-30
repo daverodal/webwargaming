@@ -96,7 +96,7 @@ function calculateHexpartXY() {
 	if($this->evenColumnShiftDown == true)
 	{
 		if ( $x % 2 == 0 ) $this->y += 2;
-	} else {
+	} else {efwefwef
 		if ( $x % 2 == 0 ) $this->y -= 2;
 	}
 	
