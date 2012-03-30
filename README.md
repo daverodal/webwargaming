@@ -26,4 +26,4 @@ It's very rough right now. only two files converted
 
 the goal is to be able to play hex games with remote players via the web.
 
-
+copyright (c) 2012 David Rodal
