@@ -46,13 +46,13 @@ define("FIRE_COMBAT_RESOLUTION_MODE",6);
 define("SELECT_TO_RETREAT_MODE",7);
 define("CHECK_RETREAT_MODE",8);
 define("RETREATING_MODE",9);
-define("STOP_RETREAT_MODE",0);
-define("SELECT_TO_ADVANCE_MODE",1);
-define("ADVANCING_MODE",2);
-define("SELECT_TO_DELETE_MODE",3);
-define("DELETING_MODE",4);
-define("CHECK_FOR_COMBAT_MODE",5);
-define("GAME_OVER_MODE",6);
+define("STOP_RETREAT_MODE",10);
+define("SELECT_TO_ADVANCE_MODE",11);
+define("ADVANCING_MODE",12);
+define("SELECT_TO_DELETE_MODE",13);
+define("DELETING_MODE",14);
+define("CHECK_FOR_COMBAT_MODE",15);
+define("GAME_OVER_MODE",16);
 
 // mode names
 $mode_name = array();
@@ -110,23 +110,23 @@ define("STATUS_STOPPED",6);
 define("STATUS_REMOVED",7);
 define("STATUS_DEFENDING",8);
 define("STATUS_ATTACKING",9);
-define("STATUS_NO_RESULT",0);
-define("STATUS_DEFENDED",1);
-define("STATUS_ATTACKED",2);
-define("STATUS_CAN_RETREAT",3);
-define("STATUS_RETREATING",4);
-define("STATUS_RETREATED",5);
-define("STATUS_CAN_ADVANCE",6);
-define("STATUS_ADVANCING",7);
-define("STATUS_ADVANCED",8);
-define("STATUS_DELETING",9);
-define("STATUS_DELETED",0);
-define("STATUS_ELIMINATING",1);
-define("STATUS_ELIMINATED",2);
-define("STATUS_EXITING",3);
-define("STATUS_EXITED",4);
-define("STATUS_NO_MORE_CRT",5);
-define("STATUS_MORE_CRT",6);
+define("STATUS_NO_RESULT",10);
+define("STATUS_DEFENDED",11);
+define("STATUS_ATTACKED",12);
+define("STATUS_CAN_RETREAT",13);
+define("STATUS_RETREATING",14);
+define("STATUS_RETREATED",15);
+define("STATUS_CAN_ADVANCE",16);
+define("STATUS_ADVANCING",17);
+define("STATUS_ADVANCED",18);
+define("STATUS_DELETING",19);
+define("STATUS_DELETED",20);
+define("STATUS_ELIMINATING",21);
+define("STATUS_ELIMINATED",22);
+define("STATUS_EXITING",23);
+define("STATUS_EXITED",24);
+define("STATUS_NO_MORE_CRT",25);
+define("STATUS_MORE_CRT",26);
 
 // unit status names
 $status_name = array();
@@ -187,8 +187,8 @@ $combatRatio_name[4] = " 3 to 1 ";
 $combatRatio_name[5] = " 4 to 1 ";
 $combatRatio_name[6] = " greater than 5 to 1 ";
 
-define("MAP",1);
-define("NONE",1);
+define("MAP",-1);
+define("NONE",-1);
 
 // hexpart types
 define("HEXAGON_CENTER",1);
