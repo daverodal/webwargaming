@@ -136,7 +136,7 @@ function allAreAttackingAcrossRiver($combatNumber) {
 
     $defenderHexagon = $this->force->getCombatHexagon($combatNumber);
 
-    for ($i = 0; $i < $attackerHexagonList->length; $i++) {
+    for ($i = 0; $i < count($attackerHexagonList); $i++) {
 
         $hexsideX = ($defenderHexagon->getX() + $attackerHexagonList[i]->getX()) / 2;
         $hexsideY = ($defenderHexagon->getY() + $attackerHexagonList[i]->getY()) / 2;
