@@ -64,21 +64,30 @@ class Town{
 	
 	$this->allAreAttackingAcrossRiverCombatEffect = 3;
 
-	$this->terrainArray = array(29);
-		for($i = 0; $i < $this->terrainArray->length; $i++) {
-		$this->terrainArray[$i] = array(16);
-	}
+        $this->maxTerrainY = 29;
+        $this->maxTerrainX = 16;
 
-	$this->maxTerrainX = $this->terrainArray[0]->length;
-	$this->maxTerrainY = $this->terrainArray->length;
-	//alert( $this->maxTerrainX + ", " + $this->maxTerrainY );
-	for( $y = 0; $y < $this->maxTerrainY; $y++ )
-	{
-		for ( $x = 0; $x < $this->maxTerrainX; $x++ )
-		{
-			$this->terrainArray[$y][$x] = 1;
-		}
-	}
+        for ($x = 0; $x < $this->maxTerrainX; $x++) {
+            for ($y = 0; $y < $this->maxTerrainY; $y++) {
+                $this->terrainArray[$y][$x] = 1;
+            }
+
+        }
+        //	$this->terrainArray = array(29);
+//		for($i = 0; $i < count($this->terrainArray); $i++) {
+//		$this->terrainArray[$i] = array(16);
+//	}
+//
+//	$this->maxTerrainX = count($this->terrainArray[0]);
+//	$this->maxTerrainY = count($this->terrainArray);
+//	//alert( $this->maxTerrainX + ", " + $this->maxTerrainY );
+//	for( $y = 0; $y < $this->maxTerrainY; $y++ )
+//	{
+//		for ( $x = 0; $x < $this->maxTerrainX; $x++ )
+//		{
+//			$this->terrainArray[$y][$x] = 1;
+//		}
+//	}
 } 
  
 
@@ -93,7 +102,7 @@ function addTown($name, $hexagonName)
 function getTownName($hexagon) {
 
 	$townName = "";
-	for ( $i = 0; $i < $this->towns->length; $i++ ) {
+	for ( $i = 0; $i < count($this->towns); $i++ ) {
 		
 		if ( $this->towns[$i]->hexagon->equals($hexagon) ) {
 
@@ -106,7 +115,7 @@ function getTownName($hexagon) {
 
 function addTerrainFeature( $name, $displayName, $letter, $entranceCost, $traverseCost, $combatEffect, $isExclusive) {
 
-    $code = pow(2, $this->terrainFeatures->length);
+    $code = pow(2, count($this->terrainFeatures));
 	$terrainFeature = new TerrainFeature($code, $name, $displayName, $letter, $entranceCost, $traverseCost, $combatEffect, $isExclusive);
 	array_push($this->terrainFeatures, $terrainFeature);
 }
@@ -136,7 +145,7 @@ function getTerrainDisplayName($hexpart) {
 	$code = $this->getTerrainCode($hexpart);
 	$terrainName = "";
 
-		for($i = 0; $i < $this->terrainFeatures->length; $i++ ) {
+		for($i = 0; $i < count($this->terrainFeatures); $i++ ) {
 
 			if( ($this->terrainFeatures[$i]->code & $code) == $this->terrainFeatures[$i]->code ) {
 	
@@ -153,7 +162,7 @@ function terrainIs($hexpart, $terrainName)
     $terrainCode = $this->getTerrainCode($hexpart);
     $found = false;
 
-    for ($i = 0; $i < $this->terrainFeatures->length; $i++ )
+    for ($i = 0; $i < count($this->terrainFeatures); $i++ )
     {
 		// match name
         if ($this->terrainFeatures[$i]->name == $terrainName)
@@ -203,7 +212,7 @@ function getTerrainList( ) {
 
 			$terrainCode = $this->getTerrainCode( $x, $y );
 			
-			for ($i = 0; $i < $this->terrainFeatures->length; $i++ )
+			for ($i = 0; $i < count($this->terrainFeatures); $i++ )
 			{
 				// get terrain code and check
 				$code = $this->terrainFeatures[$i]->code;
@@ -278,7 +287,7 @@ function setTerrain($letter, $x, $y) {
 	if ( $letter == "o" )
 	{
 		// find offmap code
-		for ($eachType = 0; $eachType < $this->terrainFeatures->length; $eachType++ )
+		for ($eachType = 0; $eachType < count($this->terrainFeatures); $eachType++ )
 		{
 			if ($this->terrainFeatures[$eachType]->letter == $letter)
 			{
@@ -288,7 +297,7 @@ function setTerrain($letter, $x, $y) {
 		}
 	}
 	else {
-		for ($eachType = 0; $eachType < $this->terrainFeatures->length; $eachType++ )
+		for ($eachType = 0; $eachType < count($this->terrainFeatures); $eachType++ )
 		{
 			if ($this->terrainFeatures[$eachType]->letter == $letter)
 			{
@@ -296,7 +305,7 @@ function setTerrain($letter, $x, $y) {
 				if ($this->terrainFeatures[$eachType]->isExclusive == true)
 				{
 					// clear any other exclusive terrain types present
-					for ($eachExclusiveCheck = 0; $eachExclusiveCheck < $this->terrainFeatures->length; $eachExclusiveCheck++ )
+					for ($eachExclusiveCheck = 0; $eachExclusiveCheck < count($this->terrainFeatures); $eachExclusiveCheck++ )
 					{
 						// is it exclusive
 						if ($this->terrainFeatures[$eachExclusiveCheck]->isExclusive == true)
@@ -362,7 +371,7 @@ function addTerrain($hexagonName, $hexpartType, $terrainName)
 	
 	}
 
-	for ($eachTerrainFeature = 0; $eachTerrainFeature < $this->terrainFeatures->length; $eachTerrainFeature++ )
+	for ($eachTerrainFeature = 0; $eachTerrainFeature < count($this->terrainFeatures); $eachTerrainFeature++ )
 	{
 		if ( $this->terrainFeatures[$eachTerrainFeature]->name == $terrainName )
 		{
@@ -370,9 +379,11 @@ function addTerrain($hexagonName, $hexpartType, $terrainName)
 			
 			if ( $this->terrainFeatures[$eachTerrainFeature]->isExclusive == true )
 			{
-				for (  $eachExclusiveType = 0; $eachExclusiveType < $this->terrainFeatures->length; $eachExclusiveType++)
+//                var_dump($this->terrainFeatures);
+				for (  $eachExclusiveType = 0; $eachExclusiveType < count($this->terrainFeatures); $eachExclusiveType++)
 				{
-					if ( $this->terrainArray[$y][$x] & $this->terrainFeatures[$eachExclusiveType]->code == $this->terrainFeatures[eachExclusiveType]->code )
+					if ( $this->terrainArray[$y][$x] &&
+                        $this->terrainFeatures[$eachExclusiveType]->code == $this->terrainFeatures[$eachExclusiveType]->code )
 					{
 						$this->terrainArray[$y][$x] -= $this->terrainFeatures[$eachExclusiveType]->code;
 					}
@@ -388,7 +399,7 @@ function getTerrainTraverseCostFor($name) {
  	
      $traverseCost = 0;
 
-    for (  $i = 0; $i < $this->terrainFeatures->length; $i++ )
+    for (  $i = 0; $i < count($this->terrainFeatures); $i++ )
     {
 		$terrainFeature = $this->terrainFeatures[$i];
 		if ($terrainFeature->name == $name)
@@ -406,7 +417,7 @@ function getTerrainEntranceMoveCost($hexagon) {
 
 	 $hexpart = new Hexpart($hexagon->getX(), $hexagon->getY());
 	
-    for (  $i = 0; $i < $this->terrainFeatures->length; $i++ )
+    for (  $i = 0; $i < count($this->terrainFeatures); $i++ )
     {
 		$terrainFeature = $this->terrainFeatures[$i];
 		if ($this->terrainIs($hexpart, $terrainFeature->name) == true)
@@ -469,7 +480,7 @@ function getTerrainTypeMoveCost($name)
 {
 	 $moveCost = 0;
 	
-	for (  $i = 0; $i < $this->terrainFeatures->length; $i++ )
+	for (  $i = 0; $i < count($this->terrainFeatures); $i++ )
     {
 		if ( $this->terrainFeatures[$i]->name == $name )
 		{
@@ -485,7 +496,7 @@ function getDefenderTerrainCombatEffect($hexagon)
 
 	 $hexpart = new Hexpart($hexagon->getX(), $hexagon->getY());
 	
-    for (  $i = 0; $i < $this->terrainFeatures->length; $i++ )
+    for (  $i = 0; $i < count($this->terrainFeatures); $i++ )
         {
 			if ( $this->terrainIs( $hexpart, $this->terrainFeatures[$i]->name ) )
 			{
@@ -522,7 +533,7 @@ function getReinforceZone($hexagon)
 {
      $zoneName = "";
 
-    for(  $i = 0; $i < $this->reinforceZones->length; $i++ )
+    for(  $i = 0; $i < count($this->reinforceZones); $i++ )
     {
 //alert("" + i + " " + $this->reinforceZones[$i]->hexagon->getName() + " : " + hexagon->getName());
         if ( $this->reinforceZones[$i]->hexagon->equals($hexagon) == true )

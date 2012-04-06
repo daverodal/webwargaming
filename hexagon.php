@@ -78,18 +78,18 @@ function calculateHexagonNumber()
 
 	if($this->evenColumnShiftDown == true)
 	{
-    		$y = Math.floor((($this->y - $this->minY) / 4) + 1);
+    		$y = floor((($this->y - $this->minY) / 4) + 1);
   	} else {
-    		$y = Math.floor((($this->y - $this->minY + 2) / 4) + 1);
+    		$y = floor((($this->y - $this->minY + 2) / 4) + 1);
   	}
-  	$this->number = x * 100 + $y;
+  	$this->number = $x * 100 + $y;
 }
 
 function calculateHexpartXY() {
 
 
- 	$x = Math.floor( $this->number / 100 );
-	$y = $this->number - ( x * 100 );
+ 	$x = floor( $this->number / 100 );
+	$y = $this->number - ( $x * 100 );
 
  	$this->y = 4 * ( $y - 1 ) + $this->minY;
 
@@ -106,7 +106,7 @@ function calculateHexpartXY() {
 function parseX($number) {
 
 
-	$x = Math.floor($number / 100);
+	$x = floor($number / 100);
 	$x = 2 * ( $x - 1 ) + $this->minX;
 
 	return $x;
@@ -115,7 +115,7 @@ function parseX($number) {
 function parseY($number) {
 
 
-	$x = Math.floor(number / 100);
+	$x = floor(number / 100);
 	$y = hexagon_Number % 100;
 
 	$y = 4 * ( $y - 1 ) + $this->miny;
@@ -151,7 +151,7 @@ function equals($hexagon) {
 
 	$isEqual = false;
 	
-	if ( $this->x == $hexagon.getX() && $this->y == $hexagon.getY())
+	if ( $this->x == $hexagon->getX() && $this->y == $hexagon->getY())
 	{
 		$isEqual = true;
 	}

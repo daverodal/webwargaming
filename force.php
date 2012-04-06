@@ -219,7 +219,7 @@ class Force
 
         for ($id = 0; $id < count($this->units); $id++)
         {
-            if ($this->units[$id]->hexagon->equals(hexagon)) {
+            if ($this->units[$id]->hexagon->equals($hexagon)) {
                 $this->victor = $this->units[$id]->forceId;
             }
         }

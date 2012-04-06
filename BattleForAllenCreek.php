@@ -16,9 +16,26 @@ require_once "terrain.php";
 // counter image values
 $oneHalfImageWidth = 16;
 $oneHalfImageHeight = 16;
+
 $battle = new BattleForAllenCreek();
+
+
+    $mapGrid = new MapGrid($battle->mapData);
+	$mapGrid->setPixels(0, 0);
+
+	$battle->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon() );
+
+echo "Wonderful";
 class BattleForAllenCreek{
-    
+
+    public $mapData;
+    public $force;
+    public $terrain;
+    public $moveRules;
+    public $combatRules;
+    public $gameRules;
+    public $prompt;
+
     function __construct(){
         $this->mapData = new MapData();
         $this->force = new Force();

@@ -25,6 +25,7 @@ class PhaseChange{
 
 class GameRules{
     // class references
+
 public $moveRules;
 public $combatRules;
 public $force;
@@ -88,6 +89,9 @@ function processEvent( $event, $id, $hexagon ){
 
         		case SELECT_MAP_EVENT:
            		case SELECT_COUNTER_EVENT:
+            /**
+             * @var  $this->moveRules \MoveRules
+             */
                     $this->moveRules->moveUnit($event, $id, $hexagon, $this->turn);
           			break;
 
