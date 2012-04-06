@@ -34,7 +34,7 @@ class Hexagon {
         if ( $a1 !== false && $a2 === false ) {
 
             $this->name = $a1;
-            $this->number = parseInt($this->name, 10);
+            $this->number = intVal($this->name, 10);
             $this->calculateHexpartXY();
             $this->calculateHexagonName();
         }

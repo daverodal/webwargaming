@@ -10,6 +10,7 @@ require_once "los.php";
 require_once "mapgrid.php";
 require_once "moveRules.php";
 require_once "prompt.php";
+require_once "terrain.php";
 // battleforallencreek.js
 
 // counter image values
@@ -19,13 +20,13 @@ $battle = new BattleForAllenCreek();
 class BattleForAllenCreek{
     
     function __construct(){
-        $mapData = new MapData();
-        $force = new Force();
-        $terrain = new Terrain();
-        $moveRules = new MoveRules($force, $terrain);
-        $combatRules = new CombatRules($force, $terrain);
-        $gameRules = new GameRules($moveRules, $combatRules, $force);
-        $prompt = new Prompt($gameRules, $moveRules, $combatRules, $force, $terrain);
+        $this->mapData = new MapData();
+        $this->force = new Force();
+        $this->terrain = new Terrain();
+        $this->moveRules = new MoveRules($this->force, $this->terrain);
+        $this->combatRules = new CombatRules($this->force, $this->terrain);
+        $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force);
+        $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
 
 
 

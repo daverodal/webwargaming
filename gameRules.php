@@ -43,9 +43,9 @@ function __construct( $MoveRules, $CombatRules, $Force ) {
 //	var defendingForceId;
 //	var deleteCount;
 
-	$this->moveRules = MoveRules;
-	$this->combatRules = CombatRules;
-	$this->force = Force;
+	$this->moveRules = $MoveRules;
+	$this->combatRules = $CombatRules;
+	$this->force = $Force;
 	$this->phaseChanges = array();
 
     	$this->turn = 1;
@@ -70,7 +70,7 @@ function setMaxTurn( $max_Turn ) {
 function addPhaseChange( $currentPhase, $nextPhase, $nextMode, $nextAttackerId, $nextDefenderId, $phaseWillIncrementTurn ) {
 
 	$phaseChange = new PhaseChange($currentPhase, $nextPhase, $nextMode, $nextAttackerId, $nextDefenderId, $phaseWillIncrementTurn);
-	$this->phaseChanges->push($phaseChange);
+	array_push($this->phaseChanges,$phaseChange);
 }
 
 function processEvent( $event, $id, $hexagon ){

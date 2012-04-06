@@ -110,7 +110,7 @@ class Force
     {
 
         $id = count($this->units);
-        $this->units->push(new unit($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitMaxMove, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn));
+        array_push($this->units,new unit($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitMaxMove, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn));
     }
 
     function advanceIsOnRetreatList($id, $hexagon)
