@@ -259,7 +259,7 @@ GameRules.prototype.processEvent = function( event, id, hexagon ){
 }
  
 GameRules.prototype.selectNextPhase = function() {
-
+alert("Next");
 	if ( this.force.moreCombatToResolve() == false && this.moveRules.anyUnitIsMoving == false)
 	{
 

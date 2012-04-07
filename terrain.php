@@ -507,7 +507,7 @@ function getDefenderTerrainCombatEffect($hexagon)
         {
 			if ( $this->terrainIs( $hexpart, $this->terrainFeatures[$i]->name ) )
 			{
-				if ( $this->terrainFeatures[$i]->combatEffect > combatEffect)
+				if ( $this->terrainFeatures[$i]->combatEffect > $combatEffect)
 				{
 					$combatEffect = $this->terrainFeatures[$i]->combatEffect;
 				}

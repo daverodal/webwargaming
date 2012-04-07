@@ -22,12 +22,12 @@ class CombatResultsTable
     
     function __construct(){
 	$this->combatResultsTable = array(
-    array("DR", "DR", "DR", "DE", "DE", "DE"),
-    array("NR", "DR", "DR", "DR", "DE", "DE"),
-    array("NR", "NR", "DR", "DR", "DR", "DE"),
-    array("AR", "NR", "NR", "DR", "DR", "DR"),
-    array("AR", "AR", "NR", "NR", "DR", "DR"),
-    array("AE", "AR", "AR", "NR", "DR", "DR")
+    array(DR, DR, DR, DE, DE, DE),
+    array(NR, DR, DR, DR, DE, DE),
+    array(NR, NR, DR, DR, DR, DE),
+    array(AR, NR, NR, DR, DR, DR),
+    array(AR, AR, NR, NR, DR, DR),
+    array(AE, AR, AR, NR, DR, DR)
   );
 
 	$this->combatOddsTable = array(
@@ -47,16 +47,16 @@ class CombatResultsTable
     $this->setCombatOddsTable(); 
 }
 
-function getCombatResults($die, $index)
+function getCombatResults($Die, $index)
 {
-	return $this->combatResultsTable[$die][$index];
+	return $this->combatResultsTable[$Die][$index];
 }
 
 function setCombatOddsTable()
 {
     $odds = array();
     
-//    var die;
+//    var Die;
 //    var combatIndex;
 //    var combatResultIndex;
 //    var numerator;
@@ -73,9 +73,9 @@ function setCombatOddsTable()
         $odds[3] = 0;
         $odds[4] = 0;
    
-        for( $die = 0; $die < $this->dieSideCount; $die++ ) 
+        for( $Die = 0; $Die < $this->dieSideCount; $Die++ )
         {
-            $combatResultIndex = $this->combatResultsTable[$die][$combatIndex];
+            $combatResultIndex = $this->combatResultsTable[$Die][$combatIndex];
             $odds[$combatResultIndex] = $odds[$combatResultIndex] + 1;
         }
 

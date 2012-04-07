@@ -179,10 +179,15 @@ class Force
 
     function applyCRTresults($combatNumber, $combatResults, $dieRoll)
     {
+        var_dump($this->units);
+        echo "apply $dieRoll $combatNumber ";
+echo $combatResults;
         $this->clearRetreatHexagonList();
 
         for ($defender = 0; $defender < count($this->units); $defender++)
         {
+            echo "Defend $combatResults\n";
+
             if ($this->units[$defender]->status == STATUS_DEFENDING && $this->units[$defender]->combatNumber == $combatNumber) {
                 switch ($combatResults)
                 {
@@ -199,26 +204,29 @@ class Force
                     case DE:
                         $this->units[$defender]->status = STATUS_ELIMINATING;
                         $this->units[$defender]->retreatCountRequired = 1;
-                        $this->addToRetreatHexagonList(defender, $this->getUnitHexagon(defender));
+                        $this->addToRetreatHexagonList($defender, $this->getUnitHexagon($defender));
                         break;
 
                     case DR:
-                        $this->units[defender]->status = STATUS_CAN_RETREAT;
-                        $this->units[defender]->retreatCountRequired = 1;
+                        $this->units[$defender]->status = STATUS_CAN_RETREAT;
+                        $this->units[$defender]->retreatCountRequired = 1;
                         break;
 
                     default:
                         break;
                 }
-                $this->units[defender]->combatResults = combatResults;
-                $this->units[defender]->dieRoll = dieRoll;
-                $this->units[defender]->combatNumber = 0;
-                $this->units[defender]->moveCount = 0;
+                $this->units[$defender]->combatResults = $combatResults;
+                $this->units[$defender]->dieRoll = $dieRoll;
+                $this->units[$defender]->combatNumber = 0;
+                $this->units[$defender]->moveCount = 0;
+                var_dump($this->units[$defender]);
             }
         }
 
         for ($attacker = 0; $attacker < count($this->units); $attacker++)
         {
+            echo "Attack $combatResults\n";
+
             if ($this->units[$attacker]->status == STATUS_ATTACKING && $this->units[$attacker]->combatNumber == $combatNumber) {
                 switch ($combatResults)
                 {
@@ -245,8 +253,8 @@ class Force
                     default:
                         break;
                 }
-                $this->units[$attacker]->combatResults = combatResults;
-                $this->units[$attacker]->dieRoll = dieRoll;
+                $this->units[$attacker]->combatResults = $combatResults;
+                $this->units[$attacker]->dieRoll = $dieRoll;
                 $this->units[$attacker]->combatNumber = 0;
                 $this->units[$attacker]->moveCount = 0;
             }
@@ -289,7 +297,7 @@ class Force
 
         for ($id = 0; $id < count($this->units); $id++)
         {
-            if ($this->units[$id]->status == STATUS_ATTACKING && $this->units[$id]->combatNumber == combatNumber) {
+            if ($this->units[$id]->status == STATUS_ATTACKING && $this->units[$id]->combatNumber == $combatNumber) {
                 $attackerStrength += $this->units[$id]->strength;
             }
         }
@@ -305,7 +313,7 @@ class Force
         for ($id = 0; $id < count($this->units); $id++) {
             if ($this->units[$id]->status == STATUS_ATTACKING && $this->units[$id]->combatNumber == $combatNumber) {
 
-                $hexagonList->push($this->units[$id]->hexagon);
+               $hexagonList[] = $this->units[$id]->hexagon;
             }
         }
         return $hexagonList;

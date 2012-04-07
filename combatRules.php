@@ -70,9 +70,10 @@ function setupCombat( $id ) {
         if ($this->currentCombatNumber > 0)
         {
             $los = new Los();
-            $los->setOrigin($this->force->getUnitHexagon(id));
+            $los->setOrigin($this->force->getUnitHexagon($id));
             $los->setEndPoint($this->force->getCombatHexagon($this->currentCombatNumber));
             $range = $los->getRange();
+            echo "RANGE $range";
             if ($range == 1)
             {
                 if ($this->force->unitIsAttacking($id) == true)
@@ -133,14 +134,14 @@ function resolveCombat( $id ) {
     //  6 * Math->random yields number between 0 and 6
     //  Math->floor gives lower integer, which is now 0,1,2,3,4,5
 
-    $die = floor($this->crt->dieSideCount * rand());
+    $Die = floor($this->crt->dieSideCount * (rand()/getrandmax()));
     $index = $this->force->getUnitCombatIndex($id);
-    $combatResults = $this->crt->getCombatResults($die, $index);
-
+    $combatResults = $this->crt->getCombatResults($Die, $index);
     /*
      * TODO: is force really supposed to be $this->force?????
      */
-    $this->force->applyCRTresults($this->force->getUnitCombatNumber($id), $combatResults, $die);
+    $this->force->applyCRTresults($this->force->getUnitCombatNumber($id), $combatResults, $Die);
+    echo "Resolved";
 }
 
 function resolveFireCombat( $id ) {
@@ -157,10 +158,10 @@ function allAreAttackingAcrossRiver($combatNumber) {
 
     for ($i = 0; $i < count($attackerHexagonList); $i++) {
 
-        $hexsideX = ($defenderHexagon->getX() + $attackerHexagonList[i]->getX()) / 2;
-        $hexsideY = ($defenderHexagon->getY() + $attackerHexagonList[i]->getY()) / 2;
+        $hexsideX = ($defenderHexagon->getX() + $attackerHexagonList[$i]->getX()) / 2;
+        $hexsideY = ($defenderHexagon->getY() + $attackerHexagonList[$i]->getY()) / 2;
         
-        $hexside = new Hexpart(hexsideX, hexsideY);
+        $hexside = new Hexpart($hexsideX, $hexsideY);
         
         if ($this->terrain->terrainIs($hexside, "river") == false) {
 
