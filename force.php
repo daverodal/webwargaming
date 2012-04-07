@@ -718,9 +718,7 @@ class Force
     function unitCanMove($id)
     {
         $canMove = false;
-        if ($this->units[$id]->status == STATUS_READY
-            && $this->units[$id]->forceId == $this->attackingForceId
-        ) {
+        if ($this->units[$id]->status == STATUS_READY && $this->units[$id]->forceId == $this->attackingForceId ) {
             $canMove = true;
         }
         return $canMove;

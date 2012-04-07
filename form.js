@@ -93,6 +93,7 @@ function mapMouseMove(event) {
 
 function mapMouseDown(event) {
 
+    alert(event);
 	var mapGrid;
 	mapGrid = new MapGrid(mapData);
 
@@ -170,7 +171,7 @@ function counterMouseDown(event) {
 	else {
 		id = event.srcElement.id.toString();
 	}
-	
+	alert(id);
 	gameRules.processEvent( SELECT_COUNTER_EVENT, id, force.getUnitHexagon(id) );
 
 	updateForm();

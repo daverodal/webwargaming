@@ -22,9 +22,11 @@ $battle = new BattleForAllenCreek();
 
     $mapGrid = new MapGrid($battle->mapData);
 	$mapGrid->setPixels(0, 0);
+//force.getUnitHexagon(id)
+var_dump($battle->moveRules->anyUnitIsMoving);
 
-	$battle->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon() );
-
+	$battle->gameRules->processEvent(SELECT_COUNTER_EVENT, 5, $battle->force->getUnitHexagon(5));
+var_dump($battle->moveRules->anyUnitIsMoving);
 echo "Wonderful";
 class BattleForAllenCreek{
 
