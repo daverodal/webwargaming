@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0028)http://www.webwargaming.org/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Web Wargaming</title>
+<link rel="stylesheet" href="./screen.css" type="text/css" media="screen"> 
+<link rel="stylesheet" href="./print.css" type="text/css" media="print"> 
+</head>
+<body>
+<div id="layout-three-fixed"> 
+<div id="container"> 
+
+<div id="header"> 
+<h1><a href="./Web Wargaming.htm">Web Wargaming</a></h1>
+simulations of historical conflicts on the web 
+</div> 
+<!-- end header -->
+
+<div id="navigation"> 
+<ul> 
+<li><a href="http://www.webwargaming.org/design.htm">design</a></li> 
+<li><a href="http://www.webwargaming.org/gamerules.htm">game rules</a></li> 
+<li><a href="http://www.webwargaming.org/movement.htm">movement</a></li> 
+<li><a href="http://www.webwargaming.org/combat.htm">combat</a></li> 
+<li><a href="http://www.webwargaming.org/wargames.htm">wargames</a></li> 
+</ul> 
+</div> 
+<!-- end navigation -->
+<div id="content-container"> 
+
+<div id="section-navigation"> 
+<a href="./Web Wargaming.htm">Home Page</a>
+<p><b>Programmer Notes:</b>
+</p>
+<a href="http://www.webwargaming.org/programdesign.htm">program design</a>
+<br>&nbsp;<br>
+<a href="http://www.webwargaming.org/hexagoncoordinates.htm">hexagon coordinates</a>
+<br>&nbsp;<br>
+<a href="http://www.webwargaming.org/terrain.htm">mapping terrain</a>
+<br>&nbsp;<br>
+<a href="http://www.webwargaming.org/zoc.htm">zone of control</a>
+<br>&nbsp;<br>
+<a href="http://www.webwargaming.org/lineofsight.htm">calculating line of sight, range, and bearing</a>
+<br>&nbsp;<br>
+<a href="http://www.webwargaming.org/combatresults.htm">combat results</a>
+<br>&nbsp;<br>
+<a href="http://www.webwargaming.org/loc.htm">checking lines of communication</a>
+<br>&nbsp;<br>
+</div>
+<!-- end section-navigation -->
+
+<div id="content">
+
+<div id="gameImages">
+<img id="map" alt="map" src="./BattleForAllenCreekMap.png" style="position: relative; visibility: visible;z-index: 0;float: left">
+<img id="0" alt="0" src="./infantry-3a.png" class="counter" style="position: relative; left: -106px; top: 104px; "><img id="1" alt="1" src="./infantry-3a.png" class="counter" style="position: relative; left: -138px; top: 144px; "><img id="2" alt="2" src="./infantry-3a.png" class="counter" style="position: relative; left: -62px; top: 44px; "><img id="3" alt="3" src="./infantry-1a.png" class="counter" style="position: relative; left: -94px; top: 124px; "><img id="4" alt="4" src="./infantry-1a.png" class="counter" style="position: relative; left: -126px; top: 164px; "><img id="5" alt="5" src="./armour-1a.png" class="counter" style="position: relative; left: -158px; top: 204px; "></div>
+<!-- end gameImages -->
+
+<div id="texboxes">
+<div class="button" id="nextPhaseButton" style="position: relative; left: 5px; top: -30px; visibility: visible; z-index: 1; float: left">
+Next Phase
+</div>
+<div id="gameStatusText" style="position: relative; left: 10px; top: 20px; width: 225px; background-color: White; float: left">turn: 1 Blue Move ( RED is winning )<br>&nbsp; moving mode<br>last force to occupy Marysville wins</div>
+<div id="hexagonText" style="position: relative; left: 70px; top: 30px; width: 260px; background-color: White; float: left">&nbsp;</div>
+<div id="terrainText" style="position: relative; left: 70px; top: 30px; width: 260px; background-color: White; float: left">&nbsp;</div>
+<div id="counterText" style="position: relative; left: 70px; top: 40px; width: 260px; color: blue; background-color: White; float: left;">&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;</div>
+<div id="promptText" style="position: relative; left: 70px; top: 50px; width: 260px; height: 70px; color: red; background-color: White; float: left">&nbsp;</div>
+</div>
+<!-- end textboxes -->
+
+<p style="clear: both;">
+&nbsp;
+</p>
+<p>
+Wargames are based upon real events and attempt to represent a reasonable approximation of the actual forces, 
+terrain, and other material factors faced by the actual participants. 
+A hexagon overlay is placed on the map to assist in force placement and movement calculations. 
+The map displays terrain features that affect movement and combat resolution.  
+Counters represent the force size and their strength. 
+</p>
+<p>
+</p><h3> 
+<a href="http://www.webwargaming.org/wargames/driveonmetz/DriveOnMetz.htm">Drive on Metz play-aid</a>
+</h3>
+<p></p>
+<hr>
+<p>
+example of wargames rules:
+</p>
+<p>
+Terrain effect on movement (TEM): <br>
+road 1 move point, clear 2 move points, rough 3 move points, forest 4 move points, river all points
+</p>
+<p>
+Terrain effect on combat (TEC): <br>
+rough shift index -1, town shift index -2, forest shift index -2, across river shift index -3
+</p>
+<p>Combat odds (CRT): index = attacker strength - defender strength - TEC
+<br>
+</p>
+<p>CRT table when rolling the die for combat results</p>
+<table>
+<tbody><tr><td></td><td>&nbsp;</td><td colspan="6">index (odds)</td></tr>
+<tr><td></td><td>&nbsp;</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+<tr><td>die:1</td><td>&nbsp;</td><td>DR</td><td>DR</td><td>DR</td><td>DE</td><td>DE</td><td>DE</td></tr>
+<tr><td>die:2</td><td>&nbsp;</td><td>NR</td><td>DR</td><td>DR</td><td>DR</td><td>DE</td><td>DE</td></tr>
+<tr><td>die:3</td><td>&nbsp;</td><td>NR</td><td>NR</td><td>NR</td><td>DR</td><td>DR</td><td>DE</td></tr>
+<tr><td>die:4</td><td>&nbsp;</td><td>AR</td><td>NR</td><td>NR</td><td>DR</td><td>DR</td><td>DR</td></tr>
+<tr><td>die:5</td><td>&nbsp;</td><td>AR</td><td>AR</td><td>NR</td><td>NR</td><td>DR</td><td>DR</td></tr>
+<tr><td>die:6</td><td>&nbsp;</td><td>AR</td><td>AR</td><td>AR</td><td>NR</td><td>DR</td><td>DR</td></tr>
+</tbody></table>
+
+<hr>
+<p>
+The principles of War: Carl von Clausewitz
+</p>
+<p>
+Wargames use a comprehensive theory of combat, Clausewitz's Law of Numbers, which is based upon the relative numerical
+powers of two opponents in which combat power for each was calculated as:
+<br>&nbsp;<br>
+P&nbsp;=&nbsp;N&nbsp;*&nbsp;Q&nbsp;*&nbsp;V
+<br>&nbsp;<br>
+N represents the number of troops in the force, which are the counters.
+<br>&nbsp;<br>
+Q is the fighting quality of the troops, which is the attacking and defending strength values.
+<br>&nbsp;<br>
+V is the variable factors reflecting the combat circumstances, such as the terrain effects.
+<br>&nbsp;<br>
+In the map above, the counters represent the force size (N) and the unit's stength (Q).
+<br>&nbsp;<br>
+Terrain is the variable that affects the unit's movement (TEM) and it's combat effectiveness (TEC) (V).
+</p>
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+</div>
+<!-- end content -->
+
+<div id="aside" style="border:1px solid lightgrey;"> 
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div> 
+<!-- end aside -->
+
+</div> 
+<!-- end container --> 
+ 
+<div id="footer">
+<a href="mailto:richard.mark.butler@gmail.com">Mark Butler</a>
+<br>
+Copyright © Web Wargaming, 1998-2012</div> 
+</div> 
+<!-- end footer -->
+
+</div> 
+<!-- end layout-three-fixed --> 
+
+
+<script type="text/javascript" async="" src="./ga.js"></script><script language="JavaScript" type="text/javascript" src="./constants.js"></script> 
+<script language="JavaScript" type="text/javascript" src="./hexagon.js"></script> 
+<script language="JavaScript" type="text/javascript" src="./hexpart.js"></script> 
+<script language="JavaScript" type="text/javascript" src="./mapgrid.js"></script> 
+<script language="JavaScript" type="text/javascript" src="./los.js"></script> 
+<script language="JavaScript" type="text/javascript" src="./terrain.js"></script> 
+<script language="JavaScript" type="text/javascript" src="./force.js"></script> 
+<script language="JavaScript" type="text/javascript" src="./moveRules.js"></script> 
+<script language="JavaScript" type="text/javascript" src="./crt.js"></script> 
+<script language="JavaScript" type="text/javascript" src="./combatRules.js"></script> 
+<script language="JavaScript" type="text/javascript" src="./prompt.js"></script> 
+<script language="JavaScript" type="text/javascript" src="./gameRules.js"></script> 
+<script language="JavaScript" type="text/javascript" src="./form.js"></script> 
+<script language="JavaScript" type="text/javascript" src="./BattleForAllenCreek.js"></script> 
+<script language="JavaScript" type="text/javascript"> 
+initialize(); 
+</script>  
+<script language="JavaScript" type="text/javascript"> 
+window.setTimeout('updateForm()',2000);
+</script>  
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22413858-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</body></html>
