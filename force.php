@@ -9,12 +9,21 @@
 class RetreatStep
 {
     public $stepNumber;
+    /* @var Hexagon */
     public $hexagon;
 
-    function __construct($RetreatStepStepNumber, $RetreatHexagon)
+    function set($RetreatStepStepNumber, $RetreatHexagon)
     {
         $this->stepNumber = $RetreatStepStepNumber;
         $this->hexagon = new Hexagon($RetreatHexagon->getNumber());
+    }
+    function __construct($data = null)
+    {
+        if($data){
+            foreach($data as $k => $v){
+                $this->$k = $v;
+            }
+        }
     }
 }
 
@@ -43,7 +52,7 @@ class unit
     public $eliminationHexagonX;
     public $eliminationHexagonY;
 
-    function __construct($unitId, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitMaxMove, $unitStatus, $unitReinforceZone, $unitReinforceTurn)
+    function set($unitId, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitMaxMove, $unitStatus, $unitReinforceZone, $unitReinforceTurn)
     {
         $this->id = $unitId;
         $this->name = $unitName;
@@ -64,6 +73,15 @@ class unit
         $this->retreatCountRequired = 0;
         $this->combatResults = NR;
     }
+
+    function __construct($data = null)
+    {
+        if($data){
+            foreach($data as $k => $v){
+                $this->$k = $v;
+            }
+        }
+    }
 }
 
 class Force
@@ -79,18 +97,39 @@ class Force
     public $eliminationTrayHexagonX;
     public $eliminationTrayHexagonY;
 
-    function __construct()
+    function __construct($data = null)
     {
+        if($data){
+                foreach($data as $k => $v){
+                    echo "Hey $k\n";
+                    if($k == "units"){
+                        $this->units = array();
+                        foreach($v as $unit){
+                            $this->units[] = new unit($unit);
+                        }
+                        continue;
+                    }
+                    if($k == "retreatHexagonList"){
+                        $this->retreatHexagonList = array();
+                        foreach($v as $retreatStep){
+                            $this->retreatHexagonList[] = new RetreatStep($retreatStep);
+                        }
+                        continue;
+                    }
+                    echo "hi $v";
+                    $this->$k = $v;
+                }
+        }else{
 
+            $this->units = array();
+            $this->victor = RED_FORCE;
+            $this->ZOCrule = true;
+            $this->deleteCount = 0;
 
-        $this->units = array();
-        $this->victor = RED_FORCE;
-        $this->ZOCrule = true;
-        $this->deleteCount = 0;
-
-        $this->retreatHexagonList = array();
-        $this->eliminationTrayHexagonX = 9;
-        $this->eliminationTrayHexagonY = 0;
+            $this->retreatHexagonList = array();
+            $this->eliminationTrayHexagonX = 9;
+            $this->eliminationTrayHexagonY = 0;
+        }
     }
 
 
@@ -101,7 +140,8 @@ class Force
         // note: addToRetreatHexagonList() is invoked before retreat move, so
         //  the moveCount is 0 for 1st step and 1 for 2nd step
 
-        $retreatStep = new RetreatStep($this->units[$id]->moveCount, $retreatHexagon);
+        $retreatStep = new RetreatStep();
+        $retreatStep->set($this->units[$id]->moveCount, $retreatHexagon);
 
         $this->retreatHexagonList->push($retreatStep);
     }
@@ -110,7 +150,10 @@ class Force
     {
 
         $id = count($this->units);
-        array_push($this->units,new unit($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitMaxMove, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn));
+        $unit = new unit();
+        $unit->set($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitMaxMove, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn);
+
+        array_push($this->units,$unit);
     }
 
     function advanceIsOnRetreatList($id, $hexagon)
@@ -923,7 +966,7 @@ class Force
 
             for ($i = 0; $i < count($this->units); $i++)
             {
-                $los->setEndPoint($this->units[i]->hexagon);
+                $los->setEndPoint($this->units[$i]->hexagon);
                 if ($los->getRange() == 1
                     && $this->units[$i]->forceId != $this->units[$id]->forceId
                     && $this->units[$i]->status != STATUS_CAN_REINFORCE

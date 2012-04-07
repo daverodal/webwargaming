@@ -16,7 +16,14 @@ class MapData{
     public $bottomHeight;
     public $hexsideWidth;
     public $centerWidth;
+    function __construct($data =  null){
+        if($data){
+            foreach($data as $k => $v){
+                $this->$k = $v;
+            }
 
+        }
+    }
 
     function setData($originX, $originY
         , $topHeight, $bottomHeight

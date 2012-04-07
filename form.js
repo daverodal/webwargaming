@@ -93,7 +93,8 @@ function mapMouseMove(event) {
 
 function mapMouseDown(event) {
 
-    alert(event);
+    alert(event.offsetX);
+    alert(event.offsetY);
 	var mapGrid;
 	mapGrid = new MapGrid(mapData);
 
@@ -111,7 +112,7 @@ function mapMouseDown(event) {
 	}
 
 	mapGrid.setPixels(pixelX, pixelY);
-
+alert(mapGrid.getHexagon().number);
 	gameRules.processEvent(SELECT_MAP_EVENT, MAP, mapGrid.getHexagon() );
 
 	updateForm();

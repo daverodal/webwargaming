@@ -10,7 +10,9 @@
 class CombatRules
 {
 	// Class references
+    /* @var Force */
     public $force;
+    /* @var Terrain */
     public $terrain;
     
     // local publiciables
@@ -18,13 +20,30 @@ class CombatRules
     public $currentCombatNumber;
     public $maximumCombatNumberUsed;
 
-    function __construct($Force, $Terrain){
+    function save()
+    {
+        $data = new StdClass();
+        foreach ($this as $k => $v) {
+            if (is_object($v) || $k == "crt") {
+                continue;
+            }
+            $data->$k = $v;
+        }
+        return $data;
+    }
+    function __construct($Force, $Terrain, $data = null){
     $this->force = $Force;
     $this->terrain = $Terrain;
 
-    $this->crt = new CombatResultsTable();
+        if($data){
+            foreach($data as $k => $v){
+                $this->$k = $v;
+            }
+        }else{
     $this->currentCombatNumber = 0;
     $this->maximumCombatNumberUsed = 0;
+    }
+        $this->crt = new CombatResultsTable();
     }
 
 

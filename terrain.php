@@ -56,8 +56,14 @@ class Town{
     public $terrainFeatures;
     public $reinforceZones;
     public $allAreAttackingAcrossRiverCombatEffect;
-    function __construct(){
+    function __construct($data =  null){
 
+        if($data){
+                foreach($data as $k => $v){
+                    $this->$k = $v;
+                }
+
+        }else{
 	$this->towns = array();
 	$this->terrainFeatures = array();
 	$this->reinforceZones = array();
@@ -88,6 +94,7 @@ class Town{
 //			$this->terrainArray[$y][$x] = 1;
 //		}
 //	}
+    }
 } 
  
 
@@ -132,7 +139,7 @@ function getTerrainCode($hexpart) {
     $x = $hexpart->getX();
     $y = $hexpart->getY();
     
-	if ( ( $x >= 0 && x < $this->maxTerrainX ) && ( $y >= 0 && $y < $this->maxTerrainY ) )
+	if ( ( $x >= 0 && $x < $this->maxTerrainX ) && ( $y >= 0 && $y < $this->maxTerrainY ) )
 		$terrainCode = $this->terrainArray[$y][$x];
 	else
 		$terrainCode = 0;
