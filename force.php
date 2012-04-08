@@ -101,7 +101,6 @@ class Force
     {
         if($data){
                 foreach($data as $k => $v){
-                    echo "Hey $k\n";
                     if($k == "units"){
                         $this->units = array();
                         foreach($v as $unit){
@@ -116,7 +115,6 @@ class Force
                         }
                         continue;
                     }
-                    echo "hi $v";
                     $this->$k = $v;
                 }
         }else{
@@ -179,14 +177,10 @@ class Force
 
     function applyCRTresults($combatNumber, $combatResults, $dieRoll)
     {
-        var_dump($this->units);
-        echo "apply $dieRoll $combatNumber ";
-echo $combatResults;
         $this->clearRetreatHexagonList();
 
         for ($defender = 0; $defender < count($this->units); $defender++)
         {
-            echo "Defend $combatResults\n";
 
             if ($this->units[$defender]->status == STATUS_DEFENDING && $this->units[$defender]->combatNumber == $combatNumber) {
                 switch ($combatResults)
@@ -219,13 +213,11 @@ echo $combatResults;
                 $this->units[$defender]->dieRoll = $dieRoll;
                 $this->units[$defender]->combatNumber = 0;
                 $this->units[$defender]->moveCount = 0;
-                var_dump($this->units[$defender]);
             }
         }
 
         for ($attacker = 0; $attacker < count($this->units); $attacker++)
         {
-            echo "Attack $combatResults\n";
 
             if ($this->units[$attacker]->status == STATUS_ATTACKING && $this->units[$attacker]->combatNumber == $combatNumber) {
                 switch ($combatResults)
@@ -265,9 +257,7 @@ echo $combatResults;
     function checkVictoryConditions()
     {
         // last to occupy Marysville at 403 wins
-
         $hexagon = new Hexagon(403);
-
         for ($id = 0; $id < count($this->units); $id++)
         {
             if ($this->units[$id]->hexagon->equals($hexagon)) {

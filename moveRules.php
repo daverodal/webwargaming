@@ -49,13 +49,17 @@ class MoveRules{
     function moveUnit($eventType, $id, $hexagon, $turn)
     {
         if ($eventType == SELECT_MAP_EVENT) {
+            echo "MoveUnit";
             if ($this->anyUnitIsMoving) {
                 // click on map, so try to move
                 if ($this->force->unitIsMoving($this->movingUnitId) == true) {
                     $this->move($this->movingUnitId, $hexagon);
                 }
                 if ($this->force->unitIsReinforcing($this->movingUnitId) == true) {
+                    echo "ReinUnit";
+
                     $this->reinforce($this->movingUnitId, $hexagon);
+                    echo "ReindUnit";
                 }
             }
         }
@@ -85,7 +89,7 @@ class MoveRules{
                     $this->startMoving($id);
                 }
                 if ($this->force->unitCanReinforce($id) == true) {
-                    $this->startReinforcing($id, $turn);
+                     $this->startReinforcing($id, $turn);
                 }
             }
         }
@@ -276,6 +280,8 @@ class MoveRules{
 
     function reinforce($id, $hexagon)
     {
+        echo "Reinfor".$hexagon->getY();
+
         if ($this->force->unitIsReinforcing($id) == true) {
             if ($this->force->getUnitReinforceZone($id) == $this->terrain->getReinforceZone($hexagon)) {
                 // get move cost

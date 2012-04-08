@@ -132,7 +132,9 @@ class GameRules {
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
+                    echo "MovingMode";
                         $this->moveRules->moveUnit($event, $id, $hexagon, $this->turn);
+                    echo "MovedMode";
                         break;
 
                     case SELECT_BUTTON_EVENT:
@@ -298,12 +300,14 @@ class GameRules {
                 break;
         }
 
+        echo "End";
         // see who occupies city
-        $this->force->checkVictoryConditions();
+//        $this->force->checkVictoryConditions();
         if ($this->force->isForceEliminated() == true) {
             $this->mode = GAME_OVER_MODE;
             $this->phase = GAME_OVER_PHASE;
         }
+
     }
 
     function selectNextPhase()
