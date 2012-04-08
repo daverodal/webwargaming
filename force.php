@@ -80,7 +80,6 @@ class unit
         if($data){
             foreach($data as $k => $v){
                 if($k == "hexagon"){
-                    var_dump($v);
                     $this->hexagon = new Hexagon($v->number);
                     continue;
                 }
@@ -469,7 +468,7 @@ class Force
 
         if ($this->ZOCrule == true) {
             $los = new Los();
-            $los->setOrigin(hexagon);
+            $los->setOrigin($hexagon);
 
             for ($i = 0; $i < count($this->units); $i++)
             {
@@ -675,11 +674,14 @@ class Force
                 break;
 
             case STATUS_RETREATING:
+                echo "Status Retreating ";
                 if ($this->units[$id]->status == STATUS_CAN_RETREAT) {
+                    echo "Can Retreat";
                     $this->units[$id]->status = $status;
                     $this->units[$id]->moveCount = 0;
                     $this->units[$id]->moveAmountUsed = 0;
                     $success = true;
+                    echo "all good";
                 }
                 break;
 
@@ -1046,9 +1048,10 @@ class Force
     function unitsAreRetreating()
     {
         $areRetreating = false;
-
+echo "are we";
         for ($id = 0; $id < count($this->units); $id++)
         {
+            echo "are reat $id ". $this->units[$id]->status;
             if ($this->units[$id]->status == STATUS_CAN_RETREAT
                 || $this->units[$id]->status == STATUS_RETREATING
             ) {

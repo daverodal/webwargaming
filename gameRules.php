@@ -65,13 +65,12 @@ class GameRules {
 
     function __construct($MoveRules, $CombatRules, $Force, $data = null)
     {
-
         if($data){
             foreach($data as $k => $v){
                 if($k == "phaseChanges"){
-                    $phaseChanges = array();
+                    $this->phaseChanges = array();
                     foreach($v as $phaseChange){
-                        $phaseChanges[] = new PhaseChange($phaseChange);
+                        $this->phaseChanges[] = new PhaseChange($phaseChange);
                     }
                     continue;
                 }
@@ -249,11 +248,13 @@ class GameRules {
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
+                    echo "right place";
                         $this->moveRules->retreatUnit($event, $id, $hexagon);
                         if ($this->force->unitsAreRetreating() == false) {
+                            echo "false?";
                             if ($this->force->unitsAreAdvancing() == true) {
                                 $this->mode = ADVANCING_MODE;
-                            } else { // melee
+                            } else {echo "meelee"; // melee
                                 if ($this->combatModeType == COMBAT_SETUP_MODE) {
                                     if ($this->gameHasCombatResolutionMode == true) {
                                         $this->mode = COMBAT_RESOLUTION_MODE;

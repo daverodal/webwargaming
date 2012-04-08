@@ -346,10 +346,13 @@ echo "In  Range Is On";
         }
         else
         {
+            echo "Counter event of the close kind ";
             // id will be retreating unit id if counter event
             if ($this->anyUnitIsMoving == false) {
                 if ($this->force->unitCanRetreat($id) == true) {
+                    echo "Start";
                     $this->startRetreating($id);
+                    echo "dieid";
                 }
             }
         }
@@ -358,8 +361,9 @@ echo "In  Range Is On";
     function startRetreating($id)
     {
         if ($this->force->setStatus($id, STATUS_RETREATING) == true) {
+            echo "It is tru! ";
             if ($this->retreatIsBlocked($id) == true) {
-                alert("reteat is blocked");
+                echo("reteat is blocked");
 
                 $hexagon = $this->force->getUnitHexagon($id);
 
@@ -370,6 +374,7 @@ echo "In  Range Is On";
             }
             else
             {
+                echo "any unit IS moving $id";
                 $this->anyUnitIsMoving = true;
                 $this->movingUnitId = $id;
             }
@@ -378,26 +383,31 @@ echo "In  Range Is On";
 
     function retreatIsBlocked($id)
     {
+        echo "is the retreat blocked?";
         $isBlocked = true;
 
         $adjacentHexagonXadjustment = array(0, 2, 2, 0, -2, -2);
         $adjacentHexagonYadjustment = array(-4, -2, 2, 4, 2, -2);
 
-        $hexagon = $this->force->getUnitHexagon(id);
-        $hexagonX = $hexagon->getX(id);
-        $hexagonY = $hexagon->getY(id);
-
+        $hexagon = $this->force->getUnitHexagon($id);
+        $hexagonX = $hexagon->getX($id);
+        $hexagonY = $hexagon->getY($id);
+echo "enter the for";
         for ($eachHexagon = 0; $eachHexagon < 6; $eachHexagon++)
         {
+            echo "$eachHexagon \n";
             $adjacentHexagonX = $hexagonX + $adjacentHexagonXadjustment[$eachHexagon];
             $adjacentHexagonY = $hexagonY + $adjacentHexagonYadjustment[$eachHexagon];
             $adjacentHexagon = new Hexagon($adjacentHexagonX, $adjacentHexagonY);
             //alert("testing " + adjacentHexagon->getName());
+            echo "///// $eachHexagon \n";
 
             if ($this->hexagonIsBlocked($id, $adjacentHexagon) == false) {
                 $isBlocked = false;
                 break;
             }
+            echo "wwww $eachHexagon \n";
+
         }
 
         return $isBlocked;
@@ -413,7 +423,7 @@ echo "In  Range Is On";
         $hexsideY = ($hexagon->getY() + $unitHexagon->getY($id)) / 2;
 
         $hexpart = new Hexpart($hexsideX, $hexsideY);
-
+echo "hexagonIsblocked";
         // make sure hexagon is not ZOC
         if (($this->force->hexagonIsZOC($id, $hexagon) == true)) {
             $isBlocked = true;

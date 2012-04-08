@@ -147,8 +147,8 @@ class BattleForAllenCreek {
             $this->force = new Force($data->force);
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
-            $this->combatRules = new CombatRules($this->force, $this->terrain);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force);
+            $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
+            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $data->gameRules);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
         } else {
             $this->mapData = new MapData();

@@ -51,6 +51,7 @@ function setupCombat( $id ) {
 
     if ($this->force->unitIsEnemy($id) == true)
     {
+        echo "Is the enemy";
         // defender is already in combatRules, so make it currently selected
         if ($this->force->unitIsInCombat($id) == true)
         {
@@ -58,6 +59,7 @@ function setupCombat( $id ) {
         }
         else
         {
+            echo "Not in combat already";
             $this->maximumCombatNumberUsed++;
             $this->currentCombatNumber = $this->maximumCombatNumberUsed;
 
