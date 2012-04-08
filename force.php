@@ -21,6 +21,10 @@ class RetreatStep
     {
         if($data){
             foreach($data as $k => $v){
+                if($k == "hexagon"){
+                    $this->hexagon = new Hexagon($v->number);
+                    continue;
+                }
                 $this->$k = $v;
             }
         }
@@ -146,7 +150,7 @@ class Force
         $retreatStep = new RetreatStep();
         $retreatStep->set($this->units[$id]->moveCount, $retreatHexagon);
 
-        $this->retreatHexagonList->push($retreatStep);
+        $this->retreatHexagonList[] = $retreatStep;
     }
 
     function addUnit($unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitMaxMove, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn)
@@ -162,13 +166,16 @@ class Force
     function advanceIsOnRetreatList($id, $hexagon)
     {
         $isOnList = false;
-
+echo "onList???";
         for ($i = 0; $i < count($this->retreatHexagonList); $i++)
         {
+            echo "loop $i ooop";
             // note: addToRetreatHexagonList() is invoked before retreat move, so
             //  the moveCount is 0 for 1st step and 1 for 2nd step
             //  when advancing unit.moveCount will be 0 which will match 1st step retreat number
 
+            var_dump($this->retreatHexagonList[$i]->hexagon instanceof Hexagon);
+            var_dump($hexagon instanceof Hexagon);
             //alert("function .prototype. checkingt: " + id + " hexagon: " + hexagon.getName() + " with array " + $this->retreatHexagonList[i].hexagon.getName());
             if ($this->retreatHexagonList[$i]->stepNumber == $this->units[$id]->moveCount
                 && $this->retreatHexagonList[$i]->hexagon->equals($hexagon)
@@ -1013,6 +1020,7 @@ class Force
                 break;
             }
         }
+        echo "units are advancing $areAdvancing";
         return $areAdvancing;
     }
 

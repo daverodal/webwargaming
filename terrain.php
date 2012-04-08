@@ -530,7 +530,7 @@ function getAllAreAttackingAcrossRiverCombatEffect()
 }
 
 function isExit($hexagon) {
-	
+	echo "in isexit";
  	 $isExit = false;
 
 	 $hexpart = new Hexpart($hexagon->getX(), $hexagon->getY());
@@ -540,6 +540,7 @@ function isExit($hexagon) {
 	if ($this->terrainIs($hexpart, "offmap") == true) {
 		$isExit = true;
 	}
+    echo "out of exit";
 	return $isExit;
 }
 

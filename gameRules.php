@@ -280,7 +280,10 @@ class GameRules {
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
+                    echo "Advanding ";
                         $this->moveRules->advanceUnit($event, $id, $hexagon);
+                    echo "AdvandED ";
+
                         if ($this->force->unitsAreAdvancing() == false) { // melee
                             if ($this->combatModeType == COMBAT_SETUP_MODE) {
                                 if ($this->gameHasCombatResolutionMode == true) {

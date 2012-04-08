@@ -423,7 +423,6 @@ echo "enter the for";
         $hexsideY = ($hexagon->getY() + $unitHexagon->getY($id)) / 2;
 
         $hexpart = new Hexpart($hexsideX, $hexsideY);
-echo "hexagonIsblocked";
         // make sure hexagon is not ZOC
         if (($this->force->hexagonIsZOC($id, $hexagon) == true)) {
             $isBlocked = true;
@@ -442,6 +441,7 @@ echo "hexagonIsblocked";
         if ($this->terrain->isExit($hexagon) == true) {
             $isBlocked = true;
         }
+        echo "hexagonIsblocked"; var_dump($isBlocked);
         //alert(unitHexagon->getName() + " to " + hexagon->getName() + " zoc: " + $this->force->hexagonIsZOC(id, hexagon) + " occ: " + $this->force->hexagonIsOccupied(hexagon)  + " river: " + $this->terrain->terrainIs(hexpart, "river"));
         return $isBlocked;
     }
@@ -452,8 +452,9 @@ echo "hexagonIsblocked";
             && $this->hexagonIsBlocked($id, $hexagon) == false
             && $this->terrain->isExit($hexagon) == false
         ) {
+            echo "retreating ";
             $this->force->addToRetreatHexagonList($id, $this->force->getUnitHexagon($id));
-
+echo " and more retreating ";
             // set move amount to 0
             $this->force->updateMoveStatus($id, $hexagon, 0);
 
@@ -478,10 +479,14 @@ echo "hexagonIsblocked";
 
     function advanceUnit($eventType, $id, $hexagon)
     {
+        echo "advanceUnit ";
         if ($eventType == SELECT_MAP_EVENT) {
+            echo "MapEvent";
             if ($this->anyUnitIsMoving == true) {
+                echo "yes its' moving ";
                 //alert("advance");
                 $this->advance($this->movingUnitId, $hexagon);
+                echo "die id move?";
             }
         }
         else
@@ -508,7 +513,9 @@ echo "hexagonIsblocked";
 
     function advance($id, $hexagon)
     {
+        echo "advance it ";
         if ($this->advanceIsValid($id, $hexagon) == true) {
+            echo "momsaidicoulddoit";
             // set move amount to 0
             $this->force->updateMoveStatus($id, $hexagon, 0);
             $this->stopAdvance($id);
@@ -529,13 +536,15 @@ echo "hexagonIsblocked";
         $isValid = false;
 
         $startHexagon = $this->force->getUnitHexagon($id);
-
+echo "onrlist? ";
         if ($this->force->advanceIsOnRetreatList($id, $hexagon) == true && $this->rangeIsOneHexagon($startHexagon, $hexagon) == true) {
+            echo "True? ";
             //alert("retreat list: true");
             $isValid = true;
         }
         else
         {
+            echo "false?";
             //alert("retreat list: false");
         }
 
