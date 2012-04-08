@@ -53,6 +53,7 @@ class MoveRules{
             if ($this->anyUnitIsMoving) {
                 // click on map, so try to move
                 if ($this->force->unitIsMoving($this->movingUnitId) == true) {
+                    echo "unit is moving";
                     $this->move($this->movingUnitId, $hexagon);
                 }
                 if ($this->force->unitIsReinforcing($this->movingUnitId) == true) {
@@ -107,9 +108,12 @@ class MoveRules{
 
     function move($id, $hexagon)
     {
+        echo "Mov???";
+        var_dump( $this->moveIsValid($id, $hexagon));
         if ($this->force->unitIsMoving($this->movingUnitId)
             && $this->moveIsValid($id, $hexagon)
         ) {
+            echo "move is valid";
             $this->updateMoveData($id, $hexagon);
         }
     }
@@ -181,17 +185,21 @@ class MoveRules{
 
     function moveIsValid($id, $hexagon)
     {
+        echo "InVAlie $id";
         // all 4 conditions must be true, so any one that is false
         //    will make the move invalid
 
         $isValid = true;
+        var_dump($this->force->units[5]->hexagon);
+var_dump($this->force->getUnitHexagon($id));
+        var_dump($hexagon);
 
         // condition 1
         // can only move to nearby hexagon
         if ($this->rangeIsOneHexagon($this->force->getUnitHexagon($id), $hexagon) == false) {
             $isValid = false;
         }
-
+echo "really???";
         // condition 2
         // check if unit has enough move points
         $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id), $hexagon, $this->force->getUnitMaximumMoveAmount($this->movingUnitId));
@@ -253,14 +261,14 @@ class MoveRules{
         }
     }
 
-    function rangeIsOneHexagon($startHexagon, $endHexagon)
+    function rangeIsOneHexagon(Hexagon $startHexagon,Hexagon $endHexagon)
     {
         $rangeIsOne = false;
 
         $los = new Los();
         $los->setOrigin($startHexagon);
         $los->setEndPoint($endHexagon);
-
+echo "In  Range Is On";
         if ($los->getRange() == 1) {
             $rangeIsOne = true;
         }

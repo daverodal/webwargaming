@@ -79,6 +79,11 @@ class unit
     {
         if($data){
             foreach($data as $k => $v){
+                if($k == "hexagon"){
+                    var_dump($v);
+                    $this->hexagon = new Hexagon($v->number);
+                    continue;
+                }
                 $this->$k = $v;
             }
         }
