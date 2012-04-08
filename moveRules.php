@@ -269,7 +269,7 @@ class MoveRules{
     }
 
     function startReinforcing($id, $turn)
-    {
+    {echo "startRein";
         if ($this->force->getUnitReinforceTurn($id) <= $turn) {
             if ($this->force->setStatus($id, STATUS_REINFORCING) == true) {
                 $this->anyUnitIsMoving = true;
@@ -280,10 +280,15 @@ class MoveRules{
 
     function reinforce($id, $hexagon)
     {
-        echo "Reinfor".$hexagon->getY();
+        echo "Reinfor".$hexagon->number;
+        var_dump($this->force->units[$id]);
 
         if ($this->force->unitIsReinforcing($id) == true) {
+            echo "isRe doing I";
+            echo $this->force->getUnitReinforceZone($id);echo " x ";
+            echo $this->terrain->getReinforceZone($hexagon);
             if ($this->force->getUnitReinforceZone($id) == $this->terrain->getReinforceZone($hexagon)) {
+                echo "movementCost";
                 // get move cost
                 $moveAmount = $this->terrain->getTerrainEntranceMoveCost($hexagon);
 

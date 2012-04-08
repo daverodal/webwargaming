@@ -610,12 +610,14 @@ class Force
 
     function setStatus($id, $status)
     {
+        echo "setStatus $status $id";
         $success = false;
         switch ($status)
         {
             case STATUS_REINFORCING:
                 if ($this->units[$id]->forceId == $this->attackingForceId && $this->units[$id]->status == STATUS_CAN_REINFORCE) {
                     $this->units[$id]->status = $status;
+                    echo "did ie";
                     $success = true;
                 }
                 break;

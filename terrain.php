@@ -60,6 +60,13 @@ class Town{
 
         if($data){
                 foreach($data as $k => $v){
+                    if($k == "reinforceZones"){
+                        $this->reinforceZones = array();
+                        foreach($v as $reinforceZone){
+                            $this->reinforceZones[] = new ReinforceZone($reinforceZone->hexagon->name, $reinforceZone->name);
+                        }
+                        continue;
+                    }
                     $this->$k = $v;
                 }
 
@@ -542,9 +549,10 @@ function getReinforceZone($hexagon)
 
     for(  $i = 0; $i < count($this->reinforceZones); $i++ )
     {
-//alert("" + i + " " + $this->reinforceZones[$i]->hexagon->getName() + " : " + hexagon->getName());
+ //alert("" + i + " " + $this->reinforceZones[$i]->hexagon->getName() + " : " + hexagon->getName());
         if ( $this->reinforceZones[$i]->hexagon->equals($hexagon) == true )
 		{
+            echo "DIDIDIDIDIDID";
 			$zoneName = $this->reinforceZones[$i]->name;
 		}
     }
