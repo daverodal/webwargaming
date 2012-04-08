@@ -93,9 +93,7 @@ function mapMouseMove(event) {
 
 function mapMouseDown(event) {
 
-    alert(event.offsetX);
-    alert(event.offsetY);
-	var mapGrid;
+ 	var mapGrid;
 	mapGrid = new MapGrid(mapData);
 
 	var pixelX, pixelY;
@@ -110,9 +108,11 @@ function mapMouseDown(event) {
 		pixelX =  event.offsetX;
 		pixelY =  event.offsetY;
 	}
+    alert(event.offsetX);
+    alert(event.offsetY);
 
 	mapGrid.setPixels(pixelX, pixelY);
-alert(mapGrid.getHexagon().number);
+alert("Mapgrid # "+mapGrid.getHexagon().number);
 	gameRules.processEvent(SELECT_MAP_EVENT, MAP, mapGrid.getHexagon() );
 
 	updateForm();
@@ -249,7 +249,7 @@ function moveCounter(id) {
 	
 	var counterObj;
  	counterObj = document.getElementById( id );
- 	
+
  	mapGrid.setHexagonXY( this.force.getUnitHexagon(id).getX(), this.force.getUnitHexagon(id).getY());
  	
  	var x = mapGrid.getPixelX() - (document.getElementById("map").width) - (parseInt(id) * document.getElementById(id).width) - (document.getElementById(id).width / 2);

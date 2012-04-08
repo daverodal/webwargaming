@@ -33,6 +33,7 @@ class unit
     public $id;
     public $forceId;
     public $name;
+    /* @var Hexagon */
     public $hexagon;
     public $image;
     public $strength;

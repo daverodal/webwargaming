@@ -118,7 +118,6 @@ file_put_contents("afile.out", $jBattle);
 //	$mapGrid->setPixels(0, 0);
 //force.getUnitHexagon(id)
 
-echo "Wonderful";
 class BattleForAllenCreek {
 
     public $mapData;

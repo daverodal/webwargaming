@@ -546,9 +546,11 @@ function isExit($hexagon) {
 function getReinforceZone($hexagon)
 {
      $zoneName = "";
-
+var_dump($hexagon);
     for(  $i = 0; $i < count($this->reinforceZones); $i++ )
     {
+        echo "reinforceZOne $i\n";
+        var_dump($this->reinforceZones[$i]->hexagon);
  //alert("" + i + " " + $this->reinforceZones[$i]->hexagon->getName() + " : " + hexagon->getName());
         if ( $this->reinforceZones[$i]->hexagon->equals($hexagon) == true )
 		{
