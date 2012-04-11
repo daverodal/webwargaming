@@ -714,17 +714,15 @@ echo "onList???";
         return $success;
     }
 
-    function setupAttacker($id, $combatNumber)
+    function setupAttacker($id)
     {
         $this->units[$id]->status = STATUS_ATTACKING;
-        $this->units[$id]->combatNumber = $combatNumber;
     }
 
-    function setupDefender($id, $combatNumber)
+    function setupDefender($id)
     {
         $this->units[$id]->status = STATUS_DEFENDING;
         ;
-        $this->units[$id]->combatNumber = $combatNumber;
     }
 
     function storeCombatIndex($combatNumber, $combatIndex)

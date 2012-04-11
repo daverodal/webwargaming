@@ -7,6 +7,13 @@
 // as published by the Free Software Foundation;
 // either version 2 of the License, or (at your option) any later version-> 
 
+Class Combat{
+    public $attackers;
+    public $index;
+    public function __construct(){
+        $this->attackers = new StdClass;
+    }
+}
 class CombatRules
 {
 	// Class references
@@ -17,14 +24,14 @@ class CombatRules
     
     // local publiciables
     public $crt;
-    public $currentCombatNumber;
-    public $maximumCombatNumberUsed;
+    public $currentDefender = 0;
+    public $combats;
 
     function save()
     {
         $data = new StdClass();
         foreach ($this as $k => $v) {
-            if (is_object($v) || $k == "crt") {
+            if ((is_object($v) && $k != "combats") || $k == "crt" ) {
                 continue;
             }
             $data->$k = $v;
@@ -40,8 +47,8 @@ class CombatRules
                 $this->$k = $v;
             }
         }else{
-    $this->currentCombatNumber = 0;
-    $this->maximumCombatNumberUsed = 0;
+            $this->combats = new StdClass();
+    $this->currentDefender = false;
     }
         $this->crt = new CombatResultsTable();
     }
@@ -49,46 +56,70 @@ class CombatRules
 
 function setupCombat( $id ) {
 
+    $cd = $this->currentDefender;
+
     if ($this->force->unitIsEnemy($id) == true)
     {
         echo "Is the enemy";
         // defender is already in combatRules, so make it currently selected
-        if ($this->force->unitIsInCombat($id) == true)
+        if ($this->combats->$id)
         {
-            $this->currentCombatNumber = $this->force->getUnitCombatNumber($id);
+//            if(count($this->combats->$this->currnetDefender->attackers) == 0){
+//                unset($this->currnetDefender[$id]);
+//            }
+            if($this->currentDefender !== false){
+                $this->currentDefender = false;
+            }else{
+                $this->currentDefender = $id;
+            }
         }
         else
         {
             echo "Not in combat already";
-            $this->maximumCombatNumberUsed++;
-            $this->currentCombatNumber = $this->maximumCombatNumberUsed;
+            $this->currentDefender = $id;
+echo "here";
+            $this->force->setupDefender($id);
+            echo "HHEREE";
+            $this->combats->$id = new Combat();
 
-            $this->force->setupDefender($id, $this->currentCombatNumber);
+            var_dump($this->combats);
         }
     }
     else
     // attacker
     {
-        if ($this->currentCombatNumber > 0)
+        echo "Current Defender ".$this->currentDefender;
+
+        if ($this->currentDefender !== false)
         {
+            echo "In ther";
             $los = new Los();
+            echo "gotta los";
             $los->setOrigin($this->force->getUnitHexagon($id));
-            $los->setEndPoint($this->force->getCombatHexagon($this->currentCombatNumber));
+            echo "Set";
+            $los->setEndPoint($this->force->getUnitHexagon($this->currentDefender));
+            echo "setEndPoint";
             $range = $los->getRange();
             echo "RANGE $range";
             if ($range == 1)
             {
-                if ($this->force->unitIsAttacking($id) == true)
+                echo "Inrange";
+                var_dump($this->combats->$this->currentDefender);
+                if ($this->combats->${cd}->attackers->$id == true)
                 {
+                    echo "unisetup";
                     $this->force->undoAttackerSetup($id);
-                    $this->setCombatIndex($this->currentCombatNumber);
+                    unset($this->combats->${cd}->attackers->$id);
                 }
                 else
                 {
-                    $this->force->setupAttacker($id, $this->currentCombatNumber);
-                    $this->setCombatIndex($this->currentCombatNumber);
+                    echo "setup";
+                    $this->force->setupAttacker($id);
+                    echo "Alsosetup";
+                    $this->combats->${cd}->attackers->$id = true;
                 }
             }
+            echo "out";
         }
     }
 }
