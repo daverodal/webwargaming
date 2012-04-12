@@ -293,15 +293,13 @@ echo "onList???";
         $this->units[$id]->hexagon->setXY($this->eliminationTrayHexagonX + (2 * $this->deleteCount), $this->eliminationTrayHexagonY);
     }
 
-    function getAttackerStrength($combatNumber)
+    function getAttackerStrength($attackers)
     {
         $attackerStrength = 0;
 
-        for ($id = 0; $id < count($this->units); $id++)
+          foreach ($attackers as $id => $v)
         {
-            if ($this->units[$id]->status == STATUS_ATTACKING && $this->units[$id]->combatNumber == $combatNumber) {
                 $attackerStrength += $this->units[$id]->strength;
-            }
         }
 
         return $attackerStrength;
@@ -338,17 +336,10 @@ echo "onList???";
         return $this->units[$id]->combatOdds;
     }
 
-    function getDefenderStrength($combatNumber)
+    function getDefenderStrength($defenderId)
     {
         $defenderStrength = 0;
-
-        for ($id = 0; $id < count($this->units); $id++)
-        {
-            if ($this->units[$id]->status == STATUS_DEFENDING && $this->units[$id]->combatNumber == $combatNumber) {
-                $defenderStrength += $this->units[$id]->strength;
-            }
-        }
-
+        $defenderStrength += $this->units[$defenderId]->strength;
         return $defenderStrength;
     }
 

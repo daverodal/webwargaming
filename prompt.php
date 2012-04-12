@@ -13,6 +13,7 @@ class Prompt {
     public $gameRules;
     public $moveRules;
     public $combatRules;
+    /* @var Force */
     public $force;
     public $terrain;
 

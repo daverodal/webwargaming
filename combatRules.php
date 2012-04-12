@@ -26,12 +26,13 @@ class CombatRules
     public $crt;
     public $currentDefender = 0;
     public $combats;
+    public $attackers;
 
     function save()
     {
         $data = new StdClass();
         foreach ($this as $k => $v) {
-            if ((is_object($v) && $k != "combats") || $k == "crt" ) {
+            if ((is_object($v) && $k != "combats" && $k != "attackers") || $k == "crt" ) {
                 continue;
             }
             $data->$k = $v;
@@ -67,10 +68,14 @@ function setupCombat( $id ) {
 //            if(count($this->combats->$this->currnetDefender->attackers) == 0){
 //                unset($this->currnetDefender[$id]);
 //            }
-            if($this->currentDefender !== false){
-                $this->currentDefender = false;
-            }else{
+            if($this->currentDefender === false){
                 $this->currentDefender = $id;
+            }else{
+                if($id === $this->currentDefender){
+                    $this->currentDefender = false;
+                }else{
+                $this->currentDefender = $id;
+                }
             }
         }
         else
@@ -104,19 +109,31 @@ echo "here";
             if ($range == 1)
             {
                 echo "Inrange";
-                var_dump($this->combats->$this->currentDefender);
-                if ($this->combats->${cd}->attackers->$id == true)
+                var_dump($this->attackers);
+                var_dump($this->combats->{$this->currentDefender});
+                if ($this->combats->${cd}->attackers->$id === true && $this->attackers->$id === $cd)
                 {
                     echo "unisetup";
                     $this->force->undoAttackerSetup($id);
+                    unset($this->attackers->${id});
                     unset($this->combats->${cd}->attackers->$id);
+                    $this->setCombatIndex($cd);
                 }
                 else
                 {
                     echo "setup";
                     $this->force->setupAttacker($id);
                     echo "Alsosetup";
+                    if(isset($this->attackers->$id) && $this->attackers->$id !== $cd){
+                        /* move unit to other attack */
+                        $oldCd = $this->attackers->${id};
+                        echo "stealing from $oldCd to $cd for $id";
+                        unset($this->combats->${oldCd}->attackers->$id);
+                        $this->setCombatIndex($oldCd);
+                    }
+                    $this->attackers->${id} = $cd;
                     $this->combats->${cd}->attackers->$id = true;
+                    $this->setCombatIndex($cd);
                 }
             }
             echo "out";
@@ -141,24 +158,32 @@ function getDefenderTerrainCombatEffect($combatNumber)
 }
 
 
-function setCombatIndex($combatNumber)
+function setCombatIndex($defemderId)
 {
-    $attackStrength = $this->force->getAttackerStrength($combatNumber);
-    $defenseStrength = $this->force->getDefenderStrength($combatNumber);
+    $combats = $this->combats->$defemderId;
+    var_dump($combats);
+    var_dump($combats->attackers);
+    if(count((array)$combats->attackers) == 0){
+        $combats->index = null;
+    }
+    $attackStrength = $this->force->getAttackerStrength($combats->attackers);
+    $defenseStrength = $this->force->getDefenderStrength($defemderId);
 
     $combatIndex = $attackStrength - $defenseStrength;
 
-    $terrainCombatEffect = $this->getDefenderTerrainCombatEffect($combatNumber);
+//    $terrainCombatEffect = $this->getDefenderTerrainCombatEffect($combatNumber);
 
-    $combatIndex -= $terrainCombatEffect;
+//    $combatIndex -= $terrainCombatEffect;
 
+    var_dump($combats);
     if ($combatIndex < 1) $combatIndex = 0;
 
     if ($combatIndex >= $this->crt->maxCombatIndex) {
         $combatIndex = $this->crt->maxCombatIndex;
     }
-
-    $this->force->storeCombatIndex($combatNumber, $combatIndex);
+    $combats->index = $combatIndex;
+    var_dump($combats);
+//    $this->force->storeCombatIndex($defenderId, $combatIndex);
 }
 
 function resolveCombat( $id ) {
