@@ -154,7 +154,7 @@ class GameRules {
                         break;
 
                     case SELECT_BUTTON_EVENT:
-                        $this->force->undoDefendersWithoutAttackers();
+                        $this->combatRules->undoDefendersWithoutAttackers();
                         if ($this->gameHasCombatResolutionMode == true) {
                             $this->mode = COMBAT_RESOLUTION_MODE;
                         } else {
@@ -188,6 +188,7 @@ class GameRules {
 
                     case SELECT_BUTTON_EVENT:
 
+                        $this->combatRules->cleanUp();
                         $this->selectNextPhase();
                         break;
                 }

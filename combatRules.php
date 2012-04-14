@@ -10,6 +10,10 @@
 Class Combat{
     public $attackers;
     public $index;
+    public $attackStrength;
+    public $defenseStrength;
+    public $Die;
+    public $combatResult;
     public function __construct(){
         $this->attackers = new StdClass;
     }
@@ -23,16 +27,18 @@ class CombatRules
     public $terrain;
     
     // local publiciables
+    /* @var CombatResultsTable */
     public $crt;
-    public $currentDefender = 0;
+    public $currentDefender = false;
     public $combats;
+    public $combatsToResolve;
     public $attackers;
 
     function save()
     {
         $data = new StdClass();
         foreach ($this as $k => $v) {
-            if ((is_object($v) && $k != "combats" && $k != "attackers") || $k == "crt" ) {
+            if ((is_object($v) && $k != "combats" && $k != "attackers" && $k != "combatsToResolve") || $k == "crt" ) {
                 continue;
             }
             $data->$k = $v;
@@ -144,36 +150,44 @@ echo "here";
 function setupFireCombat( $id ){
 }
 
-function getDefenderTerrainCombatEffect($combatNumber)
+function getDefenderTerrainCombatEffect($defenderId)
 {
 
-    $terrainCombatEffect = $this->terrain->getDefenderTerrainCombatEffect($this->force->getCombatHexagon($combatNumber));
+    $terrainCombatEffect = $this->terrain->getDefenderTerrainCombatEffect($this->force->getCombatHexagon($defenderId));
 
-    if ($this->allAreAttackingAcrossRiver($combatNumber)) {
+    echo "xxx Defender $terrainCombatEffect DEFENDER xxx";
+    if ($this->allAreAttackingAcrossRiver($defenderId)) {
 
         $terrainCombatEffect = $this->terrain->getAllAreAttackingAcrossRiverCombatEffect();
+        echo "xxx RRIIVVEERR $terrainCombatEffect RIVER xxx";
+
     }
     
 	return $terrainCombatEffect;
 }
 
 
-function setCombatIndex($defemderId)
+function setCombatIndex($defenderId)
 {
-    $combats = $this->combats->$defemderId;
+    $combats = $this->combats->$defenderId;
     var_dump($combats);
     var_dump($combats->attackers);
     if(count((array)$combats->attackers) == 0){
+        echo "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
         $combats->index = null;
+        $combats->attackStrength = null;
+        $combats->defenseStrength = null;
+        $combats->terrainCombatEffect = null;
+        return;
     }
     $attackStrength = $this->force->getAttackerStrength($combats->attackers);
-    $defenseStrength = $this->force->getDefenderStrength($defemderId);
+    $defenseStrength = $this->force->getDefenderStrength($defenderId);
 
     $combatIndex = $attackStrength - $defenseStrength;
 
-//    $terrainCombatEffect = $this->getDefenderTerrainCombatEffect($combatNumber);
+    $terrainCombatEffect = $this->getDefenderTerrainCombatEffect($defenderId);
 
-//    $combatIndex -= $terrainCombatEffect;
+    $combatIndex -= $terrainCombatEffect;
 
     var_dump($combats);
     if ($combatIndex < 1) $combatIndex = 0;
@@ -181,43 +195,69 @@ function setCombatIndex($defemderId)
     if ($combatIndex >= $this->crt->maxCombatIndex) {
         $combatIndex = $this->crt->maxCombatIndex;
     }
+    $combats->attackStrength = $attackStrength;
+    $combats->defenseStrength = $defenseStrength;
+    $combats->terrainCombatEffect = $terrainCombatEffect;
     $combats->index = $combatIndex;
     var_dump($combats);
 //    $this->force->storeCombatIndex($defenderId, $combatIndex);
 }
-
+function cleanUp(){
+    unset($this->combats);
+    $this->currentDefender = false;
+    $this->attackers = new StdClass();
+}
 function resolveCombat( $id ) {
- 
+    global $results_name;
+    var_dump($id);
+    if($this->force->unitIsEnemy($id) && !isset($this->combatsToResolve->${id})){
+        return;
+    }
+    if($this->force->unitIsFriendly($id) && isset($this->attackers->$id)){
+        var_dump($this->attackers->$id);
+        $id = $this->attackers->$id;
+    }
+    $this->currentDefender = $id;
     // Math->random yields number between 0 and 1
     //  6 * Math->random yields number between 0 and 6
     //  Math->floor gives lower integer, which is now 0,1,2,3,4,5
 
     $Die = floor($this->crt->dieSideCount * (rand()/getrandmax()));
-    $index = $this->force->getUnitCombatIndex($id);
+    echo "The Die is $Die\n";
+//    $index = $this->force->getUnitCombatIndex($id);
+    $index = $this->combatsToResolve->${id}->index;
+
+//    var_dump($this->crt);
     $combatResults = $this->crt->getCombatResults($Die, $index);
+    var_dump($combatResults);echo "really";
+    var_dump( $results_name[$combatResults]);
+    $this->combatsToResolve->${id}->Die = $Die + 1;
+    $this->combatsToResolve->${id}->combatResult = $results_name[$combatResults];
     /*
      * TODO: is force really supposed to be $this->force?????
      */
-    $this->force->applyCRTresults($this->force->getUnitCombatNumber($id), $combatResults, $Die);
+    $this->force->applyCRTresults($id, $this->combats->{$id}->attackers, $combatResults, $Die);
     echo "Resolved";
 }
 
 function resolveFireCombat( $id ) {
 }
 
-function allAreAttackingAcrossRiver($combatNumber) {
+function allAreAttackingAcrossRiver($defenderId) {
 
     $allAttackingAcrossRiver = true;
 
-     $attackerHexagonList = array();
-    $attackerHexagonList = $this->force->getAttackerHexagonList($combatNumber);
+//     $attackerHexagonList = array();
+//    $attackerHexagonList = $this->force->getAttackerHexagonList($combatNumber);
+    $attackerHexagonList = $this->combats->$defenderId->attackers;
+    $defenderHexagon = $this->force->getCombatHexagon($defenderId);
+echo "attackehalist";
+    var_dump($attackerHexagonList);
+    foreach ($attackerHexagonList as $attackerHexagonId => $val) {
+        $attackerHexagon = $this->force->getCombatHexagon($attackerHexagonId);
 
-    $defenderHexagon = $this->force->getCombatHexagon($combatNumber);
-
-    for ($i = 0; $i < count($attackerHexagonList); $i++) {
-
-        $hexsideX = ($defenderHexagon->getX() + $attackerHexagonList[$i]->getX()) / 2;
-        $hexsideY = ($defenderHexagon->getY() + $attackerHexagonList[$i]->getY()) / 2;
+        $hexsideX = ($defenderHexagon->getX() + $attackerHexagon->getX()) / 2;
+        $hexsideY = ($defenderHexagon->getY() + $attackerHexagon->getY()) / 2;
         
         $hexside = new Hexpart($hexsideX, $hexsideY);
         
@@ -234,4 +274,19 @@ function getCombatOddsList($combatIndex)
 {
    return $this->crt->getCombatOddsList($combatIndex);
 }
+    function undoDefendersWithoutAttackers()
+    {
+        $this->currentDefender = false;
+
+        foreach ($this->combats as $defenderId => $combat)
+        {
+            if(count((array)$combat->attackers) == 0){
+                unset($this->combats->$defenderId);
+                $this->force->setStatus($defenderId,STATUS_READY);
+            }
+        }
+        $this->combatsToResolve = $this->combats;
+        unset($this->combats);
+    }
+
 }

@@ -9,6 +9,7 @@
 // either version 2 of the License, or (at your option) any later version.
 
 // force data
+global $force_name,$phase_name,$mode_name, $event_name, $status_name, $results_name,$combatRatio_name;
 define("NO_FORCE",0);
 define("BLUE_FORCE",1);
 define("RED_FORCE",2);

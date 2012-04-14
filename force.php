@@ -14,8 +14,10 @@ class RetreatStep
 
     function set($RetreatStepStepNumber, $RetreatHexagon)
     {
+        var_dump($RetreatStepStepNumber);
         $this->stepNumber = $RetreatStepStepNumber;
         $this->hexagon = new Hexagon($RetreatHexagon->getNumber());
+        var_dump($this->hexagon);
     }
     function __construct($data = null)
     {
@@ -187,48 +189,44 @@ echo "onList???";
         return $isOnList;
     }
 
-    function applyCRTresults($combatNumber, $combatResults, $dieRoll)
+    function applyCRTresults($defenderId, $attackers, $combatResults, $dieRoll)
     {
         $this->clearRetreatHexagonList();
 
-        for ($defender = 0; $defender < count($this->units); $defender++)
-        {
 
-            if ($this->units[$defender]->status == STATUS_DEFENDING && $this->units[$defender]->combatNumber == $combatNumber) {
                 switch ($combatResults)
                 {
                     case AR:
-                        $this->units[$defender]->status = STATUS_DEFENDED;
-                        $this->units[$defender]->retreatCountRequired = 0;
+                        $this->units[$defenderId]->status = STATUS_DEFENDED;
+                        $this->units[$defenderId]->retreatCountRequired = 0;
                         break;
 
                     case AE:
-                        $this->units[$defender]->status = STATUS_DEFENDED;
-                        $this->units[$defender]->retreatCountRequired = 0;
+                        $this->units[$defenderId]->status = STATUS_DEFENDED;
+                        $this->units[$defenderId]->retreatCountRequired = 0;
                         break;
 
                     case DE:
-                        $this->units[$defender]->status = STATUS_ELIMINATING;
-                        $this->units[$defender]->retreatCountRequired = 1;
-                        $this->addToRetreatHexagonList($defender, $this->getUnitHexagon($defender));
+                        $this->units[$defenderId]->status = STATUS_ELIMINATING;
+                        $this->units[$defenderId]->retreatCountRequired = 1;
+                        $this->addToRetreatHexagonList($defenderId, $this->getUnitHexagon($defenderId));
                         break;
 
                     case DR:
-                        $this->units[$defender]->status = STATUS_CAN_RETREAT;
-                        $this->units[$defender]->retreatCountRequired = 1;
+                        $this->units[$defenderId]->status = STATUS_CAN_RETREAT;
+                        $this->units[$defenderId]->retreatCountRequired = 1;
                         break;
 
                     default:
                         break;
                 }
-                $this->units[$defender]->combatResults = $combatResults;
-                $this->units[$defender]->dieRoll = $dieRoll;
-                $this->units[$defender]->combatNumber = 0;
-                $this->units[$defender]->moveCount = 0;
-            }
-        }
-
-        for ($attacker = 0; $attacker < count($this->units); $attacker++)
+                $this->units[$defenderId]->combatResults = $combatResults;
+                $this->units[$defenderId]->dieRoll = $dieRoll;
+                $this->units[$defenderId]->combatNumber = 0;
+                $this->units[$defenderId]->moveCount = 0;
+            
+        
+        foreach ($attackers as $attacker => $val)
         {
 
             if ($this->units[$attacker]->status == STATUS_ATTACKING && $this->units[$attacker]->combatNumber == $combatNumber) {
@@ -305,9 +303,9 @@ echo "onList???";
         return $attackerStrength;
     }
 
-    function getAttackerHexagonList($combatNumber)
+    function getAttackerHexagonList($defenderId)
     {
-
+        return
         $hexagonList = array();
 
         for ($id = 0; $id < count($this->units); $id++) {
@@ -319,8 +317,10 @@ echo "onList???";
         return $hexagonList;
     }
 
-    function getCombatHexagon($combatNumber)
+    function getCombatHexagon($defenderId)
     {
+        $hexagon = $this->units[$defenderId]->hexagon;
+        return $hexagon;
 
         for ($id = 0; $id < count($this->units); $id++)
         {
@@ -743,15 +743,6 @@ echo "onList???";
         $this->units[$id]->combatIndex = 0;
     }
 
-    function undoDefendersWithoutAttackers()
-    {
-        for ($id = 0; $id < count($this->units); $id++)
-        {
-            if ($this->units[$id]->status == STATUS_DEFENDING && $this->unitHasAttackers($id) == false) {
-                $this->units[$id]->status = STATUS_READY;
-            }
-        }
-    }
 
     function unitCanAdvance($id)
     {
