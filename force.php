@@ -168,7 +168,8 @@ class Force
     function advanceIsOnRetreatList($id, $hexagon)
     {
         $isOnList = false;
-echo "onList???";
+echo "onList??? $id";
+        var_dump($hexagon);echo "looping?";
         for ($i = 0; $i < count($this->retreatHexagonList); $i++)
         {
             echo "loop $i ooop";
@@ -217,6 +218,11 @@ echo "onList???";
                         $this->units[$defenderId]->retreatCountRequired = 1;
                         break;
 
+                    case NR:
+                        $this->units[$defenderId]->status = STATUS_NO_RESULT;
+                        $this->units[$defenderId]->retreatCountRequired = 0;
+                        break;
+
                     default:
                         break;
                 }
@@ -249,6 +255,11 @@ echo "onList???";
 
                     case DR:
                         $this->units[$attacker]->status = STATUS_CAN_ADVANCE;
+                        $this->units[$attacker]->retreatCountRequired = 0;
+                        break;
+
+                    case NR:
+                        $this->units[$attacker]->status = STATUS_NO_RESULT;
                         $this->units[$attacker]->retreatCountRequired = 0;
                         break;
 

@@ -33,12 +33,14 @@ class CombatRules
     public $combats;
     public $combatsToResolve;
     public $attackers;
+    public $resolvedCombats;
+    public $lastResolvedCombat;
 
     function save()
     {
         $data = new StdClass();
         foreach ($this as $k => $v) {
-            if ((is_object($v) && $k != "combats" && $k != "attackers" && $k != "combatsToResolve") || $k == "crt" ) {
+            if ((is_object($v) && $k != "lastResolvedCombat" && $k != "resolvedCombats" && $k != "combats" && $k != "attackers" && $k != "combatsToResolve") || $k == "crt" ) {
                 continue;
             }
             $data->$k = $v;
@@ -204,6 +206,9 @@ function setCombatIndex($defenderId)
 }
 function cleanUp(){
     unset($this->combats);
+    unset($this->resolvedCombats);
+    unset($this->lastResolvedCombat);
+    unset($this->combatsToResolve);
     $this->currentDefender = false;
     $this->attackers = new StdClass();
 }
@@ -213,9 +218,12 @@ function resolveCombat( $id ) {
     if($this->force->unitIsEnemy($id) && !isset($this->combatsToResolve->${id})){
         return;
     }
-    if($this->force->unitIsFriendly($id) && isset($this->attackers->$id)){
-        var_dump($this->attackers->$id);
-        $id = $this->attackers->$id;
+    if($this->force->unitIsFriendly($id)){
+        if(isset($this->attackers->$id)){
+            var_dump($this->attackers->$id);
+            $id = $this->attackers->$id;
+        }
+        else{return;}
     }
     $this->currentDefender = $id;
     // Math->random yields number between 0 and 1
@@ -236,7 +244,13 @@ function resolveCombat( $id ) {
     /*
      * TODO: is force really supposed to be $this->force?????
      */
-    $this->force->applyCRTresults($id, $this->combats->{$id}->attackers, $combatResults, $Die);
+    $this->force->applyCRTresults($id, $this->combatsToResolve->{$id}->attackers, $combatResults, $Die);
+    $this->lastResolvedCombat = $this->combatsToResolve->$id;
+        $this->resolvedCombats->$id = $this->combatsToResolve->$id;
+        unset($this->combatsToResolve->$id);
+    foreach($this->lastResolvedCombat->attackers as $attacker =>$v){
+        unset($this->attackers->$attacker);
+    }
     echo "Resolved";
 }
 
