@@ -82,10 +82,10 @@ class BattleForAllenCreek {
             //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
             $this->force->addUnit("infantry-1", RED_FORCE, 402, "infantry-3a->png", 4, 4, STATUS_READY, "R", 1);
             $this->force->addUnit("infantry-2", RED_FORCE, 403, "infantry-3a->png", 4, 4, STATUS_READY, "R", 1);
-            $this->force->addUnit("infantry-3", RED_FORCE, 701, "infantry-3a->png", 4, 4, STATUS_CAN_REINFORCE, "R", 2);
-            $this->force->addUnit("infantry-4", BLUE_FORCE, 703, "infantry-1a->png", 4, 4, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-5", BLUE_FORCE, 704, "infantry-1a->png", 4, 4, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("armour-6", BLUE_FORCE, 705, "armour-1a->png", 7, 10, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-3", RED_FORCE, 801, "infantry-3a->png", 4, 4, STATUS_CAN_REINFORCE, "R", 2);
+            $this->force->addUnit("infantry-4", BLUE_FORCE, 803, "infantry-1a->png", 4, 4, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-5", BLUE_FORCE, 804, "infantry-1a->png", 4, 4, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("armour-6", BLUE_FORCE, 805, "armour-1a->png", 7, 10, STATUS_CAN_REINFORCE, "B", 1);
             // end unit data -------------------------------------------
 
             // unit terrain data----------------------------------------
