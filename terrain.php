@@ -393,7 +393,6 @@ function addTerrain($hexagonName, $hexpartType, $terrainName)
 			
 			if ( $this->terrainFeatures[$eachTerrainFeature]->isExclusive == true )
 			{
-//                var_dump($this->terrainFeatures);
 				for (  $eachExclusiveType = 0; $eachExclusiveType < count($this->terrainFeatures); $eachExclusiveType++)
 				{
 					if ( $this->terrainArray[$y][$x] &&
@@ -530,7 +529,6 @@ function getAllAreAttackingAcrossRiverCombatEffect()
 }
 
 function isExit($hexagon) {
-	echo "in isexit";
  	 $isExit = false;
 
 	 $hexpart = new Hexpart($hexagon->getX(), $hexagon->getY());
@@ -540,22 +538,17 @@ function isExit($hexagon) {
 	if ($this->terrainIs($hexpart, "offmap") == true) {
 		$isExit = true;
 	}
-    echo "out of exit";
 	return $isExit;
 }
 
 function getReinforceZone($hexagon)
 {
      $zoneName = "";
-var_dump($hexagon);
     for(  $i = 0; $i < count($this->reinforceZones); $i++ )
     {
-        echo "reinforceZOne $i\n";
-        var_dump($this->reinforceZones[$i]->hexagon);
  //alert("" + i + " " + $this->reinforceZones[$i]->hexagon->getName() + " : " + hexagon->getName());
         if ( $this->reinforceZones[$i]->hexagon->equals($hexagon) == true )
 		{
-            echo "DIDIDIDIDIDID";
 			$zoneName = $this->reinforceZones[$i]->name;
 		}
     }

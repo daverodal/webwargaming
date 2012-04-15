@@ -49,18 +49,14 @@ class MoveRules{
     function moveUnit($eventType, $id, $hexagon, $turn)
     {
         if ($eventType == SELECT_MAP_EVENT) {
-            echo "MoveUnit";
             if ($this->anyUnitIsMoving) {
                 // click on map, so try to move
                 if ($this->force->unitIsMoving($this->movingUnitId) == true) {
-                    echo "unit is moving";
                     $this->move($this->movingUnitId, $hexagon);
                 }
                 if ($this->force->unitIsReinforcing($this->movingUnitId) == true) {
-                    echo "ReinUnit";
 
                     $this->reinforce($this->movingUnitId, $hexagon);
-                    echo "ReindUnit";
                 }
             }
         }
@@ -108,12 +104,9 @@ class MoveRules{
 
     function move($id, $hexagon)
     {
-        echo "Mov???";
-        var_dump( $this->moveIsValid($id, $hexagon));
         if ($this->force->unitIsMoving($this->movingUnitId)
             && $this->moveIsValid($id, $hexagon)
         ) {
-            echo "move is valid";
             $this->updateMoveData($id, $hexagon);
         }
     }
@@ -185,21 +178,16 @@ class MoveRules{
 
     function moveIsValid($id, $hexagon)
     {
-        echo "InVAlie $id";
         // all 4 conditions must be true, so any one that is false
         //    will make the move invalid
 
         $isValid = true;
-        var_dump($this->force->units[5]->hexagon);
-var_dump($this->force->getUnitHexagon($id));
-        var_dump($hexagon);
 
         // condition 1
         // can only move to nearby hexagon
         if ($this->rangeIsOneHexagon($this->force->getUnitHexagon($id), $hexagon) == false) {
             $isValid = false;
         }
-echo "really???";
         // condition 2
         // check if unit has enough move points
         $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id), $hexagon, $this->force->getUnitMaximumMoveAmount($this->movingUnitId));
@@ -268,7 +256,6 @@ echo "really???";
         $los = new Los();
         $los->setOrigin($startHexagon);
         $los->setEndPoint($endHexagon);
-echo "In  Range Is On";
         if ($los->getRange() == 1) {
             $rangeIsOne = true;
         }
@@ -277,7 +264,7 @@ echo "In  Range Is On";
     }
 
     function startReinforcing($id, $turn)
-    {echo "startRein";
+    {
         if ($this->force->getUnitReinforceTurn($id) <= $turn) {
             if ($this->force->setStatus($id, STATUS_REINFORCING) == true) {
                 $this->anyUnitIsMoving = true;
@@ -288,15 +275,9 @@ echo "In  Range Is On";
 
     function reinforce($id, $hexagon)
     {
-        echo "Reinfor".$hexagon->number;
-        var_dump($this->force->units[$id]);
 
         if ($this->force->unitIsReinforcing($id) == true) {
-            echo "isRe doing I";
-            echo $this->force->getUnitReinforceZone($id);echo " x ";
-            echo $this->terrain->getReinforceZone($hexagon);
             if ($this->force->getUnitReinforceZone($id) == $this->terrain->getReinforceZone($hexagon)) {
-                echo "movementCost";
                 // get move cost
                 $moveAmount = $this->terrain->getTerrainEntranceMoveCost($hexagon);
 
@@ -346,13 +327,10 @@ echo "In  Range Is On";
         }
         else
         {
-            echo "Counter event of the close kind ";
             // id will be retreating unit id if counter event
             if ($this->anyUnitIsMoving == false) {
                 if ($this->force->unitCanRetreat($id) == true) {
-                    echo "Start";
                     $this->startRetreating($id);
-                    echo "dieid";
                 }
             }
         }
@@ -361,9 +339,7 @@ echo "In  Range Is On";
     function startRetreating($id)
     {
         if ($this->force->setStatus($id, STATUS_RETREATING) == true) {
-            echo "It is tru! ";
             if ($this->retreatIsBlocked($id) == true) {
-                echo("reteat is blocked");
 
                 $hexagon = $this->force->getUnitHexagon($id);
 
@@ -374,7 +350,6 @@ echo "In  Range Is On";
             }
             else
             {
-                echo "any unit IS moving $id";
                 $this->anyUnitIsMoving = true;
                 $this->movingUnitId = $id;
             }
@@ -383,7 +358,6 @@ echo "In  Range Is On";
 
     function retreatIsBlocked($id)
     {
-        echo "is the retreat blocked?";
         $isBlocked = true;
 
         $adjacentHexagonXadjustment = array(0, 2, 2, 0, -2, -2);
@@ -392,21 +366,17 @@ echo "In  Range Is On";
         $hexagon = $this->force->getUnitHexagon($id);
         $hexagonX = $hexagon->getX($id);
         $hexagonY = $hexagon->getY($id);
-echo "enter the for";
         for ($eachHexagon = 0; $eachHexagon < 6; $eachHexagon++)
         {
-            echo "$eachHexagon \n";
             $adjacentHexagonX = $hexagonX + $adjacentHexagonXadjustment[$eachHexagon];
             $adjacentHexagonY = $hexagonY + $adjacentHexagonYadjustment[$eachHexagon];
             $adjacentHexagon = new Hexagon($adjacentHexagonX, $adjacentHexagonY);
             //alert("testing " + adjacentHexagon->getName());
-            echo "///// $eachHexagon \n";
 
             if ($this->hexagonIsBlocked($id, $adjacentHexagon) == false) {
                 $isBlocked = false;
                 break;
             }
-            echo "wwww $eachHexagon \n";
 
         }
 
@@ -441,7 +411,6 @@ echo "enter the for";
         if ($this->terrain->isExit($hexagon) == true) {
             $isBlocked = true;
         }
-        echo "hexagonIsblocked"; var_dump($isBlocked);
         //alert(unitHexagon->getName() + " to " + hexagon->getName() + " zoc: " + $this->force->hexagonIsZOC(id, hexagon) + " occ: " + $this->force->hexagonIsOccupied(hexagon)  + " river: " + $this->terrain->terrainIs(hexpart, "river"));
         return $isBlocked;
     }
@@ -452,9 +421,7 @@ echo "enter the for";
             && $this->hexagonIsBlocked($id, $hexagon) == false
             && $this->terrain->isExit($hexagon) == false
         ) {
-            echo "retreating ";
             $this->force->addToRetreatHexagonList($id, $this->force->getUnitHexagon($id));
-echo " and more retreating ";
             // set move amount to 0
             $this->force->updateMoveStatus($id, $hexagon, 0);
 
@@ -479,14 +446,10 @@ echo " and more retreating ";
 
     function advanceUnit($eventType, $id, $hexagon)
     {
-        echo "advanceUnit ";
         if ($eventType == SELECT_MAP_EVENT) {
-            echo "MapEvent";
             if ($this->anyUnitIsMoving == true) {
-                echo "yes its' moving ";
                 //alert("advance");
                 $this->advance($this->movingUnitId, $hexagon);
-                echo "die id move?";
             }
         }
         else
@@ -513,9 +476,7 @@ echo " and more retreating ";
 
     function advance($id, $hexagon)
     {
-        echo "advance it ";
         if ($this->advanceIsValid($id, $hexagon) == true) {
-            echo "momsaidicoulddoit";
             // set move amount to 0
             $this->force->updateMoveStatus($id, $hexagon, 0);
             $this->stopAdvance($id);
@@ -536,15 +497,12 @@ echo " and more retreating ";
         $isValid = false;
 
         $startHexagon = $this->force->getUnitHexagon($id);
-echo "onrlist? ";
         if ($this->force->advanceIsOnRetreatList($id, $hexagon) == true && $this->rangeIsOneHexagon($startHexagon, $hexagon) == true) {
-            echo "True? ";
             //alert("retreat list: true");
             $isValid = true;
         }
         else
         {
-            echo "false?";
             //alert("retreat list: false");
         }
 

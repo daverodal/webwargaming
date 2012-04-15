@@ -50,6 +50,7 @@ class GameRules {
     public $attackingForceId;
     public $defendingForceId;
     public $deleteCount;
+    public $interactions;
 
     function save()
     {
@@ -96,6 +97,7 @@ class GameRules {
         $this->deleteCount = 0;
         $this->attackingForceId = BLUE_FORCE;
         $this->defendingForceId = RED_FORCE;
+        $this->interactions = array();
 
         $this->force->setAttackingForceId($this->attackingForceId);
         }
@@ -119,6 +121,13 @@ class GameRules {
     {
         global $phase_name, $event_name, $mode_name;
 
+        $now = time();
+        $interaction = new StdClass();
+        
+        $interaction->event = $event;
+        $interaction->id = $id;
+        $interaction->hexagon = $hexagon;
+        $interaction->time = $now;
         $eventname = $event_name[$event];
         $modename = $mode_name[$this->mode];
         $phasename = $phase_name[$this->phase];
@@ -131,9 +140,7 @@ class GameRules {
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
-                    echo "MovingMode";
                         $this->moveRules->moveUnit($event, $id, $hexagon, $this->turn);
-                    echo "MovedMode";
                         break;
 
                     case SELECT_BUTTON_EVENT:
@@ -170,7 +177,7 @@ class GameRules {
 
                     case SELECT_COUNTER_EVENT:
 
-                        $this->combatRules->resolveCombat($id);
+                        $interaction->dieRoll = $this->combatRules->resolveCombat($id);
                         if ($this->force->unitsAreBeingEliminated() == true) {
                             $this->force->removeEliminatingUnits();
                         }
@@ -249,13 +256,11 @@ class GameRules {
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
-                    echo "right place";
                         $this->moveRules->retreatUnit($event, $id, $hexagon);
                         if ($this->force->unitsAreRetreating() == false) {
-                            echo "false?";
                             if ($this->force->unitsAreAdvancing() == true) {
                                 $this->mode = ADVANCING_MODE;
-                            } else {echo "meelee"; // melee
+                            } else { // melee
                                 if ($this->combatModeType == COMBAT_SETUP_MODE) {
                                     if ($this->gameHasCombatResolutionMode == true) {
                                         $this->mode = COMBAT_RESOLUTION_MODE;
@@ -281,9 +286,7 @@ class GameRules {
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
-                    echo "Advanding ";
                         $this->moveRules->advanceUnit($event, $id, $hexagon);
-                    echo "AdvandED ";
 
                         if ($this->force->unitsAreAdvancing() == false) { // melee
                             if ($this->combatModeType == COMBAT_SETUP_MODE) {
@@ -305,7 +308,7 @@ class GameRules {
                 break;
         }
 
-        echo "End";
+        $this->interactions[] = $interaction;
         // see who occupies city
 //        $this->force->checkVictoryConditions();
         if ($this->force->isForceEliminated() == true) {

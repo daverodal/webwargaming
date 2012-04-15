@@ -49,9 +49,6 @@ class CombatResultsTable
 
 function getCombatResults($Die, $index)
 {
-    var_dump($this->combatResultsTable[$Die]);
-    var_dump($index);
-    var_dump($this->combatResultsTable[$Die][$index]);
 	return $this->combatResultsTable[$Die][$index];
 }
 

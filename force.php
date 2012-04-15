@@ -14,10 +14,8 @@ class RetreatStep
 
     function set($RetreatStepStepNumber, $RetreatHexagon)
     {
-        var_dump($RetreatStepStepNumber);
         $this->stepNumber = $RetreatStepStepNumber;
         $this->hexagon = new Hexagon($RetreatHexagon->getNumber());
-        var_dump($this->hexagon);
     }
     function __construct($data = null)
     {
@@ -168,17 +166,12 @@ class Force
     function advanceIsOnRetreatList($id, $hexagon)
     {
         $isOnList = false;
-echo "onList??? $id";
-        var_dump($hexagon);echo "looping?";
         for ($i = 0; $i < count($this->retreatHexagonList); $i++)
         {
-            echo "loop $i ooop";
             // note: addToRetreatHexagonList() is invoked before retreat move, so
             //  the moveCount is 0 for 1st step and 1 for 2nd step
             //  when advancing unit.moveCount will be 0 which will match 1st step retreat number
 
-            var_dump($this->retreatHexagonList[$i]->hexagon instanceof Hexagon);
-            var_dump($hexagon instanceof Hexagon);
             //alert("function .prototype. checkingt: " + id + " hexagon: " + hexagon.getName() + " with array " + $this->retreatHexagonList[i].hexagon.getName());
             if ($this->retreatHexagonList[$i]->stepNumber == $this->units[$id]->moveCount
                 && $this->retreatHexagonList[$i]->hexagon->equals($hexagon)
@@ -624,14 +617,12 @@ echo "onList??? $id";
 
     function setStatus($id, $status)
     {
-        echo "setStatus $status $id";
         $success = false;
         switch ($status)
         {
             case STATUS_REINFORCING:
                 if ($this->units[$id]->forceId == $this->attackingForceId && $this->units[$id]->status == STATUS_CAN_REINFORCE) {
                     $this->units[$id]->status = $status;
-                    echo "did ie";
                     $success = true;
                 }
                 break;
@@ -683,14 +674,11 @@ echo "onList??? $id";
                 break;
 
             case STATUS_RETREATING:
-                echo "Status Retreating ";
                 if ($this->units[$id]->status == STATUS_CAN_RETREAT) {
-                    echo "Can Retreat";
                     $this->units[$id]->status = $status;
                     $this->units[$id]->moveCount = 0;
                     $this->units[$id]->moveAmountUsed = 0;
                     $success = true;
-                    echo "all good";
                 }
                 break;
 
@@ -1011,7 +999,6 @@ echo "onList??? $id";
                 break;
             }
         }
-        echo "units are advancing $areAdvancing";
         return $areAdvancing;
     }
 
@@ -1047,10 +1034,8 @@ echo "onList??? $id";
     function unitsAreRetreating()
     {
         $areRetreating = false;
-echo "are we";
         for ($id = 0; $id < count($this->units); $id++)
         {
-            echo "are reat $id ". $this->units[$id]->status;
             if ($this->units[$id]->status == STATUS_CAN_RETREAT
                 || $this->units[$id]->status == STATUS_RETREATING
             ) {
