@@ -2,7 +2,7 @@
 // force.js
 
 // copyright (c) 20092011 Mark Butler
-// This program is free software; you can redistribute it 
+// This program is free software; you can redistribute it
 // and/or modify it under the terms of the GNU General Public License
 // as published by the Free Software Foundation;
 // either version 2 of the License, or (at your option) any later version. 
@@ -203,6 +203,7 @@ class Force
                     case DE:
                         $this->units[$defenderId]->status = STATUS_ELIMINATING;
                         $this->units[$defenderId]->retreatCountRequired = 1;
+                        $this->units[$defenderId]->moveCount = 0;
                         $this->addToRetreatHexagonList($defenderId, $this->getUnitHexagon($defenderId));
                         break;
 
