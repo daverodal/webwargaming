@@ -56,6 +56,7 @@ class MoveRules{
                 }
                 if ($this->force->unitIsReinforcing($this->movingUnitId) == true) {
 
+                    var_dump("HERE");
                     $this->reinforce($this->movingUnitId, $hexagon);
                 }
             }
@@ -281,9 +282,12 @@ class MoveRules{
 
     function reinforce($id, $hexagon)
     {
+        echo "DOENEN";
 
         if ($this->force->unitIsReinforcing($id) == true) {
+            echo "YEs I am";
             if ($this->force->getUnitReinforceZone($id) == $this->terrain->getReinforceZone($hexagon)) {
+                echo "DOENEN";
                 // get move cost
                 $moveAmount = $this->terrain->getTerrainEntranceMoveCost($hexagon);
 
@@ -300,6 +304,7 @@ class MoveRules{
                         $this->force->updateMoveStatus($id, $hexagon, $moveAmount);
                     }
                 }
+                $this->stopMove($id);
 
                 // stop if out of moves
                 if ($this->force->unitHasUsedMoveAmount($id) == true) {

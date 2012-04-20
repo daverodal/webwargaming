@@ -27,8 +27,8 @@ class Hexagon {
         $this->name = "";
         $this->minX = 4;
         $this->minY = 8;
-        $this->maxX = 12;
-        $this->maxY = 24;
+        $this->maxX = 36;
+        $this->maxY = 48;
 
         // Hexagon(name)
         if ( $a1 !== false && $a2 === false ) {

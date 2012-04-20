@@ -549,12 +549,15 @@ function getReinforceZone($hexagon)
     for(  $i = 0; $i < count($this->reinforceZones); $i++ )
     {
  //alert("" + i + " " + $this->reinforceZones[$i]->hexagon->getName() + " : " + hexagon->getName());
+        var_dump($this->reinforceZones[$i]->hexagon);
         if ( $this->reinforceZones[$i]->hexagon->equals($hexagon) == true )
 		{
 			$zoneName = $this->reinforceZones[$i]->name;
 		}
     }
-    
+    var_dump($hexagon);
+    echo "I'th zoned $zoneName ";
+
     return $zoneName;
 }
 

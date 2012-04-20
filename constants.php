@@ -27,6 +27,7 @@ define("RED_MOVE_PHASE",4);
 define("RED_COMBAT_PHASE",5);
 define("RED_FIRE_COMBAT_PHASE",6);
 define("GAME_OVER_PHASE",7);
+define("BLUE_DEPLOY_PHASE",8);
 
 $phase_name = array();
 $phase_name[1] = "Blue Move";
@@ -36,6 +37,7 @@ $phase_name[4] = "Red Move";
 $phase_name[5] = "Red Combat";
 $phase_name[6] = "Red Fire Combat";
 $phase_name[7] = "Victory";
+$phase_name[8] = "Blue Deploy";
 
 // game modes
 define("SELECT_TO_MOVE_MODE",1);
@@ -54,6 +56,7 @@ define("SELECT_TO_DELETE_MODE",13);
 define("DELETING_MODE",14);
 define("CHECK_FOR_COMBAT_MODE",15);
 define("GAME_OVER_MODE",16);
+define("DEPLOY_MODE",17);
 
 // mode names
 $mode_name = array();
