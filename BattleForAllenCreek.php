@@ -62,10 +62,10 @@ class BattleForAllenCreek {
 
 
             // mapData
-            $this->mapData->setData(18, 20, // originX, originY
+            $this->mapData->setData(46, 58, // originX, originY
                 20, 20, // top hexagon height, bottom hexagon height
                 12, 24, // hexagon edge width, hexagon center width
-                505, 505 // max right hexagon, max bottom hexagon
+                1410, 1410 // max right hexagon, max bottom hexagon
             );
 
             // game data
@@ -80,8 +80,34 @@ class BattleForAllenCreek {
 
             // unit data -----------------------------------------------
             //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
-            $this->force->addUnit("infantry-1", RED_FORCE, 402, "infantry-3a->png", 4, 4, STATUS_READY, "R", 1);
-            $this->force->addUnit("infantry-2", RED_FORCE, 403, "infantry-3a->png", 4, 4, STATUS_READY, "R", 1);
+            for($i = 1;$i<= 4;$i++){
+                $this->force->addUnit("infantry-1", RED_FORCE, 300+$i, "rusInf8->png", 4, 4, STATUS_READY, "R", 1);
+
+            }
+            for($i = 4;$i<= 10;$i++){
+                $this->force->addUnit("infantry-1", RED_FORCE, 500+$i, "rusInf8->png", 4, 4, STATUS_READY, "R", 1);
+
+            }
+            $this->force->addUnit("infantry-1", RED_FORCE, 803, "rusInf8->png", 4, 4, STATUS_READY, "R", 1);
+            $this->force->addUnit("infantry-1", RED_FORCE, 405, "rusInf8->png", 4, 4, STATUS_READY, "R", 1);
+
+            for($i = 0;$i <= 10;$i++){
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i, "gerInf8->png", 4, 4, STATUS_CAN_REINFORCE, "B", 1);
+
+            }
+            $this->force->addUnit("infantry-1", RED_FORCE, 803, "rusInf8->png", 4, 4, STATUS_READY, "R", 1);
+            $this->force->addUnit("infantry-1", RED_FORCE, 405, "rusInf8->png", 4, 4, STATUS_READY, "R", 1);
+
+            $this->force->addUnit("infantry-1", RED_FORCE, 301, "rusInf8->png", 4, 4, STATUS_READY, "R", 1);
+            $this->force->addUnit("infantry-1", RED_FORCE, 302, "rusInf8->png", 4, 4, STATUS_READY, "R", 1);
+            $this->force->addUnit("infantry-1", RED_FORCE, 303, "rusInf8->png", 4, 4, STATUS_READY, "R", 1);
+            $this->force->addUnit("infantry-1", RED_FORCE, 30, "rusInf8->png", 4, 4, STATUS_READY, "R", 1);
+
+
+
+
+            $this->force->addUnit("infantry-1", RED_FORCE, 101, "infantry-3a->png", 4, 4, STATUS_READY, "R", 1);
+            $this->force->addUnit("infantry-2", RED_FORCE, 102, "infantry-3a->png", 4, 4, STATUS_READY, "R", 1);
             $this->force->addUnit("infantry-3", RED_FORCE, 801, "infantry-3a->png", 4, 4, STATUS_CAN_REINFORCE, "R", 2);
             $this->force->addUnit("infantry-4", BLUE_FORCE, 803, "infantry-1a->png", 4, 4, STATUS_CAN_REINFORCE, "B", 1);
             $this->force->addUnit("infantry-5", BLUE_FORCE, 804, "infantry-1a->png", 4, 4, STATUS_CAN_REINFORCE, "B", 1);
@@ -93,18 +119,30 @@ class BattleForAllenCreek {
 
             // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
             $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
-            $this->terrain->addTerrainFeature("clear", "", "c", 2, 0, 0, true);
-            $this->terrain->addTerrainFeature("rough", "rough", "h", 3, 0, 1, true);
-            $this->terrain->addTerrainFeature("road", "road", "r", 0, 1, 0, false);
+            $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
+            $this->terrain->addTerrainFeature("fortified", "fortified", "h", 1, 0, 1, true);
+            $this->terrain->addTerrainFeature("road", "road", "r", 0, 0, 0, false);
             $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 2, false);
-            $this->terrain->addTerrainFeature("forest", "forest", "f", 4, 0, 2, false);
+            $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 2, false);
             $this->terrain->addTerrainFeature("river", "Allen Creek", "v", 0, 0, 0, false);
 
             $this->terrain->addReinforceZone(501, "R");
-            $this->terrain->addReinforceZone(103, "B");
+        /*    $this->terrain->addReinforceZone(103, "B");
             $this->terrain->addReinforceZone(104, "B");
-            $this->terrain->addReinforceZone(105, "B");
+            $this->terrain->addReinforceZone(105, "B");*/
+            for($i = 1;$i <= 10;$i++){
+                $this->terrain->addReinforceZone(100+$i,"B");
+            }
+            for($col = 100; $col <= 1400; $col += 100){
+                for($row = 1; $row <= 10;$row++){
+                    $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
+                    $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
+                    $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
+                    $this->terrain->addTerrain($row + $col, HEXAGON_CENTER, "clear");
 
+                }
+            }
+/*
             $this->terrain->addTerrain("0100", BOTTOM_HEXSIDE, "clear");
             $this->terrain->addTerrain("0300", BOTTOM_HEXSIDE, "clear");
             $this->terrain->addTerrain("0300", BOTTOM_HEXSIDE, "road");
@@ -275,7 +313,7 @@ class BattleForAllenCreek {
             $this->terrain->addTerrain("0605", UPPER_LEFT_HEXSIDE, "road");
             $this->terrain->addTerrain("0105", BOTTOM_HEXSIDE, "clear");
             $this->terrain->addTerrain("0305", BOTTOM_HEXSIDE, "clear");
-            $this->terrain->addTerrain("0505", BOTTOM_HEXSIDE, "clear");
+            $this->terrain->addTerrain("0505", BOTTOM_HEXSIDE, "clear");*/
 
             // end terrain data ----------------------------------------
 

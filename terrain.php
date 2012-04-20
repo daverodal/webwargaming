@@ -77,8 +77,8 @@ class Town{
 	
 	$this->allAreAttackingAcrossRiverCombatEffect = 3;
 
-        $this->maxTerrainY = 29;
-        $this->maxTerrainX = 16;
+        $this->maxTerrainY = 60;
+        $this->maxTerrainX = 40;
 
         for ($x = 0; $x < $this->maxTerrainX; $x++) {
             for ($y = 0; $y < $this->maxTerrainY; $y++) {
@@ -145,7 +145,9 @@ function getTerrainCode($hexpart) {
   
     $x = $hexpart->getX();
     $y = $hexpart->getY();
-    
+    var_dump($this->terrainArray);
+    var_dump($this->terrainArray);
+    var_dump($x);var_dump($y);
 	if ( ( $x >= 0 && $x < $this->maxTerrainX ) && ( $y >= 0 && $y < $this->maxTerrainY ) )
 		$terrainCode = $this->terrainArray[$y][$x];
 	else
