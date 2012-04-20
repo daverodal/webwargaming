@@ -94,7 +94,7 @@ class MoveRules{
 
     function startMoving($id)
     {
-        if ($this->force->unitIsZOC($id) == false) {
+        if (true || $this->force->unitIsZOC($id) == false) {
             if ($this->force->setStatus($id, STATUS_MOVING) == true) {
                 $this->anyUnitIsMoving = true;
                 $this->movingUnitId = $id;
@@ -129,9 +129,15 @@ class MoveRules{
     function stopMove($id)
     {
         if ($this->force->unitIsMoving($id) == true) {
-            if ($this->force->setStatus($id, STATUS_STOPPED) == true) {
-                $this->anyUnitIsMoving = false;
-                $this->movingUnitId = 0;
+            if ($this->force->unitHasNotMoved($id)) {
+                $this->force->setStatus($id, STATUS_READY);
+                    $this->anyUnitIsMoving = false;
+                    $this->movingUnitId = NONE;
+            } else {
+                if ($this->force->setStatus($id, STATUS_STOPPED) == true) {
+                    $this->anyUnitIsMoving = false;
+                    $this->movingUnitId = NONE;
+                }
             }
         }
     }
@@ -141,7 +147,7 @@ class MoveRules{
         if ($this->force->unitIsMoving($id) == true) {
             if ($this->force->setStatus($id, STATUS_EXITED) == true) {
                 $this->anyUnitIsMoving = false;
-                $this->movingUnitId = 0;
+                $this->movingUnitId = NONE;
             }
         }
     }
@@ -308,7 +314,7 @@ class MoveRules{
         if ($this->force->unitIsReinforcing($id) == true) {
             if ($this->force->setStatus($id, STATUS_CAN_REINFORCE) == true) {
                 $this->anyUnitIsMoving = false;
-                $this->movingUnitId = 0;
+                $this->movingUnitId = NONE;
             }
         }
     }
@@ -430,7 +436,7 @@ class MoveRules{
                 // stop if unit has retreated the required amount
                 if ($this->force->setStatus($id, STATUS_STOPPED) == true) {
                     $this->anyUnitIsMoving = false;
-                    $this->movingUnitId = 0;
+                    $this->movingUnitId = NONE;
                 }
             }
         }
