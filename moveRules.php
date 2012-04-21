@@ -56,7 +56,6 @@ class MoveRules{
                 }
                 if ($this->force->unitIsReinforcing($this->movingUnitId) == true) {
 
-                    var_dump("HERE");
                     $this->reinforce($this->movingUnitId, $hexagon);
                 }
             }
@@ -224,10 +223,14 @@ class MoveRules{
 
     function moveIsAcrossRiverNoBridge($id, $hexagon)
     {
+        echo "Across troubled waters   ";
+        var_dump($id);
+        var_dump($hexagon);
         $moveIsAcrossRiverNoBridge = false;
 
         $hexpart = new Hexpart($this->force->getUnitHexagon($id)->getX(), $this->force->getUnitHexagon($id)->getY());
 
+        var_dump($hexpart);
         // check for river without a bridge
         if (($this->terrain->terrainIs($hexpart, "river") == true)
             && ($this->terrain->terrainIs($hexpart, "road") == false)

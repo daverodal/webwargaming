@@ -160,7 +160,7 @@ function setCombatIndex($defenderId)
     $attackStrength = $this->force->getAttackerStrength($combats->attackers);
     $defenseStrength = $this->force->getDefenderStrength($defenderId);
 
-    $combatIndex = $attackStrength - $defenseStrength;
+    $combatIndex = floor($attackStrength / $defenseStrength)-1;
 
     $terrainCombatEffect = $this->getDefenderTerrainCombatEffect($defenderId);
 
@@ -202,6 +202,7 @@ function resolveCombat( $id ) {
     //  Math->floor gives lower integer, which is now 0,1,2,3,4,5
 
     $Die = floor($this->crt->dieSideCount * (rand()/getrandmax()));
+    $Die = 3;
 //    $index = $this->force->getUnitCombatIndex($id);
     $index = $this->combatsToResolve->${id}->index;
 

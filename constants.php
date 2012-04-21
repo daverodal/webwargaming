@@ -61,6 +61,8 @@ define("DELETING_MODE",14);
 define("CHECK_FOR_COMBAT_MODE",15);
 define("GAME_OVER_MODE",16);
 define("DEPLOY_MODE",17);
+define("EXCHANGING_MODE",18);
+define("REPLACING_MODE",18);
 
 // mode names
 $mode_name = array();
@@ -135,6 +137,9 @@ define("STATUS_EXITING",23);
 define("STATUS_EXITED",24);
 define("STATUS_NO_MORE_CRT",25);
 define("STATUS_MORE_CRT",26);
+define("STATUS_CAN_EXCHANGE",27);
+define("STATUS_EXCHANGED",28);
+define("STATUS_REPLACED",29);
 
 // unit status names
 $status_name = array();
@@ -168,10 +173,11 @@ $status_name[26] = " more CRT to resolve";
 
 // Combat Results Table values
 define("DE",0);
-define("DR",1);
-define("NR",2);
-define("AR",3);
-define("AE",4);
+define("DRL",1);
+define("DR",2);
+define("EX",3);
+define("NE",4);
+define("AL",5);
 
 $results_name = array();
 //results_name[DE] = "Defender eliminated";
@@ -180,10 +186,11 @@ $results_name = array();
 //results_name[AR] = "Attacker retreat";
 //results_name[AE] = "Attacker eliminated";
 $results_name[DE] = "DE";
+$results_name[DRL] = "DRL";
 $results_name[DR] = "DR";
-$results_name[NR] = "NR";
-$results_name[AR] = "AR";
-$results_name[AE] = "AE";
+$results_name[EX] = "EX";
+$results_name[NE] = "NE";
+$results_name[AL] = "AL";
 
 // combat ratio
 $combatRatio_name = array();

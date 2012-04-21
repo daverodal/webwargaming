@@ -51,6 +51,7 @@ class GameRules {
     public $defendingForceId;
     public $deleteCount;
     public $interactions;
+    public $replacementsAvail;
 
     function save()
     {
@@ -134,6 +135,42 @@ class GameRules {
 
         switch ($this->mode) {
 
+            case REPLACING_MODE:
+              switch ($event) {
+
+                    case SELECT_MAP_EVENT:
+                        if($this->replacementsAvail <= 0){
+                            break;
+                        }
+                        echo "mapReplace";
+                        $hexpart = new Hexpart();
+                        $hexpart->setXYwithNameAndType($hexagon->name,HEXAGON_CENTER);
+                        $terrain = $this->moveRules->terrain;
+                        echo "Terrain";
+                        if($terrain->terrainIs($hexpart, "town") || $terrain->terrainIs($hexpart, "moscow") || $terrain->terrainIs($hexpart, "eastedge")){
+                            echo "terrain Is";
+                            if($this->force->getEliminated($hexagon)){
+                                echo "Got";
+                                $this->replacementsAvail--;
+                            }
+                        }
+                        break;
+                    case SELECT_COUNTER_EVENT:
+                        if($this->replacementsAvail <= 0){
+                            break;
+                        }
+                        echo "replace $id";
+                         if($this->force->replace( $id)){
+                            $this->replacementsAvail--;
+                        }
+                        break;
+
+                    case SELECT_BUTTON_EVENT:
+
+                        $this->selectNextPhase();
+                        break;
+                }
+                break;
             case DEPLOY_MODE:
                 switch ($event) {
 
@@ -164,7 +201,6 @@ class GameRules {
                             $x = $hexagon->getX();
                             $y = $hexagon->getY();/* a road!!! */
                            echo "workin on the railroad";
-                            var_dump($this->combatRules->terrain->terrainArray[$y][$x]);
 
                             if(($this->combatRules->terrain->terrainArray[$y][$x] & 4) == 0){
                                 break;
@@ -211,6 +247,11 @@ class GameRules {
                         $interaction->dieRoll = $this->combatRules->resolveCombat($id);
                         if ($this->force->unitsAreBeingEliminated() == true) {
                             $this->force->removeEliminatingUnits();
+                        }
+echo "About TO";
+                        if ($this->force->unitsAreExchanging() == true) {
+                            echo "EXCHANGINGMODE!!!!";
+                            $this->mode = EXCHANGING_MODE;
                         }
 
                         if ($this->force->unitsAreRetreating() == true) {
@@ -289,7 +330,11 @@ class GameRules {
                     case SELECT_COUNTER_EVENT:
                         $this->moveRules->retreatUnit($event, $id, $hexagon);
                         if ($this->force->unitsAreRetreating() == false) {
-                            if ($this->force->unitsAreAdvancing() == true) {
+                            if ($this->force->unitsAreExchanging() == true) {
+                                echo "EXCHANGINGMODE!!!!";
+                                $this->mode = EXCHANGING_MODE;
+                            }else{
+                           if ($this->force->unitsAreAdvancing() == true) {
                                 $this->mode = ADVANCING_MODE;
                             } else { // melee
                                 if ($this->combatModeType == COMBAT_SETUP_MODE) {
@@ -305,6 +350,7 @@ class GameRules {
                                         $this->mode = FIRE_COMBAT_SETUP_MODE;
                                     }
                                 }
+                            }
                             }
                         }
                         break;
@@ -337,6 +383,25 @@ class GameRules {
                         break;
                 }
                 break;
+            case EXCHANGING_MODE:
+
+                echo "EXGHANGINGMODE";
+                switch ($event) {
+
+                    case SELECT_COUNTER_EVENT:
+
+                        if ($this->force->setStatus($id, STATUS_EXCHANGED)) {
+                            if ($this->force->unitsAreBeingEliminated() == true) {
+                                $this->force->removeEliminatingUnits();
+                            }
+                            if ($this->force->exchangingAreAdvancing() == true) { // melee
+                                $this->mode = ADVANCING_MODE;
+                            } else {
+                                $this->mode = COMBAT_RESOLUTION_MODE;
+                            }
+                        }
+                }
+                break;
         }
 
         $this->interactions[] = $interaction;
@@ -351,9 +416,9 @@ class GameRules {
 
     function selectNextPhase()
     {
-
+echo "Teyr next phaes";
         if ($this->force->moreCombatToResolve() == false && $this->moveRules->anyUnitIsMoving == false) {
-
+echo "Past tehe fi";
             for ($i = 0; $i < count($this->phaseChanges); $i++) {
 
                 if ($this->phaseChanges[$i]->currentPhase == $this->phase) {
@@ -369,6 +434,12 @@ class GameRules {
                     $this->force->recoverUnits();
                     $this->force->setAttackingForceId($this->attackingForceId);
 
+                    if($this->attackingForceId == 1){
+                        $this->replacementsAvail = 1;
+                    }
+                    else{
+                        $this->replacementsAvail = 5;
+                    }
                     if ($this->turn >= $this->maxTurn) {
                         $this->mode = GAME_OVER_MODE;
                         $this->phase = GAME_OVER_PHASE;

@@ -49,8 +49,8 @@ function setXYwithNameAndType( $hexagonName, $hexpartType )
 {
 	$hexagon = new Hexagon($hexagonName);
 
-	$this->x = $hexagon.getX();
-	$this->y = $hexagon.getY();
+	$this->x = $hexagon->getX();
+	$this->y = $hexagon->getY();
 
 	switch ( $hexpartType ) {
 	

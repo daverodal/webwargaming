@@ -46,6 +46,14 @@ x.register("mapUnits", function(mapUnits) {
         width = $("#"+i).width();
         height = $("#"+i).height();
         $("#"+i).css({left: -1+mapUnits[i].x-width/2+"px",top:-1+mapUnits[i].y-height/2+"px"});
+        var img = $("#"+i).attr("src");
+        if(mapUnits[i].isReduced){
+            img = img.replace(/(.*[0-9])(\.png)/,"$1reduced.png");
+        }else{
+            img = img.replace(/([0-9])reduced\.png/,"$1.png");
+        }
+        $("#"+i).attr("src",img);
+
     }
 });
 x.register("moveRules", function(moveRules) {
@@ -96,6 +104,9 @@ x.register("force", function(force) {
                 break;
             case 17:
                 color = "cyan";
+                break;
+            case 27:
+                color = "red";
                 break;
         }
         $("#"+i).css({borderColor: color});

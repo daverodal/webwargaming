@@ -145,9 +145,6 @@ function getTerrainCode($hexpart) {
 
     $x = $hexpart->getX();
     $y = $hexpart->getY();
-    var_dump($this->terrainArray);
-    var_dump($this->terrainArray);
-    var_dump($x);var_dump($y);
 	if ( ( $x >= 0 && $x < $this->maxTerrainX ) && ( $y >= 0 && $y < $this->maxTerrainY ) )
 		$terrainCode = $this->terrainArray[$y][$x];
 	else
@@ -549,14 +546,11 @@ function getReinforceZone($hexagon)
     for(  $i = 0; $i < count($this->reinforceZones); $i++ )
     {
  //alert("" + i + " " + $this->reinforceZones[$i]->hexagon->getName() + " : " + hexagon->getName());
-        var_dump($this->reinforceZones[$i]->hexagon);
         if ( $this->reinforceZones[$i]->hexagon->equals($hexagon) == true )
 		{
 			$zoneName = $this->reinforceZones[$i]->name;
 		}
     }
-    var_dump($hexagon);
-    echo "I'th zoned $zoneName ";
 
     return $zoneName;
 }
