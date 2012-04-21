@@ -21,6 +21,7 @@ $oneHalfImageHeight = 16;
 
 class BattleForAllenCreek {
 
+    /* @var Mapdata */
     public $mapData;
     public $force;
     public $terrain;
@@ -80,11 +81,13 @@ class BattleForAllenCreek {
 
             // game data
             $this->gameRules->setMaxTurn(7);
-            $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
+            $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_PANZER_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_PANZER_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE,RED_RAILROAD_PHASE , MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_RAILROAD_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MOVE_PHASE , MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_MOVE_PHASE,BLUE_PANZER_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
 
             // force data
             //$this->force->setEliminationTrayXY(900);
@@ -141,8 +144,8 @@ class BattleForAllenCreek {
             // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
             $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
-            $this->terrain->addTerrainFeature("fortified", "fortified", "h", 1, 0, 1, true);
             $this->terrain->addTerrainFeature("road", "road", "r", 0, 0, 0, false);
+            $this->terrain->addTerrainFeature("fortified", "fortified", "h", 1, 0, 1, true);
             $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 2, false);
             $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 2, false);
             $this->terrain->addTerrainFeature("river", "Allen Creek", "v", 0, 0, 0, false);
@@ -167,6 +170,34 @@ class BattleForAllenCreek {
 
                 }
             }
+            $trains = array(102,201,302,401,502,601);
+            foreach($trains as $train){
+            }
+            $this->terrain->addTerrain(102, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(201, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(201, LOWER_LEFT_HEXSIDE, "road");
+            $this->terrain->addTerrain(302, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(302, UPPER_LEFT_HEXSIDE, "road");
+            $this->terrain->addTerrain(401, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(401, LOWER_LEFT_HEXSIDE, "road");
+            $this->terrain->addTerrain(502, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(502, UPPER_LEFT_HEXSIDE, "road");
+            $this->terrain->addTerrain(601, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(601, LOWER_LEFT_HEXSIDE, "road");
+            $this->terrain->addTerrain(702, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(702, UPPER_LEFT_HEXSIDE, "road");
+            $this->terrain->addTerrain(802, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(802, UPPER_LEFT_HEXSIDE, "road");
+            $this->terrain->addTerrain(901, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(901, UPPER_LEFT_HEXSIDE, "road");
+            $this->terrain->addTerrain(902, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(902, LOWER_LEFT_HEXSIDE, "road");
+            $this->terrain->addTerrain(1001, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1001, UPPER_LEFT_HEXSIDE, "road");
+            $this->terrain->addTerrain(1001, BOTTOM_HEXSIDE, "road");
+            $this->terrain->addTerrain(1002, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1002, UPPER_LEFT_HEXSIDE, "road");
+            $this->terrain->addTerrain($train, HEXAGON_CENTER, "road");
 /*
             $this->terrain->addTerrain("0100", BOTTOM_HEXSIDE, "clear");
             $this->terrain->addTerrain("0300", BOTTOM_HEXSIDE, "clear");

@@ -139,7 +139,7 @@ class GameRules {
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
-                        $this->moveRules->moveUnit($event, $id, $hexagon, $this->turn);
+                         $this->moveRules->moveUnit($event, $id, $hexagon, $this->turn);
                         break;
 
                     case SELECT_BUTTON_EVENT:
@@ -155,7 +155,23 @@ class GameRules {
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
-                        $this->moveRules->moveUnit($event, $id, $hexagon, $this->turn);
+                    if($this->phase == BLUE_PANZER_PHASE){/* Love that oo design */
+                        if($event == SELECT_COUNTER_EVENT && $this->force->getUnitMaximumMoveAmount($id) != 6){
+                            break;
+                        }
+                    }
+                    if($this->phase == RED_RAILROAD_PHASE){/* Love that oo design */
+                            $x = $hexagon->getX();
+                            $y = $hexagon->getY();/* a road!!! */
+                           echo "workin on the railroad";
+                            var_dump($this->combatRules->terrain->terrainArray[$y][$x]);
+
+                            if(($this->combatRules->terrain->terrainArray[$y][$x] & 4) == 0){
+                                break;
+                            }
+                    }
+
+                       $this->moveRules->moveUnit($event, $id, $hexagon, $this->turn);
                         break;
 
                     case SELECT_BUTTON_EVENT:

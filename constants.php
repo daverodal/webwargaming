@@ -28,6 +28,10 @@ define("RED_COMBAT_PHASE",5);
 define("RED_FIRE_COMBAT_PHASE",6);
 define("GAME_OVER_PHASE",7);
 define("BLUE_DEPLOY_PHASE",8);
+define("BLUE_PANZER_PHASE",9);
+define("BLUE_REPLACEMENT_PHASE",10);
+define("RED_RAILROAD_PHASE",11);
+define("RED_REPLACEMENT_PHASE",12);
 
 $phase_name = array();
 $phase_name[1] = "Blue Move";
