@@ -26,8 +26,27 @@ x.register("gameRules", function(gameRules) {
         $("#turnCounter").css("background","#9ff");
     }else{
         $("#turnCounter").css("background","rgb(255,204,153)");
-
     }
+
+    var html;
+    html = gameRules.phase_name[gameRules.phase] + " - " + gameRules.mode_name[gameRules.mode];
+    switch(gameRules.phase){
+        case <?=BLUE_REPLACEMENT_PHASE?>:
+        case <?=RED_REPLACEMENT_PHASE?>:
+            if(gameRules.replacementsAvail !== false && gameRules.replacementsAvail != null){
+                html += "<br>There are "+gameRules.replacementsAvail+" available";
+            }
+            break;
+    }
+    switch(gameRules.mode){
+        case <?=EXCHANGING_MODE?>:
+                html += "<br>Lose at least "+gameRules.exchangeAmount+" strength points from the units outlined in red";
+            break;
+        case <?=ADVANCING_MODE?>:
+            html += "<br>Click on one of the pink units to advance it.<br>then  click on a hex to advance, or the unit to stay put.";
+            break;
+    }
+    $("#clock").html(html);
 });
 x.register("games", function(games) {
     var str;
@@ -38,7 +57,7 @@ x.register("games", function(games) {
     }
 });
 x.register("clock", function(clock) {
-    $("#clock").html(clock);
+    //$("#clock").html(clock);
 });
 x.register("mapUnits", function(mapUnits) {
     var str;
@@ -136,37 +155,40 @@ x.register("combatRules", function(combatRules) {
             if(combatRules.combats){
 
                 $("#"+cD).css({borderColor: "#333"});
-//                    $("#"+cD+"").animate({borderColor: "#333"}, 1400).animate({borderColor: "white"}, 1400);
-
-//                   this.animate =self.setInterval(function(){
-//                           this.animateid = cD;
-//                            $("#"+cD+"").animate({borderColor: "#333"}, 1400).animate({borderColor: "white"}, 1400);
-//
-//                        }
-//
-//                        ,3000);
-
-//                $("#"+cD).everyTime(3,function(){
-//                        alert("hi");
-//                    }
-//                );
-                if(Object.keys(combatRules.combats[cD].attackers).length != 0){
+               if(Object.keys(combatRules.combats[cD].attackers).length != 0){
                     combatCol = combatRules.combats[cD].index + 1;
+                   if(combatCol >= 1){
                     $(".col"+combatCol).css('background-color',"rgba(255,255,1,.6)");
                     if(combatRules.combats[cD].Die !== false){
                         $(".row"+combatRules.combats[cD].Die+" .col"+combatCol).css('font-size',"110%");
                         $(".row"+combatRules.combats[cD].Die+" .col"+combatCol).css('background',"#eee");
                     }
-
-//                $(".odd .col"+combatCol).css('color',"white");
-//                $(".even .col"+combatCol).css('color',"black");
+                   }
+                    var newline = "";
                     for(i in combatRules.combats){
                         if(combatRules.combats[i].Die){
                             str += " Die "+combatRules.combats[i].Die + " result "+combatRules.combats[i].combatResult;
                         }
                         if(combatRules.combats[i].index !== null){
-                            str += "Defendeer "+i+" A "+combatRules.combats[i].attackStrength+" - D "+combatRules.combats[i].defenseStrength+ " - T "+combatRules.combats[i].terrainCombatEffect+ " = "+combatRules.combats[i].index;
-                            str += "<br>";
+                            var atk = combatRules.combats[i].attackStrength;
+                            var def = combatRules.combats[i].defenseStrength;
+                            var ter = combatRules.combats[i].terrainCombatEffect;
+                            var idx = combatRules.combats[i].index+ 1;
+                            var odds = Math.floor(atk/def);
+                            var oddsDisp = odds + " : 1";
+                            if(odds < 1){
+                                oddsDisp = "No effect";
+                            }
+                            var idxDisp = idx + " : 1";
+                            if(idx < 1){
+                                idxDisp = "No effect";
+                            }
+                            var newline;
+                            newLine = "Defender "+i+" Attack = "+atk+" / Defender "+def+ " = " + atk/def +"<br>= "+ oddsDisp +"<br>Terrain Shift left "+ter+ " = "+idxDisp+"<br>";
+                            if(cD == i){
+                                newLine = "<strong>"+newLine+"</strong>";
+                            }
+                            str += newLine+"<br>";
                         }
 
                     }
@@ -193,24 +215,36 @@ x.register("combatRules", function(combatRules) {
                 str += "there are no combats to resolve<br>";
             }
             for(i in combatRules.combatsToResolve){
-                if(combatRules.combatsToResolve[i].Die){
-                    str += " Die "+combatRules.combatsToResolve[i].Die + " result "+combatRules.combatsToResolve[i].combatResult;
-                }
                 if(combatRules.combatsToResolve[i].index !== null){
-                    str += "Defendeer "+i+" A "+combatRules.combatsToResolve[i].attackStrength+" - D "+combatRules.combatsToResolve[i].defenseStrength+ " - T "+combatRules.combatsToResolve[i].terrainCombatEffect+ " = "+combatRules.combatsToResolve[i].index;
-                    str += "<br>";
+                     var atk = combatRules.combatsToResolve[i].attackStrength;
+                    var def = combatRules.combatsToResolve[i].defenseStrength;
+                    var ter = combatRules.combatsToResolve[i].terrainCombatEffect;
+                    var idx = combatRules.combatsToResolve[i].index+ 1;
+                    newLine = "Defender "+i+" Attack = "+atk+" / Defender "+def+ " = " + atk/def +"<br>= "+Math.floor(atk/def)+" : 1<br>Terrain Shift left "+ter+ " = "+idx+" : 1<br>";
+                    if(combatRules.lastResolveCombat === i){
+                        newLine = "<strong>"+newLine+"</strong>";
+                    }
+                    str += newLine+"<br>";
                 }
 
             }
             str += "Resolved Combats<br>";
             for(i in combatRules.resolvedCombats){
-                if(combatRules.resolvedCombats[i].Die){
-                    str += " Die "+combatRules.resolvedCombats[i].Die + " result "+combatRules.resolvedCombats[i].combatResult;
-                }
                 if(combatRules.resolvedCombats[i].index !== null){
-                    str += "Defendeer "+i+" A "+combatRules.resolvedCombats[i].attackStrength+" - D "+combatRules.resolvedCombats[i].defenseStrength+ " - T "+combatRules.resolvedCombats[i].terrainCombatEffect+ " = "+combatRules.resolvedCombats[i].index;
-                    str += "<br>";
-                }
+                     atk = combatRules.resolvedCombats[i].attackStrength;
+                     def = combatRules.resolvedCombats[i].defenseStrength;
+                     ter = combatRules.resolvedCombats[i].terrainCombatEffect;
+                     idx = combatRules.resolvedCombats[i].index+ 1;
+                    newLine = "";
+                    if(combatRules.resolvedCombats[i].Die){
+                        newLine += " Die "+combatRules.resolvedCombats[i].Die + " result "+combatRules.resolvedCombats[i].combatResult+"<br>";
+                    }
+                    newLine += "Defender "+i+" Attack = "+atk+" / Defender "+def+ " = " + atk/def +"<br>= "+Math.floor(atk/def)+" : 1<br>Terrain Shift left "+ter+ " = "+idx+" : 1<br>";
+                    if(cD == i){
+                        newLine = "<strong>"+newLine+"</strong>";
+                    }
+                    str += newLine+"<br>";
+               }
 
             }
         }

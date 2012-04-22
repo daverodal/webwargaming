@@ -42,6 +42,10 @@ $phase_name[5] = "Red Combat";
 $phase_name[6] = "Red Fire Combat";
 $phase_name[7] = "Victory";
 $phase_name[8] = "Blue Deploy";
+$phase_name[9] = "Blue Panzer";
+$phase_name[10] = "Blue Replacement";
+$phase_name[11] = "Red Railroad";
+$phase_name[12] = "Red Replacement";
 
 // game modes
 define("SELECT_TO_MOVE_MODE",1);
@@ -82,6 +86,9 @@ $mode_name[13] = "select units to delete";
 $mode_name[14] = "deleting unit";
 $mode_name[15] = "checking combat";
 $mode_name[16] = "game over";
+$mode_name[17] = "delpoying mode";
+$mode_name[18] = "exchanging mode";
+$mode_name[19] = "replacing mode";
 
 // form event constants
 define("OVER_MAP_EVENT",1);

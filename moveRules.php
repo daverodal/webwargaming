@@ -17,6 +17,7 @@ class MoveRules{
     public $movingUnitId;
     public $anyUnitIsMoving;
     public $railMove;
+    public $mud;
 
 
     function save(){
@@ -41,8 +42,10 @@ class MoveRules{
                 $this->$k = $v;
             }
         }else{
-        $this->movingUnitId = NONE;
-        $this->anyUnitIsMoving = false;
+            $this->movingUnitId = NONE;
+            $this->anyUnitIsMoving = false;
+            $this->mud = false;
+            $this->railMove = false;
         }
     }
 
@@ -242,6 +245,9 @@ class MoveRules{
 
         $this->force->updateMoveStatus($id, $hexagon, $moveAmount);
 
+        if(($this->mud && !$this->railMove) && !$this->force->unitHasNotMoved($id)){
+            $this->stopMove($id);
+        }
         if ($this->force->unitHasUsedMoveAmount($id) == true) {
             $this->stopMove($id);
         }

@@ -68,16 +68,16 @@ class BattleForAllenCreek {
                 24, 48, // hexagon edge width, hexagon center width
                 1410, 1410 // max right hexagon, max bottom hexagon
             );*/
-            $this->mapData->setData(66,87, // originX, originY
-                30, 30, // top hexagon height, bottom hexagon height
-                18, 36, // hexagon edge width, hexagon center width
-                1410, 1410 // max right hexagon, max bottom hexagon
-            );
- /*           $this->mapData->setData(44,58, // originX, originY
+//            $this->mapData->setData(66,87, // originX, originY
+//                30, 30, // top hexagon height, bottom hexagon height
+//                18, 36, // hexagon edge width, hexagon center width
+//                1410, 1410 // max right hexagon, max bottom hexagon
+//            );
+            $this->mapData->setData(44,58, // originX, originY
                 20, 20, // top hexagon height, bottom hexagon height
                 12, 24, // hexagon edge width, hexagon center width
                 1410, 1410 // max right hexagon, max bottom hexagon
-            );*/
+            );
 
             // game data
             $this->gameRules->setMaxTurn(7);
@@ -96,6 +96,8 @@ class BattleForAllenCreek {
 
             // unit data -----------------------------------------------
             //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
+            $this->force->addUnit("Shock Arm-1", RED_FORCE, 1500, "gerInf8->png", 10, 5, 4, true, STATUS_CAN_REINFORCE, "B", 1);
+
             for($i = 1;$i<= 4;$i++){
                 $this->force->addUnit("infantry-1", RED_FORCE, 300+$i, "rusInf8->png", 8, 4, 4, true, STATUS_READY, "R", 1);
 
@@ -123,17 +125,19 @@ class BattleForAllenCreek {
             $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
             $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
             $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 7, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+$j = $i;
+            $i= 0;
             $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 7, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 7, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 4, 2, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 4, 2, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 7, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 4, 2, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 4, 2, 4, false, STATUS_CAN_REINFORCE, "B", 1);
 
              // end unit data -------------------------------------------
 

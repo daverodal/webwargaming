@@ -1069,6 +1069,7 @@ class Force
             echo "isreduced";
             $this->units[$id]->strength = $this->units[$id]->maxStrength;
             $this->units[$id]->isReduced = false;
+            $this->units[$id]->status = STATUS_REPLACED;
             return  true;
         }
         return false;

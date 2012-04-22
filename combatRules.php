@@ -35,6 +35,7 @@ class CombatRules
     public $attackers;
     public $resolvedCombats;
     public $lastResolvedCombat;
+    public $mud;
 
     function save()
     {
@@ -51,19 +52,20 @@ class CombatRules
     $this->force = $Force;
     $this->terrain = $Terrain;
 
-        if($data){
-            foreach($data as $k => $v){
+        if ($data) {
+            foreach ($data as $k => $v) {
                 $this->$k = $v;
             }
-        }else{
+        } else {
             $this->combats = new StdClass();
-    $this->currentDefender = false;
-    }
+            $this->currentDefender = false;
+            $this->mud = false;
+        }
         $this->crt = new CombatResultsTable();
     }
 
 
-function setupCombat( $id ) {
+    function setupCombat( $id ) {
 
     $cd = $this->currentDefender;
 
@@ -160,17 +162,20 @@ function setCombatIndex($defenderId)
     $attackStrength = $this->force->getAttackerStrength($combats->attackers);
     $defenseStrength = $this->force->getDefenderStrength($defenderId);
 
+    if($this->mud){
+        $attackStrength /= 2.;
+    }
     $combatIndex = floor($attackStrength / $defenseStrength)-1;
+
+    /* Do this before terrain effects */
+    if ($combatIndex >= $this->crt->maxCombatIndex) {
+        $combatIndex = $this->crt->maxCombatIndex;
+    }
 
     $terrainCombatEffect = $this->getDefenderTerrainCombatEffect($defenderId);
 
     $combatIndex -= $terrainCombatEffect;
 
-    if ($combatIndex < 1) $combatIndex = 0;
-
-    if ($combatIndex >= $this->crt->maxCombatIndex) {
-        $combatIndex = $this->crt->maxCombatIndex;
-    }
     $combats->attackStrength = $attackStrength;
     $combats->defenseStrength = $defenseStrength;
     $combats->terrainCombatEffect = $terrainCombatEffect;
@@ -257,9 +262,25 @@ function getCombatOddsList($combatIndex)
 
         foreach ($this->combats as $defenderId => $combat)
         {
+            echo "Defender Id $defenderId";
             if(count((array)$combat->attackers) == 0){
                 unset($this->combats->$defenderId);
                 $this->force->setStatus($defenderId,STATUS_READY);
+                continue;
+            }
+            echo "Is Bad Attack?";
+            if($combat->index < 0){
+                echo "could be";
+                if($combat->attackers){
+                    echo "attackers found";
+                    foreach($combat->attackers as $attackerId => $attacker){
+                        unset($this->attackers->$attackerId);
+                        $this->force->setStatus($attackerId, STATUS_READY);
+                    }
+                }
+                unset($this->combats->$defenderId);
+                $this->force->setStatus($defenderId,STATUS_READY);
+                continue;
             }
         }
         $this->combatsToResolve = $this->combats;

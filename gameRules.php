@@ -170,13 +170,13 @@ class GameRules {
                             break;
                         }
                         echo "replace $id";
-                         if($this->force->replace( $id)){
+                         if($this->force->units[$id]->status != STATUS_CAN_REPLACE && $this->force->units[$id]->status != STATUS_CAN_REINFORCE && $this->force->replace( $id)){
                             $this->replacementsAvail--;
                         }
                         break;
 
                     case SELECT_BUTTON_EVENT:
-
+                        $this->replacementsAvail = false;
                         $this->selectNextPhase();
                         break;
                 }
@@ -440,10 +440,11 @@ echo "Past tehe fi";
                     $this->force->recoverUnits();
                     $this->force->setAttackingForceId($this->attackingForceId);
 
-                    if($this->attackingForceId == 1){
+                    $this->replacementsAvail = false;
+                    if($this->phase  == BLUE_REPLACEMENT_PHASE){
                         $this->replacementsAvail = 1;
                     }
-                    else{
+                    if($this->phase  == RED_REPLACEMENT_PHASE){
                         $this->replacementsAvail = 5;
                     }
                     if ($this->turn >= $this->maxTurn) {
@@ -459,6 +460,17 @@ echo "Past tehe fi";
     function incrementTurn()
     {
         $this->turn++;
+        if($this->turn == 3){
+            $this->moveRules->mud = true;
+            $this->combatRules->mud = true;
+        }
+        if($this->turn == 5){
+            $this->moveRules->mud = false;
+            $this->combatRule->mud = false;
+        }
+        if($this->turn == 5){
+            $this->force->units[0]->status = STATUS_ELIMINATED;
+        }
     }
 
     function getInfo()
