@@ -141,8 +141,8 @@ class Force
             $this->deleteCount = 0;
 
             $this->retreatHexagonList = array();
-            $this->eliminationTrayHexagonX = 9;
-            $this->eliminationTrayHexagonY = 0;
+            $this->eliminationTrayHexagonX = 1;
+            $this->eliminationTrayHexagonY = 2;
         }
     }
 
@@ -237,6 +237,7 @@ class Force
                             $this->units[$defenderId]->status = STATUS_CAN_RETREAT;
                             $this->units[$defenderId]->retreatCountRequired = 2;
                         }
+                        break;
                     case DR:
                         $this->units[$defenderId]->status = STATUS_CAN_RETREAT;
                         $this->units[$defenderId]->retreatCountRequired = 2;
@@ -329,7 +330,13 @@ class Force
         $this->deleteCount++;
         //alert("elim " + id + " at " + $this->eliminationTrayHexagonX + ", " + $this->eliminationTrayHexagonY);
         $this->units[$id]->status = STATUS_ELIMINATED;
-        $this->units[$id]->hexagon->setXY($this->eliminationTrayHexagonX + (2 * $this->deleteCount), $this->eliminationTrayHexagonY);
+        $col = 0;
+        if($this->units[$id]->forceId == 2){
+
+            $col = 1500 + floor($id / 10) * 100;
+        }
+        $this->units[$id]->hexagon = new Hexagon($col+$id%10);
+//        $this->units[$id]->hexagon->setXY($this->eliminationTrayHexagonX + (2 * $this->deleteCount), $this->eliminationTrayHexagonY);
     }
 
     function getAttackerStrength($attackers)
@@ -773,17 +780,16 @@ class Force
         ;
     }
 
-    function getEliminated($hexagon)
+    function getEliminated($id, $hexagon)
     {
-        foreach($this->units as $id => $unit)
-        {
-            if ($unit->status == STATUS_ELIMINATED) {
+            if ($this->units[$id]->status == STATUS_CAN_REPLACE) {
+                echo "gotElim";
                 $this->units[$id]->status = STATUS_REPLACED;
                 $this->units[$id]->isReduced = true;
                 $this->units[$id]->hexagon = $hexagon;
                 return $id;
             }
-        }
+
         return false;
     }
 

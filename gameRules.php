@@ -52,6 +52,7 @@ class GameRules {
     public $deleteCount;
     public $interactions;
     public $replacementsAvail;
+    public $currentReplacement;
 
     function save()
     {
@@ -142,6 +143,7 @@ class GameRules {
                         if($this->replacementsAvail <= 0){
                             break;
                         }
+                        if($this->currentReplacement !== false){
                         echo "mapReplace";
                         $hexpart = new Hexpart();
                         $hexpart->setXYwithNameAndType($hexagon->name,HEXAGON_CENTER);
@@ -149,14 +151,22 @@ class GameRules {
                         echo "Terrain";
                         if($terrain->terrainIs($hexpart, "town") || $terrain->terrainIs($hexpart, "moscow") || $terrain->terrainIs($hexpart, "eastedge")){
                             echo "terrain Is";
-                            if($this->force->getEliminated($hexagon)){
+                            if($this->force->getEliminated($this->currentReplacement, $hexagon) !== false){
                                 echo "Got";
+                                $this->currentReplacement = false;
                                 $this->replacementsAvail--;
                             }
+                        }
                         }
                         break;
                     case SELECT_COUNTER_EVENT:
                         if($this->replacementsAvail <= 0){
+                            break;
+                        }
+                        var_dump($this->force->units[$id]);
+                        if($this->force->units[$id]->status == STATUS_ELIMINATED){
+                            $this->force->units[$id]->status = STATUS_CAN_REPLACE;
+                            $this->currentReplacement = $id;
                             break;
                         }
                         echo "replace $id";
@@ -197,14 +207,9 @@ class GameRules {
                             break;
                         }
                     }
+                    $this->moveRules->railMove = false;
                     if($this->phase == RED_RAILROAD_PHASE){/* Love that oo design */
-                            $x = $hexagon->getX();
-                            $y = $hexagon->getY();/* a road!!! */
-                           echo "workin on the railroad";
-
-                            if(($this->combatRules->terrain->terrainArray[$y][$x] & 4) == 0){
-                                break;
-                            }
+                        $this->moveRules->railMove = true;
                     }
 
                        $this->moveRules->moveUnit($event, $id, $hexagon, $this->turn);
@@ -390,6 +395,7 @@ echo "About TO";
 
                     case SELECT_COUNTER_EVENT:
 
+                        echo "the Counter";
                         if ($this->force->setStatus($id, STATUS_EXCHANGED)) {
                             if ($this->force->unitsAreBeingEliminated() == true) {
                                 $this->force->removeEliminatingUnits();

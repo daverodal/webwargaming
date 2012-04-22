@@ -135,11 +135,11 @@ function setupFireCombat( $id ){
 function getDefenderTerrainCombatEffect($defenderId)
 {
 
-    $terrainCombatEffect = $this->terrain->getDefenderTerrainCombatEffect($this->force->getCombatHexagon($defenderId));
+    $terrainCombatEffect = $this->terrain->getDefenderTerrainCombatEffect($this->force->getCombatHexagon($defenderId),$this->force->attackingForceId);
 
     if ($this->allAreAttackingAcrossRiver($defenderId)) {
 
-        $terrainCombatEffect = $this->terrain->getAllAreAttackingAcrossRiverCombatEffect();
+        $terrainCombatEffect += $this->terrain->getAllAreAttackingAcrossRiverCombatEffect();
 
     }
     

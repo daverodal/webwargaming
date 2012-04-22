@@ -62,7 +62,7 @@ define("CHECK_FOR_COMBAT_MODE",15);
 define("GAME_OVER_MODE",16);
 define("DEPLOY_MODE",17);
 define("EXCHANGING_MODE",18);
-define("REPLACING_MODE",18);
+define("REPLACING_MODE",19);
 
 // mode names
 $mode_name = array();
@@ -140,6 +140,7 @@ define("STATUS_MORE_CRT",26);
 define("STATUS_CAN_EXCHANGE",27);
 define("STATUS_EXCHANGED",28);
 define("STATUS_REPLACED",29);
+define("STATUS_CAN_REPLACE",30);
 
 // unit status names
 $status_name = array();

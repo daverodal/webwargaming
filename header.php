@@ -108,6 +108,14 @@ x.register("force", function(force) {
             case 27:
                 color = "red";
                 break;
+            case 29:
+                color = "blue";
+                break;
+            case 30:
+                color = "orange";
+                break;
+
+
         }
         $("#"+i).css({borderColor: color});
 

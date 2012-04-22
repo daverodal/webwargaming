@@ -16,6 +16,7 @@ class MoveRules{
     // local variables
     public $movingUnitId;
     public $anyUnitIsMoving;
+    public $railMove;
 
 
     function save(){
@@ -155,7 +156,7 @@ class MoveRules{
     function moveWillCauseStop($id, $moveOverUnitId, $hexagon)
     {
         $willCauseStop = false;
-        $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id), hexagon, $this->force->getUnitMaximumMoveAmount($id));
+        $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id), $hexagon, $this->force->getUnitMaximumMoveAmount($id),$this->railMove);
 
         // out of moves stop
         if ($this->force->unitWillUseMaxMove($id, $moveAmount) == true) {
@@ -196,7 +197,7 @@ class MoveRules{
         }
         // condition 2
         // check if unit has enough move points
-        $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id), $hexagon, $this->force->getUnitMaximumMoveAmount($this->movingUnitId));
+        $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id), $hexagon, $this->force->getUnitMaximumMoveAmount($this->movingUnitId),$this->railMove);
 
         // need move points, but can always move at least one hexagon
         //  can always move at least one hexagon
@@ -209,7 +210,7 @@ class MoveRules{
 
         // condition 3
         // can only move across river hexside if at start of move
-        if (($this->moveIsAcrossRiverNoBridge($id, $hexagon) == true) && ($this->force->unitHasNotMoved($id) == false)) {
+        if (($this->isAlongRail($this->force->getUnitHexagon($id), $hexagon) == false) && $this->railMove) {
             $isValid = false;
         }
 
@@ -221,28 +222,23 @@ class MoveRules{
         return $isValid;
     }
 
-    function moveIsAcrossRiverNoBridge($id, $hexagon)
+    function isAlongRail($fromHex, $toHex)
     {
         echo "Across troubled waters   ";
-        var_dump($id);
-        var_dump($hexagon);
-        $moveIsAcrossRiverNoBridge = false;
+        var_dump($fromHex);
+        var_dump($toHex);
+        if($this->terrain->moveIsTraverse($fromHex,$toHex, "road")){
+            echo "its'true";
 
-        $hexpart = new Hexpart($this->force->getUnitHexagon($id)->getX(), $this->force->getUnitHexagon($id)->getY());
-
-        var_dump($hexpart);
-        // check for river without a bridge
-        if (($this->terrain->terrainIs($hexpart, "river") == true)
-            && ($this->terrain->terrainIs($hexpart, "road") == false)
-        ) {
-            $moveIsAcrossRiverNoBridge = true;
+            return true;
         }
-        return $moveIsAcrossRiverNoBridge;
+        echo "nope not true " ;
+        return false;
     }
 
     function updateMoveData($id, $hexagon)
     {
-        $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id), $hexagon, $this->force->getUnitMaximumMoveAmount($id));
+        $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id), $hexagon, $this->force->getUnitMaximumMoveAmount($id),$this->railMove);
 
         $this->force->updateMoveStatus($id, $hexagon, $moveAmount);
 

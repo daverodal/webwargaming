@@ -75,7 +75,7 @@ class Town{
 	$this->terrainFeatures = array();
 	$this->reinforceZones = array();
 	
-	$this->allAreAttackingAcrossRiverCombatEffect = 3;
+	$this->allAreAttackingAcrossRiverCombatEffect = 1;
 
         $this->maxTerrainY = 60;
         $this->maxTerrainX = 40;
@@ -200,10 +200,13 @@ function moveIsTraverse($startHexagon, $endHexagon, $name)
 	$hexsideY = ( $startHexagon->getY() + $endHexagon->getY() ) / 2;
 
 	$hexpart = new Hexpart($hexsideX, $hexsideY);
-
 	$endHexpart = new Hexpart();
 	$endHexpart->setXY($endHexagon->getX(), $endHexagon->getY());
+var_dump($this->terrainIs($hexpart, $name));
+    var_dump(dechex($this->getTerrainCode($endHexpart)));
+    var_dump($endHexpart);echo "HEx $name Parted";
 
+    var_dump($this->terrainIs($endHexpart, $name));
 	if( ( $this->terrainIs($hexpart, $name) == true )
 		&& ( $this->terrainIs($hexpart, $name) == true )
 		&& ( $this->terrainIs($endHexpart, $name) == true ) )
@@ -397,12 +400,12 @@ function addTerrain($hexagonName, $hexpartType, $terrainName)
 					if ( $this->terrainArray[$y][$x] &&
                         $this->terrainFeatures[$eachExclusiveType]->code == $this->terrainFeatures[$eachExclusiveType]->code )
 					{
-						$this->terrainArray[$y][$x] -= $this->terrainFeatures[$eachExclusiveType]->code;
+                        $this->terrainArray[$y][$x] = $this->terrainArray[$y][$x] & (~$this->terrainFeatures[$eachExclusiveType]->code);
 					}
 				}
 			}
 
-			$this->terrainArray[$y][$x] = $this->terrainArray[$y][$x] + $this->terrainFeatures[$eachTerrainFeature]->code;
+			$this->terrainArray[$y][$x] = $this->terrainArray[$y][$x] | $this->terrainFeatures[$eachTerrainFeature]->code;
 		}
 	}
 }
@@ -444,7 +447,7 @@ function getTerrainEntranceMoveCost($hexagon) {
 	return $entranceMoveCost;
 }
 
-function getTerrainMoveCost($startHexagon, $endHexagon, $maxMoveAmount ) {
+function getTerrainMoveCost($startHexagon, $endHexagon, $maxMoveAmount ,$railMove) {
 
  	 $moveCost = 0;
  	 $hexsideX = ( $startHexagon->getX() + $endHexagon->getX() ) / 2;
@@ -452,8 +455,8 @@ function getTerrainMoveCost($startHexagon, $endHexagon, $maxMoveAmount ) {
 
 
 	// if road, override terrain
-	if ($this->moveIsTraverse($startHexagon, $endHexagon, "road") == true) {
- 	        $moveCost = $this->getTerrainTraverseCostFor("road");
+	if ($railMove && $this->moveIsTraverse($startHexagon, $endHexagon, "road") == true) {
+ 	        $moveCost = 1;
 	}
 	else {
 
@@ -502,7 +505,7 @@ function getTerrainTypeMoveCost($name)
 	return $moveCost;
 }
 
-function getDefenderTerrainCombatEffect($hexagon)
+function getDefenderTerrainCombatEffect($hexagon,$attackingForceId)
 {
     $combatEffect = 0;
 
@@ -510,6 +513,12 @@ function getDefenderTerrainCombatEffect($hexagon)
 
     for (  $i = 0; $i < count($this->terrainFeatures); $i++ )
         {
+            var_dump($this->terrainFeatures[$i]->name);
+            var_dump($attackingForceId);
+            if($this->terrainFeatures[$i]->name == "fortified" && $attackingForceId == 2){
+                /* German don't benefit from fortificatons */
+                continue;
+            }
 			if ( $this->terrainIs( $hexpart, $this->terrainFeatures[$i]->name ) )
 			{
 				if ( $this->terrainFeatures[$i]->combatEffect > $combatEffect)
