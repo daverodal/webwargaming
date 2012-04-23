@@ -164,7 +164,8 @@ class GameRules {
                             break;
                         }
                         var_dump($this->force->units[$id]);
-                        if($this->force->units[$id]->status == STATUS_ELIMINATED){
+                        if($this->force->attackingForceId == $this->force->units[$id]->forceId){
+                        if($this->force->units[$id]->status == STATUS_ELIMINATED ){
                             $this->force->units[$id]->status = STATUS_CAN_REPLACE;
                             $this->currentReplacement = $id;
                             break;
@@ -172,6 +173,7 @@ class GameRules {
                         echo "replace $id";
                          if($this->force->units[$id]->status != STATUS_CAN_REPLACE && $this->force->units[$id]->status != STATUS_CAN_REINFORCE && $this->force->replace( $id)){
                             $this->replacementsAvail--;
+                        }
                         }
                         break;
 
@@ -202,11 +204,11 @@ class GameRules {
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
-                    if($this->phase == BLUE_PANZER_PHASE){/* Love that oo design */
-                        if($event == SELECT_COUNTER_EVENT && $this->force->getUnitMaximumMoveAmount($id) != 6){
-                            break;
-                        }
-                    }
+//                    if($this->phase == BLUE_PANZER_PHASE){/* Love that oo design */
+//                        if($event == SELECT_COUNTER_EVENT && $this->force->getUnitMaximumMoveAmount($id) != 6){
+//                            break;
+//                        }
+//                    }
                     $this->moveRules->railMove = false;
                     if($this->phase == RED_RAILROAD_PHASE){/* Love that oo design */
                         $this->moveRules->railMove = true;
@@ -437,8 +439,8 @@ echo "Past tehe fi";
                         $this->incrementTurn();
                     }
 
-                    $this->force->recoverUnits();
                     $this->force->setAttackingForceId($this->attackingForceId);
+                    $this->force->recoverUnits($this->phase,$this->moveRules);
 
                     $this->replacementsAvail = false;
                     if($this->phase  == BLUE_REPLACEMENT_PHASE){
@@ -466,9 +468,9 @@ echo "Past tehe fi";
         }
         if($this->turn == 5){
             $this->moveRules->mud = false;
-            $this->combatRule->mud = false;
+            $this->combatRules->mud = false;
         }
-        if($this->turn == 5){
+        if($this->turn == 4){
             $this->force->units[0]->status = STATUS_ELIMINATED;
         }
     }

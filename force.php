@@ -592,10 +592,11 @@ class Force
         return $moreCombatToResolve;
     }
 
-    function recoverUnits()
+    function recoverUnits($phase,$moveRules)
     {
         for ($id = 0; $id < count($this->units); $id++)
         {
+            echo "revocer $id ".$this->units[$id]->status."\n";
             switch ($this->units[$id]->status)
             {
                 case STATUS_STOPPED:
@@ -607,9 +608,35 @@ class Force
                 case STATUS_ADVANCED:
                 case STATUS_CAN_ADVANCE:
                 case STATUS_REPLACED:
+                case STATUS_READY:
+                case STATUS_REPLACED:
+                case STATUS_CAN_UPGRADE:
 
 
-                    $this->units[$id]->status = STATUS_READY;
+
+                    $status = STATUS_READY;
+                    if($phase == BLUE_PANZER_PHASE && $this->units[$id]->forceId == BLUE_FORCE && $this->units[$id]->maxMove != 6){
+                        echo "hold it bub";
+                        $status = STATUS_STOPPED;
+                    }
+                    if($phase == BLUE_REPLACEMENT_PHASE || $phase == RED_REPLACEMENT_PHASE){
+                        $status = STATUS_STOPPED;
+                        if($this->units[$id]->forceId == $this->attackingForceId &&
+                            $this->units[$id]->isReduced ){
+                            $status = STATUS_CAN_UPGRADE;
+                        }
+                    }
+                    if($phase == RED_RAILROAD_PHASE) {
+                        $status = STATUS_STOPPED;
+                        $hexpart = new Hexpart();
+                        $hexpart->setXYwithNameAndType($this->units[$id]->hexagon->name, HEXAGON_CENTER);
+                        $terrain = $moveRules->terrain;
+                        echo "Terrain";
+                        if ($terrain->terrainIs($hexpart, "road")) {
+                            $status = STATUS_READY;
+                        }
+                    }
+                    $this->units[$id]->status = $status;
                     $this->units[$id]->moveAmountUsed = 0;
                     break;
 

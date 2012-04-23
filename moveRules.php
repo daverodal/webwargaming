@@ -294,27 +294,16 @@ class MoveRules{
             if ($this->force->getUnitReinforceZone($id) == $this->terrain->getReinforceZone($hexagon)) {
                 echo "DOENEN";
                 // get move cost
-                $moveAmount = $this->terrain->getTerrainEntranceMoveCost($hexagon);
 
                 // override move cost if road movement
                 $hexpart = new Hexpart($hexagon->getX(), $hexagon->getY());
 
-                if ($this->terrain->terrainIs($hexpart, "road") == true) {
-                    $moveAmount = $this->terrain->getTerrainTraverseCostFor("road");
-                }
 
-                // set status
-                if ($this->force->unitHasMoveAmountAvailable($id, $moveAmount) == true) {
                     if ($this->force->setStatus($id, STATUS_MOVING) == true) {
-                        $this->force->updateMoveStatus($id, $hexagon, $moveAmount);
+                        $this->force->updateMoveStatus($id, $hexagon, 1);
+                        $this->stopMove($id);
                     }
-                }
-                $this->stopMove($id);
 
-                // stop if out of moves
-                if ($this->force->unitHasUsedMoveAmount($id) == true) {
-                    $this->stopMove($id);
-                }
             }
         }
     }

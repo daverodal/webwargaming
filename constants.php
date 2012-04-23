@@ -122,9 +122,7 @@ define("STATUS_READY",1);
 define("STATUS_CAN_REINFORCE",2);
 define("STATUS_REINFORCING",3);
 define("STATUS_MOVING",4);
-define("STATUS_NOT_MOVED",5);
 define("STATUS_STOPPED",6);
-define("STATUS_REMOVED",7);
 define("STATUS_DEFENDING",8);
 define("STATUS_ATTACKING",9);
 define("STATUS_NO_RESULT",10);
@@ -137,17 +135,15 @@ define("STATUS_CAN_ADVANCE",16);
 define("STATUS_ADVANCING",17);
 define("STATUS_ADVANCED",18);
 define("STATUS_DELETING",19);
-define("STATUS_DELETED",20);
 define("STATUS_ELIMINATING",21);
 define("STATUS_ELIMINATED",22);
 define("STATUS_EXITING",23);
 define("STATUS_EXITED",24);
-define("STATUS_NO_MORE_CRT",25);
-define("STATUS_MORE_CRT",26);
 define("STATUS_CAN_EXCHANGE",27);
 define("STATUS_EXCHANGED",28);
 define("STATUS_REPLACED",29);
 define("STATUS_CAN_REPLACE",30);
+define("STATUS_CAN_UPGRADE",31);
 
 // unit status names
 $status_name = array();
