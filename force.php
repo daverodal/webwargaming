@@ -101,6 +101,7 @@ class unit
 
 class Force
 {
+    /* @var  unit $units */
     public $units;
     public $victor;
     public $ZOCrule;
@@ -545,6 +546,21 @@ class Force
 
         return $isOccupied;
     }
+    function hexagonIsOccupiedEnemy($hexagon,$id)
+    {
+        $isOccupied = false;
+        $friendlyId = $this->units[$id]->fr;
+        for ($id = 0; $id < count($this->units); $id++)
+        {
+            if($this->units[$id]->forceId != $friendlyId){
+                if ($this->units[$id]->hexagon->equals($hexagon)) {
+                    $isOccupied = true;
+                }
+            }
+        }
+
+        return $isOccupied;
+    }
 
     function isForceEliminated()
     {
@@ -611,6 +627,7 @@ class Force
                 case STATUS_READY:
                 case STATUS_REPLACED:
                 case STATUS_CAN_UPGRADE:
+                case STATUS_NO_RESULT:
 
 
 

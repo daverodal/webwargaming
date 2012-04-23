@@ -80,6 +80,7 @@ class CombatRules
             if($this->currentDefender === false){
                 $this->currentDefender = $id;
             }else{
+
                 if($id === $this->currentDefender){
                     $this->currentDefender = false;
                 }else{
@@ -129,8 +130,25 @@ class CombatRules
             }
         }
     }
+        $this->cleanUpAttacklessDefenders();
 }
 
+function cleanUpAttacklessDefenders()
+{
+    echo "Clean up now ";
+    foreach ($this->combats as $id => $combat) {
+        echo " and again ";
+        if ($id == $this->currentDefender) {
+            echo "Not that";
+            continue;
+        }
+        if (count((array)$combat->attackers) == 0) {
+            echo " clean that up now ";
+            $this->force->setStatus($id, STATUS_READY);
+            unset($this->combats->$id);
+        }
+    }
+ }
 function setupFireCombat( $id ){
 }
 

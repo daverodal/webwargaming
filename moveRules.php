@@ -179,9 +179,9 @@ class MoveRules{
         }
 
         // if moving across river stop
-        if (($this->moveIsAcrossRiverNoBridge($id, $hexagon) == true) && ($this->force->unitHasNotMoved($id) == true)) {
-            $willCauseStop = true;
-        }
+//        if (($this->moveIsAcrossRiverNoBridge($id, $hexagon) == true) && ($this->force->unitHasNotMoved($id) == true)) {
+//            $willCauseStop = true;
+//        }
 
         return $willCauseStop;
     }
@@ -242,13 +242,15 @@ class MoveRules{
     function updateMoveData($id, $hexagon)
     {
         $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id), $hexagon, $this->force->getUnitMaximumMoveAmount($id),$this->railMove);
-
+echo "$moveAmount";
         $this->force->updateMoveStatus($id, $hexagon, $moveAmount);
 
         if(($this->mud && !$this->railMove) && !$this->force->unitHasNotMoved($id)){
             $this->stopMove($id);
         }
+        echo "UPDATING";
         if ($this->force->unitHasUsedMoveAmount($id) == true) {
+            echo " STOP ";
             $this->stopMove($id);
         }
 
@@ -404,14 +406,14 @@ class MoveRules{
         }
         // make sure hexagon is not occupied
 
-        if ($this->force->hexagonIsOccupied($hexagon) == true) {
+        if ($this->force->hexagonIsOccupiedEnemy($hexagon, $id) == true) {
             $isBlocked = true;
         }
         // make sure hexagon is not retreating across a river
 
-        if ($this->terrain->terrainIs($hexpart, "river") == true) {
-            $isBlocked = true;
-        }
+//        if ($this->terrain->terrainIs($hexpart, "river") == true) {
+//            $isBlocked = true;
+//        }
 
         if ($this->terrain->isExit($hexagon) == true) {
             $isBlocked = true;

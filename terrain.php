@@ -466,10 +466,10 @@ function getTerrainMoveCost($startHexagon, $endHexagon, $maxMoveAmount ,$railMov
 		// check hexside for river
 		 $hexpart = new Hexpart($hexsideX, $hexsideY);
 
-		if( $this->terrainIs($hexpart, "river") == true ) {
-
-			$moveCost = $maxMoveAmount;
-		}
+//		if( $this->terrainIs($hexpart, "river") == true ) {
+//
+//			$moveCost = $maxMoveAmount;
+//		}
 	}
 
  	// move cost on exit is the entrance cost of the leaving hexagon

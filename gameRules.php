@@ -449,7 +449,7 @@ echo "Past tehe fi";
                     if($this->phase  == RED_REPLACEMENT_PHASE){
                         $this->replacementsAvail = 5;
                     }
-                    if ($this->turn >= $this->maxTurn) {
+                    if ($this->turn > $this->maxTurn) {
                         $this->mode = GAME_OVER_MODE;
                         $this->phase = GAME_OVER_PHASE;
                     }
@@ -465,10 +465,12 @@ echo "Past tehe fi";
         if($this->turn == 3){
             $this->moveRules->mud = true;
             $this->combatRules->mud = true;
+            $this->mud = true;
         }
         if($this->turn == 5){
             $this->moveRules->mud = false;
             $this->combatRules->mud = false;
+            $this->mud = false;
         }
         if($this->turn == 4){
             $this->force->units[0]->status = STATUS_ELIMINATED;
