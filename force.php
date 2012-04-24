@@ -269,14 +269,9 @@ class Force
                         break;
 
                     case AL:
-                        if($this->units[$defenderId]->isReduced){
-                            $this->units[$defenderId]->status = STATUS_ELIMINATING;
-                        }else{
-                            $this->units[$defenderId]->status = STATUS_ATTACKED;
-                            $this->units[$defenderId]->isReduced = true;
-                            $this->units[$defenderId]->strength = $this->units[$defenderId]->minStrength;
-                        }
+                        $this->units[$attacker]->status = STATUS_CAN_ATTACK_LOSE;
                         $this->units[$attacker]->retreatCountRequired = 0;
+                        $this->exchangeAmount = 1;
                         break;
 
                     case DE:
@@ -549,7 +544,7 @@ class Force
     function hexagonIsOccupiedEnemy($hexagon,$id)
     {
         $isOccupied = false;
-        $friendlyId = $this->units[$id]->fr;
+        $friendlyId = $this->units[$id]->forceId;
         for ($id = 0; $id < count($this->units); $id++)
         {
             if($this->units[$id]->forceId != $friendlyId){
@@ -628,6 +623,9 @@ class Force
                 case STATUS_REPLACED:
                 case STATUS_CAN_UPGRADE:
                 case STATUS_NO_RESULT:
+                case STATUS_EXCHANGED:
+                case STATUS_CAN_ATTACK_LOSE:
+
 
 
 
@@ -712,7 +710,7 @@ class Force
         switch ($status)
         {
             case STATUS_EXCHANGED:
-                if ($this->units[$id]->forceId == $this->attackingForceId && $this->units[$id]->status == STATUS_CAN_EXCHANGE) {
+                if ($this->units[$id]->forceId == $this->attackingForceId && ($this->units[$id]->status == STATUS_CAN_ATTACK_LOSE || $this->units[$id]->status == STATUS_CAN_EXCHANGE)) {
                     if($this->units[$id]->isReduced){
                         $this->units[$id]->status = STATUS_ELIMINATING;
                         $amtLost = $this->units[$id]->minStrength;
@@ -938,7 +936,7 @@ class Force
     {
         $unitHasMetRetreatCountRequired = false;
 
-        if ($this->units[$id]->moveCount == $this->units[$id]->retreatCountRequired) {
+        if ($this->units[$id]->moveCount >= $this->units[$id]->retreatCountRequired) {
             $unitHasMetRetreatCountRequired = true;
         }
 
@@ -1128,6 +1126,10 @@ class Force
                 $this->units[$id]->status = STATUS_CAN_ADVANCE;
                 $areAdvancing = true;
             }
+            if ($this->units[$id]->status == STATUS_CAN_ATTACK_LOSE) {
+                $this->units[$id]->status = STATUS_ATTACKED;
+                $areAdvancing = true;
+            }
         }
         return $areAdvancing;
     }
@@ -1143,6 +1145,20 @@ class Force
         }
         return $areAdvancing;
     }
+
+    function unitsAreAttackerLosing()
+    {
+        $areAdvancing = false;
+
+        for ($id = 0; $id < count($this->units); $id++)
+        {
+            if ($this->units[$id]->status == STATUS_CAN_ATTACK_LOSE) {
+                return true;
+            }
+        }
+        return $areAdvancing;
+    }
+
    function unitsAreAdvancing()
     {
         $areAdvancing = false;

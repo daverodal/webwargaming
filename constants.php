@@ -67,6 +67,7 @@ define("GAME_OVER_MODE",16);
 define("DEPLOY_MODE",17);
 define("EXCHANGING_MODE",18);
 define("REPLACING_MODE",19);
+define("ATTACKER_LOSING_MODE",20);
 
 // mode names
 $mode_name = array();
@@ -89,6 +90,7 @@ $mode_name[16] = "game over";
 $mode_name[17] = "delpoying mode";
 $mode_name[18] = "exchanging mode";
 $mode_name[19] = "replacing mode";
+$mode_name[20] = "attacker loss mode";
 
 // form event constants
 define("OVER_MAP_EVENT",1);
@@ -144,6 +146,7 @@ define("STATUS_EXCHANGED",28);
 define("STATUS_REPLACED",29);
 define("STATUS_CAN_REPLACE",30);
 define("STATUS_CAN_UPGRADE",31);
+define("STATUS_CAN_ATTACK_LOSE",32);
 
 // unit status names
 $status_name = array();

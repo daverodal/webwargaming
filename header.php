@@ -45,6 +45,7 @@ x.register("gameRules", function(gameRules) {
     }
     switch(gameRules.mode){
         case <?=EXCHANGING_MODE?>:
+        case <?=ATTACKER_LOSING_MODE?>:
                 html += "<br>Lose at least "+gameRules.exchangeAmount+" strength points from the units outlined in red";
             break;
         case <?=ADVANCING_MODE?>:
@@ -126,7 +127,7 @@ x.register("force", function(force) {
            case 1:
                 if(units[i].forceId === force.attackingForceId){
 
-                    color = "#66f";
+                    color = "#1af";
                 }
                 break;
             case <?=STATUS_REINFORCING?>:
@@ -163,7 +164,9 @@ x.register("force", function(force) {
             case 17:
                 color = "cyan";
                 break;
-            case 27:
+            case <?=STATUS_CAN_EXCHANGE?>:
+            case <?=STATUS_CAN_ATTACK_LOSE?>:
+
                 color = "red";
                 break;
             case 29:
@@ -199,7 +202,7 @@ x.register("combatRules", function(combatRules) {
     str = ""
     if(combatRules ){
         cD = combatRules.currentDefender;
-            if(combatRules.combats){
+            if(combatRules.combats && Object.keys(combatRules.combats).length > 0){
                 if(cD !== false){
                 $("#"+cD).css({borderColor: "yellow"});
                if(Object.keys(combatRules.combats[cD].attackers).length != 0){

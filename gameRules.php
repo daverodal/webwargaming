@@ -261,6 +261,11 @@ echo "About TO";
                             $this->mode = EXCHANGING_MODE;
                         }
 
+                        if ($this->force->unitsAreAttackerLosing() == true) {
+                            echo "EXCHANGINGMODE!!!!";
+                            $this->mode = ATTACKER_LOSING_MODE;
+                        }
+
                         if ($this->force->unitsAreRetreating() == true) {
                             $this->force->clearRetreatHexagonList();
                             $this->mode = RETREATING_MODE;
@@ -338,7 +343,6 @@ echo "About TO";
                         $this->moveRules->retreatUnit($event, $id, $hexagon);
                         if ($this->force->unitsAreRetreating() == false) {
                             if ($this->force->unitsAreExchanging() == true) {
-                                echo "EXCHANGINGMODE!!!!";
                                 $this->mode = EXCHANGING_MODE;
                             }else{
                            if ($this->force->unitsAreAdvancing() == true) {
@@ -391,6 +395,7 @@ echo "About TO";
                 }
                 break;
             case EXCHANGING_MODE:
+            case ATTACKER_LOSING_MODE:
 
                 echo "EXGHANGINGMODE";
                 switch ($event) {
@@ -402,7 +407,7 @@ echo "About TO";
                             if ($this->force->unitsAreBeingEliminated() == true) {
                                 $this->force->removeEliminatingUnits();
                             }
-                            if ($this->force->exchangingAreAdvancing() == true) { // melee
+                            if ($this->force->exchangingAreAdvancing() == true && $this->mode == EXCHANGING_MODE) { // melee
                                 $this->mode = ADVANCING_MODE;
                             } else {
                                 $this->mode = COMBAT_RESOLUTION_MODE;

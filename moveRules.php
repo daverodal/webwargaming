@@ -339,6 +339,8 @@ echo "$moveAmount";
                 if ($this->force->unitCanRetreat($id) == true) {
                     $this->startRetreating($id);
                 }
+            }else{
+                $this->retreat($this->movingUnitId, $hexagon);
             }
         }
     }
@@ -430,10 +432,11 @@ echo "$moveAmount";
         ) {
             $this->force->addToRetreatHexagonList($id, $this->force->getUnitHexagon($id));
             // set move amount to 0
+            $occupied = $this->force->hexagonIsOccupied($hexagon);
             $this->force->updateMoveStatus($id, $hexagon, 0);
 
             // check crt retreat count required to how far the unit has retreated
-            if ($this->force->unitHasMetRetreatCountRequired($id)) {
+            if ($this->force->unitHasMetRetreatCountRequired($id) && !$occupied) {
                 // stop if unit has retreated the required amount
                 if ($this->force->setStatus($id, STATUS_STOPPED) == true) {
                     $this->anyUnitIsMoving = false;
