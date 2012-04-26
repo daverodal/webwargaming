@@ -242,7 +242,6 @@ class MoveRules{
     function updateMoveData($id, $hexagon)
     {
         $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id), $hexagon, $this->force->getUnitMaximumMoveAmount($id),$this->railMove);
-echo "$moveAmount";
         $this->force->updateMoveStatus($id, $hexagon, $moveAmount);
 
         if(($this->mud && !$this->railMove) && !$this->force->unitHasNotMoved($id)){

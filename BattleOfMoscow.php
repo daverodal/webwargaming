@@ -19,7 +19,7 @@ $oneHalfImageHeight = 16;
 
 
 
-class BattleForAllenCreek {
+class BattleOfMoscow extends Battle {
 
     /* @var Mapdata */
     public $mapData;
@@ -30,6 +30,12 @@ class BattleForAllenCreek {
     public $gameRules;
     public $prompt;
 
+    static function getHeader(){
+        @include_once "header.php";
+    }
+    static function getView(){
+        @include_once "view.php";
+    }
     function save()
     {
         $data = new stdClass();
@@ -42,6 +48,33 @@ class BattleForAllenCreek {
         return $data;
     }
 
+    function poke($event, $id, $x, $y, $player){
+        if($this->gameRules->attackingForceId !== (int)$player){
+            echo "Nope $player";
+            return "nope";
+        }
+
+        switch($event){
+            case SELECT_MAP_EVENT:
+                $mapGrid = new MapGrid($this->mapData);
+                $mapGrid->setPixels($x, $y);
+                $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon() );
+                break;
+
+            case SELECT_COUNTER_EVENT:
+                echo "COUNTER $id";
+
+                $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id));
+
+                break;
+
+            case SELECT_BUTTON_EVENT:
+                $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0,0 );
+
+
+        }
+
+    }
     function __construct($data = null)
     {
         if ($data) {
@@ -155,13 +188,6 @@ $j = $i;
             $this->terrain->addTerrainFeature("moscow", "Moscow", "m", 0, 0, 1, false);
             $this->terrain->addTerrainFeature("eastedge", "East Edge", "m", 0, 0, 0, false);
 
-            $this->terrain->addReinforceZone(501, "R");
-        /*    $this->terrain->addReinforceZone(103, "B");
-            $this->terrain->addReinforceZone(104, "B");
-            $this->terrain->addReinforceZone(105, "B");*/
-            for($i = 1;$i <= 10;$i++){
-                $this->terrain->addReinforceZone(100+$i,"B");
-            }
             $deployZones = array(103,104,106,107,201,202,203,204,205,206,209,210,305,306,307,309,310,406,407,408,409,410);
             foreach($deployZones as $zone){
                 $this->terrain->addReinforceZone($zone,"B");

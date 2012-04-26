@@ -417,7 +417,7 @@ echo "About TO";
                 break;
         }
 
-        $this->interactions[] = $interaction;
+//        $this->interactions[] = $interaction;
         // see who occupies city
 //        $this->force->checkVictoryConditions();
         if ($this->force->isForceEliminated() == true) {
