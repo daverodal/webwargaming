@@ -1,6 +1,6 @@
 <body>
 <fieldset style="float:right;"><legend>Comlink</legend><div id="comlink"></div></fieldset>
-<h1>Welcome {user} To the <span style="font-style: italic;">&ldquo;{wargame}&rdquo;"</span></h1>
+<h1>Welcome {user} To the The Martian Civil War<span style="font-style: italic;">&ldquo;{wargame}&rdquo;"</span></h1>
 <div style="clear:both"></div>
 {lobbies}
 <a href="<?=site_url("wargame/changeWargame");?>/{id}/1">{name} As Blue</a>
