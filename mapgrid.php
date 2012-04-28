@@ -90,6 +90,7 @@ class MapGrid{
 
         $this->calculateHexpartFromPixels($pixelX, $pixelY);
         $this->calculateHexagonFromPixels();
+        var_dump($this);
     }
 
     function setHexagonXY($x, $y)
@@ -136,7 +137,7 @@ class MapGrid{
             $hexpartY = (2 * $this->row);
             $this->distanceFromTopEdgeOfHexagon = $this->mapGridY - ($this->row * $this->topHeight);
         }
-
+echo "Hexpart X $hexpartX Y $hexpartY";
         $this->hexpart->setXY($hexpartX, $hexpartY);
     }
 

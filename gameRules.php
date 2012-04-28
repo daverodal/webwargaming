@@ -144,12 +144,12 @@ class GameRules {
                             break;
                         }
                         if($this->currentReplacement !== false){
-                        echo "mapReplace";
+                        echo "mapRepeelace ".$hexagon->name;
                         $hexpart = new Hexpart();
                         $hexpart->setXYwithNameAndType($hexagon->name,HEXAGON_CENTER);
                         $terrain = $this->moveRules->terrain;
                         echo "Terrain";
-                        if($terrain->terrainIs($hexpart, "town") || $terrain->terrainIs($hexpart, "moscow") || $terrain->terrainIs($hexpart, "eastedge")){
+                        if($terrain->terrainIs($hexpart, "newrichmond") || $terrain->terrainIs($hexpart, "town") || $terrain->terrainIs($hexpart, "fortified") || $terrain->terrainIs($hexpart, "eastedge")){
                             echo "terrain Is";
                             if($this->force->getEliminated($this->currentReplacement, $hexagon) !== false){
                                 echo "Got";
@@ -452,7 +452,7 @@ echo "Past tehe fi";
                         $this->replacementsAvail = 1;
                     }
                     if($this->phase  == RED_REPLACEMENT_PHASE){
-                        $this->replacementsAvail = 5;
+                        $this->replacementsAvail = 10;
                     }
                     if ($this->turn > $this->maxTurn) {
                         $this->mode = GAME_OVER_MODE;
@@ -468,14 +468,14 @@ echo "Past tehe fi";
     {
         $this->turn++;
         if($this->turn == 3){
-            $this->moveRules->mud = true;
-            $this->combatRules->mud = true;
-            $this->mud = true;
+            $this->moveRules->storm = true;
+            $this->combatRules->storm = true;
+            $this->storm = true;
         }
         if($this->turn == 5){
-            $this->moveRules->mud = false;
-            $this->combatRules->mud = false;
-            $this->mud = false;
+            $this->moveRules->storm = false;
+            $this->combatRules->storm = false;
+            $this->storm = false;
         }
         if($this->turn == 4){
             $this->force->units[0]->status = STATUS_ELIMINATED;

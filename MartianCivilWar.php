@@ -30,6 +30,7 @@ class MartianCivilWar extends Battle {
     public $gameRules;
     public $prompt;
 
+    public $players;
     static function getHeader(){
         @include_once "header.php";
     }
@@ -45,19 +46,24 @@ class MartianCivilWar extends Battle {
         $data->terrain = $this->terrain;
         $data->gameRules = $this->gameRules->save();
         $data->combatRules = $this->combatRules->save();
+        $data->players = $this->players;
+        $data->playerData = $this->playerData;
         return $data;
     }
 
-    function poke($event, $id, $x, $y, $player){
-        if($this->gameRules->attackingForceId !== (int)$player){
-            echo "Nope $player";
+    function poke($event, $id, $x, $y, $user){
+        echo $user;
+        $playerId = $this->gameRules->attackingForceId;
+        if($this->players[$this->gameRules->attackingForceId] != $user){
+            echo "Nope $user";
             return "nope";
         }
 
         switch($event){
             case SELECT_MAP_EVENT:
-                $mapGrid = new MapGrid($this->mapData);
+                $mapGrid = new MapGrid($this->mapData[$playerId]);
                 $mapGrid->setPixels($x, $y);
+                echo "mapevent $x $y";
                 $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon() );
                 break;
 
@@ -78,21 +84,23 @@ class MartianCivilWar extends Battle {
     function __construct($data = null)
     {
         if ($data) {
-            $this->mapData = new MapData($data->mapData);
+            $this->mapData = array(new MapData($data->mapData[0]),new MapData($data->mapData[1]),new MapData($data->mapData[2]));
             $this->force = new Force($data->force);
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $data->gameRules);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
+            $this->players = $data->players;
         } else {
-            $this->mapData = new MapData();
+            $this->mapData = array(new MapData(),new MapData(),new MapData());
             $this->force = new Force();
             $this->terrain = new Terrain();
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
+            $this->players = array("","","");
 
 
             // mapData
@@ -106,10 +114,20 @@ class MartianCivilWar extends Battle {
 //                18, 36, // hexagon edge width, hexagon center width
 //                1410, 1410 // max right hexagon, max bottom hexagon
 //            );
-            $this->mapData->setData(44,58, // originX, originY
+            $this->mapData[0]->setData(44,58, // originX, originY
                 20, 20, // top hexagon height, bottom hexagon height
                 12, 24, // hexagon edge width, hexagon center width
-                1410, 1410 // max right hexagon, max bottom hexagon
+                2010, 2010 // max right hexagon, max bottom hexagon
+            );
+            $this->mapData[1]->setData(44,58, // originX, originY
+                20, 20, // top hexagon height, bottom hexagon height
+                12, 24, // hexagon edge width, hexagon center width
+                2010, 2010 // max right hexagon, max bottom hexagon
+            );
+            $this->mapData[2]->setData(44,58, // originX, originY
+                20, 20, // top hexagon height, bottom hexagon height
+                12, 24, // hexagon edge width, hexagon center width
+                2010, 2010 // max right hexagon, max bottom hexagon
             );
 
             // game data
@@ -129,7 +147,7 @@ class MartianCivilWar extends Battle {
 
             // unit data -----------------------------------------------
             //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
-            $this->force->addUnit("Shock Arm-1", RED_FORCE, 1500, "gerInf8->png", 10, 5, 4, true, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("Shock Arm-1", RED_FORCE, 2100, "gerInf8->png", 10, 5, 4, true, STATUS_CAN_REINFORCE, "B", 1);
 
             for($i = 1;$i<= 4;$i++){
                 $this->force->addUnit("infantry-1", RED_FORCE, 300+$i, "rusInf8->png", 8, 4, 4, true, STATUS_READY, "R", 1);
@@ -141,41 +159,40 @@ class MartianCivilWar extends Battle {
             }
             $this->force->addUnit("infantry-1", RED_FORCE, 803, "rusInf8->png",8, 4, 4, true, STATUS_READY, "R", 1);
             $this->force->addUnit("infantry-1", RED_FORCE, 405, "rusInf8->png",8, 4, 4, true, STATUS_READY, "R", 1);
-            $this->force->addUnit("infantry-1", RED_FORCE, 1604, "rusInf8->png",8, 4, 4, true, STATUS_ELIMINATED, "R", 1);
-            $this->force->addUnit("infantry-1", RED_FORCE, 1605, "rusInf8->png",8, 4, 4, true, STATUS_ELIMINATED, "R", 1);
-            $this->force->addUnit("infantry-1", RED_FORCE, 1606, "rusInf8->png",8, 4, 4, true, STATUS_ELIMINATED, "R", 1);
+            $this->force->addUnit("infantry-1", RED_FORCE, 2204, "rusInf8->png",8, 4, 4, true, STATUS_ELIMINATED, "R", 1);
+            $this->force->addUnit("infantry-1", RED_FORCE, 2205, "rusInf8->png",8, 4, 4, true, STATUS_ELIMINATED, "R", 1);
+            $this->force->addUnit("infantry-1", RED_FORCE, 2206, "rusInf8->png",8, 4, 4, true, STATUS_ELIMINATED, "R", 1);
 
 
             $i = 0;
             $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1);
             $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1);
             $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 10, 5, 6, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 9, 4, 6, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 9, 4, 6, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 8, 4, 6, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 8, 4, 6, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 7, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "gerInf8->png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1);
 $j = $i;
-            $i= 0;
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 7, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 7, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 4, 2, 4, false, STATUS_CAN_REINFORCE, "B", 1);
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 4, 2, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $i=0;
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "gerInf8->png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1);
 
              // end unit data -------------------------------------------
 
             // unit terrain data----------------------------------------
-            $this->terrain->addTown("Marysville", 403);
 
             // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
             $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
@@ -184,15 +201,21 @@ $j = $i;
             $this->terrain->addTerrainFeature("fortified", "fortified", "h", 1, 0, 1, false);
             $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 0, false);
             $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, false);
-            $this->terrain->addTerrainFeature("river", "Allen Creek", "v", 0, 0, 1, false);
-            $this->terrain->addTerrainFeature("moscow", "Moscow", "m", 0, 0, 1, false);
+            $this->terrain->addTerrainFeature("rough", "rough", "g", 3, 0, 1, false);
+            $this->terrain->addTerrainFeature("river", "Martian River", "v", 1, 0, 1, false);
+            $this->terrain->addTerrainFeature("newrichmond", "New Richmond", "m", 0, 0, 1, false);
             $this->terrain->addTerrainFeature("eastedge", "East Edge", "m", 0, 0, 0, false);
+            $this->terrain->addReinforceZone("101","B");
+
 
             $deployZones = array(103,104,106,107,201,202,203,204,205,206,209,210,305,306,307,309,310,406,407,408,409,410);
-            foreach($deployZones as $zone){
-                $this->terrain->addReinforceZone($zone,"B");
+            for($i = 1;$i <= 10;$i++){
+                for($j= 1; $j<=2;$j++){
+                    $this->terrain->addReinforceZone($j*100 + $i,"B");
+
+                }
             }
-            for($col = 100; $col <= 1400; $col += 100){
+               for($col = 100; $col <= 2000; $col += 100){
                 for($row = 1; $row <= 10;$row++){
                     $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
@@ -204,24 +227,70 @@ $j = $i;
             $trains = array(102,201,302,401,502,601);
             foreach($trains as $train){
             }
-            $this->terrain->addTerrain(204, HEXAGON_CENTER, "town");
-            $this->terrain->addTerrain(307, HEXAGON_CENTER, "town");
-            $this->terrain->addTerrain(509, HEXAGON_CENTER, "town");
-            $this->terrain->addTerrain(601, HEXAGON_CENTER, "town");
-            $this->terrain->addTerrain(601, HEXAGON_CENTER, "town");
-            $this->terrain->addTerrain(603, HEXAGON_CENTER, "town");
-            $this->terrain->addTerrain(803, HEXAGON_CENTER, "town");
-            $this->terrain->addTerrain(805, HEXAGON_CENTER, "town");
-            $this->terrain->addTerrain(809, HEXAGON_CENTER, "town");
-            $this->terrain->addTerrain(1103, HEXAGON_CENTER, "moscow");
-            $this->terrain->addTerrain(1107, HEXAGON_CENTER, "town");
-            $this->terrain->addTerrain(1405, HEXAGON_CENTER, "town");
+            $this->terrain->addTerrain(606, HEXAGON_CENTER, "forest");
+            $this->terrain->addTerrain(408, HEXAGON_CENTER, "rough");
+
+            $this->terrain->addTerrain(405, BOTTOM_HEXSIDE, "river");
+            $this->terrain->addTerrain(406, UPPER_LEFT_HEXSIDE, "river");
+            $this->terrain->addTerrain(406, LOWER_LEFT_HEXSIDE, "river");
+            $this->terrain->addTerrain(406, BOTTOM_HEXSIDE, "river");
+            $this->terrain->addTerrain(505, LOWER_LEFT_HEXSIDE, "river");
+            $this->terrain->addTerrain(506, UPPER_LEFT_HEXSIDE, "river");
+            $this->terrain->addTerrain(507, LOWER_LEFT_HEXSIDE, "river");
+            $this->terrain->addTerrain(509, UPPER_LEFT_HEXSIDE, "river");
+
+            $this->terrain->addTerrain(705, HEXAGON_CENTER, "town");
+            $this->terrain->addTerrain(1202, HEXAGON_CENTER, "town");
+            $this->terrain->addTerrain(1605, HEXAGON_CENTER, "newrichmond");
+            $this->terrain->addTerrain(1705, HEXAGON_CENTER, "newrichmond");
+            $this->terrain->addTerrain(1706, HEXAGON_CENTER, "newrichmond");
 
             for($i = 1; $i <= 10;$i++){
-                $this->terrain->addTerrain(1400+$i, HEXAGON_CENTER, "eastedge");
+                $this->terrain->addTerrain(2000+$i, HEXAGON_CENTER, "eastedge");
             }
 
-            $this->terrain->addTerrain(105, BOTTOM_HEXSIDE, "river");
+
+            $hexpart = new Hexpart();
+            $hexpart->setXYwithNameAndType(1910,HEXAGON_CENTER);
+            $hexpart->setXYwithNameAndType(2010,HEXAGON_CENTER);
+            $terrain = $this->terrain;
+
+            $this->terrain->addTerrain(1007, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1008, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1009, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1010, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1107, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1206, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1306, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1307, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1308, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1309, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1310, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1405, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1501, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1502, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1503, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1504, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1505, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1506, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1507, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1508, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1509, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1510, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1604, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1606, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1702, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1703, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1704, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1707, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1801, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1803, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1804, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1806, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1903, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(2002, HEXAGON_CENTER, "fortified");
+
+   /*         $this->terrain->addTerrain(105, BOTTOM_HEXSIDE, "river");
             $this->terrain->addTerrain(204, BOTTOM_HEXSIDE, "river");
             $this->terrain->addTerrain(205, UPPER_LEFT_HEXSIDE, "river");
             $this->terrain->addTerrain(305, LOWER_LEFT_HEXSIDE, "river");
@@ -467,7 +536,7 @@ $j = $i;
             $this->terrain->addTerrain(906, HEXAGON_CENTER, "forest");
             $this->terrain->addTerrain(1201, HEXAGON_CENTER, "forest");
             $this->terrain->addTerrain(1303, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(1404, HEXAGON_CENTER, "forest");
+            $this->terrain->addTerrain(1404, HEXAGON_CENTER, "forest");*/
 
 
 

@@ -27,7 +27,7 @@ class Hexagon {
         $this->name = "";
         $this->minX = 4;
         $this->minY = 8;
-        $this->maxX = 36;
+        $this->maxX = 42;
         $this->maxY = 48;
 
         // Hexagon(name)

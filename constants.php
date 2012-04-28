@@ -16,8 +16,8 @@ define("RED_FORCE",2);
 
 $force_name = array();
 $force_name[0] = "none";
-$force_name[1] = "BLUE";
-$force_name[2] = "RED";
+$force_name[1] = "Rebel";
+$force_name[2] = "Loyalist";
 
 // game phases
 define("BLUE_MOVE_PHASE",1);
@@ -34,18 +34,18 @@ define("RED_RAILROAD_PHASE",11);
 define("RED_REPLACEMENT_PHASE",12);
 
 $phase_name = array();
-$phase_name[1] = "Blue Move";
-$phase_name[2] = "Blue Combat";
+$phase_name[1] = "Rebel Move";
+$phase_name[2] = "Rebel Combat";
 $phase_name[3] = "Blue Fire Combat";
-$phase_name[4] = "Red Move";
-$phase_name[5] = "Red Combat";
+$phase_name[4] = "Loyalist Move";
+$phase_name[5] = "Loyalist Combat";
 $phase_name[6] = "Red Fire Combat";
 $phase_name[7] = "Victory";
-$phase_name[8] = "Blue Deploy";
-$phase_name[9] = "Blue Panzer";
-$phase_name[10] = "Blue Replacement";
-$phase_name[11] = "Red Railroad";
-$phase_name[12] = "Red Replacement";
+$phase_name[8] = "Rebel Deploy";
+$phase_name[9] = "Rebel Panzer";
+$phase_name[10] = "Rebel Replacement";
+$phase_name[11] = "Loyalist Railroad";
+$phase_name[12] = "Loyalist Replacement";
 
 // game modes
 define("SELECT_TO_MOVE_MODE",1);

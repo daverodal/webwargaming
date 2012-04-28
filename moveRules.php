@@ -17,7 +17,7 @@ class MoveRules{
     public $movingUnitId;
     public $anyUnitIsMoving;
     public $railMove;
-    public $mud;
+    public $storm;
 
 
     function save(){
@@ -44,7 +44,7 @@ class MoveRules{
         }else{
             $this->movingUnitId = NONE;
             $this->anyUnitIsMoving = false;
-            $this->mud = false;
+            $this->storm = false;
             $this->railMove = false;
         }
     }
@@ -230,7 +230,7 @@ class MoveRules{
         echo "Across troubled waters   ";
         var_dump($fromHex);
         var_dump($toHex);
-        if($this->terrain->moveIsTraverse($fromHex,$toHex, "road")){
+        if($this->terrain->moveIsInto($toHex, "fortified") || $this->terrain->moveIsInto($toHex, "newrichmond")){
             echo "its'true";
 
             return true;
@@ -244,7 +244,7 @@ class MoveRules{
         $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id), $hexagon, $this->force->getUnitMaximumMoveAmount($id),$this->railMove);
         $this->force->updateMoveStatus($id, $hexagon, $moveAmount);
 
-        if(($this->mud && !$this->railMove) && !$this->force->unitHasNotMoved($id)){
+        if(($this->storm && !$this->railMove) && !$this->force->unitHasNotMoved($id)){
             $this->stopMove($id);
         }
         echo "UPDATING";

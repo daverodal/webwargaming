@@ -78,7 +78,7 @@ class Town{
 	$this->allAreAttackingAcrossRiverCombatEffect = 1;
 
         $this->maxTerrainY = 60;
-        $this->maxTerrainX = 40;
+        $this->maxTerrainX = 54;
 
         for ($x = 0; $x < $this->maxTerrainX; $x++) {
             for ($y = 0; $y < $this->maxTerrainY; $y++) {
@@ -192,6 +192,25 @@ function terrainIs($hexpart, $terrainName)
 
     return $found;
 }
+function moveIsInto($hexagon, $name)
+        {
+            $moveIsInto = false;
+
+            $hexpart = new Hexpart();
+            $hexpart->setXYwithNameAndType($hexagon->name,HEXAGON_CENTER);
+
+            var_dump($this->terrainIs($hexpart, $name));
+            var_dump(dechex($this->getTerrainCode($hexpart)));
+            var_dump($hexpart);echo "HEx $name Parted";
+
+            var_dump($this->terrainIs($hexpart, $name));
+            if( ( $this->terrainIs($hexpart, $name) == true )               )
+            {
+                $moveIsInto = true;
+            }
+
+            return $moveIsInto;
+        }
 
 function moveIsTraverse($startHexagon, $endHexagon, $name)
 {

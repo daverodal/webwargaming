@@ -3,14 +3,14 @@
 <h1>Welcome {user} To the The Martian Civil War<span style="font-style: italic;">&ldquo;{wargame}&rdquo;"</span></h1>
 <div style="clear:both"></div>
 {lobbies}
-<a href="<?=site_url("wargame/changeWargame");?>/{id}/1">{name} As Blue</a>
-<a href="<?=site_url("wargame/changeWargame");?>/{id}/2">{name}As Red</a>
+<a href="<?=site_url("wargame/changeWargame");?>/{id}/1">{name} As Rebel</a>
+<a href="<?=site_url("wargame/changeWargame");?>/{id}/2">{name}As Loyalist</a>
 {/lobbies}
 <a href="<?=site_url("wargame/resize/0");?>">BIG</a>
 <a href="<?=site_url("wargame/resize/1");?>">small</a>
 <a href="<?=site_url("wargame/createWargame");?>">Create Wargame</a>
 <a href="<?=site_url("wargame/logout");?>">logout</a>
-<a href="<?=site_url("wargame/unitInit");?>">New Game</a>
+<a href="<?=site_url("wargame/unitInit/MartianCivilWar");?>">New Game</a>
 <a href="<?=site_url("wargame/unitInit/BattleForAllenCreek");?>">Battle For Allen Creek</a>
 <a href="#" onclick="seeUnits();return false;">See Units</a>
 <a href="#" onclick="seeBoth();return false;">See Both</a>
@@ -136,7 +136,7 @@
         font-size:18px;
         text-indent:2px;
     }
-    .mud {
+    .storm {
         font-size:50%;
     }
     #gameturnContainer #turn1{
@@ -164,8 +164,8 @@
         height:638px;
     width:{mapWidth};
     height:{mapHeight};
-    width:522px;
-    height:425px;
+    /*width:787px;*/
+    /*height:481px;*/
         }
     .unit{
         width:64px;
@@ -174,9 +174,27 @@
         height:49px;
     width:{unitSize};
     height:{unitSize};
-    width:32px;
-    height:32px;
+    /*width:32px;*/
+    /*height:32px;*/
         }
+    .unit div {
+        text-align:center;
+        margin-top:{unitMargin};
+        color:white;
+        /*text-indent:3px;*/
+        font-size:{unitFontSize};
+        font-weight:bold;
+    }
+    .rebel div{
+        color:green;
+    }
+    .sympth div{
+        color:white;
+    }
+    .unit img {
+        width:100%;
+        height:100%;
+    }
 </style>
 <div id="leftcol">
     <?php global $results_name;?>
@@ -203,8 +221,8 @@
     <div id="gameturnContainer">
         <div id="turn1">1</div>
         <div id="turn2">2</div>
-        <div id="turn3">3 <span class="mud">mud</span></div>
-        <div id="turn4">4 <span class="mud">mud</span></div>
+        <div id="turn3">3 <span class="storm">storm</span></div>
+        <div id="turn4">4 <span class="storm">storm</span></div>
         <div id="turn5">5</div>
         <div id="turn6">6</div>
         <div id="turn7">7</div>
@@ -253,40 +271,30 @@
 
 </div>
 <div id="gameImages" >
-    <img id="map" alt="map" src="<?php echo base_url();?>js/fullmap.png" style="position: relative;visibility: visible;z-index: 0;">
-    <img class="unit" id="0" alt="0" src="<?php echo base_url();?>js/rusInf10.png" class="counter" style="position: absolute; left: 180px; top: 140px; z-index:100">
+    <img id="map" alt="map" src="<?php echo base_url();?>js/martianCivilWar.png" style="position: relative;visibility: visible;z-index: 0;">
+    <div  class="unit" id="0" alt="0" style="position: absolute; left: 180px; top: 140px; z-index:100">
+        <img  src="<?php echo base_url();?>js/loyalInf.png" class="counter" >
+        <div>5 - 4</div>
+    </div>
 
     <?php for($i = 1,$id=1 ; $i < 17;$i++){?>
-    <img class="unit" id="<?=$id++?>" alt="0" src="<?php echo base_url();?>js/rusInf8.png" class="counter" style="position: absolute; left: 180px; top: 140px; z-index:100">
-
+    <div  class="unit" id="<?=$id++?>" alt="0" style="position: absolute; left: 180px; top: 140px; z-index:100">
+    <img  src="<?php echo base_url();?>js/loyalInf.png" class="counter" >
+    <div>5 - 4</div>
+    </div>
     <?php }?>
-    <?php for($i = 0 ; $i < 3;$i++){?>
-    <img class="unit" id="<?=$id++?>" alt="0" src="<?php echo base_url();?>js/gerPzr12.png" class="counter" style="position: absolute; left: 180px; top: 140px; z-index:100">
+    <?php for(; $id < 29;){?>
+    <div  class="unit rebel" id="<?=$id++?>" alt="0" style="position: absolute; left: 180px; top: 140px; z-index:100">
+        <img  src="<?php echo base_url();?>js/rebelInf.png" class="counter" >
+        <div>7 - 5</div>
+    </div>
     <?php }?>
-    <?php for(;$i < 4;$i++){?>
-    <img class="unit" id="<?=$id++?>" alt="0" src="<?php echo base_url();?>js/gerPzr10.png" class="counter" style="position: absolute; left: 180px; top: 140px; z-index:100">
-    <?php }?>
-    <?php for(;$i < 6;$i++){?>
-    <img class="unit" id="<?=$id++?>" alt="0" src="<?php echo base_url();?>js/gerPzr9.png" class="counter" style="position: absolute; left: 180px; top: 140px; z-index:100">
-    <?php }?>
-    <?php for(;$i < 8;$i++){?>
-    <img class="unit" id="<?=$id++?>" alt="0" src="<?php echo base_url();?>js/gerPzr8.png" class="counter" style="position: absolute; left: 180px; top: 140px; z-index:100">
-    <?php }?>
-    <?php for(;$i < 10;$i++){?>
-    <img class="unit" id="<?=$id++?>" alt="0" src="<?php echo base_url();?>js/gerInf8.png" class="counter" style="position: absolute; left: 180px; top: 140px; z-index:100">
-    <?php }?>
-    <?php for(;$i < 13;$i++){?>
-    <img class="unit" id="<?=$id++?>" alt="0" src="<?php echo base_url();?>js/gerInf7.png" class="counter" style="position: absolute; left: 180px; top: 140px; z-index:100">
-    <?php }?>
-    <?php for(;$i < 18;$i++){?>
-    <img class="unit" id="<?=$id++?>" alt="0" src="<?php echo base_url();?>js/gerInf6.png" class="counter" style="position: absolute; left: 180px; top: 140px; z-index:100">
-    <?php }?>
-    <?php for(;$i < 20;$i++){?>
-    <img class="unit" id="<?=$id++?>" alt="0" src="<?php echo base_url();?>js/gerInf5.png" class="counter" style="position: absolute; left: 180px; top: 140px; z-index:100">
-    <?php }?>
-    <?php for(;$i < 22;$i++){?>
-    <img class="unit" id="<?=$id++?>" alt="0" src="<?php echo base_url();?>js/gerInf4.png" class="counter" style="position: absolute; left: 180px; top: 140px; z-index:100">
-    <?php }?>
+    <?php for(; $id < 39;){?>
+        <div  class="unit sympth" id="<?=$id++?>" alt="0" style="position: absolute; left: 180px; top: 140px; z-index:100">
+            <img  src="<?php echo base_url();?>js/sympthInf.png" class="counter" >
+            <div>7 - 5</div>
+        </div>
+        <?php }?>
 </div>
 
 <!-- end gameImages -->

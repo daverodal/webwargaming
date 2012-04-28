@@ -329,7 +329,7 @@ class Force
         $col = 0;
         if($this->units[$id]->forceId == 2){
 
-            $col = 1500 + floor($id / 10) * 100;
+            $col = 2100 + floor($id / 10) * 100;
         }
         $this->units[$id]->hexagon = new Hexagon($col+$id%10);
 //        $this->units[$id]->hexagon->setXY($this->eliminationTrayHexagonX + (2 * $this->deleteCount), $this->eliminationTrayHexagonY);
@@ -630,7 +630,7 @@ class Force
 
 
                     $status = STATUS_READY;
-                    if($phase == BLUE_PANZER_PHASE && $this->units[$id]->forceId == BLUE_FORCE && $this->units[$id]->maxMove != 6){
+                    if($phase == BLUE_PANZER_PHASE && $this->units[$id]->forceId == BLUE_FORCE && $this->units[$id]->maxMove < 6){
                         echo "hold it bub";
                         $status = STATUS_STOPPED;
                     }
@@ -647,7 +647,7 @@ class Force
                         $hexpart->setXYwithNameAndType($this->units[$id]->hexagon->name, HEXAGON_CENTER);
                         $terrain = $moveRules->terrain;
                         echo "Terrain";
-                        if ($terrain->terrainIs($hexpart, "road")) {
+                        if ($terrain->terrainIs($hexpart, "fortified") || $terrain->terrainIs($hexpart, "newrichmond")) {
                             $status = STATUS_READY;
                         }
                     }
@@ -761,14 +761,18 @@ class Force
             case STATUS_STOPPED:
                 if ($this->units[$id]->status == STATUS_MOVING) {
                     $this->units[$id]->status = $status;
+                    $this->units[$id]->moveAmountUsed = $this->units[$id]->maxMove;
+
                     $success = true;
                 }
                 if ($this->units[$id]->status == STATUS_ADVANCING) {
                     $this->units[$id]->status = STATUS_ADVANCED;
+//                    $this->units[$id]->moveAmountUsed = $$this->units[$id]->maxMove;
                     $success = true;
                 }
                 if ($this->units[$id]->status == STATUS_RETREATING) {
                     $this->units[$id]->status = STATUS_RETREATED;
+//                    $this->units[$id]->moveAmountUsed = $$this->units[$id]->maxMove;
                     $success = true;
                 }
                 break;

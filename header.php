@@ -22,17 +22,17 @@ x.register("gameRules", function(gameRules) {
     var pix = turn  + (turn - 1) * 36 + 1;
     $("#turnCounter").css("left",pix+"px");
     if(gameRules.attackingForceId == 1){
-        $("#turnCounter").css("background","rgb(101,200,85)");
+        $("#turnCounter").css("background","rgb(0,128,0)");
         $("#turnCounter").css("color","white");
     }else{
-        $("#turnCounter").css("background","rgb(202,52,45)");
+        $("#turnCounter").css("background","rgb(0,128,255)");
         $("#turnCounter").css("color","white");
     }
 
     var html;
     html = gameRules.phase_name[gameRules.phase] + " - " + gameRules.mode_name[gameRules.mode];
-    if(gameRules.mud){
-        html += "<br><strong>Mud rules in effect</strong>";
+    if(gameRules.storm){
+        html += "<br><strong>Sand Storm rules in effect</strong>";
     }
     switch(gameRules.phase){
         case <?=BLUE_REPLACEMENT_PHASE?>:
@@ -86,12 +86,15 @@ x.register("mapUnits", function(mapUnits) {
         }
 
          $("#"+i).css({left: -1+mapUnits[i].x-width/2-fudge+"px",top:-1+mapUnits[i].y-height/2-fudge+"px"});
-        var img = $("#"+i).attr("src");
+        var img = $("#"+i+" img").attr("src");
         if(mapUnits[i].isReduced){
             img = img.replace(/(.*[0-9])(\.png)/,"$1reduced.png");
         }else{
             img = img.replace(/([0-9])reduced\.png/,"$1.png");
         }
+        var  move = mapUnits[i].maxMove - mapUnits[i].moveAmountUsed;
+        var str = mapUnits[i].strength;
+        $("#"+i+" div").html(str + " - "+move);
         $("#"+i).attr("src",img);
 
     }
@@ -140,10 +143,10 @@ x.register("force", function(force) {
 
 
 
-                status += " "+units[i].moveAmountUsed+" MF's Used";
+//                status += " "+units[i].moveAmountUsed+" MF's Used";
                 break;
             case 6:
-                color = "transparent";
+                color = "#666";
                 break;
             case 8:
                 color = "orange";
@@ -224,8 +227,8 @@ x.register("combatRules", function(combatRules) {
                         if(combatRules.combats[i].index !== null){
                             var atk = combatRules.combats[i].attackStrength;
                             var atkDisp = atk;
-                            if(combatRules.mud){
-                                atkDisp = atk*2 + " halved for mud = "+atk;
+                            if(combatRules.storm){
+                                atkDisp = atk*2 + " halved for storm = "+atk;
                             }
                             var def = combatRules.combats[i].defenseStrength;
                             var ter = combatRules.combats[i].terrainCombatEffect;
@@ -279,8 +282,8 @@ x.register("combatRules", function(combatRules) {
                 if(combatRules.combatsToResolve[i].index !== null){
                      var atk = combatRules.combatsToResolve[i].attackStrength;
                     var atkDisp = atk;;
-                    if(combatRules.mud){
-                        atkDisp = atk*2 + " halved for mud "+atk;
+                    if(combatRules.storm){
+                        atkDisp = atk*2 + " halved for storm "+atk;
                     }
                     var def = combatRules.combatsToResolve[i].defenseStrength;
                     var ter = combatRules.combatsToResolve[i].terrainCombatEffect;
@@ -299,8 +302,8 @@ x.register("combatRules", function(combatRules) {
                 if(combatRules.resolvedCombats[i].index !== null){
                      atk = combatRules.resolvedCombats[i].attackStrength;
                      atkDisp = atk;;
-                    if(combatRules.mud){
-                        atkDisp = atk*2 + " halved for mud "+atk;
+                    if(combatRules.storm){
+                        atkDisp = atk*2 + " halved for storm "+atk;
                     }
                     def = combatRules.resolvedCombats[i].defenseStrength;
                      ter = combatRules.resolvedCombats[i].terrainCombatEffect;
@@ -550,11 +553,12 @@ function mapMouseDown(event) {
 function counterMouseDown(event) {
     var id;
     if ( document.addEventListener ) {
-        id = event.target.id.toString();
+       id = $(event.target).parent().attr("id");
     }
     // this for IE browsers
     else {
         id = event.srcElement.id.toString();
+        alert("downdown");
     }
     doitUnit(id);
 }
@@ -590,7 +594,6 @@ function attachMouseEventsToCounter(objectName) {
 
     var id;
     id = parseInt(objectName, 10);
-
     object  = document.getElementById(objectName);
 
     // this for Netscape browsers
