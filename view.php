@@ -2,6 +2,7 @@
 <fieldset style="float:right;"><legend>Comlink</legend><div id="comlink"></div></fieldset>
 <h1>Welcome {user} To the The Martian Civil War<span style="font-style: italic;">&ldquo;{wargame}&rdquo;"</span></h1>
 <div style="clear:both"></div>
+
 {lobbies}
 <a href="<?=site_url("wargame/changeWargame");?>/{id}/1">{name} As Rebel</a>
 <a href="<?=site_url("wargame/changeWargame");?>/{id}/2">{name}As Loyalist</a>
@@ -10,192 +11,15 @@
 <a href="<?=site_url("wargame/resize/1");?>">small</a>
 <a href="<?=site_url("wargame/createWargame");?>">Create Wargame</a>
 <a href="<?=site_url("wargame/logout");?>">logout</a>
-<a href="<?=site_url("wargame/unitInit/MartianCivilWar");?>">New Game</a>
-<a href="<?=site_url("wargame/unitInit/BattleForAllenCreek");?>">Battle For Allen Creek</a>
+{games}
+<a href="<?=site_url("wargame/unitInit/{name}");?>">{name}</a>
+{/games}<!--<a href="--><?//=site_url("wargame/resize/0");?><!--">BIG</a>-->
 <a href="#" onclick="seeUnits();return false;">See Units</a>
 <a href="#" onclick="seeBoth();return false;">See Both</a>
 <a href="#" onclick="seeMap();return false;">See Map</a>
 
 <div id="content">
-<style type="text/css">
-    body{
-        background:#eee;
-        color:#333;
-    }
-    #status{
-        text-align:right;
-    }
-    #status legend{
-        text-align:left;
-    }
-    fieldset{
-        background:white;
-        border-radius:9px;
-    }
-    #crt{
-        border-radius:15px;
-        border:10px solid #1AF;
-    //position:relative;
-        width:308px;
-        background:#fff;color:black;
-        font-weight:bold;
-        padding:1px 5px 10px 15px;
-    }
-    #crt h3{
-        height:40px;
-        margin-bottom:5px;
-        vertical-align:bottom;
-    }
-    #crt span{
-        width:32px;
-    // position:absolute;
-    }
-    .col1{
-        left:20px;
-    }
-    .col2{
-        left:60px;
-    }
-    .col3{
-        left:100px;
-    }
-    .col4{
-        left:140px;
-    }
-    .col5{
-        left:180px;
-    }
-    .col6{
-        left:220px;
-    }
-    .roll, #odds{
-        height:20px;
-        background :#1af;
-        margin-right:14px
-    }
-    #odds{
-        background:white;
-    }
-    .even{
-        color:black;
-    }
-    .odd{
-        color:black;
-    }
-    .row1{
-        top:80px;
 
-    }
-    .row2{
-        top:100px;
-        background:white;
-    }
-    .row3 {
-        top:120px;
-    }
-    .row4{
-        top:140px;
-        background:white;
-    }
-    .row5{
-        top:160px;
-    }
-    .row6{
-        top:180px;
-        background:white;
-    }
-    .roll span, #odds span{
-        margin-right:10px;
-        float:left;
-        display:block;
-        width:32px;
-    }
-    #gameImages{
-        float:left;
-        margin-left:50px;
-        position: relative;
-        border:10px solid #1af;
-        border-radius:10px;
-        height:425px;
-    }
-    #leftcol {
-        float:left;
-        width:360px;
-    }
-    #gameturnContainer{
-        height:38px;
-        position:relative;
-        float:left;
-    }
-    #gameturnContainer div{
-        float:left;
-        height:36px;
-        width:36px;
-        border:solid black;
-        border-width:1px 1px 1px 0;
-        font-size:18px;
-        text-indent:2px;
-    }
-    .storm {
-        font-size:50%;
-    }
-    #gameturnContainer #turn1{
-        border-width:1px;
-    }
-    #gameturnContainer #turnCounter{
-        position:absolute;
-        z-index:20;
-        width:32px;
-        height:32px;
-        color:black;
-        background-color:rgb(101,200,85);
-        font-size:11px;
-        text-indent:0px;
-        top:2px;
-        left:2px;
-        text-align:center;
-        border-width:1px;
-    }
-
-    #map {
-        width:1044px;
-        height:850px;
-        width:783px;
-        height:638px;
-    width:{mapWidth};
-    height:{mapHeight};
-    /*width:787px;*/
-    /*height:481px;*/
-        }
-    .unit{
-        width:64px;
-        height:64px;
-        width:48px;
-        height:49px;
-    width:{unitSize};
-    height:{unitSize};
-    /*width:32px;*/
-    /*height:32px;*/
-        }
-    .unit div {
-        text-align:center;
-        margin-top:{unitMargin};
-        color:white;
-        /*text-indent:3px;*/
-        font-size:{unitFontSize};
-        font-weight:bold;
-    }
-    .rebel div{
-        color:green;
-    }
-    .sympth div{
-        color:white;
-    }
-    .unit img {
-        width:100%;
-        height:100%;
-    }
-</style>
 <div id="leftcol">
     <?php global $results_name;?>
 

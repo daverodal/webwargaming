@@ -23,6 +23,7 @@ class MartianCivilWar extends Battle {
 
     /* @var Mapdata */
     public $mapData;
+    public $playerData;
     public $force;
     public $terrain;
     public $moveRules;
@@ -31,7 +32,11 @@ class MartianCivilWar extends Battle {
     public $prompt;
 
     public $players;
-    static function getHeader(){
+    static function getHeader($playerData){
+        $playerData = array_shift($playerData);
+        foreach($playerData as $k => $v){
+            $$k = $v;
+        }
         @include_once "header.php";
     }
     static function getView(){
@@ -91,7 +96,9 @@ class MartianCivilWar extends Battle {
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $data->gameRules);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
+            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = $data->players;
+            $this->playerData = $data->playerData;
         } else {
             $this->mapData = array(new MapData(),new MapData(),new MapData());
             $this->force = new Force();
@@ -101,6 +108,14 @@ class MartianCivilWar extends Battle {
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = array("","","");
+            for($player = 0;$player <= 2;$player++){
+            $this->playerData->${player}->mapWidth = "787px";
+            $this->playerData->${player}->mapHeight = "481px";
+            $this->playerData->${player}->unitSize = "32px";
+            $this->playerData->${player}->unitFontSize = "12px";
+            $this->playerData->${player}->unitMargin = "-21px";
+            }
+
 
 
             // mapData
