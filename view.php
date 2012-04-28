@@ -2,7 +2,6 @@
 <fieldset style="float:right;"><legend>Comlink</legend><div id="comlink"></div></fieldset>
 <h1>Welcome {user} To the The Martian Civil War<span style="font-style: italic;">&ldquo;{wargame}&rdquo;"</span></h1>
 <div style="clear:both"></div>
-
 {lobbies}
 <a href="<?=site_url("wargame/changeWargame");?>/{id}/1">{name} As Rebel</a>
 <a href="<?=site_url("wargame/changeWargame");?>/{id}/2">{name}As Loyalist</a>
@@ -96,29 +95,13 @@
 </div>
 <div id="gameImages" >
     <img id="map" alt="map" src="<?php echo base_url();?>js/martianCivilWar.png" style="position: relative;visibility: visible;z-index: 0;">
-    <div  class="unit" id="0" alt="0" style="position: absolute; left: 180px; top: 140px; z-index:100">
-        <img  src="<?php echo base_url();?>js/loyalInf.png" class="counter" >
+    <?php $id = 0;?>
+    {units}
+    <div  class="unit {class}" id="{id}" alt="0" style="position: absolute; left: 180px; top: 140px; z-index:100">
+        <img  src="<?php echo base_url();?>js/{image}" class="counter" >
         <div>5 - 4</div>
     </div>
-
-    <?php for($i = 1,$id=1 ; $i < 17;$i++){?>
-    <div  class="unit" id="<?=$id++?>" alt="0" style="position: absolute; left: 180px; top: 140px; z-index:100">
-    <img  src="<?php echo base_url();?>js/loyalInf.png" class="counter" >
-    <div>5 - 4</div>
-    </div>
-    <?php }?>
-    <?php for(; $id < 29;){?>
-    <div  class="unit rebel" id="<?=$id++?>" alt="0" style="position: absolute; left: 180px; top: 140px; z-index:100">
-        <img  src="<?php echo base_url();?>js/rebelInf.png" class="counter" >
-        <div>7 - 5</div>
-    </div>
-    <?php }?>
-    <?php for(; $id < 39;){?>
-        <div  class="unit sympth" id="<?=$id++?>" alt="0" style="position: absolute; left: 180px; top: 140px; z-index:100">
-            <img  src="<?php echo base_url();?>js/sympthInf.png" class="counter" >
-            <div>7 - 5</div>
-        </div>
-        <?php }?>
+    {/units}
 </div>
 
 <!-- end gameImages -->

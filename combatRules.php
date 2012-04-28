@@ -105,7 +105,7 @@ class CombatRules
             $los->setOrigin($this->force->getUnitHexagon($id));
             $los->setEndPoint($this->force->getUnitHexagon($this->currentDefender));
             $range = $los->getRange();
-            if ($range == 1)
+            if ($range <= $this->force->getUnitRange($id))
             {
                 if ($this->combats->${cd}->attackers->$id === true && $this->attackers->$id === $cd)
                 {
@@ -116,7 +116,7 @@ class CombatRules
                 }
                 else
                 {
-                    $this->force->setupAttacker($id);
+                    $this->force->setupAttacker($id, $range);
                     if(isset($this->attackers->$id) && $this->attackers->$id !== $cd){
                         /* move unit to other attack */
                         $oldCd = $this->attackers->${id};
@@ -225,7 +225,7 @@ function resolveCombat( $id ) {
     //  Math->floor gives lower integer, which is now 0,1,2,3,4,5
 
     $Die = floor($this->crt->dieSideCount * (rand()/getrandmax()));
-//    $Die = 5;
+    $Die = 2;
 //    $index = $this->force->getUnitCombatIndex($id);
     $index = $this->combatsToResolve->${id}->index;
 

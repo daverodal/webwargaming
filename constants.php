@@ -147,6 +147,8 @@ define("STATUS_REPLACED",29);
 define("STATUS_CAN_REPLACE",30);
 define("STATUS_CAN_UPGRADE",31);
 define("STATUS_CAN_ATTACK_LOSE",32);
+define("STATUS_BOMBARDING",33);
+
 
 // unit status names
 $status_name = array();

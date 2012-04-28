@@ -331,6 +331,7 @@ x.register("force", function(force) {
                 color = "orange";
                 break;
             case 9:
+            case <?=STATUS_BOMBARDING?>:
                 color = "DarkRed";
                 break;
             case 13:

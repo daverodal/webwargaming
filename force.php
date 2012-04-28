@@ -59,8 +59,9 @@ class unit
     public $dieRoll;
     public $eliminationHexagonX;
     public $eliminationHexagonY;
+    public $range;
 
-    function set($unitId, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZone, $unitReinforceTurn)
+    function set($unitId, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range)
     {
         $this->id = $unitId;
         $this->name = $unitName;
@@ -83,6 +84,7 @@ class unit
         $this->moveCount = 0;
         $this->retreatCountRequired = 0;
         $this->combatResults = NR;
+        $this->range = $range;
     }
 
     function __construct($data = null)
@@ -161,12 +163,12 @@ class Force
         $this->retreatHexagonList[] = $retreatStep;
     }
 
-    function addUnit($unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn)
+    function addUnit($unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range = 1)
     {
 
         $id = count($this->units);
         $unit = new unit();
-        $unit->set($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove,  $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn);
+        $unit->set($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove,  $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range);
 
         array_push($this->units,$unit);
     }
@@ -260,6 +262,16 @@ class Force
         
         foreach ($attackers as $attacker => $val)
         {
+            if ($this->units[$attacker]->status == STATUS_BOMBARDING) {
+                    $this->units[$attacker]->status = STATUS_ATTACKED;
+                    $this->units[$attacker]->retreatCountRequired = 0;
+
+            $this->units[$attacker]->combatResults = $combatResults;
+            $this->units[$attacker]->dieRoll = $dieRoll;
+            $this->units[$attacker]->combatNumber = 0;
+            $this->units[$attacker]->moveCount = 0;
+        }
+
             if ($this->units[$attacker]->status == STATUS_ATTACKING) {
                 switch ($combatResults)
                 {
@@ -815,9 +827,14 @@ class Force
         return $success;
     }
 
-    function setupAttacker($id)
+    function setupAttacker($id, $range)
     {
+        if($range > 1){
+            $this->units[$id]->status = STATUS_BOMBARDING;
+
+        }else{
         $this->units[$id]->status = STATUS_ATTACKING;
+        }
     }
 
     function setupDefender($id)
@@ -1023,6 +1040,11 @@ class Force
             $isEnemy = true;
         }
         return $isEnemy;
+    }
+
+    function getUnitRange($id)
+    {
+        return $this->units[$id]->range;
     }
 
     function unitIsFriendly($id)
