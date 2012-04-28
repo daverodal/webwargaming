@@ -28,6 +28,7 @@ class BattleForAllenCreek {
     public $combatRules;
     public $gameRules;
     public $prompt;
+    public $players;
 
 
     function save()
@@ -39,18 +40,22 @@ class BattleForAllenCreek {
         $data->terrain = $this->terrain;
         $data->gameRules = $this->gameRules->save();
         $data->combatRules = $this->combatRules->save();
+        $data->players = $this->players;
+        $data->playerData = $this->playerData;
+
         return $data;
     }
 
-    function poke($event, $id, $x, $y, $player){
-        if($this->gameRules->attackingForceId !== (int)$player){
-            echo "Nope $player";
+    function poke($event, $id, $x, $y, $user){
+        $playerId = $this->gameRules->attackingForceId;
+        if($this->players[$this->gameRules->attackingForceId] != $user){
+            echo "Nope $user";
             return "nope";
         }
 
         switch($event){
             case SELECT_MAP_EVENT:
-                $mapGrid = new MapGrid($this->mapData);
+                $mapGrid = new MapGrid($this->mapData[$playerId]);
                 $mapGrid->setPixels($x, $y);
                 $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon() );
                 break;
@@ -72,25 +77,38 @@ class BattleForAllenCreek {
     function __construct($data = null)
     {
         if ($data) {
-            $this->mapData = new MapData($data->mapData);
+            $this->mapData = array(new MapData($data->mapData[0]),new MapData($data->mapData[1]),new MapData($data->mapData[2]));
             $this->force = new Force($data->force);
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $data->gameRules);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
+            $this->players = $data->players;
+
         } else {
-            $this->mapData = new MapData();
+            $this->mapData = array(new MapData(),new MapData(),new MapData());
             $this->force = new Force();
             $this->terrain = new Terrain();
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
+            $this->players = array("","","");
 
 
             // mapData
-            $this->mapData->setData(18, 20, // originX, originY
+            $this->mapData[0]->setData(18, 20, // originX, originY
+                20, 20, // top hexagon height, bottom hexagon height
+                12, 24, // hexagon edge width, hexagon center width
+                505, 505 // max right hexagon, max bottom hexagon
+            );
+            $this->mapData[1]->setData(18, 20, // originX, originY
+                20, 20, // top hexagon height, bottom hexagon height
+                12, 24, // hexagon edge width, hexagon center width
+                505, 505 // max right hexagon, max bottom hexagon
+            );
+            $this->mapData[2]->setData(18, 20, // originX, originY
                 20, 20, // top hexagon height, bottom hexagon height
                 12, 24, // hexagon edge width, hexagon center width
                 505, 505 // max right hexagon, max bottom hexagon
