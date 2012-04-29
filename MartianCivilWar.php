@@ -183,7 +183,7 @@ class MartianCivilWar extends Battle {
             $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelMotInf.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
             $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelCav.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
             $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelCav.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelArt.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 2);
+            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelArt.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
             $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelMotInf.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
             $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelMotInf.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
             $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelMotInf.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
