@@ -17,7 +17,6 @@ class MoveRules{
     public $movingUnitId;
     public $anyUnitIsMoving;
     public $railMove;
-    public $storm;
 
 
     function save(){
@@ -44,8 +43,6 @@ class MoveRules{
         }else{
             $this->movingUnitId = NONE;
             $this->anyUnitIsMoving = false;
-            $this->storm = false;
-            $this->railMove = false;
         }
     }
 
@@ -244,9 +241,6 @@ class MoveRules{
         $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id), $hexagon, $this->force->getUnitMaximumMoveAmount($id),$this->railMove);
         $this->force->updateMoveStatus($id, $hexagon, $moveAmount);
 
-        if(($this->storm && !$this->railMove) && !$this->force->unitHasNotMoved($id)){
-            $this->stopMove($id);
-        }
         echo "UPDATING";
         if ($this->force->unitHasUsedMoveAmount($id) == true) {
             echo " STOP ";

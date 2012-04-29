@@ -273,7 +273,8 @@ x.register("mapUnits", function(mapUnits) {
         }
         var  move = mapUnits[i].maxMove - mapUnits[i].moveAmountUsed;
         var str = mapUnits[i].strength;
-        $("#"+i+" div").html(str + " - "+move);
+        var symb = mapUnits[i].isReduced ? " &#189; " : " - ";
+        $("#"+i+" div").html(str + symb + move);
         $("#"+i).attr("src",img);
 
     }
@@ -854,7 +855,7 @@ function initialize() {
     this.attachMouseEventsToMap("map");
 
     var id;
-    for(id = 0;id < 39;id++){
+    for(id = 0;id < 35;id++){
         this.attachMouseEventsToCounter(id);
     }
 //    for ( id = 0; id < force.units.length; id++ ) {

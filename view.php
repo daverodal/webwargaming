@@ -44,8 +44,8 @@
     <div id="gameturnContainer">
         <div id="turn1">1</div>
         <div id="turn2">2</div>
-        <div id="turn3">3 <span class="storm">storm</span></div>
-        <div id="turn4">4 <span class="storm">storm</span></div>
+        <div id="turn3">3</div>
+        <div id="turn4">4</div>
         <div id="turn5">5</div>
         <div id="turn6">6</div>
         <div id="turn7">7</div>

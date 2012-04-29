@@ -452,7 +452,7 @@ echo "Past tehe fi";
                         $this->replacementsAvail = 1;
                     }
                     if($this->phase  == RED_REPLACEMENT_PHASE){
-                        $this->replacementsAvail = 10;
+                        $this->replacementsAvail = 3;
                     }
                     if ($this->turn > $this->maxTurn) {
                         $this->mode = GAME_OVER_MODE;
@@ -467,19 +467,6 @@ echo "Past tehe fi";
     function incrementTurn()
     {
         $this->turn++;
-        if($this->turn == 3){
-            $this->moveRules->storm = true;
-            $this->combatRules->storm = true;
-            $this->storm = true;
-        }
-        if($this->turn == 5){
-            $this->moveRules->storm = false;
-            $this->combatRules->storm = false;
-            $this->storm = false;
-        }
-        if($this->turn == 4){
-            $this->force->units[0]->status = STATUS_ELIMINATED;
-        }
     }
 
     function getInfo()

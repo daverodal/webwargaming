@@ -35,7 +35,6 @@ class CombatRules
     public $attackers;
     public $resolvedCombats;
     public $lastResolvedCombat;
-    public $storm;
 
     function save()
     {
@@ -59,7 +58,6 @@ class CombatRules
         } else {
             $this->combats = new StdClass();
             $this->currentDefender = false;
-            $this->storm = false;
         }
         $this->crt = new CombatResultsTable();
     }
@@ -180,9 +178,6 @@ function setCombatIndex($defenderId)
     $attackStrength = $this->force->getAttackerStrength($combats->attackers);
     $defenseStrength = $this->force->getDefenderStrength($defenderId);
 
-    if($this->storm){
-        $attackStrength /= 2.;
-    }
     $combatIndex = floor($attackStrength / $defenseStrength)-1;
 
     /* Do this before terrain effects */
