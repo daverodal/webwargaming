@@ -94,7 +94,7 @@
 
 </div>
 <div id="gameImages" >
-    <img id="map" alt="map" src="<?php echo base_url();?>js/martianCivilWar.png" style="position: relative;visibility: visible;z-index: 0;">
+    <img id="map" alt="map" src="<?php echo base_url();?>js/MartianCivilWar.png" style="position: relative;visibility: visible;z-index: 0;">
     <?php $id = 0;?>
     {units}
     <div  class="unit {class}" id="{id}" alt="0" style="position: absolute; left: 180px; top: 140px; z-index:100">
