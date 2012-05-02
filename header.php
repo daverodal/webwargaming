@@ -138,7 +138,15 @@
         border-width:1px;
     }
 
+    #content{
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        user-select:none;
+
+    }
     #map {
+        -webkit-user-select:none;
+
         width:1044px;
         height:850px;
         width:783px;
@@ -165,6 +173,7 @@
         /*text-indent:3px;*/
     font-size:<?=$unitFontSize?>;
     font-weight:bold;
+    -webkit-user-select:none;
         }
     .rebel div{
         color:green;
@@ -175,6 +184,11 @@
     .unit img {
         width:100%;
         height:100%;
+    }
+    .arrow{
+        position:absolute;
+        pointer-events:none;
+        z-index:102;
     }
 </style>
 <script>
@@ -296,9 +310,14 @@ x.register("force", function(force) {
     var units = force.units;
 
     var status = "";
+    var boxShadow;
     for (i in units) {
-        color = "transparent";
-        $("#"+i).css({zIndex: 100});
+        color = "#ccc #666 #666 #ccc";
+        $("#"+i + " .arrow").css({opacity: "0.0"});
+
+        boxShadow = "none";
+//        $("#"+i).css({zIndex: 100});
+
         switch(units[i].status){
             case <?=STATUS_CAN_REINFORCE?>:
                 if(units[i].forceId === force.attackingForceId && units[i].forceId == <?=BLUE_FORCE?>){
@@ -308,14 +327,16 @@ x.register("force", function(force) {
                 break;
            case 1:
                 if(units[i].forceId === force.attackingForceId){
+                    $("#"+i + " .arrow").css({opacity: "0.0"});
 
-                    color = "#1af";
+                    color = "turquoise";
                 }
                 break;
             case <?=STATUS_REINFORCING?>:
             case <?=STATUS_MOVING?>:
-                color = "orange";
-                $("#"+i).css({zIndex: 101});
+//                color = "orange";
+//                $("#"+i).css({zIndex: 101});
+                boxShadow = '5px 5px 5px #333';
 //               var top =  $("#"+i).css("top");
 //                var left =  $("#"+i).css("left");
 //                 $("#"+i).css({top:top-5});
@@ -326,14 +347,18 @@ x.register("force", function(force) {
 //                status += " "+units[i].moveAmountUsed+" MF's Used";
                 break;
             case 6:
-                color = "#666";
+                color = "#ccc #666 #666 #ccc";
                 break;
             case 8:
                 color = "orange";
+
                 break;
-            case 9:
             case <?=STATUS_BOMBARDING?>:
-                color = "DarkRed";
+
+            case 9:
+
+
+                color = "red";
                 break;
             case 13:
                 color = "purple";
@@ -362,7 +387,7 @@ x.register("force", function(force) {
                 case <?=STATUS_ELIMINATED?>:
                     if(units[i].forceId === force.attackingForceId){
 
-                color = "white";
+                color = "turquoise";
                     }
                 break;
 
@@ -370,6 +395,9 @@ x.register("force", function(force) {
         }
         $("#status").html(status);
         $("#"+i).css({borderColor: color});
+        $("#"+i).css({boxShadow: boxShadow});
+
+
 
     }
 });
@@ -388,7 +416,7 @@ x.register("combatRules", function(combatRules) {
             if(combatRules.combats && Object.keys(combatRules.combats).length > 0){
                 if(cD !== false){
                 $("#"+cD).css({borderColor: "yellow"});
-               if(Object.keys(combatRules.combats[cD].attackers).length != 0){
+                    if(Object.keys(combatRules.combats[cD].attackers).length != 0){
                     combatCol = combatRules.combats[cD].index + 1;
                    if(combatCol >= 1){
                     $(".col"+combatCol).css('background-color',"rgba(255,255,1,.6)");
@@ -406,6 +434,20 @@ x.register("combatRules", function(combatRules) {
 //                            str += " Die "+combatRules.combats[i].Die + " result "+combatRules.combats[i].combatResult;
 //                        }
                         if(combatRules.combats[i].index !== null){
+
+
+                            attackers = combatRules.combats[i].attackers;
+                            var theta = 0;
+                            for(var j in attackers){
+                                theta = attackers[j];
+                                theta *= 15;
+                                theta += 270;
+                                $("#"+j+ " .arrow").css({opacity: "1.0"});
+                                $("#"+j+ " .arrow").css({webkitTransform: 'rotate('+theta+"deg) translateX(20px)"});
+
+
+                            }
+
                             var atk = combatRules.combats[i].attackStrength;
                             var atkDisp = atk;
                             if(combatRules.storm){
@@ -435,8 +477,16 @@ x.register("combatRules", function(combatRules) {
                     }
                 if(cD !== false){
                     attackers = combatRules.combats[cD].attackers;
+                    var theta = 0;
                     for(var i in attackers){
+                                      theta = attackers[i];
+                        theta *= 15;
+                        theta += 270;
                         $("#"+i).css({borderColor: "crimson"});
+                        $("#"+i+ " .arrow").css({display: "block"});
+                        $("#"+i+ " .arrow").css({opacity: "1.0"});
+                        $("#"+i+ " .arrow").css({webkitTransform: 'scale(1.0,1.0) rotate('+theta+"deg) translateX(20px)"});
+
 
                     }
                 }
@@ -536,11 +586,11 @@ function doit() {
 });
 $("#mychat").attr("value", "");
 }
-function doitUnit(id) {
+function doitUnit(id, shift) {
     var mychat = $("#mychat").attr("value");
     $.ajax({url: "<?=site_url("wargame/poke");?>/",
         type: "POST",
-        data:{id:id,event : <?=SELECT_COUNTER_EVENT?>},
+        data:{id:id,event : shift ? <?=SELECT_SHIFT_COUNTER_EVENT?>:<?=SELECT_COUNTER_EVENT?>},
     success:function(data, textstatus) {
     }
 });
@@ -732,6 +782,7 @@ function mapMouseDown(event) {
 //}
 
 function counterMouseDown(event) {
+    var shiftKey = event.shiftKey;
     var id;
     if ( document.addEventListener ) {
        id = $(event.target).parent().attr("id");
@@ -741,7 +792,7 @@ function counterMouseDown(event) {
         id = event.srcElement.id.toString();
         alert("downdown");
     }
-    doitUnit(id);
+    doitUnit(id, shiftKey);
 }
 
 function nextPhaseMouseDown(event) {

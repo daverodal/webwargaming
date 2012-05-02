@@ -97,7 +97,8 @@
     <img id="map" alt="map" src="<?php echo base_url();?>js/MartianCivilWar.png" style="position: relative;visibility: visible;z-index: 0;">
     <?php $id = 0;?>
     {units}
-    <div  class="unit {class}" id="{id}" alt="0" style="position: absolute; left: 180px; top: 140px; z-index:100">
+    <div  class="unit {class}" id="{id}" alt="0" style="position: absolute; left: 180px; top: 140px;">
+        <img  class="arrow" src="<?php echo base_url();?>js/red_right_arrow.png" class="counter" >
         <img  src="<?php echo base_url();?>js/{image}" class="counter" >
         <div>5 - 4</div>
     </div>

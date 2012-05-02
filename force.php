@@ -340,6 +340,8 @@ class Force
         $this->deleteCount++;
         //alert("elim " + id + " at " + $this->eliminationTrayHexagonX + ", " + $this->eliminationTrayHexagonY);
         $this->units[$id]->status = STATUS_ELIMINATED;
+        $this->units[$id]->isReduced = true;
+        $this->units[$id]->strength =     $this->units[$id]->minStrength;
         $col = 0;
         if($this->units[$id]->forceId == 2){
 
@@ -617,13 +619,14 @@ class Force
         return $moreCombatToResolve;
     }
 
-    function recoverUnits($phase,$moveRules)
+    function recoverUnits($phase,$moveRules, $mode)
     {
         for ($id = 0; $id < count($this->units); $id++)
         {
             echo "revocer $id ".$this->units[$id]->status."\n";
             switch ($this->units[$id]->status)
             {
+                case STATUS_UNAVAIL_THIS_PHASE:
                 case STATUS_STOPPED:
                 case STATUS_DEFENDED:
                 case STATUS_DEFENDING:
@@ -653,6 +656,23 @@ class Force
                         if($this->units[$id]->forceId == $this->attackingForceId &&
                             $this->units[$id]->isReduced ){
                             $status = STATUS_CAN_UPGRADE;
+                        }
+                    }
+                    if($phase == BLUE_COMBAT_PHASE || $phase == RED_COMBAT_PHASE){
+                        if($mode == COMBAT_SETUP_MODE){
+                            $status = STATUS_UNAVAIL_THIS_PHASE;
+                            if($this->units[$id]->forceId == $this->attackingForceId &&
+                                $this->unitIsZOC($id,  $this->units[$id]->range )){
+                                $status = STATUS_READY;
+                            }
+                        }
+                        if($mode == COMBAT_RESOLUTION_MODE){
+                            $status = STATUS_UNAVAIL_THIS_PHASE;
+                            if($this->units[$id]->status == STATUS_ATTACKING ||
+                                $this->units[$id]->status == STATUS_DEFENDING){
+                                $status = $this->units[$id]->status;
+                            }
+
                         }
                     }
                     if($phase == RED_RAILROAD_PHASE) {
@@ -1098,7 +1118,7 @@ class Force
         return $isRetreating;
     }
 
-    function unitIsZOC($id)
+    function unitIsZOC($id, $range = 1)
     {
         $isZOC = false;
 
@@ -1109,7 +1129,7 @@ class Force
             for ($i = 0; $i < count($this->units); $i++)
             {
                 $los->setEndPoint($this->units[$i]->hexagon);
-                if ($los->getRange() == 1
+                if ($los->getRange() == $range
                     && $this->units[$i]->forceId != $this->units[$id]->forceId
                     && $this->units[$i]->status != STATUS_CAN_REINFORCE
                     && $this->units[$i]->status != STATUS_ELIMINATED

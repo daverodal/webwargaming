@@ -99,6 +99,7 @@ define("OVER_COUNTER_EVENT",3);
 define("SELECT_COUNTER_EVENT",4);
 define("OVER_BUTTON_EVENT",5);
 define("SELECT_BUTTON_EVENT",6);
+define("SELECT_SHIFT_COUNTER_EVENT",7);
 
 // event names
 $event_name = array();
@@ -148,6 +149,7 @@ define("STATUS_CAN_REPLACE",30);
 define("STATUS_CAN_UPGRADE",31);
 define("STATUS_CAN_ATTACK_LOSE",32);
 define("STATUS_BOMBARDING",33);
+define("STATUS_UNAVAIL_THIS_PHASE",34);
 
 
 // unit status names

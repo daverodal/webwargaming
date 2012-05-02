@@ -226,11 +226,14 @@ class GameRules {
 
 
             case COMBAT_SETUP_MODE:
-
+                       $shift = false;
                 switch ($event) {
 
+                    case SELECT_SHIFT_COUNTER_EVENT:
+                        $shift = true;
+                        /* fall through */
                     case SELECT_COUNTER_EVENT:
-                        $this->combatRules->setupCombat($id);
+                        $this->combatRules->setupCombat($id, $shift);
 
                         break;
 
@@ -238,6 +241,7 @@ class GameRules {
                         $this->combatRules->undoDefendersWithoutAttackers();
                         if ($this->gameHasCombatResolutionMode == true) {
                             $this->mode = COMBAT_RESOLUTION_MODE;
+                            $this->force->recoverUnits($this->phase,$this->moveRules,$this->mode);
                         } else {
                             $this->mode = COMBAT_SETUP_MODE;
                         }
@@ -445,7 +449,7 @@ echo "Past tehe fi";
                     }
 
                     $this->force->setAttackingForceId($this->attackingForceId);
-                    $this->force->recoverUnits($this->phase,$this->moveRules);
+                    $this->force->recoverUnits($this->phase,$this->moveRules, $this->mode);
 
                     $this->replacementsAvail = false;
                     if($this->phase  == BLUE_REPLACEMENT_PHASE){
