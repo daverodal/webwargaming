@@ -2,16 +2,17 @@
 <fieldset style="float:right;"><legend>Comlink</legend><div id="comlink"></div></fieldset>
 <h1>Welcome {user} To the <span style="font-style: italic;">&ldquo;{wargame}&rdquo;"</span></h1>
 <div style="clear:both"></div>
-{lobbies}
-<a href="<?=site_url("wargame/changeWargame");?>/{id}/1">{name} As Blue</a>
-<a href="<?=site_url("wargame/changeWargame");?>/{id}/2">{name}As Red</a>
-{/lobbies}
-<a href="<?=site_url("wargame/resize/0");?>">BIG</a>
-<a href="<?=site_url("wargame/resize/1");?>">small</a>
+<a href="<?=site_url("wargame/changeWargame/{wargame}/1");?>">As Blue</a>
+<a href="<?=site_url("wargame/changeWargame/{wargame}/2");?>">As REd</a>
+<a href="<?=site_url("wargame/leaveGame");?>">Go To Lobby</a>
+
 <a href="<?=site_url("wargame/createWargame");?>">Create Wargame</a>
 <a href="<?=site_url("wargame/logout");?>">logout</a>
-<a href="<?=site_url("wargame/unitInit/BattleForAllenCreek");?>">New Game</a>
-<a href="<?=site_url("wargame/unitInit");?>">New Battle Of Moscow</a>
+<a href="<?=site_url("wargame/unitInit/BattleForAllenCreek");?>">Nuke This Game</a>
+
+{games}
+<a href="<?=site_url("wargame/unitInit/{name}");?>">{name}</a>
+{/games}<!--<a href="--><?//=site_url("wargame/resize/0");?><!--">BIG</a>-->
 <a href="#" onclick="seeUnits();return false;">See Units</a>
 <a href="#" onclick="seeBoth();return false;">See Both</a>
 <a href="#" onclick="seeMap();return false;">See Map</a>
