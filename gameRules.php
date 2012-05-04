@@ -238,6 +238,7 @@ class GameRules {
                         $this->combatRules->undoDefendersWithoutAttackers();
                         if ($this->gameHasCombatResolutionMode == true) {
                             $this->mode = COMBAT_RESOLUTION_MODE;
+                            $this->force->recoverUnits($this->phase,$this->moveRules,$this->mode);
                         } else {
                             $this->mode = COMBAT_SETUP_MODE;
                         }
@@ -255,7 +256,6 @@ class GameRules {
                         if ($this->force->unitsAreBeingEliminated() == true) {
                             $this->force->removeEliminatingUnits();
                         }
-echo "About TO";
                         if ($this->force->unitsAreExchanging() == true) {
                             echo "EXCHANGINGMODE!!!!";
                             $this->mode = EXCHANGING_MODE;
@@ -445,7 +445,7 @@ echo "Past tehe fi";
                     }
 
                     $this->force->setAttackingForceId($this->attackingForceId);
-                    $this->force->recoverUnits($this->phase,$this->moveRules);
+                    $this->force->recoverUnits($this->phase,$this->moveRules, $this->mode);
 
                     $this->replacementsAvail = false;
                     if($this->phase  == BLUE_REPLACEMENT_PHASE){
@@ -467,18 +467,41 @@ echo "Past tehe fi";
     function incrementTurn()
     {
         $this->turn++;
-        if($this->turn == 3){
-            $this->moveRules->storm = true;
-            $this->combatRules->storm = true;
-            $this->storm = true;
+//        if($this->turn == 3){
+//            $this->moveRules->storm = true;
+//            $this->combatRules->storm = true;
+//            $this->storm = true;
+//        }
+//        if($this->turn == 5){
+//            $this->moveRules->storm = false;
+//            $this->combatRules->storm = false;
+//            $this->storm = false;
+//        }
+        if($this->turn == 2){
+            $this->force->units[13]->status = STATUS_ELIMINATED;
+            $this->force->units[14]->status = STATUS_ELIMINATED;
+            $this->force->units[13]->hexagon->parent = "deadpile";/* TODO OO HEX STUFF */
+            $this->force->units[14]->hexagon->parent = "deadpile";
         }
-        if($this->turn == 5){
-            $this->moveRules->storm = false;
-            $this->combatRules->storm = false;
-            $this->storm = false;
+        if($this->turn == 3){
+            $this->force->units[15]->status = STATUS_ELIMINATED;
+            $this->force->units[16]->status = STATUS_ELIMINATED;
+            $this->force->units[17]->status = STATUS_ELIMINATED;
+            $this->force->units[15]->hexagon->parent = "deadpile";/* TODO OO HEX STUFF */
+            $this->force->units[16]->hexagon->parent = "deadpile";
+            $this->force->units[17]->hexagon->parent = "deadpile";
         }
         if($this->turn == 4){
-            $this->force->units[0]->status = STATUS_ELIMINATED;
+            $this->force->units[18]->status = STATUS_ELIMINATED;
+            $this->force->units[19]->status = STATUS_ELIMINATED;
+            $this->force->units[18]->hexagon->parent = "deadpile";/* TODO OO HEX STUFF */
+            $this->force->units[19]->hexagon->parent = "deadpile";
+        }
+        if($this->turn == 5){
+            $this->force->units[20]->status = STATUS_ELIMINATED;
+            $this->force->units[21]->status = STATUS_ELIMINATED;
+            $this->force->units[20]->hexagon->parent = "deadpile";/* TODO OO HEX STUFF */
+            $this->force->units[21]->hexagon->parent = "deadpile";
         }
     }
 

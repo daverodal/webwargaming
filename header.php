@@ -92,16 +92,16 @@
         width:32px;
     }
     #gameImages{
-        float:left;
-        margin-left:50px;
         position: relative;
         border:10px solid #1af;
         border-radius:10px;
-        height:425px;
     }
     #leftcol {
         float:left;
         width:360px;
+    }
+    #rightCol{
+        float:right;
     }
     #gameturnContainer{
         height:38px;
@@ -123,22 +123,28 @@
     #gameturnContainer #turn1{
         border-width:1px;
     }
-    #gameturnContainer #turnCounter{
-        position:absolute;
-        z-index:20;
+    #turnCounter{
         width:32px;
         height:32px;
-        color:black;
-        background-color:rgb(101,200,85);
         font-size:11px;
         text-indent:0px;
         top:2px;
         left:2px;
         text-align:center;
-        border-width:1px;
+        border:2px solid;
+        border-color:#ccc #666 #666 #ccc;
+
     }
 
+    #content{
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        user-select:none;
+
+    }
     #map {
+        -webkit-user-select:none;
+
         width:1044px;
         height:850px;
         width:783px;
@@ -148,11 +154,34 @@
         /*width:787px;*/
         /*height:481px;*/
         }
+    #gameImages {
+        width:<?=$mapWidth;?>;/*really*/
+        height:<?=$mapHeight;?>;
+    }
+    #deadpile{
+        border-radius:20px;
+        border:10px solid #ffffff;
+        height:100px;
+        background:#333;
+    }
+    #deployBox{
+        border-radius:20px;
+        border:10px solid #ffffff;
+        height:40px;
+        background:#333;
+        padding:4px 10px 0px 3px;
+        text-align:right;
+        font-family:sans-serif;
+        font-size:1.2em;
+        color:white;
+    }
     .unit{
         width:64px;
         height:64px;
         width:48px;
         height:49px;
+        position:absolute;
+        left:0;top:0;
     width:<?=$unitSize?>;
     height:<?=$unitSize?>;
         /*width:32px;*/
@@ -165,6 +194,7 @@
         /*text-indent:3px;*/
     font-size:<?=$unitFontSize?>;
     font-weight:bold;
+    -webkit-user-select:none;
         }
     .rebel div{
         color:green;
@@ -175,6 +205,11 @@
     .unit img {
         width:100%;
         height:100%;
+    }
+    .arrow{
+        position:absolute;
+        pointer-events:none;
+        z-index:102;
     }
 </style>
 <script>
@@ -198,8 +233,11 @@ x.register("users", function(users) {
 });
 x.register("gameRules", function(gameRules) {
     turn = gameRules.turn;
-    var pix = turn  + (turn - 1) * 36 + 1;
-    $("#turnCounter").css("left",pix+"px");
+    if("gameTurn"+turn != $("#turnCounter").parent().attr("id")){
+        $("#gameTurn"+turn).prepend($("#turnCounter"));
+    }
+
+        var pix = turn  + (turn - 1) * 36 + 1;
     if(gameRules.attackingForceId == 1){
         $("#turnCounter").css("background","rgb(0,128,0)");
         $("#turnCounter").css("color","white");
@@ -263,8 +301,27 @@ x.register("mapUnits", function(mapUnits) {
         if(isStacked[x][y]++){
             fudge = isStacked[x][y] * 2;
         }
+        if(mapUnits[i].parent != $("#"+i).parent().attr("id")){
+//            p = $("#"+i).degametatch()
+                $("#"+i).appendTo($("#"+mapUnits[i].parent));
+            if(mapUnits[i].parent != "gameImages"){
+                $("#"+ i).css({float:"left"});
+                $("#"+ i).css({position:"static"});
+            }  else{
+                $("#"+ i).css({float:"none"});
+                $("#"+ i).css({position:"absolute"});
 
-         $("#"+i).css({left: -1+mapUnits[i].x-width/2-fudge+"px",top:-1+mapUnits[i].y-height/2-fudge+"px"});
+            }
+
+//
+//            alert(mapUnits[i].parent);
+//            alert($("#"+i).parent().attr("id"));
+
+        }
+        if(mapUnits[i].parent == "gameImages"){
+
+            $("#"+i).css({left: -1+mapUnits[i].x-width/2-fudge+"px",top:-1+mapUnits[i].y-height/2-fudge+"px"});
+        }
         var img = $("#"+i+" img").attr("src");
         if(mapUnits[i].isReduced){
             img = img.replace(/(.*[0-9])(\.png)/,"$1reduced.png");
@@ -273,10 +330,16 @@ x.register("mapUnits", function(mapUnits) {
         }
         var  move = mapUnits[i].maxMove - mapUnits[i].moveAmountUsed;
         var str = mapUnits[i].strength;
-        $("#"+i+" div").html(str + " - "+move);
+        var symb = mapUnits[i].isReduced ? " &#189; " : " - ";
+        $("#"+i+" div").html(str + symb + move);
         $("#"+i).attr("src",img);
 
     }
+    var dpBox = $("#deployBox").children().size();
+    if(dpBox == 0){
+        $("#deployBox").hide();
+    }
+
 });
 x.register("moveRules", function(moveRules) {
     var str;
@@ -295,9 +358,14 @@ x.register("force", function(force) {
     var units = force.units;
 
     var status = "";
+    var boxShadow;
     for (i in units) {
-        color = "transparent";
-        $("#"+i).css({zIndex: 100});
+        color = "#ccc #666 #666 #ccc";
+        $("#"+i + " .arrow").css({opacity: "0.0"});
+
+        boxShadow = "none";
+//        $("#"+i).css({zIndex: 100});
+
         switch(units[i].status){
             case <?=STATUS_CAN_REINFORCE?>:
                 if(units[i].forceId === force.attackingForceId && units[i].forceId == <?=BLUE_FORCE?>){
@@ -307,14 +375,16 @@ x.register("force", function(force) {
                 break;
            case 1:
                 if(units[i].forceId === force.attackingForceId){
+                    $("#"+i + " .arrow").css({opacity: "0.0"});
 
-                    color = "#1af";
+                    color = "turquoise";
                 }
                 break;
             case <?=STATUS_REINFORCING?>:
             case <?=STATUS_MOVING?>:
                 color = "orange";
-                $("#"+i).css({zIndex: 101});
+//                $("#"+i).css({zIndex: 101});
+                boxShadow = '5px 5px 5px #333';
 //               var top =  $("#"+i).css("top");
 //                var left =  $("#"+i).css("left");
 //                 $("#"+i).css({top:top-5});
@@ -325,14 +395,18 @@ x.register("force", function(force) {
 //                status += " "+units[i].moveAmountUsed+" MF's Used";
                 break;
             case 6:
-                color = "#666";
+                color = "#ccc #666 #666 #ccc";
                 break;
             case 8:
                 color = "orange";
+
                 break;
-            case 9:
             case <?=STATUS_BOMBARDING?>:
-                color = "DarkRed";
+
+            case 9:
+
+
+//                color = "red";
                 break;
             case 13:
                 color = "purple";
@@ -361,7 +435,7 @@ x.register("force", function(force) {
                 case <?=STATUS_ELIMINATED?>:
                     if(units[i].forceId === force.attackingForceId){
 
-                color = "white";
+                color = "turquoise";
                     }
                 break;
 
@@ -369,6 +443,9 @@ x.register("force", function(force) {
         }
         $("#status").html(status);
         $("#"+i).css({borderColor: color});
+        $("#"+i).css({boxShadow: boxShadow});
+
+
 
     }
 });
@@ -387,7 +464,7 @@ x.register("combatRules", function(combatRules) {
             if(combatRules.combats && Object.keys(combatRules.combats).length > 0){
                 if(cD !== false){
                 $("#"+cD).css({borderColor: "yellow"});
-               if(Object.keys(combatRules.combats[cD].attackers).length != 0){
+                    if(Object.keys(combatRules.combats[cD].attackers).length != 0){
                     combatCol = combatRules.combats[cD].index + 1;
                    if(combatCol >= 1){
                     $(".col"+combatCol).css('background-color',"rgba(255,255,1,.6)");
@@ -405,6 +482,20 @@ x.register("combatRules", function(combatRules) {
 //                            str += " Die "+combatRules.combats[i].Die + " result "+combatRules.combats[i].combatResult;
 //                        }
                         if(combatRules.combats[i].index !== null){
+
+
+                            attackers = combatRules.combats[i].attackers;
+                            var theta = 0;
+                            for(var j in attackers){
+                                theta = attackers[j];
+                                theta *= 15;
+                                theta += 180;
+                                $("#"+j+ " .arrow").css({opacity: "1.0"});
+                                $("#"+j+ " .arrow").css({webkitTransform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
+
+
+                            }
+
                             var atk = combatRules.combats[i].attackStrength;
                             var atkDisp = atk;
                             if(combatRules.storm){
@@ -434,8 +525,16 @@ x.register("combatRules", function(combatRules) {
                     }
                 if(cD !== false){
                     attackers = combatRules.combats[cD].attackers;
+                    var theta = 0;
                     for(var i in attackers){
-                        $("#"+i).css({borderColor: "crimson"});
+                                      theta = attackers[i];
+                        theta *= 15;
+                        theta += 180;
+//                        $("#"+i).css({borderColor: "crimson"});
+                        $("#"+i+ " .arrow").css({display: "block"});
+                        $("#"+i+ " .arrow").css({opacity: "1.0"});
+                        $("#"+i+ " .arrow").css({webkitTransform: 'scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
+
 
                     }
                 }

@@ -42,6 +42,9 @@ class MartianCivilWar extends Battle {
     static function getView(){
         @include_once "view.php";
     }
+    static function playAs($wargame){
+        @include_once "playAs.php";
+    }
     function save()
     {
         $data = new stdClass();
@@ -109,8 +112,8 @@ class MartianCivilWar extends Battle {
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = array("","","");
             for($player = 0;$player <= 2;$player++){
-            $this->playerData->${player}->mapWidth = "787px";
-            $this->playerData->${player}->mapHeight = "481px";
+            $this->playerData->${player}->mapWidth = "744px";
+            $this->playerData->${player}->mapHeight = "425px";
             $this->playerData->${player}->unitSize = "32px";
             $this->playerData->${player}->unitFontSize = "12px";
             $this->playerData->${player}->unitMargin = "-21px";
@@ -129,17 +132,17 @@ class MartianCivilWar extends Battle {
 //                18, 36, // hexagon edge width, hexagon center width
 //                1410, 1410 // max right hexagon, max bottom hexagon
 //            );
-            $this->mapData[0]->setData(44,58, // originX, originY
+            $this->mapData[0]->setData(44,60, // originX, originY
                 20, 20, // top hexagon height, bottom hexagon height
                 12, 24, // hexagon edge width, hexagon center width
                 2010, 2010 // max right hexagon, max bottom hexagon
             );
-            $this->mapData[1]->setData(44,58, // originX, originY
+            $this->mapData[1]->setData(44,60, // originX, originY
                 20, 20, // top hexagon height, bottom hexagon height
                 12, 24, // hexagon edge width, hexagon center width
                 2010, 2010 // max right hexagon, max bottom hexagon
             );
-            $this->mapData[2]->setData(44,58, // originX, originY
+            $this->mapData[2]->setData(44,60, // originX, originY
                 20, 20, // top hexagon height, bottom hexagon height
                 12, 24, // hexagon edge width, hexagon center width
                 2010, 2010 // max right hexagon, max bottom hexagon
@@ -147,63 +150,69 @@ class MartianCivilWar extends Battle {
 
             // game data
             $this->gameRules->setMaxTurn(7);
-            $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_PANZER_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_PANZER_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_PANZER_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE,RED_REPLACEMENT_PHASE , REPLACING_MODE, RED_FORCE, BLUE_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_RAILROAD_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_RAILROAD_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MOVE_PHASE , MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_MOVE_PHASE,BLUE_REPLACEMENT_PHASE, REPLACING_MODE, BLUE_FORCE, RED_FORCE, true);
+            $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, BLUE_MECH_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_MECH_PHASE,RED_REPLACEMENT_PHASE , REPLACING_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MECH_PHASE , MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_MECH_PHASE,BLUE_REPLACEMENT_PHASE, REPLACING_MODE, BLUE_FORCE, RED_FORCE, true);
 
             // force data
             //$this->force->setEliminationTrayXY(900);
 
             // unit data -----------------------------------------------
             //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
-            $this->force->addUnit("Shock Arm-1", RED_FORCE, 2100, "loyalInf.png", 10, 5, 4, true, STATUS_CAN_REINFORCE, "B", 1, 1, "loyalist");
 
-            for($i = 1;$i<= 4;$i++){
-                $this->force->addUnit("infantry-1", RED_FORCE, 300+$i, "loyalInf.png", 8, 4, 4, true, STATUS_READY, "R", 1, 1, "loyalist");
-
-            }
-            for($i = 4;$i<= 10;$i++){
-                $this->force->addUnit("infantry-1", RED_FORCE, 500+$i, "loyalInf.png",8, 4, 4, true, STATUS_READY, "R", 1, 1, "loyalist");
+            for($i = 1;$i<= 10;$i+=2){
+                $this->force->addUnit("infantry-1", RED_FORCE, 500+$i, "loyalInf.png", 8, 4, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
 
             }
-            $this->force->addUnit("infantry-1", RED_FORCE, 803, "loyalInf.png",8, 4, 4, true, STATUS_READY, "R", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, 405, "loyalInf.png",8, 4, 4, true, STATUS_READY, "R", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, 2204, "loyalInf.png",8, 4, 4, true, STATUS_ELIMINATED, "R", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, 2205, "loyalInf.png",8, 4, 4, true, STATUS_ELIMINATED, "R", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, 2206, "loyalInf.png",8, 4, 4, true, STATUS_ELIMINATED, "R", 1, 1, "loyalist");
+            for($i = 7;$i<=10;$i+=2){
+                $this->force->addUnit("infantry-1", RED_FORCE, 1000+$i, "loyalInf.png",8, 4, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
+
+            }
+            $this->force->addUnit("infantry-1", RED_FORCE, 1107, "loyalInf.png",8, 4, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1206, "loyalInf.png",8, 4, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1405, "loyalInf.png",8, 4, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1501, "loyalInf.png",8, 4, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1504, "loyalInf.png",8, 4, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1505, "loyalInf.png",8, 4, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
+
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "loyalArmor.png",15, 7, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "loyalArmor.png",15, 7, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "loyalMech.png",18, 9, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "loyalMech.png",18, 9, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "loyalMech.png",18, 9, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "loyalMech.png",18, 9, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "loyalMech.png",18, 9, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
+             $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "loyalArmor.png",15, 7, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "loyalArmor.png",15, 7, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
 
 
-            $i = 0;
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelMotInf.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelCav.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelCav.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelArt.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelMotInf.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelMotInf.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelMotInf.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelMotInf.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelMotInf.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelMotInf.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelMotInf.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelMotInf.png", 12, 6, 6, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-$j = $i;
+            $i = 1;
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelArmor.png", 24, 12, 6, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelArmor.png", 24, 12, 6, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelArmor.png", 24, 12, 6, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelArmor.png", 22, 1, 6, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelMech.png", 16, 8, 6, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelMech.png", 16, 8, 6, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelMech.png", 16, 8, 6, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sympthInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sympthInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sympthInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sympthInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
+            $j = $i;
             $i=0;
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "sympthInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "sympthInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "sympthInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "sympthInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "sympthInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "sympthInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "sympthInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "sympthInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "sympthInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "sympthInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
+            $j=11;
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sympthInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sympthInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sympthInf.png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sympthInf.png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sympthInf.png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sympthInf.png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
 
              // end unit data -------------------------------------------
 
@@ -220,17 +229,21 @@ $j = $i;
             $this->terrain->addTerrainFeature("river", "Martian River", "v", 1, 0, 1, false);
             $this->terrain->addTerrainFeature("newrichmond", "New Richmond", "m", 0, 0, 1, false);
             $this->terrain->addTerrainFeature("eastedge", "East Edge", "m", 0, 0, 0, false);
-            $this->terrain->addReinforceZone("101","B");
 
 
             $deployZones = array(103,104,106,107,201,202,203,204,205,206,209,210,305,306,307,309,310,406,407,408,409,410);
             for($i = 1;$i <= 10;$i++){
                 for($j= 1; $j<=2;$j++){
-                    $this->terrain->addReinforceZone($j*100 + $i,"B");
+                    $this->terrain->addReinforceZone($j*100 + $i,"R");
 
                 }
             }
-               for($col = 100; $col <= 2000; $col += 100){
+            for($i = 6;$i <= 10;$i++){
+                    $this->terrain->addReinforceZone(300 + $i,"R");
+
+            }
+
+            for($col = 100; $col <= 2000; $col += 100){
                 for($row = 1; $row <= 10;$row++){
                     $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");

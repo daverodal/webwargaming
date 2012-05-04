@@ -17,6 +17,7 @@ class Hexagon {
 	public $name;
 	public $minX, $minY;
 	public $maxX, $maxY;
+    public $parent = "gameImages";
 
 
     function __construct($a1 = false, $a2 = false){
@@ -32,8 +33,12 @@ class Hexagon {
 
         // Hexagon(name)
         if ( $a1 !== false && $a2 === false ) {
-
+          if(preg_match("/^[a-z]/",$a1)){
+              $this->name = "0000";
+              $this->parent = $a1;
+          }  else{
             $this->name = $a1;
+          }
             $this->number = intVal($this->name, 10);
             $this->calculateHexpartXY();
             $this->calculateHexagonName();
@@ -49,6 +54,9 @@ class Hexagon {
         }
     }
 
+    function getParent(){
+        return $this->parent;
+    }
 function setNumber($number )
 {
 	$this->number = $number;
@@ -56,7 +64,7 @@ function setNumber($number )
 	$this->calculateHexagonName();
 }
 
-function setName( $name )
+private function setName( $name )
 {
 	$this->name = $name;
 	$this->number = parseInt($this->name, 10);
@@ -72,7 +80,7 @@ function setXY( $x, $y ) {
 	$this->calculateHexagonName();
 }
 
-function calculateHexagonNumber()
+private function calculateHexagonNumber()
 {
   	$x = ( ($this->x - $this->minX ) / 2 ) + 1;
 
@@ -85,7 +93,7 @@ function calculateHexagonNumber()
   	$this->number = $x * 100 + $y;
 }
 
-function calculateHexpartXY() {
+private function calculateHexpartXY() {
 
 
  	$x = floor( $this->number / 100 );
@@ -103,7 +111,7 @@ function calculateHexpartXY() {
 	$this->x = 2 * ( $x - 1 ) + $this->minX;
 }
 
-function parseX($number) {
+private function parseX($number) {
 
 
 	$x = floor($number / 100);
@@ -112,7 +120,7 @@ function parseX($number) {
 	return $x;
 }
 
-function parseY($number) {
+private function parseY($number) {
 
 
 	$x = floor(number / 100);
@@ -132,7 +140,7 @@ function parseY($number) {
 	return $y;
 }
 
-function calculateHexagonName() {
+private function calculateHexagonName() {
 
     $this->name = "";
     
@@ -147,7 +155,7 @@ function calculateHexagonName() {
     }
 }
 
-function equals($hexagon) {
+function equals(Hexagon $hexagon) {
 
 	$isEqual = false;
 	
@@ -159,7 +167,7 @@ function equals($hexagon) {
 	return $isEqual;
 }
 
-function getAdjacentHexagon( $direction ) {
+private function getAdjacentHexagon( $direction ) {
 
 	// direction 1=N, 2=NE, 3=SE, 4=S, 5=SW, 6=NW
 	$adjX = array( 0,  0,  2,  2,  0, -2, -2 );

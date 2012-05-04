@@ -105,9 +105,10 @@ class CombatRules
             $los->setOrigin($this->force->getUnitHexagon($id));
             $los->setEndPoint($this->force->getUnitHexagon($this->currentDefender));
             $range = $los->getRange();
+            $bearing = $los->getBearing();
             if ($range <= $this->force->getUnitRange($id))
             {
-                if ($this->combats->${cd}->attackers->$id === true && $this->attackers->$id === $cd)
+                if ($this->combats->${cd}->attackers->$id !== false && $this->attackers->$id === $cd)
                 {
                     $this->force->undoAttackerSetup($id);
                     unset($this->attackers->${id});
@@ -124,7 +125,7 @@ class CombatRules
                         $this->setCombatIndex($oldCd);
                     }
                     $this->attackers->${id} = $cd;
-                    $this->combats->${cd}->attackers->$id = true;
+                    $this->combats->${cd}->attackers->$id = $bearing;
                     $this->setCombatIndex($cd);
                 }
             }
