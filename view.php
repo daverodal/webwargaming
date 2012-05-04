@@ -3,8 +3,7 @@
     <legend>Comlink</legend>
     <div id="comlink"></div>
 </fieldset>
-<h1>Welcome {user} To the The Martian Civil War<span style="font-style: italic;">&ldquo;{wargame}&rdquo;"</span></h1>
-
+<h2>Welcome {user} to <span style="font-family:Nosifer;">The Martian Civil War</span><span style="font-style: italic;">&ldquo;{wargame}&rdquo;</span></h2>
 <div style="clear:both"></div>
 <a href="<?=site_url("wargame/changeWargame/{wargame}/1");?>">As Rebel</a>
 <a href="<?=site_url("wargame/changeWargame/{wargame}/2");?>">As Loyalist</a>
