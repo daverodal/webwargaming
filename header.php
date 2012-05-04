@@ -313,6 +313,8 @@ x.register("force", function(force) {
     var boxShadow;
     for (i in units) {
         color = "#ccc #666 #666 #ccc";
+        $("#"+i).css({zIndex:0});;
+
         $("#"+i + " .arrow").css({opacity: "0.0"});
 
         boxShadow = "none";
@@ -334,9 +336,10 @@ x.register("force", function(force) {
                 break;
             case <?=STATUS_REINFORCING?>:
             case <?=STATUS_MOVING?>:
-//                color = "orange";
+                color = "orange";
 //                $("#"+i).css({zIndex: 101});
                 boxShadow = '5px 5px 5px #333';
+                $("#"+i).css({zIndex:101});;
 //               var top =  $("#"+i).css("top");
 //                var left =  $("#"+i).css("left");
 //                 $("#"+i).css({top:top-5});
@@ -348,6 +351,8 @@ x.register("force", function(force) {
                 break;
             case 6:
                 color = "#ccc #666 #666 #ccc";
+                $("#"+i).css({zIndex:0});;
+
                 break;
             case 8:
                 color = "orange";
@@ -358,7 +363,7 @@ x.register("force", function(force) {
             case 9:
 
 
-                color = "red";
+//                color = "red";
                 break;
             case 13:
                 color = "purple";
@@ -442,6 +447,8 @@ x.register("combatRules", function(combatRules) {
                                 theta = attackers[j];
                                 theta *= 15;
                                 theta += 270;
+                                $("#"+j).css({zIndex: "1"});
+
                                 $("#"+j+ " .arrow").css({opacity: "1.0"});
                                 $("#"+j+ " .arrow").css({webkitTransform: 'rotate('+theta+"deg) translateX(20px)"});
 
@@ -482,8 +489,8 @@ x.register("combatRules", function(combatRules) {
                                       theta = attackers[i];
                         theta *= 15;
                         theta += 270;
-                        $("#"+i).css({borderColor: "crimson"});
-                        $("#"+i+ " .arrow").css({display: "block"});
+//                        $("#"+i).css({borderColor: "crimson"});
+//                        $("#"+i).css({borderColor: "crimson"});
                         $("#"+i+ " .arrow").css({opacity: "1.0"});
                         $("#"+i+ " .arrow").css({webkitTransform: 'scale(1.0,1.0) rotate('+theta+"deg) translateX(20px)"});
 

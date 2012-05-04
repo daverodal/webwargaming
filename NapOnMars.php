@@ -39,6 +39,10 @@ class NapOnMars extends Battle {
         }
         @include_once "header.php";
     }
+    static function playAs($wargame){
+        @include_once "playAs.php";
+    }
+
     static function getView(){
         @include_once "view.php";
     }
