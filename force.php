@@ -95,6 +95,7 @@ class unit
             foreach($data as $k => $v){
                 if($k == "hexagon"){
                     $this->hexagon = new Hexagon($v->number);
+                    $this->hexagon->parent = $v->parent; /* OBJECT ORIENTED!!!!! FOREVER!!! */
                     continue;
                 }
                 $this->$k = $v;
@@ -348,6 +349,7 @@ class Force
             $col = 2100 + floor($id / 10) * 100;
         }
         $this->units[$id]->hexagon = new Hexagon($col+$id%10);
+        $this->units[$id]->hexagon->parent = "deadpile";
 //        $this->units[$id]->hexagon->setXY($this->eliminationTrayHexagonX + (2 * $this->deleteCount), $this->eliminationTrayHexagonY);
     }
 
@@ -647,7 +649,11 @@ class Force
 
 
                     $status = STATUS_READY;
-                    if($phase == BLUE_PANZER_PHASE && $this->units[$id]->forceId == BLUE_FORCE && $this->units[$id]->maxMove < 6){
+                    if($phase == BLUE_MECH_PHASE && $this->units[$id]->forceId == BLUE_FORCE && $this->units[$id]->maxMove < 6){
+                        echo "hold it bub";
+                        $status = STATUS_STOPPED;
+                    }
+                    if($phase == RED_MECH_PHASE && $this->units[$id]->forceId == RED_FORCE && $this->units[$id]->maxMove < 6){
                         echo "hold it bub";
                         $status = STATUS_STOPPED;
                     }

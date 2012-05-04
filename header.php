@@ -1,3 +1,4 @@
+<link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
 <style type="text/css">
     body{
         background:#eee;
@@ -12,6 +13,12 @@
     fieldset{
         background:white;
         border-radius:9px;
+    }
+    .left{
+        float:left;
+    }
+    .right{
+        float:right;
     }
     #crt{
         border-radius:15px;
@@ -92,16 +99,22 @@
         width:32px;
     }
     #gameImages{
-        float:left;
-        margin-left:50px;
         position: relative;
-        border:10px solid #1af;
+    }
+    #gameViewer{
+        border:10px solid #555;
         border-radius:10px;
-        height:425px;
+        overflow:hidden;
+        background:#620;
+        margin-bottom:5px;
     }
     #leftcol {
         float:left;
         width:360px;
+    }
+    #rightCol{
+        /*float:right;*/
+        overflow:hidden;
     }
     #gameturnContainer{
         height:38px;
@@ -123,19 +136,17 @@
     #gameturnContainer #turn1{
         border-width:1px;
     }
-    #gameturnContainer #turnCounter{
-        position:absolute;
-        z-index:20;
+    #turnCounter{
         width:32px;
         height:32px;
-        color:black;
-        background-color:rgb(101,200,85);
         font-size:11px;
         text-indent:0px;
         top:2px;
         left:2px;
         text-align:center;
-        border-width:1px;
+        border:2px solid;
+        border-color:#ccc #666 #666 #ccc;
+
     }
 
     #content{
@@ -156,11 +167,38 @@
         /*width:787px;*/
         /*height:481px;*/
         }
+    #gameImages {
+        width:<?=$mapWidth;?>;/*really*/
+        height:<?=$mapHeight;?>;
+    }
+    #deadpile{
+        border-radius:10px;
+        border:10px solid #555;
+        height:100px;
+        background:#333;
+        overflow:hidden;
+    }
+    #deployBox{
+        position:relative;
+    }
+    #deployWrapper{
+        padding:4px 7px 4px 7px;
+        text-align:left;
+        font-family:sans-serif;
+        font-size:1.2em;
+        color:white;
+        border-radius:10px;
+        border:10px solid #555;
+        background:#333;
+        margin-bottom:5px;
+    }
     .unit{
         width:64px;
         height:64px;
         width:48px;
         height:49px;
+        position:absolute;
+        left:0;top:0;
     width:<?=$unitSize?>;
     height:<?=$unitSize?>;
         /*width:32px;*/
@@ -212,8 +250,11 @@ x.register("users", function(users) {
 });
 x.register("gameRules", function(gameRules) {
     turn = gameRules.turn;
-    var pix = turn  + (turn - 1) * 36 + 1;
-    $("#turnCounter").css("left",pix+"px");
+    if("gameTurn"+turn != $("#turnCounter").parent().attr("id")){
+        $("#gameTurn"+turn).prepend($("#turnCounter"));
+    }
+
+        var pix = turn  + (turn - 1) * 36 + 1;
     if(gameRules.attackingForceId == 1){
         $("#turnCounter").css("background","rgb(0,128,0)");
         $("#turnCounter").css("color","white");
@@ -277,8 +318,24 @@ x.register("mapUnits", function(mapUnits) {
         if(isStacked[x][y]++){
             fudge = isStacked[x][y] * 2;
         }
+        if(mapUnits[i].parent != $("#"+i).parent().attr("id")){
+                $("#"+i).appendTo($("#"+mapUnits[i].parent));
+            if(mapUnits[i].parent != "gameImages"){
+                $("#"+ i).css({top:"0"});
+                $("#"+ i).css({left:"0"});
+                $("#"+ i).css({position:"static"});
+                $("#"+ i).css({float:"left"});
+            }  else{
+                $("#"+ i).css({float:"none"});
+                $("#"+ i).css({position:"absolute"});
 
-         $("#"+i).css({left: -1+mapUnits[i].x-width/2-fudge+"px",top:-1+mapUnits[i].y-height/2-fudge+"px"});
+            }
+
+        }
+        if(mapUnits[i].parent == "gameImages"){
+
+            $("#"+i).css({left: -1+mapUnits[i].x-width/2-fudge+"px",top:-1+mapUnits[i].y-height/2-fudge+"px"});
+        }
         var img = $("#"+i+" img").attr("src");
         if(mapUnits[i].isReduced){
             img = img.replace(/(.*[0-9])(\.png)/,"$1reduced.png");
@@ -292,13 +349,17 @@ x.register("mapUnits", function(mapUnits) {
         $("#"+i).attr("src",img);
 
     }
+    var dpBox = $("#deployBox").children().size();
+    if(dpBox == 0){
+        $("#deployWrapper").hide();
+    }
+
 });
 x.register("moveRules", function(moveRules) {
     var str;
     $("#status").html("");
     if(moveRules.movingUnitId){
         $("#status").html("Unit #:"+moveRules.movingUnitId+" is currently moving");
-//            alert($("#"+moveRules.movingUnitId).css('opacity',.5));
     }
 });
 x.register("force", function(force) {
@@ -313,8 +374,6 @@ x.register("force", function(force) {
     var boxShadow;
     for (i in units) {
         color = "#ccc #666 #666 #ccc";
-        $("#"+i).css({zIndex:0});;
-
         $("#"+i + " .arrow").css({opacity: "0.0"});
 
         boxShadow = "none";
@@ -339,7 +398,6 @@ x.register("force", function(force) {
                 color = "orange";
 //                $("#"+i).css({zIndex: 101});
                 boxShadow = '5px 5px 5px #333';
-                $("#"+i).css({zIndex:101});;
 //               var top =  $("#"+i).css("top");
 //                var left =  $("#"+i).css("left");
 //                 $("#"+i).css({top:top-5});
@@ -351,8 +409,6 @@ x.register("force", function(force) {
                 break;
             case 6:
                 color = "#ccc #666 #666 #ccc";
-                $("#"+i).css({zIndex:0});;
-
                 break;
             case 8:
                 color = "orange";
@@ -448,7 +504,6 @@ x.register("combatRules", function(combatRules) {
                                 theta *= 15;
                                 theta += 270;
                                 $("#"+j).css({zIndex: "1"});
-
                                 $("#"+j+ " .arrow").css({opacity: "1.0"});
                                 $("#"+j+ " .arrow").css({webkitTransform: 'rotate('+theta+"deg) translateX(20px)"});
 
@@ -563,10 +618,6 @@ x.register("combatRules", function(combatRules) {
             $("#status").html(lastCombat+str);
 
         }
-
-//        $("#status").html(str);
-//            alert(attackers);
-
     }
     $("#crt h3").html(title);
 });
@@ -738,7 +789,6 @@ function mapMouseDown(event) {
     p = $("#map").offset();
     pixelX -= p.left;
     pixelY -= p.top;
-//    alert("PixelX "+ pixelX+ " PixelY "+pixelY);
 
     doitMap(pixelX,pixelY);
 
@@ -797,7 +847,6 @@ function counterMouseDown(event) {
     // this for IE browsers
     else {
         id = event.srcElement.id.toString();
-        alert("downdown");
     }
     doitUnit(id, shiftKey);
 }
@@ -875,12 +924,8 @@ function moveCounter(id) {
     mapGrid.setHexagonXY( this.force.getUnitHexagon(id).getX(), this.force.getUnitHexagon(id).getY());
 
     var x = mapGrid.getPixelX() - (document.getElementById("map").width) - (parseInt(id) * document.getElementById(id).width) - (document.getElementById(id).width / 2);
-    //x = - document.getElementById("map").width;
-    //if (id == 0) alert(x);
-    //x = 0;
     counterObj.style.left = x + "px";
     var y = mapGrid.getPixelY() - (document.getElementById(id).height / 2);
-    //y = 0;
     counterObj.style.top = y + "px";
 }
 
@@ -939,5 +984,8 @@ function initialize() {
 
     updateForm();
 }
+$(function() {
+    $( "#gameImages" ).draggable();
+});
 $(function(){initialize();});
 </script>

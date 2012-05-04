@@ -175,31 +175,31 @@ class NapOnMars extends Battle {
                 $this->force->addUnit("infantry-1", RED_FORCE, 1300+$i, "loyalInf.png",4, 2, 3, false, STATUS_READY, "R", 1, 1, "loyalist");
 
             }
-            $this->force->addUnit("infantry-1", RED_FORCE, 2204, "loyalInf.png",6, 3, 4, true, STATUS_ELIMINATED, "R", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, 2205, "loyalInf.png",6, 3, 4, true, STATUS_ELIMINATED, "R", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, 2206, "loyalInf.png",8, 4, 4, true, STATUS_ELIMINATED, "R", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, "deadpile", "loyalInf.png",6, 3, 4, true, STATUS_ELIMINATED, "R", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, "deadpile", "loyalInf.png",6, 3, 4, true, STATUS_ELIMINATED, "R", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, "deadpile", "loyalInf.png",8, 4, 4, true, STATUS_ELIMINATED, "R", 1, 1, "loyalist");
 
 
             $i = 0;
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelCav.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelCav.png", 5, 3, 5, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelCav.png", 5, 2, 5, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelArt.png", 6, 3, 3, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelArt.png", 7, 3, 3, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelArt.png", 7, 3, 3, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelArt.png", 10, 5, 3, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 0+$i++, "rebelInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelCav.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelCav.png", 5, 3, 5, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelCav.png", 5, 2, 5, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelArt.png", 6, 3, 3, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelArt.png", 7, 3, 3, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelArt.png", 7, 3, 3, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelArt.png", 10, 5, 3, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
 $j = $i;
             $i=0;
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "sympthInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "sympthInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "sympthInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "sympthInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, $j+($i++*100), "sympthInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sympthInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sympthInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sympthInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sympthInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sympthInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
 
              // end unit data -------------------------------------------
 

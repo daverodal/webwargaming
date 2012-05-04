@@ -1,11 +1,10 @@
 <body>
 <fieldset style="float:right;"><legend>Comlink</legend><div id="comlink"></div></fieldset>
-<h1>Welcome {user} To the The Martian Civil War<span style="font-style: italic;">&ldquo;{wargame}&rdquo;"</span></h1>
+<h2>Welcome {user} to<strong style="font-family:'Great Vibes'"> Napoleon on Mars</strong> <span style="font-style: italic;">&ldquo;{wargame}&rdquo;</span></h2>
 <div style="clear:both"></div>
-{lobbies}
-<a href="<?=site_url("wargame/changeWargame");?>/{id}/1">{name} As Rebel</a>
-<a href="<?=site_url("wargame/changeWargame");?>/{id}/2">{name}As Loyalist</a>
-{/lobbies}
+<a href="<?=site_url("wargame/changeWargame/{wargame}/1");?>">As Rebel</a>
+<a href="<?=site_url("wargame/changeWargame/{wargame}/2");?>">As Loyalist</a>
+<a href="<?=site_url("wargame/leaveGame");?>">Go To Lobby</a>
 <a href="<?=site_url("wargame/resize/0");?>">BIG</a>
 <a href="<?=site_url("wargame/resize/1");?>">small</a>
 <a href="<?=site_url("wargame/createWargame");?>">Create Wargame</a>
@@ -22,7 +21,7 @@
 <div id="leftcol">
     <?php global $results_name;?>
 
-    <div id="crt">
+    <div id="crt" class="ui-widget-content">
         <h3>Combat Odds</h3>
         <div id="odds"><span class="col0">&nbsp;</span></span><span class="col1">1:1</span> <span
             class="col2">2:1</span> <span class="col3">3:1</span> <span class="col4">4:1</span> <span
@@ -90,10 +89,18 @@
 
 
     <div style="clear:both;"></div>
-</body>
 
 </div>
-<div id="gameImages" >
+<div id="rightCol">
+    <div id="deployWrapper">
+        <div style="margin-right:3px;" class="left">deploy on turn one </div>
+<!--        <div style="float:left">Deploy on turn 1</div>-->
+    <div id="deployBox"></div>
+        <div style="clear:both;"></div>
+    </div>
+
+    <div id="gameViewer" style="position:relative;">
+    <div id="gameImages" class="ui-widget-content ui-draggable" >
     <img id="map" alt="map" src="<?php echo base_url();?>js/MartianCivilWar.png" style="position: relative;visibility: visible;z-index: 0;">
     <?php $id = 0;?>
     {units}
@@ -104,10 +111,13 @@
     </div>
     {/units}
 </div>
+        </div>
 
 <!-- end gameImages -->
+
+<div style="clear:both;"> </div>
+<div style="position:relative;" id="deadpile"><div style="right:10px;font-size:20px;font-family:sans-serif;bottom:10px;position:absolute;color:#666;">Retired Units</div></div>
 </div>
-
-<div style="clear:both;height:20px;"> </div>
-
+</div>
+</body>
 </html>

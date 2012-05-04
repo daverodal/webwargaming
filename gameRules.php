@@ -259,7 +259,6 @@ class GameRules {
                         if ($this->force->unitsAreBeingEliminated() == true) {
                             $this->force->removeEliminatingUnits();
                         }
-echo "About TO";
                         if ($this->force->unitsAreExchanging() == true) {
                             echo "EXCHANGINGMODE!!!!";
                             $this->mode = EXCHANGING_MODE;
