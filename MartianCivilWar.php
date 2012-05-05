@@ -11,7 +11,7 @@ require_once "mapgrid.php";
 require_once "moveRules.php";
 require_once "prompt.php";
 require_once "terrain.php";
-// battleforallencreek.js
+// battlefforallencreek.js
 
 // counter image values
 $oneHalfImageWidth = 16;
