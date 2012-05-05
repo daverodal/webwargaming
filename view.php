@@ -3,7 +3,9 @@
     <legend>Comlink</legend>
     <div id="comlink"></div>
 </fieldset>
-<h2>Welcome {user} to <span style="font-family:Nosifer;">The Martian Civil War</span><span style="font-style: italic;">&ldquo;{wargame}&rdquo;</span></h2>
+<h2>Welcome {user} to <span style="font-family:Nosifer;">The Martian Civil War</span><span style="font-style: italic;">&ldquo;{wargame}&rdquo;</span>
+</h2>
+
 <div style="clear:both"></div>
 <a href="<?=site_url("wargame/changeWargame/{wargame}/1");?>">As Rebel</a>
 <a href="<?=site_url("wargame/changeWargame/{wargame}/2");?>">As Loyalist</a>
@@ -44,7 +46,7 @@
                 </div>
                 <?php }?>
         </div>
-         <button id="nextPhaseButton">Next Phase</button>
+        <button id="nextPhaseButton">Next Phase</button>
         <div style="clear:both;"></div>
 
         <fieldset style="">
@@ -81,32 +83,39 @@
             </form>
         </div>
         <div style="clear:both;height:100px;" id="OBC">
-            <fieldset><legend>turn 1</legend>
+            <fieldset>
+                <legend>turn 1</legend>
                 <div id="gameTurn1">
                     <div id="turnCounter">Game Turn</div>
                 </div>
             </fieldset>
-            <fieldset><legend>turn 2</legend>
-                     <div id="gameTurn2">
-                     </div>
-        </fieldset>
-            <fieldset><legend>turn 3</legend>
+            <fieldset>
+                <legend>turn 2</legend>
+                <div id="gameTurn2">
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>turn 3</legend>
                 <div id="gameTurn3">
                 </div>
             </fieldset>
-            <fieldset><legend>turn 4</legend>
+            <fieldset>
+                <legend>turn 4</legend>
                 <div id="gameTurn4">
                 </div>
             </fieldset>
-            <fieldset><legend>turn 5</legend>
+            <fieldset>
+                <legend>turn 5</legend>
                 <div id="gameTurn5">
                 </div>
             </fieldset>
-            <fieldset><legend>turn 6</legend>
+            <fieldset>
+                <legend>turn 6</legend>
                 <div id="gameTurn6">
                 </div>
             </fieldset>
-            <fieldset><legend>turn 7</legend>
+            <fieldset>
+                <legend>turn 7</legend>
                 <div id="gameTurn7">
                 </div>
             </fieldset>
@@ -117,26 +126,36 @@
 
     </div>
     <div id="rightCol">
-        <div style="position:relative;" id="deployBox">Deploy on turn 1</div>
-        <div id="gameImages">
-            <img id="map" alt="map" src="<?php echo base_url();?>js/mcw.png"
-                 style="position: relative;visibility: visible;z-index: 0;">
-            <?php $id = 0;?>
-            {units}
-            <div class="unit {class}" id="{id}" alt="0">
-                <img class="arrow" src="<?php echo base_url();?>js/short-red-arrow-md.png" class="counter">
-                <img src="<?php echo base_url();?>js/{image}" class="counter">
-
-                <div>5 - 4</div>
-            </div>
-            {/units}
+        <div id="deployWrapper">
+            <div style="margin-right:3px;" class="left">deploy on turn one</div>
+            <div id="deployBox"></div>
+            <div style="clear:both;"></div>
         </div>
 
-        <!-- end gameImages -->
+        <div id="gameViewer" style="position:relative;">
+            <div id="gameImages" class="ui-widget-content">
+                <img id="map" alt="map" src="<?php echo base_url();?>js/mcw.png"
+                     style="position: relative;visibility: visible;z-index: 0;">
+                <?php $id = 0;?>
+                {units}
+                <div class="unit {class}" id="{id}" alt="0">
+                    <img class="arrow" src="<?php echo base_url();?>js/short-red-arrow-md.png" class="counter">
+                    <img src="<?php echo base_url();?>js/{image}" class="counter">
+
+                    <div>5 - 4</div>
+                </div>
+                {/units}
+            </div>
+
+            <!-- end gameImages -->
+        </div>
         <div style="clear:both;height:20px;"></div>
-        <div style="position:relative;" id="deadpile"><div style="right:10px;font-size:50px;font-family:sans-serif;bottom:10px;position:absolute;color:#666;">Retired Units</div></div>
+        <div style="position:relative;" id="deadpile">
+            <div style="right:10px;font-size:50px;font-family:sans-serif;bottom:10px;position:absolute;color:#666;">
+                Retired Units
+            </div>
+        </div>
     </div>
-</div>
 
 
 </body></html>

@@ -1,3 +1,4 @@
+<link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 <style type="text/css">
     body{
         background:#eee;
@@ -12,6 +13,12 @@
     fieldset{
         background:white;
         border-radius:9px;
+    }
+    .left{
+        float:left;
+    }
+    .right{
+        float:right;
     }
     #crt{
         border-radius:15px;
@@ -93,15 +100,21 @@
     }
     #gameImages{
         position: relative;
-        border:10px solid #1af;
+    }
+    #gameViewer{
+        border:10px solid #555;
         border-radius:10px;
+        overflow:hidden;
+        background:#620;
+        margin-bottom:5px;
     }
     #leftcol {
         float:left;
         width:360px;
     }
     #rightCol{
-        float:right;
+        /*float:right;*/
+        overflow:hidden;
     }
     #gameturnContainer{
         height:38px;
@@ -159,21 +172,25 @@
         height:<?=$mapHeight;?>;
     }
     #deadpile{
-        border-radius:20px;
-        border:10px solid #ffffff;
+        border-radius:10px;
+        border:10px solid #555;
         height:100px;
         background:#333;
+        overflow:hidden;
     }
     #deployBox{
-        border-radius:20px;
-        border:10px solid #ffffff;
-        height:40px;
-        background:#333;
-        padding:4px 10px 0px 3px;
-        text-align:right;
+        position:relative;
+    }
+    #deployWrapper{
+        padding:4px 7px 4px 7px;
+        text-align:left;
         font-family:sans-serif;
         font-size:1.2em;
         color:white;
+        border-radius:10px;
+        border:10px solid #555;
+        background:#333;
+        margin-bottom:5px;
     }
     .unit{
         width:64px;
@@ -205,6 +222,8 @@
     .unit img {
         width:100%;
         height:100%;
+        max-height:100px;
+        max-width:100px;
     }
     .arrow{
         position:absolute;
@@ -302,9 +321,10 @@ x.register("mapUnits", function(mapUnits) {
             fudge = isStacked[x][y] * 2;
         }
         if(mapUnits[i].parent != $("#"+i).parent().attr("id")){
-//            p = $("#"+i).degametatch()
-                $("#"+i).appendTo($("#"+mapUnits[i].parent));
+            $("#"+i).appendTo($("#"+mapUnits[i].parent));
             if(mapUnits[i].parent != "gameImages"){
+                $("#"+ i).css({top:"0"});
+                $("#"+ i).css({left:"0"});
                 $("#"+ i).css({float:"left"});
                 $("#"+ i).css({position:"static"});
             }  else{
@@ -312,11 +332,6 @@ x.register("mapUnits", function(mapUnits) {
                 $("#"+ i).css({position:"absolute"});
 
             }
-
-//
-//            alert(mapUnits[i].parent);
-//            alert($("#"+i).parent().attr("id"));
-
         }
         if(mapUnits[i].parent == "gameImages"){
 
@@ -333,11 +348,10 @@ x.register("mapUnits", function(mapUnits) {
         var symb = mapUnits[i].isReduced ? " &#189; " : " - ";
         $("#"+i+" div").html(str + symb + move);
         $("#"+i).attr("src",img);
-
     }
     var dpBox = $("#deployBox").children().size();
     if(dpBox == 0){
-        $("#deployBox").hide();
+        $("#deployWrapper").hide();
     }
 
 });
@@ -346,7 +360,6 @@ x.register("moveRules", function(moveRules) {
     $("#status").html("");
     if(moveRules.movingUnitId){
         $("#status").html("Unit #:"+moveRules.movingUnitId+" is currently moving");
-//            alert($("#"+moveRules.movingUnitId).css('opacity',.5));
     }
 });
 x.register("force", function(force) {
@@ -604,10 +617,6 @@ x.register("combatRules", function(combatRules) {
             $("#status").html(lastCombat+str);
 
         }
-
-//        $("#status").html(str);
-//            alert(attackers);
-
     }
     $("#crt h3").html(title);
 });
@@ -779,7 +788,6 @@ function mapMouseDown(event) {
     p = $("#map").offset();
     pixelX -= p.left;
     pixelY -= p.top;
-//    alert("PixelX "+ pixelX+ " PixelY "+pixelY);
 
     doitMap(pixelX,pixelY);
 
@@ -837,7 +845,6 @@ function counterMouseDown(event) {
     // this for IE browsers
     else {
         id = event.srcElement.id.toString();
-        alert("downdown");
     }
     doitUnit(id);
 }
@@ -915,12 +922,8 @@ function moveCounter(id) {
     mapGrid.setHexagonXY( this.force.getUnitHexagon(id).getX(), this.force.getUnitHexagon(id).getY());
 
     var x = mapGrid.getPixelX() - (document.getElementById("map").width) - (parseInt(id) * document.getElementById(id).width) - (document.getElementById(id).width / 2);
-    //x = - document.getElementById("map").width;
-    //if (id == 0) alert(x);
-    //x = 0;
     counterObj.style.left = x + "px";
     var y = mapGrid.getPixelY() - (document.getElementById(id).height / 2);
-    //y = 0;
     counterObj.style.top = y + "px";
 }
 
@@ -979,5 +982,8 @@ function initialize() {
 
     updateForm();
 }
+$(function() {
+    $( "#gameImages" ).draggable();
+});
 $(function(){initialize();});
 </script>
