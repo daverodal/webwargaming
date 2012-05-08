@@ -45,6 +45,31 @@ class MartianCivilWar extends Battle {
     static function playAs($wargame){
         @include_once "playAs.php";
     }
+    public function resize($small,$player){
+        if($small){
+            $this->mapData[$player]->setData(44,60, // originX, originY
+                20, 20, // top hexagon height, bottom hexagon height
+                12, 24, // hexagon edge width, hexagon center width
+                1410, 1410 // max right hexagon, max bottom hexagon
+            );
+            $this->playerData->${player}->mapWidth = "744px";
+            $this->playerData->${player}->mapHeight = "425px";
+            $this->playerData->${player}->unitSize = "32px";
+            $this->playerData->${player}->unitFontSize = "12px";
+            $this->playerData->${player}->unitMargin = "-21px";
+        }else{
+            $this->mapData[$player]->setData(57,84, // originX, originY
+                28, 28, // top hexagon height, bottom hexagon height
+                16, 32, // hexagon edge width, hexagon center width
+                1410, 1410 // max right hexagon, max bottom hexagon
+            );
+            $this->playerData->${player}->mapWidth = "996px";
+            $this->playerData->${player}->mapHeight = "593px";
+            $this->playerData->${player}->unitSize = "42px";
+            $this->playerData->${player}->unitFontSize = "16px";
+            $this->playerData->${player}->unitMargin = "-23px";
+        }
+    }
     function save()
     {
         $data = new stdClass();
@@ -188,7 +213,7 @@ class MartianCivilWar extends Battle {
             $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "loyalMech.png",18, 9, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "loyalMech.png",18, 9, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "loyalMech.png",18, 9, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
-             $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "loyalArmor.png",15, 7, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "loyalArmor.png",15, 7, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "loyalArmor.png",15, 7, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
 
 
