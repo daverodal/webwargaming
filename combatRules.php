@@ -221,7 +221,7 @@ function resolveCombat( $id ) {
     //  Math->floor gives lower integer, which is now 0,1,2,3,4,5
 
     $Die = floor($this->crt->dieSideCount * (rand()/getrandmax()));
-    $Die = 2;
+//    $Die = 2;
 //    $index = $this->force->getUnitCombatIndex($id);
     $index = $this->combatsToResolve->${id}->index;
 

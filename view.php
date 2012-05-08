@@ -101,7 +101,7 @@
 
     <div id="gameViewer" style="position:relative;">
     <div id="gameImages" class="ui-widget-content ui-draggable" >
-    <img id="map" alt="map" src="<?php echo base_url();?>js/MartianCivilWar.png" style="position: relative;visibility: visible;z-index: 0;">
+    <img id="map" alt="map" src="<?php echo base_url();?>js/mcw.png" style="position: relative;visibility: visible;z-index: 0;">
     <?php $id = 0;?>
     {units}
     <div  class="unit {class}" id="{id}" alt="0" style="position: absolute; left: 180px; top: 140px;">

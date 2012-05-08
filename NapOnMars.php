@@ -138,8 +138,8 @@ class NapOnMars extends Battle {
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = array("","","");
             for($player = 0;$player <= 2;$player++){
-            $this->playerData->${player}->mapWidth = "787px";
-            $this->playerData->${player}->mapHeight = "481px";
+            $this->playerData->${player}->mapWidth = "744px";
+            $this->playerData->${player}->mapHeight = "425px";
             $this->playerData->${player}->unitSize = "32px";
             $this->playerData->${player}->unitFontSize = "12px";
             $this->playerData->${player}->unitMargin = "-21px";
