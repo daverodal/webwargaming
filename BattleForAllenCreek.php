@@ -29,6 +29,24 @@ class BattleForAllenCreek {
     public $gameRules;
     public $prompt;
     public $players;
+    public $playerData;
+
+
+    static function getHeader($playerData){
+        $playerData = array_shift($playerData);
+        foreach($playerData as $k => $v){
+            $$k = $v;
+        }
+        @include_once "header.php";
+    }
+    static function playAs($wargame){
+        redirect("wargame/play");
+    }
+
+
+    static function getView(){
+        @include_once "view.php";
+    }
 
 
     function save()
@@ -85,6 +103,7 @@ class BattleForAllenCreek {
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $data->gameRules);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = $data->players;
+            $this->playerData = $data->playerData;
 
         } else {
             $this->mapData = array(new MapData(),new MapData(),new MapData());
@@ -95,6 +114,13 @@ class BattleForAllenCreek {
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = array("","","");
+            for($player = 0;$player <= 2;$player++){
+                $this->playerData->${player}->mapWidth = "744px";
+                $this->playerData->${player}->mapHeight = "425px";
+                $this->playerData->${player}->unitSize = "32px";
+                $this->playerData->${player}->unitFontSize = "12px";
+                $this->playerData->${player}->unitMargin = "-21px";
+            }
 
 
             // mapData
