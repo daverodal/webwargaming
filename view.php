@@ -41,13 +41,13 @@
             <?php }?>
     </div>
     <div id="gameturnContainer">
-        <div id="turn1">1</div>
-        <div id="turn2">2</div>
-        <div id="turn3">3</div>
-        <div id="turn4">4</div>
-        <div id="turn5">5</div>
-        <div id="turn6">6</div>
-        <div id="turn7">7</div>
+        <div class="turn" id="gameTurn1">1</div>
+        <div class="turn" id="gameTurn2">2</div>
+        <div class="turn" id="gameTurn3">3</div>
+        <div class="turn" id="gameTurn4">4</div>
+        <div class="turn" id="gameTurn5">5</div>
+        <div class="turn" id="gameTurn6">6</div>
+        <div class="turn" id="gameTurn7">7</div>
         <div id="turnCounter">Game Turn</div>
     </div>
     <button id="nextPhaseButton">Next Phase</button>

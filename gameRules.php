@@ -281,9 +281,10 @@ class GameRules {
                         break;
 
                     case SELECT_BUTTON_EVENT:
-
-                        $this->combatRules->cleanUp();
-                        $this->selectNextPhase();
+                        if($this->force->moreCombatToResolve() == false){
+                            $this->combatRules->cleanUp();
+                            $this->selectNextPhase();
+                        }
                         break;
                 }
                 break;

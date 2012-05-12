@@ -137,12 +137,14 @@
         border-width:1px;
     }
     #turnCounter{
-        width:32px;
-        height:32px;
-        font-size:11px;
+        width:32px !important;
+        height:32px !important;
+        font-size:11px !important;
         text-indent:0px;
-        top:2px;
-        left:2px;
+        top:2px !important;
+        left:2px !important;
+        margin-top:2px;
+        margin-left:2px;
         text-align:center;
         border:2px solid;
         border-color:#ccc #666 #666 #ccc;
