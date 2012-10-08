@@ -86,10 +86,8 @@ class NapOnMars extends Battle {
     }
 
     function poke($event, $id, $x, $y, $user){
-        echo $user;
         $playerId = $this->gameRules->attackingForceId;
         if($this->players[$this->gameRules->attackingForceId] != $user){
-            echo "Nope $user";
             return "nope";
         }
 
@@ -97,12 +95,10 @@ class NapOnMars extends Battle {
             case SELECT_MAP_EVENT:
                 $mapGrid = new MapGrid($this->mapData[$playerId]);
                 $mapGrid->setPixels($x, $y);
-                echo "mapevent $x $y";
                 $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon() );
                 break;
 
             case SELECT_COUNTER_EVENT:
-                echo "COUNTER $id";
 
                 $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id));
 
@@ -234,11 +230,11 @@ $j = $i;
             $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("road", "road", "r", 0, 0, 0, false);
-            $this->terrain->addTerrainFeature("fortified", "fortified", "h", 1, 0, 1, false);
-            $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 0, false);
-            $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, false);
-            $this->terrain->addTerrainFeature("rough", "rough", "g", 3, 0, 1, false);
-            $this->terrain->addTerrainFeature("river", "Martian River", "v", 1, 0, 1, false);
+            $this->terrain->addTerrainFeature("fortified", "fortified", "h", 0, 0, 1, false);
+            $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 1, false);
+            $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
+            $this->terrain->addTerrainFeature("rough", "rough", "g", 3, 0, 1, true);
+            $this->terrain->addTerrainFeature("river", "Martian River", "v", 0, 1, 1, false);
             $this->terrain->addTerrainFeature("newrichmond", "New Richmond", "m", 0, 0, 1, false);
             $this->terrain->addTerrainFeature("eastedge", "East Edge", "m", 0, 0, 0, false);
             $this->terrain->addReinforceZone("101","B");

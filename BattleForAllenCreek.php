@@ -49,7 +49,6 @@ class BattleForAllenCreek {
     function poke($event, $id, $x, $y, $user){
         $playerId = $this->gameRules->attackingForceId;
         if($this->players[$this->gameRules->attackingForceId] != $user){
-            echo "Nope $user";
             return "nope";
         }
 
@@ -61,8 +60,6 @@ class BattleForAllenCreek {
                 break;
 
             case SELECT_COUNTER_EVENT:
-                echo "COUNTER $id";
-
                 $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id));
 
                 break;

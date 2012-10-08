@@ -224,15 +224,9 @@ class MoveRules{
 
     function isAlongRail($fromHex, $toHex)
     {
-        echo "Across troubled waters   ";
-        var_dump($fromHex);
-        var_dump($toHex);
         if($this->terrain->moveIsInto($toHex, "fortified") || $this->terrain->moveIsInto($toHex, "newrichmond")){
-            echo "its'true";
-
             return true;
         }
-        echo "nope not true " ;
         return false;
     }
 
@@ -241,9 +235,7 @@ class MoveRules{
         $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id), $hexagon, $this->force->getUnitMaximumMoveAmount($id),$this->railMove);
         $this->force->updateMoveStatus($id, $hexagon, $moveAmount);
 
-        echo "UPDATING";
         if ($this->force->unitHasUsedMoveAmount($id) == true) {
-            echo " STOP ";
             $this->stopMove($id);
         }
 
@@ -282,12 +274,9 @@ class MoveRules{
 
     function reinforce($id, $hexagon)
     {
-        echo "DOENEN";
 
         if ($this->force->unitIsReinforcing($id) == true) {
-            echo "YEs I am";
             if ($this->force->getUnitReinforceZone($id) == $this->terrain->getReinforceZone($hexagon)) {
-                echo "DOENEN";
                 // get move cost
 
                 // override move cost if road movement

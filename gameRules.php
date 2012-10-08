@@ -144,15 +144,11 @@ class GameRules {
                             break;
                         }
                         if($this->currentReplacement !== false){
-                        echo "mapRepeelace ".$hexagon->name;
                         $hexpart = new Hexpart();
                         $hexpart->setXYwithNameAndType($hexagon->name,HEXAGON_CENTER);
                         $terrain = $this->moveRules->terrain;
-                        echo "Terrain";
                         if($terrain->terrainIs($hexpart, "newrichmond") || $terrain->terrainIs($hexpart, "town") || $terrain->terrainIs($hexpart, "fortified") || $terrain->terrainIs($hexpart, "eastedge")){
-                            echo "terrain Is";
                             if($this->force->getEliminated($this->currentReplacement, $hexagon) !== false){
-                                echo "Got";
                                 $this->currentReplacement = false;
                                 $this->replacementsAvail--;
                             }
@@ -163,14 +159,12 @@ class GameRules {
                         if($this->replacementsAvail <= 0){
                             break;
                         }
-                        var_dump($this->force->units[$id]);
                         if($this->force->attackingForceId == $this->force->units[$id]->forceId){
                         if($this->force->units[$id]->status == STATUS_ELIMINATED ){
                             $this->force->units[$id]->status = STATUS_CAN_REPLACE;
                             $this->currentReplacement = $id;
                             break;
                         }
-                        echo "replace $id";
                          if($this->force->units[$id]->status != STATUS_CAN_REPLACE && $this->force->units[$id]->status != STATUS_CAN_REINFORCE && $this->force->replace( $id)){
                             $this->replacementsAvail--;
                         }
@@ -260,12 +254,10 @@ class GameRules {
                             $this->force->removeEliminatingUnits();
                         }
                         if ($this->force->unitsAreExchanging() == true) {
-                            echo "EXCHANGINGMODE!!!!";
                             $this->mode = EXCHANGING_MODE;
                         }
 
                         if ($this->force->unitsAreAttackerLosing() == true) {
-                            echo "EXCHANGINGMODE!!!!";
                             $this->mode = ATTACKER_LOSING_MODE;
                         }
 
@@ -401,12 +393,10 @@ class GameRules {
             case EXCHANGING_MODE:
             case ATTACKER_LOSING_MODE:
 
-                echo "EXGHANGINGMODE";
                 switch ($event) {
 
                     case SELECT_COUNTER_EVENT:
 
-                        echo "the Counter";
                         if ($this->force->setStatus($id, STATUS_EXCHANGED)) {
                             if ($this->force->unitsAreBeingEliminated() == true) {
                                 $this->force->removeEliminatingUnits();
@@ -433,9 +423,7 @@ class GameRules {
 
     function selectNextPhase()
     {
-echo "Teyr next phaes";
         if ($this->force->moreCombatToResolve() == false && $this->moveRules->anyUnitIsMoving == false) {
-echo "Past tehe fi";
             for ($i = 0; $i < count($this->phaseChanges); $i++) {
 
                 if ($this->phaseChanges[$i]->currentPhase == $this->phase) {

@@ -50,7 +50,6 @@ class BattleOfMoscow extends Battle {
 
     function poke($event, $id, $x, $y, $player){
         if($this->gameRules->attackingForceId !== (int)$player){
-            echo "Nope $player";
             return "nope";
         }
 
@@ -62,7 +61,6 @@ class BattleOfMoscow extends Battle {
                 break;
 
             case SELECT_COUNTER_EVENT:
-                echo "COUNTER $id";
 
                 $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id));
 

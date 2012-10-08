@@ -606,7 +606,6 @@ class Force
     function moreCombatToResolve()
     {
 
-        echo "MOR COMBAT!";
         $moreCombatToResolve = false;
 
         for ($id = 0; $id < count($this->units); $id++)
@@ -625,7 +624,6 @@ class Force
     {
         for ($id = 0; $id < count($this->units); $id++)
         {
-            echo "revocer $id ".$this->units[$id]->status."\n";
             switch ($this->units[$id]->status)
             {
                 case STATUS_UNAVAIL_THIS_PHASE:
@@ -650,11 +648,9 @@ class Force
 
                     $status = STATUS_READY;
                     if($phase == BLUE_MECH_PHASE && $this->units[$id]->forceId == BLUE_FORCE && $this->units[$id]->maxMove < 6){
-                        echo "hold it bub";
                         $status = STATUS_STOPPED;
                     }
                     if($phase == RED_MECH_PHASE && $this->units[$id]->forceId == RED_FORCE && $this->units[$id]->maxMove < 6){
-                        echo "hold it bub";
                         $status = STATUS_STOPPED;
                     }
                     if($phase == BLUE_REPLACEMENT_PHASE || $phase == RED_REPLACEMENT_PHASE){
@@ -686,7 +682,6 @@ class Force
                         $hexpart = new Hexpart();
                         $hexpart->setXYwithNameAndType($this->units[$id]->hexagon->name, HEXAGON_CENTER);
                         $terrain = $moveRules->terrain;
-                        echo "Terrain";
                         if ($terrain->terrainIs($hexpart, "fortified") || $terrain->terrainIs($hexpart, "newrichmond")) {
                             $status = STATUS_READY;
                         }
@@ -759,7 +754,6 @@ class Force
                         $this->units[$id]->isReduced = true;
                         $amtLost = $this->units[$id]->maxStrength - $this->units[$id]->minStrength;
                     }
-                    echo "Amount Lost $amtLost";
                     $this->exchangeAmount -= $amtLost;
                     if($this->exchangeAmount <= 0){
                         $success = true;
@@ -874,7 +868,6 @@ class Force
     function getEliminated($id, $hexagon)
     {
             if ($this->units[$id]->status == STATUS_CAN_REPLACE) {
-                echo "gotElim";
                 $this->units[$id]->status = STATUS_REPLACED;
                 $this->units[$id]->isReduced = true;
                 $this->units[$id]->hexagon = $hexagon;
@@ -1162,7 +1155,6 @@ class Force
 
     function replace($id){
         if($this->units[$id]->isReduced && $this->units[$id]->status != STATUS_REPLACED){
-            echo "isreduced";
             $this->units[$id]->strength = $this->units[$id]->maxStrength;
             $this->units[$id]->isReduced = false;
             $this->units[$id]->status = STATUS_REPLACED;
