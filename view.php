@@ -108,6 +108,8 @@
         <img  class="arrow" src="<?php echo base_url();?>js/red_right_arrow.png" class="counter" >
         <img  src="<?php echo base_url();?>js/{image}" class="counter" >
         <div>5 - 4</div>
+        <!-- working with the darkened counters -->
+        <!--<p style="position:absolute;top:0px;background:rgba(0,0,0,.3);z-index:102;width:32px;height:32px;"></p>-->
     </div>
     {/units}
 </div>
