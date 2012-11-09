@@ -230,6 +230,9 @@
         pointer-events:none;
         z-index:102;
     }
+    .clone{
+        /*pointer-events:none;*/
+    }
 </style>
 <script>
 x = new Sync("<?=site_url("wargame/fetch/");?>");
@@ -345,7 +348,7 @@ x.register("mapUnits", function(mapUnits) {
         }
         var  move = mapUnits[i].maxMove - mapUnits[i].moveAmountUsed;
         var str = mapUnits[i].strength;
-        var symb = mapUnits[i].isReduced ? " &#189; " : " - ";
+        var symb = mapUnits[i].isReduced ? " + " : " - ";
         $("#"+i+" div").html(str + symb + move);
         $("#"+i).attr("src",img);
     }
@@ -358,8 +361,86 @@ x.register("mapUnits", function(mapUnits) {
 x.register("moveRules", function(moveRules) {
     var str;
     $("#status").html("");
-    if(moveRules.movingUnitId){
-        $("#status").html("Unit #:"+moveRules.movingUnitId+" is currently moving");
+    $(".clone").remove();
+    if(moveRules.movingUnitId >= 0){
+//        alert("MovingUnitid"+moveRules.movingUnitId);
+
+//        $("#status").html("Unit #:"+moveRules.movingUnitId+" is currently moving");
+        if(moveRules.hexPath){
+            id = moveRules.movingUnitId;
+            for( i in moveRules.hexPath){
+                newId = id+"Hex"+i;
+
+                $("#"+id).clone(true).attr('id',newId).appendTo('#gameImages');
+                $("#"+newId+" .arrow").hide();
+                $("#"+newId).addClass("clone");
+                $("#"+newId).css("top",20);
+                width = $("#"+newId).width();
+                height = $("#"+newId).height();
+
+                $("#"+newId).css("left",moveRules.hexPath[i].pixX - width/2 +"px");
+                $("#"+newId).css("top",moveRules.hexPath[i].pixY - height/2 +"px");
+                $("#"+newId+" div").html("24 - "+moveRules.hexPath[i].pointsLeft );
+                $("#"+newId).css("opacity",.9);
+                $("#"+newId).css("z-index",101);
+
+
+            }
+        }
+        if(moveRules.moves){
+            id = moveRules.movingUnitId;
+            for( i in moveRules.moves){
+                newId = id+"Hex"+i;
+                if(!moveRules.moves[i].isValid){
+                    continue;
+                }
+                if(moveRules.moves[i].isOccupied){
+                    continue;
+                }
+
+                $("#"+id).clone(true).attr('id',newId).appendTo('#gameImages');
+                $("#"+newId+" .arrow").hide();
+                $("#"+newId).addClass("clone");
+                $("#"+newId).css("top",20);
+                $("#"+newId).attr("path",moveRules.moves[i].pathToHere);
+
+                width = $("#"+newId).width();
+                height = $("#"+newId).height();
+
+                $("#"+newId).css("left",moveRules.moves[i].pixX - width/2 +"px");
+                $("#"+newId).css("top",moveRules.moves[i].pixY - height/2 +"px");
+                var label = $("#"+newId+" div").html();
+                var newLabel = label.replace(/([-+]).*/,"$1 "+Math.floor(moveRules.moves[i].pointsLeft));
+                $("#"+newId+" div").html(newLabel);
+                $("#"+newId).css("opacity",.4);
+                $("#"+newId).css("z-index",102);
+                $("#"+newId).css("border-color","#ccc #333 #333 #ccc");
+                $("#"+newId).css("box-shadow","none");
+
+                attachMouseEventsToCounter(newId);
+
+
+            }
+        }
+        $(".clone").hover(function(){
+                    $(this).css("opacity",1.0).css("border-color","orange").css('box-shadow','#333 5px 5px 5px');
+                    var path = $(this).attr("path");
+                    var pathes = path.split(",");
+                    for(i in pathes){
+                        $("#"+id+"Hex"+pathes[i]).css("opacity",1.0).css("border-color","orange").css('box-shadow','#333 5px 5px 5px');
+                    }
+            //alert("A "+ path);
+        },
+        function(){
+            $(this).css("opacity",.4).css("border-color","transparent").css('box-shadow','none');
+            var path = $(this).attr("path");
+            var pathes = path.split(",");
+            for(i in pathes){
+                $("#"+id+"Hex"+pathes[i]).css("opacity",.4).css("border-color","transparent").css('box-shadow','none');
+            }
+
+           // alert("B");
+        });
     }
 });
 x.register("force", function(force) {
@@ -983,7 +1064,7 @@ function initialize() {
     updateForm();
 }
 $(function() {
-    $( "#gameImages" ).draggable();
+    $( "#gameImages" ).draggable({distance:15});
 });
 $(function(){initialize();});
 </script>

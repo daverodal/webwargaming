@@ -8,7 +8,78 @@
 // either version 2 of the License, or (at your option) any later version. 
 
 // MapData Constructor
+class MapHex{
+    public $forces;
+    public $zocs;
+    public $name;
+    public function __construct($name, $forces = false){
+        $this->name = $name;
+        if($forces !== false){
+            $this->forces = $forces;
+        }else{
+            $this->forces = array(new stdClass(),new stdClass(), new stdClass());
+        }
+    }
+    public function unsetUnit($forceId, $id){
+        if(isset($this->forces[$forceId]->$id)){
+            unset($this->forces[$forceId]->$id);
+        }
+    }
+    public function setUnit($forceId, $id){
+        if(!$this->forces){
+            $this->forces = array(new stdClass(),new stdClass(), new stdClass());
+        }
+        echo "SetUnit";
+        if(!$this->forces[$forceId]){
+            $this->forces[$forceId] = new stdClass();
+        }
+        $this->forces[$forceId]->$id = $id;
+    }
+}
 class MapData{
+
+    public $hexes;
+    private static $instance;
+    private function __construct(){
+    }
+
+    public static function getInstance(){
+        if(!MapData::$instance){
+            MapData::$instance = new MapData();
+        }
+        return MapData::$instance;
+
+    }
+    public function init($data){
+        foreach($data as $k => $v){
+            if($k == "hexes"){
+                $this->hexes = new stdClass();
+                foreach($v as $hexName => $hex){
+                    $this->hexes->$hexName = new MapHex($hex->name,$hex->forces);
+                }
+            }else{
+                $this->$k = $v;
+            }
+        }
+
+    }
+    function setData($maxRight,$maxBottom)
+    {
+
+        $this->hexes = new stdClass();
+        for($i = 0; $i <= $maxRight+1;$i++){
+            for($j = 0;$j<= $maxBottom+1;$j++){
+                $name = sprintf("%02d%02d",$i,$j);
+                $this->hexes->$name = new MapHex($name);
+            }
+        }
+    }
+
+    function getHex($name){
+        return $this->hexes->$name;
+    }
+}
+class MapViewer{
 
     public $originX;
     public $originY;
@@ -90,7 +161,6 @@ class MapGrid{
 
         $this->calculateHexpartFromPixels($pixelX, $pixelY);
         $this->calculateHexagonFromPixels();
-        var_dump($this);
     }
 
     function setHexagonXY($x, $y)

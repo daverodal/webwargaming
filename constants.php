@@ -213,7 +213,7 @@ $combatRatio_name[4] = " 3 to 1 ";
 $combatRatio_name[5] = " 4 to 1 ";
 $combatRatio_name[6] = " greater than 5 to 1 ";
 
-define("MAP",-1);
+define("MAP",false);
 define("NONE",-1);
 
 // hexpart types

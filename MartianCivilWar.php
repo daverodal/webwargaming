@@ -19,10 +19,11 @@ $oneHalfImageHeight = 16;
 
 
 
-class MartianCivilWar extends Battle {
+class MCW extends Battle {
 
     /* @var Mapdata */
     public $mapData;
+    public $mapViewer;
     public $playerData;
     public $force;
     public $terrain;
@@ -47,10 +48,9 @@ class MartianCivilWar extends Battle {
     }
     public function resize($small,$player){
         if($small){
-            $this->mapData[$player]->setData(44,60, // originX, originY
+            $this->mapViewer[$player]->setData(44,60, // originX, originY
                 20, 20, // top hexagon height, bottom hexagon height
-                12, 24, // hexagon edge width, hexagon center width
-                1410, 1410 // max right hexagon, max bottom hexagon
+                12, 24 // hexagon edge width, hexagon center width
             );
             $this->playerData->${player}->mapWidth = "744px";
             $this->playerData->${player}->mapHeight = "425px";
@@ -58,10 +58,9 @@ class MartianCivilWar extends Battle {
             $this->playerData->${player}->unitFontSize = "12px";
             $this->playerData->${player}->unitMargin = "-21px";
         }else{
-            $this->mapData[$player]->setData(57,84, // originX, originY
+            $this->mapViewer[$player]->setData(57,84, // originX, originY
                 28, 28, // top hexagon height, bottom hexagon height
-                16, 32, // hexagon edge width, hexagon center width
-                1410, 1410 // max right hexagon, max bottom hexagon
+                16, 32 // hexagon edge width, hexagon center width
             );
             $this->playerData->${player}->mapWidth = "996px";
             $this->playerData->${player}->mapHeight = "593px";
@@ -74,6 +73,7 @@ class MartianCivilWar extends Battle {
     {
         $data = new stdClass();
         $data->mapData = $this->mapData;
+        $data->mapViewer = $this->mapViewer;
         $data->moveRules = $this->moveRules->save();
         $data->force = $this->force;
         $data->terrain = $this->terrain;
@@ -94,7 +94,7 @@ class MartianCivilWar extends Battle {
 
         switch($event){
             case SELECT_MAP_EVENT:
-                $mapGrid = new MapGrid($this->mapData[$playerId]);
+                $mapGrid = new MapGrid($this->mapViewer[$playerId]);
                 $mapGrid->setPixels($x, $y);
                 echo "mapevent $x $y";
                 $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon() );
@@ -116,8 +116,10 @@ class MartianCivilWar extends Battle {
     }
     function __construct($data = null)
     {
+        $this->mapData = MapData::getInstance();
         if ($data) {
-            $this->mapData = array(new MapData($data->mapData[0]),new MapData($data->mapData[1]),new MapData($data->mapData[2]));
+            $this->mapData->init($data->mapData);
+            $this->mapViewer = array(new MapViewer($data->mapViewer[0]),new MapViewer($data->mapViewer[1]),new MapViewer($data->mapViewer[2]));
             $this->force = new Force($data->force);
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
@@ -128,7 +130,8 @@ class MartianCivilWar extends Battle {
             $this->players = $data->players;
             $this->playerData = $data->playerData;
         } else {
-            $this->mapData = array(new MapData(),new MapData(),new MapData());
+            $this->mapData->setData(20,10);
+            $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
             $this->moveRules = new MoveRules($this->force, $this->terrain);
@@ -157,17 +160,17 @@ class MartianCivilWar extends Battle {
 //                18, 36, // hexagon edge width, hexagon center width
 //                1410, 1410 // max right hexagon, max bottom hexagon
 //            );
-            $this->mapData[0]->setData(44,60, // originX, originY
+            $this->mapViewer[0]->setData(44,60, // originX, originY
                 20, 20, // top hexagon height, bottom hexagon height
                 12, 24, // hexagon edge width, hexagon center width
                 2010, 2010 // max right hexagon, max bottom hexagon
             );
-            $this->mapData[1]->setData(44,60, // originX, originY
+            $this->mapViewer[1]->setData(44,60, // originX, originY
                 20, 20, // top hexagon height, bottom hexagon height
                 12, 24, // hexagon edge width, hexagon center width
                 2010, 2010 // max right hexagon, max bottom hexagon
             );
-            $this->mapData[2]->setData(44,60, // originX, originY
+            $this->mapViewer[2]->setData(44,60, // originX, originY
                 20, 20, // top hexagon height, bottom hexagon height
                 12, 24, // hexagon edge width, hexagon center width
                 2010, 2010 // max right hexagon, max bottom hexagon
@@ -218,10 +221,10 @@ class MartianCivilWar extends Battle {
 
 
             $i = 1;
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelArmor.png", 24, 12, 6, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelArmor.png", 24, 12, 6, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelArmor.png", 24, 12, 6, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelArmor.png", 22, 1, 6, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelArmor.png", 24, 12, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelArmor.png", 24, 12, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelArmor.png", 24, 12, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelArmor.png", 22, 11, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
             $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelMech.png", 16, 8, 6, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
             $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelMech.png", 16, 8, 6, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
             $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "rebelMech.png", 16, 8, 6, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
@@ -247,11 +250,11 @@ class MartianCivilWar extends Battle {
             $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("road", "road", "r", 0, 0, 0, false);
-            $this->terrain->addTerrainFeature("fortified", "fortified", "h", 1, 0, 1, false);
+            $this->terrain->addTerrainFeature("fortified", "fortified", "h", 1, 0, 1, true);
             $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 0, false);
-            $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, false);
-            $this->terrain->addTerrainFeature("rough", "rough", "g", 3, 0, 1, false);
-            $this->terrain->addTerrainFeature("river", "Martian River", "v", 1, 0, 1, false);
+            $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
+            $this->terrain->addTerrainFeature("rough", "rough", "g", 3, 0, 1, true);
+            $this->terrain->addTerrainFeature("river", "Martian River", "v", 0, 1, 1, true);
             $this->terrain->addTerrainFeature("newrichmond", "New Richmond", "m", 0, 0, 1, false);
             $this->terrain->addTerrainFeature("eastedge", "East Edge", "m", 0, 0, 0, false);
 
@@ -290,7 +293,7 @@ class MartianCivilWar extends Battle {
             $this->terrain->addTerrain(505, LOWER_LEFT_HEXSIDE, "river");
             $this->terrain->addTerrain(506, UPPER_LEFT_HEXSIDE, "river");
             $this->terrain->addTerrain(507, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(509, UPPER_LEFT_HEXSIDE, "river");
+            $this->terrain->addTerrain(508, UPPER_LEFT_HEXSIDE, "river");
 
             $this->terrain->addTerrain(705, HEXAGON_CENTER, "town");
             $this->terrain->addTerrain(1202, HEXAGON_CENTER, "town");
@@ -343,430 +346,7 @@ class MartianCivilWar extends Battle {
             $this->terrain->addTerrain(1903, HEXAGON_CENTER, "fortified");
             $this->terrain->addTerrain(2002, HEXAGON_CENTER, "fortified");
 
-   /*         $this->terrain->addTerrain(105, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(204, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(205, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(305, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(305, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(404, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(405, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(503, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(504, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(504, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(505, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(505, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(603, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(603, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(604, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(604, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(704, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(705, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(705, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(706, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(805, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(805, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(904, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(906, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(906, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(907, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(907, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(908, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(908, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(908, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(1004, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1004, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(1005, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(1006, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1008, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1009, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1009, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1010, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1010, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1101, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1101, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1102, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1102, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1103, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1103, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1103, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(1203, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1203, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(1304, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1304, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(1404, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1404, BOTTOM_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(102, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(201, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(201, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(302, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(302, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(401, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(401, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(502, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(502, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(601, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(601, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(601, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(702, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(702, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(802, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(802, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(901, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(901, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(902, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(902, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1001, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1001, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1001, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(1002, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1002, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(105, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(105, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(110, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(110, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(204, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(204, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(204, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(205, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(209, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(209, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(305, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(305, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(306, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(306, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(306, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(307, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(310, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(310, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(404, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(404, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(407, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(407, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(409, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(409, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(504, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(504, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(508, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(508, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(508, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(509, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(509, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(509, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(510, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(510, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(501, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(502, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(503, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(504, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(505, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(506, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(507, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(801, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(802, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(803, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(804, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(805, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1001, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1002, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1003, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1004, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1102, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1104, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1105, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1106, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1107, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1203, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(602, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(602, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(603, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(603, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(608, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(608, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(609, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(609, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(704, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(704, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(707, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(707, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(708, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(708, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(710, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(710, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(803, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(803, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(805, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(805, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(806, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(806, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(809, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(809, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(809, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(810, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(810, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(903, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(903, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(904, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(904, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(905, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(905, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(909, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(909, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1003, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1003, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1003, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1008, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1008, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1102, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1102, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(1103, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1103, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1103, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1103, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(1104, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1104, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(1105, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1105, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(1106, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1106, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(1107, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1107, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(1108, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1108, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1201, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1201, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1202, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1202, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1203, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1203, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1203, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(1204, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1301, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1301, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1302, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1302, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1303, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1303, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1304, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1304, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1305, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1305, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1401, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1401, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1402, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1402, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1403, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1403, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1405, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(1405, UPPER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(1405, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(1406, HEXAGON_CENTER, "road");
-
-            $this->terrain->addTerrain(201, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(202, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(207, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(208, HEXAGON_CENTER, "forest");
-
-            $this->terrain->addTerrain(301, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(308, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(401, HEXAGON_CENTER, "forest");
-
-
-            $this->terrain->addTerrain(405, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(408, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(409, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(510, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(604, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(701, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(702, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(703, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(704, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(708, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(806, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(901, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(902, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(905, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(906, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(1201, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(1303, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(1404, HEXAGON_CENTER, "forest");*/
-
-
-
-            /*
-          $this->terrain->addTerrain("0100", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0300", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0300", BOTTOM_HEXSIDE, "road");
-          $this->terrain->addTerrain("0500", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0101", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0200", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0301", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0400", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0501", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0600", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0101", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0200", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0301", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0301", HEXAGON_CENTER, "road");
-          $this->terrain->addTerrain("0400", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0400", BOTTOM_HEXSIDE, "road");
-          $this->terrain->addTerrain("0501", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0101", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0201", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0301", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0401", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0401", UPPER_LEFT_HEXSIDE, "river");
-          $this->terrain->addTerrain("0501", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0601", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0101", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0201", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0201", HEXAGON_CENTER, "forest");
-          $this->terrain->addTerrain("0301", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0301", BOTTOM_HEXSIDE, "road");
-          $this->terrain->addTerrain("0401", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0401", HEXAGON_CENTER, "road");
-          $this->terrain->addTerrain("0501", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0102", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0201", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0201", LOWER_LEFT_HEXSIDE, "forest");
-          $this->terrain->addTerrain("0302", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0401", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0401", LOWER_LEFT_HEXSIDE, "river");
-          $this->terrain->addTerrain("0502", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0601", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0102", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0102", HEXAGON_CENTER, "forest");
-          $this->terrain->addTerrain("0201", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0201", BOTTOM_HEXSIDE, "forest");
-          $this->terrain->addTerrain("0302", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0302", HEXAGON_CENTER, "road");
-          $this->terrain->addTerrain("0401", BOTTOM_HEXSIDE, "rough");
-          $this->terrain->addTerrain("0401", BOTTOM_HEXSIDE, "road");
-          $this->terrain->addTerrain("0502", HEXAGON_CENTER, "rough");
-          $this->terrain->addTerrain("0102", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0202", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0202", UPPER_LEFT_HEXSIDE, "forest");
-          $this->terrain->addTerrain("0302", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0402", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0402", UPPER_LEFT_HEXSIDE, "river");
-          $this->terrain->addTerrain("0502", LOWER_LEFT_HEXSIDE, "rough");
-          $this->terrain->addTerrain("0602", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0102", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0102", BOTTOM_HEXSIDE, "forest");
-          $this->terrain->addTerrain("0202", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0202", HEXAGON_CENTER, "forest");
-          $this->terrain->addTerrain("0302", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0302", BOTTOM_HEXSIDE, "road");
-          $this->terrain->addTerrain("0402", HEXAGON_CENTER, "rough");
-          $this->terrain->addTerrain("0402", HEXAGON_CENTER, "road");
-          $this->terrain->addTerrain("0502", BOTTOM_HEXSIDE, "rough");
-          $this->terrain->addTerrain("0103", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0202", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0202", LOWER_LEFT_HEXSIDE, "forest");
-          $this->terrain->addTerrain("0303", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0402", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0402", LOWER_LEFT_HEXSIDE, "river");
-          $this->terrain->addTerrain("0503", UPPER_LEFT_HEXSIDE, "rough");
-          $this->terrain->addTerrain("0503", UPPER_LEFT_HEXSIDE, "road");
-          $this->terrain->addTerrain("0602", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0103", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0103", HEXAGON_CENTER, "forest");
-          $this->terrain->addTerrain("0202", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0202", BOTTOM_HEXSIDE, "forest");
-          $this->terrain->addTerrain("0303", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0303", HEXAGON_CENTER, "road");
-          $this->terrain->addTerrain("0402", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0503", HEXAGON_CENTER, "rough");
-          $this->terrain->addTerrain("0503", HEXAGON_CENTER, "road");
-          $this->terrain->addTerrain("0103", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0203", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0203", UPPER_LEFT_HEXSIDE, "forest");
-          $this->terrain->addTerrain("0303", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0403", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0403", UPPER_LEFT_HEXSIDE, "road");
-          $this->terrain->addTerrain("0403", UPPER_LEFT_HEXSIDE, "river");
-          $this->terrain->addTerrain("0503", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0603", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0103", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0103", BOTTOM_HEXSIDE, "forest");
-          $this->terrain->addTerrain("0203", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0203", HEXAGON_CENTER, "road");
-          $this->terrain->addTerrain("0203", HEXAGON_CENTER, "forest");
-          $this->terrain->addTerrain("0303", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0403", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0403", HEXAGON_CENTER, "road");
-          $this->terrain->addTerrain("0403", HEXAGON_CENTER, "town");
-          $this->terrain->addTerrain("0503", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0503", BOTTOM_HEXSIDE, "road");
-          $this->terrain->addTerrain("0104", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0203", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0203", LOWER_LEFT_HEXSIDE, "forest");
-          $this->terrain->addTerrain("0304", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0304", UPPER_LEFT_HEXSIDE, "road");
-          $this->terrain->addTerrain("0403", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0403", LOWER_LEFT_HEXSIDE, "road");
-          $this->terrain->addTerrain("0403", LOWER_LEFT_HEXSIDE, "river");
-          $this->terrain->addTerrain("0504", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0603", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0104", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0104", HEXAGON_CENTER, "forest");
-          $this->terrain->addTerrain("0203", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0203", BOTTOM_HEXSIDE, "road");
-          $this->terrain->addTerrain("0203", BOTTOM_HEXSIDE, "forest");
-          $this->terrain->addTerrain("0304", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0304", HEXAGON_CENTER, "road");
-          $this->terrain->addTerrain("0403", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0403", BOTTOM_HEXSIDE, "road");
-          $this->terrain->addTerrain("0403", BOTTOM_HEXSIDE, "river");
-          $this->terrain->addTerrain("0504", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0504", HEXAGON_CENTER, "road");
-          $this->terrain->addTerrain("0104", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0204", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0204", UPPER_LEFT_HEXSIDE, "forest");
-          $this->terrain->addTerrain("0304", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0404", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0504", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0504", LOWER_LEFT_HEXSIDE, "river");
-          $this->terrain->addTerrain("0604", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0104", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0204", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0204", HEXAGON_CENTER, "road");
-          $this->terrain->addTerrain("0204", HEXAGON_CENTER, "forest");
-          $this->terrain->addTerrain("0304", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0404", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0404", HEXAGON_CENTER, "road");
-          $this->terrain->addTerrain("0404", HEXAGON_CENTER, "town");
-          $this->terrain->addTerrain("0504", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0504", BOTTOM_HEXSIDE, "road");
-          $this->terrain->addTerrain("0105", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0105", UPPER_LEFT_HEXSIDE, "road");
-          $this->terrain->addTerrain("0204", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0204", LOWER_LEFT_HEXSIDE, "road");
-          $this->terrain->addTerrain("0305", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0404", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0505", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0505", UPPER_LEFT_HEXSIDE, "river");
-          $this->terrain->addTerrain("0604", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0105", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0105", HEXAGON_CENTER, "road");
-          $this->terrain->addTerrain("0204", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0305", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0404", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0404", BOTTOM_HEXSIDE, "road");
-          $this->terrain->addTerrain("0505", HEXAGON_CENTER, "clear");
-          $this->terrain->addTerrain("0505", HEXAGON_CENTER, "road");
-          $this->terrain->addTerrain("0105", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0205", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0305", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0405", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0505", LOWER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0605", UPPER_LEFT_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0605", UPPER_LEFT_HEXSIDE, "road");
-          $this->terrain->addTerrain("0105", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0305", BOTTOM_HEXSIDE, "clear");
-          $this->terrain->addTerrain("0505", BOTTOM_HEXSIDE, "clear");*/
-
-            // end terrain data ----------------------------------------
+              // end terrain data ----------------------------------------
 
         }
     }

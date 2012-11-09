@@ -9,7 +9,24 @@
 
 // Hexagon Constructor
 
-class Hexagon {
+class extHex extends Hexagon implements JsonSerializable{
+    public function jsonSerialize(){
+        return $this;
+    }
+
+}
+class HexPath {
+    public $name = false;
+    public $pointsLeft = false;
+    public $isZoc = false;
+    public $isValid = true;
+    public $isOccupied = false;
+    public $pathToHere = array();
+    public $depth = false;
+    public $firstHex = false;
+
+}
+class Hexagon  {
 
 	public $evenColumnShiftDown;
 	public $number;
@@ -29,7 +46,7 @@ class Hexagon {
         $this->minX = 4;
         $this->minY = 8;
         $this->maxX = 42;
-        $this->maxY = 48;
+        $this->maxY = 46;
 
         // Hexagon(name)
         if ( $a1 !== false && $a2 === false ) {
@@ -167,16 +184,15 @@ function equals(Hexagon $hexagon) {
 	return $isEqual;
 }
 
-private function getAdjacentHexagon( $direction ) {
+function getAdjacentHexagon( $direction ) {
 
 	// direction 1=N, 2=NE, 3=SE, 4=S, 5=SW, 6=NW
 	$adjX = array( 0,  0,  2,  2,  0, -2, -2 );
 	$adjY = array( 0, -4, -2,  2,  4,  2, -2 );
+	$this->x += $adjX[$direction];
+	$this->y += $adjY[$direction];
 
-	$this->x += $adjX[direction];
-	$this->y += $adjY[direction];
-	
-	$this->calculateHexagonNumber();
+    $this->calculateHexagonNumber();
 	$this->calculateHexagonName();
 }
 
@@ -195,8 +211,16 @@ function getNumber() {
 	return $this->number;
 }
 
-function getName() {
+function getName()
+{
+    $name = $this->name;
 
-	return $this->name;
+    if (preg_match("/^[a-z]/", $name)) {
+        return $name;
+    }
+    $name = "0000".strval($this->number);
+    $name = substr($name,-4);
+    return $name;
+
 }
 }

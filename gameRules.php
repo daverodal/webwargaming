@@ -163,7 +163,6 @@ class GameRules {
                         if($this->replacementsAvail <= 0){
                             break;
                         }
-                        var_dump($this->force->units[$id]);
                         if($this->force->attackingForceId == $this->force->units[$id]->forceId){
                         if($this->force->units[$id]->status == STATUS_ELIMINATED ){
                             $this->force->units[$id]->status = STATUS_CAN_REPLACE;
@@ -204,6 +203,15 @@ class GameRules {
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
+                    if(strpos($id,"Hex")){
+                        $matchId = array();
+                        preg_match("/^[^H]*/",$id,$matchId);
+                        $matchHex = array();
+                        preg_match("/Hex(.*)/",$id,$matchHex);
+                        $id = $matchId[0];
+                        $hexagon = new Hexagon($matchHex[1]);
+                        $event = SELECT_MAP_EVENT;
+                    }
 //                    if($this->phase == BLUE_PANZER_PHASE){/* Love that oo design */
 //                        if($event == SELECT_COUNTER_EVENT && $this->force->getUnitMaximumMoveAmount($id) != 6){
 //                            break;
@@ -336,11 +344,12 @@ class GameRules {
                 break;
 
             case RETREATING_MODE:
-
+echo "retreating";
                 switch ($event) {
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
+                    echo "retreat?";
                         $this->moveRules->retreatUnit($event, $id, $hexagon);
                         if ($this->force->unitsAreRetreating() == false) {
                             if ($this->force->unitsAreExchanging() == true) {
@@ -481,7 +490,7 @@ echo "Past tehe fi";
         if($this->turn == 2){
             $this->force->units[13]->status = STATUS_ELIMINATED;
             $this->force->units[14]->status = STATUS_ELIMINATED;
-            $this->force->units[13]->hexagon->parent = "deadpile";/* TODO OO HEX STUFF */
+            $this->force->units[13]->parent = "deadpile";/* TODO OO HEX STUFF */
             $this->force->units[14]->hexagon->parent = "deadpile";
         }
         if($this->turn == 3){
@@ -495,7 +504,7 @@ echo "Past tehe fi";
         if($this->turn == 4){
             $this->force->units[18]->status = STATUS_ELIMINATED;
             $this->force->units[19]->status = STATUS_ELIMINATED;
-            $this->force->units[18]->hexagon->parent = "deadpile";/* TODO OO HEX STUFF */
+            $this->force->units[18]->parent = "deadpile";/* TODO OO HEX STUFF */
             $this->force->units[19]->hexagon->parent = "deadpile";
         }
         if($this->turn == 5){
