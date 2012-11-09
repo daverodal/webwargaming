@@ -348,7 +348,7 @@ return $terrainName;
      * very public
      * used in moveRules
      */
-    function getTerrainMoveCost($startHexagon, $endHexagon, $maxMoveAmount, $railMove)
+    function getTerrainMoveCost($startHexagon, $endHexagon, $railMove)
     {
 
         $moveCost = 0;
@@ -375,18 +375,18 @@ return $terrainName;
         }
 
         // move cost on exit is the entrance cost of the leaving hexagon
-        if ($this->isExit($endHexagon) == true) {
-            // if leaving road, exit cost is road
-            $endHexpart = new Hexpart($startHexagon->getX(), $startHexagon->getY());
-
-            if ($this->terrainIs($endHexpart, "road") == true) {
-                $moveCost = $this->getTerrainTraverseCostFor("road");
-            } else {
-
-                // get entrance cost
-                $moveCost = $this->getTerrainEntranceMoveCost($startHexagon);
-            }
-        }
+//        if ($this->isExit($endHexagon) == true) {
+//            // if leaving road, exit cost is road
+//            $endHexpart = new Hexpart($startHexagon->getX(), $startHexagon->getY());
+//
+//            if ($this->terrainIs($endHexpart, "road") == true) {
+//                $moveCost = $this->getTerrainTraverseCostFor("road");
+//            } else {
+//
+//                // get entrance cost
+//                $moveCost = $this->getTerrainEntranceMoveCost($startHexagon);
+//            }
+//        }
 
         return $moveCost;
     }

@@ -23,6 +23,7 @@ class NapOnMars extends Battle {
 
     /* @var Mapdata */
     public $mapData;
+    public $mapViewer;
     public $playerData;
     public $force;
     public $terrain;
@@ -86,19 +87,23 @@ class NapOnMars extends Battle {
     }
 
     function poke($event, $id, $x, $y, $user){
+        echo $user;
         $playerId = $this->gameRules->attackingForceId;
         if($this->players[$this->gameRules->attackingForceId] != $user){
+            echo "Nope $user";
             return "nope";
         }
 
         switch($event){
             case SELECT_MAP_EVENT:
-                $mapGrid = new MapGrid($this->mapData[$playerId]);
+                $mapGrid = new MapGrid($this->mapViewer[$playerId]);
                 $mapGrid->setPixels($x, $y);
+                echo "mapevent $x $y";
                 $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon() );
                 break;
 
             case SELECT_COUNTER_EVENT:
+                echo "COUNTER $id";
 
                 $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id));
 
@@ -113,8 +118,10 @@ class NapOnMars extends Battle {
     }
     function __construct($data = null)
     {
+        $this->mapData = MapData::getInstance();
         if ($data) {
-            $this->mapData = array(new MapData($data->mapData[0]),new MapData($data->mapData[1]),new MapData($data->mapData[2]));
+            $this->mapData->init($data->mapData);
+            $this->mapViewer = array(new MapViewer($data->mapViewer[0]),new MapViewer($data->mapViewer[1]),new MapViewer($data->mapViewer[2]));
             $this->force = new Force($data->force);
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
@@ -125,7 +132,8 @@ class NapOnMars extends Battle {
             $this->players = $data->players;
             $this->playerData = $data->playerData;
         } else {
-            $this->mapData = array(new MapData(),new MapData(),new MapData());
+            $this->mapData->setData(20,10);
+            $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
             $this->moveRules = new MoveRules($this->force, $this->terrain);
@@ -154,17 +162,17 @@ class NapOnMars extends Battle {
 //                18, 36, // hexagon edge width, hexagon center width
 //                1410, 1410 // max right hexagon, max bottom hexagon
 //            );
-            $this->mapData[0]->setData(44,58, // originX, originY
+            $this->mapViewer[0]->setData(44,60, // originX, originY
                 20, 20, // top hexagon height, bottom hexagon height
                 12, 24, // hexagon edge width, hexagon center width
                 2010, 2010 // max right hexagon, max bottom hexagon
             );
-            $this->mapData[1]->setData(44,58, // originX, originY
+            $this->mapViewer[1]->setData(44,60, // originX, originY
                 20, 20, // top hexagon height, bottom hexagon height
                 12, 24, // hexagon edge width, hexagon center width
                 2010, 2010 // max right hexagon, max bottom hexagon
             );
-            $this->mapData[2]->setData(44,58, // originX, originY
+            $this->mapViewer[2]->setData(44,60, // originX, originY
                 20, 20, // top hexagon height, bottom hexagon height
                 12, 24, // hexagon edge width, hexagon center width
                 2010, 2010 // max right hexagon, max bottom hexagon
@@ -172,6 +180,15 @@ class NapOnMars extends Battle {
 
             // game data
             $this->gameRules->setMaxTurn(7);
+            $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, BLUE_MECH_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_MECH_PHASE,RED_REPLACEMENT_PHASE , REPLACING_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MECH_PHASE , MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_MECH_PHASE,BLUE_REPLACEMENT_PHASE, REPLACING_MODE, BLUE_FORCE, RED_FORCE, true);
             $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
 
             $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);

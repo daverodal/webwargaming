@@ -1,4 +1,4 @@
-<link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 <style type="text/css">
     body{
         background:#eee;
@@ -137,14 +137,12 @@
         border-width:1px;
     }
     #turnCounter{
-        width:32px !important;
-        height:32px !important;
-        font-size:11px !important;
+        width:32px;
+        height:32px;
+        font-size:11px;
         text-indent:0px;
-        top:2px !important;
-        left:2px !important;
-        margin-top:2px;
-        margin-left:2px;
+        top:2px;
+        left:2px;
         text-align:center;
         border:2px solid;
         border-color:#ccc #666 #666 #ccc;
@@ -224,11 +222,16 @@
     .unit img {
         width:100%;
         height:100%;
+        max-height:100px;
+        max-width:100px;
     }
     .arrow{
         position:absolute;
         pointer-events:none;
         z-index:102;
+    }
+    .clone{
+        /*pointer-events:none;*/
     }
 </style>
 <script>
@@ -321,18 +324,17 @@ x.register("mapUnits", function(mapUnits) {
             fudge = isStacked[x][y] * 2;
         }
         if(mapUnits[i].parent != $("#"+i).parent().attr("id")){
-                $("#"+i).appendTo($("#"+mapUnits[i].parent));
+            $("#"+i).appendTo($("#"+mapUnits[i].parent));
             if(mapUnits[i].parent != "gameImages"){
                 $("#"+ i).css({top:"0"});
                 $("#"+ i).css({left:"0"});
-                $("#"+ i).css({position:"static"});
                 $("#"+ i).css({float:"left"});
+                $("#"+ i).css({position:"static"});
             }  else{
                 $("#"+ i).css({float:"none"});
                 $("#"+ i).css({position:"absolute"});
 
             }
-
         }
         if(mapUnits[i].parent == "gameImages"){
 
@@ -346,10 +348,9 @@ x.register("mapUnits", function(mapUnits) {
         }
         var  move = mapUnits[i].maxMove - mapUnits[i].moveAmountUsed;
         var str = mapUnits[i].strength;
-        var symb = mapUnits[i].isReduced ? " &#189; " : " - ";
+        var symb = mapUnits[i].isReduced ? " + " : " - ";
         $("#"+i+" div").html(str + symb + move);
         $("#"+i).attr("src",img);
-
     }
     var dpBox = $("#deployBox").children().size();
     if(dpBox == 0){
@@ -360,8 +361,86 @@ x.register("mapUnits", function(mapUnits) {
 x.register("moveRules", function(moveRules) {
     var str;
     $("#status").html("");
-    if(moveRules.movingUnitId){
-        $("#status").html("Unit #:"+moveRules.movingUnitId+" is currently moving");
+    $(".clone").remove();
+    if(moveRules.movingUnitId >= 0){
+//        alert("MovingUnitid"+moveRules.movingUnitId);
+
+//        $("#status").html("Unit #:"+moveRules.movingUnitId+" is currently moving");
+        if(moveRules.hexPath){
+            id = moveRules.movingUnitId;
+            for( i in moveRules.hexPath){
+                newId = id+"Hex"+i;
+
+                $("#"+id).clone(true).attr('id',newId).appendTo('#gameImages');
+                $("#"+newId+" .arrow").hide();
+                $("#"+newId).addClass("clone");
+                $("#"+newId).css("top",20);
+                width = $("#"+newId).width();
+                height = $("#"+newId).height();
+
+                $("#"+newId).css("left",moveRules.hexPath[i].pixX - width/2 +"px");
+                $("#"+newId).css("top",moveRules.hexPath[i].pixY - height/2 +"px");
+                $("#"+newId+" div").html("24 - "+moveRules.hexPath[i].pointsLeft );
+                $("#"+newId).css("opacity",.9);
+                $("#"+newId).css("z-index",101);
+
+
+            }
+        }
+        if(moveRules.moves){
+            id = moveRules.movingUnitId;
+            for( i in moveRules.moves){
+                newId = id+"Hex"+i;
+                if(!moveRules.moves[i].isValid){
+                    continue;
+                }
+                if(moveRules.moves[i].isOccupied){
+                    continue;
+                }
+
+                $("#"+id).clone(true).attr('id',newId).appendTo('#gameImages');
+                $("#"+newId+" .arrow").hide();
+                $("#"+newId).addClass("clone");
+                $("#"+newId).css("top",20);
+                $("#"+newId).attr("path",moveRules.moves[i].pathToHere);
+
+                width = $("#"+newId).width();
+                height = $("#"+newId).height();
+
+                $("#"+newId).css("left",moveRules.moves[i].pixX - width/2 +"px");
+                $("#"+newId).css("top",moveRules.moves[i].pixY - height/2 +"px");
+                var label = $("#"+newId+" div").html();
+                var newLabel = label.replace(/([-+]).*/,"$1 "+Math.floor(moveRules.moves[i].pointsLeft));
+                $("#"+newId+" div").html(newLabel);
+                $("#"+newId).css("opacity",.4);
+                $("#"+newId).css("z-index",102);
+                $("#"+newId).css("border-color","#ccc #333 #333 #ccc");
+                $("#"+newId).css("box-shadow","none");
+
+                attachMouseEventsToCounter(newId);
+
+
+            }
+        }
+        $(".clone").hover(function(){
+                    $(this).css("opacity",1.0).css("border-color","orange").css('box-shadow','#333 5px 5px 5px');
+                    var path = $(this).attr("path");
+                    var pathes = path.split(",");
+                    for(i in pathes){
+                        $("#"+id+"Hex"+pathes[i]).css("opacity",1.0).css("border-color","orange").css('box-shadow','#333 5px 5px 5px');
+                    }
+            //alert("A "+ path);
+        },
+        function(){
+            $(this).css("opacity",.4).css("border-color","transparent").css('box-shadow','none');
+            var path = $(this).attr("path");
+            var pathes = path.split(",");
+            for(i in pathes){
+                $("#"+id+"Hex"+pathes[i]).css("opacity",.4).css("border-color","transparent").css('box-shadow','none');
+            }
+
+           // alert("B");
+        });
     }
 });
 x.register("force", function(force) {
@@ -504,10 +583,9 @@ x.register("combatRules", function(combatRules) {
                             for(var j in attackers){
                                 theta = attackers[j];
                                 theta *= 15;
-                                theta += 270;
-                                $("#"+j).css({zIndex: "1"});
+                                theta += 180;
                                 $("#"+j+ " .arrow").css({opacity: "1.0"});
-                                $("#"+j+ " .arrow").css({webkitTransform: 'rotate('+theta+"deg) translateX(20px)"});
+                                $("#"+j+ " .arrow").css({webkitTransform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
 
 
                             }
@@ -545,11 +623,11 @@ x.register("combatRules", function(combatRules) {
                     for(var i in attackers){
                                       theta = attackers[i];
                         theta *= 15;
-                        theta += 270;
+                        theta += 180;
 //                        $("#"+i).css({borderColor: "crimson"});
-//                        $("#"+i).css({borderColor: "crimson"});
+                        $("#"+i+ " .arrow").css({display: "block"});
                         $("#"+i+ " .arrow").css({opacity: "1.0"});
-                        $("#"+i+ " .arrow").css({webkitTransform: 'scale(1.0,1.0) rotate('+theta+"deg) translateX(20px)"});
+                        $("#"+i+ " .arrow").css({webkitTransform: 'scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
 
 
                     }
@@ -646,11 +724,11 @@ function doit() {
 });
 $("#mychat").attr("value", "");
 }
-function doitUnit(id, shift) {
+function doitUnit(id) {
     var mychat = $("#mychat").attr("value");
     $.ajax({url: "<?=site_url("wargame/poke");?>/",
         type: "POST",
-        data:{id:id,event : shift ? <?=SELECT_SHIFT_COUNTER_EVENT?>:<?=SELECT_COUNTER_EVENT?>},
+        data:{id:id,event : <?=SELECT_COUNTER_EVENT?>},
     success:function(data, textstatus) {
     }
 });
@@ -841,7 +919,6 @@ function mapMouseDown(event) {
 //}
 
 function counterMouseDown(event) {
-    var shiftKey = event.shiftKey;
     var id;
     if ( document.addEventListener ) {
        id = $(event.target).parent().attr("id");
@@ -850,7 +927,7 @@ function counterMouseDown(event) {
     else {
         id = event.srcElement.id.toString();
     }
-    doitUnit(id, shiftKey);
+    doitUnit(id);
 }
 
 function nextPhaseMouseDown(event) {
@@ -960,7 +1037,7 @@ function initialize() {
     this.attachMouseEventsToMap("map");
 
     var id;
-    for(id = 0;id < 35;id++){
+    for(id = 0;id < 39;id++){
         this.attachMouseEventsToCounter(id);
     }
 //    for ( id = 0; id < force.units.length; id++ ) {
@@ -987,7 +1064,7 @@ function initialize() {
     updateForm();
 }
 $(function() {
-    $( "#gameImages" ).draggable();
+    $( "#gameImages" ).draggable({distance:15});
 });
 $(function(){initialize();});
 </script>
