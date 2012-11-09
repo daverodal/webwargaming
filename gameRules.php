@@ -463,7 +463,7 @@ echo "Past tehe fi";
                         $this->replacementsAvail = 1;
                     }
                     if($this->phase  == RED_REPLACEMENT_PHASE){
-                        $this->replacementsAvail = 10;
+                        $this->replacementsAvail = 3;
                     }
                     if ($this->turn > $this->maxTurn) {
                         $this->mode = GAME_OVER_MODE;

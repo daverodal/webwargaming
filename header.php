@@ -1,4 +1,4 @@
-<link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
 <style type="text/css">
     body{
         background:#eee;
@@ -1036,7 +1036,7 @@ function initialize() {
     this.attachMouseEventsToMap("map");
 
     var id;
-    for(id = 0;id < 34;id++){
+    for(id = 0;id < 35;id++){
         this.attachMouseEventsToCounter(id);
     }
 //    for ( id = 0; id < force.units.length; id++ ) {
