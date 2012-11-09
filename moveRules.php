@@ -78,7 +78,19 @@ class MoveRules{
                         $startHex = new Hexagon($newHex);
                         $this->move($movingUnit, $startHex);
                         $this->path = array();
-                        $this->walkMoves($startHex,$movesLeft,$this->path,false);
+                        if($this->anyUnitIsMoving){
+                            $this->moveQueue = array();
+                            $hexPath = new HexPath();
+                            $hexPath->name = $startHex->name;
+                            $hexPath->pointsLeft = $movesLeft;
+                            $hexPath->pathToHere = array();
+                            $hexPath->firstHex = false;
+                            $hexPath->isOccupied = true;
+                            $this->moveQueue[] = $hexPath;
+                            $this->bfsMoves();
+
+//                            $this->walkMoves($startHex,$movesLeft,$this->path,false);
+                        }
 
                     }
                 }
@@ -239,6 +251,8 @@ class MoveRules{
         return;
     }
     function walkMoves($startHex, $movePoints, $path, $firstHex = false, $depth = false){
+
+        throw new Exception("NO MORE WALKING MOVES");
         global $numWalks;
         $numWalks++;
         $hexNum = $startHex->number;
@@ -350,6 +364,7 @@ class MoveRules{
 
     function stopMove(unit $movingUnit)
     {
+        $this->moves = new stdClass();
         if ($movingUnit->unitIsMoving() == true) {
             if ($movingUnit->unitHasNotMoved()) {
                 $movingUnit->setStatus( STATUS_READY);
@@ -362,6 +377,7 @@ class MoveRules{
                 }
             }
         }
+
     }
 
     function eexit($id)
