@@ -19,7 +19,7 @@ $oneHalfImageHeight = 16;
 
 
 
-class MCW extends Battle {
+class MartianCivilWar extends Battle {
 
     /* @var Mapdata */
     public $mapData;
