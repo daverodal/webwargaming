@@ -49,7 +49,7 @@ class NapOnMars extends Battle {
     }
     public function resize($small,$player){
         if($small){
-            $this->mapData[$player]->setData(44,60, // originX, originY
+            $this->mapViewer[$player]->setData(44,60, // originX, originY
                 20, 20, // top hexagon height, bottom hexagon height
                 12, 24, // hexagon edge width, hexagon center width
                 1410, 1410 // max right hexagon, max bottom hexagon
@@ -60,7 +60,7 @@ class NapOnMars extends Battle {
             $this->playerData->${player}->unitFontSize = "12px";
             $this->playerData->${player}->unitMargin = "-21px";
         }else{
-            $this->mapData[$player]->setData(57,84, // originX, originY
+            $this->mapViewer[$player]->setData(57,84, // originX, originY
                 28, 28, // top hexagon height, bottom hexagon height
                 16, 32, // hexagon edge width, hexagon center width
                 1410, 1410 // max right hexagon, max bottom hexagon
@@ -76,6 +76,7 @@ class NapOnMars extends Battle {
     {
         $data = new stdClass();
         $data->mapData = $this->mapData;
+        $data->mapViewer = $this->mapViewer;
         $data->moveRules = $this->moveRules->save();
         $data->force = $this->force;
         $data->terrain = $this->terrain;
