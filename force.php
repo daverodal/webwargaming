@@ -893,6 +893,12 @@ class Force
 
 
                     $status = STATUS_READY;
+                /*
+                 * Active Locking Zoc rules
+                 */
+//                    if($this->unitIsZOC($id)){
+//                        $status = STATUS_STOPPED;
+//                    }
                     if($phase == BLUE_MECH_PHASE && $this->units[$id]->forceId == BLUE_FORCE && $this->units[$id]->maxMove < 6){
                         echo "hold it bub";
                         $status = STATUS_STOPPED;

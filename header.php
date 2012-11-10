@@ -1,5 +1,60 @@
 <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
 <style type="text/css">
+    .blueUnit, .loyalist{
+        background-color:rgb(132,181,255);
+    }
+    .darkBlueUnit{
+        background-color:rgb(99,136,192);
+    }
+    .redUnit{
+        background-color:rgb(239,115,74);
+    }
+    .darkRedUnit{
+        background-color:rgb(179,86,55);
+    }
+    .sympth{
+        background-color:gold;
+    }
+    .armyGreen, .loyalist{
+    background-color:  rgb(148,189,74);
+    }
+    .gold{
+    background-color:rgb(247,239,142);
+    }
+    .rebel{
+        background-color:rgb(239,115,74);
+    }
+    .lightYellow, .rebel{
+        background-color: rgb(255,239,156);
+    }
+    .gray{
+        background-color: rgb(181,181,156);
+    }
+    .oliveDrab{
+        background-color: rgb(115,156,115);
+    }
+    .kaki{
+        background-color: rgb(222,198,132);
+    }
+    .lightGreen{
+        background-color: rgb(181,206,115);
+    }
+    .lightBlue{
+        background-color: rgb(196,216,228);
+    }
+    .lightGray{
+        background-color: rgb(216,218,214);
+    }
+    .brightGreen{
+        background-color: rgb(123,222,82);
+    }
+    .flesh, .sympth{
+        background-color: rgb(239,198,156);
+    }
+    .brightRed, .rebel{
+        background-color: rgb(223,88,66);
+    }
+
     body{
         background:#eee;
         color:#333;
@@ -207,17 +262,17 @@
     .unit div {
         text-align:center;
     margin-top:<?=$unitMargin?>;
-    color:white;
+    color:black;
         /*text-indent:3px;*/
     font-size:<?=$unitFontSize?>;
     font-weight:bold;
     -webkit-user-select:none;
         }
     .rebel div{
-        color:green;
+        color:black;
     }
     .sympth div{
-        color:white;
+        color:black;
     }
     .unit img {
         width:100%;
@@ -395,7 +450,7 @@ x.register("moveRules", function(moveRules) {
                     continue;
                 }
                 if(moveRules.moves[i].isOccupied){
-                    continue;
+//                    continue;
                 }
 
                 $("#"+id).clone(true).attr('id',newId).appendTo('#gameImages');
@@ -416,18 +471,26 @@ x.register("moveRules", function(moveRules) {
                 $("#"+newId).css("z-index",102);
                 $("#"+newId).css("border-color","#ccc #333 #333 #ccc");
                 $("#"+newId).css("box-shadow","none");
+                if(moveRules.moves[i].isOccupied){
+                    $("#"+newId).css("display","none");
+                    $("#"+newId).addClass("occupied");
 
-                attachMouseEventsToCounter(newId);
+
+                }
+
+                    attachMouseEventsToCounter(newId);
 
 
             }
         }
         $(".clone").hover(function(){
-                    $(this).css("opacity",1.0).css("border-color","orange").css('box-shadow','#333 5px 5px 5px');
+                    $(this).css("opacity",1.0).css("border-color","#fff").css('box-shadow','#333 5px 5px 5px');
                     var path = $(this).attr("path");
                     var pathes = path.split(",");
                     for(i in pathes){
-                        $("#"+id+"Hex"+pathes[i]).css("opacity",1.0).css("border-color","orange").css('box-shadow','#333 5px 5px 5px');
+                        $("#"+id+"Hex"+pathes[i]).css("opacity",1.0).css("border-color","#fff").css('box-shadow','#333 5px 5px 5px');
+                        $("#"+id+"Hex"+pathes[i]+".occupied").css("display","block");
+
                     }
             //alert("A "+ path);
         },
@@ -437,6 +500,8 @@ x.register("moveRules", function(moveRules) {
             var pathes = path.split(",");
             for(i in pathes){
                 $("#"+id+"Hex"+pathes[i]).css("opacity",.4).css("border-color","transparent").css('box-shadow','none');
+                $("#"+id+"Hex"+pathes[i]+".occupied").css("display","none");
+
             }
 
            // alert("B");
@@ -453,30 +518,41 @@ x.register("force", function(force) {
 
     var status = "";
     var boxShadow;
+    var shadow;
     for (i in units) {
         color = "#ccc #666 #666 #ccc";
         $("#"+i + " .arrow").css({opacity: "0.0"});
 
         boxShadow = "none";
 //        $("#"+i).css({zIndex: 100});
-
+        shadow = false;
+        if(units[i].forceId !== force.attackingForceId){
+            shadow = true;
+        }
         switch(units[i].status){
             case <?=STATUS_CAN_REINFORCE?>:
                 if(units[i].forceId === force.attackingForceId && units[i].forceId == <?=BLUE_FORCE?>){
 
                     color = "turquoise";
+                    shadow = true;
                 }
                 break;
-           case 1:
+           case <?=STATUS_READY?>:
                 if(units[i].forceId === force.attackingForceId){
                     $("#"+i + " .arrow").css({opacity: "0.0"});
 
-                    color = "turquoise";
+//                    color = "turquoise";
+                    shadow = true;
+                }else{
+//                    shadow = true;
+
+//                    color = "purple";
                 }
                 break;
             case <?=STATUS_REINFORCING?>:
             case <?=STATUS_MOVING?>:
-                color = "orange";
+                color = "#ccc #666 #666 #ccc";
+                    shadow = true;
 //                $("#"+i).css({zIndex: 101});
                 boxShadow = '5px 5px 5px #333';
 //               var top =  $("#"+i).css("top");
@@ -488,30 +564,32 @@ x.register("force", function(force) {
 
 //                status += " "+units[i].moveAmountUsed+" MF's Used";
                 break;
-            case 6:
+            case <?=STATUS_STOPPED?>:
                 color = "#ccc #666 #666 #ccc";
                 break;
-            case 8:
+            case <?=STATUS_DEFENDING?>:
                 color = "orange";
 
                 break;
             case <?=STATUS_BOMBARDING?>:
 
-            case 9:
+            case <?=STATUS_ATTACKING?>:
 
-
+                shadow = true;
 //                color = "red";
                 break;
-            case 13:
+            case <?=STATUS_CAN_RETREAT?>:
                 color = "purple";
                 break;
-            case 14:
+            case <?=STATUS_RETREATING?>:
                 color = "yellow";
                 break;
-            case 16:
-                color = "pink";
+            case <?=STATUS_CAN_ADVANCE?>:
+                color = "black";
+                    shadow = true;
                 break;
-            case 17:
+            case <?=STATUS_ADVANCING?>:
+                    shadow = true;
                 color = "cyan";
                 break;
             case <?=STATUS_CAN_EXCHANGE?>:
@@ -519,16 +597,16 @@ x.register("force", function(force) {
 
                 color = "red";
                 break;
-            case 29:
+            case <?=STATUS_REPLACED?>:
                 color = "blue";
                 break;
-            case 30:
+            case <?=STATUS_CAN_REPLACE?>:
                 color = "orange";
                 break;
             case <?=STATUS_CAN_UPGRADE?>:
                 case <?=STATUS_ELIMINATED?>:
                     if(units[i].forceId === force.attackingForceId){
-
+                shadow = true;
                 color = "turquoise";
                     }
                 break;
@@ -536,7 +614,13 @@ x.register("force", function(force) {
 
         }
         $("#status").html(status);
+//        $("#"+i).css({borderColor: color});
         $("#"+i).css({borderColor: color});
+        if(!shadow){
+            $("#"+i+" section").css({backgroundColor: 'rgba(0,0,0,.3)'});
+        }else{
+            $("#"+i+" section").css({backgroundColor: 'transparent'});
+        }
         $("#"+i).css({boxShadow: boxShadow});
 
 
