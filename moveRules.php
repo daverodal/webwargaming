@@ -330,6 +330,9 @@ class MoveRules{
     }
     function startMoving($id)
     {
+        /*
+         * remove the true || to make Active Locking zoc's
+         */
         if (true || $this->force->unitIsZOC($id) == false) {
             if ($this->force->units[$id]->setStatus( STATUS_MOVING) == true) {
                 $this->anyUnitIsMoving = true;

@@ -1,4 +1,4 @@
-<body>
+<body xmlns="http://www.w3.org/1999/html">
 <fieldset style="float:right;">
     <legend>Comlink</legend>
     <div id="comlink"></div>
@@ -138,11 +138,12 @@
                      style="position: relative;visibility: visible;z-index: 0;">
                 <?php $id = 0;?>
                 {units}
-                <div class="unit {class}" id="{id}" alt="0">
+                <div class="unit {class}" id="{id}" alt="0"><section style="height:32px;width:32px;position:absolute;background:transparent;"></section>
                     <img class="arrow" src="<?php echo base_url();?>js/short-red-arrow-md.png" class="counter">
                     <img src="<?php echo base_url();?>js/{image}" class="counter">
 
                     <div>5 - 4</div>
+
                 </div>
                 {/units}
             </div>
