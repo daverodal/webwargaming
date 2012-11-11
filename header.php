@@ -15,15 +15,13 @@
     .sympth{
         background-color:gold;
     }
-    .armyGreen, .loyalist{
+    .armyGreen{
     background-color:  rgb(148,189,74);
     }
-    .gold{
+    .gold, .rebel{
     background-color:rgb(247,239,142);
     }
-    .rebel{
-        background-color:rgb(239,115,74);
-    }
+
     .lightYellow, .rebel{
         background-color: rgb(255,239,156);
     }
@@ -36,7 +34,7 @@
     .kaki{
         background-color: rgb(222,198,132);
     }
-    .lightGreen{
+    .lightGreen, .sympth{
         background-color: rgb(181,206,115);
     }
     .lightBlue{
@@ -48,10 +46,10 @@
     .brightGreen{
         background-color: rgb(123,222,82);
     }
-    .flesh, .sympth{
+    .flesh{
         background-color: rgb(239,198,156);
     }
-    .brightRed, .rebel{
+    .brightRed{
         background-color: rgb(223,88,66);
     }
 

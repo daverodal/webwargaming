@@ -15,7 +15,7 @@
 <a href="<?=site_url("wargame/createWargame");?>">Create Wargame</a>
 <a href="<?=site_url("wargame/logout");?>">logout</a>
 {games}
-<a href="<?=site_url("wargame/unitInit/{name}");?>">{name}</a>
+<a href="<?=site_url("wargame/unitInit/{name}/{arg}");?>">{name} {arg}</a>
 {/games}<!--<a href="--><?//=site_url("wargame/resize/0");?><!--">BIG</a>-->
 <a href="#" onclick="seeUnits();return false;">See Units</a>
 <a href="#" onclick="seeBoth();return false;">See Both</a>
@@ -138,7 +138,7 @@
                      style="position: relative;visibility: visible;z-index: 0;">
                 <?php $id = 0;?>
                 {units}
-                <div class="unit {class}" id="{id}" alt="0"><section style="height:32px;width:32px;position:absolute;background:transparent;"></section>
+                <div class="unit {class}" id="{id}" alt="0"><section style="height:100%;width:100%;position:absolute;background:transparent;"></section>
                     <img class="arrow" src="<?php echo base_url();?>js/short-red-arrow-md.png" class="counter">
                     <img src="<?php echo base_url();?>js/{image}" class="counter">
 
