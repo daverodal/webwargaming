@@ -3,7 +3,7 @@
     <legend>Comlink</legend>
     <div id="comlink"></div>
 </fieldset>
-<h2>Welcome {user} to <span style="font-family:Nosifer;">The Martian Civil War</span><span style="font-style: italic;">&ldquo;{wargame}&rdquo;</span>
+<h2>Welcome {user} to <span style="font-family:'Great Vibes';">Napoleon on Mars</span><span style="font-style: italic;">&ldquo;{wargame}&rdquo;</span>
 </h2>
 
 <div style="clear:both"></div>
@@ -15,7 +15,7 @@
 <a href="<?=site_url("wargame/createWargame");?>">Create Wargame</a>
 <a href="<?=site_url("wargame/logout");?>">logout</a>
 {games}
-<a href="<?=site_url("wargame/unitInit/{name}");?>">{name}</a>
+<a href="<?=site_url("wargame/unitInit/{name}/{arg}");?>">{name} {arg}</a>
 {/games}<!--<a href="--><?//=site_url("wargame/resize/0");?><!--">BIG</a>-->
 <a href="#" onclick="seeUnits();return false;">See Units</a>
 <a href="#" onclick="seeBoth();return false;">See Both</a>

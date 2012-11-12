@@ -29,10 +29,9 @@
    }
 </style>
 <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 
 <h2 style="text-align:center;font-size:30px;font-family:'Great Vibes'"> Welcome to</h2>
-    <h1 style="text-align:center;font-size:90px;font-family:'Nosifer'">The Martian Civil War</h1>
+    <h1 style="text-align:center;font-size:90px;font-family:'Great Vibes'">Napoleon on Mars</h1>
 <div style="clear:both"></div>
 <fieldset style="text-align:center;width:30%;margin:0 auto;"><Legend>Play As </Legend>
     <a class="rebel"  href="<?=site_url("wargame/changeWargame");?>/<?=$wargame?>/1">Rebel</a>

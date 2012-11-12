@@ -184,7 +184,7 @@ function equals(Hexagon $hexagon) {
 	return $isEqual;
 }
 
-function getAdjacentHexagon( $direction ) {
+ function getAdjacentHexagon( $direction ) {
 
 	// direction 1=N, 2=NE, 3=SE, 4=S, 5=SW, 6=NW
 	$adjX = array( 0,  0,  2,  2,  0, -2, -2 );

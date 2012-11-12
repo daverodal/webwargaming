@@ -163,6 +163,7 @@ class GameRules {
                         if($this->replacementsAvail <= 0){
                             break;
                         }
+                        var_dump($this->force->units[$id]);
                         if($this->force->attackingForceId == $this->force->units[$id]->forceId){
                         if($this->force->units[$id]->status == STATUS_ELIMINATED ){
                             $this->force->units[$id]->status = STATUS_CAN_REPLACE;
@@ -234,11 +235,14 @@ class GameRules {
 
 
             case COMBAT_SETUP_MODE:
-
+                       $shift = false;
                 switch ($event) {
 
+                    case SELECT_SHIFT_COUNTER_EVENT:
+                        $shift = true;
+                        /* fall through */
                     case SELECT_COUNTER_EVENT:
-                        $this->combatRules->setupCombat($id);
+                        $this->combatRules->setupCombat($id, $shift);
 
                         break;
 
@@ -265,12 +269,10 @@ class GameRules {
                             $this->force->removeEliminatingUnits();
                         }
                         if ($this->force->unitsAreExchanging() == true) {
-                            echo "EXCHANGINGMODE!!!!";
                             $this->mode = EXCHANGING_MODE;
                         }
 
                         if ($this->force->unitsAreAttackerLosing() == true) {
-                            echo "EXCHANGINGMODE!!!!";
                             $this->mode = ATTACKER_LOSING_MODE;
                         }
 
@@ -286,7 +288,7 @@ class GameRules {
                         break;
 
                     case SELECT_BUTTON_EVENT:
-                        if ($this->force->moreCombatToResolve() == false) {
+                        if($this->force->moreCombatToResolve() == false){
                             $this->combatRules->cleanUp();
                             $this->selectNextPhase();
                         }
@@ -344,12 +346,11 @@ class GameRules {
                 break;
 
             case RETREATING_MODE:
-echo "retreating";
+
                 switch ($event) {
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
-                    echo "retreat?";
                         $this->moveRules->retreatUnit($event, $id, $hexagon);
                         if ($this->force->unitsAreRetreating() == false) {
                             if ($this->force->unitsAreExchanging() == true) {
@@ -462,7 +463,7 @@ echo "Past tehe fi";
                         $this->replacementsAvail = 1;
                     }
                     if($this->phase  == RED_REPLACEMENT_PHASE){
-                        $this->replacementsAvail = 10;
+                        $this->replacementsAvail = 3;
                     }
                     if ($this->turn > $this->maxTurn) {
                         $this->mode = GAME_OVER_MODE;
@@ -477,42 +478,6 @@ echo "Past tehe fi";
     function incrementTurn()
     {
         $this->turn++;
-//        if($this->turn == 3){
-//            $this->moveRules->storm = true;
-//            $this->combatRules->storm = true;
-//            $this->storm = true;
-//        }
-//        if($this->turn == 5){
-//            $this->moveRules->storm = false;
-//            $this->combatRules->storm = false;
-//            $this->storm = false;
-//        }
-        if($this->turn == 2){
-            $this->force->units[13]->status = STATUS_ELIMINATED;
-            $this->force->units[14]->status = STATUS_ELIMINATED;
-            $this->force->units[13]->parent = "deadpile";/* TODO OO HEX STUFF */
-            $this->force->units[14]->hexagon->parent = "deadpile";
-        }
-        if($this->turn == 3){
-            $this->force->units[15]->status = STATUS_ELIMINATED;
-            $this->force->units[16]->status = STATUS_ELIMINATED;
-            $this->force->units[17]->status = STATUS_ELIMINATED;
-            $this->force->units[15]->hexagon->parent = "deadpile";/* TODO OO HEX STUFF */
-            $this->force->units[16]->hexagon->parent = "deadpile";
-            $this->force->units[17]->hexagon->parent = "deadpile";
-        }
-        if($this->turn == 4){
-            $this->force->units[18]->status = STATUS_ELIMINATED;
-            $this->force->units[19]->status = STATUS_ELIMINATED;
-            $this->force->units[18]->parent = "deadpile";/* TODO OO HEX STUFF */
-            $this->force->units[19]->hexagon->parent = "deadpile";
-        }
-        if($this->turn == 5){
-            $this->force->units[20]->status = STATUS_ELIMINATED;
-            $this->force->units[21]->status = STATUS_ELIMINATED;
-            $this->force->units[20]->hexagon->parent = "deadpile";/* TODO OO HEX STUFF */
-            $this->force->units[21]->hexagon->parent = "deadpile";
-        }
     }
 
     function getInfo()

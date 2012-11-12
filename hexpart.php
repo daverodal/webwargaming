@@ -47,7 +47,7 @@ function setXY($x, $y)
 
 function setXYwithNameAndType( $hexagonName, $hexpartType )
 {
-	$hexagon = new Hexagon($hexagonName);
+	$hexagon = new Hexagon($hexagonName);//
 
 	$this->x = $hexagon->getX();
 	$this->y = $hexagon->getY();

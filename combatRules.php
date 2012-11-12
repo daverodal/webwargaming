@@ -35,7 +35,6 @@ class CombatRules
     public $attackers;
     public $resolvedCombats;
     public $lastResolvedCombat;
-    public $storm;
 
     function save()
     {
@@ -59,13 +58,12 @@ class CombatRules
         } else {
             $this->combats = new StdClass();
             $this->currentDefender = false;
-            $this->storm = false;
         }
         $this->crt = new CombatResultsTable();
     }
 
 
-    function setupCombat( $id ) {
+    function setupCombat( $id , $shift = false) {
 
     $cd = $this->currentDefender;
 
@@ -136,15 +134,11 @@ class CombatRules
 
 function cleanUpAttacklessDefenders()
 {
-    echo "Clean up now ";
     foreach ($this->combats as $id => $combat) {
-        echo " and again ";
         if ($id == $this->currentDefender) {
-            echo "Not that";
             continue;
         }
         if (count((array)$combat->attackers) == 0) {
-            echo " clean that up now ";
             $this->force->setStatus($id, STATUS_READY);
             unset($this->combats->$id);
         }
@@ -155,9 +149,7 @@ function setupFireCombat( $id ){
 
 function getDefenderTerrainCombatEffect($defenderId)
 {
-
     $terrainCombatEffect = $this->terrain->getDefenderTerrainCombatEffect($this->force->getCombatHexagon($defenderId),$this->force->attackingForceId);
-
     if ($this->allAreAttackingAcrossRiver($defenderId)) {
 
         $terrainCombatEffect += $this->terrain->getAllAreAttackingAcrossRiverCombatEffect();
@@ -170,6 +162,7 @@ function getDefenderTerrainCombatEffect($defenderId)
 
 function setCombatIndex($defenderId)
 {
+
     $combats = $this->combats->$defenderId;
     if(count((array)$combats->attackers) == 0){
         $combats->index = null;
@@ -181,15 +174,13 @@ function setCombatIndex($defenderId)
     $attackStrength = $this->force->getAttackerStrength($combats->attackers);
     $defenseStrength = $this->force->getDefenderStrength($defenderId);
 
-    if($this->storm){
-        $attackStrength /= 2.;
-    }
     $combatIndex = floor($attackStrength / $defenseStrength)-1;
 
     /* Do this before terrain effects */
     if ($combatIndex >= $this->crt->maxCombatIndex) {
         $combatIndex = $this->crt->maxCombatIndex;
     }
+
 
     $terrainCombatEffect = $this->getDefenderTerrainCombatEffect($defenderId);
 
@@ -226,7 +217,7 @@ function resolveCombat( $id ) {
     //  Math->floor gives lower integer, which is now 0,1,2,3,4,5
 
     $Die = floor($this->crt->dieSideCount * (rand()/getrandmax()));
-    $Die = 2;
+//    $Die = 2;
 //    $index = $this->force->getUnitCombatIndex($id);
     $index = $this->combatsToResolve->${id}->index;
 
@@ -261,7 +252,7 @@ function allAreAttackingAcrossRiver($defenderId) {
         $hexsideY = ($defenderHexagon->getY() + $attackerHexagon->getY()) / 2;
         
         $hexside = new Hexpart($hexsideX, $hexsideY);
-        
+
         if ($this->terrain->terrainIs($hexside, "river") == false) {
 
             $allAttackingAcrossRiver = false;
@@ -281,17 +272,13 @@ function getCombatOddsList($combatIndex)
 
         foreach ($this->combats as $defenderId => $combat)
         {
-            echo "Defender Id $defenderId";
             if(count((array)$combat->attackers) == 0){
                 unset($this->combats->$defenderId);
                 $this->force->setStatus($defenderId,STATUS_READY);
                 continue;
             }
-            echo "Is Bad Attack?";
             if($combat->index < 0){
-                echo "could be";
                 if($combat->attackers){
-                    echo "attackers found";
                     foreach($combat->attackers as $attackerId => $attacker){
                         unset($this->attackers->$attackerId);
                         $this->force->setStatus($attackerId, STATUS_READY);
