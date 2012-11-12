@@ -51,7 +51,7 @@
     .flesh, .sympth{
         background-color: rgb(239,198,156);
     }
-    .brightRed, .rebel{
+    .brightRed, .rebel, .sympth{
         background-color: rgb(223,88,66);
     }
 
@@ -384,7 +384,7 @@ x.register("mapUnits", function(mapUnits) {
                 $("#"+ i).css({top:"0"});
                 $("#"+ i).css({left:"0"});
                 $("#"+ i).css({float:"left"});
-                $("#"+ i).css({position:"static"});
+                $("#"+ i).css({position:"relative"});
             }  else{
                 $("#"+ i).css({float:"none"});
                 $("#"+ i).css({position:"absolute"});
