@@ -1041,6 +1041,9 @@ function attachMouseEventsToMap(objectName) {
 
 function attachMouseEventsToCounter(objectName) {
 
+    $("#"+objectName).bind('mousedown',true,counterMouseDown);
+    return;
+
     var id;
     id = parseInt(objectName, 10);
     object  = document.getElementById(objectName);
@@ -1117,10 +1120,11 @@ function initialize() {
     // setup events --------------------------------------------
     this.attachMouseEventsToMap("map");
 
-    var id;
-    for(id = 0;id < 35;id++){
-        this.attachMouseEventsToCounter(id);
-    }
+    $(".unit").bind('mousedown',true,counterMouseDown);
+//    var id;
+//    for(id = 0;id < 35;id++){
+//        this.attachMouseEventsToCounter(id);
+//    }
 //    for ( id = 0; id < force.units.length; id++ ) {
 //        createImage( id, force.units[id].image, 0, 0 );
 //        this.attachMouseEventsToCounter( id );
