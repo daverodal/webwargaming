@@ -463,7 +463,7 @@ echo "Past tehe fi";
                         $this->replacementsAvail = 1;
                     }
                     if($this->phase  == RED_REPLACEMENT_PHASE){
-                        $this->replacementsAvail = 3;
+                        $this->replacementsAvail = 10;
                     }
                     if ($this->turn > $this->maxTurn) {
                         $this->mode = GAME_OVER_MODE;
@@ -478,6 +478,32 @@ echo "Past tehe fi";
     function incrementTurn()
     {
         $this->turn++;
+        if($this->turn == 2){
+            $this->force->units[13]->status = STATUS_ELIMINATED;
+            $this->force->units[14]->status = STATUS_ELIMINATED;
+            $this->force->units[13]->parent = "deadpile";/* TODO OO HEX STUFF */
+            $this->force->units[14]->hexagon->parent = "deadpile";
+        }
+        if($this->turn == 3){
+            $this->force->units[15]->status = STATUS_ELIMINATED;
+            $this->force->units[16]->status = STATUS_ELIMINATED;
+            $this->force->units[17]->status = STATUS_ELIMINATED;
+            $this->force->units[15]->hexagon->parent = "deadpile";/* TODO OO HEX STUFF */
+            $this->force->units[16]->hexagon->parent = "deadpile";
+            $this->force->units[17]->hexagon->parent = "deadpile";
+        }
+        if($this->turn == 4){
+            $this->force->units[18]->status = STATUS_ELIMINATED;
+            $this->force->units[19]->status = STATUS_ELIMINATED;
+            $this->force->units[18]->parent = "deadpile";/* TODO OO HEX STUFF */
+            $this->force->units[19]->hexagon->parent = "deadpile";
+        }
+        if($this->turn == 5){
+            $this->force->units[20]->status = STATUS_ELIMINATED;
+            $this->force->units[21]->status = STATUS_ELIMINATED;
+            $this->force->units[20]->hexagon->parent = "deadpile";/* TODO OO HEX STUFF */
+            $this->force->units[21]->hexagon->parent = "deadpile";
+        }
     }
 
     function getInfo()
