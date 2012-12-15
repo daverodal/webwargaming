@@ -29,7 +29,6 @@ class MapHex{
         if(!$this->forces){
             $this->forces = array(new stdClass(),new stdClass(), new stdClass());
         }
-        echo "SetUnit";
         if(!$this->forces[$forceId]){
             $this->forces[$forceId] = new stdClass();
         }

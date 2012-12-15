@@ -3,7 +3,7 @@
     <legend>Comlink</legend>
     <div id="comlink"></div>
 </fieldset>
-<h2>Welcome {user} to <span style="font-family:'Great Vibes';">Napoleon on Mars</span><span style="font-style: italic;">&ldquo;{wargame}&rdquo;</span>
+<h2>Welcome {user} to <span style="font-family:'Great Vibes';">The Martian Civil War</span><span style="font-style: italic;">&ldquo;{wargame}&rdquo;</span>
 </h2>
 
 <div style="clear:both"></div>

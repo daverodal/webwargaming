@@ -139,7 +139,9 @@ class MartianCivilWar extends Battle {
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = array("","","");
+            $this->playerData = new stdClass();
             for($player = 0;$player <= 2;$player++){
+                $this->playerData->${player} = new stdClass();
             $this->playerData->${player}->mapWidth = "744px";
             $this->playerData->${player}->mapHeight = "425px";
             $this->playerData->${player}->unitSize = "32px";
