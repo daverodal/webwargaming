@@ -48,25 +48,25 @@ class MartianCivilWar extends Battle {
     }
     public function resize($small,$player){
         if($small){
-            $this->mapViewer[$player]->setData(44,60, // originX, originY
-                20, 20, // top hexagon height, bottom hexagon height
-                12, 24 // hexagon edge width, hexagon center width
+            $this->mapViewer[$player]->setData(60,76, // originX, originY
+                25, 25, // top hexagon height, bottom hexagon height
+                15, 30 // hexagon edge width, hexagon center width
             );
-            $this->playerData->${player}->mapWidth = "744px";
-            $this->playerData->${player}->mapHeight = "425px";
+            $this->playerData->${player}->mapWidth = "1365px";
+            $this->playerData->${player}->mapHeight = "1025px";
             $this->playerData->${player}->unitSize = "32px";
             $this->playerData->${player}->unitFontSize = "12px";
             $this->playerData->${player}->unitMargin = "-21px";
         }else{
-            $this->mapViewer[$player]->setData(57,84, // originX, originY
-                28, 28, // top hexagon height, bottom hexagon height
-                16, 32 // hexagon edge width, hexagon center width
+            $this->mapViewer[$player]->setData(30,102, // originX, originY
+                50, 50, // top hexagon height, bottom hexagon height
+                30, 60 // hexagon edge width, hexagon center width
             );
-            $this->playerData->${player}->mapWidth = "996px";
-            $this->playerData->${player}->mapHeight = "593px";
-            $this->playerData->${player}->unitSize = "42px";
-            $this->playerData->${player}->unitFontSize = "16px";
-            $this->playerData->${player}->unitMargin = "-23px";
+            $this->playerData->${player}->mapWidth = "2730px";
+            $this->playerData->${player}->mapHeight = "2050px";
+            $this->playerData->${player}->unitSize = "62px";
+            $this->playerData->${player}->unitFontSize = "26px";
+            $this->playerData->${player}->unitMargin = "-34px";
         }
     }
     function save()
@@ -130,7 +130,7 @@ class MartianCivilWar extends Battle {
             $this->players = $data->players;
             $this->playerData = $data->playerData;
         } else {
-            $this->mapData->setData(20,10);
+            $this->mapData->setData(30,20);
             $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
@@ -142,8 +142,8 @@ class MartianCivilWar extends Battle {
             $this->playerData = new stdClass();
             for($player = 0;$player <= 2;$player++){
                 $this->playerData->${player} = new stdClass();
-            $this->playerData->${player}->mapWidth = "744px";
-            $this->playerData->${player}->mapHeight = "425px";
+            $this->playerData->${player}->mapWidth = "1365px";
+            $this->playerData->${player}->mapHeight = "1025px";
             $this->playerData->${player}->unitSize = "32px";
             $this->playerData->${player}->unitFontSize = "12px";
             $this->playerData->${player}->unitMargin = "-21px";
@@ -162,20 +162,20 @@ class MartianCivilWar extends Battle {
 //                18, 36, // hexagon edge width, hexagon center width
 //                1410, 1410 // max right hexagon, max bottom hexagon
 //            );
-            $this->mapViewer[0]->setData(44,60, // originX, originY
-                20, 20, // top hexagon height, bottom hexagon height
-                12, 24, // hexagon edge width, hexagon center width
-                2010, 2010 // max right hexagon, max bottom hexagon
+            $this->mapViewer[0]->setData(60,76, // originX, originY
+                25, 25, // top hexagon height, bottom hexagon height
+                15, 30, // hexagon edge width, hexagon center width
+                3020, 3020 // max right hexagon, max bottom hexagon
             );
-            $this->mapViewer[1]->setData(44,60, // originX, originY
-                20, 20, // top hexagon height, bottom hexagon height
-                12, 24, // hexagon edge width, hexagon center width
-                2010, 2010 // max right hexagon, max bottom hexagon
+            $this->mapViewer[1]->setData(60,76, // originX, originY
+                25, 25, // top hexagon height, bottom hexagon height
+                15, 30, // hexagon edge width, hexagon center width
+                3020, 3020 // max right hexagon, max bottom hexagon
             );
-            $this->mapViewer[2]->setData(44,60, // originX, originY
-                20, 20, // top hexagon height, bottom hexagon height
-                12, 24, // hexagon edge width, hexagon center width
-                2010, 2010 // max right hexagon, max bottom hexagon
+            $this->mapViewer[2]->setData(60,76, // originX, originY
+                25, 25, // top hexagon height, bottom hexagon height
+                15, 30, // hexagon edge width, hexagon center width
+                3020, 3020 // max right hexagon, max bottom hexagon
             );
 
             // game data
@@ -204,12 +204,12 @@ class MartianCivilWar extends Battle {
                 $this->force->addUnit("infantry-1", RED_FORCE, 1000+$i, "multiInf.png",2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
 
             }
-            $this->force->addUnit("infantry-1", RED_FORCE, 1107, "multiInf.png",2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, 1206, "multiInf.png",2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, 1405, "multiInf.png",2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, 1501, "multiInf.png",2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, 1504, "multiInf.png",2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, 1505, "multiInf.png",2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 2415, "multiMech.png",5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 2416, "multiMech.png",5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 2417, "multiMech.png",4, 2, 6, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 2515, "multiMech.png",6, 3, 6, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 2516, "multiMech.png",5, 3, 6, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 2517, "multiMech.png",5, 3, 6, true, STATUS_READY, "L", 1, 1, "loyalist");
 
             $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 1, 1, "loyalist");
@@ -252,6 +252,7 @@ class MartianCivilWar extends Battle {
             $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("road", "road", "r", 0, 0, 0, false);
+            $this->terrain->addTerrainFeature("trail", "trail", "r", 0, 0, 0, false);
             $this->terrain->addTerrainFeature("fortified", "fortified", "h", 1, 0, 1, true);
             $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 0, false);
             $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
@@ -272,9 +273,11 @@ class MartianCivilWar extends Battle {
                     $this->terrain->addReinforceZone(300 + $i,"R");
 
             }
-
-            for($col = 100; $col <= 2000; $col += 100){
-                for($row = 1; $row <= 10;$row++){
+            /*
+             * First put clear everywhere, hexes and hex sides
+             */
+            for($col = 100; $col <= 3000; $col += 100){
+                for($row = 1; $row <= 20;$row++){
                     $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
@@ -282,73 +285,141 @@ class MartianCivilWar extends Battle {
 
                 }
             }
-            $trains = array(102,201,302,401,502,601);
-            foreach($trains as $train){
-            }
-            $this->terrain->addTerrain(606, HEXAGON_CENTER, "forest");
-            $this->terrain->addTerrain(408, HEXAGON_CENTER, "rough");
 
-            $this->terrain->addTerrain(405, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(406, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(406, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(406, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(505, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(506, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(507, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(508, UPPER_LEFT_HEXSIDE, "river");
+            /*
+             * Next put terrain like rough and forest because they are exclusive and will cancel what else is there.
+             */
+            $hexes = array(907,908,909,910,1006,1007,1010,1106,1107,1108,1111,1205,1207,1210,
+                1305,1307,1311,1406,1410,1506,1507,1510,1511,1607,1609,1707,1708,1709);
 
-            $this->terrain->addTerrain(705, HEXAGON_CENTER, "town");
-            $this->terrain->addTerrain(1202, HEXAGON_CENTER, "town");
-            $this->terrain->addTerrain(1605, HEXAGON_CENTER, "newrichmond");
-            $this->terrain->addTerrain(1705, HEXAGON_CENTER, "newrichmond");
-            $this->terrain->addTerrain(1706, HEXAGON_CENTER, "newrichmond");
-
-            for($i = 1; $i <= 10;$i++){
-                $this->terrain->addTerrain(2000+$i, HEXAGON_CENTER, "eastedge");
+            foreach($hexes as $hex){
+                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "rough");
             }
 
+            $hexes = array(219,220,319,418,517,518,615,616,715,
+                1008,1009,1109,1110,1208,1209,1308,1309,1310,1407,1408,1409,1508,1509,1608,
+                1804,1903,1904,2002,2003,2102,2201,2202,2301,2302);
 
-            $hexpart = new Hexpart();
-            $hexpart->setXYwithNameAndType(1910,HEXAGON_CENTER);
-            $hexpart->setXYwithNameAndType(2010,HEXAGON_CENTER);
-            $terrain = $this->terrain;
+            foreach($hexes as $hex){
+                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "forest");
+            }
 
-            $this->terrain->addTerrain(1007, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1008, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1009, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1010, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1107, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1206, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1306, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1307, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1308, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1309, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1310, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1405, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1501, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1502, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1503, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1504, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1505, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1506, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1507, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1508, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1509, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1510, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1604, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1606, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1702, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1703, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1704, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1707, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1801, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1803, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1804, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1806, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(1903, HEXAGON_CENTER, "fortified");
-            $this->terrain->addTerrain(2002, HEXAGON_CENTER, "fortified");
+            $hexes = array(407,516,1515,1909);
 
-              // end terrain data ----------------------------------------
+            foreach($hexes as $hex){
+                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "town");
+            }
+            $hexes = array(2414,2415,2515);
+
+            foreach($hexes as $hex){
+                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "newrichmond");
+            }
+
+            for($i = 3001;$i <= 3020;$i++){
+                $this->terrain->addTerrain($i, HEXAGON_CENTER, "eastedge");
+
+            }
+
+            /*
+             * Now put the roads and trails on top of verything else
+             */
+            for($i = 401;$i <= 410;$i++){
+                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
+                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
+
+            }
+            $this->terrain->addTerrain(411, HEXAGON_CENTER, "road");
+
+            $this->terrain->addTerrain(512, UPPER_LEFT_HEXSIDE, "road");
+
+            for($i = 512;$i <= 515;$i++){
+                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
+                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
+
+            }
+
+            $this->terrain->addTerrain(516, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(516, LOWER_LEFT_HEXSIDE, "road");
+            $this->terrain->addTerrain(416, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(416, LOWER_LEFT_HEXSIDE, "road");
+            $this->terrain->addTerrain(317, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(317, LOWER_LEFT_HEXSIDE, "road");
+            $this->terrain->addTerrain(217, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(217, LOWER_LEFT_HEXSIDE, "road");
+            $this->terrain->addTerrain(118, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(118, BOTTOM_HEXSIDE, "road");
+            $this->terrain->addTerrain(119, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(119, BOTTOM_HEXSIDE, "road");
+            $this->terrain->addTerrain(120, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(120, BOTTOM_HEXSIDE, "road");
+
+
+            $hexes = array(612,713,813,914,1014,1115,1215,1316);
+            foreach($hexes as $hex){
+                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "road");
+                $this->terrain->addTerrain($hex, UPPER_LEFT_HEXSIDE, "road");
+
+            }
+            $hexes = array(1415,1515,1614,1714,1813,1913,2012,2615);
+            foreach($hexes as $hex){
+                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "road");
+                $this->terrain->addTerrain($hex, LOWER_LEFT_HEXSIDE, "road");
+
+            }
+
+            for($i = 2401;$i <= 2405;$i++){
+                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
+                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
+
+            }
+            $hexes = array(2406,2307,2207,2108,2008,1909,1809,1710,
+            2516,2413);
+            foreach($hexes as $hex){
+                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "road");
+                $this->terrain->addTerrain($hex, LOWER_LEFT_HEXSIDE, "road");
+            }
+            for($i = 1610;$i <= 1614;$i++){
+                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
+                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
+
+            }
+
+            for($i = 2411;$i <= 2413;$i++){
+                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
+                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
+
+            }
+
+            $hexes = array(2009,2110,2210,2311,2411,2113,2213,2214,2414,2515,2616,2716,2816,2917,3017
+            ,2314,2514,2614,2416,2615);
+            foreach($hexes as $hex){
+                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "road");
+                $this->terrain->addTerrain($hex, UPPER_LEFT_HEXSIDE, "road");
+            }
+            $this->terrain->addTerrain(2614, BOTTOM_HEXSIDE, "road");
+
+            for($i = 2314;$i <= 2315;$i++){
+                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
+                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
+
+            }
+            $this->terrain->addTerrain(2316, HEXAGON_CENTER, "road");
+
+            $hexes = array(505,605,706,806,907,1007,1108,1208,1309,1409,1808,1909);
+            foreach($hexes as $hex){
+                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "trail");
+                $this->terrain->addTerrain($hex, UPPER_LEFT_HEXSIDE, "trail");
+
+            }
+            $hexes = array(1509,1608,1708);
+            foreach($hexes as $hex){
+                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "trail");
+                $this->terrain->addTerrain($hex, LOWER_LEFT_HEXSIDE, "trail");
+
+            }
+
+
+            // end terrain data ----------------------------------------
 
         }
     }

@@ -30,7 +30,7 @@ class Hexagon  {
 
 	public $evenColumnShiftDown;
 	public $number;
-	public $x, $y;
+	public $x = false, $y = false;
 	public $name;
 	public $minX, $minY;
 	public $maxX, $maxY;
@@ -45,8 +45,8 @@ class Hexagon  {
         $this->name = "";
         $this->minX = 4;
         $this->minY = 8;
-        $this->maxX = 42;
-        $this->maxY = 46;
+        $this->maxX = 126;
+        $this->maxY = 92;
 
         // Hexagon(name)
         if ( $a1 !== false && $a2 === false ) {
@@ -197,12 +197,18 @@ function equals(Hexagon $hexagon) {
 }
 
 function getX() {
-
+    if($this->x === false){
+            $this->calculateHexpartXY();
+            $this->calculateHexagonName();
+    }
 	return $this->x;
 }
 
 function getY() {
-
+    if($this->y === false){
+        $this->calculateHexpartXY();
+        $this->calculateHexagonName();
+    }
     return $this->y;
 }
 

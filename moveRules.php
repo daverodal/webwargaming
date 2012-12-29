@@ -15,6 +15,7 @@ class MoveRules{
     /* @var Terrain */
     public $terrain;
 
+    public $mapData;
     // local variables
     public $movingUnitId;
     public $anyUnitIsMoving;
@@ -38,6 +39,7 @@ class MoveRules{
     {
         // Class references
 
+        $this->mapData = MapData::getInstance();
         $this->moves = new stdClass();
         $this->path = new stdClass();
         $this->force = $Force;
@@ -95,7 +97,6 @@ class MoveRules{
                     }
                 }
                 if ($this->force->unitIsReinforcing($this->movingUnitId) == true) {
-
                     $this->reinforce($this->movingUnitId, $hexagon);
                 }
             }
@@ -163,6 +164,7 @@ class MoveRules{
     function bfsMoves(){
         $hist = array();
         $cnt = 0;
+
         while(count($this->moveQueue) > 0){
             $cnt++;
             $hexPath = array_shift($this->moveQueue);
@@ -192,20 +194,24 @@ class MoveRules{
                 }
             }
             $theHex = new Hexagon($hexNum);
+            $mapHex = $this->mapData->getHex($hexNum);
 
-            if($this->force->hexagonIsOccupied($theHex)){
+            if($this->force->mapHexIsOccupied($mapHex)){
                 $this->moves->$hexNum->isOccupied = true;
             }
-            if($this->force->hexagonIsEnemyOccupied($theHex)){
+            if($this->force->mapHexIsOccupiedEnemy($mapHex)){
                 $this->moves->$hexNum->isValid = false;
                 continue;
             }
             $this->moves->$hexNum->pointsLeft = $movePoints;
             $this->moves->$hexNum->pathToHere = $hexPath->pathToHere;
 
-            if($this->moves->$hexNum->isZoc || $this->force->hexIsZOC($theHex,1)){
+            if($this->moves->$hexNum->isZoc == NULL){
+                $this->moves->$hexNum->isZoc = $this->force->mapHexIsZOC($mapHex);
+                echo "Hexnum $hexNum ".$this->moves->$hexNum->isZoc."\n";
+            }
+            if($this->moves->$hexNum->isZoc){
 //                $this->moves->$hexNum->pointsLeft = 0;
-                $this->moves->$hexNum->isZoc = true;
                 if(!$hexPath->firstHex){
                     continue;
                 }
@@ -215,14 +221,18 @@ class MoveRules{
             $path[] = $hexNum;
 
             for($i = 1; $i <= 6; $i++){
-                $newHex = new Hexagon($hexNum);
-                $newHex->getAdjacentHexagon($i);
+                $newHex = new Hexagon($mapHex->neighbors[$i - 1]);
+
+//                $newHex = new Hexagon($hexNum);
+//                $newHex->getAdjacentHexagon($i);
                 $newHexNum = $newHex->name;
                 if(!$newHexNum){
                     continue;
                 }
+//                echo "getma \n";
                 $moveAmount = $this->terrain->getTerrainMoveCost($theHex, $newHex, $this->railMove);
-//            $moveAmount = 1;
+//            $moveAmount = .5;
+//                echo "ma $moveAmount\n";
                 if($moveAmount <= 0){
                     $moveAmount = 1;
                 }

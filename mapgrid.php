@@ -9,11 +9,26 @@
 
 // MapData Constructor
 class MapHex{
+    private $evenHexesShiftDown = true;
     public $forces;
     public $zocs;
     public $name;
+    public $neighbors;
     public function __construct($name, $forces = false){
         $this->name = $name;
+        $this->neighbors = array();
+        $row = $name%100;
+        $col = floor($name / 100);
+        $colShift = array(0,1,1,0,-1,-1);
+        if($col & 1){
+            $rowShift = array(-1,-1,0,1,0,-1);
+        }else{
+            $rowShift = array(-1,0,1,1,1,0);
+        }
+        for($i = 0;$i<6;$i++){
+            $neighbor = $row+$rowShift[$i]+(($col+$colShift[$i])*100);
+            $this->neighbors[]  = $neighbor;
+        }
         if($forces !== false){
             $this->forces = $forces;
         }else{
@@ -75,6 +90,7 @@ class MapData{
     }
 
     function getHex($name){
+        $name = sprintf("%04d",$name);
         return $this->hexes->$name;
     }
 }

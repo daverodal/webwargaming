@@ -31,8 +31,8 @@ class Hexpart
 		$this->x = $arguments[0];
 		$this->y = $arguments[1];
 		
-		$this->calculateHexpartType();
-		$this->calculateHexpartName();
+//		$this->calculateHexpartType();
+//		$this->calculateHexpartName();
 	}
 }
 

@@ -245,6 +245,7 @@ class unit implements JsonSerializable
         $this->hexagon = $hexagon;
         $mapHex = $mapData->getHex($this->hexagon->getName());
         if($mapHex){
+            echo "force id ".$this->id;
             $mapHex->setUnit($this->forceId,$this->id);
         }
         $this->moveCount++;
@@ -545,10 +546,10 @@ class Force
         $unit->isReduced = true;
         $unit->strength = $this->units[$id]->minStrength;
         $col = 0;
-        if($unit->forceId == 2){
-
-            $col = 2100 + floor($id / 10) * 100;
-        }
+//        if($unit->forceId == 2){
+//
+//            $col = 2100 + floor($id / 10) * 100;
+//        }
         $unit->hexagon = new Hexagon($col+$id%10);
 
         $unit->hexagon->parent = "deadpile";
@@ -757,15 +758,15 @@ class Force
         return $isZOC;
     }
 
-    function hexagonIsOccupied($hexagon)
+    function mapHexIsOccupied($mapHex)
     {
         $isOccupied = false;
-        $mapData = MapData::getInstance();
-        $mapHex = $mapData->getHex($hexagon->getName());
-        foreach($mapHex->forces as $force)
-        {
-           if(count((array)$force) > 0){
-                $isOccupied = true;
+        if(is_array($mapHex->forces)){
+            foreach($mapHex->forces as $force)
+            {
+                if(count((array)$force) > 0){
+                    $isOccupied = true;
+                }
             }
         }
 //        for ($id = 0; $id < count($this->units); $id++)
@@ -775,6 +776,60 @@ class Force
 //            }
 //        }
 
+        return $isOccupied;
+    }
+
+    function mapHexIsZoc($mapHex){
+        $neighbors = $mapHex->neighbors;
+
+        if($neighbors){
+            $mapData = MapData::getInstance();
+            foreach($neighbors as $neighbor){
+                if($this->mapHexIsOccupiedEnemy($mapData->getHex($neighbor))){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    function hexagonIsOccupied($hexagon)
+    {
+        $isOccupied = false;
+        $mapData = MapData::getInstance();
+        $mapHex = $mapData->getHex($hexagon->getName());
+        if(is_array($mapHex->forces)){
+        foreach($mapHex->forces as $force)
+        {
+           if(count((array)$force) > 0){
+                $isOccupied = true;
+            }
+        }
+        }
+//        for ($id = 0; $id < count($this->units); $id++)
+//        {
+//            if ($this->units[$id]->hexagon->equals($hexagon)) {
+//                $isOccupied = true;
+//            }
+//        }
+
+        return $isOccupied;
+    }
+    function mapHexIsOccupiedEnemy($mapHex)
+    {
+        $isOccupied = false;
+        $friendlyId = $this->attackingForceId;
+
+        if($mapHex->forces){
+        foreach($mapHex->forces as $forceId => $force)
+        {
+            if($friendlyId == $forceId){
+                continue;
+            }
+            if(count((array)$force) > 0){
+                $isOccupied = true;
+            }
+        }
+        }
         return $isOccupied;
     }
     function hexagonIsOccupiedEnemy($hexagon,$id)
@@ -792,15 +847,6 @@ class Force
                 $isOccupied = true;
             }
         }
-//        for ($id = 0; $id < count($this->units); $id++)
-//        {
-//            if($this->units[$id]->forceId != $friendlyId){
-//                if ($this->units[$id]->hexagon->equals($hexagon)) {
-//                    $isOccupied = true;
-//                }
-//            }
-//        }
-
         return $isOccupied;
     }
     function hexagonIsEnemyOccupied($hexagon)
@@ -1403,6 +1449,7 @@ class Force
     }
     function hexIsZOC($hexagon, $range = 1)
     {
+
         $isZOC = false;
 
         if ($this->ZOCrule == true) {
@@ -1422,6 +1469,7 @@ class Force
                 }
             }
         }
+
         return $isZOC;
     }
 

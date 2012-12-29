@@ -47,30 +47,18 @@
                 <?php }?>
         </div>
         <button id="nextPhaseButton">Next Phase</button>
-        <div style="clear:both;"></div>
 
-        <fieldset style="">
+        <fieldset id="phaseDiv">
             <legend>Phase Mode
             </legend>
             <div id="clock"></div>
         </fieldset>
-        <fieldset style="">
+        <fieldset id="statusDiv">
             <legend>Status
             </legend>
             <div id="status"></div>
         </fieldset>
-        <fieldset style="display:none;">
-            <legend>Users
-            </legend>
-            <div id="users"></div>
-        </fieldset>
-        <div style="clear:both;"></div>
-        <fieldset style="display:none;">
-            <legend>Games
-            </legend>
-            <div id="games"></div>
-        </fieldset>
-        <div style="float:left;margin-left: 80px">
+        <!-- <div id="chatDiv">
             <form onsubmit="doit();return false;" id="chatform" method="post">
 
                 <input id="mychat" name="chats" type="text">
@@ -81,8 +69,8 @@
                     <div id="chats"></div>
                 </fieldset>
             </form>
-        </div>
-        <div style="clear:both;height:100px;" id="OBC">
+        </div>-->
+        <div id="OBC">
             <fieldset>
                 <legend>turn 1</legend>
                 <div id="gameTurn1">
@@ -134,7 +122,7 @@
 
         <div id="gameViewer" style="position:relative;">
             <div id="gameImages" class="ui-widget-content">
-                <img id="map" alt="map" src="<?php echo base_url();?>js/mcw.png"
+                <img id="map" alt="map" src="<?php echo base_url();?>js/Martian.png"
                      style="position: relative;visibility: visible;z-index: 0;">
                 <?php $id = 0;?>
                 {units}

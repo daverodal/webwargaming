@@ -91,8 +91,8 @@ class Terrain
 
             $this->allAreAttackingAcrossRiverCombatEffect = 1;
 
-            $this->maxTerrainY = 60;
-            $this->maxTerrainX = 54;
+            $this->maxTerrainY = 150;
+            $this->maxTerrainX = 200;
 
             for ($x = 0; $x < $this->maxTerrainX; $x++) {
                 for ($y = 0; $y < $this->maxTerrainY; $y++) {
@@ -173,6 +173,9 @@ return $townName;
                 break;
 
         }
+        if($terrainName == "road"){
+//            echo "X $x Y $y\n";
+        }
         if ($feature = $this->terrainFeatures->$terrainName) {
             if ($feature->isExclusive === true) {
                 $this->terrainArray[$y][$x] = new stdClass();
@@ -207,6 +210,20 @@ return $townName;
         return $terrainCode;
     }
 
+
+    /*
+     * private !
+     */
+    private function getTerrainCodeXY($x,$y)
+    {
+
+        if (($x >= 0 && $x < $this->maxTerrainX) && ($y >= 0 && $y < $this->maxTerrainY))
+            $terrainCode = $this->terrainArray[$y][$x];
+        else
+            $terrainCode = 0;
+
+        return $terrainCode;
+    }
     /*
      * can be removed
      */
@@ -240,6 +257,18 @@ return $terrainName;
         return false;
     }
 
+    /*
+     * public
+     */
+    function terrainIsXY($x,$y, $terrainName)
+    {
+        $terrainCode = $this->getTerrainCodeXY($x,$y);
+        $found = false;
+        if ($terrainCode->$terrainName) {
+            return true;
+        }
+        return false;
+    }
     /*
      * move rules
      */
@@ -280,6 +309,9 @@ return $terrainName;
     }
 
 
+    private function isHexpart($hexpart, $name){
+        return $this->terrainIs($hexpart,$name);
+    }
     /*
      * can be private
      */
@@ -309,7 +341,7 @@ return $terrainName;
         $hexsideY = ($startHexagon->getY() + $endHexagon->getY()) / 2;
 
         $hexpart = new Hexpart($hexsideX, $hexsideY);
-        $terrainCode = $this->getTerrainCode($hexpart);
+        $terrainCode = $this->getTerrainCodeXY($hexsideX,$hexsideY);
         $traverseCost = 0;
         foreach ($terrainCode as $code) {
             $traverseCost += $this->terrainFeatures->$code->traverseCost;
@@ -325,48 +357,71 @@ return $terrainName;
 
         $entranceCost = 0;
 
-        $hexpart = new Hexpart($hexagon->getX(), $hexagon->getY());
+//        $hexpart = new Hexpart($hexagon->getX(), $hexagon->getY());
         $terrains = $this->terrainArray[$hexagon->getY()][$hexagon->getX()];
 
         foreach ($terrains as $terrainFeature) {
             $entranceCost += $this->terrainFeatures->$terrainFeature->entranceCost;
         }
         return $entranceCost;
-        for ($i = 0; $i < count($this->terrainFeatures); $i++) {
-            $terrainFeature = $this->terrainFeatures[$i];
-            if ($this->terrainIs($hexpart, $terrainFeature->name) == true) {
-                if ($terrainFeature->entranceCost > $entranceMoveCost) {
-                    $entranceMoveCost = $terrainFeature->entranceCost;
-                }
-            }
-        }
-
-        return $entranceMoveCost;
     }
 
-    /*
+    private function getTerrainXYCost($x,$y){
+        $terrainCode = $this->getTerrainCodeXY($x,$y);
+        $traverseCost = 0;
+        foreach ($terrainCode as $code) {
+            $traverseCost += $this->terrainFeatures->$code->traverseCost;
+        }
+        return $traverseCost;
+
+    }
+
+    private function getTerrainCodeCost($terrainCode){
+        $traverseCost = 0;
+        foreach ($terrainCode as $code) {
+            $traverseCost += $this->terrainFeatures->$code->traverseCost;
+        }
+        return $traverseCost;
+
+    }    /*
      * very public
      * used in moveRules
      */
     function getTerrainMoveCost($startHexagon, $endHexagon, $railMove)
     {
 
+
         $moveCost = 0;
         $hexsideX = ($startHexagon->getX() + $endHexagon->getX()) / 2;
         $hexsideY = ($startHexagon->getY() + $endHexagon->getY()) / 2;
-
+//        $hexpart = new Hexpart($hexsideX, $hexsideY);
 
         // if road, override terrain
-        if ($railMove && $this->moveIsTraverse($startHexagon, $endHexagon, "road") == true) {
-            $moveCost = 1;
-        } else {
+//        echo "Are we? X $hexsideX Y $hexsideY";
+        $terrainCode = $this->getterrainCodeXY($hexsideX,$hexsideY);
+        if($terrainCode->road || $terrainCode->trail){
+            $moveCost = .5;
+        }
+//        if ($this->terrainIsXY($hexsideX, $hexsideY, "road") == true) {
+//            echo "ROAD TO RHOSE ISLAND";
+//            $moveCost = .5;
+//            echo "mc $moveCost\n";
+//        } elseif($this->terrainIsXY($hexsideX,$hexsideY, "trail") == true){
+//            echo "TRAIL THROUGH HELL";
+//            $moveCost = 1;
+//            echo "mc $moveCost\n";
 
-            // get entrance cost
+
+//        }
+else
+         {
+
+            //  get entrance cost
             $moveCost = $this->getTerrainEntranceMoveCost($endHexagon);
-            $moveCost += $this->getTerrainTraverseMoveCost($startHexagon, $endHexagon);
+            $moveCost += $this->getTerrainCodeCost($terrainCode);
 
             // check hexside for river
-            $hexpart = new Hexpart($hexsideX, $hexsideY);
+//            $hexpart = new Hexpart($hexsideX, $hexsideY);
 
 //		if( $this->terrainIs($hexpart, "river") == true ) {
 //
