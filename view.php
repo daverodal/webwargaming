@@ -134,7 +134,7 @@
 
         <div id="gameViewer" style="position:relative;">
             <div id="gameImages" class="ui-widget-content">
-                <img id="map" alt="map" src="<?php echo base_url();?>js/mcw.png"
+                <img id="map" alt="map" src="<?php echo base_url().$mapUrl;?>"
                      style="position: relative;visibility: visible;z-index: 0;">
                 <?php $id = 0;?>
                 {units}
