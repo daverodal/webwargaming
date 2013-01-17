@@ -52,21 +52,21 @@ class MartianCivilWar extends Battle {
                 25, 25, // top hexagon height, bottom hexagon height
                 15, 30 // hexagon edge width, hexagon center width
             );
-            $this->playerData->${player}->mapWidth = "1365px";
-            $this->playerData->${player}->mapHeight = "1025px";
+            $this->playerData->${player}->mapWidth = "auto";
+            $this->playerData->${player}->mapHeight = "auto";
             $this->playerData->${player}->unitSize = "32px";
             $this->playerData->${player}->unitFontSize = "12px";
             $this->playerData->${player}->unitMargin = "-21px";
         }else{
-            $this->mapViewer[$player]->setData(30,102, // originX, originY
-                50, 50, // top hexagon height, bottom hexagon height
-                30, 60 // hexagon edge width, hexagon center width
+            $this->mapViewer[$player]->setData(60,76, // originX, originY
+                25, 25, // top hexagon height, bottom hexagon height
+                15, 30 // hexagon edge width, hexagon center width
             );
-            $this->playerData->${player}->mapWidth = "2730px";
-            $this->playerData->${player}->mapHeight = "2050px";
-            $this->playerData->${player}->unitSize = "62px";
-            $this->playerData->${player}->unitFontSize = "26px";
-            $this->playerData->${player}->unitMargin = "-34px";
+            $this->playerData->${player}->mapWidth = "auto";
+            $this->playerData->${player}->mapHeight = "auto";
+            $this->playerData->${player}->unitSize = "40px";
+            $this->playerData->${player}->unitFontSize = "16px";
+            $this->playerData->${player}->unitMargin = "-23px";
         }
     }
     function save()
@@ -142,8 +142,8 @@ class MartianCivilWar extends Battle {
             $this->playerData = new stdClass();
             for($player = 0;$player <= 2;$player++){
                 $this->playerData->${player} = new stdClass();
-            $this->playerData->${player}->mapWidth = "1365px";
-            $this->playerData->${player}->mapHeight = "1025px";
+            $this->playerData->${player}->mapWidth = "auto";
+            $this->playerData->${player}->mapHeight = "auto";
             $this->playerData->${player}->unitSize = "32px";
             $this->playerData->${player}->unitFontSize = "12px";
             $this->playerData->${player}->unitMargin = "-21px";

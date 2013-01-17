@@ -55,10 +55,44 @@
         background-color: rgb(223,88,66);
     }
 
-#phaseDiv,#statusDiv,#chatsDiv,#crt{
+#phaseDiv,#statusDiv,#chatsDiv,#crtWrapper{
     float:left;
 }
-    body{
+#crtWrapper , #OBCWrapper{
+    user-select:none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    float:left;
+    position: relative;
+
+}
+#crtWrapper h4, #OBCWrapper h4{
+    margin:0;
+    border:none;
+    user-select:none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+
+}
+#OBC{
+    background:white;
+}
+#crtWrapper h4{
+    width: 398px;
+
+}
+
+#OBCWrapper h4 {
+    width: 520px;
+}
+#OBC, #crt{
+    position:absolute;
+    z-index:30;
+}
+#OBCWrapper h4:focus,#crtWrapper h4:focus{
+outline: -webkit-focus-ring-color none;
+}
+body{
         background:#eee;
         color:#333;
     }
@@ -85,8 +119,6 @@
     #crt{
         border-radius:15px;
         border:10px solid #1AF;
-    //position:relative;
-        width:308px;
         background:#fff;color:black;
         font-weight:bold;
         padding:1px 5px 10px 15px;
@@ -98,7 +130,6 @@
     }
     #crt span{
         width:32px;
-    // position:absolute;
     }
     .col1{
         left:20px;
@@ -219,15 +250,9 @@
     }
     #map {
         -webkit-user-select:none;
-
-        width:1044px;
-        height:850px;
-        width:783px;
-        height:638px;
     width:<?=$mapWidth;?>;/*really*/
     height:<?=$mapHeight;?>;
-        /*width:787px;*/
-        /*height:481px;*/
+
         }
     #gameImages {
         width:<?=$mapWidth;?>;/*really*/

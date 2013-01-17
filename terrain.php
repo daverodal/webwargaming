@@ -401,6 +401,9 @@ return $terrainName;
         $terrainCode = $this->getterrainCodeXY($hexsideX,$hexsideY);
         if($terrainCode->road || $terrainCode->trail){
             $moveCost = .5;
+            if($terrainCode->trail){
+                $moveCost = 1;
+            }
         }
 //        if ($this->terrainIsXY($hexsideX, $hexsideY, "road") == true) {
 //            echo "ROAD TO RHOSE ISLAND";
