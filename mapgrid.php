@@ -53,7 +53,10 @@ class MapHex{
 class MapData{
 
     public $hexes;
+    public $maxX;
+    public $maxY;
     private static $instance;
+    public $mapUrl;
     private function __construct(){
     }
 
@@ -77,9 +80,11 @@ class MapData{
         }
 
     }
-    function setData($maxRight,$maxBottom)
+    function setData($maxRight,$maxBottom, $map)
     {
-
+        $this->mapUrl = $map;
+        $this->maxY = $maxBottom;
+        $this->maxX = $maxRight;
         $this->hexes = new stdClass();
         for($i = 0; $i <= $maxRight+1;$i++){
             for($j = 0;$j<= $maxBottom+1;$j++){

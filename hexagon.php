@@ -38,6 +38,8 @@ class Hexagon  {
 
 
     function __construct($a1 = false, $a2 = false){
+        $mapData = MapData::getInstance();
+
         $this->evenColumnShiftDown = true;
         $this->number = 0;
         $this->x = 0;
@@ -45,8 +47,8 @@ class Hexagon  {
         $this->name = "";
         $this->minX = 4;
         $this->minY = 8;
-        $this->maxX = 126;
-        $this->maxY = 92;
+        $this->maxX = $mapData->maxX * 2 + 2;
+        $this->maxY = $mapData->maxY * 4 + 4 + 2;
 
         // Hexagon(name)
         if ( $a1 !== false && $a2 === false ) {
@@ -197,18 +199,12 @@ function equals(Hexagon $hexagon) {
 }
 
 function getX() {
-    if($this->x === false){
-            $this->calculateHexpartXY();
-            $this->calculateHexagonName();
-    }
+
 	return $this->x;
 }
 
 function getY() {
-    if($this->y === false){
-        $this->calculateHexpartXY();
-        $this->calculateHexagonName();
-    }
+
     return $this->y;
 }
 
