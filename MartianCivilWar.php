@@ -38,13 +38,13 @@ class MartianCivilWar extends Battle {
         foreach($playerData as $k => $v){
             $$k = $v;
         }
-        @include_once "header.php";
+        @include_once "TMCWHeader.php";
     }
-    static function getView(){
-        @include_once "view.php";
+    static function getView($mapUrl){
+        @include_once "TMCWView.php";
     }
     static function playAs($wargame){
-        @include_once "playAs.php";
+        @include_once "TMCWPlayAs.php";
     }
     public function resize($small,$player){
         if($small){
