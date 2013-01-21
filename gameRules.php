@@ -90,8 +90,6 @@ class GameRules {
         $this->phaseChanges = array();
 
         $this->turn = 1;
-        $this->phase = BLUE_DEPLOY_PHASE;
-        $this->mode = DEPLOY_MODE;
         $this->combatModeType = COMBAT_SETUP_MODE;
         $this->gameHasCombatResolutionMode = true;
         $this->trayX = 0;
@@ -111,6 +109,12 @@ class GameRules {
         $this->maxTurn = $max_Turn;
     }
 
+    function setInitialPhaseMode($phase, $mode)
+    {
+        $this->phase = $phase;
+        $this->mode = $mode;
+
+    }
     function addPhaseChange($currentPhase, $nextPhase, $nextMode, $nextAttackerId, $nextDefenderId, $phaseWillIncrementTurn)
     {
 
