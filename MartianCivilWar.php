@@ -130,7 +130,7 @@ class MartianCivilWar extends Battle {
             $this->players = $data->players;
             $this->playerData = $data->playerData;
         } else {
-            $this->mapData->setData(30,20);
+            $this->mapData->setData(30,20,"js/Martian.png");
             $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();

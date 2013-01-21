@@ -1173,7 +1173,7 @@ class Force
                 echo "gotElim";
                 $this->units[$id]->status = STATUS_REPLACED;
                 $this->units[$id]->isReduced = true;
-                $this->units[$id]->hexagon = $hexagon;
+                $this->units[$id]->updateMoveStatus($hexagon,0);
                 return $id;
             }
 

@@ -90,8 +90,8 @@ class GameRules {
         $this->phaseChanges = array();
 
         $this->turn = 1;
-        $this->phase = BLUE_MOVE_PHASE;
-        $this->mode = MOVING_MODE;
+        $this->phase = BLUE_DEPLOY_PHASE;
+        $this->mode = DEPLOY_MODE;
         $this->combatModeType = COMBAT_SETUP_MODE;
         $this->gameHasCombatResolutionMode = true;
         $this->trayX = 0;
@@ -152,6 +152,7 @@ class GameRules {
                         if($terrain->terrainIs($hexpart, "newrichmond") || $terrain->terrainIs($hexpart, "town") || $terrain->terrainIs($hexpart, "fortified") || $terrain->terrainIs($hexpart, "eastedge")){
                             echo "terrain Is";
                             if($this->force->getEliminated($this->currentReplacement, $hexagon) !== false){
+
                                 echo "Got";
                                 $this->currentReplacement = false;
                                 $this->replacementsAvail--;
