@@ -1,7 +1,7 @@
 <?php
 require_once "constants.php";
 require_once "combatRules.php";
-require_once "crt.php";
+require_once "TMCW/crt.php";
 require_once "force.php";
 require_once "gameRules.php";
 require_once "hexagon.php";
@@ -16,7 +16,6 @@ require_once "terrain.php";
 // counter image values
 $oneHalfImageWidth = 16;
 $oneHalfImageHeight = 16;
-
 
 
 class MartianCivilWar extends Battle {
@@ -38,13 +37,13 @@ class MartianCivilWar extends Battle {
         foreach($playerData as $k => $v){
             $$k = $v;
         }
-        @include_once "TMCWHeader.php";
+        @include_once "TMCW/header.php";
     }
     static function getView($mapUrl){
-        @include_once "TMCWView.php";
+        @include_once "TMCW/view.php";
     }
     static function playAs($wargame){
-        @include_once "TMCWPlayAs.php";
+        @include_once "TMCW/playAs.php";
     }
     public function resize($small,$player){
         if($small){
