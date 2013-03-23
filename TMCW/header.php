@@ -1,5 +1,77 @@
 <link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 <style type="text/css">
+h2 #status{
+    font-size:16px;
+}
+h5{
+    margin:0px;
+}
+#rightHeader{
+    width:50%;
+    float:right;
+}
+#leftHeader{
+    width:49%;
+    float:left;
+}
+#comlinkWrapper{
+    border:1px solid black;
+    border-radius: 10px;
+    background:white;
+    padding:0 5px 0 5px;
+    font-style: italic;
+}
+#display{
+    display:none;
+    position:absolute;
+    top:25%;
+    width:90%;
+    left:5%;
+    padding:30px 0;
+    background:rgba(255,255,255,.9);
+    font-size:100px;
+    text-align: center;
+    border:#000 solid 10px;
+    border-radius: 30px;
+}
+#display button{
+    font-size:30px;
+}
+#comlinkWrapper h4{
+    font-weight: bold;
+    margin:3px;
+}
+#header{
+    position:fixed;
+    width:99%;
+    top:0px;
+    background:#99cc99;
+    z-index:2000;
+}
+#mouseMove{
+    display:none;
+}
+#headerContent{
+    min-height:110px;
+}
+#nextPhaseButton{
+    font-size:30px;
+}
+    #header a, #header a:visited{
+        color:white;
+    }
+    #header a:hover{
+        color:#ddd;
+    }
+    #header h2{
+        margin: 10px 0 5px;
+    }
+    #content{
+        margin-top:130px;
+    }
+    .clear{
+        clear:both;
+    }
     .blueUnit, .loyalist{
         background-color:rgb(132,181,255);
     }
@@ -56,14 +128,19 @@
     }
 
 #phaseDiv,#statusDiv,#chatsDiv,#crtWrapper{
-    float:left;
+    display:inline;
+    vertical-align: top;
+    /*float:left;*/
+}
+#statusDiv{
+
 }
 #crtWrapper , #OBCWrapper{
     user-select:none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-    float:left;
-    position: relative;
+    /*float:left;*/
+    position: absolute;
 
 }
 #crtWrapper h4, #OBCWrapper h4{
@@ -72,18 +149,36 @@
     user-select:none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
+    cursor: pointer;
 
+}
+#crtWrapper{
+    left:0px;
+    bottom:0px;
+}
+#OBCWrapper{
+    width:120px;
+    left:25%;
+    bottom:0px;
+}
+#hideShow{
+    cursor:pointer;
+    margin-left:55%;
 }
 #OBC{
     background:white;
+    width:514px;
 }
 #crtWrapper h4{
-    width: 398px;
+    width: 349px;
 
 }
 
+#crtWrapper h4 .goLeft,#crtWrapper h4 .goRight{
+font-size:22px;
+    padding:0 15px;
+}
 #OBCWrapper h4 {
-    width: 520px;
 }
 #OBC, #crt{
     position:absolute;
@@ -97,11 +192,17 @@ body{
         background:#eee;
         color:#333;
     }
+
+    #clock{
+        /*width:100px;*/
+    }
     #status{
-        text-align:right;
+        /*height:70px;*/
+        /*overflow-y:scroll;*/
+        /*text-align:right;*/
     }
     #status legend{
-        text-align:left;
+        /*text-align:left;*/
     }
     fieldset{
         background:white;
@@ -119,10 +220,11 @@ body{
     }
     #crt{
         border-radius:15px;
-        border:10px solid #1AF;
+        border:10px solid rgb(153, 204, 153);
         background:#fff;color:black;
         font-weight:bold;
         padding:1px 5px 10px 15px;
+        box-shadow: 0px 0px 2px black;
     }
     #crt h3{
         height:40px;
@@ -152,7 +254,8 @@ body{
     }
     .roll, #odds{
         height:20px;
-        background :#1af;
+        /*background :#1af;*/
+        background: rgb(153, 204, 153);
         margin-right:14px
     }
     #odds{
@@ -326,6 +429,8 @@ body{
     }
 </style>
 <script>
+$(document).ready(function(){
+})
 x = new Sync("<?=site_url("wargame/fetch/");?>");
 x.register("chats", function(chats) {
     var str;
@@ -345,6 +450,12 @@ x.register("users", function(users) {
     }
 });
 x.register("gameRules", function(gameRules) {
+    if(gameRules.display.currentMessage){
+        $("#display").html(gameRules.display.currentMessage+"<button onclick='doitNext()'>Next</button>").show();
+    }else{
+        $("#display").html("").hide();
+    }
+    var status = "&nbsp;";
     turn = gameRules.turn;
     if("gameTurn"+turn != $("#turnCounter").parent().attr("id")){
         $("#gameTurn"+turn).prepend($("#turnCounter"));
@@ -368,7 +479,7 @@ x.register("gameRules", function(gameRules) {
         case <?=BLUE_REPLACEMENT_PHASE?>:
         case <?=RED_REPLACEMENT_PHASE?>:
             if(gameRules.replacementsAvail !== false && gameRules.replacementsAvail != null){
-                html += "<br>There are "+gameRules.replacementsAvail+" available";
+                status = "There are "+gameRules.replacementsAvail+" available";
             }
             break;
     }
@@ -382,6 +493,8 @@ x.register("gameRules", function(gameRules) {
             break;
     }
     $("#clock").html(html);
+    $("#status").html(status);
+//    $("#status").html(status);
 });
 x.register("games", function(games) {
     var str;
@@ -453,7 +566,7 @@ x.register("mapUnits", function(mapUnits) {
 });
 x.register("moveRules", function(moveRules) {
     var str;
-    $("#status").html("");
+    /*$("#status").html("");*/
     $(".clone").remove();
     if(moveRules.movingUnitId >= 0){
 //        alert("MovingUnitid"+moveRules.movingUnitId);
@@ -655,7 +768,7 @@ x.register("force", function(force) {
 
 
         }
-        $("#status").html(status);
+        /*$("#status").html(status);*/
 //        $("#"+i).css({borderColor: color});
         $("#"+i).css({borderColor: color});
         if(!shadow){
@@ -678,12 +791,30 @@ x.register("combatRules", function(combatRules) {
     }
     var title = "Combat Results ";
     var cdLine = "";
+    var activeCombat = false;
+    var activeCombatLine = "";
     str = ""
     if(combatRules ){
         cD = combatRules.currentDefender;
             if(combatRules.combats && Object.keys(combatRules.combats).length > 0){
                 if(cD !== false){
                 $("#"+cD).css({borderColor: "yellow"});
+                    $("#crt").show({effect:"blind",direction:"up"});
+                    var x = $("#"+cD).css('left').replace(/px/,"");
+                    var mapWidth = $("body").css('width').replace(/px/,"");
+//                    $("#map").css('width').replace(/px/,"");
+
+                    if(x < mapWidth/2){
+                        var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
+                        var moveLeft = $("body").css('width').replace(/px/,"");
+//                        alert(moveLeft);
+                        $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
+//                        alert('this');
+                    }else{
+                        $("#crtWrapper").animate({left:0},300);
+//                        alert("that");
+
+                    }
                     if(Object.keys(combatRules.combats[cD].attackers).length != 0){
                     combatCol = combatRules.combats[cD].index + 1;
                    if(combatCol >= 1){
@@ -695,10 +826,11 @@ x.register("combatRules", function(combatRules) {
                    }
                }
             }
-                   var str = "<fieldset><legend>other combats</legend>";
+                   var str = "<div>";
                     cdLine = "";
+                    var combatIndex = 0;
                     for(i in combatRules.combats){
-//                        if(combatRules.combats[i].Die){
+  //                        if(combatRules.combats[i].Die){
 //                            str += " Die "+combatRules.combats[i].Die + " result "+combatRules.combats[i].combatResult;
 //                        }
                         if(combatRules.combats[i].index !== null){
@@ -734,15 +866,19 @@ x.register("combatRules", function(combatRules) {
                                 idxDisp = "No effect";
                             }
 
-                            newLine =  "Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>odds = "+ oddsDisp +"<br>Terrain Shift left "+ter+ " = "+idxDisp+"<br><br>";
+                            newLine =  "<h5>odds = "+ oddsDisp +"</h5><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+idxDisp+"</div>";
                             if(cD !== false && cD == i){
-                                cdLine = "<fieldset><legend>Current Combat</legend><strong>"+newLine+"</strong></fieldset>";
-                                newLine = "";
+                                activeCombat = combatIndex;
+                                activeCombatLine = newLine;
+                                /*cdLine = "<fieldset><legend>Current Combat</legend><strong>"+newLine+"</strong></fieldset>";
+                                newLine = "";*/
                             }
-                            str += newLine;
+                            combatIndex++;
+//                            str += newLine;
                         }
 
                     }
+                str += "There are "+combatIndex+" Combats";
                 if(cD !== false){
                     attackers = combatRules.combats[cD].attackers;
                     var theta = 0;
@@ -758,7 +894,8 @@ x.register("combatRules", function(combatRules) {
 
                     }
                 }
-                str += "</fieldset>";
+                str += "</div>";
+                $("#crtOddsExp").html(activeCombatLine);
                 $("#status").html(cdLine+str);
 
             }
@@ -773,11 +910,13 @@ x.register("combatRules", function(combatRules) {
                 $(".row"+combatRoll+" .col"+combatCol).css('background-color',"cyan");
 //                    $(".row"+combatRoll+" .col"+combatCol).css('color',"white");
             }
-            str += "<fieldset><legend>Combats to Resolve</legend>";
+            str += "<div>";
             if(Object.keys(combatRules.combatsToResolve) == 0){
                 str += "there are no combats to resolve<br>";
             }
+            var combatsToResolve = 0;
             for(i in combatRules.combatsToResolve){
+                combatsToResolve++;
                 if(combatRules.combatsToResolve[i].index !== null){
                      var atk = combatRules.combatsToResolve[i].attackStrength;
                     var atkDisp = atk;;
@@ -787,17 +926,27 @@ x.register("combatRules", function(combatRules) {
                     var def = combatRules.combatsToResolve[i].defenseStrength;
                     var ter = combatRules.combatsToResolve[i].terrainCombatEffect;
                     var idx = combatRules.combatsToResolve[i].index+ 1;
-                    newLine = " Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>odds = "+Math.floor(atk/def)+" : 1<br>Terrain Shift left "+ter+ " = "+idx+" : 1<br><br>";
+                    var odds = Math.floor(atk/def);
+                    var oddsDisp = odds + " : 1";
+                    newLine =  "<h5>odds = "+ oddsDisp +"</h5><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+idxDisp+"</div>";
+                    //newLine = " Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>odds = "+Math.floor(atk/def)+" : 1<br>Terrain Shift left "+ter+ " = "+idx+" : 1<br><br>";
 //                    if(combatRules.lastResolveCombat === i){
 //                        lastCombat = "<strong>"+newLine+"</strong>";
 //                        newLine = "";
 //                    }
-                    str += newLine;
+//                    str += newLine;
                 }
 
             }
-            str += "</fieldset><fieldset><legend>Resolved Combats</legend>";
+            if(combatsToResolve){
+            str += "Combats To Resolve: "+combatsToResolve;
+            }
+            str += "</div>";
+            str += "<div>";
+//            str += "</div></fieldset><fieldset><legend>Resolved Combats</legend>";
+            var resolvedCombats = 0;
             for(i in combatRules.resolvedCombats){
+                resolvedCombats++;
                 if(combatRules.resolvedCombats[i].index !== null){
                      atk = combatRules.resolvedCombats[i].attackStrength;
                      atkDisp = atk;;
@@ -809,25 +958,45 @@ x.register("combatRules", function(combatRules) {
                      idx = combatRules.resolvedCombats[i].index+ 1;
                     newLine = "";
                     if(combatRules.resolvedCombats[i].Die){
-                        newLine += " Die "+combatRules.resolvedCombats[i].Die + " result "+combatRules.resolvedCombats[i].combatResult+"<br>";
+                        $("#crt").show({effect:"blind",direction:"up"});
+                        var x = $("#"+cD).css('left').replace(/px/,"");
+                        var mapWidth = $("body").css('width').replace(/px/,"");
+//                    $("#map").css('width').replace(/px/,"");
+
+                        if(x < mapWidth/2){
+                            var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
+                            var moveLeft = $("body").css('width').replace(/px/,"");
+//                        alert(moveLeft);
+                            $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
+//                        alert('this');
+                        }else{
+                            $("#crtWrapper").animate({left:0},300);
+//                        alert("that");
+
+                        }
+
+//                        newLine += " Die "+combatRules.resolvedCombats[i].Die + " result "+combatRules.resolvedCombats[i].combatResult+"<br>";
                     }
                     newLine += " Attack = "+atkDisp +" / Defender "+def+ " odds = " + atk/def +"<br>= "+Math.floor(atk/def)+" : 1<br>Terrain Shift left "+ter+ " = "+idx+" : 1<br><br>";
                     if(cD === i){
-                        lastCombat = "<fieldset><legend>Last Resolve Combat</legend><strong>"+newLine+"</strong></fieldset>";
+//                        lastCombat = "<fieldset><legend>Last Resolve Combat</legend><strong>"+newLine+"</strong></fieldset>";
                         newLine = "";
                     }
-                    str += newLine;
+//                    str += newLine;
                }
 
             }
-            str += "</fieldset>";
+            str += "Resolved Combats: "+resolvedCombats+"</div>";
             $("#status").html(lastCombat+str);
 
         }
     }
     $("#crt h3").html(title);
-});
+//    $("#status div").accordion({collapsible: true, active:false});
+//    $("#status div").accordion("option","active",activeCombat);
 
+});
+var globInit = true;
 x.fetch(0);
 
 function seeMap(){
@@ -936,7 +1105,14 @@ var promptText;
 //gameRules = new GameRules(moveRules, combatRules, force);
 //prompt = new Prompt(gameRules, moveRules, combatRules, force, terrain);
 // ------- end initialize classes --------------------------
+function mapMouseMove(event){
+    var tar = event.target;
 
+//    alert(event.target.x);
+    var x = event.pageX - event.target.x;
+    var y = event.pageY - event.target.y;
+    $("#mouseMove").html("X "+x+" Y "+y);
+}
 //function mapMouseMove(event) {
 //
 //    var mapGrid;
@@ -1163,8 +1339,10 @@ function createImage(id, src, x, y)
 function initialize() {
 
     // setup events --------------------------------------------
-    this.attachMouseEventsToMap("map");
+//    this.attachMouseEventsToMap("map");
 
+    $("#map").bind("mousedown",mapMouseDown);
+    $("#map").bind("mousemove",mapMouseMove);
     $(".unit").bind('mousedown',true,counterMouseDown);
 //    var id;
 //    for(id = 0;id < 35;id++){

@@ -671,6 +671,10 @@ class MoveRules{
     {
         $isBlocked = false;
 
+        if(!$hexagon->name){
+            return true;
+            /* off map hexes have no name */
+        }
         $unitHexagon = $this->force->units[$id]->getUnitHexagon();
 
         $hexsideX = ($hexagon->getX() + $unitHexagon->getX($id)) / 2;

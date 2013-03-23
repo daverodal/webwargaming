@@ -66,7 +66,7 @@ class GameRules {
         return $data;
     }
 
-    function __construct($MoveRules, $CombatRules, $Force, $data = null)
+    function __construct($MoveRules, $CombatRules, $Force, $display, $data = null)
     {
         if($data){
             foreach($data as $k => $v){
@@ -82,6 +82,7 @@ class GameRules {
             $this->moveRules = $MoveRules;
             $this->combatRules = $CombatRules;
             $this->force = $Force;
+            $this->display = $display;
 
         }else{
         $this->moveRules = $MoveRules;
@@ -153,7 +154,7 @@ class GameRules {
                         $hexpart->setXYwithNameAndType($hexagon->name,HEXAGON_CENTER);
                         $terrain = $this->moveRules->terrain;
                         echo "Terrain";
-                        if($terrain->terrainIs($hexpart, "newrichmond") || $terrain->terrainIs($hexpart, "town") || $terrain->terrainIs($hexpart, "fortified") || $terrain->terrainIs($hexpart, "eastedge")){
+                        if($terrain->terrainIs($hexpart, "newrichmond") || $terrain->terrainIs($hexpart, "town") || $terrain->terrainIs($hexpart, "fortified") || $terrain->terrainIs($hexpart, "eastedge")  || $terrain->terrainIs($hexpart, "westedge")){
                             echo "terrain Is";
                             if($this->force->getEliminated($this->currentReplacement, $hexagon) !== false){
 
@@ -200,6 +201,15 @@ class GameRules {
 
                         $this->selectNextPhase();
                         break;
+                }
+                break;
+
+            case DISPLAY_MODE:
+                if($event == SELECT_BUTTON_EVENT){
+                    $this->display->next();
+                    if(!$this->display->currentMessage){
+                        $this->selectNextPhase();
+                    }
                 }
                 break;
 
@@ -464,6 +474,12 @@ echo "Past tehe fi";
                     $this->force->recoverUnits($this->phase,$this->moveRules, $this->mode);
 
                     $this->replacementsAvail = false;
+                    if($this->phase == BLUE_DISPLAY_PHASE){
+                        $this->display->set("Rebel Turn");
+                    }
+                    if($this->phase == RED_DISPLAY_PHASE){
+                        $this->display->set("Loyalist Turn");
+                    }
                     if($this->phase  == BLUE_REPLACEMENT_PHASE){
                         $this->replacementsAvail = 1;
                     }

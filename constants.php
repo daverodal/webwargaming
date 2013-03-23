@@ -15,7 +15,7 @@ define("BLUE_FORCE",1);
 define("RED_FORCE",2);
 
 $force_name = array();
-$force_name[0] = "none";
+$force_name[0] = "Neutral Observer";
 $force_name[1] = "Rebel";
 $force_name[2] = "Loyalist";
 
@@ -32,6 +32,8 @@ define("BLUE_MECH_PHASE",9);
 define("BLUE_REPLACEMENT_PHASE",10);
 define("RED_MECH_PHASE",11);
 define("RED_REPLACEMENT_PHASE",12);
+define("BLUE_DISPLAY_PHASE",13);
+define("RED_DISPLAY_PHASE",14);
 
 $phase_name = array();
 $phase_name[1] = "Rebel Move";
@@ -46,6 +48,8 @@ $phase_name[9] = "Rebel Mech";
 $phase_name[10] = "Rebel Replacement";
 $phase_name[11] = "Loyalist Mech";
 $phase_name[12] = "Loyalist Replacement";
+$phase_name[13] = "";
+$phase_name[14] = "";
 
 // game modes
 define("SELECT_TO_MOVE_MODE",1);
@@ -68,6 +72,8 @@ define("DEPLOY_MODE",17);
 define("EXCHANGING_MODE",18);
 define("REPLACING_MODE",19);
 define("ATTACKER_LOSING_MODE",20);
+define("DISPLAY_MODE",21);
+
 
 // mode names
 $mode_name = array();
@@ -87,10 +93,11 @@ $mode_name[13] = "select units to delete";
 $mode_name[14] = "deleting unit";
 $mode_name[15] = "checking combat";
 $mode_name[16] = "game over";
-$mode_name[17] = "delpoying mode";
+$mode_name[17] = "click on a unit in the deploy box";
 $mode_name[18] = "exchanging mode";
 $mode_name[19] = "replacing mode";
 $mode_name[20] = "attacker loss mode";
+$mode_name[21] = "";
 
 // form event constants
 define("OVER_MAP_EVENT",1);
