@@ -1,7 +1,7 @@
 <?php
 require_once "constants.php";
 require_once "combatRules.php";
-require_once "crt.php";
+require_once "NOM/crt.php";
 require_once "force.php";
 require_once "gameRules.php";
 require_once "hexagon.php";
@@ -10,6 +10,7 @@ require_once "los.php";
 require_once "mapgrid.php";
 require_once "moveRules.php";
 require_once "prompt.php";
+require_once "display.php";
 require_once "terrain.php";
 // battleforallencreek.js
 
@@ -31,6 +32,7 @@ class NapOnMars extends Battle {
     public $combatRules;
     public $gameRules;
     public $prompt;
+    public $display;
 
     public $players;
     static function getHeader($playerData){
@@ -38,15 +40,15 @@ class NapOnMars extends Battle {
         foreach($playerData as $k => $v){
             $$k = $v;
         }
-        @include_once "header.php";
+        @include_once "NOM/header.php";
     }
     static function playAs($wargame){
-        @include_once "playAs.php";
+        @include_once "NOM/playAs.php";
     }
 
     static function getView( $mapUrl){
 
-        @include_once "view.php";
+        @include_once "NOM/view.php";
     }
     public function resize($small,$player){
         if($small){
@@ -83,6 +85,7 @@ class NapOnMars extends Battle {
         $data->combatRules = $this->combatRules->save();
         $data->players = $this->players;
         $data->playerData = $this->playerData;
+        $data->display = $this->display;
         return $data;
     }
 
@@ -120,25 +123,33 @@ class NapOnMars extends Battle {
     {
         $this->mapData = MapData::getInstance();
         if ($data) {
+            $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]),new MapViewer($data->mapViewer[1]),new MapViewer($data->mapViewer[2]));
             $this->force = new Force($data->force);
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $data->gameRules);
+            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = $data->players;
             $this->playerData = $data->playerData;
         } else {
-            $this->mapData->setData(7,7, "js/tut1.png");
+            if($arg == 0){
+                $this->mapData->setData(20,10,"js/mcw.png");
+            }
+            if($arg == 1){
+                $this->mapData->setData(7,7 , "js/tut1.png");
+
+            }
+            $this->display = new Display();
             $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->combatRules = new CombatRules($this->force, $this->terrain);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force);
+            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = array("","","");
             $this->playerData = new stdClass();
@@ -149,20 +160,28 @@ class NapOnMars extends Battle {
                 $this->playerData->${player}->unitSize = "32px";
                 $this->playerData->${player}->unitFontSize = "12px";
                 $this->playerData->${player}->unitMargin = "-21px";
-                $this->mapViewer[$player]->setData(62,80, // originX, originY
-                    26.5, 26.5, // top hexagon height, bottom hexagon height
-                    15, 30// hexagon edge width, hexagon center width
-                );
+                if($arg == 1){
+                    $this->mapViewer[$player]->setData(62,80, // originX, originY
+                        26.5, 26.5, // top hexagon height, bottom hexagon height
+                        15, 30// hexagon edge width, hexagon center width
+                    );
+                }
+                if($arg == 0){
+                    $this->mapViewer[$player]->setData(57,83, // originX, originY
+                        27.5, 27.5, // top hexagon height, bottom hexagon height
+                        16, 32// hexagon edge width, hexagon center width
+                    );
+                }
             }
 
 
 
             // mapData
-/*            $this->mapData->setData(88,117, // originX, originY
-                40, 40, // top hexagon height, bottom hexagon height
-                24, 48, // hexagon edge width, hexagon center width
-                1410, 1410 // max right hexagon, max bottom hexagon
-            );*/
+            /*            $this->mapData->setData(88,117, // originX, originY
+                            40, 40, // top hexagon height, bottom hexagon height
+                            24, 48, // hexagon edge width, hexagon center width
+                            1410, 1410 // max right hexagon, max bottom hexagon
+                        );*/
 //            $this->mapData->setData(66,87, // originX, originY
 //                30, 30, // top hexagon height, bottom hexagon height
 //                18, 36, // hexagon edge width, hexagon center width
@@ -183,8 +202,18 @@ class NapOnMars extends Battle {
 
             // game data
             $this->gameRules->setMaxTurn(7);
+            if($arg == 0){
+                $this->gameRules->setInitialPhaseMode(BLUE_DEPLOY_PHASE,DEPLOY_MODE);
 
-//            $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            }
+            if($arg == 1){
+                $this->gameRules->setInitialPhaseMode(BLUE_MOVE_PHASE,DISPLAY_MODE);
+
+            }
+
+            if($arg == 0){
+                $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            }
 
             $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
@@ -199,50 +228,50 @@ class NapOnMars extends Battle {
 
             // unit data -----------------------------------------------
             //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
-if($arg == 0){
-            for($i = 1;$i<= 10;$i++){
-                $this->force->addUnit("infantry-1", RED_FORCE, 800+$i, "multiInf.png", 5, 2, 3, true, STATUS_READY, "R", 1, 1, "loyalist");
+            if($arg == 0){
+                for($i = 1;$i<= 10;$i++){
+                    $this->force->addUnit("infantry-1", RED_FORCE, 800+$i, "multiInf.png", 5, 2, 3, true, STATUS_READY, "R", 1, 1, "loyalist");
 
+                }
+                for($i = 6;$i<= 10;$i++){
+                    $this->force->addUnit("infantry-1", RED_FORCE, 1300+$i, "multiInf.png",4, 2, 3, false, STATUS_READY, "R", 1, 1, "loyalist");
+
+                }
+                $this->force->addUnit("infantry-1", RED_FORCE, "deadpile", "multiInf.png",6, 3, 4, true, STATUS_ELIMINATED, "R", 1, 1, "loyalist");
+                $this->force->addUnit("infantry-1", RED_FORCE, "deadpile", "multiInf.png",6, 3, 4, true, STATUS_ELIMINATED, "R", 1, 1, "loyalist");
+                $this->force->addUnit("infantry-1", RED_FORCE, "deadpile", "multiInf.png",8, 4, 4, true, STATUS_ELIMINATED, "R", 1, 1, "loyalist");
+
+
+                $i = 0;
+
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiCav.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiCav.png", 5, 3, 5, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiCav.png", 5, 2, 5, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArt.png", 6, 3, 3, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArt.png", 7, 3, 3, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArt.png", 7, 3, 3, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArt.png", 10, 5, 3, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
+                $j = $i;
+                $i=0;
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
             }
-            for($i = 6;$i<= 10;$i++){
-                $this->force->addUnit("infantry-1", RED_FORCE, 1300+$i, "multiInf.png",4, 2, 3, false, STATUS_READY, "R", 1, 1, "loyalist");
+            // end unit data -------------------------------------------
+            if($arg == 1){
+                $this->force->addUnit("infantry-1", RED_FORCE, 501, "multiInf.png", 5, 2, 3, true, STATUS_READY, "R", 1, 1, "loyalist");
 
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 101, "multiCav.png", 6, 3, 5, false, STATUS_READY, "B", 1, 1, "rebel");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 102, "multiCav.png", 5, 3, 5, false, STATUS_READY, "B", 1, 1, "rebel");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 103, "multiCav.png", 5, 2, 5, false, STATUS_READY, "B", 1, 1, "rebel");
             }
-            $this->force->addUnit("infantry-1", RED_FORCE, "deadpile", "multiInf.png",6, 3, 4, true, STATUS_ELIMINATED, "R", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, "deadpile", "multiInf.png",6, 3, 4, true, STATUS_ELIMINATED, "R", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, "deadpile", "multiInf.png",8, 4, 4, true, STATUS_ELIMINATED, "R", 1, 1, "loyalist");
-
-
-            $i = 0;
-
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiCav.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiCav.png", 5, 3, 5, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiCav.png", 5, 2, 5, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArt.png", 6, 3, 3, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArt.png", 7, 3, 3, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArt.png", 7, 3, 3, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArt.png", 10, 5, 3, false, STATUS_CAN_REINFORCE, "B", 1, 2, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "rebel");
-$j = $i;
-            $i=0;
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_REINFORCE, "B", 1, 1, "sympth");
-}
-             // end unit data -------------------------------------------
-if($arg == 1){
-    $this->force->addUnit("infantry-1", RED_FORCE, 801, "multiInf.png", 5, 2, 3, true, STATUS_READY, "R", 1, 1, "loyalist");
-
-    $this->force->addUnit("infantry-1", BLUE_FORCE, 101, "multiCav.png", 6, 3, 5, false, STATUS_READY, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 102, "multiCav.png", 5, 3, 5, false, STATUS_READY, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 103, "multiCav.png", 5, 2, 5, false, STATUS_READY, "B", 1, 1, "rebel");
-}
             // unit terrain data----------------------------------------
 
             // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
@@ -266,8 +295,20 @@ if($arg == 1){
 
                 }
             }
-               for($col = 100; $col <= 700; $col += 100){
-                for($row = 1; $row <= 7;$row++){
+            if ($arg == 1) {
+                for ($col = 100; $col <= 700; $col += 100) {
+                    for ($row = 1; $row <= 7; $row++) {
+                        $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
+                        $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
+                        $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
+                        $this->terrain->addTerrain($row + $col, HEXAGON_CENTER, "clear");
+
+                    }
+                }
+                return;
+            }
+            for ($col = 100; $col <= 2000; $col += 100) {
+                for ($row = 1; $row <= 10; $row++) {
                     $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
@@ -275,7 +316,6 @@ if($arg == 1){
 
                 }
             }
-            return;
             $trains = array(102,201,302,401,502,601);
             foreach($trains as $train){
             }
@@ -289,7 +329,7 @@ if($arg == 1){
             $this->terrain->addTerrain(505, LOWER_LEFT_HEXSIDE, "river");
             $this->terrain->addTerrain(506, UPPER_LEFT_HEXSIDE, "river");
             $this->terrain->addTerrain(507, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(509, UPPER_LEFT_HEXSIDE, "river");
+            $this->terrain->addTerrain(508, UPPER_LEFT_HEXSIDE, "river");
 
             $this->terrain->addTerrain(705, HEXAGON_CENTER, "town");
             $this->terrain->addTerrain(1202, HEXAGON_CENTER, "town");
