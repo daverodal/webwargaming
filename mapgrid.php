@@ -55,6 +55,7 @@ class MapData{
     public $hexes;
     public $maxX;
     public $maxY;
+    public $specialHexes;
     private static $instance;
     public $mapUrl;
     private function __construct(){
@@ -79,6 +80,15 @@ class MapData{
             }
         }
 
+    }
+    function setSpecialHexes($hexes){
+        if(!$this->specialHexes){
+            $this->specialHexes = new stdClass();
+        }
+        foreach($hexes as $k => $v){
+            $k = sprintf("%04d","0000".$k);
+            $this->specialHexes->$k = $v;
+        }
     }
     function setData($maxRight,$maxBottom, $map)
     {

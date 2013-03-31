@@ -242,11 +242,19 @@ class unit implements JsonSerializable
             $mapHex->unsetUnit($this->forceId,$this->id);
         }
 
+        var_dump($mapData->specialHexes);
         $this->hexagon = $hexagon;
         $mapHex = $mapData->getHex($this->hexagon->getName());
         if($mapHex){
             echo "force id ".$this->id;
             $mapHex->setUnit($this->forceId,$this->id);
+            $mapHexName = $mapHex->name;
+            var_dump($mapHexName);
+            var_dump($mapData->specialHexes);
+            if($mapData->specialHexes->$mapHexName){
+                var_dump($mapData->specialHexes);
+                $mapData->specialHexes->$mapHexName = $this->forceId;
+            }
         }
         $this->moveCount++;
         $this->moveAmountUsed = $this->moveAmountUsed + $moveAmount;

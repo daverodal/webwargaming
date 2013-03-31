@@ -706,6 +706,15 @@ class MoveRules{
     function retreat($id, $hexagon)
     {
         $movingUnit = $this->force->units[$id];
+        if($this->retreatIsBlocked($id)){
+
+            $hexagon = $movingUnit->getUnitHexagon();
+
+            $this->force->addToRetreatHexagonList($id, $hexagon);
+
+            $this->stopMove($movingUnit);
+            $this->force->eliminateUnit($id);
+        }
         if ($this->rangeIsOneHexagon($movingUnit->getUnitHexagon(), $hexagon)
             && $this->hexagonIsBlocked($id, $hexagon) == false
             && $this->terrain->isExit($hexagon) == false
@@ -767,6 +776,7 @@ class MoveRules{
     {
         if ($this->advanceIsValid($id, $hexagon) == true) {
             // set move amount to 0
+
             $this->force->updateMoveStatus($id, $hexagon, 0);
             $this->stopAdvance($id);
         }

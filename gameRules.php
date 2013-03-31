@@ -154,7 +154,21 @@ class GameRules {
                         $hexpart->setXYwithNameAndType($hexagon->name,HEXAGON_CENTER);
                         $terrain = $this->moveRules->terrain;
                         echo "Terrain";
-                        if($terrain->terrainIs($hexpart, "newrichmond") || $terrain->terrainIs($hexpart, "town") || $terrain->terrainIs($hexpart, "fortified") || $terrain->terrainIs($hexpart, "eastedge")  || $terrain->terrainIs($hexpart, "westedge")){
+                            $canReplace = false;
+
+                        $mapData = MapData::getInstance();
+
+                            var_dump($this->attackingForceId);echo "HII";var_dump($hexagon->name);
+                        if(($terrain->terrainIs($hexpart, "newrichmond") || $terrain->terrainIs($hexpart, "town")) && $mapData->specialHexes->{$hexagon->getName()} == $this->attackingForceId){
+                            $canReplace = true;
+                        }else{
+                            if($this->attackingForceId == BLUE_FORCE &&  $terrain->terrainIs($hexpart, "westedge")){
+                                $canReplace = true;
+                            }else if($this->attackingForceId == RED_FORCE &&  $terrain->terrainIs($hexpart, "eastedge")){
+                                $canReplace = true;
+                            }
+                        }
+                        if($canReplace){
                             echo "terrain Is";
                             if($this->force->getEliminated($this->currentReplacement, $hexagon) !== false){
 
@@ -499,31 +513,13 @@ echo "Past tehe fi";
     function incrementTurn()
     {
         $this->turn++;
-        if($this->turn == 2){
-            $this->force->units[13]->status = STATUS_ELIMINATED;
-            $this->force->units[14]->status = STATUS_ELIMINATED;
-            $this->force->units[13]->parent = "deadpile";/* TODO OO HEX STUFF */
-            $this->force->units[14]->hexagon->parent = "deadpile";
-        }
-        if($this->turn == 3){
-            $this->force->units[15]->status = STATUS_ELIMINATED;
-            $this->force->units[16]->status = STATUS_ELIMINATED;
-            $this->force->units[17]->status = STATUS_ELIMINATED;
-            $this->force->units[15]->hexagon->parent = "deadpile";/* TODO OO HEX STUFF */
-            $this->force->units[16]->hexagon->parent = "deadpile";
-            $this->force->units[17]->hexagon->parent = "deadpile";
-        }
-        if($this->turn == 4){
-            $this->force->units[18]->status = STATUS_ELIMINATED;
-            $this->force->units[19]->status = STATUS_ELIMINATED;
-            $this->force->units[18]->parent = "deadpile";/* TODO OO HEX STUFF */
-            $this->force->units[19]->hexagon->parent = "deadpile";
-        }
-        if($this->turn == 5){
-            $this->force->units[20]->status = STATUS_ELIMINATED;
-            $this->force->units[21]->status = STATUS_ELIMINATED;
-            $this->force->units[20]->hexagon->parent = "deadpile";/* TODO OO HEX STUFF */
-            $this->force->units[21]->hexagon->parent = "deadpile";
+        $theUnits = $this->force->units;
+        foreach($theUnits as $id => $unit){
+
+            if($unit->status == STATUS_CAN_REINFORCE && $unit->reinforceTurn <= $this->turn && $unit->hexagon->parent != "deployBox"){
+                $theUnits[$id]->status = STATUS_ELIMINATED;
+                $theUnits[$id]->hexagon->parent = "deadpile";
+            }
         }
     }
 
