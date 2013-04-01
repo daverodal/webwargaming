@@ -53,6 +53,7 @@ h5{
     width:99%;
     top:0px;
     background:#99cc99;
+    background:rgb(132,181,255);
     z-index:2000;
 }
 #mouseMove{
@@ -227,8 +228,9 @@ body{
     }
     #crt{
         border-radius:15px;
-        border:10px solid rgb(153, 204, 153);
+        border:10px solid rgb(132,181,255);
         background:#fff;color:black;
+    ;
         font-weight:bold;
         padding:1px 5px 10px 15px;
         box-shadow: 0px 0px 2px black;
@@ -262,7 +264,7 @@ body{
     .roll, #odds{
         height:20px;
         /*background :#1af;*/
-        background: rgb(153, 204, 153);
+        background: rgb(132,181,255);
         margin-right:14px
     }
     #odds{
