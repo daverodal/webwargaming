@@ -54,6 +54,9 @@ class CombatResultsTable
             return $this->combatResultsTable[$Die][$index];
         }
 
+    function getCombatIndex(){
+        return 3;
+    }
     function setCombatOddsTable()
     {
         $odds = array();

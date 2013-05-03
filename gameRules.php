@@ -40,6 +40,7 @@ class GameRules {
     public $force;
     /* @var PhaseChange */
     public $phaseChanges;
+    public $flashMessages;
 
     public $turn;
     public $maxTurn;
@@ -139,6 +140,10 @@ class GameRules {
         $modename = $mode_name[$this->mode];
         $phasename = $phase_name[$this->phase];
 
+        $mapData = MapData::getInstance();
+        $mapData->specialHexesChanges = new stdClass();
+        $this->flashMessages = array();
+
         switch ($this->mode) {
 
             case REPLACING_MODE:
@@ -149,16 +154,12 @@ class GameRules {
                             break;
                         }
                         if($this->currentReplacement !== false){
-                        echo "mapRepeelace ".$hexagon->name;
                         $hexpart = new Hexpart();
                         $hexpart->setXYwithNameAndType($hexagon->name,HEXAGON_CENTER);
                         $terrain = $this->moveRules->terrain;
-                        echo "Terrain";
                             $canReplace = false;
 
-                        $mapData = MapData::getInstance();
 
-                            var_dump($this->attackingForceId);echo "HII";var_dump($hexagon->name);
                         if(($terrain->terrainIs($hexpart, "newrichmond") || $terrain->terrainIs($hexpart, "town")) && $mapData->specialHexes->{$hexagon->getName()} == $this->attackingForceId){
                             $canReplace = true;
                         }else{
@@ -169,10 +170,8 @@ class GameRules {
                             }
                         }
                         if($canReplace){
-                            echo "terrain Is";
                             if($this->force->getEliminated($this->currentReplacement, $hexagon) !== false){
 
-                                echo "Got";
                                 $this->currentReplacement = false;
                                 $this->replacementsAvail--;
                             }
@@ -183,14 +182,12 @@ class GameRules {
                         if($this->replacementsAvail <= 0){
                             break;
                         }
-                        var_dump($this->force->units[$id]);
                         if($this->force->attackingForceId == $this->force->units[$id]->forceId){
                         if($this->force->units[$id]->status == STATUS_ELIMINATED ){
                             $this->force->units[$id]->status = STATUS_CAN_REPLACE;
                             $this->currentReplacement = $id;
                             break;
                         }
-                        echo "replace $id";
                          if($this->force->units[$id]->status != STATUS_CAN_REPLACE && $this->force->units[$id]->status != STATUS_CAN_REINFORCE && $this->force->replace( $id)){
                             $this->replacementsAvail--;
                         }
@@ -437,12 +434,10 @@ class GameRules {
             case EXCHANGING_MODE:
             case ATTACKER_LOSING_MODE:
 
-                echo "EXGHANGINGMODE";
                 switch ($event) {
 
                     case SELECT_COUNTER_EVENT:
 
-                        echo "the Counter";
                         if ($this->force->setStatus($id, STATUS_EXCHANGED)) {
                             if ($this->force->unitsAreBeingEliminated() == true) {
                                 $this->force->removeEliminatingUnits();
@@ -461,6 +456,7 @@ class GameRules {
         // see who occupies city
 //        $this->force->checkVictoryConditions();
         if ($this->force->isForceEliminated() == true) {
+            $this->flashMessages[] = "Game Over Dude";
             $this->mode = GAME_OVER_MODE;
             $this->phase = GAME_OVER_PHASE;
         }
@@ -469,9 +465,7 @@ class GameRules {
 
     function selectNextPhase()
     {
-echo "Teyr next phaes";
         if ($this->force->moreCombatToResolve() == false && $this->moveRules->anyUnitIsMoving == false) {
-echo "Past tehe fi";
             for ($i = 0; $i < count($this->phaseChanges); $i++) {
 
                 if ($this->phaseChanges[$i]->currentPhase == $this->phase) {
@@ -488,19 +482,22 @@ echo "Past tehe fi";
                     $this->force->recoverUnits($this->phase,$this->moveRules, $this->mode);
 
                     $this->replacementsAvail = false;
-                    if($this->phase == BLUE_DISPLAY_PHASE){
-                        $this->display->set("Rebel Turn");
-                    }
-                    if($this->phase == RED_DISPLAY_PHASE){
-                        $this->display->set("Loyalist Turn");
+                    if($this->phase == BLUE_MECH_PHASE || $this->phase == RED_MECH_PHASE){
+                        $this->flashMessages[] = "@hide crt";
                     }
                     if($this->phase  == BLUE_REPLACEMENT_PHASE){
+                        $this->flashMessages[] = "@forward Rebel";
+                        $this->flashMessages[] = "Rebel Player Turn";
                         $this->replacementsAvail = 1;
                     }
                     if($this->phase  == RED_REPLACEMENT_PHASE){
+                        $this->flashMessages[] = "@forward Loyalist";
+                        $this->flashMessages[] = "Loyalist Player Turn";
+                        $this->flashMessages[] = "Switch seats you'all";
                         $this->replacementsAvail = 10;
                     }
                     if ($this->turn > $this->maxTurn) {
+                        $this->flashMessages[] = "Game Over Man";
                         $this->mode = GAME_OVER_MODE;
                         $this->phase = GAME_OVER_PHASE;
                     }

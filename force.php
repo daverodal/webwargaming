@@ -253,7 +253,10 @@ class unit implements JsonSerializable
             var_dump($mapData->specialHexes);
             if($mapData->specialHexes->$mapHexName){
                 var_dump($mapData->specialHexes);
-                $mapData->specialHexes->$mapHexName = $this->forceId;
+                if($mapData->specialHexes->$mapHexName != $this->forceId){
+                    $mapData->specialHexes->$mapHexName = $this->forceId;
+                    $mapData->specialHexesChanges->$mapHexName = true;
+                }
             }
         }
         $this->moveCount++;
@@ -428,6 +431,16 @@ class Force
                         $this->units[$defenderId]->retreatCountRequired = 0;
                         break;
 
+                    case AE:
+                        $this->units[$defenderId]->status = STATUS_DEFENDED;
+                        $this->units[$defenderId]->retreatCountRequired = 0;
+                        break;
+
+                    case AR:
+                        $this->units[$defenderId]->status = STATUS_DEFENDED;
+                        $this->units[$defenderId]->retreatCountRequired = 0;
+                        break;
+
                     case DE:
                         $this->units[$defenderId]->status = STATUS_ELIMINATING;
                         $this->units[$defenderId]->retreatCountRequired = 2;
@@ -488,6 +501,11 @@ class Force
                         $this->units[$attacker]->retreatCountRequired = 0;
                         break;
 
+                    case AE:
+                        $this->units[$attacker]->status = STATUS_ELIMINATING;
+                        $this->units[$defenderId]->retreatCountRequired = 0;
+                        break;
+
                     case AL:
                         $this->units[$attacker]->status = STATUS_CAN_ATTACK_LOSE;
                         $this->units[$attacker]->retreatCountRequired = 0;
@@ -497,6 +515,11 @@ class Force
                     case DE:
                         $this->units[$attacker]->status = STATUS_CAN_ADVANCE;
                         $this->units[$attacker]->retreatCountRequired = 0;
+                        break;
+
+                    case AR:
+                        $this->units[$attacker]->status = STATUS_CAN_RETREAT;
+                        $this->units[$attacker]->retreatCountRequired = 1;
                         break;
 
                     case DRL:
@@ -923,7 +946,6 @@ class Force
     {
         for ($id = 0; $id < count($this->units); $id++)
         {
-            echo "revocer $id ".$this->units[$id]->status."\n";
             switch ($this->units[$id]->status)
             {
                 case STATUS_UNAVAIL_THIS_PHASE:
@@ -954,11 +976,9 @@ class Force
 //                        $status = STATUS_STOPPED;
 //                    }
                     if($phase == BLUE_MECH_PHASE && $this->units[$id]->forceId == BLUE_FORCE && $this->units[$id]->maxMove < 6){
-                        echo "hold it bub";
                         $status = STATUS_STOPPED;
                     }
                     if($phase == RED_MECH_PHASE && $this->units[$id]->forceId == RED_FORCE && $this->units[$id]->maxMove < 6){
-                        echo "hold it bub";
                         $status = STATUS_STOPPED;
                     }
                     if($phase == BLUE_REPLACEMENT_PHASE || $phase == RED_REPLACEMENT_PHASE){
@@ -990,7 +1010,6 @@ class Force
                         $hexpart = new Hexpart();
                         $hexpart->setXYwithNameAndType($this->units[$id]->hexagon->name, HEXAGON_CENTER);
                         $terrain = $moveRules->terrain;
-                        echo "Terrain";
                         if ($terrain->terrainIs($hexpart, "fortified") || $terrain->terrainIs($hexpart, "newrichmond")) {
                             $status = STATUS_READY;
                         }
@@ -1050,6 +1069,7 @@ class Force
 
     function setStatus($id, $status)
     {
+        include("funky.php");
         $success = false;
         switch ($status)
         {

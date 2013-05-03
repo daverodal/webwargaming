@@ -1193,7 +1193,7 @@ function initialize() {
     updateForm();
 }
 $(function() {
-    $( "#gameImages" ).draggable({distance:15});
+    $( "#gameImages" ).draggable({distance:15,axis:"x"});
 });
 $(function(){initialize();});
 </script>

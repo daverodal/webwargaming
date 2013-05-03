@@ -89,24 +89,23 @@ class MartianCivilWar extends Battle {
         return $data;
     }
 
-    function poke($event, $id, $x, $y, $user){
-        echo $user;
+    function poke($event, $id, $x, $y, $user,$isHotSeat = false, $name){
         $playerId = $this->gameRules->attackingForceId;
         if($this->players[$this->gameRules->attackingForceId] != $user){
-            echo "Nope $user";
-            return "nope";
+//            if($isHotSeat){
+//                echo "Nope$name";
+//            }
+            return false;
         }
 
         switch($event){
             case SELECT_MAP_EVENT:
                 $mapGrid = new MapGrid($this->mapViewer[$playerId]);
                 $mapGrid->setPixels($x, $y);
-                echo "mapevent $x $y";
                 $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon() );
                 break;
 
             case SELECT_COUNTER_EVENT:
-                echo "COUNTER $id";
 
                 $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id));
 
@@ -117,7 +116,7 @@ class MartianCivilWar extends Battle {
 
 
         }
-
+        return true;
     }
     function __construct($data = null)
     {
@@ -138,7 +137,7 @@ class MartianCivilWar extends Battle {
         } else {
             $this->display = new Display();
             $this->mapData->setData(30,20,"js/Martian.png");
-            $this->mapData->setSpecialHexes(array(407=>RED_FORCE,1909=>RED_FORCE,1515=>RED_FORCE,516=>RED_FORCE,2414=>RED_FORCE,2415=>RED_FORCE,2515=>RED_FORCE,1608=>RED_FORCE));
+            $this->mapData->setSpecialHexes(array(407=>RED_FORCE,1909=>RED_FORCE,1515=>RED_FORCE,516=>RED_FORCE,2414=>RED_FORCE,2415=>RED_FORCE,2515=>RED_FORCE,1508=>RED_FORCE));
             $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
@@ -190,16 +189,14 @@ class MartianCivilWar extends Battle {
             $this->gameRules->setMaxTurn(7);
             $this->gameRules->setInitialPhaseMode(BLUE_DEPLOY_PHASE,DEPLOY_MODE);
             $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_DISPLAY_PHASE, BLUE_REPLACEMENT_PHASE, REPLACING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, BLUE_MECH_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_MECH_PHASE,RED_DISPLAY_PHASE , DISPLAY_MODE, RED_FORCE, BLUE_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_DISPLAY_PHASE, RED_REPLACEMENT_PHASE, REPLACING_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_MECH_PHASE,RED_REPLACEMENT_PHASE , REPLACING_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MECH_PHASE , MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_MECH_PHASE,BLUE_DISPLAY_PHASE, DISPLAY_MODE, BLUE_FORCE, RED_FORCE, true);
+            $this->gameRules->addPhaseChange(RED_MECH_PHASE,BLUE_REPLACEMENT_PHASE, REPLACING_MODE, BLUE_FORCE, RED_FORCE, true);
 
             // force data
             //$this->force->setEliminationTrayXY(900);
@@ -214,6 +211,8 @@ class MartianCivilWar extends Battle {
             $this->force->addUnit("infantry-1", RED_FORCE, 508, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 512, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 1909, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 914, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
+
 //
 //            for($i = 1;$i<= 10;$i+=2){
 //                $this->force->addUnit("infantry-1", RED_FORCE, 500+$i, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
@@ -239,15 +238,15 @@ class MartianCivilWar extends Battle {
             $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 5, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 5, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 5, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 5, 1, "loyalist");
+//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist");
+//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist");
+//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist");
+//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist");
+//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist");
+//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist");
+//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist");
+//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 5, 1, "loyalist");
+//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 5, 1, "loyalist");
 
 
             $i = 1;
@@ -309,10 +308,10 @@ class MartianCivilWar extends Battle {
 
                 }
             }
-            for($i = 6;$i <= 10;$i++){
-                    $this->terrain->addReinforceZone(300 + $i,"R");
-
-            }
+//            for($i = 6;$i <= 10;$i++){
+//                    $this->terrain->addReinforceZone(300 + $i,"R");
+//
+//            }
             /*
              * First put clear everywhere, hexes and hex sides
              */
@@ -340,6 +339,19 @@ class MartianCivilWar extends Battle {
                 1008,1009,1109,1110,1208,1209,1308,1309,1310,1407,1408,1409,1508,1509,1608,
                 1804,1903,1904,2002,2003,2102,2201,2202,2301,2302);
 
+            $hex = "0702";
+            $this->terrain->addTerrain($hex,LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain($hex,BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain($hex,UPPER_LEFT_HEXSIDE,"river");
+            $hex = "0701";
+            $this->terrain->addTerrain($hex,LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain($hex,BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain($hex,UPPER_LEFT_HEXSIDE,"river");
+            $hex = 607;
+            $this->terrain->addTerrain($hex,LOWER_LEFT_HEXSIDE,"river");
+            $hex = 1006;
+            $this->terrain->addTerrain($hex,BOTTOM_HEXSIDE,"river");
+
             foreach($hexes as $hex){
                 $this->terrain->addTerrain($hex, HEXAGON_CENTER, "forest");
             }
@@ -364,6 +376,111 @@ class MartianCivilWar extends Battle {
                 $this->terrain->addTerrain($i, HEXAGON_CENTER, "westedge");
 
             }
+
+            $this->terrain->addTerrain(813, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(814, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(814, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(814, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(815, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(815, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(815, BOTTOM_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(714, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(715, UPPER_LEFT_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(614, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(615, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(615, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(616, UPPER_LEFT_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(516, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(516, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(516, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(515, LOWER_LEFT_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(414, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(414, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(414, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(416, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(417, UPPER_LEFT_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(317, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(318, UPPER_LEFT_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(217, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(218, UPPER_LEFT_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(118, BOTTOM_HEXSIDE,"river");
+
+
+
+            $this->terrain->addTerrain(911, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(911, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(912, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(912, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(913, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(913, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(914, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(914, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(915, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(915, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(916, UPPER_LEFT_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(1011, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1011, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1012, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1012, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1013, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1013, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1014, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1014, BOTTOM_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(1112, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1112, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1113, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1113, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1114, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1114, LOWER_LEFT_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(1112, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1011, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1011, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1011, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1011, UPPER_LEFT_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(1404, BOTTOM_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(1504, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1505, UPPER_LEFT_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(1603, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1604, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1604, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1605, UPPER_LEFT_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(1703, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1704, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1704, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1705, UPPER_LEFT_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(1802, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1803, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1803, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1804, UPPER_LEFT_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(1902, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1903, UPPER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1903, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1904, UPPER_LEFT_HEXSIDE,"river");
+
+
+            $this->terrain->addTerrain(2001, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(2002, UPPER_LEFT_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(2101, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(2102, UPPER_LEFT_HEXSIDE,"river");
+
+            $this->terrain->addTerrain(2201, UPPER_LEFT_HEXSIDE,"river");
 
             /*
              * Now put the roads and trails on top of verything else

@@ -150,7 +150,7 @@
 
         <div id="gameViewer" style="position:relative;">
             <div id="gameImages" class="ui-widget-content">
-                <img id="map" alt="map" src="<?php echo base_url();?>js/Martian.png"
+                <img id="map" alt="map" src="<?php echo base_url();?>js/MartianIV.png"
                      style="position: relative;visibility: visible;z-index: 0;">
                 <?php $id = 0;?>
                 {units}
@@ -185,6 +185,7 @@
 //        active: false
 //
 //    })
+var Player = '<?= $player;?>';
 $( "#OBCWrapper h4" ).click(function() {
     $( "#OBC" ).toggle({effect:"blind",direction:"up"});
 });

@@ -357,11 +357,18 @@ return $terrainName;
 
         $entranceCost = 0;
 
+        $name = $hexagon->name;
 //        $hexpart = new Hexpart($hexagon->getX(), $hexagon->getY());
         $terrains = $this->terrainArray[$hexagon->getY()][$hexagon->getX()];
 
         foreach ($terrains as $terrainFeature) {
+            if($name == 607){
+                echo "feature $terrainFeature ";
+            }
             $entranceCost += $this->terrainFeatures->$terrainFeature->entranceCost;
+            if($name == 607){
+                echo "cpst $entranceCost";
+            }
         }
         return $entranceCost;
     }
@@ -392,6 +399,8 @@ return $terrainName;
 
 
         $moveCost = 0;
+        $name = $endHexagon->name;
+
         $hexsideX = ($startHexagon->getX() + $endHexagon->getX()) / 2;
         $hexsideY = ($startHexagon->getY() + $endHexagon->getY()) / 2;
 //        $hexpart = new Hexpart($hexsideX, $hexsideY);
@@ -418,10 +427,19 @@ return $terrainName;
 //        }
 else
          {
+             if($name == 607){
+                 echo "Start $moveCost ";
+             }
 
             //  get entrance cost
             $moveCost = $this->getTerrainEntranceMoveCost($endHexagon);
+             if($name == 607){
+                 echo "middle $moveCost ";
+             }
             $moveCost += $this->getTerrainCodeCost($terrainCode);
+             if($name == 607){
+                 echo "end $moveCost ";
+             }
 
             // check hexside for river
 //            $hexpart = new Hexpart($hexsideX, $hexsideY);

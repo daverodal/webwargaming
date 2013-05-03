@@ -94,7 +94,7 @@ fieldset{
     border-radius:15px;
     border:10px solid #1AF;
 //position:relative;
-    width:308px;
+    width:480px;
     background:#fff;color:black;
     font-weight:bold;
     padding:1px 5px 10px 15px;
@@ -180,7 +180,7 @@ fieldset{
 }
 #leftcol {
     float:left;
-    width:360px;
+    width:600px;
 }
 #rightCol{
     /*float:right;*/
@@ -648,7 +648,7 @@ x.register("force", function(force) {
     }
 });
 x.register("combatRules", function(combatRules) {
-    for(var combatCol = 1;combatCol <= 6;combatCol++){
+    for(var combatCol = 1;combatCol <= 10;combatCol++){
         $(".col"+combatCol).css({background:"transparent"});
 //            $(".odd .col"+combatCol).css({color:"white"});
 //            $(".even .col"+combatCol).css({color:"black"});

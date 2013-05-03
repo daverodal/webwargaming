@@ -1,7 +1,7 @@
 <?php
 require_once "constants.php";
 require_once "combatRules.php";
-require_once "crt.php";
+require_once "BAC/crt.php";
 require_once "force.php";
 require_once "gameRules.php";
 require_once "hexagon.php";
@@ -19,7 +19,7 @@ $oneHalfImageHeight = 16;
 
 
 
-class BattleForAllenCreek {
+class BattleForAllenCreek extends Battle {
 
     public $mapData;
     public $force;
@@ -29,6 +29,23 @@ class BattleForAllenCreek {
     public $gameRules;
     public $prompt;
     public $players;
+
+    static function getHeader($playerData){
+        $playerData = array_shift($playerData);
+        foreach($playerData as $k => $v){
+            $$k = $v;
+        }
+        @include_once "BAC/header.php";
+    }
+    static function getView($mapUrl,$player = 0){
+        global $force_name;
+        $player = $force_name[$player];
+        @include_once "BAC/view.php";
+    }
+    static function playAs($wargame){
+
+        @include_once "BAC/playAs.php";
+    }
 
 
     function save()
