@@ -54,6 +54,7 @@ class GameRules {
     public $interactions;
     public $replacementsAvail;
     public $currentReplacement;
+    public $turnChange;
 
     function save()
     {
@@ -143,6 +144,7 @@ class GameRules {
         $mapData = MapData::getInstance();
         $mapData->specialHexesChanges = new stdClass();
         $this->flashMessages = array();
+        $this->turnChange = false;
 
         switch ($this->mode) {
 
@@ -205,6 +207,8 @@ class GameRules {
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
+                    echo "about to $id ";
+                    var_dump($hexagon);
                          $this->moveRules->moveUnit($event, $id, $hexagon, $this->turn);
                         break;
 
@@ -471,6 +475,9 @@ class GameRules {
                 if ($this->phaseChanges[$i]->currentPhase == $this->phase) {
                     $this->phase = $this->phaseChanges[$i]->nextPhase;
                     $this->mode = $this->phaseChanges[$i]->nextMode;
+                    if($this->attackingForceId != $this->phaseChanges[$i]->nextAttackerId){
+                        $this->turnChange = true;
+                    }
                     $this->attackingForceId = $this->phaseChanges[$i]->nextAttackerId;
                     $this->defendingForceId = $this->phaseChanges[$i]->nextDefenderId;
 
@@ -493,7 +500,6 @@ class GameRules {
                     if($this->phase  == RED_REPLACEMENT_PHASE){
                         $this->flashMessages[] = "@forward Loyalist";
                         $this->flashMessages[] = "Loyalist Player Turn";
-                        $this->flashMessages[] = "Switch seats you'all";
                         $this->replacementsAvail = 10;
                     }
                     if ($this->turn > $this->maxTurn) {

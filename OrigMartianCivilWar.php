@@ -89,8 +89,7 @@ class OMCW extends Battle {
         echo $user;
         $playerId = $this->gameRules->attackingForceId;
         if($this->players[$this->gameRules->attackingForceId] != $user){
-            echo "Nope $user";
-            return "nope";
+            return false;
         }
 
         switch($event){
@@ -113,6 +112,7 @@ class OMCW extends Battle {
 
 
         }
+        return true;
 
     }
     function __construct($data = null)

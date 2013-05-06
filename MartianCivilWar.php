@@ -91,7 +91,9 @@ class MartianCivilWar extends Battle {
 
     function poke($event, $id, $x, $y, $user,$isHotSeat = false, $name){
         $playerId = $this->gameRules->attackingForceId;
-        if($this->players[$this->gameRules->attackingForceId] != $user){
+        echo $user;
+        var_dump($this->players);
+            if($this->players[$this->gameRules->attackingForceId] != $user){
 //            if($isHotSeat){
 //                echo "Nope$name";
 //            }
@@ -113,7 +115,7 @@ class MartianCivilWar extends Battle {
 
             case SELECT_BUTTON_EVENT:
                 $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0,0 );
-
+echo "POKEY";
 
         }
         return true;

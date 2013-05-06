@@ -34,6 +34,7 @@
     <h1 style="text-align:center;font-size:90px;font-family:'Great Vibes'">Napoleons Conquests</h1>
 <div style="clear:both"></div>
 <fieldset style="text-align:center;width:30%;margin:0 auto;"><Legend>Play As </Legend>
-    <a class="rebel"  href="<?=site_url("wargame/changeWargame");?>/<?=$wargame?>/1">Play Hotseat (French start)</a>
+    <a class="rebel"  href="<?=site_url("wargame/enterHotseat");?>/<?=$wargame?>/">Play Hotseat</a>
+    <a class="rebel"  href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>/">Play Multi</a>
     <a class="loyalist" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a>
 </fieldset>

@@ -93,8 +93,7 @@ class NapOnMars extends Battle {
         echo $user;
         $playerId = $this->gameRules->attackingForceId;
         if($this->players[$this->gameRules->attackingForceId] != $user){
-            echo "Nope $user";
-            return "nope";
+            return false;
         }
 
         switch($event){
@@ -109,7 +108,7 @@ class NapOnMars extends Battle {
                 echo "COUNTER $id";
 
                 $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id));
-
+echo "Countered";
                 break;
 
             case SELECT_BUTTON_EVENT:
@@ -117,7 +116,7 @@ class NapOnMars extends Battle {
 
 
         }
-
+        return true;
     }
     function __construct($data = null, $arg = false)
     {

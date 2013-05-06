@@ -104,6 +104,7 @@ class MoveRules{
         else
             // click on a unit
         {
+            echo "DEploying";
             if ($this->anyUnitIsMoving == true) {
                 if ($id == $this->movingUnitId) {
                     $movingUnit = $this->force->units[$id];
@@ -124,12 +125,14 @@ class MoveRules{
             }
             else
             {
+                echo " nobody moving ";
                 // no one is moving, so start new move
                 if ($this->force->unitCanMove($id) == true) {
                     $this->calcMove($id);
                     $this->startMoving($id);
                 }
                 if ($this->force->unitCanReinforce($id) == true) {
+                    echo "Can rein ";
                      $this->startReinforcing($id, $turn);
                 }
             }
@@ -557,7 +560,9 @@ class MoveRules{
     function startReinforcing($id, $turn)
     {
         if ($this->force->getUnitReinforceTurn($id) <= $turn) {
+            echo "Turn $turn ";
             if ($this->force->units[$id]->setStatus( STATUS_REINFORCING) == true) {
+                echo "Cancn";
                 $this->anyUnitIsMoving = true;
                 $this->movingUnitId = $id;
             }

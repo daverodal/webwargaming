@@ -12,7 +12,6 @@
         0 0 5px white,0 0 5px white,0 0 5px white
     }
     .rebel{
-        margin-right:100px;
         font-size:40px;
         color:#080;
     }
@@ -34,6 +33,8 @@
     <h1 style="text-align:center;font-size:90px;font-family:'Great Vibes'">The Martian Civil War</h1>
 <div style="clear:both"></div>
 <fieldset style="text-align:center;width:30%;margin:0 auto;"><Legend>Play As </Legend>
-    <a class="rebel"  href="<?=site_url("wargame/changeWargame");?>/<?=$wargame?>/1">Rebel</a>
-    <a class="loyalist" href="<?=site_url("wargame/changeWargame");?>/<?=$wargame?>/2">Loyalist</a>
+    <a class="rebel"  href="<?=site_url("wargame/enterHotseat");?>/<?=$wargame?>">Play Hotseat</a><br>
+    <a class="loyalist" href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>/">Play Multiplayer</a><br>
+    <a class="loyalist" href="<?=site_url("wargame/leaveGame");?>/<?=$wargame?>/">Goto Lobby</a>
+
 </fieldset>

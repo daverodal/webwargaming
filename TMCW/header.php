@@ -595,8 +595,7 @@ function flashMessage(playerStatus){
                     game = mess.match(/^@forward ([^,]*)/);
                     newPlayer = game[1];
                     if(newPlayer != Player){
-                       window.location = "<?=site_url("wargame/changeWargame");?>";
-                       return;
+<!--                       window.location = "--><?//=site_url("wargame/changeWargame");?><!--";-->
                     }
                 }
                 /* we only loop of we failed to forward */
@@ -998,6 +997,7 @@ x.register("combatRules", function(combatRules,data) {
                                 theta += 180;
                                 $("#"+j+ " .arrow").css({opacity: "1.0"});
                                 $("#"+j+ " .arrow").css({webkitTransform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
+                                $("#"+j+ " .arrow").css({transform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
 
 
                             }
@@ -1182,10 +1182,7 @@ function doitUnit(id) {
         type: "POST",
         data:{id:id,event : <?=SELECT_COUNTER_EVENT?>},
     success:function(data, textstatus) {
-        if(data.match(/Nope/)){
-            var d = /Nope(.*)/.exec(data);
-<!--            window.location = "--><?//=site_url("wargame/changeWargame");?><!--/"+d[1]+"/1"-->
-        }
+
     }
 });
 $("#mychat").attr("value", "");
@@ -1198,10 +1195,7 @@ function doitMap(x,y) {
             event : <?=SELECT_MAP_EVENT?>
     },
     success:function(data, textstatus) {
-        if(data.match(/Nope/)){
-            var d = /Nope(.*)/.exec(data);
-<!--            window.location = "--><?//=site_url("wargame/changeWargame");?><!--/"+d[1]+"/1"-->
-        }
+
     }
 });
 
@@ -1211,10 +1205,7 @@ function doitNext() {
         type: "POST",
         data:{event: <?=SELECT_BUTTON_EVENT?>},
         success:function(data, textstatus) {
-              if(data.match(/Nope/)){
-                  var d = /Nope(.*)/.exec(data);
-<!--                  window.location = "--><?//=site_url("wargame/changeWargame");?><!--/"+d[1]+"/1"-->
-            }
+
     }
 });
 

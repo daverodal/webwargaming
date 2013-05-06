@@ -64,9 +64,12 @@ class BattleForAllenCreek extends Battle {
     }
 
     function poke($event, $id, $x, $y, $user){
+        die("pokey");
         $playerId = $this->gameRules->attackingForceId;
+        echo "user $user";
+        echo "pid $playerId";
         if($this->players[$this->gameRules->attackingForceId] != $user){
-            return "nope";
+            return false;
         }
 
         switch($event){
@@ -86,6 +89,7 @@ class BattleForAllenCreek extends Battle {
 
 
         }
+        return true;
 
     }
     function __construct($data = null)
