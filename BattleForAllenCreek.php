@@ -68,7 +68,7 @@ class BattleForAllenCreek {
         $playerId = $this->gameRules->attackingForceId;
         if($this->players[$this->gameRules->attackingForceId] != $user){
             echo "Nope $user";
-            return "nope";
+            return false;
         }
 
         switch($event){
@@ -90,6 +90,7 @@ class BattleForAllenCreek {
 
 
         }
+        return true;
 
     }
     function __construct($data = null)
