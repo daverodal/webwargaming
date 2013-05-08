@@ -128,6 +128,8 @@ class GameRules {
 
     function processEvent($event, $id, $hexagon)
     {
+
+        echo "Process ";
         global $phase_name, $event_name, $mode_name;
 
         $now = time();
@@ -141,7 +143,9 @@ class GameRules {
         $modename = $mode_name[$this->mode];
         $phasename = $phase_name[$this->phase];
 
-        $mapData = MapData::getInstance();
+        $battle = Battle::getBattle();
+        $mapData = $battle->mapData;
+//        $mapData = MapData::getInstance();
         $mapData->specialHexesChanges = new stdClass();
         $this->flashMessages = array();
         $this->turnChange = false;
@@ -160,7 +164,6 @@ class GameRules {
                         $hexpart->setXYwithNameAndType($hexagon->name,HEXAGON_CENTER);
                         $terrain = $this->moveRules->terrain;
                             $canReplace = false;
-
 
                         if(($terrain->terrainIs($hexpart, "newrichmond") || $terrain->terrainIs($hexpart, "town")) && $mapData->specialHexes->{$hexagon->getName()} == $this->attackingForceId){
                             $canReplace = true;
@@ -185,13 +188,33 @@ class GameRules {
                             break;
                         }
                         if($this->force->attackingForceId == $this->force->units[$id]->forceId){
-                        if($this->force->units[$id]->status == STATUS_ELIMINATED ){
+                            echo "this part ";
+                            echo "ID $id ";
+                            echo "curr ";
+                            echo $this->currentReplacement;
+                            if($this->force->units[$id]->status == STATUS_CAN_REPLACE ){
+                                $this->force->units[$id]->status = STATUS_ELIMINATED;
+                                $this->currentReplacement = false;
+                                break;
+                            }
+
+                                if($this->force->units[$id]->status == STATUS_ELIMINATED ){
+                            echo "We elimi ";
+                            if($this->currentReplacement && $this->currentReplacement != $id){
+                                echo "back to elimi ";
+                                $this->force->units[$this->currentReplacement]->status = STATUS_ELIMINATED;
+                            }
                             $this->force->units[$id]->status = STATUS_CAN_REPLACE;
                             $this->currentReplacement = $id;
+                            echo "Cur elim ".$this->currentReplacement;
                             break;
                         }
                          if($this->force->units[$id]->status != STATUS_CAN_REPLACE && $this->force->units[$id]->status != STATUS_CAN_REINFORCE && $this->force->replace( $id)){
                             $this->replacementsAvail--;
+                             if($this->currentReplacement){
+                                 $this->force->units[$this->currentReplacement]->status = STATUS_ELIMINATED;
+                                 $this->currentReplacement = false;
+                             }
                         }
                         }
                         break;
@@ -207,8 +230,7 @@ class GameRules {
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
-                    echo "about to $id ";
-                    var_dump($hexagon);
+
                          $this->moveRules->moveUnit($event, $id, $hexagon, $this->turn);
                         break;
 
@@ -381,6 +403,7 @@ class GameRules {
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
+                    echo "EVENT $event $id ";
                         $this->moveRules->retreatUnit($event, $id, $hexagon);
                         if ($this->force->unitsAreRetreating() == false) {
                             if ($this->force->unitsAreExchanging() == true) {
@@ -476,12 +499,32 @@ class GameRules {
                     $this->phase = $this->phaseChanges[$i]->nextPhase;
                     $this->mode = $this->phaseChanges[$i]->nextMode;
                     if($this->attackingForceId != $this->phaseChanges[$i]->nextAttackerId){
+                        $battle = Battle::getBattle();
+                        $mapData = $battle->mapData;
+                        $vp = $battle->victory->victoryPoints;
+//                        $mapData = MapData::getInstance();
+                        $specialHexes = $mapData->specialHexes;
+                        if($specialHexes){
+                            foreach($specialHexes as $k=>$v){
+                                if($v == 1){
+                                    if($k == 2414 || $k == 2415 || $k == 2515){
+                                        $vp[$v] += 5;
+                                    }else{
+                                        $vp[$v]++;
+                                    }
+                                }else{
+                                    $vp[$v] += .5;
+                                }
+                            }
+                        }
+                        $battle->victory->victoryPoints = $vp;
                         $this->turnChange = true;
                     }
                     $this->attackingForceId = $this->phaseChanges[$i]->nextAttackerId;
                     $this->defendingForceId = $this->phaseChanges[$i]->nextDefenderId;
 
                     if ($this->phaseChanges[$i]->phaseWillIncrementTurn == true) {
+
                         $this->incrementTurn();
                     }
 

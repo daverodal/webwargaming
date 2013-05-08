@@ -35,6 +35,11 @@
                     </legend>
                     <div id="status"></div>
                 </fieldset>
+                <fieldset id="victoryDiv">
+                    <legend>Victory
+                    </legend>
+                    <div id="victory"></div>
+                </fieldset>
             </div>
         </div>
         <div style="clear:left;"></div>

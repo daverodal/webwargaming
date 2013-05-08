@@ -12,6 +12,8 @@ require_once "moveRules.php";
 require_once "prompt.php";
 require_once "terrain.php";
 require_once "display.php";
+require_once "victory.php";
+
 // battlefforallencreek.js
 
 // counter image values
@@ -32,6 +34,7 @@ class OMCW extends Battle {
     public $combatRules;
     public $gameRules;
     public $prompt;
+    public $victory;
 
     public $players;
     static function getHeader($playerData){
@@ -118,6 +121,7 @@ class OMCW extends Battle {
     function __construct($data = null)
     {
         $this->mapData = MapData::getInstance();
+        $this->victory = new Victory();
         if ($data) {
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);

@@ -608,17 +608,21 @@ class MoveRules{
         // id will be map if map event
         if ($eventType == SELECT_MAP_EVENT) {
             if ($this->anyUnitIsMoving == true) {
+                echo "Units are moving ";
                 $this->retreat($this->movingUnitId, $hexagon);
             }
         }
         else
         {
+            echo "Reatreat Unit ";
             // id will be retreating unit id if counter event
+            echo "any unit moving ".$this->anyUnitIsMoving. " any? ";
             if ($this->anyUnitIsMoving == false) {
                 if ($this->force->unitCanRetreat($id) == true) {
                     $this->startRetreating($id);
                 }
             }else{
+                echo "reatres ";
                 $this->retreat($this->movingUnitId, $hexagon);
             }
         }
@@ -628,6 +632,7 @@ class MoveRules{
     {
         $movingUnit = $this->force->units[$id];
         if ($movingUnit->setStatus( STATUS_RETREATING) == true) {
+            echo "we set status ";
             if ($this->retreatIsBlocked($id) == true) {
 
                 $hexagon = $movingUnit->getUnitHexagon();
@@ -639,14 +644,17 @@ class MoveRules{
             }
             else
             {
+                echo "should not be blocked ";
                 $this->anyUnitIsMoving = true;
                 $this->movingUnitId = $id;
             }
+            echo "saw ifblocked ";
         }
     }
 
     function retreatIsBlocked($id)
     {
+        echo "In is Blocked";
         $isBlocked = true;
 
         $adjacentHexagonXadjustment = array(0, 2, 2, 0, -2, -2);
@@ -661,11 +669,13 @@ class MoveRules{
             $adjacentHexagonY = $hexagonY + $adjacentHexagonYadjustment[$eachHexagon];
             $adjacentHexagon = new Hexagon($adjacentHexagonX, $adjacentHexagonY);
             //alert("testing " + adjacentHexagon->getName());
+            echo "Testing ".$adjacentHexagon->name."<br>";
 
             if ($this->hexagonIsBlocked($id, $adjacentHexagon) == false) {
                 $isBlocked = false;
                 break;
             }
+            echo "tested ";
 
         }
 
@@ -687,11 +697,12 @@ class MoveRules{
 
         $hexpart = new Hexpart($hexsideX, $hexsideY);
         // make sure hexagon is not ZOC
+        echo "hexaIsZOC ";
         if (($this->force->hexagonIsZOC($id, $hexagon) == true)) {
             $isBlocked = true;
         }
         // make sure hexagon is not occupied
-
+        echo "hexa Is Occ ";
         if ($this->force->hexagonIsOccupiedEnemy($hexagon, $id) == true) {
             $isBlocked = true;
         }
@@ -700,16 +711,18 @@ class MoveRules{
 //        if ($this->terrain->terrainIs($hexpart, "river") == true) {
 //            $isBlocked = true;
 //        }
-
+        echo "Terre is exit ";
         if ($this->terrain->isExit($hexagon) == true) {
             $isBlocked = true;
         }
+        echo "is blocked ? $isBlocked";
         //alert(unitHexagon->getName() + " to " + hexagon->getName() + " zoc: " + $this->force->hexagonIsZOC(id, hexagon) + " occ: " + $this->force->hexagonIsOccupied(hexagon)  + " river: " + $this->terrain->terrainIs(hexpart, "river"));
         return $isBlocked;
     }
 
     function retreat($id, $hexagon)
     {
+        /* @var  unit */
         $movingUnit = $this->force->units[$id];
         if($this->retreatIsBlocked($id)){
 
@@ -720,14 +733,21 @@ class MoveRules{
             $this->stopMove($movingUnit);
             $this->force->eliminateUnit($id);
         }
+        echo "Thee retreat is NOT blocked ====== ";
         if ($this->rangeIsOneHexagon($movingUnit->getUnitHexagon(), $hexagon)
             && $this->hexagonIsBlocked($id, $hexagon) == false
             && $this->terrain->isExit($hexagon) == false
         ) {
+
+            echo "Passed the test ";
             $this->force->addToRetreatHexagonList($id, $movingUnit->getUnitHexagon());
+            echo "addToRet Hex list ";
             // set move amount to 0
             $occupied = $this->force->hexagonIsOccupied($hexagon);
+            echo "Occcupodo $occupied ";
             $movingUnit->updateMoveStatus($hexagon, 0);
+            echo "moved the unit ";
+
 
             // check crt retreat count required to how far the unit has retreated
             if ($this->force->unitHasMetRetreatCountRequired($id) && !$occupied) {

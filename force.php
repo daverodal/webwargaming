@@ -125,6 +125,7 @@ class unit implements JsonSerializable
 
     function setStatus($status)
     {
+        $battle = Battle::getBattle();
         $success = false;
         switch ($status)
         {
@@ -134,6 +135,7 @@ class unit implements JsonSerializable
                         $this->status = STATUS_ELIMINATING;
                         $amtLost = $this->minStrength;
                     }else{
+                        $battle->victory->reduceUnit($this);
                         $this->strength = $this->minStrength;
                         $this->isReduced = true;
                         $amtLost = $this->maxStrength - $this->minStrength;
@@ -203,11 +205,13 @@ class unit implements JsonSerializable
                 break;
 
             case STATUS_RETREATING:
+                echo "SetStatus STATUS_RETREATING";
                 if ($this->status == STATUS_CAN_RETREAT) {
                     $this->status = $status;
                     $this->moveCount = 0;
                     $this->moveAmountUsed = 0;
                     $success = true;
+                    echo "did it ";
                 }
                 break;
 
@@ -236,24 +240,24 @@ class unit implements JsonSerializable
     function updateMoveStatus($hexagon, $moveAmount)
     {
 
-        $mapData = MapData::getInstance();
+        $battle = Battle::getBattle();
+        $mapData = $battle->mapData;
+//        $mapData = MapData::getInstance();
         $mapHex = $mapData->getHex($this->hexagon->getName());
         if($mapHex){
             $mapHex->unsetUnit($this->forceId,$this->id);
         }
 
-        var_dump($mapData->specialHexes);
         $this->hexagon = $hexagon;
         $mapHex = $mapData->getHex($this->hexagon->getName());
         if($mapHex){
-            echo "force id ".$this->id;
             $mapHex->setUnit($this->forceId,$this->id);
             $mapHexName = $mapHex->name;
-            var_dump($mapHexName);
-            var_dump($mapData->specialHexes);
             if($mapData->specialHexes->$mapHexName){
-                var_dump($mapData->specialHexes);
                 if($mapData->specialHexes->$mapHexName != $this->forceId){
+                    if($this->forceId == 1){
+                        $battle->victory->victoryPoints[1]++;
+                    }
                     $mapData->specialHexes->$mapHexName = $this->forceId;
                     $mapData->specialHexesChanges->$mapHexName = true;
                 }
@@ -270,7 +274,9 @@ class unit implements JsonSerializable
         $this->name = $unitName;
         $this->forceId = $unitForceId;
         $this->hexagon = new Hexagon($unitHexagon);
-
+        /* blah! this can get called from the constructor of Battle. so we can't get ourselves while creating ourselves */
+//        $battle = Battle::getBattle();
+//        $mapData = $battle->mapData;
         $mapData = MapData::getInstance();
         $mapHex = $mapData->getHex($this->hexagon->getName());
         if($mapHex){
@@ -406,6 +412,7 @@ class Force
 
     function applyCRTresults($defenderId, $attackers, $combatResults, $dieRoll)
     {
+        $battle = Battle::getBattle();
         $this->clearRetreatHexagonList();
 
 
@@ -416,6 +423,7 @@ class Force
                             $this->units[$defenderId]->status = STATUS_ELIMINATING;
                             $this->exchangeAmount = $this->units[$defenderId]->minStrength;
                         }else{
+                            $battle->victory->reduceUnit($this->units[$defenderId]);
                             $this->units[$defenderId]->status = STATUS_CAN_RETREAT;
                             $this->units[$defenderId]->isReduced = true;
                             $this->units[$defenderId]->strength = $this->units[$defenderId]->minStrength;
@@ -456,6 +464,7 @@ class Force
                             $this->addToRetreatHexagonList($defenderId, $this->getUnitHexagon($defenderId));
 
                         }else{
+                            $battle->victory->reduceUnit($this->units[$defenderId]);
                             $this->units[$defenderId]->isReduced = true;
                             $this->units[$defenderId]->strength = $this->units[$defenderId]->minStrength;
                             $this->units[$defenderId]->status = STATUS_CAN_RETREAT;
@@ -463,6 +472,7 @@ class Force
                         }
                         break;
                     case DR:
+                        echo "HERE DR ";
                         $this->units[$defenderId]->status = STATUS_CAN_RETREAT;
                         $this->units[$defenderId]->retreatCountRequired = 2;
                         break;
@@ -524,6 +534,7 @@ class Force
 
                     case DRL:
                     case DR:
+                        echo "THERE DR ";
                         $this->units[$attacker]->status = STATUS_CAN_ADVANCE;
                         $this->units[$attacker]->retreatCountRequired = 0;
                         break;
@@ -566,10 +577,18 @@ class Force
     function eliminateUnit($id)
     {
         $unit = $this->units[$id];
+        $battle = Battle::getBattle();
+        echo "ELIM UNITE";
+        var_dump($unit);
+        $battle->victory->reduceUnit($unit);
+        echo "did reduce";
         $forceId = $unit->forceId;
         $this->deleteCount++;
-        $mapData = MapData::getInstance();
+        $battle = Battle::getBattle();
+        $mapData = $battle->mapData;
+//        $mapData = MapData::getInstance();
         $mapHex = $mapData->getHex($unit->hexagon->getName());
+
         if($mapHex){
             $mapHex->unsetUnit($forceId,$id);
         }
@@ -767,12 +786,12 @@ class Force
 
             for ($i = 0; $i < count($this->units); $i++)
             {
-                echo "eye $i ";
+//                echo "eye $i ";
                 $los->setEndPoint($this->units[$i]->hexagon);
-                echo "los ".$los->getRange();
+//                echo "los ".$los->getRange();
                 if($los->getRange() == 1){
-                                    echo "ids ".$this->units[$i]->forceId." and ".$this->units[$id]->forceId;
-                    echo "status ".$this->units[$i]->status;
+//                                    echo "ids ".$this->units[$i]->forceId." and ".$this->units[$id]->forceId;
+//                    echo "status ".$this->units[$i]->status;
 
                 }
                 if ($los->getRange() == 1
@@ -780,7 +799,7 @@ class Force
                     && $this->units[$i]->status != STATUS_CAN_REINFORCE
                     && $this->units[$i]->status != STATUS_ELIMINATED
                 ) {
-                    echo "ZOC!!!!";
+//                    echo "ZOC!!!!";
                     $isZOC = true;
                     break;
                 }
@@ -814,7 +833,9 @@ class Force
         $neighbors = $mapHex->neighbors;
 
         if($neighbors){
-            $mapData = MapData::getInstance();
+            $battle = Battle::getBattle();
+            $mapData = $battle->mapData;
+//            $mapData = MapData::getInstance();
             foreach($neighbors as $neighbor){
                 if($this->mapHexIsOccupiedEnemy($mapData->getHex($neighbor))){
                     return true;
@@ -826,7 +847,9 @@ class Force
     function hexagonIsOccupied($hexagon)
     {
         $isOccupied = false;
-        $mapData = MapData::getInstance();
+        $battle = Battle::getBattle();
+        $mapData = $battle->mapData;
+//        $mapData = MapData::getInstance();
         $mapHex = $mapData->getHex($hexagon->getName());
         if(is_array($mapHex->forces)){
         foreach($mapHex->forces as $force)
@@ -865,10 +888,18 @@ class Force
     }
     function hexagonIsOccupiedEnemy($hexagon,$id)
     {
+        echo "111 ";
         $isOccupied = false;
+        echo "1 ";
         $friendlyId = $this->units[$id]->forceId;
-        $mapData = MapData::getInstance();
+        echo "1.65 ";
+        $battle = Battle::getBattle();
+        echo "1.98 ";
+        $mapData = $battle->mapData;
+//        $mapData = MapData::getInstance();
+        echo "2 ";
         $mapHex = $mapData->getHex($hexagon->getName());
+        echo " 3 ";
         foreach($mapHex->forces as $forceId => $force)
         {
             if($friendlyId == $forceId){
@@ -1069,8 +1100,8 @@ class Force
 
     function setStatus($id, $status)
     {
-        include("funky.php");
-        $success = false;
+        return $this->units[$id]->setStatus($status);
+      /*  $success = false;
         switch ($status)
         {
             case STATUS_EXCHANGED:
@@ -1176,7 +1207,7 @@ class Force
             default:
                 break;
         }
-        return $success;
+        return $success;*/
     }
 
     function setupAttacker($id, $range)
@@ -1267,6 +1298,7 @@ class Force
 
     function unitCanRetreat($id)
     {
+        echo "Status ".$this->units[$id]->status ." st ";
         $canRetreat = false;
         if ($this->units[$id]->status == STATUS_CAN_RETREAT) {
             $canRetreat = true;

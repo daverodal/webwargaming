@@ -12,6 +12,7 @@ require_once "moveRules.php";
 require_once "prompt.php";
 require_once "terrain.php";
 require_once "display.php";
+require_once "victory.php";
 // battlefforallencreek.js
 
 // counter image values
@@ -32,6 +33,7 @@ class MartianCivilWar extends Battle {
     public $gameRules;
     public $prompt;
     public $display;
+    public $victory;
 
     public $players;
     static function getHeader($playerData){
@@ -86,12 +88,13 @@ class MartianCivilWar extends Battle {
         $data->players = $this->players;
         $data->playerData = $this->playerData;
         $data->display = $this->display;
+        $data->victory = $this->victory->save();
         return $data;
     }
 
     function poke($event, $id, $x, $y, $user,$isHotSeat = false, $name){
+
         $playerId = $this->gameRules->attackingForceId;
-        echo $user;
         var_dump($this->players);
             if($this->players[$this->gameRules->attackingForceId] != $user){
 //            if($isHotSeat){
@@ -115,7 +118,6 @@ class MartianCivilWar extends Battle {
 
             case SELECT_BUTTON_EVENT:
                 $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0,0 );
-echo "POKEY";
 
         }
         return true;
@@ -124,6 +126,7 @@ echo "POKEY";
     {
         $this->mapData = MapData::getInstance();
         if ($data) {
+            $this->victory = new Victory("TMCW",$data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]),new MapViewer($data->mapViewer[1]),new MapViewer($data->mapViewer[2]));
@@ -137,6 +140,7 @@ echo "POKEY";
             $this->players = $data->players;
             $this->playerData = $data->playerData;
         } else {
+            $this->victory = new Victory("TMCW");
             $this->display = new Display();
             $this->mapData->setData(30,20,"js/Martian.png");
             $this->mapData->setSpecialHexes(array(407=>RED_FORCE,1909=>RED_FORCE,1515=>RED_FORCE,516=>RED_FORCE,2414=>RED_FORCE,2415=>RED_FORCE,2515=>RED_FORCE,1508=>RED_FORCE));
@@ -209,6 +213,10 @@ echo "POKEY";
                 $this->force->addUnit("infantry-1", RED_FORCE, 407, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 516, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 1515, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1612, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1316, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 2207, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 2210, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 208, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 508, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 512, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
@@ -220,16 +228,17 @@ echo "POKEY";
 //                $this->force->addUnit("infantry-1", RED_FORCE, 500+$i, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
 //
 //            }
+
             for($i = 7;$i<=10;$i+=2){
                 $this->force->addUnit("infantry-1", RED_FORCE, 1000+$i, "multiInf.png",2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
 
             }
             $this->force->addUnit("infantry-1", RED_FORCE, 2415, "multiMech.png",5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 2416, "multiMech.png",5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, 2417, "multiMech.png",4, 2, 6, true, STATUS_READY, "L", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, 2515, "multiMech.png",6, 3, 6, true, STATUS_READY, "L", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, 2516, "multiMech.png",5, 3, 6, true, STATUS_READY, "L", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, 2517, "multiMech.png",5, 3, 6, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 2417, "multiMech.png",5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 2515, "multiMech.png",9, 4, 6, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 2516, "multiArmor.png",7, 3, 6, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 2517, "multiArmor.png",7, 3, 6, true, STATUS_READY, "L", 1, 1, "loyalist");
 
             $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist");
@@ -305,7 +314,7 @@ echo "POKEY";
 
             $deployZones = array(103,104,106,107,201,202,203,204,205,206,209,210,305,306,307,309,310,406,407,408,409,410);
             for($i = 1;$i <= 4;$i++){
-                for($j= 1; $j<=8;$j++){
+                for($j= 1; $j<=10;$j++){
                     $this->terrain->addReinforceZone($j*100 + $i,"R");
 
                 }

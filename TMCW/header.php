@@ -188,7 +188,7 @@ h5{
         background-color: rgb(223,88,66);
     }
 
-#phaseDiv,#statusDiv,#chatsDiv,#crtWrapper{
+#phaseDiv,#statusDiv,#chatsDiv,#crtWrapper,#victoryDiv{
     display:inline;
     vertical-align: top;
     /*float:left;*/
@@ -557,7 +557,11 @@ x.register("gameRules", function(gameRules) {
     }
     $("#clock").html(html);
     $("#status").html(status);
-//    $("#status").html(status);
+//    $("#victory").html("Rebel "+gameRules.vp[1]+ " Loyalist "+gameRules.vp[2]);
+});
+x.register("vp", function(vp){
+        $("#victory").html("Rebel "+vp[1]+ " Loyalist "+vp[2]);
+
 });
 x.register("games", function(games) {
     var str;

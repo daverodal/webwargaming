@@ -58,7 +58,10 @@ class MapData{
     public $specialHexes;
     private static $instance;
     public $mapUrl;
+    public $vp;
+
     private function __construct(){
+        $this->vp = array(0,0,0);
     }
 
     public static function getInstance(){

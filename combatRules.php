@@ -225,6 +225,9 @@ function resolveCombat( $id ) {
     $this->combatsToResolve->${id}->combatResult = $results_name[$combatResults];
     $this->force->applyCRTresults($id, $this->combatsToResolve->{$id}->attackers, $combatResults, $Die);
     $this->lastResolvedCombat = $this->combatsToResolve->$id;
+    if(!$this->resolvedCombats){
+        $this->resolvedCombats = new stdClass();
+    }
         $this->resolvedCombats->$id = $this->combatsToResolve->$id;
         unset($this->combatsToResolve->$id);
     foreach($this->lastResolvedCombat->attackers as $attacker =>$v){

@@ -12,6 +12,8 @@ require_once "moveRules.php";
 require_once "prompt.php";
 require_once "display.php";
 require_once "terrain.php";
+require_once "victory.php";
+
 // battleforallencreek.js
 
 // counter image values
@@ -33,6 +35,7 @@ class NapOnMars extends Battle {
     public $gameRules;
     public $prompt;
     public $display;
+    public $victory;
 
     public $players;
     static function getHeader($playerData){
@@ -121,6 +124,7 @@ echo "Countered";
     function __construct($data = null, $arg = false)
     {
         $this->mapData = MapData::getInstance();
+        $this->victory = new Victory();
         if ($data) {
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
