@@ -107,7 +107,7 @@ h5{
     min-height:110px;
 }
 #nextPhaseButton{
-    font-size:30px;
+    font-size:15px;
 }
     #header a, #header a:visited{
         color:white;
@@ -119,7 +119,7 @@ h5{
         margin: 10px 0 5px;
     }
     #content{
-        margin-top:130px;
+        margin-top:140px;
     }
     .clear{
         clear:both;
@@ -234,7 +234,10 @@ h5{
     width: 349px;
 
 }
-
+#clickCnt{
+    float:left;
+    padding:3px;
+}
 #crtWrapper h4 .goLeft,#crtWrapper h4 .goRight{
 font-size:22px;
     padding:0 15px;
@@ -493,7 +496,25 @@ body{
 </style>
 <script>
 $(document).ready(function(){
-})
+    $("#timeMachine").click(function(){
+        x.timeTravel = true;
+        if(x.current){
+            x.current.abort();
+        }
+        var click = $("#clickCnt").html();
+        click--;
+        x.fetch(click);
+    });
+    $("#timeSurge").click(function(){
+        var click = $("#clickCnt").html();
+        click++;
+        x.fetch(click);
+    });
+    $("#timeLive").click(function(){
+        x.timeTravel = false;
+        x.fetch(0);
+    });
+});
 x = new Sync("<?=site_url("wargame/fetch/");?>");
 x.register("chats", function(chats) {
     var str;
@@ -503,6 +524,9 @@ x.register("chats", function(chats) {
         str = str.replace(/$/,"</span>");
         $("#chats").prepend(str);
     }
+});
+x.register("click",function(click){
+    $("#clickCnt").html(click);
 });
 x.register("users", function(users) {
     var str;

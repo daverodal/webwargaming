@@ -40,16 +40,20 @@
                     </legend>
                     <div id="victory"></div>
                 </fieldset>
+
             </div>
         </div>
         <div style="clear:left;"></div>
-<button id="nextPhaseButton">Next Phase</button>
 
-
+            <div id="clickCnt"></div>
+        <button id="timeMachine">Time Travel</button>
+        <button id="timeSurge">Time Surge</button>
+        <button id="timeLive">Live</button>
         </div>
     <?php global $results_name;?>
 
     <span id="hideShow">Hide/Show</span>
+    <button id="nextPhaseButton">Next Phase</button>
     <div id="crtWrapper">
         <h4><span class="goLeft">&laquo;</span>View Crt<span class="goRight">&raquo;</span></h4>
         <div id="crt">
@@ -216,9 +220,9 @@ $( "#hideShow" ).click(function() {
     up ^= 1;
     $( "#headerContent" ).toggle({effect:"blind",direction:"up"});
     if(up){
-        $("#content").animate({marginTop:"0px"},"slow");
+        $("#content").animate({marginTop:"30px"},"slow");
     }else{
-        $("#content").animate({marginTop:"128px"},"slow");
+        $("#content").animate({marginTop:"140px"},"slow");
 
     }
 });

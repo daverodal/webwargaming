@@ -29,7 +29,6 @@
    }
 </style>
 <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
-
 <h2 style="text-align:center;font-size:30px;font-family:'Great Vibes'"> Welcome to</h2>
     <h1 style="text-align:center;font-size:90px;font-family:'Great Vibes'">The Martian Civil War</h1>
 <div style="clear:both"></div>
