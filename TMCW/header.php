@@ -1318,7 +1318,7 @@ $("#mychat").attr("value", "");
 }
 function doitUnit(id) {
     var mychat = $("#mychat").attr("value");
-    $.ajax({url: "<?=site_url("wargame/poke/0");?>/",
+    $.ajax({url: "<?=site_url("wargame/poke");?>/",
         type: "POST",
         data:{id:id,event : <?=SELECT_COUNTER_EVENT?>},
     success:function(data, textstatus) {

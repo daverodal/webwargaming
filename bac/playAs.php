@@ -33,6 +33,6 @@
     <h1 style="text-align:center;font-size:90px;font-family:'Great Vibes'">The Martian Civil War</h1>
 <div style="clear:both"></div>
 <fieldset style="text-align:center;width:30%;margin:0 auto;"><Legend>Play As </Legend>
-    <a class="rebel"  href="<?=site_url("wargame/changeWargame");?>/<?=$wargame?>/1">Rebel</a>
-    <a class="loyalist" href="<?=site_url("wargame/changeWargame");?>/<?=$wargame?>/2">Loyalist</a>
+    <a class="rebel"  href="<?=site_url("wargame/enterHotseat");?>/<?=$wargame?>">Enter Hotseat</a>
+    <a class="loyalist" href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>">Enter Multi</a>
 </fieldset>
