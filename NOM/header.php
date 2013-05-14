@@ -1062,7 +1062,7 @@ function attachMouseEventsToMap(objectName) {
 }
 
 function attachMouseEventsToCounter(objectName) {
-
+return;
     $("#"+objectName).bind('mousedown',true,counterMouseDown);
     return;
 
