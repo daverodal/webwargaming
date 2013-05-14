@@ -914,7 +914,7 @@ x.register("moveRules", function(moveRules) {
 
 
                 }
-
+                /* apparently cloning attaches the mouse events */
                     attachMouseEventsToCounter(newId);
 
 
@@ -1318,7 +1318,7 @@ $("#mychat").attr("value", "");
 }
 function doitUnit(id) {
     var mychat = $("#mychat").attr("value");
-    $.ajax({url: "<?=site_url("wargame/poke");?>/",
+    $.ajax({url: "<?=site_url("wargame/poke/0");?>/",
         type: "POST",
         data:{id:id,event : <?=SELECT_COUNTER_EVENT?>},
     success:function(data, textstatus) {
@@ -1402,7 +1402,8 @@ function nextPhaseMouseDown(event) {
 
 
 function attachMouseEventsToCounter(objectName) {
-    $("#"+objectName).on('mousedown',counterMouseDown);
+    /*apparently this isn't needed */
+//    $("#"+objectName).on('mousedown',counterMouseDown);
     return;
 }
 

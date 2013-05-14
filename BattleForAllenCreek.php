@@ -43,7 +43,6 @@ class BattleForAllenCreek extends Battle {
         @include_once "BAC/view.php";
     }
     static function playAs($wargame){
-    var_dump($wargame);
         @include_once "BAC/playAs.php";
     }
 
@@ -64,7 +63,6 @@ class BattleForAllenCreek extends Battle {
     }
 
     function poke($event, $id, $x, $y, $user){
-        die("pokey");
         $playerId = $this->gameRules->attackingForceId;
         echo "user $user";
         echo "pid $playerId";
