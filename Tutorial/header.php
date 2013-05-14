@@ -10,6 +10,82 @@ h5{
     width:50%;
     float:right;
 }
+#TECWrapper{
+    /*float:left;*/
+}
+#TECWrapper .closer{
+    height:0px;
+    padding:0px;
+}
+#TECWrapper .colOne.riverHex{
+    background-image: url('<?=base_url()?>js/river.png');
+    background-position:0px -26px;
+}
+#TECWrapper .colOne.bridgeHex{
+    background-image: url('<?=base_url()?>js/riverRoad.png');
+    background-position:0px -26px;
+}
+#TECWrapper .colOne.blankHex{
+    background-image: url('<?=base_url()?>js/blank.png');
+}
+#TECWrapper .colOne.forestHex{
+    background-image: url('<?=base_url()?>js/forest 2.png');
+}
+#TECWrapper .colOne.mountainHex{
+    background-image: url('<?=base_url()?>js/mountain.png');
+}
+#TECWrapper .colOne.roadHex{
+    background-image: url('<?=base_url()?>js/road.png');
+    background-position:0px -26px;
+}
+#TECWrapper .colOne{
+    background-size:400px;
+    width:220px;
+    height:56px;
+    margin-left:20px;
+}
+#TECWrapper .colOne.header{
+    height:26px;
+}
+#TECWrapper .colOne.header span{
+    margin-left:40px;
+}
+#TECWrapper .colTwo{
+    width:180px;
+}
+#TECWrapper .colThree{
+    width:136px;
+}
+#TECWrapper .colOne span{
+     margin-top:12px;
+     margin-left: 80px;
+     display:inline-block;
+ }
+#TECWrapper .colTwo, #TECWrapper .colThree{
+    margin-top:12px;
+}
+#TECWrapper .colOne,
+#TECWrapper .colTwo,
+#TECWrapper .colThree{
+    float:left;
+}
+#TECWrapper div{
+    /*height:112px;*/
+}
+#TECWrapper li{
+    list-style-type: none;
+    /*height:79px;*/
+    border:0 solid black;
+    border-width:1px 1px 0 1px;
+    padding:5px 20px 5px 0px;
+}
+#TECWrapper img, #TECWrapper div{
+}
+video{
+    border:10px #aaa solid;
+    box-shadow:10px 10px 10px #999;
+    margin-right:10px;
+}
 #leftHeader{
     width:49%;
     float:left;
@@ -74,7 +150,7 @@ h5{
     z-index:4;
 }
 .flashMessage{
-    position:fixed;
+    position:absolute;
     width:80%;
     background:rgba(255,255,255,.9);
     /*background:transparent;*/
@@ -82,7 +158,7 @@ h5{
     border-radius:30px;
     border:10px solid black;
     /*border:none;*/
-    font-size:205px;
+    font-size:45px;
     z-index:1000;
 }
 #display button{
@@ -98,7 +174,6 @@ h5{
     top:0px;
     background:#99cc99;
     background:rgb(132,181,255);
-    padding-bottom:25px;
     z-index:2000;
 }
 #mouseMove{
@@ -110,8 +185,8 @@ h5{
 #nextPhaseButton{
     font-size:15px;
     position: absolute;
-    bottom: 0;
-    left:18%;
+    bottom: 0px;
+    left:20%;
 }
     #header a, #header a:visited{
         color:white;
@@ -201,7 +276,7 @@ h5{
 #statusDiv{
 
 }
-#crtWrapper , #OBCWrapper,#TECWrapper{
+#crtWrapper , #OBCWrapper, #TECWrapper{
     user-select:none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -221,30 +296,27 @@ h5{
 #crtWrapper{
     left:0px;
     bottom:0px;
-}
-#OBCWrapper{
-    width:120px;
-    left:51%;
-    bottom:0px;
+    display:none;
 }
 #TECWrapper{
     width:120px;
-    left:34%;
+    left:0%;
     bottom:0px;
-}
-#OBC{
-    left:-240px;
 }
 #TEC ul{
     margin:0;
     padding:0
 }
+#OBCWrapper{
+    width:120px;
+    left:25%;
+    bottom:0px;
+    display:none;
+}
 #hideShow{
     cursor:pointer;
-    left:69%;
-    position: absolute;
-    bottom: 0px;
-    font-weight: bold;
+    margin-left:55%;
+    display:none;
 }
 #OBC{
     background:white;
@@ -253,14 +325,10 @@ h5{
 #TEC{
     background:white;
     width:579px;
-    left:-230px;
 }
 #crtWrapper h4{
-    width: 135px;
+    width: 349px;
 
-}
-#crt{
-    width:308px;
 }
 #clickCnt{
     float:left;
@@ -276,9 +344,6 @@ font-size:22px;
     position:absolute;
     z-index:30;
     display:none;
-}
-#crt{
-    z-index: 40;
 }
 #OBCWrapper h4:focus,#crtWrapper h4:focus{
 outline: -webkit-focus-ring-color none;
@@ -398,8 +463,12 @@ body{
         border:10px solid #555;
         border-radius:10px;
         overflow:hidden;
-        background:#ccc;
+        background:#620;
         margin-bottom:5px;
+        /*width:332px;*/
+        /*margin:auto;*/
+        float:left;
+        display:none;
     }
     #leftcol {
         /*float:left;
@@ -524,78 +593,6 @@ body{
     .occupied{
         display:none;
     }
-#TECWrapper{
-    /*float:left;*/
-}
-#TECWrapper .closer{
-    height:0px;
-    padding:0px;
-}
-#TECWrapper .colOne.riverHex{
-    background-image: url('<?=base_url()?>js/river.png');
-    background-position:0px -26px;
-}
-#TECWrapper .colOne.bridgeHex{
-    background-image: url('<?=base_url()?>js/riverRoad.png');
-    background-position:0px -26px;
-}
-#TECWrapper .colOne.blankHex{
-    background-image: url('<?=base_url()?>js/blank.png');
-}
-#TECWrapper .colOne.forestHex{
-    background-image: url('<?=base_url()?>js/forest 2.png');
-}
-#TECWrapper .colOne.mountainHex{
-    background-image: url('<?=base_url()?>js/mountain.png');
-}
-#TECWrapper .colOne.roadHex{
-    background-image: url('<?=base_url()?>js/road.png');
-    background-position:0px -26px;
-}
-#TECWrapper .colOne.trailHex{
-    background-image: url('<?=base_url()?>js/trail.png');
-    background-position:0px -26px;
-    background-size:516px;
-    /* TODO why this different from others */
-}
-#TECWrapper .colOne{
-    background-size:400px;
-    width:220px;
-    height:56px;
-    margin-left:20px;
-}
-#TECWrapper .colTwo{
-    width:170px;
-    padding-right:10px;
-}
-#TECWrapper .colThree{
-    width:136px;
-}
-#TECWrapper .colOne span{
-     margin-top:12px;
-     margin-left: 80px;
-     display:inline-block;
- }
-#TECWrapper .colTwo, #TECWrapper .colThree{
-    margin-top:12px;
-}
-#TECWrapper .colOne,
-#TECWrapper .colTwo,
-#TECWrapper .colThree{
-    float:left;
-}
-#TECWrapper div{
-    /*height:112px;*/
-}
-#TECWrapper li{
-    list-style-type: none;
-    /*height:79px;*/
-    border:0 solid black;
-    border-width:1px 1px 0 1px;
-    padding:5px 20px 5px 0px;
-}
-#TECWrapper img, #TECWrapper div{
-}
 </style>
 <script>
 $(document).ready(function(){
@@ -711,8 +708,8 @@ x.register("flashMessages",function(messages,data){
 //    alert("WHY");
 });
 function flashMessage(playerStatus){
-    var x = 100;
-    var y = 200;
+    var x = 30;
+    var y = 100;
 //    alert("HERE");
 
     var mess = flashMessages.shift();
@@ -733,6 +730,23 @@ function flashMessage(playerStatus){
                 var mess = flashMessages.shift();
                 continue;
             }
+            if(mess.match(/^@video/)){
+//                game = mess.match(/^@show ([^,]*)/);
+//                id = game[1];
+//                $("#"+id).show({effect:"blind",direction:"up",complete:flashMessage});
+//                playLadies();
+                return;
+            }
+            if(mess.match(/^@gameover/)){
+                $("#gameViewer").append('<div id="FlashMessage" style="top:'+y+'px;left:'+x+'px;" class="flashMessage">'+"Victory"+'</div>');
+                $("#FlashMessage").animate({opacity:0},2400,flashMessage);
+
+//                game = mess.match(/^@show ([^,]*)/);
+//                id = game[1];
+//                $("#"+id).show({effect:"blind",direction:"up",complete:flashMessage});
+                playLadies();
+                return;
+            }
             if(mess.match(/^@show/)){
                 game = mess.match(/^@show ([^,]*)/);
                 id = game[1];
@@ -745,12 +759,13 @@ function flashMessage(playerStatus){
                 $("#"+id).hide({effect:"blind",direction:"up",complete:flashMessage});
                 return;
             }        }
-        $("body").append('<div id="FlashMessage" style="top:'+y+'px;left:'+x+'px;" class="flashMessage">'+mess+'</div>');
+        $("#gameViewer").append('<div id="FlashMessage" style="top:'+y+'px;left:'+x+'px;" class="flashMessage">'+mess+'</div>');
         $("#FlashMessage").animate({opacity:0},2400,flashMessage);
         return;
     }
 }
 x.register("specialHexes", function(specialHexes, data) {
+
 //    $(".specialHexes").remove();
     var lab = ['unowned','rebel','loyalist'];
     for(var i in specialHexes){
@@ -759,10 +774,12 @@ x.register("specialHexes", function(specialHexes, data) {
         if(newHtml != curHtml){
             var x = i.match(/x(\d*)y/)[1];
             var y = i.match(/y(\d*)\D*/)[1];
-            $("#special"+i).remove();
+            var hexI = i.replace(/\./,"");
+            $("#special"+hexI).remove();
             if(data.specialHexesChanges[i]){
-            $("#gameImages").append('<div id="special'+i+'" style="border-radius:30px;border:10px solid black;top:'+y+'px;left:'+x+'px;font-size:205px;z-index:1000;" class="'+lab[specialHexes[i]]+' specialHexes">'+lab[specialHexes[i]]+'</div>');
-                $('#special'+i).animate({fontSize:"16px",zIndex:0,borderWidth:"0px",borderRadius:"0px"},1600,function(){
+            $("#gameImages").append('<div id="special'+hexI+'" style="border-radius:30px;border:10px solid black;top:'+y+'px;left:'+x+'px;font-size:205px;z-index:1000;" class="'+lab[specialHexes[i]]+' specialHexes">'+lab[specialHexes[i]]+'</div>');
+                $('#special'+hexI).animate({fontSize:"16px",zIndex:0,borderWidth:"0px",borderRadius:"0px"},1600,function(){
+                    playLadies();
 //                    var id = $(this).attr('id');
 //                    var myClass = $(this).attr('class');
 //                    if(myClass.match(/loyalist/)){
@@ -781,7 +798,7 @@ x.register("specialHexes", function(specialHexes, data) {
                 });
 
             }else{
-                $("#gameImages").append('<div id="special'+i+'" style="border-radius:0px;border:0px;top:'+y+'px;left:'+x+'px;font-size:16px;z-index:0;" class="'+lab[specialHexes[i]]+' specialHexes">'+lab[specialHexes[i]]+'</div>');
+                $("#gameImages").append('<div id="special'+hexI+'" style="border-radius:0px;border:0px;top:'+y+'px;left:'+x+'px;font-size:16px;z-index:0;" class="'+lab[specialHexes[i]]+' specialHexes">'+lab[specialHexes[i]]+'</div>');
 
             }
 
@@ -1090,18 +1107,12 @@ x.register("combatRules", function(combatRules,data) {
 
                     if(x < mapWidth/2){
                         var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
-                        var crtWid = $("#crt").css('width').replace(/px/,"");
-                        crtWid = 0 - (crtWid - wrapWid + 40);
-
                         var moveLeft = $("body").css('width').replace(/px/,"");
 //                        alert(moveLeft);
-                        $("#crt").animate({left:crtWid},300);
                         $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
 //                        alert('this');
                     }else{
                         $("#crtWrapper").animate({left:0},300);
-                        $("#crt").animate({left:0},300);
-
 //                        alert("that");
 
                     }
@@ -1257,11 +1268,8 @@ x.register("combatRules", function(combatRules,data) {
                         if(data.force.units[cD].status != 22){
                             if(x < mapWidth/2){
                                 var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
-                                var crtWid = $("#crt").css('width').replace(/px/,"");
                                 var moveLeft = $("body").css('width').replace(/px/,"");
     //                        alert(moveLeft);
-                                crtWid = crtWid - wrapWid + 40;
-                                $("#crt").animate({left:0 - crtWid},300);
                                 $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
     //                        alert('this');
                             }else{
@@ -1406,19 +1414,32 @@ function attachMouseEventsToCounter(objectName) {
     return;
 }
 
+function playme(){
+    var vid = $('video').get(0);
+    vid.currentTime = 200;
 
+}
+function playLadies(){
+    var vid = $('video').get(0);
+    vid.src = "<?=base_url().'js/OldLadies.m4v'?>";
+    vid.play();
+
+}
 
 function initialize() {
 
     // setup events --------------------------------------------
-
     $("#map").bind("mousedown",mapMouseDown);
 //    $("#map").bind("mousemove",mapMouseMove);
     $(".unit").on('mousedown',counterMouseDown);
     $("#gameImages").on("mousedown",".specialHexes",mapMouseDown);
+//    $("#gameViewer").hide();
 
     $("#nextPhaseButton").on('mousedown',nextPhaseMouseDown);
     $( "#gameImages" ).draggable({distance:40,axis:"x"});
+    $("video").bind("ended",function(){
+        $("#gameViewer").show(1000);
+    });
     // end setup events ----------------------------------------
 }
 $(function() {

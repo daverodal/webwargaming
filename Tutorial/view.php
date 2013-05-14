@@ -2,18 +2,11 @@
 <header id="header">
     <div id="headerContent">
         <div id="leftHeader">
-            <?php echo $player;?>
-            <span style="font-size:1.0em">Welcome {user} {player} to <span style="font-family:'Nosifer';">The Martian Civil War</span><span
-                    style="font-style: italic;">&ldquo;{wargame}&rdquo;</span></span>
+            <span style="font-size:1.0em">Welcome {user} to <span style="font-family:'Nosifer';">Tutorial One</span> Movement</span>
             <div style="margin-top:0px;">
-                <a href="<?=site_url("wargame/changeWargame/{wargame}/1");?>">As Rebel</a>
-                <a href="<?=site_url("wargame/changeWargame/{wargame}/2");?>">As Loyalist</a>
                 <a href="<?=site_url("wargame/leaveGame");?>">Go To Lobby</a>
-                <a href="<?=site_url("wargame/logout");?>">logout</a>
-                <a href="<?=site_url("wargame/unitInit/MartianCivilWar");?>">Restart Game</a>
-                <a href="#" onclick="seeUnits();return false;">See Units</a>
-                <a href="#" onclick="seeBoth();return false;">See Both</a>
-                <a href="#" onclick="seeMap();return false;">See Map</a>
+                <a href="<?=site_url("wargame/unitInit/Tutorial");?>">Restart Game</a>
+                <a onclick="playme();">play</a>
             </div>
         </div>
         <div id="rightHeader">
@@ -130,71 +123,76 @@
 
 
     </div>
-
+    <?php if($arg){?>
     <div id="TECWrapper">
         <h4>Terrain Effects</h4>
         <DIV id="TEC" style="display:none;">
-        <ul>
-            <li>
-                <div class="colOne blankHex">
-                    <span>Clear</span>
-                </div>
-                <div class="colTwo">1 Movement Point</div>
-                <div class="colThree">No Effect</div>
-                <div class="clear"></div>
-            </li>
-            <li>
-                <div class="colOne forestHex">
-                    <span>Forest</span>
-                </div>
-                <div class="colTwo">2 Movement Point</div>
-                <div class="colThree">Shift one</div>
-                <div class="clear"></div>
-            </li>
-            <li>
-                <div class="colOne mountainHex">
-                    <span>Mountain</span>
-                </div>
-                <div class="colTwo">3 Movement Point</div>
-                <div class="colThree">Shift two</div>
-                <div class="clear"></div>
-            </li>
-            <li>
-                <div class="colOne riverHex">
-                    <span>River Hexside</span>
-                </div>
-                <div class="colTwo">+1 Movement Point</div>
-                <div class="colThree">Shift one if all attacks across river</div>
-                <div class="clear"></div>
-            </li>
-            <li>
-                <div class="colOne roadHex">
-                    <span>Road Hexside</span>
-                </div>
-                <div class="colTwo">1/2 Movement Point if across road hex side</div>
-                <div class="colThree">No Effect</div>
-                <div class="clear"></div>
-            </li>
-            <li>
-                <div class="colOne bridgeHex">
-                    <span>Bridge Hexside</span>
-                </div>
-                <div class="colTwo">Ignore terrain</div>
-                <div class="colThree">Shift one if all attacks across river/bridge</div>
-                <div class="clear"></div>
-            </li>
-            <li>
-                <div class="colOne trailHex">
-                    <span>Trail Hexside</span>
-                </div>
-                <div class="colTwo">1 Movement Point if across tail hex side</div>
-                <div class="colThree">No Effect</div>
-                <div class="clear"></div>
-            </li>
-            <!--    Empty one for the bottom border -->
-            <li class="closer"></li>
-        </ul>
+            <ul>
+                <li>
+                    <div class="colOne header">
+                        <span>Terrain</span>
+                    </div>
+                    <div class="colTwo">Movement Effect</div>
+                    <div class="colThree">Combat Effect</div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="colOne blankHex">
+                        <span>Clear</span>
+                    </div>
+                    <div class="colTwo">1 Movement Point</div>
+                    <div class="colThree">No Effect</div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="colOne forestHex">
+                        <span>Forest</span>
+                    </div>
+                    <div class="colTwo">2 Movement Point</div>
+                    <div class="colThree">Shift one</div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="colOne mountainHex">
+                        <span>Mountain</span>
+                    </div>
+                    <div class="colTwo">2 Movement Point</div>
+                    <div class="colThree">Shift two</div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="colOne riverHex">
+                        <span>River Hexside</span>
+                    </div>
+                    <div class="colTwo">+1 Movement Point</div>
+                    <div class="colThree">Shift one if all attacks across river</div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="colOne roadHex">
+                        <span>Road Hexside</span>
+                    </div>
+                    <div class="colTwo">1/2 Movement Point if across road hex side</div>
+                    <div class="colThree">No Effect</div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="colOne bridgeHex">
+                        <span>Bridge Hexside</span>
+                    </div>
+                    <div class="colTwo">Ignore terrain</div>
+                    <div class="colThree">Shift one if all attacks across river/bridge</div>
+                    <div class="clear"></div>
+                </li>
+                <!--    Empty one for the bottom border -->
+                <li class="closer"></li>
+            </ul>
         </div>
+    </div>
+    <?php } ?>
+
+
+
     </div>
 </header>
 <div id="content">
@@ -225,8 +223,7 @@
 
         <div id="gameViewer" style="position:relative;">
             <div id="gameImages" class="ui-widget-content">
-                <img id="map" alt="map" src="<?php echo base_url();?>js/MartianIV.png"
-                     style="position: relative;visibility: visible;z-index: 0;">
+                <img id="map" style="position: relative;visibility: visible;z-index: 0; alt="map" src="<?php echo base_url().$mapUrl;?>">
                 <?php $id = 0;?>
                 {units}
                 <div class="unit {class}" id="{id}" alt="0"><section style="height:100%;width:100%;position:absolute;background:transparent;"></section>
@@ -241,13 +238,10 @@
 
             <!-- end gameImages -->
         </div>
+        <video  style="float:right;"  autoplay="true" width=500" src="<?=base_url().'js/Move.m4v'?>"></video>
+
         <div style="clear:both;height:20px;"></div>
 
-        <div style="position:relative;" id="deadpile">
-            <div style="right:10px;font-size:50px;font-family:sans-serif;bottom:10px;position:absolute;color:#666;">
-                Retired Units
-            </div>
-        </div>
     </div>
 </div>
 <script type="text/javascript">
@@ -263,26 +257,20 @@
 var Player = '<?= $player;?>';
 $( "#OBCWrapper h4" ).click(function() {
     $( "#OBC" ).toggle({effect:"blind",direction:"up"});
-    $( "#TEC" ).hide({effect:"blind",direction:"up"});
 });
 $( "#TECWrapper h4" ).click(function() {
-    $( "#OBC" ).hide({effect:"blind",direction:"up"});
     $( "#TEC" ).toggle({effect:"blind",direction:"up"});
 });
 $("#crtWrapper h4 .goLeft").click(function(){
 //    $("#crtWrapper").css("float","left");
     $("#crtWrapper").animate({left:0},300);
-    $("#crt").animate({left:"0px"},300);
 
     return false;
 });
 $("#crtWrapper h4 .goRight").click(function(){
     var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
-    var crtWid = $("#crt").css('width').replace(/px/,"");
-    crtWid = crtWid - wrapWid + 40;
     var moveLeft = $("body").css('width').replace(/px/,"");
     $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
-    $("#crt").animate({left:0-crtWid},300);
     return false;
 });
 $( "#crtWrapper h4" ).click(function() {
@@ -302,6 +290,5 @@ $( "#hideShow" ).click(function() {
     }
 });
 </script>
-<a onclick="$('#status div').accordion({active:0});">click me I'm wasting away</a>
 <div id="display"></div>
 </body></html>

@@ -482,11 +482,11 @@ class GameRules {
 //        $this->interactions[] = $interaction;
         // see who occupies city
 //        $this->force->checkVictoryConditions();
-        if ($this->force->isForceEliminated() == true) {
-            $this->flashMessages[] = "Game Over Dude";
-            $this->mode = GAME_OVER_MODE;
-            $this->phase = GAME_OVER_PHASE;
-        }
+//        if ($this->force->isForceEliminated() == true) {
+//            $this->flashMessages[] = "Game Over Dude";
+//            $this->mode = GAME_OVER_MODE;
+//            $this->phase = GAME_OVER_PHASE;
+//        }
 
     }
 
@@ -546,7 +546,7 @@ class GameRules {
                         $this->replacementsAvail = 10;
                     }
                     if ($this->turn > $this->maxTurn) {
-                        $this->flashMessages[] = "Game Over Man";
+                        $this->flashMessages[] = "@gameover";
                         $this->mode = GAME_OVER_MODE;
                         $this->phase = GAME_OVER_PHASE;
                     }

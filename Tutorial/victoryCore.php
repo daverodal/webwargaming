@@ -23,9 +23,9 @@ class victoryCore{
         $unit = $args[0];
         if($unit->forceId == 1){
             $victorId = 2;
-            $this->victoryPoints[$victorId] += $unit->strength;
         }else{
             $victorId = 1;
         }
+        $this->victoryPoints[$victorId] += $unit->strength;
     }
 }

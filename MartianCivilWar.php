@@ -305,7 +305,7 @@ class MartianCivilWar extends Battle {
             $this->terrain->addTerrainFeature("fortified", "fortified", "h", 1, 0, 1, true);
             $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 0, false);
             $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
-            $this->terrain->addTerrainFeature("rough", "rough", "g", 3, 0, 1, true);
+            $this->terrain->addTerrainFeature("rough", "rough", "g", 3, 0, 2, true);
             $this->terrain->addTerrainFeature("river", "Martian River", "v", 0, 1, 1, true);
             $this->terrain->addTerrainFeature("newrichmond", "New Richmond", "m", 0, 0, 1, false);
             $this->terrain->addTerrainFeature("eastedge", "East Edge", "m", 0, 0, 0, false);
@@ -350,18 +350,6 @@ class MartianCivilWar extends Battle {
                 1008,1009,1109,1110,1208,1209,1308,1309,1310,1407,1408,1409,1508,1509,1608,
                 1804,1903,1904,2002,2003,2102,2201,2202,2301,2302);
 
-            $hex = "0702";
-            $this->terrain->addTerrain($hex,LOWER_LEFT_HEXSIDE,"river");
-            $this->terrain->addTerrain($hex,BOTTOM_HEXSIDE,"river");
-            $this->terrain->addTerrain($hex,UPPER_LEFT_HEXSIDE,"river");
-            $hex = "0701";
-            $this->terrain->addTerrain($hex,LOWER_LEFT_HEXSIDE,"river");
-            $this->terrain->addTerrain($hex,BOTTOM_HEXSIDE,"river");
-            $this->terrain->addTerrain($hex,UPPER_LEFT_HEXSIDE,"river");
-            $hex = 607;
-            $this->terrain->addTerrain($hex,LOWER_LEFT_HEXSIDE,"river");
-            $hex = 1006;
-            $this->terrain->addTerrain($hex,BOTTOM_HEXSIDE,"river");
 
             foreach($hexes as $hex){
                 $this->terrain->addTerrain($hex, HEXAGON_CENTER, "forest");

@@ -3,7 +3,7 @@
     body{
         background:url("<?=base_url("js/Mars.jpg")?>") #333 no-repeat;
         background-position:center;
-        background-size:1900px;
+        background-size:1600px;
     }
     h1{
         color:#f66;

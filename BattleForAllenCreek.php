@@ -43,7 +43,7 @@ class BattleForAllenCreek extends Battle {
         @include_once "BAC/view.php";
     }
     static function playAs($wargame){
-
+    var_dump($wargame);
         @include_once "BAC/playAs.php";
     }
 

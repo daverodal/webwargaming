@@ -179,5 +179,8 @@ $( "#OBCWrapper h4" ).click(function() {
 $( "#crtWrapper h4" ).click(function() {
     $( "#crt" ).toggle({effect:"blind",direction:"left"});
 });
+$( "#TECWrapper h4" ).click(function() {
+    $( "#TEC" ).toggle({effect:"blind",direction:"up"});
+});
 </script>
 </body></html>
