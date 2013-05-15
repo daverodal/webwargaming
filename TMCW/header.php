@@ -1319,18 +1319,19 @@ $("#mychat").attr("value", "");
 function doitUnit(id) {
     var mychat = $("#mychat").attr("value");
     playAudio();
+    $("#comlink").html('waiting');
     $.ajax({url: "<?=site_url("wargame/poke");?>/",
         type: "POST",
         data:{id:id,event : <?=SELECT_COUNTER_EVENT?>},
     success:function(data, textstatus) {
         playAudioLow();
-
     }
 });
 $("#mychat").attr("value", "");
 }
 function doitMap(x,y) {
     playAudio();
+    $("#comlink").html('waiting');
 
     $.ajax({url: "<?=site_url("wargame/poke/");?>/",
         type: "POST",
@@ -1340,7 +1341,6 @@ function doitMap(x,y) {
     },
     success:function(data, textstatus) {
         playAudioLow();
-
     }
 });
 
