@@ -1318,16 +1318,20 @@ $("#mychat").attr("value", "");
 }
 function doitUnit(id) {
     var mychat = $("#mychat").attr("value");
+    playAudio();
     $.ajax({url: "<?=site_url("wargame/poke");?>/",
         type: "POST",
         data:{id:id,event : <?=SELECT_COUNTER_EVENT?>},
     success:function(data, textstatus) {
+        playAudioLow();
 
     }
 });
 $("#mychat").attr("value", "");
 }
 function doitMap(x,y) {
+    playAudio();
+
     $.ajax({url: "<?=site_url("wargame/poke/");?>/",
         type: "POST",
         data:{x:x,
@@ -1335,6 +1339,7 @@ function doitMap(x,y) {
             event : <?=SELECT_MAP_EVENT?>
     },
     success:function(data, textstatus) {
+        playAudioLow();
 
     }
 });
@@ -1407,6 +1412,18 @@ function attachMouseEventsToCounter(objectName) {
     return;
 }
 
+function playAudio(){
+    var aud = $('.pop').get(0);
+    <!--    aud.src = "--><?//=base_url().'js/pop.m4a'?><!--";-->
+    aud.play();
+
+}
+function playAudioLow(){
+    var aud = $('.poop').get(0);
+    <!--    aud.src = "--><?//=base_url().'js/pop.m4a'?><!--";-->
+    aud.play();
+
+}
 
 
 function initialize() {

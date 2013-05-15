@@ -241,6 +241,9 @@
 
             <!-- end gameImages -->
         </div>
+        <audio controls class="pop"  src="<?=base_url().'js/pop.m4a'?>"></audio>
+        <audio class="poop"  src="<?=base_url().'js/lowpop.m4a'?>"></audio>
+
         <div style="clear:both;height:20px;"></div>
 
         <div style="position:relative;" id="deadpile">
