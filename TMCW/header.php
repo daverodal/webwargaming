@@ -1319,12 +1319,17 @@ $("#mychat").attr("value", "");
 function doitUnit(id) {
     var mychat = $("#mychat").attr("value");
     playAudio();
+    $('body').css({cursor:"wait"});
+    $(this).css({cursor:"wait"});
     $("#comlink").html('waiting');
     $.ajax({url: "<?=site_url("wargame/poke");?>/",
         type: "POST",
         data:{id:id,event : <?=SELECT_COUNTER_EVENT?>},
     success:function(data, textstatus) {
         playAudioLow();
+        $('body').css({cursor:"auto"});
+        $(this).css({cursor:"auto"});
+
     }
 });
 $("#mychat").attr("value", "");
