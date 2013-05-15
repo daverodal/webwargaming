@@ -34,6 +34,7 @@ class MartianCivilWar extends Battle {
     public $prompt;
     public $display;
     public $victory;
+    public $genTerrain = false;
 
     public $players;
     static function getHeader($playerData){
@@ -82,13 +83,17 @@ class MartianCivilWar extends Battle {
         $data->mapViewer = $this->mapViewer;
         $data->moveRules = $this->moveRules->save();
         $data->force = $this->force;
-        $data->terrain = $this->terrain;
         $data->gameRules = $this->gameRules->save();
         $data->combatRules = $this->combatRules->save();
         $data->players = $this->players;
         $data->playerData = $this->playerData;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
+        $data->terrainName = "terrain-MartianCivilWar";
+        $data->genTerrain = $this->genTerrain;
+        if($this->genTerrain){
+            $data->terrain = $this->terrain;
+        }
         return $data;
     }
 
@@ -126,6 +131,7 @@ class MartianCivilWar extends Battle {
     {
         $this->mapData = MapData::getInstance();
         if ($data) {
+            $this->genTerrain = false;
             $this->victory = new Victory("TMCW",$data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
@@ -140,6 +146,7 @@ class MartianCivilWar extends Battle {
             $this->players = $data->players;
             $this->playerData = $data->playerData;
         } else {
+            $this->genTerrain = true;
             $this->victory = new Victory("TMCW");
             $this->display = new Display();
             $this->mapData->setData(30,20,"js/Martian.png");
