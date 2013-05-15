@@ -1336,6 +1336,8 @@ $("#mychat").attr("value", "");
 }
 function doitMap(x,y) {
     playAudio();
+    $('body').css({cursor:"wait"});
+    $(this).css({cursor:"wait"});
     $("#comlink").html('waiting');
 
     $.ajax({url: "<?=site_url("wargame/poke/");?>/",
@@ -1346,6 +1348,8 @@ function doitMap(x,y) {
     },
     success:function(data, textstatus) {
         playAudioLow();
+        $('body').css({cursor:"auto"});
+        $(this).css({cursor:"auto"});
     }
 });
 
