@@ -239,7 +239,8 @@
             <!-- end gameImages -->
         </div>
         <video  style="float:right;"  autoplay="true" width=500" src="<?=base_url().'js/Move.m4v'?>"></video>
-
+        <audio class="pop"  src="<?=base_url().'js/pop.m4a'?>"></audio>
+        <audio class="poop"  src="<?=base_url().'js/lowpop.m4a'?>"></audio>
         <div style="clear:both;height:20px;"></div>
 
     </div>

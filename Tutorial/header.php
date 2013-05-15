@@ -1326,10 +1326,13 @@ $("#mychat").attr("value", "");
 }
 function doitUnit(id) {
     var mychat = $("#mychat").attr("value");
+    playAudio();
     $.ajax({url: "<?=site_url("wargame/poke");?>/",
         type: "POST",
         data:{id:id,event : <?=SELECT_COUNTER_EVENT?>},
     success:function(data, textstatus) {
+        playAudioLow();
+
 
     }
 });
@@ -1419,7 +1422,18 @@ function playme(){
     vid.currentTime = 200;
 
 }
-function playLadies(){
+function playAudio(){
+    var aud = $('.pop').get(0);
+<!--    aud.src = "--><?//=base_url().'js/pop.m4a'?><!--";-->
+    aud.play();
+
+}
+function playAudioLow(){
+    var aud = $('.poop').get(0);
+<!--    aud.src = "--><?//=base_url().'js/pop.m4a'?><!--";-->
+    aud.play();
+
+}function playLadies(){
     var vid = $('video').get(0);
     vid.src = "<?=base_url().'js/OldLadies.m4v'?>";
     vid.play();
