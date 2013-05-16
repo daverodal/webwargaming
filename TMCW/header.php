@@ -21,6 +21,14 @@ h5{
     padding:0 5px 0 5px;
     font-style: italic;
 }
+.pushed{
+
+}
+/*.embossed{*/
+/*-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -2px 0 rgba(0,0,0,.25), inset 0 -3px 0 rgba(255,255,255,.2), 0 1px 0 rgba(0,0,0,.1);*/
+/*-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -2px 0 rgba(0,0,0,.25), inset 0 -3px 0 rgba(255,255,255,.2), 0 1px 0 rgba(0,0,0,.1);*/
+/*box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -2px 0 rgba(0,0,0,.25), inset 0 -3px 0 rgba(255,255,255,.2), 0 1px 0 rgba(0,0,0,.1);*/
+/*}*/
 .specialHexes,.specialHexesVP{
     position:absolute;
     text-transform: capitalize;
@@ -1321,6 +1329,8 @@ function doitUnit(id) {
     playAudio();
     $('body').css({cursor:"wait"});
     $(this).css({cursor:"wait"});
+    $("#"+id+" section").css({backgroundColor:"rgba(0,0,0,.16)"});
+
     $("#comlink").html('waiting');
     $.ajax({url: "<?=site_url("wargame/poke");?>/",
         type: "POST",
@@ -1329,6 +1339,8 @@ function doitUnit(id) {
         playAudioLow();
         $('body').css({cursor:"auto"});
         $(this).css({cursor:"auto"});
+        $("#"+id+" section").css({backgroundColor:"rgba(0,0,0,.0)"});
+
 
     }
 });
