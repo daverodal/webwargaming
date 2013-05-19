@@ -32,19 +32,19 @@ class BattleForAllenCreek {
     public $playerData;
 
 
-    static function getHeader($playerData){
+    static function getHeader($name, $playerData){
         $playerData = array_shift($playerData);
         foreach($playerData as $k => $v){
             $$k = $v;
         }
         @include_once "header.php";
     }
-    static function playAs($wargame){
+    static function playAs($name, $wargame){
         redirect("wargame/play");
     }
 
 
-    static function getView(){
+    static function getView($name, $mapUrl, $player = 0, $art = false){
         @include_once "view.php";
     }
 
