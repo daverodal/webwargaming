@@ -140,11 +140,31 @@ class unit implements JsonSerializable
                         $this->isReduced = true;
                         $amtLost = $this->maxStrength - $this->minStrength;
                     }
-                    echo "Amount Lost $amtLost";
                     $this->exchangeAmount -= $amtLost;
                     if($this->exchangeAmount <= 0){
                         $success = true;
                     }
+                }
+                break;
+
+            case STATUS_CAN_REPLACE:
+                if ( $this->status == STATUS_ELIMINATED) {
+                    $this->status = $status;
+                    $success = true;
+                }
+                break;
+
+            case STATUS_REPLACED:
+                if ( $this->status == STATUS_CAN_REPLACE) {
+                    $this->status = $status;
+                    $success = true;
+                }
+                break;
+
+            case STATUS_ELIMINATED:
+                if ( $this->status == STATUS_CAN_REPLACE) {
+                    $this->status = $status;
+                    $success = true;
                 }
                 break;
 
@@ -205,13 +225,11 @@ class unit implements JsonSerializable
                 break;
 
             case STATUS_RETREATING:
-                echo "SetStatus STATUS_RETREATING";
                 if ($this->status == STATUS_CAN_RETREAT) {
                     $this->status = $status;
                     $this->moveCount = 0;
                     $this->moveAmountUsed = 0;
                     $success = true;
-                    echo "did it ";
                 }
                 break;
 
@@ -327,7 +345,7 @@ class Force
     public $attackingForceId;
     public $defendingForceId;
     public $deleteCount;
-
+    public $reinforceTurns;
     public $retreatHexagonList;
     public $eliminationTrayHexagonX;
     public $eliminationTrayHexagonY;
@@ -355,6 +373,7 @@ class Force
                 }
         }else{
 
+            $this->reinforceTurns = new stdClass();
             $this->units = array();
             $this->victor = RED_FORCE;
             $this->ZOCrule = true;
@@ -382,7 +401,12 @@ class Force
 
     function addUnit($unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range = 1, $nationality = "neutral")
     {
-
+        if($unitStatus == STATUS_CAN_REINFORCE){
+            if(!$this->reinforceTurns->$unitReinforceTurn){
+                $this->reinforceTurns->$unitReinforceTurn = new stdClass();
+            }
+            $this->reinforceTurns->$unitReinforceTurn->$unitForceId++;
+        }
         $id = count($this->units);
         $unit = new unit();
         $unit->set($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove,  $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range, $nationality);
@@ -472,7 +496,6 @@ class Force
                         }
                         break;
                     case DR:
-                        echo "HERE DR ";
                         $this->units[$defenderId]->status = STATUS_CAN_RETREAT;
                         $this->units[$defenderId]->retreatCountRequired = 2;
                         break;
@@ -534,7 +557,6 @@ class Force
 
                     case DRL:
                     case DR:
-                        echo "THERE DR ";
                         $this->units[$attacker]->status = STATUS_CAN_ADVANCE;
                         $this->units[$attacker]->retreatCountRequired = 0;
                         break;
@@ -578,10 +600,7 @@ class Force
     {
         $unit = $this->units[$id];
         $battle = Battle::getBattle();
-        echo "ELIM UNITE";
-        var_dump($unit);
         $battle->victory->reduceUnit($unit);
-        echo "did reduce";
         $forceId = $unit->forceId;
         $this->deleteCount++;
         $battle = Battle::getBattle();
@@ -779,7 +798,6 @@ class Force
     {
         $isZOC = false;
 
-        echo "hexIsZoc $id ".$hexagon->name;
         if ($this->ZOCrule == true) {
             $los = new Los();
             $los->setOrigin($hexagon);
@@ -888,18 +906,12 @@ class Force
     }
     function hexagonIsOccupiedEnemy($hexagon,$id)
     {
-        echo "111 ";
         $isOccupied = false;
-        echo "1 ";
         $friendlyId = $this->units[$id]->forceId;
-        echo "1.65 ";
         $battle = Battle::getBattle();
-        echo "1.98 ";
         $mapData = $battle->mapData;
 //        $mapData = MapData::getInstance();
-        echo "2 ";
         $mapHex = $mapData->getHex($hexagon->getName());
-        echo " 3 ";
         foreach($mapHex->forces as $forceId => $force)
         {
             if($friendlyId == $forceId){
@@ -975,8 +987,13 @@ class Force
 
     function recoverUnits($phase,$moveRules, $mode)
     {
+        $battle  = Battle::getBattle();
+        $victory = $battle->victory;
+        $victory->preRecoverUnits();
         for ($id = 0; $id < count($this->units); $id++)
         {
+            $victory->preRecoverUnit();
+
             switch ($this->units[$id]->status)
             {
                 case STATUS_UNAVAIL_THIS_PHASE:
@@ -1055,7 +1072,11 @@ class Force
             $this->units[$id]->combatIndex = 0;
             $this->units[$id]->combatNumber = 0;
             $this->units[$id]->combatResults = NE;
+            $victory->postRecoverUnit($this->units[$id]);
+
         }
+        $victory->preRecoverUnits();
+
     }
 
     function removeEliminatingUnits()
@@ -1229,7 +1250,6 @@ class Force
     function getEliminated($id, $hexagon)
     {
             if ($this->units[$id]->status == STATUS_CAN_REPLACE) {
-                echo "gotElim";
                 $this->units[$id]->status = STATUS_REPLACED;
                 $this->units[$id]->isReduced = true;
                 $this->units[$id]->updateMoveStatus($hexagon,0);
@@ -1298,7 +1318,6 @@ class Force
 
     function unitCanRetreat($id)
     {
-        echo "Status ".$this->units[$id]->status ." st ";
         $canRetreat = false;
         if ($this->units[$id]->status == STATUS_CAN_RETREAT) {
             $canRetreat = true;
@@ -1547,7 +1566,6 @@ class Force
 
     function replace($id){
         if($this->units[$id]->isReduced && $this->units[$id]->status != STATUS_REPLACED){
-            echo "isreduced";
             $this->units[$id]->strength = $this->units[$id]->maxStrength;
             $this->units[$id]->isReduced = false;
             $this->units[$id]->status = STATUS_REPLACED;

@@ -173,7 +173,6 @@ function setCombatIndex($defenderId)
     }
     $attackStrength = $this->force->getAttackerStrength($combats->attackers);
     $defenseStrength = $this->force->getDefenderStrength($defenderId);
-var_dump($this->crt->getCombatIndex(2,3));
     $combatIndex = $this->crt->getCombatIndex($attackStrength, $defenseStrength);
     /* Do this before terrain effects */
     if ($combatIndex >= $this->crt->maxCombatIndex) {

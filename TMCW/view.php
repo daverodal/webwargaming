@@ -2,7 +2,6 @@
 <header id="header">
     <div id="headerContent">
         <div id="leftHeader">
-            <?php echo $player;?>
             <span style="font-size:1.0em">Welcome {user} {player} to <span style="font-family:'Nosifer';">The Martian Civil War</span><span
                     style="font-style: italic;">&ldquo;{wargame}&rdquo;</span></span>
             <div style="margin-top:0px;">
@@ -229,7 +228,7 @@
                      style="position: relative;visibility: visible;z-index: 0;">
                 <?php $id = 0;?>
                 {units}
-                <div class="unit {class}" id="{id}" alt="0"><section style="height:100%;width:100%;position:absolute;background:transparent;"></section>
+                <div class="unit {class}" id="{id}" alt="0"><section></section>
                     <img class="arrow" src="<?php echo base_url();?>js/short-red-arrow-md.png" class="counter">
                     <img src="<?php echo base_url();?>js/{image}" class="counter">
 
@@ -243,6 +242,7 @@
         </div>
         <audio class="pop"  src="<?=base_url().'js/pop.m4a'?>"></audio>
         <audio class="poop"  src="<?=base_url().'js/lowpop.m4a'?>"></audio>
+        <audio class="buzz"  src="<?=base_url().'js/buzz.m4a'?>"></audio>
 
         <div style="clear:both;height:20px;"></div>
 
@@ -254,57 +254,6 @@
     </div>
 </div>
 <script type="text/javascript">
-//    $( "#crtWrapper" ).accordion({
-//        collapsible: true,
-//        active: false,
-//    });
-//    $( "#OBCWrapper").accordion({
-//        collapsible: true,
-//        active: false
-//
-//    })
-var Player = '<?= $player;?>';
-$( "#OBCWrapper h4" ).click(function() {
-    $( "#OBC" ).toggle({effect:"blind",direction:"up"});
-    $( "#TEC" ).hide({effect:"blind",direction:"up"});
-});
-$( "#TECWrapper h4" ).click(function() {
-    $( "#OBC" ).hide({effect:"blind",direction:"up"});
-    $( "#TEC" ).toggle({effect:"blind",direction:"up"});
-});
-$("#crtWrapper h4 .goLeft").click(function(){
-//    $("#crtWrapper").css("float","left");
-    $("#crtWrapper").animate({left:0},300);
-    $("#crt").animate({left:"0px"},300);
-
-    return false;
-});
-$("#crtWrapper h4 .goRight").click(function(){
-    var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
-    var crtWid = $("#crt").css('width').replace(/px/,"");
-    crtWid = crtWid - wrapWid + 40;
-    var moveLeft = $("body").css('width').replace(/px/,"");
-    $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
-    $("#crt").animate({left:0-crtWid},300);
-    return false;
-});
-$( "#crtWrapper h4" ).click(function() {
-    $( "#crt" ).toggle({effect:"blind",direction:"up"});
-});
-$("bodxy").bind("keypress",function(){
-});
-var up = 0;
-$( "#hideShow" ).click(function() {
-    up ^= 1;
-    $( "#headerContent" ).toggle({effect:"blind",direction:"up"});
-    if(up){
-        $("#content").animate({marginTop:"30px"},"slow");
-    }else{
-        $("#content").animate({marginTop:"140px"},"slow");
-
-    }
-});
 </script>
-<a onclick="$('#status div').accordion({active:0});">click me I'm wasting away</a>
 <div id="display"></div>
 </body></html>

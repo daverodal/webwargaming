@@ -91,15 +91,30 @@ class Terrain
 
             $this->allAreAttackingAcrossRiverCombatEffect = 1;
 
-            $this->maxTerrainY = 150;
-            $this->maxTerrainX = 200;
+            /* TODO
+             * This needs to be removed and all other learn to call setMaxHex :P
+            */
+//            $this->maxTerrainY = 150;
+//            $this->maxTerrainX = 200;
+//
+//            for ($x = 0; $x < $this->maxTerrainX; $x++) {
+//                for ($y = 0; $y < $this->maxTerrainY; $y++) {
+//                    $this->terrainArray[$y][$x] = new stdClass();
+//                }
+//
+//            }
+        }
+    }
 
-            for ($x = 0; $x < $this->maxTerrainX; $x++) {
-                for ($y = 0; $y < $this->maxTerrainY; $y++) {
-                    $this->terrainArray[$y][$x] = new stdClass();
-                }
-
+    public function setMaxHex($hexName){
+        $hexagon = new Hexagon($hexName);
+        $this->maxTerrainX = $hexagon->getX() + 1;
+        $this->maxTerrainY = $hexagon->getY() + 2;
+        for ($x = 0; $x < $this->maxTerrainX; $x++) {
+            for ($y = 0; $y < $this->maxTerrainY; $y++) {
+                $this->terrainArray[$y][$x] = new stdClass();
             }
+
         }
     }
 
@@ -174,7 +189,6 @@ return $townName;
 
         }
         if($terrainName == "road"){
-//            echo "X $x Y $y\n";
         }
         if ($feature = $this->terrainFeatures->$terrainName) {
             if ($feature->isExclusive === true) {
@@ -199,7 +213,6 @@ return $townName;
      */
     private function getTerrainCode($hexpart)
     {
-
         $x = $hexpart->getX();
         $y = $hexpart->getY();
         if (($x >= 0 && $x < $this->maxTerrainX) && ($y >= 0 && $y < $this->maxTerrainY))
@@ -216,8 +229,7 @@ return $townName;
      */
     private function getTerrainCodeXY($x,$y)
     {
-
-        if (($x >= 0 && $x < $this->maxTerrainX) && ($y >= 0 && $y < $this->maxTerrainY))
+      if (($x >= 0 && $x < $this->maxTerrainX) && ($y >= 0 && $y < $this->maxTerrainY))
             $terrainCode = $this->terrainArray[$y][$x];
         else
             $terrainCode = 0;
@@ -362,13 +374,7 @@ return $terrainName;
         $terrains = $this->terrainArray[$hexagon->getY()][$hexagon->getX()];
 
         foreach ($terrains as $terrainFeature) {
-            if($name == 607){
-                echo "feature $terrainFeature ";
-            }
             $entranceCost += $this->terrainFeatures->$terrainFeature->entranceCost;
-            if($name == 607){
-                echo "cpst $entranceCost";
-            }
         }
         return $entranceCost;
     }
@@ -407,7 +413,7 @@ return $terrainName;
 
         // if road, override terrain
 //        echo "Are we? X $hexsideX Y $hexsideY";
-        $terrainCode = $this->getterrainCodeXY($hexsideX,$hexsideY);
+        $terrainCode = $this->getTerrainCodeXY($hexsideX,$hexsideY);
         if($terrainCode->road || $terrainCode->trail){
             $moveCost = .5;
             if($terrainCode->trail){
@@ -427,19 +433,10 @@ return $terrainName;
 //        }
 else
          {
-             if($name == 607){
-                 echo "Start $moveCost ";
-             }
 
             //  get entrance cost
             $moveCost = $this->getTerrainEntranceMoveCost($endHexagon);
-             if($name == 607){
-                 echo "middle $moveCost ";
-             }
             $moveCost += $this->getTerrainCodeCost($terrainCode);
-             if($name == 607){
-                 echo "end $moveCost ";
-             }
 
             // check hexside for river
 //            $hexpart = new Hexpart($hexsideX, $hexsideY);
@@ -561,6 +558,22 @@ else
         }
 
         return $zoneName;
+    }
+
+    /*
+  * public moveRules
+  */
+    function getReinforceZones($name)
+    {
+        $zones = array();
+        for ($i = 0; $i < count($this->reinforceZones); $i++) {
+            //alert("" + i + " " + $this->reinforceZones[$i]->hexagon->getName() + " : " + hexagon->getName());
+            if ($this->reinforceZones[$i]->name == $name) {
+                $zones[] = $this->reinforceZones[$i];
+            }
+        }
+
+        return $zones;
     }
     /*
      * can be removed

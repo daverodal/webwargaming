@@ -36,6 +36,8 @@ class NapOnMars extends Battle {
     public $prompt;
     public $display;
     public $victory;
+    public $genTerrain;
+
 
     public $players;
     static function getHeader($playerData){
@@ -43,7 +45,8 @@ class NapOnMars extends Battle {
         foreach($playerData as $k => $v){
             $$k = $v;
         }
-        @include_once "NOM/header.php";
+        @include_once "commonHeader.php";
+        @include_once "NOM/newHeader.php";
     }
     static function playAs($wargame){
         @include_once "NOM/playAs.php";
@@ -89,11 +92,15 @@ class NapOnMars extends Battle {
         $data->players = $this->players;
         $data->playerData = $this->playerData;
         $data->display = $this->display;
+        $data->terrainName = "terrain-NapOnMars";
+        $data->genTerrain = $this->genTerrain;
+        if($this->genTerrain){
+            $data->terrain = $this->terrain;
+        }
         return $data;
     }
 
     function poke($event, $id, $x, $y, $user){
-        echo $user;
         $playerId = $this->gameRules->attackingForceId;
         if($this->players[$this->gameRules->attackingForceId] != $user){
             return false;
@@ -103,15 +110,12 @@ class NapOnMars extends Battle {
             case SELECT_MAP_EVENT:
                 $mapGrid = new MapGrid($this->mapViewer[$playerId]);
                 $mapGrid->setPixels($x, $y);
-                echo "mapevent $x $y";
                 $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon() );
                 break;
 
             case SELECT_COUNTER_EVENT:
-                echo "COUNTER $id";
 
                 $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id));
-echo "Countered";
                 break;
 
             case SELECT_BUTTON_EVENT:
@@ -126,6 +130,7 @@ echo "Countered";
         $this->mapData = MapData::getInstance();
         $this->victory = new Victory();
         if ($data) {
+            $this->genTerrain = false;
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]),new MapViewer($data->mapViewer[1]),new MapViewer($data->mapViewer[2]));
@@ -139,6 +144,7 @@ echo "Countered";
             $this->players = $data->players;
             $this->playerData = $data->playerData;
         } else {
+            $this->genTerrain = true;
             if($arg == 0){
                 $this->mapData->setData(20,10,"js/mcw.png");
             }
@@ -150,6 +156,7 @@ echo "Countered";
             $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
+            $this->terrain->setMaxHex("2010");
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);

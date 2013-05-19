@@ -1,5 +1,27 @@
 <?php
 require_once "constants.php";
+global $force_name,$phase_name,$mode_name, $event_name, $status_name, $results_name,$combatRatio_name;
+$force_name = array();
+$force_name[0] = "Neutral Observer";
+$force_name[1] = "Rebel";
+$force_name[2] = "Loyalist";
+
+$phase_name = array();
+$phase_name[1] = "Rebel Move";
+$phase_name[2] = "Rebel Combat";
+$phase_name[3] = "Blue Fire Combat";
+$phase_name[4] = "Loyalist Move";
+$phase_name[5] = "Loyalist Combat";
+$phase_name[6] = "Red Fire Combat";
+$phase_name[7] = "Victory";
+$phase_name[8] = "Rebel Deploy";
+$phase_name[9] = "Rebel Mech";
+$phase_name[10] = "Rebel Replacement";
+$phase_name[11] = "Loyalist Mech";
+$phase_name[12] = "Loyalist Replacement";
+$phase_name[13] = "";
+$phase_name[14] = "";
+
 require_once "combatRules.php";
 require_once "TMCW/crt.php";
 require_once "force.php";
@@ -38,10 +60,13 @@ class MartianCivilWar extends Battle {
 
     public $players;
     static function getHeader($playerData){
+        global $force_name;
+
         $playerData = array_shift($playerData);
         foreach($playerData as $k => $v){
             $$k = $v;
         }
+        @include_once "commonHeader.php";
         @include_once "TMCW/header.php";
     }
     static function getView($mapUrl,$player = 0){
@@ -100,11 +125,7 @@ class MartianCivilWar extends Battle {
     function poke($event, $id, $x, $y, $user,$isHotSeat = false, $name){
 
         $playerId = $this->gameRules->attackingForceId;
-        var_dump($this->players);
-            if($this->players[$this->gameRules->attackingForceId] != $user){
-//            if($isHotSeat){
-//                echo "Nope$name";
-//            }
+        if($this->players[$this->gameRules->attackingForceId] != $user){
             return false;
         }
 
@@ -112,12 +133,11 @@ class MartianCivilWar extends Battle {
             case SELECT_MAP_EVENT:
                 $mapGrid = new MapGrid($this->mapViewer[$playerId]);
                 $mapGrid->setPixels($x, $y);
-                $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon() );
+                return $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon() );
                 break;
 
             case SELECT_COUNTER_EVENT:
-
-                $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id));
+                return $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id));
 
                 break;
 
@@ -129,6 +149,7 @@ class MartianCivilWar extends Battle {
     }
     function __construct($data = null)
     {
+
         $this->mapData = MapData::getInstance();
         if ($data) {
             $this->genTerrain = false;
@@ -154,6 +175,7 @@ class MartianCivilWar extends Battle {
             $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
+            $this->terrain->setMaxHex("3020");
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
@@ -200,8 +222,8 @@ class MartianCivilWar extends Battle {
 
             // game data
             $this->gameRules->setMaxTurn(7);
-            $this->gameRules->setInitialPhaseMode(BLUE_DEPLOY_PHASE,DEPLOY_MODE);
-            $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->setInitialPhaseMode(BLUE_MOVE_PHASE,MOVING_MODE);
+//            $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, BLUE_MECH_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
@@ -216,8 +238,7 @@ class MartianCivilWar extends Battle {
 
             // unit data -----------------------------------------------
             //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
-
-                $this->force->addUnit("infantry-1", RED_FORCE, 407, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 407, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 516, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 1515, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 1612, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
@@ -240,6 +261,7 @@ class MartianCivilWar extends Battle {
                 $this->force->addUnit("infantry-1", RED_FORCE, 1000+$i, "multiInf.png",2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
 
             }
+
             $this->force->addUnit("infantry-1", RED_FORCE, 2415, "multiMech.png",5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 2416, "multiMech.png",5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 2417, "multiMech.png",5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist");
@@ -320,7 +342,7 @@ class MartianCivilWar extends Battle {
 
 
             $deployZones = array(103,104,106,107,201,202,203,204,205,206,209,210,305,306,307,309,310,406,407,408,409,410);
-            for($i = 1;$i <= 4;$i++){
+            for($i = 1;$i <= 1;$i++){
                 for($j= 1; $j<=10;$j++){
                     $this->terrain->addReinforceZone($j*100 + $i,"R");
 

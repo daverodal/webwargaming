@@ -28,4 +28,24 @@ class victoryCore{
             $victorId = 1;
         }
     }
+    public function phaseChange(){
+        $battle = Battle::getBattle();
+        $mapData = $battle->mapData;
+        $vp = $this->victoryPoints;
+        $specialHexes = $mapData->specialHexes;
+        if($specialHexes){
+            foreach($specialHexes as $k=>$v){
+                if($v == 1){
+                    if($k == 2414 || $k == 2415 || $k == 2515){
+                        $vp[$v] += 5;
+                    }else{
+                        $vp[$v]++;
+                    }
+                }else{
+                    $vp[$v] += .5;
+                }
+            }
+        }
+       $this->victoryPoints = $vp;
+    }
 }

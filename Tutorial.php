@@ -34,6 +34,7 @@ class Tutorial extends Battle {
     public $prompt;
     public $display;
     public $victory;
+    public $genTerrain;
     public $arg;
 
     public $players;
@@ -42,7 +43,9 @@ class Tutorial extends Battle {
         foreach($playerData as $k => $v){
             $$k = $v;
         }
-        @include_once "Tutorial/header.php";
+        @include_once "commonHeader.php";
+        @include_once "Tutorial/newHeader.php";
+
     }
     static function getView($mapUrl,$player = 0,$arg){
         global $force_name;
@@ -89,6 +92,11 @@ class Tutorial extends Battle {
         $data->playerData = $this->playerData;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
+        $data->terrainName = "terrain-Tutorial".$this->arg;
+        $data->genTerrain = $this->genTerrain;
+        if($this->genTerrain){
+            $data->terrain = $this->terrain;
+        }
         $data->arg = $this->arg;
         return $data;
     }
@@ -96,11 +104,7 @@ class Tutorial extends Battle {
     function poke($event, $id, $x, $y, $user,$isHotSeat = false, $name){
 
         $playerId = $this->gameRules->attackingForceId;
-        var_dump($this->players);
             if($this->players[$this->gameRules->attackingForceId] != $user){
-//            if($isHotSeat){
-//                echo "Nope$name";
-//            }
             return false;
         }
 
@@ -112,9 +116,7 @@ class Tutorial extends Battle {
                 break;
 
             case SELECT_COUNTER_EVENT:
-
                 $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id));
-
                 break;
 
             case SELECT_BUTTON_EVENT:
@@ -128,6 +130,7 @@ class Tutorial extends Battle {
         $this->arg = $arg;
         $this->mapData = MapData::getInstance();
         if ($data) {
+            $this->genTerrain = false;
             $this->victory = new Victory("Tutorial",$data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
@@ -142,6 +145,7 @@ class Tutorial extends Battle {
             $this->players = $data->players;
             $this->playerData = $data->playerData;
         } else {
+            $this->genTerrain = true;
             $this->victory = new Victory("Tutorial");
             $this->display = new Display();
             $this->mapData->setData(7,7 , "js/tut1.png");
@@ -149,6 +153,7 @@ class Tutorial extends Battle {
             $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
+            $this->terrain->setMaxHex("0808");
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
@@ -182,12 +187,12 @@ class Tutorial extends Battle {
 
 
     if($arg){
-            $this->force->addUnit("infantry-1", RED_FORCE, 501, "multiInf.png", 5, 2, 3, true, STATUS_READY, "R", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 501, "multiInf.png", 5, 2, 3, true, STATUS_READY, "R", 0, 1, "loyalist");
     }
 
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 101, "multiCav.png", 3, 3, 5, false, STATUS_READY, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 102, "multiArt.png", 4, 3, 3, false, STATUS_READY, "B", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 103, "multiInf.png", 6, 2, 4, false, STATUS_READY, "B", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, 101, "multiCav.png", 3, 3, 5, false, STATUS_READY, "B", 0, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, 102, "multiArt.png", 4, 3, 3, false, STATUS_READY, "B", 0, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, 103, "multiInf.png", 6, 2, 4, false, STATUS_READY, "B", 0, 1, "rebel");
 
 
             // end unit data -------------------------------------------

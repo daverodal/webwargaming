@@ -466,9 +466,9 @@ x.register("moveRules", function(moveRules) {
             id = moveRules.movingUnitId;
             for( i in moveRules.moves){
                 newId = id+"Hex"+i;
-                if(!moveRules.moves[i].isValid){
-                    continue;
-                }
+//                if(!moveRules.moves[i].isValid){
+//                    continue;
+//                }
                 if(moveRules.moves[i].isOccupied){
 //                    continue;
                 }

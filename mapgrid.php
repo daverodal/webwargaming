@@ -8,14 +8,16 @@
 // either version 2 of the License, or (at your option) any later version. 
 
 // MapData Constructor
-class MapHex{
+class MapHex {
     private $evenHexesShiftDown = true;
     public $forces;
     public $zocs;
     public $name;
     public $neighbors;
+    public $dirty;
     public function __construct($name, $forces = false){
         $this->name = $name;
+        $this->dirty = false;
         $this->neighbors = array();
         $row = $name%100;
         $col = floor($name / 100);
@@ -30,14 +32,18 @@ class MapHex{
             $this->neighbors[]  = $neighbor;
         }
         if($forces !== false){
+            $this->dirty = true;
             $this->forces = $forces;
         }else{
             $this->forces = array(new stdClass(),new stdClass(), new stdClass());
         }
+
     }
+
     public function unsetUnit($forceId, $id){
         if(isset($this->forces[$forceId]->$id)){
             unset($this->forces[$forceId]->$id);
+            $this->dirty = true;
         }
     }
     public function setUnit($forceId, $id){
@@ -48,9 +54,10 @@ class MapHex{
             $this->forces[$forceId] = new stdClass();
         }
         $this->forces[$forceId]->$id = $id;
+        $this->dirty = true;
     }
 }
-class MapData{
+class MapData implements JsonSerializable{
 
     public $hexes;
     public $maxX;
@@ -64,7 +71,26 @@ class MapData{
         $this->vp = array(0,0,0);
     }
 
-    public static function getInstance(){
+    function jsonSerialize(){
+        foreach($this->hexes as $k => $hex){
+//            var_dump(count($hex->forces[1]));
+//            var_dump($hex->forces[1]);
+
+            $f1 = count((array)$hex->forces[1]);
+            $f2 = count((array)$hex->forces[2]);
+            if(!$f1 && !$f2){
+                unset($this->hexes->$k);
+                continue;
+            }
+//            if(!$hex->dirty){
+//                continue;
+//            }
+            unset($this->hexes->$k->dirty);
+            unset($this->hexes->$k->neighbors);
+        }
+        return $this;
+    }
+        public static function getInstance(){
         if(!MapData::$instance){
             MapData::$instance = new MapData();
         }
@@ -72,17 +98,31 @@ class MapData{
 
     }
     public function init($data){
+        $hexes = $data->hexes;
+        unset($data->hexes);
+
         foreach($data as $k => $v){
             if($k == "hexes"){
-                $this->hexes = new stdClass();
-                foreach($v as $hexName => $hex){
-                    $this->hexes->$hexName = new MapHex($hex->name,$hex->forces);
-                }
+//                $this->hexes = new stdClass();
+//                foreach($v as $hexName => $hex){
+//                    $this->hexes->$hexName = new MapHex($hex->name,$hex->forces);
+//                }
             }else{
                 $this->$k = $v;
             }
         }
-
+        $this->hexes = new stdClass();
+        for($i = 0; $i <= $this->maxX+1;$i++){
+            for($j = 0;$j<= $this->maxY+1;$j++){
+                $name = sprintf("%02d%02d",$i,$j);
+                if($hexes->$name){
+                    $x = new MapHex($name,$hexes->$name->forces);
+                }else{
+                    $x = new MapHex($name);
+                }
+                $this->hexes->$name = $x;
+            }
+        }
     }
     function setSpecialHexes($hexes){
         if(!$this->specialHexes){

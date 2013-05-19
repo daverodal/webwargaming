@@ -6,7 +6,7 @@
             <div style="margin-top:0px;">
                 <a href="<?=site_url("wargame/leaveGame");?>">Go To Lobby</a>
                 <a href="<?=site_url("wargame/unitInit/Tutorial");?>">Restart Game</a>
-                <a onclick="playme();">play</a>
+                <a onclick="playme();">Skip Video</a>
             </div>
         </div>
         <div id="rightHeader">
@@ -226,7 +226,7 @@
                 <img id="map" style="position: relative;visibility: visible;z-index: 0; alt="map" src="<?php echo base_url().$mapUrl;?>">
                 <?php $id = 0;?>
                 {units}
-                <div class="unit {class}" id="{id}" alt="0"><section style="height:100%;width:100%;position:absolute;background:transparent;"></section>
+                <div class="unit {class}" id="{id}" alt="0"><section></section>
                     <img class="arrow" src="<?php echo base_url();?>js/short-red-arrow-md.png" class="counter">
                     <img src="<?php echo base_url();?>js/{image}" class="counter">
 

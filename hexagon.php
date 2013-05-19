@@ -15,7 +15,7 @@ class extHex extends Hexagon implements JsonSerializable{
     }
 
 }
-class HexPath {
+class HexPath implements JsonSerializable{
     public $name = false;
     public $pointsLeft = false;
     public $isZoc = false;
@@ -24,6 +24,16 @@ class HexPath {
     public $pathToHere = array();
     public $depth = false;
     public $firstHex = false;
+    public function jsonSerialize(){
+        unset($this->isZoc);
+        unset($this->isValid);
+//        unset($this->isOccupied);
+        unset($this->name);
+        unset($this->depth);
+        unset($this->firstHex);
+//        var_dump($this->name);
+        return $this;
+    }
 
 }
 class Hexagon  {

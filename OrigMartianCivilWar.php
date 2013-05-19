@@ -89,7 +89,6 @@ class OMCW extends Battle {
     }
 
     function poke($event, $id, $x, $y, $user){
-        echo $user;
         $playerId = $this->gameRules->attackingForceId;
         if($this->players[$this->gameRules->attackingForceId] != $user){
             return false;
@@ -99,12 +98,10 @@ class OMCW extends Battle {
             case SELECT_MAP_EVENT:
                 $mapGrid = new MapGrid($this->mapViewer[$playerId]);
                 $mapGrid->setPixels($x, $y);
-                echo "mapevent $x $y";
                 $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon() );
                 break;
 
             case SELECT_COUNTER_EVENT:
-                echo "COUNTER $id";
 
                 $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id));
 
@@ -141,6 +138,7 @@ class OMCW extends Battle {
             $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
+            $this->terrain->setMaxHex(2010);
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules,$this->force ,$this->display );
