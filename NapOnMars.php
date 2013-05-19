@@ -40,7 +40,7 @@ class NapOnMars extends Battle {
 
 
     public $players;
-    static function getHeader($playerData){
+    static function getHeader($name, $playerData){
         $playerData = array_shift($playerData);
         foreach($playerData as $k => $v){
             $$k = $v;
@@ -48,11 +48,11 @@ class NapOnMars extends Battle {
         @include_once "commonHeader.php";
         @include_once "NOM/newHeader.php";
     }
-    static function playAs($wargame){
+    static function playAs($name, $wargame){
         @include_once "NOM/playAs.php";
     }
 
-    static function getView( $mapUrl){
+    static function getView($name, $mapUrl,$player = 0, $arg = false){
 
         @include_once "NOM/view.php";
     }

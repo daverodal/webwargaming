@@ -38,7 +38,7 @@ class Tutorial extends Battle {
     public $arg;
 
     public $players;
-    static function getHeader($playerData){
+    static function getHeader($name,$playerData){
         $playerData = array_shift($playerData);
         foreach($playerData as $k => $v){
             $$k = $v;
@@ -47,12 +47,12 @@ class Tutorial extends Battle {
         @include_once "Tutorial/newHeader.php";
 
     }
-    static function getView($mapUrl,$player = 0,$arg){
+    static function getView($name, $mapUrl,$player = 0,$arg = false){
         global $force_name;
         $player = $force_name[$player];
         @include_once "Tutorial/view.php";
     }
-    static function playAs($wargame){
+    static function playAs($name, $wargame){
         @include_once "Tutorial/playAs.php";
     }
     public function resize($small,$player){

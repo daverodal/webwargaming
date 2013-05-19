@@ -181,12 +181,12 @@ class MoveRules{
             $cnt++;
             $hexPath = array_shift($this->moveQueue);
             $hexNum = $hexPath->name;
-            $hist[$hexNum]++;
+//            $hist[$hexNum]++;
             $movePoints = $hexPath->pointsLeft;
             if(!$hexNum){
                 continue;
             }
-            if(!$this->moves->$hexNum) {
+            if(!isset($this->moves->$hexNum)) {
                 /* first time here */
                 $this->moves->$hexNum = $hexPath;
 //                $theHex = new Hexagon($hexNum);
@@ -248,7 +248,7 @@ class MoveRules{
                 }
                 if($movePoints - $moveAmount >= 0){
                     $head = false;
-                    if($this->moves->$newHexNum){
+                    if(isset($this->moves->$newHexNum)){
                         if($this->moves->$newHexNum->pointsLeft > ($movePoints - $moveAmount) ){
                             continue;
                         }

@@ -255,7 +255,7 @@
 //        active: false
 //
 //    })
-var Player = '<?= $player;?>';
+var Player = 'Markarian';
 $( "#OBCWrapper h4" ).click(function() {
     $( "#OBC" ).toggle({effect:"blind",direction:"up"});
 });

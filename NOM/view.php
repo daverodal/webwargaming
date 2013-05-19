@@ -2,7 +2,7 @@
 <header id="header">
     <div id="headerContent">
         <div id="leftHeader">
-            <span style="font-size:1.0em">Welcome {user} {player} to <span style="font-family:'Nosifer';">The Martian Civil War</span><span
+            <span style="font-size:1.0em">Welcome {user} {player} to <span style="font-family:'Nosifer';">Napoleons Training School</span><span
                     style="font-style: italic;">&ldquo;{wargame}&rdquo;</span></span>
             <div style="margin-top:0px;">
                 <a href="<?=site_url("wargame/leaveGame");?>">Go To Lobby</a>

@@ -30,19 +30,19 @@ class BattleForAllenCreek extends Battle {
     public $prompt;
     public $players;
 
-    static function getHeader($playerData){
+    static function getHeader($name, $playerData){
         $playerData = array_shift($playerData);
         foreach($playerData as $k => $v){
             $$k = $v;
         }
         @include_once "BAC/header.php";
     }
-    static function getView($mapUrl,$player = 0){
+    static function getView($name, $mapUrl,$player = 0, $arg = false){
         global $force_name;
         $player = $force_name[$player];
         @include_once "BAC/view.php";
     }
-    static function playAs($wargame){
+    static function playAs($name, $wargame){
         @include_once "BAC/playAs.php";
     }
 

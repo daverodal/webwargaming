@@ -28,11 +28,27 @@ class victoryCore{
             $victorId = 1;
         }
     }
-    public function phaseChange(){
+    public function incrementTurn(){
+        $battle = Battle::getBattle();
+
+        $theUnits = $battle->force->units;
+        foreach($theUnits as $id => $unit){
+            echo "$id ";
+
+            if($unit->status == STATUS_CAN_REINFORCE && $unit->reinforceTurn <= $battle->gameRules->turn && $unit->hexagon->parent != "deployBox"){
+                $theUnits[$id]->status = STATUS_ELIMINATED;
+                $theUnits[$id]->hexagon->parent = "deadpile";
+            }
+        }
+    }
+    public function playerTurnChange(){
         $battle = Battle::getBattle();
         $mapData = $battle->mapData;
         $vp = $this->victoryPoints;
         $specialHexes = $mapData->specialHexes;
+
+           /*only get special VPs' at end of first Movement Phase */
+//        var_dump($specialHexes);
         if($specialHexes){
             foreach($specialHexes as $k=>$v){
                 if($v == 1){

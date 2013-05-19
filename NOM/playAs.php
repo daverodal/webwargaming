@@ -31,7 +31,7 @@
 <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
 
 <h2 style="text-align:center;font-size:30px;font-family:'Great Vibes'"> Welcome to</h2>
-    <h1 style="text-align:center;font-size:90px;font-family:'Great Vibes'">Napoleons Conquests</h1>
+    <h1 style="text-align:center;font-size:90px;font-family:'Great Vibes'">Napoleons Training Schools</h1>
 <div style="clear:both"></div>
 <fieldset style="text-align:center;width:30%;margin:0 auto;"><Legend>Play As </Legend>
     <a class="rebel"  href="<?=site_url("wargame/enterHotseat");?>/<?=$wargame?>/">Play Hotseat</a>

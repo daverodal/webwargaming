@@ -1251,7 +1251,11 @@ function doitUnit(id) {
     $.ajax({url: "<?=site_url("wargame/poke");?>/",
         type: "POST",
         data:{id:id,event : <?=SELECT_COUNTER_EVENT?>},
-        error:function(data,text){
+        error:function(data,text,third){
+            obj = jQuery.parseJSON(data.responseText);
+            if(obj.emsg){
+                alert(obj.emsg);
+            }
             playAudioBuzz();
             $('body').css({cursor:"auto"});
             $(this).css({cursor:"auto"});
@@ -1416,7 +1420,7 @@ function initialize() {
 //        active: false
 //
 //    })
-    var Player = '<?= $player;?>';
+    var Player = 'Markarian';
     $( "#OBCWrapper h4" ).click(function() {
         $( "#OBC" ).toggle({effect:"blind",direction:"up"});
         $( "#TEC" ).hide({effect:"blind",direction:"up"});

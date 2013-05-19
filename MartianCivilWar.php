@@ -59,7 +59,7 @@ class MartianCivilWar extends Battle {
     public $genTerrain = false;
 
     public $players;
-    static function getHeader($playerData){
+    static function getHeader($name,$playerData){
         global $force_name;
 
         $playerData = array_shift($playerData);
@@ -69,12 +69,12 @@ class MartianCivilWar extends Battle {
         @include_once "commonHeader.php";
         @include_once "TMCW/header.php";
     }
-    static function getView($mapUrl,$player = 0){
+    static function getView($mapUrl,$player = 0, $player = 0, $arg = false){
         global $force_name;
-        $player = $force_name[$player];
+//        $player = $force_name[$player];
         @include_once "TMCW/view.php";
     }
-    static function playAs($wargame){
+    static function playAs($name, $wargame){
 
         @include_once "TMCW/playAs.php";
     }

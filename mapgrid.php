@@ -115,7 +115,7 @@ class MapData implements JsonSerializable{
         for($i = 0; $i <= $this->maxX+1;$i++){
             for($j = 0;$j<= $this->maxY+1;$j++){
                 $name = sprintf("%02d%02d",$i,$j);
-                if($hexes->$name){
+                if(isset($hexes->$name) && $hexes->$name){
                     $x = new MapHex($name,$hexes->$name->forces);
                 }else{
                     $x = new MapHex($name);

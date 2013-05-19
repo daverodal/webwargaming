@@ -90,6 +90,9 @@ class CombatRules
         {
             $this->currentDefender = $id;
             $this->force->setupDefender($id);
+            if(!$this->combats){
+                $this->combats = new  stdClass();
+            }
             $this->combats->$id = new Combat();
         }
     }
@@ -134,6 +137,9 @@ class CombatRules
 
 function cleanUpAttacklessDefenders()
 {
+    if(!$this->combats){
+        $this->combats = new stdClass();
+    }
     foreach ($this->combats as $id => $combat) {
         if ($id == $this->currentDefender) {
             continue;

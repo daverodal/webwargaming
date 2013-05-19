@@ -992,7 +992,7 @@ class Force
         $victory->preRecoverUnits();
         for ($id = 0; $id < count($this->units); $id++)
         {
-            $victory->preRecoverUnit();
+            $victory->preRecoverUnit($id);
 
             switch ($this->units[$id]->status)
             {
@@ -1053,15 +1053,15 @@ class Force
 
                         }
                     }
-                    if($phase == RED_RAILROAD_PHASE) {
-                        $status = STATUS_STOPPED;
-                        $hexpart = new Hexpart();
-                        $hexpart->setXYwithNameAndType($this->units[$id]->hexagon->name, HEXAGON_CENTER);
-                        $terrain = $moveRules->terrain;
-                        if ($terrain->terrainIs($hexpart, "fortified") || $terrain->terrainIs($hexpart, "newrichmond")) {
-                            $status = STATUS_READY;
-                        }
-                    }
+//                    if($phase == RED_RAILROAD_PHASE) {
+//                        $status = STATUS_STOPPED;
+//                        $hexpart = new Hexpart();
+//                        $hexpart->setXYwithNameAndType($this->units[$id]->hexagon->name, HEXAGON_CENTER);
+//                        $terrain = $moveRules->terrain;
+//                        if ($terrain->terrainIs($hexpart, "fortified") || $terrain->terrainIs($hexpart, "newrichmond")) {
+//                            $status = STATUS_READY;
+//                        }
+//                    }
                     $this->units[$id]->status = $status;
                     $this->units[$id]->moveAmountUsed = 0;
                     break;

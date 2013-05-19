@@ -287,9 +287,9 @@ class GameRules {
 //                        }
 //                    }
                     $this->moveRules->railMove = false;
-                    if($this->phase == RED_RAILROAD_PHASE){/* Love that oo design */
-                        $this->moveRules->railMove = true;
-                    }
+//                    if($this->phase == RED_RAILROAD_PHASE){/* Love that oo design */
+//                        $this->moveRules->railMove = true;
+//                    }
                        $ret = $this->moveRules->moveUnit($event, $id, $hexagon, $this->turn);
                        return $ret;
                         break;
@@ -515,7 +515,9 @@ class GameRules {
                     $this->phase = $this->phaseChanges[$i]->nextPhase;
                     $this->mode = $this->phaseChanges[$i]->nextMode;
                     if($this->attackingForceId != $this->phaseChanges[$i]->nextAttackerId){
-
+                        $battle = Battle::getBattle();
+                        $victory = $battle->victory;
+                        $victory->playerTurnChange();
                         $this->turnChange = true;
                     }
                     $forceId = $this->attackingForceId = $this->phaseChanges[$i]->nextAttackerId;
@@ -552,8 +554,9 @@ class GameRules {
                         $this->mode = GAME_OVER_MODE;
                         $this->phase = GAME_OVER_PHASE;
                     }
+
+
                     break;
-                    $victory->phaseChange();
                 }
             }
         }
@@ -562,6 +565,9 @@ class GameRules {
     function incrementTurn()
     {
         $this->turn++;
+        $battle = Battle::getBattle();
+        $victory = $battle->victory;
+        $victory->incrementTurn();
         $theUnits = $this->force->units;
         foreach($theUnits as $id => $unit){
 

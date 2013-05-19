@@ -213,6 +213,7 @@ return $townName;
      */
     private function getTerrainCode($hexpart)
     {
+//        $x->aa->bb = 3;
         $x = $hexpart->getX();
         $y = $hexpart->getY();
         if (($x >= 0 && $x < $this->maxTerrainX) && ($y >= 0 && $y < $this->maxTerrainY))
@@ -402,8 +403,6 @@ return $terrainName;
      */
     function getTerrainMoveCost($startHexagon, $endHexagon, $railMove)
     {
-
-
         $moveCost = 0;
         $name = $endHexagon->name;
 

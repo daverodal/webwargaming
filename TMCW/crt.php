@@ -78,6 +78,8 @@ class CombatResultsTable
             $odds[2] = 0;
             $odds[3] = 0;
             $odds[4] = 0;
+            $odds[5] = 0;
+
 
             for( $Die = 0; $Die < $this->dieSideCount; $Die++ )
             {

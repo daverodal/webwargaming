@@ -232,3 +232,11 @@ define("HEXAGON_CENTER",1);
 define("BOTTOM_HEXSIDE",2);
 define("LOWER_LEFT_HEXSIDE",3);
 define("UPPER_LEFT_HEXSIDE",4);
+
+function exception_error_handler($errno, $errstr, $errfile, $errline ) {
+    if($errno != E_NOTICE){
+        throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
+    }
+}
+ini_set('display_errors',1);
+set_error_handler('exception_error_handler');
