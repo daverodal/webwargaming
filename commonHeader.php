@@ -669,7 +669,18 @@ function flashMessage(playerStatus){
                 id = game[1];
                 $("#"+id).hide({effect:"blind",direction:"up",complete:flashMessage});
                 return;
-            }        }
+            }
+            if(mess.match(/^@gameover/)){
+                $("#gameViewer").append('<div id="FlashMessage" style="top:'+y+'px;left:'+x+'px;" class="flashMessage">'+"Victory"+'</div>');
+                $("#FlashMessage").animate({opacity:0},2400,flashMessage);
+
+//                game = mess.match(/^@show ([^,]*)/);
+//                id = game[1];
+//                $("#"+id).show({effect:"blind",direction:"up",complete:flashMessage});
+                playLadies();
+                return;
+            }
+        }
         $("body").append('<div id="FlashMessage" style="top:'+y+'px;left:'+x+'px;" class="flashMessage">'+mess+'</div>');
         $("#FlashMessage").animate({opacity:0},2400,flashMessage);
         return;
