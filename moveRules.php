@@ -592,12 +592,9 @@ class MoveRules{
     {
             if ($this->force->units[$id]->setStatus( STATUS_CAN_REPLACE) == true) {
                 $movesLeft = 0;
-                $zones = $this->terrain->getReinforceZones($this->force->getReinforceZone($id));
+                $zones = $this->terrain->getReinforceZones($this->force->getUnitReinforceZone($id));
                 foreach($zones as $zone){
-//                    echo "Start $startHex ".$startHex->name;
-//                    die("starting to rein ");
                     $startHex = $zone->hexagon->name;
-
                     $hexPath = new HexPath();
                     $hexPath->name = $startHex->name;
                     $hexPath->pointsLeft = $movesLeft;

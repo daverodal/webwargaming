@@ -194,8 +194,8 @@ class GameRules {
                             preg_match("/Hex(.*)/",$id,$matchHex);
                             $id = $matchId[0];
                             $hexagon = new Hexagon($matchHex[1]);
-                            if($this->force->getEliminated($this->currentReplacement, $hexagon) !== false){
 
+                            if($this->force->getEliminated($this->currentReplacement, $hexagon) !== false){
                                 $this->moveRules->stopReplacing($id);
                                 $this->currentReplacement = false;
                                 $this->replacementsAvail--;
