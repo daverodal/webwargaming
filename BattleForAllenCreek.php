@@ -40,7 +40,7 @@ class BattleForAllenCreek {
         @include_once "header.php";
     }
     static function playAs($name, $wargame){
-        redirect("wargame/play");
+        redirect("wargame/enterHotseat/$wargame");
     }
 
 
