@@ -4,6 +4,7 @@
         <div id="leftHeader">
             <span style="font-size:1.0em">Welcome {user} to <span style="font-family:'Nosifer';">Tutorial One</span> Movement</span>
             <div style="margin-top:0px;">
+                <a id="muteButton">mute</a>
                 <a href="<?=site_url("wargame/leaveGame");?>">Go To Lobby</a>
                 <a href="<?=site_url("wargame/unitInit/Tutorial");?>">Restart Game</a>
                 <a onclick="playme();">Skip Video</a>

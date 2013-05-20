@@ -5,8 +5,7 @@
             <span style="font-size:1.0em">Welcome {user} {player} to <span style="font-family:'Nosifer';">The Martian Civil War</span><span
                     style="font-style: italic;">&ldquo;{wargame}&rdquo;</span></span>
             <div style="margin-top:0px;">
-                <a href="<?=site_url("wargame/changeWargame/{wargame}/1");?>">As Rebel</a>
-                <a href="<?=site_url("wargame/changeWargame/{wargame}/2");?>">As Loyalist</a>
+                <a id="muteButton">mute</a>
                 <a href="<?=site_url("wargame/leaveGame");?>">Go To Lobby</a>
                 <a href="<?=site_url("wargame/logout");?>">logout</a>
                 <a href="<?=site_url("wargame/unitInit/MartianCivilWar");?>">Restart Game</a>

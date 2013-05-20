@@ -31,6 +31,10 @@ h5{
     background-color: rgba(0,0,0,.5) !important;
 
 }
+#muteButton{
+    cursor:pointer;
+    text-decoration: underline;
+}
 /*.embossed{*/
 /*-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -2px 0 rgba(0,0,0,.25), inset 0 -3px 0 rgba(255,255,255,.2), 0 1px 0 rgba(0,0,0,.1);*/
 /*-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -2px 0 rgba(0,0,0,.25), inset 0 -3px 0 rgba(255,255,255,.2), 0 1px 0 rgba(0,0,0,.1);*/
@@ -1369,11 +1373,12 @@ function attachMouseEventsToCounter(objectName) {
 //    $("#"+objectName).on('mousedown',counterMouseDown);
     return;
 }
+var mute = false;
 
 function playAudio(){
     var aud = $('.pop').get(0);
     <!--    aud.src = "--><?//=base_url().'js/pop.m4a'?><!--";-->
-    if(aud){
+    if(aud && !mute){
         aud.play();
     }
 
@@ -1381,10 +1386,18 @@ function playAudio(){
 function playAudioLow(){
     var aud = $('.poop').get(0);
     <!--    aud.src = "--><?//=base_url().'js/pop.m4a'?><!--";-->
-    if(aud){
+    if(aud && !mute){
         aud.play();
     }
 
+}
+function unMuteMe(){
+    mute = false;
+    return true;
+}
+function muteMe(){
+    mute = true;
+    return true;
 }
 function playAudioBuzz(){
     var aud = $('.buzz').get(0);
@@ -1407,6 +1420,16 @@ function initialize() {
 
     $("#nextPhaseButton").on('mousedown',nextPhaseMouseDown);
     $( "#gameImages" ).draggable({distance:40,axis:"x"});
+    $("#muteButton").click(function(){
+       if(!mute){
+           $("#muteButton").html("un-mute");
+           muteMe();
+
+       }else{
+           unMuteMe();
+           playAudio();
+       }
+    });
     // end setup events ----------------------------------------
 
 

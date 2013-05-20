@@ -5,6 +5,7 @@
             <span style="font-size:1.0em">Welcome {user} {player} to <span style="font-family:'Nosifer';">Napoleons Training School</span><span
                     style="font-style: italic;">&ldquo;{wargame}&rdquo;</span></span>
             <div style="margin-top:0px;">
+                <a id="muteButton">mute</a>
                 <a href="<?=site_url("wargame/leaveGame");?>">Go To Lobby</a>
                 <a href="<?=site_url("wargame/logout");?>">logout</a>
                 <a href="<?=site_url("wargame/unitInit/NapOnMars");?>">Restart Game</a>
