@@ -1357,8 +1357,12 @@ function changePosition(player){
     $("#flash").html(player);
 }
 function counterMouseDown(event) {
+
     var id;
-    id = $(event.target).parent().attr("id");
+    id = $(event.target).attr('id');
+    if(!id){
+        id = $(event.target).parent().attr("id");
+    }
     doitUnit(id);
 }
 

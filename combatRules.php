@@ -56,7 +56,8 @@ class CombatRules
                 $this->$k = $v;
             }
         } else {
-            $this->combats = new StdClass();
+            $this->combats = new stdClass();
+            $this->attackers = new stdClass();
             $this->currentDefender = false;
         }
         $this->crt = new CombatResultsTable();
