@@ -36,6 +36,10 @@ class CombatRules
     public $resolvedCombats;
     public $lastResolvedCombat;
 
+    /*
+     * TODO
+     * This is how we serialized data in the ancient days...
+     */
     function save()
     {
         $data = new StdClass();
@@ -56,6 +60,9 @@ class CombatRules
                 $this->$k = $v;
             }
         } else {
+            /*
+             * TODO all this sucks and needs to be initialized
+             */
             $this->combats = new stdClass();
             $this->attackers = new stdClass();
             $this->currentDefender = false;
