@@ -1,27 +1,27 @@
 <link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 <style type="text/css">
-    .blueUnit, .loyalist{
+    .blueUnit, .french{
         background-color:rgb(132,181,255);
     }
-    .loyalistVP{
+    .frenchVP{
         color:rgb(132,181,255);
         background: transparent;
         opacity:1.0;
     }
-    .rebelVP{
+    .austrianlVP{
         color:rgb(239,115,74);
         background: transparent;
     }
-    .sympth{
+    .russian{
         background-color:gold;
     }
-    .armyGreen, .sympth{
+    .armyGreen, .russian{
     background-color:  rgb(148,189,74);
     }
-    .rebel{
+    .austrian{
         background-color:rgb(239,115,74);
     }
-    .lightYellow, .rebel{
+    .lightYellow, .austrian{
         background-color: rgb(255,239,156);
     }
     .flesh{
@@ -49,10 +49,10 @@
 #crt{
     width:476px;
 }
-    .rebel div{
+    .austrian div{
         color:black;
     }
-    .sympth div{
+    .russian div{
         color:black;
     }
 

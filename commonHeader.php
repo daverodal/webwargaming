@@ -515,12 +515,12 @@ body{
     }
     .unit div {
         text-align:center;
-    margin-top:<?=$unitMargin?>;
-    color:black;
+        margin-top:<?=$unitMargin?>;
+        color:black;
         /*text-indent:3px;*/
-    font-size:<?=$unitFontSize?>;
-    font-weight:bold;
-    -webkit-user-select:none;
+        font-size:<?=$unitFontSize?>;
+        font-weight:bold;
+        -webkit-user-select:none;
         }
     .unit img {
         width:100%;
@@ -764,7 +764,7 @@ x.register("mapUnits", function(mapUnits) {
         }
         var  move = mapUnits[i].maxMove - mapUnits[i].moveAmountUsed;
         var str = mapUnits[i].strength;
-        var symb = mapUnits[i].isReduced ? " r " : " - ";
+        var symb = mapUnits[i].isReduced ? " - " : " - ";
         $("#"+i+" div").html(str + symb + move);
         $("#"+i).attr("src",img);
     }
@@ -1088,7 +1088,7 @@ x.register("combatRules", function(combatRules,data) {
                                 idxDisp = "No effect";
                             }
 
-                            newLine =  "<h5>odds = "+ oddsDisp +"</h5><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+idxDisp+"</div>";
+                            newLine =  "<h5>odds = "+ oddsDisp +"</h5><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+$(".col"+combatCol).html()+"</div>";
                             if(cD !== false && cD == i){
                                 activeCombat = combatIndex;
                                 activeCombatLine = newLine;

@@ -54,6 +54,9 @@ class CombatResultsTable
             return $this->combatResultsTable[$Die][$index];
         }
 
+    function getCombatDisplay(){
+        return $this->combatResultsHeader;
+    }
     function getCombatIndex($attackStrength, $defenseStrength){
         if($attackStrength >= $defenseStrength){
             $combatIndex = floor($attackStrength / $defenseStrength)+3;

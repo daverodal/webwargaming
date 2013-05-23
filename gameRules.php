@@ -530,6 +530,7 @@ class GameRules {
                     $turn = $this->turn;
                     $this->force->setAttackingForceId($this->attackingForceId);
                     if($this->phase == BLUE_MOVE_PHASE || $this->phase ==  RED_MOVE_PHASE){
+                        $this->flashMessages[] = "@hide crt";
                         if($this->force->reinforceTurns->$turn->$forceId){
                             $this->flashMessages[] = "You have reinforcements.";
                             $this->flashMessages[] = "@show OBC";
