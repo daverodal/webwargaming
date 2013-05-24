@@ -112,6 +112,7 @@ class NapOnMars extends Battle {
         $data->players = $this->players;
         $data->playerData = $this->playerData;
         $data->display = $this->display;
+        $data->victory = $this->victory->save();
         $data->terrainName = "terrain-NapOnMars";
         $data->genTerrain = $this->genTerrain;
         if($this->genTerrain){
@@ -148,9 +149,9 @@ class NapOnMars extends Battle {
     function __construct($data = null, $arg = false)
     {
         $this->mapData = MapData::getInstance();
-        $this->victory = new Victory();
         if ($data) {
             $this->genTerrain = false;
+            $this->victory = new Victory("NOM",$data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]),new MapViewer($data->mapViewer[1]),new MapViewer($data->mapViewer[2]));
@@ -165,6 +166,8 @@ class NapOnMars extends Battle {
             $this->playerData = $data->playerData;
         } else {
             $this->genTerrain = true;
+            $this->victory = new Victory("NOM");
+
             if($arg == 0){
                 $this->mapData->setData(20,10,"js/mcw.png");
             }

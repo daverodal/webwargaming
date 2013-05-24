@@ -514,10 +514,11 @@ class GameRules {
                 if ($this->phaseChanges[$i]->currentPhase == $this->phase) {
                     $this->phase = $this->phaseChanges[$i]->nextPhase;
                     $this->mode = $this->phaseChanges[$i]->nextMode;
+                    $this->replacementsAvail = false;
                     if($this->attackingForceId != $this->phaseChanges[$i]->nextAttackerId){
                         $battle = Battle::getBattle();
                         $victory = $battle->victory;
-                        $victory->playerTurnChange();
+                        $victory->playerTurnChange($this->phaseChanges[$i]->nextAttackerId);
                         $this->turnChange = true;
                     }
                     $forceId = $this->attackingForceId = $this->phaseChanges[$i]->nextAttackerId;
@@ -538,18 +539,7 @@ class GameRules {
                         }
                     }
                     $this->force->recoverUnits($this->phase,$this->moveRules, $this->mode);
-                    $this->replacementsAvail = false;
-                    if($this->phase == BLUE_MECH_PHASE || $this->phase == RED_MECH_PHASE){
-                        $this->flashMessages[] = "@hide crt";
-                    }
-                    if($this->phase  == BLUE_REPLACEMENT_PHASE){
-                        $this->flashMessages[] = "Rebel Player Turn";
-                        $this->replacementsAvail = 1;
-                    }
-                    if($this->phase  == RED_REPLACEMENT_PHASE){
-                        $this->flashMessages[] = "Loyalist Player Turn";
-                        $this->replacementsAvail = 10;
-                    }
+
                     if ($this->turn > $this->maxTurn) {
                         $this->flashMessages[] = "@gameover";
                         $this->mode = GAME_OVER_MODE;

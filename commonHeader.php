@@ -101,7 +101,7 @@ h5{
     border-radius:30px;
     border:10px solid black;
     /*border:none;*/
-    font-size:205px;
+    font-size:100px;
     z-index:1000;
 }
 #display button{
@@ -1194,6 +1194,7 @@ x.register("combatRules", function(combatRules,data) {
                                 $("#crt").animate({left:0 - crtWid},300);
                                 $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
                             }else{
+                                $("#crt").animate({left:crtWid},300);
                                 $("#crtWrapper").animate({left:0},300);
 
                             }

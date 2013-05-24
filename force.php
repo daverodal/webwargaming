@@ -1075,7 +1075,7 @@ class Force
             $victory->postRecoverUnit($this->units[$id]);
 
         }
-        $victory->preRecoverUnits();
+        $victory->postRecoverUnits();
 
     }
 
