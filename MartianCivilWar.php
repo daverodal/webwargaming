@@ -352,6 +352,11 @@ class MartianCivilWar extends Battle {
 //                    $this->terrain->addReinforceZone(300 + $i,"R");
 //
 //            }
+                $loyalReinf = array(3016,3017,3018,3019,3020,2320,2420,2520,2620,2720,2820,2920);
+                foreach($loyalReinf as $zone){
+                    $this->terrain->addReinforceZone($zone,"L");
+
+                }
             /*
              * First put clear everywhere, hexes and hex sides
              */
