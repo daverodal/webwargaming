@@ -542,6 +542,14 @@ body{
 </style>
 <script>
 $(document).ready(function(){
+    $("#phaseClicks").on("click",".phaseClick",function(){
+        x.timeTravel = true;
+        if(x.current){
+            x.current.abort();
+        }
+        var click = $(this).attr('data-click');
+        x.fetch(click);
+    });
     $("#timeMachine").click(function(){
         x.timeTravel = true;
         if(x.current){
@@ -570,6 +578,13 @@ x.register("chats", function(chats) {
         str = str.replace(/$/,"</span>");
         $("#chats").prepend(str);
     }
+});
+x.register("phaseClicks",function(clicks){
+    var str = "";
+    for(var i in clicks){
+        str += "<a class='phaseClick' data-click='"+clicks[i]+"'>"+clicks[i]+"</a> " ;
+    }
+    $("#phaseClicks").html(str);
 });
 x.register("click",function(click){
     $("#clickCnt").html(click);
@@ -1237,8 +1252,7 @@ function doit() {
     var mychat = $("#mychat").attr("value");
     $.ajax({url: "<?=site_url("wargame/add/");?>",
         type: "POST",
-        data:{chat:mychat,
-    },
+        data:{chat:mychat},
     success:function(data, textstatus) {
         alert(data);
     }

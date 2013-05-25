@@ -47,6 +47,7 @@
         <button id="timeMachine">Time Travel</button>
         <button id="timeSurge">Time Surge</button>
         <button id="timeLive">Live</button>
+        <span id="phaseClicks"></span>
         </div>
     <?php global $results_name;?>
 

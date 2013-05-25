@@ -122,7 +122,7 @@ class MartianCivilWar extends Battle {
         return $data;
     }
 
-    function poke($event, $id, $x, $y, $user,$isHotSeat = false, $name){
+    function poke($event, $id, $x, $y, $user, $click){
 
         $playerId = $this->gameRules->attackingForceId;
         if($this->players[$this->gameRules->attackingForceId] != $user){
@@ -133,16 +133,16 @@ class MartianCivilWar extends Battle {
             case SELECT_MAP_EVENT:
                 $mapGrid = new MapGrid($this->mapViewer[$playerId]);
                 $mapGrid->setPixels($x, $y);
-                return $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon() );
+                return $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon(), $click );
                 break;
 
             case SELECT_COUNTER_EVENT:
-                return $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id));
+                return $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id),$click);
 
                 break;
 
             case SELECT_BUTTON_EVENT:
-                $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0,0 );
+                $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0,$click );
 
         }
         return true;

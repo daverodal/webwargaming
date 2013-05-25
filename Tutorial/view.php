@@ -43,7 +43,8 @@
         <button id="timeMachine">Time Travel</button>
         <button id="timeSurge">Time Surge</button>
         <button id="timeLive">Live</button>
-        </div>
+        <span id="phaseClicks"></span>
+    </div>
     <?php global $results_name;?>
 
     <span id="hideShow">Hide/Show</span>

@@ -625,6 +625,11 @@ x.register("chats", function(chats) {
         $("#chats").prepend(str);
     }
 });
+x.register("clicks",function(clicks){
+    for(var i in clicks){
+        alert(clicks[i]);
+    }
+});
 x.register("click",function(click){
     $("#clickCnt").html(click);
 });
@@ -1290,7 +1295,7 @@ x.register("combatRules", function(combatRules,data) {
                }
 
             }
-            str += "Resolved Combats: "+resolvedCombats+"</div>";
+            str += "Resolved Combats: "+resolvedCombats+"</div>";628
             $("#status").html(lastCombat+str);
 
         }
@@ -1316,8 +1321,7 @@ function doit() {
     var mychat = $("#mychat").attr("value");
     $.ajax({url: "<?=site_url("wargame/add/");?>",
         type: "POST",
-        data:{chat:mychat,
-    },
+        data:{chat:mychat},
     success:function(data, textstatus) {
         alert(data);
     }

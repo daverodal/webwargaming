@@ -821,7 +821,7 @@ function doit() {
     var mychat = $("#mychat").attr("value");
     $.ajax({url: "<?=site_url("wargame/add/");?>",
         type: "POST",
-        data:{chat:mychat,
+        data:{chat:mychat
         },
         success:function(data, textstatus) {
         }

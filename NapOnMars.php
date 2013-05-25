@@ -121,7 +121,7 @@ class NapOnMars extends Battle {
         return $data;
     }
 
-    function poke($event, $id, $x, $y, $user){
+    function poke($event, $id, $x, $y, $user, $click){
         $playerId = $this->gameRules->attackingForceId;
         if($this->players[$this->gameRules->attackingForceId] != $user){
             return false;
@@ -131,16 +131,16 @@ class NapOnMars extends Battle {
             case SELECT_MAP_EVENT:
                 $mapGrid = new MapGrid($this->mapViewer[$playerId]);
                 $mapGrid->setPixels($x, $y);
-                $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon() );
+                $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon(),$click );
                 break;
 
             case SELECT_COUNTER_EVENT:
 
-                $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id));
+                $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id),$click);
                 break;
 
             case SELECT_BUTTON_EVENT:
-                $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0,0 );
+                $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0,$click );
 
 
         }
@@ -158,6 +158,7 @@ class NapOnMars extends Battle {
             $this->force = new Force($data->force);
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
+            $this->moveRules->stickyZOC = true;
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);

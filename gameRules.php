@@ -55,6 +55,7 @@ class GameRules {
     public $replacementsAvail;
     public $currentReplacement;
     public $turnChange;
+    public $phaseClicks;
 
     function save()
     {
@@ -101,6 +102,7 @@ class GameRules {
         $this->attackingForceId = BLUE_FORCE;
         $this->defendingForceId = RED_FORCE;
         $this->interactions = array();
+        $this->phaseClicks = array();
 
         $this->force->setAttackingForceId($this->attackingForceId);
         }
@@ -126,7 +128,7 @@ class GameRules {
         array_push($this->phaseChanges, $phaseChange);
     }
 
-    function processEvent($event, $id, $hexagon)
+    function processEvent($event, $id, $hexagon, $click)
     {
 
         global $phase_name, $event_name, $mode_name;
@@ -229,7 +231,7 @@ class GameRules {
 
                     case SELECT_BUTTON_EVENT:
                         $this->replacementsAvail = false;
-                        $this->selectNextPhase();
+                        $this->selectNextPhase($click);
                         break;
                 }
                 break;
@@ -252,7 +254,7 @@ class GameRules {
 
                     case SELECT_BUTTON_EVENT:
 
-                        $this->selectNextPhase();
+                        $this->selectNextPhase($click);
                         break;
                 }
                 break;
@@ -261,7 +263,7 @@ class GameRules {
                 if($event == SELECT_BUTTON_EVENT){
                     $this->display->next();
                     if(!$this->display->currentMessage){
-                        $this->selectNextPhase();
+                        $this->selectNextPhase($click);
                     }
                 }
                 break;
@@ -281,6 +283,9 @@ class GameRules {
                         $hexagon = new Hexagon($matchHex[1]);
                         $event = SELECT_MAP_EVENT;
                     }
+                    if($id === false){
+                        return false;
+                    }
 //                    if($this->phase == BLUE_PANZER_PHASE){/* Love that oo design */
 //                        if($event == SELECT_COUNTER_EVENT && $this->force->getUnitMaximumMoveAmount($id) != 6){
 //                            break;
@@ -296,7 +301,7 @@ class GameRules {
 
                     case SELECT_BUTTON_EVENT:
 
-                        $this->selectNextPhase();
+                        $this->selectNextPhase($click);
                         break;
                 }
                 break;
@@ -358,7 +363,7 @@ class GameRules {
                     case SELECT_BUTTON_EVENT:
                         if($this->force->moreCombatToResolve() == false){
                             $this->combatRules->cleanUp();
-                            $this->selectNextPhase();
+                            $this->selectNextPhase($click);
                         }
                         break;
                 }
@@ -408,7 +413,7 @@ class GameRules {
 
                     case SELECT_BUTTON_EVENT:
 
-                        $this->selectNextPhase();
+                        $this->selectNextPhase($click);
                         break;
                 }
                 break;
@@ -506,7 +511,7 @@ class GameRules {
 
     }
 
-    function selectNextPhase()
+    function selectNextPhase($click)
     {
         if ($this->force->moreCombatToResolve() == false && $this->moveRules->anyUnitIsMoving == false) {
             for ($i = 0; $i < count($this->phaseChanges); $i++) {
@@ -515,6 +520,7 @@ class GameRules {
                     $this->phase = $this->phaseChanges[$i]->nextPhase;
                     $this->mode = $this->phaseChanges[$i]->nextMode;
                     $this->replacementsAvail = false;
+                    $this->phaseClicks[] = $click+1;
                     if($this->attackingForceId != $this->phaseChanges[$i]->nextAttackerId){
                         $battle = Battle::getBattle();
                         $victory = $battle->victory;

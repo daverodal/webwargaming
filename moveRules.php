@@ -24,6 +24,7 @@ class MoveRules{
     private $moves;
     private $path;
     private $moveQueue;
+    public $stickyZOC;
 
     function save(){
         $data = new StdClass();
@@ -54,6 +55,7 @@ class MoveRules{
             $this->anyUnitIsMoving = false;
             $this->storm = false;
             $this->railMove = false;
+            $this->stickyZOC = false;
         }
     }
 
@@ -353,7 +355,7 @@ class MoveRules{
         /*
          * remove the true || to make Active Locking zoc's
          */
-        if (true || $this->force->unitIsZOC($id) == false) {
+        if (!$this->stickyZOC || $this->force->unitIsZOC($id) == false) {
             if ($this->force->units[$id]->setStatus( STATUS_MOVING) == true) {
                 $this->anyUnitIsMoving = true;
                 $this->movingUnitId = $id;

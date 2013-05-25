@@ -1053,6 +1053,12 @@ class Force
 
                         }
                     }
+                if($mode  == MOVING_MODE && $moveRules->stickyZOC){
+                    if($this->units[$id]->forceId == $this->attackingForceId &&
+                        $this->unitIsZOC($id,  $this->units[$id]->range )){
+                        $status = STATUS_STOPPED;
+                    }
+                }
 //                    if($phase == RED_RAILROAD_PHASE) {
 //                        $status = STATUS_STOPPED;
 //                        $hexpart = new Hexpart();
