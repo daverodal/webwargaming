@@ -17,6 +17,20 @@ h5{
 .shadowy{
     background-color: rgba(0,0,0,.3) !important;
 }
+
+#floatMessage{
+    position:absolute;
+    display:none;
+    background:rgba(255,255,255,.9);
+    border-radius: 10px;
+    border:2px solid black;
+    box-shadow: 10px 10px 10px rgba(30,30,30,.85);
+    z-index:4;
+    padding:0 5px;
+}
+#floatMessage header{
+    font-size:35px;
+}
 #comlinkWrapper{
     border:1px solid black;
     border-radius: 10px;
@@ -633,11 +647,18 @@ x.register("gameRules", function(gameRules) {
     }
     switch(gameRules.mode){
         case <?=EXCHANGING_MODE?>:
+            $("#floatMessage header").html("Exchanging Mode");
+
         case <?=ATTACKER_LOSING_MODE?>:
-                html += "<br>Lose at least "+gameRules.exchangeAmount+" strength points from the units outlined in red";
+            $("#floatMessage header").html("Attacker Loss Mode");
+            html += "<br>Lose at least "+gameRules.exchangeAmount+" strength points from the units outlined in red";
             break;
         case <?=ADVANCING_MODE?>:
-            html += "<br>Click on one of the pink units to advance it.<br>then  click on a hex to advance, or the unit to stay put.";
+            html += "<br>Click on one of the black units to advance it.<br>then  click on a hex to advance, or the unit to stay put.";
+            $("#floatMessage header").html("Advancing Mode");
+            break;
+        case <?=RETREATING_MODE?>:
+                $("#floatMessage header").html("Retreating Mode");
             break;
     }
     $("#clock").html(html);
@@ -889,7 +910,7 @@ x.register("moveRules", function(moveRules) {
         });
     }
 });
-x.register("force", function(force) {
+x.register("force", function(force,data) {
 //        if(this.animate !== false){
 //            self.clearInterval(this.animate);
 //            this.animate = false;
@@ -900,6 +921,7 @@ x.register("force", function(force) {
     var status = "";
     var boxShadow;
     var shadow;
+    $("#floatMessage").hide();
     for (i in units) {
         color = "#ccc #666 #666 #ccc";
         $("#"+i + " .arrow").css({opacity: "0.0"});
@@ -966,22 +988,45 @@ x.register("force", function(force) {
 //                color = "red";
                 break;
             case <?=STATUS_CAN_RETREAT?>:
+                    if(data.gameRules.mode == <?=RETREATING_MODE?>){
+                        status = "Click on the Purple Unit to start retreating";
+                    }
                 color = "purple";
                 break;
             case <?=STATUS_RETREATING?>:
                 color = "yellow";
+                if(data.gameRules.mode == <?=RETREATING_MODE?>){
+
+                    status = "Now click on a hex adjacent to the yellow unit. ";
+                }
                 break;
             case <?=STATUS_CAN_ADVANCE?>:
+                    if(data.gameRules.mode == <?=ADVANCING_MODE?>){
+                       status = 'Click on one of the black units to advance it.';
+                    }
                 color = "black";
                     shadow = false;
+
                 break;
             case <?=STATUS_ADVANCING?>:
-                    shadow = false;
+                if(data.gameRules.mode == <?=ADVANCING_MODE?>){
+
+                    status = 'Now click on the vacated hex, to advance<br>or click on the turquoise unit to stay put..';
+                }
+
+                shadow = false;
                 color = "cyan";
                 break;
             case <?=STATUS_CAN_EXCHANGE?>:
-            case <?=STATUS_CAN_ATTACK_LOSE?>:
+                if($("#flashMessage header").html() != <?=ADVANCING_MODE?>){
 
+                    $("#floatMessage header").html('Exchanging Mode');
+                status = "Click on one of the red units to reduce it."
+                }
+            case <?=STATUS_CAN_ATTACK_LOSE?>:
+                if(data.gameRules.mode == <?=ATTACKER_LOSING_MODE?>){
+                    status = "Click on one of the red units to reduce it."
+                }
                 color = "red";
                 break;
             case <?=STATUS_REPLACED?>:
@@ -999,6 +1044,44 @@ x.register("force", function(force) {
                 break;
 
 
+        }
+        if(status){
+            var x = $("#"+i).css('left').replace(/px/,"");
+            var y = $("#"+i).css('top').replace(/px/,"");
+            var mapWidth = $("body").css('width').replace(/px/,"");
+//                    $("#map").css('width').replace(/px/,"");
+
+//            if(x < mapWidth/2){
+//                var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
+//                var crtWid = $("#crt").css('width').replace(/px/,"");
+//                crtWid = 0 - (crtWid - wrapWid + 40);
+//
+//                var moveLeft = $("body").css('width').replace(/px/,"");
+//                $("#crt").animate({left:crtWid},300);
+//                $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
+//            }else{
+//                $("#crtWrapper").animate({left:0},300);
+//                $("#crt").animate({left:0},300);
+//
+//
+//            }
+            x = parseInt(x);
+            mapWidth = parseInt(mapWidth);
+            if(x > mapWidth/2){
+                x = (mapWidth - x);
+                x += 100;
+                $("#floatMessage").css('right',x+"px");
+                $("#floatMessage").css('left',"auto");
+
+            }else{
+                x += 100;
+                $("#floatMessage").css('left',x+"px");
+                $("#floatMessage").css('right',"auto");
+            }
+            $("#floatMessage").css('top',y+"px");
+            $("#floatMessage").show();
+        $("#floatMessage p").html(status);
+            status = "";
         }
         /*$("#status").html(status);*/
 //        $("#"+i).css({borderColor: color});

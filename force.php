@@ -1094,6 +1094,15 @@ class Force
             }
         }
     }
+    function resetRemainingNonAdvancingUnits()
+    {
+        for ($id = 0; $id < count($this->units); $id++)
+        {
+            if ($this->units[$id]->status == STATUS_CAN_ADVANCE) {
+                $this->units[$id]->status = STATUS_ATTACKED;
+            }
+        }
+    }
 
     function resetRemainingAdvancingUnits()
     {

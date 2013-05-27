@@ -815,6 +815,7 @@ class MoveRules{
             {
                 if ($this->force->unitCanAdvance($id) == true) {
                     $this->startAdvancing($id);
+                    $this->force->resetRemainingNonAdvancingUnits();
                 }
             }
         }

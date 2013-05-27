@@ -236,6 +236,7 @@
 
                 </div>
                 {/units}
+                <div id="floatMessage"><header></header><p></p></div>
             </div>
 
             <!-- end gameImages -->
