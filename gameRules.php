@@ -92,6 +92,7 @@ class GameRules {
         $this->combatRules = $CombatRules;
         $this->force = $Force;
         $this->phaseChanges = array();
+            $this->currentReplacement = false;
 
         $this->turn = 1;
         $this->combatModeType = COMBAT_SETUP_MODE;
@@ -211,7 +212,7 @@ class GameRules {
                             }
 
                             if ($this->force->units[$id]->status == STATUS_ELIMINATED) {
-                                if ($this->currentReplacement && $this->currentReplacement != $id) {
+                                if ($this->currentReplacement !== false && $this->currentReplacement != $id) {
                                     $this->force->units[$this->currentReplacement]->setStatus(STATUS_ELIMINATED);
                                 }
 //                                $this->force->units[$id]->status = STATUS_CAN_REPLACE;
@@ -221,8 +222,10 @@ class GameRules {
                             }
                             if ($this->force->units[$id]->status != STATUS_CAN_REPLACE && $this->force->units[$id]->status != STATUS_CAN_REINFORCE && $this->force->replace($id)) {
                                 $this->replacementsAvail--;
-                                if ($this->currentReplacement) {
+                                if ($this->currentReplacement !== false) {
                                     $this->force->units[$this->currentReplacement]->status = STATUS_ELIMINATED;
+                                    $this->moveRules->stopReplacing($id);
+
                                     $this->currentReplacement = false;
                                 }
                             }
@@ -230,8 +233,9 @@ class GameRules {
                         break;
 
                     case SELECT_BUTTON_EVENT:
-                        $this->replacementsAvail = false;
-                        $this->selectNextPhase($click);
+                        if($this->selectNextPhase($click)){
+                            $this->replacementsAvail = false;
+                        }
                         break;
                 }
                 break;
@@ -553,10 +557,11 @@ class GameRules {
                     }
 
 
-                    break;
+                    return true;;
                 }
             }
         }
+        return false;
     }
 
     function incrementTurn()
