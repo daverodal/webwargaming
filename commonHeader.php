@@ -423,7 +423,7 @@ body{
     #gameViewer{
         border:10px solid #555;
         border-radius:10px;
-        overflow:hidden;
+        overflow:visible;
         background:#ccc;
         margin-bottom:5px;
     }
@@ -1120,20 +1120,20 @@ x.register("combatRules", function(combatRules,data) {
                     var mapWidth = $("body").css('width').replace(/px/,"");
 //                    $("#map").css('width').replace(/px/,"");
 
-                    if(x < mapWidth/2){
-                        var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
-                        var crtWid = $("#crt").css('width').replace(/px/,"");
-                        crtWid = 0 - (crtWid - wrapWid + 40);
-
-                        var moveLeft = $("body").css('width').replace(/px/,"");
-                        $("#crt").animate({left:crtWid},300);
-                        $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
-                    }else{
-                        $("#crtWrapper").animate({left:0},300);
-                        $("#crt").animate({left:0},300);
-
-
-                    }
+//                    if(x < mapWidth/2){
+//                        var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
+//                        var crtWid = $("#crt").css('width').replace(/px/,"");
+//                        crtWid = 0 - (crtWid - wrapWid + 40);
+//
+//                        var moveLeft = $("body").css('width').replace(/px/,"");
+//                        $("#crt").animate({left:crtWid},300);
+//                        $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
+//                    }else{
+//                        $("#crtWrapper").animate({left:0},300);
+//                        $("#crt").animate({left:0},300);
+//
+//
+//                    }
                     if(Object.keys(combatRules.combats[cD].attackers).length != 0){
                     combatCol = combatRules.combats[cD].index + 1;
                    if(combatCol >= 1){
