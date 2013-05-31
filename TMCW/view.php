@@ -195,6 +195,64 @@
         </ul>
         </div>
     </div>
+    <div id="VCWrapper">
+        <h4>Victory Conditions</h4>
+        <DIV id="VC" style="display:none;">
+            <ul>
+                <li>
+                    <div class="colOne">
+                        <span>Objective</span>
+                    </div>
+                    <div class="colTwo">For Rebel</div>
+                    <div class="colThree">For Loyalists</div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="colOne ">
+                        <span>Taking small city</span>
+                    </div>
+                    <div class="colTwo">1 point when taken.</div>
+                    <div class="colThree">none.</div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="colOne ">
+                        <span>Last to enter small city</span>
+                    </div>
+                    <div class="colTwo">1 point at end of each player turn.</div>
+                    <div class="colThree">1/2 point at end of each player turn.</div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="colOne ">
+                        <span>Taking Cuniform</span>
+                    </div>
+                    <div class="colTwo">1 point when entering.</div>
+                    <div class="colThree">none.</div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="colOne ">
+                        <span>Last to enter Cuniform</span>
+                    </div>
+                    <div class="colTwo">5 points at end of each player turn.</div>
+                    <div class="colThree">1/2 point at end of each player turn.</div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="colOne ">
+                        <span>Killing or Reducing Enemy Unit</span>
+                    </div>
+                    <div class="colTwo">none.</div>
+                    <div class="colThree">1 point per strength point lost.</div>
+                    <div class="clear"></div>
+                </li>
+
+                <!--    Empty one for the bottom border -->
+                <li class="closer"></li>
+            </ul>
+        </div>
+    </div>
 </header>
 <div id="content">
 

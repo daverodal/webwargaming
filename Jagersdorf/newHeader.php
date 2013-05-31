@@ -65,6 +65,10 @@
     height:0px;
     padding:0px;
 }
+    #VCWrapper .closer{
+        height:0px;
+        padding:0px;
+    }
 #TECWrapper .colOne.riverHex{
     background-image: url('<?=base_url()?>js/river.png');
     background-position:0px -26px;
@@ -130,4 +134,46 @@
 }
 #TECWrapper img, #TECWrapper div{
 }
+
+
+
+
+    #VCWrapper .colOne{
+        background-size:400px;
+        width:220px;
+        height:56px;
+        margin-left:20px;
+    }
+    #VCWrapper .colTwo{
+        width:170px;
+        padding-right:10px;
+    }
+    #VCWrapper .colThree{
+        width:136px;
+    }
+    #VCWrapper .colOne span{
+        margin-top:12px;
+        margin-left: 80px;
+        display:inline-block;
+    }
+    #VCWrapper .colTwo, #VCWrapper .colThree{
+        margin-top:12px;
+    }
+    #VCWrapper .colOne,
+    #VCWrapper .colTwo,
+    #VCWrapper .colThree{
+        float:left;
+    }
+    #VCWrapper div{
+        /*height:112px;*/
+    }
+    #VCWrapper li{
+        list-style-type: none;
+        /*height:79px;*/
+        border:0 solid black;
+        border-width:1px 1px 0 1px;
+        padding:5px 20px 5px 0px;
+    }
+    #VCWrapper img, #VCWrapper div{
+    }
 </style>

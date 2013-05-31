@@ -33,7 +33,6 @@ class victoryCore{
 
         $theUnits = $battle->force->units;
         foreach($theUnits as $id => $unit){
-            echo "$id ";
 
             if($unit->status == STATUS_CAN_REINFORCE && $unit->reinforceTurn <= $battle->gameRules->turn && $unit->hexagon->parent != "deployBox"){
                 $theUnits[$id]->status = STATUS_ELIMINATED;

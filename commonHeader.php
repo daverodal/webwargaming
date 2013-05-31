@@ -221,7 +221,7 @@ h5{
 #statusDiv{
 
 }
-#crtWrapper , #OBCWrapper,#TECWrapper{
+#crtWrapper , #OBCWrapper,#TECWrapper,#VCWrapper{
     user-select:none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -229,7 +229,7 @@ h5{
     position: absolute;
 
 }
-#crtWrapper h4, #OBCWrapper h4, #TECWrapper h4{
+#crtWrapper h4, #OBCWrapper h4, #TECWrapper h4,#VCWrapper h4{
     margin:0;
     border:none;
     user-select:none;
@@ -252,6 +252,11 @@ h5{
     left:34%;
     bottom:0px;
 }
+#VCWrapper{
+    width:120px;
+    left:44%;
+    bottom:0px;
+}
 #OBC{
     left:-240px;
 }
@@ -259,7 +264,10 @@ h5{
     margin:0;
     padding:0
 }
-#hideShow{
+#VC ul{
+    margin:0;
+    padding:0
+}#hideShow{
     cursor:pointer;
     left:69%;
     position: absolute;
@@ -281,6 +289,11 @@ h5{
     width:579px;
     left:-230px;
 }
+#VC{
+    background:white;
+    width:579px;
+    left:-230px;
+}
 #crtWrapper h4{
     width: 135px;
 
@@ -298,7 +311,7 @@ font-size:22px;
 }
 #OBCWrapper h4 {
 }
-#OBC, #crt, #TEC{
+#OBC, #crt, #TEC,#VC{
     position:absolute;
     z-index:30;
     display:none;
@@ -1549,10 +1562,17 @@ function initialize() {
     $( "#OBCWrapper h4" ).click(function() {
         $( "#OBC" ).toggle({effect:"blind",direction:"up"});
         $( "#TEC" ).hide({effect:"blind",direction:"up"});
+        $( "#VC" ).hide({effect:"blind",direction:"up"});
     });
     $( "#TECWrapper h4" ).click(function() {
         $( "#OBC" ).hide({effect:"blind",direction:"up"});
+        $( "#VC" ).hide({effect:"blind",direction:"up"});
         $( "#TEC" ).toggle({effect:"blind",direction:"up"});
+    });
+    $( "#VCWrapper h4" ).click(function() {
+        $( "#OBC" ).hide({effect:"blind",direction:"up"});
+        $( "#TEC" ).hide({effect:"blind",direction:"up"});
+        $( "#VC" ).toggle({effect:"blind",direction:"up"});
     });
     $("#crtWrapper h4 .goLeft").click(function(){
 //    $("#crtWrapper").css("float","left");

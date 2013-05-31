@@ -1,9 +1,9 @@
 <body>
 <style>
     body{
-        background:url("<?=base_url("js/Mars.jpg")?>") #333 no-repeat;
-        background-position:center;
-        background-size:1600px;
+        background:url("<?=base_url("js/civil-war-public-domain.jpg")?>") #333 no-repeat;
+        background-position:center top;
+        background-size:100%;
     }
     h1{
         color:#f66;
@@ -41,10 +41,12 @@
     color:white;
     }
    fieldset{
-       background:rgba(0,0,0,.3);
+       background:rgba(255,255,255,.8);
        text-align:center;width:30%;
        margin:60px auto;
        border-radius:15px;
+       border:3px solid black;
+       box-shadow:10px 10px 10px rgba(30,30,30,.9);
    }
     .clear{
         clear:both;
@@ -56,7 +58,7 @@
 <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
 
 <h2 style=""> Welcome to</h2>
-    <h1 style="text-align:center;font-size:90px;font-family:'Great Vibes'">The Martian Civil War</h1>
+    <h1 style="text-align:center;font-size:90px;font-family:'Great Vibes'">Tutorials</h1>
 <div class="clear">&nbsp;</div>
 <fieldset ><Legend>Play As </Legend>
     <a class="link"  href="<?=site_url("wargame/enterHotseat");?>/<?=$wargame?>">Play Hotseat</a><br>
