@@ -1535,21 +1535,6 @@ function counterMouseDown(event) {
     if(zoomed){
         doZoom(event);
         return;
-        var pixelX, pixelY;
-        pixelX = event.pageX;
-        pixelY = event.pageY;
-        var p;
-        p = $("#map").offset();
-        pixelX -= p.left;
-        pixelY -= p.top;
-
-        zoomed = false;
-        var left = (pixelX /-.3)+200;
-        if(left > 0){
-            left = 0;
-        }
-        $("#gameImages").css("left",left);
-        return;
     }
 
     var id;
@@ -1659,6 +1644,8 @@ function initialize() {
     });
     $("#jumpWrapper h4").click(function(){
         $("#gameViewer").css({zoom:.3});
+        $("#gameViewer").css("-moz-transform","scale(.3)");
+        $("#gameViewer").css("-moz-transform","scale(.3)");
         $("#gameImages").css('left',0);
         zoomed = true;
     })
