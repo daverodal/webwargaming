@@ -41,16 +41,16 @@
 
             </div>
         </div>
-        <div style="clear:left;"></div>
+        <div style="clear:both;"></div>
 
-            <div id="clickCnt"></div>
-        <button id="timeMachine">Time Travel</button>
-        <button id="timeSurge">Time Surge</button>
-        <button id="timeLive">Live</button>
-        <span id="phaseClicks"></span>
+<!--            <div id="clickCnt"></div>-->
+<!--        <button id="timeMachine">Time Travel</button>-->
+<!--        <button id="timeSurge">Time Surge</button>-->
+<!--        <button id="timeLive">Live</button>-->
+<!--        <span id="phaseClicks"></span>-->
         </div>
     <?php global $results_name;?>
-
+<div id="bottomHeader" style="clear:both;">
     <span id="hideShow">Hide/Show</span>
     <button id="nextPhaseButton">Next Phase</button>
     <div id="crtWrapper">
@@ -253,6 +253,7 @@
             </ul>
         </div>
     </div>
+</div>
 </header>
 <div id="content">
 
@@ -280,7 +281,7 @@
             <div style="clear:both;"></div>
         </div>
 
-        <div id="gameViewer" style="position:relative;">
+        <div id="gameViewer">
             <div id="gameImages" class="ui-widget-content">
                 <img id="map" alt="map" src="<?php echo base_url();?>js/MartianIV.png"
                      style="position: relative;visibility: visible;z-index: 0;">

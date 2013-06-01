@@ -1,5 +1,8 @@
 <link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 <style type="text/css">
+body{
+    min-width:675px;
+}
 h2 #status{
     font-size:16px;
 }
@@ -131,7 +134,7 @@ h5{
     top:0px;
     background:#99cc99;
     background:rgb(132,181,255);
-    padding-bottom:25px;
+    padding-bottom:5px;
     z-index:2000;
 }
 #mouseMove{
@@ -144,7 +147,7 @@ h5{
     font-size:15px;
     position: absolute;
     bottom: 0;
-    left:18%;
+    left:17%;
 }
     #header a, #header a:visited{
         color:white;
@@ -243,17 +246,17 @@ h5{
     bottom:0px;
 }
 #OBCWrapper{
-    width:120px;
-    left:51%;
+    width:10%;
+    left:57%;
     bottom:0px;
 }
 #TECWrapper{
-    width:120px;
-    left:34%;
+    width:10%;
+    left:32%;
     bottom:0px;
 }
 #VCWrapper{
-    width:120px;
+    width:10%;
     left:44%;
     bottom:0px;
 }
@@ -269,7 +272,7 @@ h5{
     padding:0
 }#hideShow{
     cursor:pointer;
-    left:69%;
+    left:67%;
     position: absolute;
     bottom: 0px;
     font-weight: bold;
@@ -307,7 +310,7 @@ h5{
 }
 #crtWrapper h4 .goLeft,#crtWrapper h4 .goRight{
 font-size:22px;
-    padding:0 15px;
+    padding:0 10px;
 }
 #OBCWrapper h4 {
 }
@@ -436,7 +439,7 @@ body{
     #gameViewer{
         border:10px solid #555;
         border-radius:10px;
-        overflow:visible;
+        overflow:hidden;
         background:#ccc;
         margin-bottom:5px;
     }
@@ -595,7 +598,17 @@ $(document).ready(function(){
         x.timeTravel = false;
         x.fetch(0);
     });
+
+    fixHeader();
+    $(window).resize(fixHeader);
 });
+function fixHeader(){
+    height = $("#OBCWrapper h4").height();
+        $("#bottomHeader").css("height",height);
+    $("#crtWrapper").animate({left:0},300);
+    $("#crt").animate({left:0},300);
+    $("#content").css("margin-top",$("#header").height() + 10);
+}
 x = new Sync("<?=site_url("wargame/fetch/");?>");
 x.register("chats", function(chats) {
     var str;
@@ -832,7 +845,6 @@ x.register("moveRules", function(moveRules) {
 
 //        $("#status").html("Unit #:"+moveRules.movingUnitId+" is currently moving");
         if(moveRules.hexPath){
-            alert("WHAT IS A HEXPATH!");
             id = moveRules.movingUnitId;
             for( i in moveRules.hexPath){
                 newId = id+"Hex"+i;
@@ -1110,6 +1122,29 @@ x.register("force", function(force,data) {
 
     }
 });
+function fixCrt(){
+    if(!cD){
+        return;
+    }
+    var off = parseInt($("#gameImages").offset().left);
+    var x = parseInt($("#"+cD).css('left').replace(/px/,"")) + off;
+    var mapWidth = $("body").css('width').replace(/px/,"");
+    $("#map").css('width').replace(/px/,"");
+    if(x < mapWidth/2){
+        var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
+        var crtWid = $("#crt").css('width').replace(/px/,"");
+        crtWid = 0 - (crtWid - wrapWid + 40);
+
+        var moveLeft = $("body").css('width').replace(/px/,"");
+        $("#crt").animate({left:crtWid},300);
+        $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
+    }else{
+        $("#crtWrapper").animate({left:0},300);
+        $("#crt").animate({left:0},300);
+    }
+}
+var chattyCrt = false;
+var cD; /* object oriented! */
 x.register("combatRules", function(combatRules,data) {
 
     for(var combatCol = 1;combatCol <= 10;combatCol++){
@@ -1128,25 +1163,11 @@ x.register("combatRules", function(combatRules,data) {
         if(combatRules.combats && Object.keys(combatRules.combats).length > 0){
                 if(cD !== false){
                 $("#"+cD).css({borderColor: "yellow"});
-                    $("#crt").show({effect:"blind",direction:"up"});
-                    var x = $("#"+cD).css('left').replace(/px/,"");
-                    var mapWidth = $("body").css('width').replace(/px/,"");
-//                    $("#map").css('width').replace(/px/,"");
-
-//                    if(x < mapWidth/2){
-//                        var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
-//                        var crtWid = $("#crt").css('width').replace(/px/,"");
-//                        crtWid = 0 - (crtWid - wrapWid + 40);
-//
-//                        var moveLeft = $("body").css('width').replace(/px/,"");
-//                        $("#crt").animate({left:crtWid},300);
-//                        $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
-//                    }else{
-//                        $("#crtWrapper").animate({left:0},300);
-//                        $("#crt").animate({left:0},300);
-//
-//
-//                    }
+                    if(!chattyCrt){
+                        $("#crt").show({effect:"blind",direction:"up"});
+                        chattyCrt = true;
+                    }
+                    fixCrt();
                     if(Object.keys(combatRules.combats[cD].attackers).length != 0){
                     combatCol = combatRules.combats[cD].index + 1;
                    if(combatCol >= 1){
@@ -1231,7 +1252,10 @@ x.register("combatRules", function(combatRules,data) {
                 $("#crtOddsExp").html(activeCombatLine);
                 $("#status").html(cdLine+str);
 
+            }else{
+                chattyCrt = false;
             }
+
 
         var lastCombat = "";
         if(combatRules.combatsToResolve){
@@ -1291,7 +1315,7 @@ x.register("combatRules", function(combatRules,data) {
                      idx = combatRules.resolvedCombats[i].index+ 1;
                     newLine = "";
                     if(combatRules.resolvedCombats[i].Die){
-                        $("#crt").show({effect:"blind",direction:"up"});
+//                        $("#crt").show({effect:"blind",direction:"up"});
                         var x = $("#"+cD).css('left').replace(/px/,"");
                         var mapWidth = $("body").css('width').replace(/px/,"");
 //                    $("#map").css('width').replace(/px/,"");
@@ -1375,6 +1399,7 @@ function doitUnit(id) {
             $('body').css({cursor:"auto"});
             $(this).css({cursor:"auto"});
             $("#"+id+"").removeClass("pushed");
+            $("#comlink").html('Working');
         },
     success:function(data, textstatus) {
         var success = +$.parseJSON(data).success;
@@ -1395,9 +1420,9 @@ $("#mychat").attr("value", "");
 }
 function doitMap(x,y) {
     playAudio();
-    $('body').css({cursor:"wait"});
-    $(this).css({cursor:"wait"});
-    $("#comlink").html('waiting');
+//    $('body').css({cursor:"wait"});
+//    $(this).css({cursor:"wait"});
+//    $("#comlink").html('waiting');
 
     $.ajax({url: "<?=site_url("wargame/poke/");?>/",
         type: "POST",
@@ -1416,7 +1441,7 @@ function doitMap(x,y) {
             $(this).css({cursor:"auto"});
         }
 });
-
+return true;
 }
 function doitNext() {
     $.ajax({url: "<?=site_url("wargame/poke/");?>/",
@@ -1534,7 +1559,7 @@ function initialize() {
     $("#gameImages").on("mousedown",".specialHexes",mapMouseDown);
 
     $("#nextPhaseButton").on('mousedown',nextPhaseMouseDown);
-    $( "#gameImages" ).draggable({distance:40,axis:"x"});
+    $( "#gameImages" ).draggable({distance:40,axis:"x",stop:fixCrt});
     $("#muteButton").click(function(){
        if(!mute){
            $("#muteButton").html("un-mute");
@@ -1599,10 +1624,15 @@ function initialize() {
     $( "#hideShow" ).click(function() {
         up ^= 1;
         $( "#headerContent" ).toggle({effect:"blind",direction:"up"});
+        var howFar;
+        howFar = $("#bottomHeader").height();
         if(up){
-            $("#content").animate({marginTop:"30px"},"slow");
+//            alert(howFar);
+            howFar += 10;
+            $("#content").animate({marginTop:howFar+"px"},"slow");
         }else{
-            $("#content").animate({marginTop:"140px"},"slow");
+            howFar += 120;
+            $("#content").animate({marginTop:howFar+"px"},"slow");
 
         }
     });

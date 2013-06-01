@@ -40,6 +40,26 @@ class victoryCore{
             }
         }
     }
+    public function phaseChange(){
+        /* @var $battle MartianCivilWar */
+        $battle = Battle::getBattle();
+        /* @var $gameRules GameRules */
+        $gameRules = $battle->gameRules;
+        $turn = $gameRules->turn;
+
+
+        if($gameRules->phase != BLUE_COMBAT_PHASE || $gameRules->phase == RED_COMBAT_PHASE){
+            $gameRules->flashMessages[] = "@hide crt";
+        }
+        if($gameRules->phase == BLUE_REPLACEMENT_PHASE || $gameRules->phase ==  RED_REPLACEMENT_PHASE){
+            $forceId = $gameRules->attackingForceId;
+            var_dump($battle->force->reinforceTurns);
+            if($battle->force->reinforceTurns->$turn->$forceId){
+                echo "I A AM AMA ";
+                $gameRules->flashMessages[] = "Reinforcements have been moved to the dead pile";
+            }
+        }
+    }
     public function playerTurnChange($arg){
         $attackingId = $arg[0];
         $battle = Battle::getBattle();

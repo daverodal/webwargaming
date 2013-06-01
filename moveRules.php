@@ -25,7 +25,10 @@ class MoveRules{
     private $path;
     private $moveQueue;
     public $stickyZOC;
-
+    public $enterZoc = "stop";
+    public $exitZoc = 0;
+    public $noZocZoc = false;
+    public $noZocZocOneHex = false;
     function save(){
         $data = new StdClass();
         foreach($this as $k => $v){
@@ -94,7 +97,17 @@ class MoveRules{
                             $this->moveQueue[] = $hexPath;
                             $this->bfsMoves();
 
-//                            $this->walkMoves($startHex,$movesLeft,$this->path,false);
+                            $movesAvail = 0;
+                            foreach($this->moves as $move){
+                                if($move->isOccupied || !$move->isValid){
+                                    continue;
+                                }
+                                $movesAvail++;
+                            }
+
+                            if($movesAvail === 0){
+                                $this->stopMove($movingUnit);
+                            }
                         }
                         $dirty = true;
                     }
@@ -198,7 +211,9 @@ class MoveRules{
 //                }
             }else{
                 /* invalid hex */
-                if($this->moves->$hexNum->isValid == false){
+                if($this->moves->$hexNum->isValid === false){
+                    continue;
+                    throw new Exception("This shouldn 't happen bfsMoves");
                     return;
                 }
                 /* already been here with more points */
@@ -223,10 +238,16 @@ class MoveRules{
             if($this->moves->$hexNum->isZoc == NULL){
                 $this->moves->$hexNum->isZoc = $this->force->mapHexIsZOC($mapHex);
             }
+            $exitCost = 0;
             if($this->moves->$hexNum->isZoc){
+                if(is_numeric($this->exitZoc)){
+                    $exitCost += $this->exitZoc;
+                }
 //                $this->moves->$hexNum->pointsLeft = 0;
                 if(!$hexPath->firstHex){
-                    continue;
+                    if($this->enterZoc == 'stop'){
+                        continue;
+                    }
                 }
 
             }
@@ -241,14 +262,21 @@ class MoveRules{
                 if(!$newHexNum){
                     continue;
                 }
-//                var_dump($this->terrain->terrainArray);die('inpoke');
 
-                $moveAmount = $this->terrain->getTerrainMoveCost($theHex, $newHex, $this->railMove);
+                $moveAmount = $this->terrain->getTerrainMoveCost($theHex, $newHex, $this->railMove) + $exitCost;
+                $newMapHex = $this->mapData->getHex($newHexNum);
+                $isZoc = $this->force->mapHexIsZOC($newMapHex);
+                if($isZoc && is_numeric($this->enterZoc)){
+                    $moveAmount += $this->enterZoc;
+                }
 //            $moveAmount = .5;
                 if($moveAmount <= 0){
                     $moveAmount = 1;
                 }
-                if($movePoints - $moveAmount >= 0){
+                if($this->noZocZoc && $isZoc && $hexPath->isZoc){
+                    continue;
+                }
+                if($movePoints - $moveAmount >= 0 || (!($isZoc && $hexPath->isZoc && $this->noZocZocOneHex)) && $hexPath->firstHex === true){
                     $head = false;
                     if(isset($this->moves->$newHexNum)){
                         if($this->moves->$newHexNum->pointsLeft > ($movePoints - $moveAmount) ){
@@ -534,6 +562,11 @@ class MoveRules{
     function updateMoveData(unit $movingUnit, Hexagon $hexagon)
     {
         $moveAmount = $this->terrain->getTerrainMoveCost($movingUnit->getUnitHexagon(), $hexagon, $this->railMove);
+        if ($this->force->hexagonIsZOC($movingUnit->id, $hexagon) == true) {
+            if(is_numeric($this->enterZoc)){
+                $moveAmount += $this->enterZoc;
+            }
+        }
         $movingUnit->updateMoveStatus($hexagon, $moveAmount);
 
         if(($this->storm && !$this->railMove) && !$movingUnit->unitHasNotMoved()){
@@ -544,7 +577,9 @@ class MoveRules{
         }
 
         if ($this->force->unitIsZOC($movingUnit->id) == true) {
-            $this->stopMove($movingUnit);
+            if($this->enterZoc == "stop"){
+                $this->stopMove($movingUnit);
+            }
         }
 
         if ($this->terrain->isExit($hexagon)) {

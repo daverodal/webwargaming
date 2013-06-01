@@ -847,7 +847,7 @@ class Force
         return $isOccupied;
     }
 
-    function mapHexIsZoc($mapHex){
+    function mapHexIsZoc(MapHex $mapHex){
         $neighbors = $mapHex->neighbors;
 
         if($neighbors){

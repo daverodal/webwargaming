@@ -277,6 +277,7 @@ class GameRules {
                 switch ($event) {
 
                     case SELECT_MAP_EVENT:
+                        return 0;
                     case SELECT_COUNTER_EVENT:
                     if(strpos($id,"Hex")){
                         $matchId = array();
@@ -332,6 +333,8 @@ class GameRules {
                             $this->mode = COMBAT_SETUP_MODE;
                         }
                         break;
+                    default:
+                        return 0;
                 }
                 break;
 
@@ -520,18 +523,20 @@ class GameRules {
         if ($this->force->moreCombatToResolve() == false && $this->moveRules->anyUnitIsMoving == false) {
             for ($i = 0; $i < count($this->phaseChanges); $i++) {
 
+                $battle = Battle::getBattle();
+                $victory = $battle->victory;
                 if ($this->phaseChanges[$i]->currentPhase == $this->phase) {
                     $this->phase = $this->phaseChanges[$i]->nextPhase;
                     $this->mode = $this->phaseChanges[$i]->nextMode;
                     $this->replacementsAvail = false;
                     $this->phaseClicks[] = $click+1;
                     if($this->attackingForceId != $this->phaseChanges[$i]->nextAttackerId){
-                        $battle = Battle::getBattle();
-                        $victory = $battle->victory;
+
                         $victory->playerTurnChange($this->phaseChanges[$i]->nextAttackerId);
                         $this->turnChange = true;
                     }
-                    $forceId = $this->attackingForceId = $this->phaseChanges[$i]->nextAttackerId;
+                    $this->attackingForceId = $this->phaseChanges[$i]->nextAttackerId;
+                    $victory->phaseChange();
                     $this->defendingForceId = $this->phaseChanges[$i]->nextDefenderId;
 
                     if ($this->phaseChanges[$i]->phaseWillIncrementTurn == true) {
@@ -540,14 +545,7 @@ class GameRules {
                     }
                     $turn = $this->turn;
                     $this->force->setAttackingForceId($this->attackingForceId);
-                    if($this->phase == BLUE_MOVE_PHASE || $this->phase ==  RED_MOVE_PHASE){
-                        $this->flashMessages[] = "@hide crt";
-                        if($this->force->reinforceTurns->$turn->$forceId){
-                            $this->flashMessages[] = "You have reinforcements.";
-                            $this->flashMessages[] = "@show OBC";
 
-                        }
-                    }
                     $this->force->recoverUnits($this->phase,$this->moveRules, $this->mode);
 
                     if ($this->turn > $this->maxTurn) {
