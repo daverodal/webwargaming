@@ -224,7 +224,7 @@ h5{
 #statusDiv{
 
 }
-#crtWrapper , #OBCWrapper,#TECWrapper,#VCWrapper{
+#crtWrapper , #OBCWrapper,#TECWrapper,#VCWrapper,#jumpWrapper{
     user-select:none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -232,7 +232,7 @@ h5{
     position: absolute;
 
 }
-#crtWrapper h4, #OBCWrapper h4, #TECWrapper h4,#VCWrapper h4{
+#crtWrapper h4, #OBCWrapper h4, #TECWrapper h4,#VCWrapper h4,#jumpWrapper h4{
     margin:0;
     border:none;
     user-select:none;
@@ -247,17 +247,22 @@ h5{
 }
 #OBCWrapper{
     width:10%;
-    left:57%;
+    left:60%;
     bottom:0px;
 }
 #TECWrapper{
-    width:10%;
+    width:9%;
     left:32%;
     bottom:0px;
 }
 #VCWrapper{
     width:10%;
-    left:44%;
+    left:48%;
+    bottom:0px;
+}
+#jumpWrapper{
+    width:6%;
+    left:41%;
     bottom:0px;
 }
 #OBC{
@@ -272,7 +277,7 @@ h5{
     padding:0
 }#hideShow{
     cursor:pointer;
-    left:67%;
+    left:69%;
     position: absolute;
     bottom: 0px;
     font-weight: bold;
@@ -494,6 +499,7 @@ body{
         -webkit-user-select:none;
     width:<?=$mapWidth;?>;/*really*/
     height:<?=$mapHeight;?>;
+    height:<?=$mapHeight;?>;
 
         }
     #gameImages {
@@ -571,6 +577,8 @@ body{
     }
 </style>
 <script>
+var zoomed = false;
+
 $(document).ready(function(){
     $("#phaseClicks").on("click",".phaseClick",function(){
         x.timeTravel = true;
@@ -1481,18 +1489,68 @@ function mapMouseDown(event) {
         pixelX = event.pageX;
         pixelY = event.pageY;
     var p;
-    p = $("#map").offset();
+    p = $("#content").offset();
     pixelX -= p.left;
     pixelY -= p.top;
 
-    doitMap(pixelX,pixelY);
+//    alert(pixelX /.3);
+    if(zoomed){
+        doZoom(event);
+        zoomed = false;
+        return;
+    }
+        doitMap(pixelX,pixelY);
 
 }
 
 function changePosition(player){
     $("#flash").html(player);
 }
+function doZoom(event){
+
+    var pixelX, pixelY;
+    pixelX = event.pageX;
+    pixelY = event.pageY;
+    var p;
+    p = $("#content").offset();
+    pixelX -= p.left;
+    pixelY -= p.top;
+
+    zoomed = false;
+//        alert(event.clientY);
+//        alert(p.top);
+//        alert(pixelY);
+//        alert(pixelY);
+    width = $("body").width();
+    var left = (pixelX /-.3)+(width/2);
+    if(left > 0){
+        left = 0;
+    }
+    $("html, body").animate({scrollTop:pixelY+"px"},1500);
+    $("#gameViewer").animate({zoom:1.0},1500);
+$("#gameImages").animate({left:left},1500);
+
+}
 function counterMouseDown(event) {
+    if(zoomed){
+        doZoom(event);
+        return;
+        var pixelX, pixelY;
+        pixelX = event.pageX;
+        pixelY = event.pageY;
+        var p;
+        p = $("#map").offset();
+        pixelX -= p.left;
+        pixelY -= p.top;
+
+        zoomed = false;
+        var left = (pixelX /-.3)+200;
+        if(left > 0){
+            left = 0;
+        }
+        $("#gameImages").css("left",left);
+        return;
+    }
 
     var id;
     id = $(event.target).attr('id');
@@ -1599,6 +1657,11 @@ function initialize() {
         $( "#TEC" ).hide({effect:"blind",direction:"up"});
         $( "#VC" ).toggle({effect:"blind",direction:"up"});
     });
+    $("#jumpWrapper h4").click(function(){
+        $("#gameViewer").css({zoom:.3});
+        $("#gameImages").css('left',0);
+        zoomed = true;
+    })
     $("#crtWrapper h4 .goLeft").click(function(){
 //    $("#crtWrapper").css("float","left");
         $("#crtWrapper").animate({left:0},300);

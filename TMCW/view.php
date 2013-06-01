@@ -84,6 +84,9 @@
             <div id="crtOddsExp"></div>
         </div>
     </div>
+    <div id="jumpWrapper">
+        <h4>Jump</h4>
+    </div>
     <div id="OBCWrapper">
         <h4>Order of Battle</h4>
         <div id="OBC" style="display:none;">
