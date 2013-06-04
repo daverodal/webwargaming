@@ -686,13 +686,17 @@ $(document).ready(function(){
     });
 
     fixHeader();
-    $(window).resize(fixHeader);
+    $(window).resize(fixItAll);
 });
+function fixItAll(){
+    fixHeader();
+    fixCrt();
+}
 function fixHeader(){
     height = $("#VCWrapper h4").height();
         $("#bottomHeader").css("height",height);
-    $("#crtWrapper").animate({left:0},300);
-    $("#crt").animate({left:0},300);
+//    $("#crtWrapper").animate({left:0},300);
+//    $("#crt").animate({left:0},300);
     var headerHeight = $("#header").height();
     $("#content").css("margin-top",$("#header").height() + 10);
     var bodyHeight = $(window).height();
@@ -826,18 +830,14 @@ x.register("clock", function(clock) {
 var flashMessages;
 x.register("flashMessages",function(messages,data){
 
-//    alert("flash");
-//    alert(messages[0]);
     flashMessages = messages;
     flashMessage(data.gameRules.playerStatus);
-//    alert("WHY");
 });
 function flashMessage(playerStatus){
     var x = 100;
     var y = 200;
     fixHeader();
     var mess = flashMessages.shift();
-//    alert(mess);
     $("#FlashMessage").remove();
     while(mess){
 
@@ -964,9 +964,6 @@ x.register("moveRules", function(moveRules) {
     /*$("#status").html("");*/
     $(".clone").remove();
     if(moveRules.movingUnitId >= 0){
-//        alert("MovingUnitid"+moveRules.movingUnitId);
-
-//        $("#status").html("Unit #:"+moveRules.movingUnitId+" is currently moving");
         if(moveRules.hexPath){
             id = moveRules.movingUnitId;
             for( i in moveRules.hexPath){
@@ -1042,7 +1039,6 @@ x.register("moveRules", function(moveRules) {
                         $("#"+id+"Hex"+pathes[i]+".occupied").css("display","block");
 
                     }
-            //alert("A "+ path);
         },
         function(){
             $(this).css("opacity",.4).css("border-color","transparent").css('box-shadow','none');
@@ -1054,7 +1050,6 @@ x.register("moveRules", function(moveRules) {
 
             }
 
-           // alert("B");
         });
     }
 });
@@ -1447,18 +1442,18 @@ x.register("combatRules", function(combatRules,data) {
 //                    $("#map").css('width').replace(/px/,"");
                         /* STATUS_ELIMINATED */
                         if(data.force.units[cD].status != 22){
-                            if(x < mapWidth/2){
-                                var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
-                                var crtWid = $("#crt").css('width').replace(/px/,"");
-                                var moveLeft = $("body").css('width').replace(/px/,"");
-                                crtWid = crtWid - wrapWid + 40;
-                                $("#crt").animate({left:0 - crtWid},300);
-                                $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
-                            }else{
-                                $("#crt").animate({left:crtWid},300);
-                                $("#crtWrapper").animate({left:0},300);
-
-                            }
+//                            if(x < mapWidth/2){
+//                                var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
+//                                var crtWid = $("#crt").css('width').replace(/px/,"");
+//                                var moveLeft = $("body").css('width').replace(/px/,"");
+//                                crtWid = crtWid - wrapWid + 40;
+//                                $("#crt").animate({left:0 - crtWid},300);
+//                                $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
+//                            }else{
+//                                $("#crt").animate({left:crtWid},300);
+//                                $("#crtWrapper").animate({left:0},300);
+//
+//                            }
                         }
 
 //                        newLine += " Die "+combatRules.resolvedCombats[i].Die + " result "+combatRules.resolvedCombats[i].combatResult+"<br>";
@@ -1597,7 +1592,6 @@ function doitNext() {
 function mapMouseMove(event){
     var tar = event.target;
 
-//    alert(event.target.x);
     var x = event.pageX - event.target.x;
     var y = event.pageY - event.target.y;
     $("#mouseMove").html("X "+x+" Y "+y);
@@ -1610,11 +1604,10 @@ function mapMouseDown(event) {
         pixelX = event.pageX;
         pixelY = event.pageY;
     var p;
-    p = $("#content").offset();
+    p = $("#gameViewer").offset();
     pixelX -= p.left;
     pixelY -= p.top;
 
-//    alert(pixelX /.3);
     if(zoomed){
         doZoom(event);
         zoomed = false;
@@ -1632,36 +1625,24 @@ function doZoom(event){
     var pixelX, pixelY;
     pixelX = event.pageX;
     pixelY = event.pageY;
-//    alert(pixelY);
     var p;
     p = $("#gameViewer").offset();
-//    alert(p.top);
     pixelX -= p.left;
     pixelY -= p.top;
-//    alert(pixelY);
 
     zoomed = false;
-//        alert(event.clientY);
-//        alert(p.top);
-//        alert(pixelY);
-//        alert(pixelY);
     width = $("body").width();
     var left = (pixelX /-.3)+(width/2);
     var viewerHeight = $("#gameViewer").height()/2;
     var top = (pixelY /-.3)+(viewerHeight);
 
-//    alert($("body").width());
-//    $("#gameViewer").width($("body").width()- 20);
     if(left > 0){
         left = 0;
     }
     if(top > 0){
         top = 0;
     }
-//    $("html, body").animate({scrollTop:pixelY+"px"},1500);
-//    $("#gameImages").animate({},1500);
 $("#gameImages").animate({zoom:1.0,left:left,top:top},1500);
-//    $("#gameViewer").css({MozTransform:"scale(1.0)",overflow:"hidden"});
 }
 function counterMouseDown(event) {
     if(zoomed){
@@ -1844,7 +1825,6 @@ function initialize() {
         var howFar;
         if(up){
             howFar = 30;
-//            alert(howFar);
             $("#content").animate({marginTop:howFar+"px"},"slow");
         }else{
             howFar =50;
