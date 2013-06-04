@@ -59,7 +59,7 @@ class victoryCore{
                 $gameRules->flashMessages[] = "Reinforcements have been moved to the dead pile";
             }
         }
-        if($gameRules->phase == BLUE_MOVEMENT_PHASE || $gameRules->phase ==  RED_MOVEMENT_PHASE){
+        if($gameRules->phase == BLUE_MOVE_PHASE || $gameRules->phase ==  RED_MOVE_PHASE){
             $gameRules->flashMessages[] = "@hide deadpile";
         }
     }
