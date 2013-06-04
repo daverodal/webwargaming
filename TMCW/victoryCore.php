@@ -52,12 +52,15 @@ class victoryCore{
             $gameRules->flashMessages[] = "@hide crt";
         }
         if($gameRules->phase == BLUE_REPLACEMENT_PHASE || $gameRules->phase ==  RED_REPLACEMENT_PHASE){
+            $gameRules->flashMessages[] = "@show deadpile";
             $forceId = $gameRules->attackingForceId;
             var_dump($battle->force->reinforceTurns);
             if($battle->force->reinforceTurns->$turn->$forceId){
-                echo "I A AM AMA ";
                 $gameRules->flashMessages[] = "Reinforcements have been moved to the dead pile";
             }
+        }
+        if($gameRules->phase == BLUE_MOVEMENT_PHASE || $gameRules->phase ==  RED_MOVEMENT_PHASE){
+            $gameRules->flashMessages[] = "@hide deadpile";
         }
     }
     public function playerTurnChange($arg){

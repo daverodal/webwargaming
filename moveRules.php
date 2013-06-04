@@ -692,7 +692,9 @@ class MoveRules{
     {
         // id will be map if map event
         if ($eventType == SELECT_MAP_EVENT) {
+            echo "HI again ";
             if ($this->anyUnitIsMoving == true) {
+                echo "hi for the last time ";
                 $this->retreat($this->movingUnitId, $hexagon);
             }
         }
@@ -795,6 +797,7 @@ class MoveRules{
     {
         /* @var  unit */
         $movingUnit = $this->force->units[$id];
+        echo "call retreat ";
         if($this->retreatIsBlocked($id)){
 
             $hexagon = $movingUnit->getUnitHexagon();
@@ -804,10 +807,14 @@ class MoveRules{
             $this->stopMove($movingUnit);
             $this->force->eliminateUnit($id);
         }
+        echo "still calling ";
+        var_dump($hexagon);
+        var_dump($this->rangeIsOneHexagon($movingUnit->getUnitHexagon(), $hexagon));
         if ($this->rangeIsOneHexagon($movingUnit->getUnitHexagon(), $hexagon)
-            && $this->hexagonIsBlocked($id, $hexagon) == false
-            && $this->terrain->isExit($hexagon) == false
+            && $this->hexagonIsBlocked($id, $hexagon) === false
+            && $this->terrain->isExit($hexagon) === false
         ) {
+            echo "why this much";
 
             $this->force->addToRetreatHexagonList($id, $movingUnit->getUnitHexagon());
             // set move amount to 0

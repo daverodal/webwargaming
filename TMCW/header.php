@@ -3,6 +3,9 @@
     .blueUnit, .loyalist{
         background-color:rgb(132,181,255);
     }
+    .loyalistFace{
+        color:rgb(132,181,255);
+    }
     .loyalistVP{
         color:rgb(132,181,255);
         background: transparent;
@@ -20,6 +23,9 @@
     }
     .rebel{
         background-color:rgb(239,115,74);
+    }
+    .rebelFace{
+        color:rgb(239,115,74);
     }
     .lightYellow, .rebel{
         background-color: rgb(255,239,156);

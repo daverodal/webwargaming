@@ -9,18 +9,26 @@ h2 #status{
 h5{
     margin:0px;
 }
+h4:hover{
+    text-decoration:underline;
+}
 #rightHeader{
-    width:50%;
-    float:right;
+    /*width:50%;*/
+    /*float:right;*/
 }
 #leftHeader{
     width:49%;
     float:left;
+    display:none;
 }
 .shadowy{
     background-color: rgba(0,0,0,.3) !important;
 }
-
+#turn,#phase, #status,#victory{
+    background:white;
+    padding:0 3px;
+    font-family:sans-serif;
+}
 #floatMessage{
     position:absolute;
     display:none;
@@ -38,7 +46,7 @@ h5{
     border:1px solid black;
     border-radius: 10px;
     background:white;
-    padding:0 5px 0 5px;
+    padding:0 2px 0 2px;
     font-style: italic;
 }
 .unit.pushed section{
@@ -141,7 +149,7 @@ h5{
     display:none;
 }
 #headerContent{
-    min-height:110px;
+    /*min-height:110px;*/
 }
 #nextPhaseButton{
     font-size:15px;
@@ -153,7 +161,7 @@ h5{
         color:white;
     }
     #header a:hover{
-        color:#ddd;
+        color:#ddd !important;
     }
     #header h2{
         margin: 10px 0 5px;
@@ -224,7 +232,7 @@ h5{
 #statusDiv{
 
 }
-#crtWrapper , #OBCWrapper,#TECWrapper,#VCWrapper,#jumpWrapper{
+#crtWrapper , #OBCWrapper,#TECWrapper,#VCWrapper,#jumpWrapper,#menuWrapper,#infoWrapper{
     user-select:none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -232,14 +240,17 @@ h5{
     position: absolute;
 
 }
-#crtWrapper h4, #OBCWrapper h4, #TECWrapper h4,#VCWrapper h4,#jumpWrapper h4{
+#crtWrapper h4, #OBCWrapper h4, #TECWrapper h4,#VCWrapper h4,#jumpWrapper h4,#menuWrapper h4,#infoWrapper h4{
     margin:0;
     border:none;
     user-select:none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     cursor: pointer;
-
+    width:3em;
+}
+#menuWrapper h4{
+    width:2.5em;
 }
 #crtWrapper{
     left:0px;
@@ -254,6 +265,32 @@ h5{
     width:9%;
     left:32%;
     bottom:0px;
+}
+#menuWrapper{
+     width:6em;
+}
+#infoWrapper{
+    left:45px;
+}
+#menuWrapper li{
+    list-style-type: none;
+    padding:5px 10px 5px 10px;
+    border:0 solid black;
+    border-width:1px 1px 0 1px;
+}
+#infoWrapper li{
+    list-style-type: none;
+    padding:5px 10px 5px 10px;
+    border:0 solid black;
+    border-width:1px 1px 0 1px;
+}
+#menuWrapper li a, #menuWrapper li a:visited{
+    color:#333;
+    text-decoration:none;
+}
+#infoWrapper li a, #infoWrapper li a:visited{
+    color:#333;
+    text-decoration:none;
 }
 #VCWrapper{
     width:10%;
@@ -272,10 +309,39 @@ h5{
     margin:0;
     padding:0
 }
+#menu ul{
+    margin:0;
+    padding:0;
+}
+#menu{
+    background:white;
+    color:#333;
+    width:160%;
+}
+#info ul{
+    margin:0;
+    padding:0;
+}
+#info{
+    background:white;
+    color:#333;
+    width:10em;
+}
+.close{
+    position: absolute;
+    border: 1px solid #ccc;
+    right:3px;
+    top:3px;
+    color:#ccc;
+    font-size:11px;
+    line-height: 12px;
+    cursor:pointer;
+}
 #VC ul{
     margin:0;
     padding:0
-}#hideShow{
+}
+#hideShow{
     cursor:pointer;
     left:69%;
     position: absolute;
@@ -318,11 +384,16 @@ font-size:22px;
     padding:0 10px;
 }
 #OBCWrapper h4 {
+    width:2em;
 }
-#OBC, #crt, #TEC,#VC{
+#OBC, #crt, #TEC,#VC,#jump,#menu,#info{
     position:absolute;
     z-index:30;
     display:none;
+}
+.closer{
+    height:0px;
+    padding:0px !important;
 }
 #crt{
     z-index: 40;
@@ -336,6 +407,7 @@ body{
     }
 
     #clock{
+        margin-left:5em;
         /*width:100px;*/
     }
     #status{
@@ -442,6 +514,7 @@ body{
         position: relative;
     }
     #gameViewer{
+        position:fixed;
         border:10px solid #555;
         border-radius:10px;
         overflow:hidden;
@@ -509,14 +582,19 @@ body{
     #deadpile{
         border-radius:10px;
         border:10px solid #555;
-        height:100px;
+        height:70px;
         background:#333;
         overflow:hidden;
+        position: relative;
+        margin-bottom:5px;
+        /*display:none;*/
     }
     #deployBox{
         position:relative;
+
     }
     #deployWrapper{
+        /*display:none;*/
         padding:4px 7px 4px 7px;
         text-align:left;
         font-family:sans-serif;
@@ -611,12 +689,30 @@ $(document).ready(function(){
     $(window).resize(fixHeader);
 });
 function fixHeader(){
-    height = $("#OBCWrapper h4").height();
+    height = $("#VCWrapper h4").height();
         $("#bottomHeader").css("height",height);
     $("#crtWrapper").animate({left:0},300);
     $("#crt").animate({left:0},300);
+    var headerHeight = $("#header").height();
     $("#content").css("margin-top",$("#header").height() + 10);
+    var bodyHeight = $(window).height();
+    var bodyWidth = $(window).width();
+    var deployHeight = $("#deployWrapper:visible").height();
+    var deadHeight = $("#deadpile:visible").height();
+    if(deadHeight){
+        deadHeight += 10 + 10 + 4 + 4;
+    }
+    if(deployHeight){
+        deployHeight += 10 + 10 + 4 + 4;
+    }else{
+        deployHeight = 0;
+    }
+
+    $("#gameViewer").height(bodyHeight - deployHeight - deadHeight - headerHeight - 40 );
+    $("#gameViewer").width(bodyWidth - 35 );
+
 }
+
 x = new Sync("<?=site_url("wargame/fetch/");?>");
 x.register("chats", function(chats) {
     var str;
@@ -651,7 +747,7 @@ x.register("gameRules", function(gameRules) {
     }else{
         $("#display").html("").hide();
     }
-    var status = "&nbsp;";
+    var status = "";
     turn = gameRules.turn;
     if("gameTurn"+turn != $("#turnCounter").parent().attr("id")){
         $("#gameTurn"+turn).prepend($("#turnCounter"));
@@ -659,15 +755,21 @@ x.register("gameRules", function(gameRules) {
 
         var pix = turn  + (turn - 1) * 36 + 1;
     if(gameRules.attackingForceId == 1){
+        $("#header").css("background","rgb(223,88,66)");
         $("#turnCounter").css("background","rgb(0,128,0)");
         $("#turnCounter").css("color","white");
     }else{
+        $("#header").css("background","rgb(132,181,255)");
         $("#turnCounter").css("background","rgb(0,128,255)");
         $("#turnCounter").css("color","white");
     }
 
-    var html;
-    html = gameRules.phase_name[gameRules.phase] + " - " + gameRules.mode_name[gameRules.mode];
+    var html = "<span id='turn'>Turn "+turn+"</span> ";
+    html += "<span id='phase'>"+gameRules.phase_name[gameRules.phase];
+            if(gameRules.mode_name[gameRules.mode]){
+                html += " "+gameRules.mode_name[gameRules.mode];
+            }
+            html += "</span>";
     if(gameRules.storm){
         html += "<br><strong>Sand Storm rules in effect</strong>";
     }
@@ -685,10 +787,10 @@ x.register("gameRules", function(gameRules) {
 
         case <?=ATTACKER_LOSING_MODE?>:
             $("#floatMessage header").html("Attacker Loss Mode");
-            html += "<br>Lose at least "+gameRules.exchangeAmount+" strength points from the units outlined in red";
+//            html += "<br>Lose at least "+gameRules.exchangeAmount+" strength points from the units outlined in red";
             break;
         case <?=ADVANCING_MODE?>:
-            html += "<br>Click on one of the black units to advance it.<br>then  click on a hex to advance, or the unit to stay put.";
+//            html += "<br>Click on one of the black units to advance it.<br>then  click on a hex to advance, or the unit to stay put.";
             $("#floatMessage header").html("Advancing Mode");
             break;
         case <?=RETREATING_MODE?>:
@@ -696,10 +798,18 @@ x.register("gameRules", function(gameRules) {
             break;
     }
     $("#clock").html(html);
-    $("#status").html(status);
+    if(status){
+        $("#status").html(status);
+        $("#status").show();
+
+    }else{
+        $("#status").html(status);
+        $("#status").hide();
+
+    }
 });
 x.register("vp", function(vp){
-        $("#victory").html("<?=$force_name[1]?> "+vp[1]+ " <?=$force_name[2]?> "+vp[2]);
+        $("#victory").html(" Victory: <span class='rebelFace'>Rebel </span>"+vp[1]+ " <span class='loyalistFace'>Loyalist </span>"+vp[2]+"");
 
 });
 x.register("games", function(games) {
@@ -725,7 +835,7 @@ x.register("flashMessages",function(messages,data){
 function flashMessage(playerStatus){
     var x = 100;
     var y = 200;
-
+    fixHeader();
     var mess = flashMessages.shift();
 //    alert(mess);
     $("#FlashMessage").remove();
@@ -792,6 +902,8 @@ x.register("mapUnits", function(mapUnits) {
     var isStacked = new Array();
     var fudge;
     var x,y;
+    var beforeDeploy = $("#deployBox").children().size();
+
     for (i in mapUnits) {
         width = $("#"+i).width();
         height = $("#"+i).height();
@@ -839,8 +951,11 @@ x.register("mapUnits", function(mapUnits) {
         $("#"+i).attr("src",img);
     }
     var dpBox = $("#deployBox").children().size();
+    if(dpBox != beforeDeploy){
+        fixHeader();
+    }
     if(dpBox == 0){
-        $("#deployWrapper").hide();
+        $("#deployWrapper").hide({effect:"blind",direction:"up",complete:fixHeader});
     }
 
 });
@@ -949,6 +1064,7 @@ x.register("force", function(force,data) {
 //            this.animate = false;
 //            $("#"+this.animateId).stop(true);
 //        }
+    fixHeader();
     var units = force.units;
 
     var status = "";
@@ -1187,7 +1303,7 @@ x.register("combatRules", function(combatRules,data) {
                    }
                }
             }
-                   var str = "<div>";
+                   var str = "";
                     cdLine = "";
                     var combatIndex = 0;
                     for(i in combatRules.combats){
@@ -1256,9 +1372,10 @@ x.register("combatRules", function(combatRules,data) {
 
                     }
                 }
-                str += "</div>";
+                str += "";
                 $("#crtOddsExp").html(activeCombatLine);
                 $("#status").html(cdLine+str);
+                $("#status").show();
 
             }else{
                 chattyCrt = false;
@@ -1275,9 +1392,11 @@ x.register("combatRules", function(combatRules,data) {
                 $(".row"+combatRoll+" .col"+combatCol).css('background-color',"cyan");
 //                    $(".row"+combatRoll+" .col"+combatCol).css('color',"white");
             }
-            str += "<div>";
+            str += "";
+            var noCombats = false;
             if(Object.keys(combatRules.combatsToResolve) == 0){
-                str += "there are no combats to resolve<br>";
+                noCombats = true;
+                str += "there are no combats to resolve";
             }
             var combatsToResolve = 0;
             for(i in combatRules.combatsToResolve){
@@ -1305,9 +1424,8 @@ x.register("combatRules", function(combatRules,data) {
             }
             if(combatsToResolve){
             str += "Combats To Resolve: "+combatsToResolve;
+//            str += "</div></fieldset><fieldset><legend>Resolved Combats</legend>";
             }
-            str += "</div>";
-            str += "<div>";
 //            str += "</div></fieldset><fieldset><legend>Resolved Combats</legend>";
             var resolvedCombats = 0;
             for(i in combatRules.resolvedCombats){
@@ -1354,8 +1472,11 @@ x.register("combatRules", function(combatRules,data) {
                }
 
             }
-            str += "Resolved Combats: "+resolvedCombats+"</div>";
+            if(!noCombats){
+                str += "Resolved Combats: "+resolvedCombats+"";
+            }
             $("#status").html(lastCombat+str);
+            $("#status").show();
 
         }
     }
@@ -1511,10 +1632,13 @@ function doZoom(event){
     var pixelX, pixelY;
     pixelX = event.pageX;
     pixelY = event.pageY;
+//    alert(pixelY);
     var p;
-    p = $("#content").offset();
+    p = $("#gameViewer").offset();
+//    alert(p.top);
     pixelX -= p.left;
     pixelY -= p.top;
+//    alert(pixelY);
 
     zoomed = false;
 //        alert(event.clientY);
@@ -1523,13 +1647,21 @@ function doZoom(event){
 //        alert(pixelY);
     width = $("body").width();
     var left = (pixelX /-.3)+(width/2);
+    var viewerHeight = $("#gameViewer").height()/2;
+    var top = (pixelY /-.3)+(viewerHeight);
+
+//    alert($("body").width());
+//    $("#gameViewer").width($("body").width()- 20);
     if(left > 0){
         left = 0;
     }
-    $("html, body").animate({scrollTop:pixelY+"px"},1500);
-    $("#gameViewer").animate({zoom:1.0},1500);
-$("#gameImages").animate({left:left},1500);
-
+    if(top > 0){
+        top = 0;
+    }
+//    $("html, body").animate({scrollTop:pixelY+"px"},1500);
+//    $("#gameImages").animate({},1500);
+$("#gameImages").animate({zoom:1.0,left:left,top:top},1500);
+//    $("#gameViewer").css({MozTransform:"scale(1.0)",overflow:"hidden"});
 }
 function counterMouseDown(event) {
     if(zoomed){
@@ -1602,13 +1734,14 @@ function initialize() {
     $("#gameImages").on("mousedown",".specialHexes",mapMouseDown);
 
     $("#nextPhaseButton").on('mousedown',nextPhaseMouseDown);
-    $( "#gameImages" ).draggable({distance:40,axis:"x",stop:fixCrt});
+    $( "#gameImages" ).draggable({distance:40,stop:fixCrt});
     $("#muteButton").click(function(){
        if(!mute){
            $("#muteButton").html("un-mute");
            muteMe();
 
        }else{
+           $("#muteButton").html("mute");
            unMuteMe();
            playAudio();
        }
@@ -1628,27 +1761,56 @@ function initialize() {
 //    })
     var Player = 'Markarian';
     $( "#OBCWrapper h4" ).click(function() {
+        $( "#info" ).hide({effect:"blind",direction:"up"});
+        $( "#menu" ).hide({effect:"blind",direction:"up"});
         $( "#OBC" ).toggle({effect:"blind",direction:"up"});
         $( "#TEC" ).hide({effect:"blind",direction:"up"});
         $( "#VC" ).hide({effect:"blind",direction:"up"});
     });
     $( "#TECWrapper h4" ).click(function() {
+        $( "#info" ).hide({effect:"blind",direction:"up"});
+        $( "#menu" ).hide({effect:"blind",direction:"up"});
         $( "#OBC" ).hide({effect:"blind",direction:"up"});
         $( "#VC" ).hide({effect:"blind",direction:"up"});
         $( "#TEC" ).toggle({effect:"blind",direction:"up"});
     });
     $( "#VCWrapper h4" ).click(function() {
+        $( "#info" ).hide({effect:"blind",direction:"up"});
+        $( "#menu" ).hide({effect:"blind",direction:"up"});
         $( "#OBC" ).hide({effect:"blind",direction:"up"});
         $( "#TEC" ).hide({effect:"blind",direction:"up"});
         $( "#VC" ).toggle({effect:"blind",direction:"up"});
     });
+    $( "#menuWrapper h4" ).click(function() {
+        $( "#OBC" ).hide({effect:"blind",direction:"up"});
+        $( "#TEC" ).hide({effect:"blind",direction:"up"});
+        $( "#VC" ).hide({effect:"blind",direction:"up"});
+        $( "#info" ).hide({effect:"blind",direction:"up"});
+        $( "#menu" ).toggle({effect:"blind",direction:"up"});
+    });
+    $( "#infoWrapper h4" ).click(function() {
+        $( "#OBC" ).hide({effect:"blind",direction:"up"});
+        $( "#TEC" ).hide({effect:"blind",direction:"up"});
+        $( "#VC" ).hide({effect:"blind",direction:"up"});
+        $( "#menu" ).hide({effect:"blind",direction:"up"});
+        $( "#info" ).toggle({effect:"blind",direction:"up"});
+    });
     $("#jumpWrapper h4").click(function(){
-        $("#gameViewer").css({zoom:.3});
-        $("#gameViewer").css("-moz-transform","scale(.3)");
-        $("#gameViewer").css("-moz-transform","scale(.3)");
+        $( "#OBC" ).hide({effect:"blind",direction:"up"});
+        $( "#TEC" ).hide({effect:"blind",direction:"up"});
+        $( "#VC" ).hide({effect:"blind",direction:"up"});
+        $( "#info" ).hide({effect:"blind",direction:"up"});
+        $( "#menu" ).hide({effect:"blind",direction:"up"});
+        $( "#crt" ).hide({effect:"blind",direction:"up"});
+        $("#gameImages").css({zoom:.3,overflow:"visible"});
+        $("#gameImages").css({MozTransform:"translate(-33%, -33%) scale(.3)"});
+        $("html, body").animate({scrollTop:"0px"});
+
+
         $("#gameImages").css('left',0);
+        $("#gameImages").css('top',0);
         zoomed = true;
-    })
+    });
     $("#crtWrapper h4 .goLeft").click(function(){
 //    $("#crtWrapper").css("float","left");
         $("#crtWrapper").animate({left:0},300);
@@ -1665,6 +1827,9 @@ function initialize() {
         $("#crt").animate({left:0-crtWid},300);
         return false;
     });
+    $(".close").click(function(){
+        $(this).parent().hide({effect:"blind",direction:"up"});
+    })
     $( "#crtWrapper h4" ).click(function() {
         $( "#crt" ).toggle({effect:"blind",direction:"up"});
     });
@@ -1673,20 +1838,21 @@ function initialize() {
     var up = 0;
     $( "#hideShow" ).click(function() {
         up ^= 1;
-        $( "#headerContent" ).toggle({effect:"blind",direction:"up"});
+        $( "#deadpile" ).toggle({effect:"blind",direction:"up",complete:fixHeader});
+        fixHeader();
+        return;
         var howFar;
-        howFar = $("#bottomHeader").height();
         if(up){
+            howFar = 30;
 //            alert(howFar);
-            howFar += 10;
             $("#content").animate({marginTop:howFar+"px"},"slow");
         }else{
-            howFar += 120;
+            howFar =50;
             $("#content").animate({marginTop:howFar+"px"},"slow");
 
         }
     });
-
+    fixHeader();
 }
 $(function() {
 });

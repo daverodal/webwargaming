@@ -1,45 +1,47 @@
 <body xmlns="http://www.w3.org/1999/html">
+<div id="theDiv">
 <header id="header">
     <div id="headerContent">
         <div id="leftHeader">
             <span style="font-size:1.0em">Welcome {user} {player} to <span style="font-family:'Nosifer';">The Martian Civil War</span><span
                     style="font-style: italic;">&ldquo;{wargame}&rdquo;</span></span>
-            <div style="margin-top:0px;">
-                <a id="muteButton">mute</a>
-                <a href="<?=site_url("wargame/leaveGame");?>">Go To Lobby</a>
-                <a href="<?=site_url("wargame/logout");?>">logout</a>
-                <a href="<?=site_url("wargame/unitInit/MartianCivilWar");?>">Restart Game</a>
-                <a href="#" onclick="seeUnits();return false;">See Units</a>
-                <a href="#" onclick="seeBoth();return false;">See Both</a>
-                <a href="#" onclick="seeMap();return false;">See Map</a>
-            </div>
+
         </div>
         <div id="rightHeader">
             <div id="mouseMove">mouse</div>
             <div id="comlinkWrapper" style="float:right;">
-                <h4>Comlink</h4>
-
                 <div id="comlink"></div>
             </div>
-            <div>
-
-                <fieldset id="phaseDiv">
-                    <legend>Phase Mode
-                    </legend>
-                    <div id="clock"></div>
-                </fieldset>
-                <fieldset id="statusDiv">
-                    <legend>Status
-                    </legend>
-                    <div id="status"></div>
-                </fieldset>
-                <fieldset id="victoryDiv">
-                    <legend>Victory
-                    </legend>
-                    <div id="victory"></div>
-                </fieldset>
-
+            <div id="menuWrapper"><h4 title="Game Menu">Menu</h4>
+                <div id="menu"><div class="close">X</div>
+                    <ul>
+                        <li><a id="muteButton">mute</a></li>
+                        <li><a href="<?=site_url("wargame/leaveGame");?>">Go To Lobby</a></li>
+                        <li><a href="<?=site_url("wargame/logout");?>">logout</a></li>
+                        <li><a href="<?=site_url("wargame/unitInit/MartianCivilWar");?>">Restart Game</a></li>
+                        <li><a href="#" onclick="seeUnits();return false;">See Units</a></li>
+                        <li><a href="#" onclick="seeBoth();return false;">See Both</a></li>
+                        <li><a href="#" onclick="seeMap();return false;">See Map</a></li>
+                        <li class="closer"></li>
+                    </ul>
+                </div>
             </div>
+            <div id="infoWrapper"><h4 title="Game Information">Info</h4>
+                <div id="info"><div class="close">X</div>
+                    <ul>
+                        <li>   Welcome {user}</li>
+                        <li>you are playing as  <?=$player;?></li>
+                        <li>
+                            in <span style="font-family:'Nosifer';">The Martian Civil War</span></li>
+                        <li> The file is called {wargame}</li>
+
+                        <li class="closer"></li>
+                    </ul>
+                </div>
+            </div>
+                    <span id="clock"></span>
+                    <span id="status"></span>
+                   <span id="victory"></span>
         </div>
         <div style="clear:both;"></div>
 
@@ -51,11 +53,11 @@
         </div>
     <?php global $results_name;?>
 <div id="bottomHeader" style="clear:both;">
-    <span id="hideShow">Hide/Show</span>
+    <span id="hideShow">Rplacements</span>
     <button id="nextPhaseButton">Next Phase</button>
     <div id="crtWrapper">
-        <h4><span class="goLeft">&laquo;</span>View Crt<span class="goRight">&raquo;</span></h4>
-        <div id="crt">
+        <h4 title='Combat Results Table'><span class="goLeft">&laquo;</span>Crt<span class="goRight">&raquo;</span></h4>
+        <div id="crt"><div class="close">X</div>
             <h3>Combat Odds</h3>
 
             <div id="odds">
@@ -85,11 +87,11 @@
         </div>
     </div>
     <div id="jumpWrapper">
-        <h4>Jump</h4>
+        <h4 title="Jump Map">Jump</h4>
     </div>
     <div id="OBCWrapper">
-        <h4>Order of Battle</h4>
-        <div id="OBC" style="display:none;">
+        <h4 title='Order of Battle Chart'>OBC</h4>
+        <div id="OBC" style="display:none;"><div class="close">X</div>
             <fieldset>
                 <legend>turn 1</legend>
                 <div id="gameTurn1">
@@ -134,8 +136,8 @@
     </div>
 
     <div id="TECWrapper">
-        <h4>Terrain Effects</h4>
-        <DIV id="TEC" style="display:none;">
+        <h4 title='Terrain Effects Chart'>TEC</h4>
+        <DIV id="TEC" style="display:none;"><div class="close">X</div>
         <ul>
             <li>
                 <div class="colOne blankHex">
@@ -199,8 +201,8 @@
         </div>
     </div>
     <div id="VCWrapper">
-        <h4>Victory Conditions</h4>
-        <DIV id="VC" style="display:none;">
+        <h4 title="Victory Conditions">VC</h4>
+        <DIV id="VC" style="display:none;"><div class="close">X</div>
             <ul>
                 <li>
                     <div class="colOne">
@@ -259,31 +261,17 @@
 </div>
 </header>
 <div id="content">
-
-    <div id="leftcol">
-
-        <!-- <div id="chatDiv">
-            <form onsubmit="doit();return false;" id="chatform" method="post">
-
-                <input id="mychat" name="chats" type="text">
-                <input name="submit" type="submit">
-                <fieldset>
-                    <legend>Chats
-                    </legend>
-                    <div id="chats"></div>
-                </fieldset>
-            </form>
-        </div>-->
-
-        </div>
-    <div style="clear:both;"></div>
     <div id="rightCol">
         <div id="deployWrapper">
             <div style="margin-right:3px;" class="left">deploy on turn one</div>
             <div id="deployBox"></div>
             <div style="clear:both;"></div>
         </div>
-
+        <div style="display:none;" id="deadpile">
+            <div style="right:10px;font-size:50px;font-family:sans-serif;bottom:10px;position:absolute;color:#666;">
+                Retired Units
+            </div>
+        </div>
         <div id="gameViewer">
             <div id="gameImages" class="ui-widget-content">
                 <img id="map" alt="map" src="<?php echo base_url();?>js/MartianIV.png"
@@ -309,14 +297,11 @@
 
         <div style="clear:both;height:20px;"></div>
 
-        <div style="position:relative;" id="deadpile">
-            <div style="right:10px;font-size:50px;font-family:sans-serif;bottom:10px;position:absolute;color:#666;">
-                Retired Units
-            </div>
-        </div>
+
     </div>
 </div>
 <script type="text/javascript">
 </script>
 <div id="display"></div>
+</div>
 </body></html>
