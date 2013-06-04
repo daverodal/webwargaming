@@ -1604,7 +1604,7 @@ function mapMouseDown(event) {
         pixelX = event.pageX;
         pixelY = event.pageY;
     var p;
-    p = $("#gameViewer").offset();
+    p = $("#gameImages").offset();
     pixelX -= p.left;
     pixelY -= p.top;
 
@@ -1642,6 +1642,7 @@ function doZoom(event){
     if(top > 0){
         top = 0;
     }
+    $("#gameImages").css({MozTransform:"translate(0,0) scale(1.0)"});
 $("#gameImages").animate({zoom:1.0,left:left,top:top},1500);
 }
 function counterMouseDown(event) {
@@ -1715,7 +1716,7 @@ function initialize() {
     $("#gameImages").on("mousedown",".specialHexes",mapMouseDown);
 
     $("#nextPhaseButton").on('mousedown',nextPhaseMouseDown);
-    $( "#gameImages" ).draggable({distance:40,stop:fixCrt});
+    $( "#gameImages" ).draggable({stop:fixCrt});
     $("#muteButton").click(function(){
        if(!mute){
            $("#muteButton").html("un-mute");
