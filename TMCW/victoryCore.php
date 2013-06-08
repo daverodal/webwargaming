@@ -26,6 +26,7 @@ class victoryCore{
             $this->victoryPoints[$victorId] += $unit->strength;
         }else{
             $victorId = 1;
+            $this->victoryPoints[$victorId] += $unit->strength;
         }
     }
     public function incrementTurn(){
