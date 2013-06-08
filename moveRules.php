@@ -865,6 +865,15 @@ class MoveRules{
 
     function startAdvancing($id)
     {
+            $hexagon = $this->force->getFirstRetreatHex($id);
+            $startHex = $hexagon->name;
+            $hexPath = new HexPath();
+            $hexPath->name = $startHex->name;
+            $hexPath->pointsLeft = $this->force->units[$id]->maxMove;
+            $hexPath->pathToHere = array();
+            $hexPath->firstHex = true;
+            $this->moves->$startHex = $hexPath;
+
         if ($this->force->units[$id]->setStatus( STATUS_ADVANCING) == true) {
             $this->anyUnitIsMoving = true;
             $this->movingUnitId = $id;
@@ -884,6 +893,7 @@ class MoveRules{
     function stopAdvance($id)
     {
         if ($this->force->units[$id]->setStatus( STATUS_ADVANCED) == true) {
+            $this->moves = new stdClass();
             $this->force->resetRemainingAdvancingUnits();
             $this->anyUnitIsMoving = false;
             $this->movingUnitId = NONE;

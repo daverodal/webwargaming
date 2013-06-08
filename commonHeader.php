@@ -38,6 +38,7 @@ h4:hover{
     box-shadow: 10px 10px 10px rgba(30,30,30,.85);
     z-index:4;
     padding:0 5px;
+    cursor:move;
 }
 #floatMessage header{
     font-size:35px;
@@ -573,7 +574,6 @@ body{
     width:<?=$mapWidth;?>;/*really*/
     height:<?=$mapHeight;?>;
     height:<?=$mapHeight;?>;
-
         }
     #gameImages {
         width:<?=$mapWidth;?>;/*really*/
@@ -718,6 +718,194 @@ function fixHeader(){
 }
 
 x = new Sync("<?=site_url("wargame/fetch/");?>");
+x.register("force", function(force,data) {
+//        if(this.animate !== false){
+//            self.clearInterval(this.animate);
+//            this.animate = false;
+//            $("#"+this.animateId).stop(true);
+//        }
+    fixHeader();
+    var units = force.units;
+
+    var status = "";
+    var boxShadow;
+    var shadow;
+    $("#floatMessage").hide();
+    for (i in units) {
+        color = "#ccc #666 #666 #ccc";
+        $("#"+i + " .arrow").css({opacity: "0.0"});
+
+        boxShadow = "none";
+//        $("#"+i).css({zIndex: 100});
+        shadow = true;
+        if(units[i].forceId !== force.attackingForceId){
+            shadow = false;
+        }
+        switch(units[i].status){
+            case <?=STATUS_CAN_REINFORCE?>:
+                color = "#ccc #666 #666 #ccc";
+                shadow = false;
+                if(units[i].reinforceTurn){
+                    shadow = true;
+                }
+                break;
+            case <?=STATUS_READY?>:
+                if(units[i].forceId === force.attackingForceId){
+                    $("#"+i + " .arrow").css({opacity: "0.0"});
+
+//                    color = "turquoise";
+                    shadow = false;
+                }else{
+//                    shadow = false;
+
+//                    color = "purple";
+                }
+                break;
+            case <?=STATUS_REINFORCING?>:
+                shadow = false;
+                boxShadow = '5px 5px 5px #333';
+
+
+//                color = "orange";
+                break;
+            case <?=STATUS_MOVING?>:
+                color = "#ccc #666 #666 #ccc";
+                shadow = false;
+//                $("#"+i).css({zIndex: 101});
+                boxShadow = '5px 5px 5px #333';
+//               var top =  $("#"+i).css("top");
+//                var left =  $("#"+i).css("left");
+//                 $("#"+i).css({top:top-5});
+//                $("#"+i).css({left:left-5});
+
+
+
+//                status += " "+units[i].moveAmountUsed+" MF's Used";
+                break;
+            case <?=STATUS_STOPPED?>:
+                color = "#ccc #666 #666 #ccc";
+                break;
+            case <?=STATUS_DEFENDING?>:
+                color = "orange";
+
+                break;
+            case <?=STATUS_BOMBARDING?>:
+
+            case <?=STATUS_ATTACKING?>:
+
+                shadow = false;
+//                color = "red";
+                break;
+            case <?=STATUS_CAN_RETREAT?>:
+                if(data.gameRules.mode == <?=RETREATING_MODE?>){
+                    status = "Click on the Purple Unit to start retreating";
+                }
+                color = "purple";
+                break;
+            case <?=STATUS_RETREATING?>:
+                color = "yellow";
+                if(data.gameRules.mode == <?=RETREATING_MODE?>){
+
+                    status = "Now click on a hex adjacent to the yellow unit. ";
+                }
+                break;
+            case <?=STATUS_CAN_ADVANCE?>:
+                if(data.gameRules.mode == <?=ADVANCING_MODE?>){
+                    status = 'Click on one of the black units to advance it.';
+                }
+                color = "black";
+                shadow = false;
+
+                break;
+            case <?=STATUS_ADVANCING?>:
+                if(data.gameRules.mode == <?=ADVANCING_MODE?>){
+
+                    status = 'Now click on one of the turquoise units to advance or stay put..';
+                }
+
+                shadow = false;
+                color = "cyan";
+                break;
+            case <?=STATUS_CAN_EXCHANGE?>:
+                if($("#flashMessage header").html() != <?=ADVANCING_MODE?>){
+                    var result = data.combatRules.lastResolvedCombat.combatResult;
+//                    $("#floatMessage header").html(result+' Exchanging Mode');
+                    status = "Click on one of the red units to reduce it."
+                }
+            case <?=STATUS_CAN_ATTACK_LOSE?>:
+                if(data.gameRules.mode == <?=ATTACKER_LOSING_MODE?>){
+                    status = "Click on one of the red units to reduce it."
+                }
+                color = "red";
+                break;
+            case <?=STATUS_REPLACED?>:
+                color = "blue";
+                break;
+            case <?=STATUS_CAN_REPLACE?>:
+                color = "orange";
+                break;
+            case <?=STATUS_CAN_UPGRADE?>:
+            case <?=STATUS_ELIMINATED?>:
+                if(units[i].forceId === force.attackingForceId){
+                    shadow = false;
+                    color = "turquoise";
+                }
+                break;
+
+
+        }
+        if(status){
+            var x = $("#"+i).css('left').replace(/px/,"");
+            var y = $("#"+i).css('top').replace(/px/,"");
+            var mapWidth = $("body").css('width').replace(/px/,"");
+//                    $("#map").css('width').replace(/px/,"");
+
+//            if(x < mapWidth/2){
+//                var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
+//                var crtWid = $("#crt").css('width').replace(/px/,"");
+//                crtWid = 0 - (crtWid - wrapWid + 40);
+//
+//                var moveLeft = $("body").css('width').replace(/px/,"");
+//                $("#crt").animate({left:crtWid},300);
+//                $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
+//            }else{
+//                $("#crtWrapper").animate({left:0},300);
+//                $("#crt").animate({left:0},300);
+//
+//
+//            }
+            x = parseInt(x);
+            mapWidth = parseInt(mapWidth);
+            if(x > mapWidth/2){
+                x = (mapWidth - x);
+                x += 100;
+                $("#floatMessage").css('right',x+"px");
+                $("#floatMessage").css('left',"auto");
+
+            }else{
+                x += 100;
+                $("#floatMessage").css('left',x+"px");
+                $("#floatMessage").css('right',"auto");
+            }
+            $("#floatMessage").css('top',y+"px");
+            $("#floatMessage").show();
+            $("#floatMessage p").html(status);
+            status = "";
+        }
+        /*$("#status").html(status);*/
+//        $("#"+i).css({borderColor: color});
+        $("#"+i).css({borderColor: color});
+        if(shadow){
+            $("#"+i+" section").addClass("shadowy");
+        }else{
+            $("#"+i+" section").removeClass("shadowy");
+        }
+        $("#"+i).css({boxShadow: boxShadow});
+
+
+
+    }
+});
 x.register("chats", function(chats) {
     var str;
     for (i in chats) {
@@ -745,7 +933,7 @@ x.register("users", function(users) {
         $("#users").append(str);
     }
 });
-x.register("gameRules", function(gameRules) {
+x.register("gameRules", function(gameRules,data) {
     if(gameRules.display.currentMessage){
         $("#display").html(gameRules.display.currentMessage+"<button onclick='doitNext()'>Next</button>").show();
     }else{
@@ -762,10 +950,14 @@ x.register("gameRules", function(gameRules) {
         $("#header").css("background","rgb(223,88,66)");
         $("#turnCounter").css("background","rgb(0,128,0)");
         $("#turnCounter").css("color","white");
+        $("#crt").css("border-color","rgb(223,88,66)");
+        $(".row1,.row3,.row5").css("background-color","rgb(223,88,66)");
     }else{
         $("#header").css("background","rgb(132,181,255)");
         $("#turnCounter").css("background","rgb(0,128,255)");
         $("#turnCounter").css("color","white");
+        $("#crt").css("border-color","rgb(132,181,255)");
+        $(".row1,.row3,.row5").css("background-color","rgb(132,181,255)");
     }
 
     var html = "<span id='turn'>Turn "+turn+"</span> ";
@@ -787,18 +979,26 @@ x.register("gameRules", function(gameRules) {
     }
     switch(gameRules.mode){
         case <?=EXCHANGING_MODE?>:
-            $("#floatMessage header").html("Exchanging Mode");
+            var result = data.combatRules.lastResolvedCombat.combatResult;
+
+            $("#floatMessage header").html(result+": Exchanging Mode");
 
         case <?=ATTACKER_LOSING_MODE?>:
-            $("#floatMessage header").html("Attacker Loss Mode");
+            var result = data.combatRules.lastResolvedCombat.combatResult;
+
+            $("#floatMessage header").html(result+": Attacker Loss Mode");
 //            html += "<br>Lose at least "+gameRules.exchangeAmount+" strength points from the units outlined in red";
             break;
         case <?=ADVANCING_MODE?>:
 //            html += "<br>Click on one of the black units to advance it.<br>then  click on a hex to advance, or the unit to stay put.";
-            $("#floatMessage header").html("Advancing Mode");
+            var result = data.combatRules.lastResolvedCombat.combatResult;
+
+            $("#floatMessage header").html(result+": Advancing Mode");
             break;
         case <?=RETREATING_MODE?>:
-                $("#floatMessage header").html("Retreating Mode");
+            var result = data.combatRules.lastResolvedCombat.combatResult;
+
+            $("#floatMessage header").html(result+": Retreating Mode");
             break;
     }
     $("#clock").html(html);
@@ -959,7 +1159,7 @@ x.register("mapUnits", function(mapUnits) {
     }
 
 });
-x.register("moveRules", function(moveRules) {
+x.register("moveRules", function(moveRules,data) {
     var str;
     /*$("#status").html("");*/
     $(".clone").remove();
@@ -985,6 +1185,8 @@ x.register("moveRules", function(moveRules) {
 
             }
         }
+        var opacity = .4;
+        var borderColor = "#ccc #333 #333 #ccc";
         if(moveRules.moves){
             id = moveRules.movingUnitId;
             newId = "firstclone";
@@ -998,10 +1200,24 @@ x.register("moveRules", function(moveRules) {
             height = $("#"+newId).height();
 
             var label = $("#"+newId+" div").html();
-
-            $("#"+newId).css({opacity:.4,
+            if(data.gameRules.phase == <?=RED_COMBAT_PHASE;?> || data.gameRules.phase == <?=BLUE_COMBAT_PHASE;?>){
+                if(data.gameRules.mode == <?=ADVANCING_MODE;?>){
+                var unit = moveRules.movingUnitId;
+                    var theta = 0.;
+                    theta = data.combatRules.resolvedCombats[data.combatRules.currentDefender].attackers[unit];
+                    theta *= 15;
+                    theta += 180;
+                    $("#"+unit+ " .arrow").css({opacity: "1.0"});
+                    $("#"+unit+ " .arrow").css({webkitTransform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
+                    $("#"+unit+ " .arrow").css({transform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
+                }
+//                alert(data.combatRules.resolvedCombats[data.combatRules.currentDefender].attackers[moveRules.movingUnitId]);
+                opacity = 1.;
+                borderColor = "turquoise";
+            }
+            $("#"+newId).css({opacity:opacity,
                 zIndex:102,
-                borderColor:"#ccc #333 #333 #ccc",
+                borderColor:borderColor,
                 boxShadow:"none"}
             );
             for( i in moveRules.moves){
@@ -1030,217 +1246,38 @@ x.register("moveRules", function(moveRules) {
             }
             $("#firstclone").remove();
         }
-        $(".clone").hover(function(){
-                    $(this).css("opacity",1.0).css("border-color","#fff").css('box-shadow','#333 5px 5px 5px');
-                    var path = $(this).attr("path");
-                    var pathes = path.split(",");
-                    for(i in pathes){
-                        $("#"+id+"Hex"+pathes[i]).css("opacity",1.0).css("border-color","#fff").css('box-shadow','#333 5px 5px 5px');
-                        $("#"+id+"Hex"+pathes[i]+".occupied").css("display","block");
+        /* object oriented */
+            $(".clone").hover(function(){
+                        if(opacity != 1){
+                            $(this).css("border-color","#fff");
+                        }
+                        $(this).css("opacity",1.0).css('box-shadow','#333 5px 5px 5px');
+                        var path = $(this).attr("path");
+                        var pathes = path.split(",");
+                        for(i in pathes){
+                            $("#"+id+"Hex"+pathes[i]).css("opacity",1.0).css("border-color","#fff").css('box-shadow','#333 5px 5px 5px');
+                            $("#"+id+"Hex"+pathes[i]+".occupied").css("display","block");
 
-                    }
-        },
-        function(){
-            $(this).css("opacity",.4).css("border-color","transparent").css('box-shadow','none');
-            var path = $(this).attr("path");
-            var pathes = path.split(",");
-            for(i in pathes){
-                $("#"+id+"Hex"+pathes[i]).css("opacity",.4).css("border-color","transparent").css('box-shadow','none');
-                $("#"+id+"Hex"+pathes[i]+".occupied").css("display","none");
-
-            }
-
-        });
-    }
-});
-x.register("force", function(force,data) {
-//        if(this.animate !== false){
-//            self.clearInterval(this.animate);
-//            this.animate = false;
-//            $("#"+this.animateId).stop(true);
-//        }
-    fixHeader();
-    var units = force.units;
-
-    var status = "";
-    var boxShadow;
-    var shadow;
-    $("#floatMessage").hide();
-    for (i in units) {
-        color = "#ccc #666 #666 #ccc";
-        $("#"+i + " .arrow").css({opacity: "0.0"});
-
-        boxShadow = "none";
-//        $("#"+i).css({zIndex: 100});
-        shadow = true;
-        if(units[i].forceId !== force.attackingForceId){
-        shadow = false;
-        }
-        switch(units[i].status){
-            case <?=STATUS_CAN_REINFORCE?>:
-                color = "#ccc #666 #666 #ccc";
-                shadow = false;
-                if(units[i].reinforceTurn){
-                    shadow = true;
+                        }
+            },
+            function(){
+                if(opacity != 1){
+                    $(this).css("border-color","transparent");
                 }
-                break;
-           case <?=STATUS_READY?>:
-                if(units[i].forceId === force.attackingForceId){
-                    $("#"+i + " .arrow").css({opacity: "0.0"});
+                $(this).css("opacity",opacity).css('box-shadow','none');
+                var path = $(this).attr("path");
+                var pathes = path.split(",");
+                for(i in pathes){
+                    $("#"+id+"Hex"+pathes[i]).css("opacity",.4).css("border-color","transparent").css('box-shadow','none');
+                    $("#"+id+"Hex"+pathes[i]+".occupied").css("display","none");
 
-//                    color = "turquoise";
-                    shadow = false;
-                }else{
-//                    shadow = false;
-
-//                    color = "purple";
-                }
-                break;
-            case <?=STATUS_REINFORCING?>:
-                shadow = false;
-                boxShadow = '5px 5px 5px #333';
-
-
-//                color = "orange";
-                break;
-            case <?=STATUS_MOVING?>:
-                color = "#ccc #666 #666 #ccc";
-                    shadow = false;
-//                $("#"+i).css({zIndex: 101});
-                boxShadow = '5px 5px 5px #333';
-//               var top =  $("#"+i).css("top");
-//                var left =  $("#"+i).css("left");
-//                 $("#"+i).css({top:top-5});
-//                $("#"+i).css({left:left-5});
-
-
-
-//                status += " "+units[i].moveAmountUsed+" MF's Used";
-                break;
-            case <?=STATUS_STOPPED?>:
-                color = "#ccc #666 #666 #ccc";
-                break;
-            case <?=STATUS_DEFENDING?>:
-                color = "orange";
-
-                break;
-            case <?=STATUS_BOMBARDING?>:
-
-            case <?=STATUS_ATTACKING?>:
-
-                shadow = false;
-//                color = "red";
-                break;
-            case <?=STATUS_CAN_RETREAT?>:
-                    if(data.gameRules.mode == <?=RETREATING_MODE?>){
-                        status = "Click on the Purple Unit to start retreating";
-                    }
-                color = "purple";
-                break;
-            case <?=STATUS_RETREATING?>:
-                color = "yellow";
-                if(data.gameRules.mode == <?=RETREATING_MODE?>){
-
-                    status = "Now click on a hex adjacent to the yellow unit. ";
-                }
-                break;
-            case <?=STATUS_CAN_ADVANCE?>:
-                    if(data.gameRules.mode == <?=ADVANCING_MODE?>){
-                       status = 'Click on one of the black units to advance it.';
-                    }
-                color = "black";
-                    shadow = false;
-
-                break;
-            case <?=STATUS_ADVANCING?>:
-                if(data.gameRules.mode == <?=ADVANCING_MODE?>){
-
-                    status = 'Now click on the vacated hex, to advance<br>or click on the turquoise unit to stay put..';
                 }
 
-                shadow = false;
-                color = "cyan";
-                break;
-            case <?=STATUS_CAN_EXCHANGE?>:
-                if($("#flashMessage header").html() != <?=ADVANCING_MODE?>){
-
-                    $("#floatMessage header").html('Exchanging Mode');
-                status = "Click on one of the red units to reduce it."
-                }
-            case <?=STATUS_CAN_ATTACK_LOSE?>:
-                if(data.gameRules.mode == <?=ATTACKER_LOSING_MODE?>){
-                    status = "Click on one of the red units to reduce it."
-                }
-                color = "red";
-                break;
-            case <?=STATUS_REPLACED?>:
-                color = "blue";
-                break;
-            case <?=STATUS_CAN_REPLACE?>:
-                color = "orange";
-                break;
-            case <?=STATUS_CAN_UPGRADE?>:
-                case <?=STATUS_ELIMINATED?>:
-                    if(units[i].forceId === force.attackingForceId){
-                shadow = false;
-                color = "turquoise";
-                    }
-                break;
-
-
-        }
-        if(status){
-            var x = $("#"+i).css('left').replace(/px/,"");
-            var y = $("#"+i).css('top').replace(/px/,"");
-            var mapWidth = $("body").css('width').replace(/px/,"");
-//                    $("#map").css('width').replace(/px/,"");
-
-//            if(x < mapWidth/2){
-//                var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
-//                var crtWid = $("#crt").css('width').replace(/px/,"");
-//                crtWid = 0 - (crtWid - wrapWid + 40);
-//
-//                var moveLeft = $("body").css('width').replace(/px/,"");
-//                $("#crt").animate({left:crtWid},300);
-//                $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
-//            }else{
-//                $("#crtWrapper").animate({left:0},300);
-//                $("#crt").animate({left:0},300);
-//
-//
-//            }
-            x = parseInt(x);
-            mapWidth = parseInt(mapWidth);
-            if(x > mapWidth/2){
-                x = (mapWidth - x);
-                x += 100;
-                $("#floatMessage").css('right',x+"px");
-                $("#floatMessage").css('left',"auto");
-
-            }else{
-                x += 100;
-                $("#floatMessage").css('left',x+"px");
-                $("#floatMessage").css('right',"auto");
-            }
-            $("#floatMessage").css('top',y+"px");
-            $("#floatMessage").show();
-        $("#floatMessage p").html(status);
-            status = "";
-        }
-        /*$("#status").html(status);*/
-//        $("#"+i).css({borderColor: color});
-        $("#"+i).css({borderColor: color});
-        if(shadow){
-            $("#"+i+" section").addClass("shadowy");
-        }else{
-            $("#"+i+" section").removeClass("shadowy");
-        }
-        $("#"+i).css({boxShadow: boxShadow});
-
-
+            });
 
     }
 });
+
 function fixCrt(){
     if(!cD){
         return;
@@ -1716,7 +1753,8 @@ function initialize() {
     $("#gameImages").on("mousedown",".specialHexes",mapMouseDown);
 
     $("#nextPhaseButton").on('mousedown',nextPhaseMouseDown);
-    $( "#gameImages" ).draggable({stop:fixCrt});
+    $( "#gameImages" ).draggable({stop:fixCrt,distance:30});
+    $("#floatMessage").draggable();
     $("#muteButton").click(function(){
        if(!mute){
            $("#muteButton").html("un-mute");

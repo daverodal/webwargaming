@@ -465,6 +465,15 @@ class GameRules {
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
+                        if(strpos($id,"Hex")){
+                            $matchId = array();
+                            preg_match("/^[^H]*/",$id,$matchId);
+                            $matchHex = array();
+                            preg_match("/Hex(.*)/",$id,$matchHex);
+                            $id = $matchId[0];
+                            $hexagon = new Hexagon($matchHex[1]);
+                            $event = SELECT_MAP_EVENT;
+                        }
                         $this->moveRules->advanceUnit($event, $id, $hexagon);
 
                         if ($this->force->unitsAreAdvancing() == false) { // melee

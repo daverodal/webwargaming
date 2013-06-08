@@ -414,6 +414,12 @@ class Force
         array_push($this->units,$unit);
     }
 
+    function getFirstRetreatHex($id){
+        if(count($this->retreatHexagonList) == 0){
+            throw new Exception("Cannot get reatreat hex");
+        }
+        return $this->retreatHexagonList[0]->hexagon;
+    }
     function advanceIsOnRetreatList($id, $hexagon)
     {
         $isOnList = false;
