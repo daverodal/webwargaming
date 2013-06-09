@@ -273,6 +273,7 @@
             </div>
         </div>
         <div id="gameViewer">
+            <div id="gameContainer">
             <div id="gameImages" class="ui-widget-content">
                 <img id="map" alt="map" src="<?php echo base_url();?>js/MartianIV.png"
                      style="position: relative;visibility: visible;z-index: 0;">
@@ -288,8 +289,7 @@
                 {/units}
                 <div id="floatMessage"><header></header><p></p></div>
             </div>
-
-            <!-- end gameImages -->
+            </div>
         </div>
         <audio class="pop"  src="<?=base_url().'js/pop.m4a'?>"></audio>
         <audio class="poop"  src="<?=base_url().'js/lowpop.m4a'?>"></audio>

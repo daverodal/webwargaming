@@ -711,10 +711,39 @@ function fixHeader(){
     }else{
         deployHeight = 0;
     }
+    var height = bodyHeight - deployHeight - deadHeight - headerHeight - 40;
+    var width = bodyWidth - 35;
 
-    $("#gameViewer").height(bodyHeight - deployHeight - deadHeight - headerHeight - 40 );
-    $("#gameViewer").width(bodyWidth - 35 );
+//    var mapHeight = $("#map").height();
+//    var mapWidth = $("#map").width();
+//
+//    var containerWidth;
+//    var containerMargin;
+//    if(mapWidth > width){
+//        diff = mapWidth - width;
+//        containerWidth = mapWidth + diff;
+//        containerMargin = 0 - diff;
+//    }else{
+//        containerWidth = "auto";
+//        containerMargin = 0;
+//    }
+//
+//    var containerHeight;
+//    var containerTopMargin;
+//    if(mapWidth > width){
+//        diff = mapHeight - height;
+//        containerHeight = mapHeight + diff;
+//        containerTopMargin = 0 - diff;
+//    }else{
+//        containerHeight = "auto";
+//        containerTopMargin = 0;
+//    }
+//
+//    $("#gameContainer").css({marginLeft:containerMargin,width:containerWidth,height:containerHeight,marginTop:containerTopMargin});
+//    $("#gameImages").width(mapWidth).height(mapHeight);
 
+    $("#gameViewer").height(height);
+    $("#gameViewer").width(width);
 }
 
 x = new Sync("<?=site_url("wargame/fetch/");?>");
@@ -724,7 +753,6 @@ x.register("force", function(force,data) {
 //            this.animate = false;
 //            $("#"+this.animateId).stop(true);
 //        }
-    fixHeader();
     var units = force.units;
 
     var status = "";
@@ -877,11 +905,13 @@ x.register("force", function(force,data) {
             x = parseInt(x);
             mapWidth = parseInt(mapWidth);
             if(x > mapWidth/2){
-                x = (mapWidth - x);
-                x += 100;
-                $("#floatMessage").css('right',x+"px");
-                $("#floatMessage").css('left',"auto");
-
+                var floatWidth = $("#floatMessage").width();
+                    x -= (100 + floatWidth);
+//                x = (mapWidth - x);
+//                x += 100;
+                $("#floatMessage").css('left',x+"px");
+                $("#floatMessage").css('right',"auto");
+//
             }else{
                 x += 100;
                 $("#floatMessage").css('left',x+"px");
@@ -1036,7 +1066,8 @@ x.register("flashMessages",function(messages,data){
 function flashMessage(playerStatus){
     var x = 100;
     var y = 200;
-    fixHeader();
+//    fixHeader();
+    var mess = flashMessages.shift();
     var mess = flashMessages.shift();
     $("#FlashMessage").remove();
     while(mess){
@@ -1153,8 +1184,10 @@ x.register("mapUnits", function(mapUnits) {
     var dpBox = $("#deployBox").children().size();
     if(dpBox != beforeDeploy){
         fixHeader();
+        beforeDeploy = dpBox;
+
     }
-    if(dpBox == 0){
+    if(dpBox == 0 && $("#deployBox").is(":visible")){
         $("#deployWrapper").hide({effect:"blind",direction:"up",complete:fixHeader});
     }
 
@@ -1211,7 +1244,6 @@ x.register("moveRules", function(moveRules,data) {
                     $("#"+unit+ " .arrow").css({webkitTransform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
                     $("#"+unit+ " .arrow").css({transform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
                 }
-//                alert(data.combatRules.resolvedCombats[data.combatRules.currentDefender].attackers[moveRules.movingUnitId]);
                 opacity = 1.;
                 borderColor = "turquoise";
             }
@@ -1222,12 +1254,7 @@ x.register("moveRules", function(moveRules,data) {
             );
             for( i in moveRules.moves){
                 newId = id+"Hex"+i;
-//                if(!moveRules.moves[i].isValid){
-//                    continue;
-//                }
-                if(moveRules.moves[i].isOccupied){
-//                    continue;
-                }
+
                 $("#"+'firstclone').clone(true).attr('id',newId).appendTo('#gameImages');
                 $("#"+newId).attr("path",moveRules.moves[i].pathToHere);
                 $("#"+newId).css({left:moveRules.moves[i].pixX - width/2 +"px",top:moveRules.moves[i].pixY - height/2 +"px"});
@@ -1246,35 +1273,33 @@ x.register("moveRules", function(moveRules,data) {
             }
             $("#firstclone").remove();
         }
-        /* object oriented */
-            $(".clone").hover(function(){
-                        if(opacity != 1){
-                            $(this).css("border-color","#fff");
-                        }
-                        $(this).css("opacity",1.0).css('box-shadow','#333 5px 5px 5px');
-                        var path = $(this).attr("path");
-                        var pathes = path.split(",");
-                        for(i in pathes){
-                            $("#"+id+"Hex"+pathes[i]).css("opacity",1.0).css("border-color","#fff").css('box-shadow','#333 5px 5px 5px');
-                            $("#"+id+"Hex"+pathes[i]+".occupied").css("display","block");
+        $(".clone").hover(function(){
+                    if(opacity != 1){
+                        $(this).css("border-color","#fff");
+                    }
+                    $(this).css("opacity",1.0).css('box-shadow','#333 5px 5px 5px');
+                    var path = $(this).attr("path");
+                    var pathes = path.split(",");
+                    for(i in pathes){
+                        $("#"+id+"Hex"+pathes[i]).css("opacity",1.0).css("border-color","#fff").css('box-shadow','#333 5px 5px 5px');
+                        $("#"+id+"Hex"+pathes[i]+".occupied").css("display","block");
 
-                        }
-            },
-            function(){
-                if(opacity != 1){
-                    $(this).css("border-color","transparent");
-                }
-                $(this).css("opacity",opacity).css('box-shadow','none');
-                var path = $(this).attr("path");
-                var pathes = path.split(",");
-                for(i in pathes){
-                    $("#"+id+"Hex"+pathes[i]).css("opacity",.4).css("border-color","transparent").css('box-shadow','none');
-                    $("#"+id+"Hex"+pathes[i]+".occupied").css("display","none");
+                    }
+        },
+        function(){
+            if(opacity != 1){
+                $(this).css("border-color","transparent");
+            }
+            $(this).css("opacity",opacity).css('box-shadow','none');
+            var path = $(this).attr("path");
+            var pathes = path.split(",");
+            for(i in pathes){
+                $("#"+id+"Hex"+pathes[i]).css("opacity",.4).css("border-color","transparent").css('box-shadow','none');
+                $("#"+id+"Hex"+pathes[i]+".occupied").css("display","none");
 
-                }
+            }
 
-            });
-
+        });
     }
 });
 
@@ -1339,9 +1364,6 @@ x.register("combatRules", function(combatRules,data) {
                     cdLine = "";
                     var combatIndex = 0;
                     for(i in combatRules.combats){
-  //                        if(combatRules.combats[i].Die){
-//                            str += " Die "+combatRules.combats[i].Die + " result "+combatRules.combats[i].combatResult;
-//                        }
                         if(combatRules.combats[i].index !== null){
 
 
@@ -1396,7 +1418,6 @@ x.register("combatRules", function(combatRules,data) {
                                       theta = attackers[i];
                         theta *= 15;
                         theta += 180;
-//                        $("#"+i).css({borderColor: "crimson"});
                         $("#"+i+ " .arrow").css({display: "block"});
                         $("#"+i+ " .arrow").css({opacity: "1.0"});
                         $("#"+i+ " .arrow").css({webkitTransform: 'scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
@@ -1445,20 +1466,12 @@ x.register("combatRules", function(combatRules,data) {
                     var odds = Math.floor(atk/def);
                     var oddsDisp = odds + " : 1";
                     newLine =  "<h5>odds = "+ oddsDisp +"</h5><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+idxDisp+"</div>";
-                    //newLine = " Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>odds = "+Math.floor(atk/def)+" : 1<br>Terrain Shift left "+ter+ " = "+idx+" : 1<br><br>";
-//                    if(combatRules.lastResolveCombat === i){
-//                        lastCombat = "<strong>"+newLine+"</strong>";
-//                        newLine = "";
-//                    }
-//                    str += newLine;
                 }
 
             }
             if(combatsToResolve){
-            str += "Combats To Resolve: "+combatsToResolve;
-//            str += "</div></fieldset><fieldset><legend>Resolved Combats</legend>";
+                str += "Combats To Resolve: "+combatsToResolve;
             }
-//            str += "</div></fieldset><fieldset><legend>Resolved Combats</legend>";
             var resolvedCombats = 0;
             for(i in combatRules.resolvedCombats){
                 resolvedCombats++;
@@ -1473,10 +1486,8 @@ x.register("combatRules", function(combatRules,data) {
                      idx = combatRules.resolvedCombats[i].index+ 1;
                     newLine = "";
                     if(combatRules.resolvedCombats[i].Die){
-//                        $("#crt").show({effect:"blind",direction:"up"});
                         var x = $("#"+cD).css('left').replace(/px/,"");
                         var mapWidth = $("body").css('width').replace(/px/,"");
-//                    $("#map").css('width').replace(/px/,"");
                         /* STATUS_ELIMINATED */
                         if(data.force.units[cD].status != 22){
 //                            if(x < mapWidth/2){
@@ -1493,14 +1504,12 @@ x.register("combatRules", function(combatRules,data) {
 //                            }
                         }
 
-//                        newLine += " Die "+combatRules.resolvedCombats[i].Die + " result "+combatRules.resolvedCombats[i].combatResult+"<br>";
+
                     }
                     newLine += " Attack = "+atkDisp +" / Defender "+def+ " odds = " + atk/def +"<br>= "+Math.floor(atk/def)+" : 1<br>Terrain Shift left "+ter+ " = "+idx+" : 1<br><br>";
                     if(cD === i){
-//                        lastCombat = "<fieldset><legend>Last Resolve Combat</legend><strong>"+newLine+"</strong></fieldset>";
                         newLine = "";
                     }
-//                    str += newLine;
                }
 
             }
@@ -1513,8 +1522,7 @@ x.register("combatRules", function(combatRules,data) {
         }
     }
     $("#crt h3").html(title);
-//    $("#status div").accordion({collapsible: true, active:false});
-//    $("#status div").accordion("option","active",activeCombat);
+
 
 });
 var globInit = true;
@@ -1753,7 +1761,7 @@ function initialize() {
     $("#gameImages").on("mousedown",".specialHexes",mapMouseDown);
 
     $("#nextPhaseButton").on('mousedown',nextPhaseMouseDown);
-    $( "#gameImages" ).draggable({stop:fixCrt,distance:30});
+    $( "#gameImages" ).draggable({stop:fixCrt});
     $("#floatMessage").draggable();
     $("#muteButton").click(function(){
        if(!mute){
@@ -1769,16 +1777,6 @@ function initialize() {
     // end setup events ----------------------------------------
 
 
-
-//    $( "#crtWrapper" ).accordion({
-//        collapsible: true,
-//        active: false,
-//    });
-//    $( "#OBCWrapper").accordion({
-//        collapsible: true,
-//        active: false
-//
-//    })
     var Player = 'Markarian';
     $( "#OBCWrapper h4" ).click(function() {
         $( "#info" ).hide({effect:"blind",direction:"up"});
@@ -1822,6 +1820,7 @@ function initialize() {
         $( "#info" ).hide({effect:"blind",direction:"up"});
         $( "#menu" ).hide({effect:"blind",direction:"up"});
         $( "#crt" ).hide({effect:"blind",direction:"up"});
+        $("#gameContainer").css("margin",0);
         $("#gameImages").css({zoom:.3,overflow:"visible"});
         $("#gameImages").css({MozTransform:"translate(-33%, -33%) scale(.3)"});
         $("html, body").animate({scrollTop:"0px"});
@@ -1876,8 +1875,5 @@ function initialize() {
 $(function() {
 });
 $(document).ready(initialize);
-
-
-
 
 </script>

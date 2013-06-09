@@ -529,6 +529,9 @@ class GameRules {
 
     function selectNextPhase($click)
     {
+        if($this->moveRules->anyUnitIsMoving){
+            $this->moveRules->stopMove($this->force->units[$this->moveRules->movingUnitId]);
+        }
         if ($this->force->moreCombatToResolve() == false && $this->moveRules->anyUnitIsMoving == false) {
             for ($i = 0; $i < count($this->phaseChanges); $i++) {
 

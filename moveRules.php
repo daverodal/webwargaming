@@ -141,8 +141,23 @@ class MoveRules{
                 }
                 else
                 {
+                    $movingUnit = $this->force->units[$this->movingUnitId];
+
+                    if ($movingUnit->unitIsMoving() == true) {
+                        $this->stopMove($movingUnit);
+                        $dirty = true;
+                    }
+                    if ($this->force->unitCanMove($id) == true) {
+                        $this->calcMove($id);
+                        $this->startMoving($id);
+                        $dirty = true;
+                    }
+                    if ($this->force->unitCanReinforce($id) == true) {
+                        $this->startReinforcing($id, $turn);
+                        $dirty = true;
+                    }
                     // clicked on another unit
-                    return;
+                    return $dirty;
                     $this->moveOver($this->movingUnitId, $id, $hexagon);
                 }
             }
