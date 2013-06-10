@@ -4,16 +4,16 @@ global $force_name,$phase_name,$mode_name, $event_name, $status_name, $results_n
 $force_name[1] = "Austrian";
 $force_name[2] = "French";
 $phase_name = array();
-$phase_name[1] = "Austrian Move";
-$phase_name[2] = "Austrian Combat";
+$phase_name[1] = "Prussian Move";
+$phase_name[2] = "Prussian Combat";
 $phase_name[3] = "Blue Fire Combat";
 $phase_name[4] = "French Move";
 $phase_name[5] = "French Combat";
 $phase_name[6] = "Red Fire Combat";
 $phase_name[7] = "Victory";
-$phase_name[8] = "Austrian Deploy";
-$phase_name[9] = "Austrian Mech";
-$phase_name[10] = "Austrian Replacement";
+$phase_name[8] = "Prussian Deploy";
+$phase_name[9] = "Prussian Mech";
+$phase_name[10] = "Prussian Replacement";
 $phase_name[11] = "French Mech";
 $phase_name[12] = "French Replacement";
 $phase_name[13] = "";
@@ -49,6 +49,7 @@ class Jagersdorf extends Battle {
     public $mapViewer;
     public $playerData;
     public $force;
+    /* @var Terrain */
     public $terrain;
     public $moveRules;
     public $combatRules;
@@ -131,6 +132,7 @@ class Jagersdorf extends Battle {
             case SELECT_MAP_EVENT:
                 $mapGrid = new MapGrid($this->mapViewer[$playerId]);
                 $mapGrid->setPixels($x, $y);
+           // echo "Hex".$mapGrid->getHexagon()->name;
                 $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon(),$click );
                 break;
 
@@ -169,13 +171,13 @@ class Jagersdorf extends Battle {
             $this->genTerrain = true;
             $this->victory = new Victory("Jagersdorf");
 
-             $this->mapData->setData(21,21,"js/jagersdorf.jpg");
+             $this->mapData->setData(22,22,"js/ColorGrossMain.jpg");
 
             $this->display = new Display();
             $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
-            $this->terrain->setMaxHex("2121");
+            $this->terrain->setMaxHex("2323");
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
@@ -257,60 +259,54 @@ class Jagersdorf extends Battle {
 
             // unit data -----------------------------------------------
             //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
-            $this->force->addUnit("infantry-1", BLUE_FORCE, 512, "multiCav.png", 2, 2, 7, true, STATUS_READY, "R", 1, 1, "austrian");
 
             if($arg == 0){
-                for($i = 1;$i<= 10;$i++){
-                    $this->force->addUnit("infantry-1", RED_FORCE, 800+$i, "multiCav.png", 2, 2, 5, true, STATUS_READY, "R", 1, 1, "french");
-                    $i++;
+
+                for($i = 1;$i<= 11;$i++){
+                    $this->force->addUnit("infantry-1", RED_FORCE, 1305+$i, "RusInf.png",2,2,3, true, STATUS_READY, "R", 1, 1, "french");
 
                 }
-                for($i = 8;$i<= 10;$i++){
-                    $this->force->addUnit("infantry-1", RED_FORCE, 1300+$i, "multiCav.png",4, 5, 5, true, STATUS_READY, "R", 1, 1, "french");
+                for($i = 1;$i<= 12;$i++){
+                    $this->force->addUnit("infantry-1", RED_FORCE, 1505+$i, "RusInf.png",2,2,3, true, STATUS_READY, "R", 1, 1, "french");
 
                 }
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 2, 1, "french");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiInf.png",10, 10, 4, true, STATUS_CAN_REINFORCE, "R", 2, 1, "french");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 2, 1, "french");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "RusInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 2, 1, "french");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "RusInf.png",10, 10, 4, true, STATUS_CAN_REINFORCE, "R", 2, 1, "french");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "RusInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 2, 1, "french");
 
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 3, 1, "french");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 3, 1, "french");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 3, 1, "french");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiCav.png",7, 7, 6, true, STATUS_CAN_REINFORCE, "R", 3, 1, "french");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiCav.png",6, 6, 6, true, STATUS_CAN_REINFORCE, "R", 3, 1, "french");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "RusInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 3, 1, "french");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "RusInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 3, 1, "french");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "RusInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 3, 1, "french");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "RusCav.png",7, 7, 6, true, STATUS_CAN_REINFORCE, "R", 3, 1, "french");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "RusCav.png",6, 6, 6, true, STATUS_CAN_REINFORCE, "R", 3, 1, "french");
 
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiArt.png",10, 10, 3, true, STATUS_CAN_REINFORCE, "R", 4, 2, "french");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiArt.png",12, 12, 3, true, STATUS_CAN_REINFORCE, "R", 4, 2, "french");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiArt.png",7, 7, 4, true, STATUS_CAN_REINFORCE, "R", 4, 2, "french");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "RusArt.png",10, 10, 3, true, STATUS_CAN_REINFORCE, "R", 4, 2, "french");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "RusArt.png",12, 12, 3, true, STATUS_CAN_REINFORCE, "R", 4, 2, "french");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "RusArt.png",7, 7, 4, true, STATUS_CAN_REINFORCE, "R", 4, 2, "french");
                 $i = 0;
 
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 202, "multiCav.png", 6, 6, 5, true, STATUS_READY, "B", 1, 1, "austrian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 201, "multiCav.png", 5, 5, 5, true, STATUS_READY, "B", 1, 1, "austrian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 210, "multiCav.png", 5, 5, 5, true, STATUS_READY, "B", 1, 1, "austrian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 208, "multiArt.png", 6, 6, 3, true, STATUS_READY, "B", 1, 2, "austrian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 206, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "austrian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 204, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "austrian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 102, "multiArt.png", 10, 10, 3, true, STATUS_READY, "B", 1, 2, "austrian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 119, "multiInf.png", 8, 8, 4, true, STATUS_READY, "B", 1, 1, "austrian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 207, "multiInf.png", 8, 8, 4, true, STATUS_READY, "B", 1, 1, "austrian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 203, "multiInf.png", 8, 8, 4, true, STATUS_READY, "B", 1, 1, "austrian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 209, "multiInf.png", 8, 8, 4, true, STATUS_READY, "B", 1, 1, "austrian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 205, "multiInf.png", 8, 8, 4, true, STATUS_READY, "B", 1, 1, "austrian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 202, "PruCav.png", 6, 6, 5, true, STATUS_READY, "B", 1, 1, "Prussian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 201, "PruCav.png", 5, 5, 5, true, STATUS_READY, "B", 1, 1, "Prussian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 210, "PruCav.png", 5, 5, 5, true, STATUS_READY, "B", 1, 1, "Prussian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 208, "PruArt.png", 6, 6, 3, true, STATUS_READY, "B", 1, 2, "Prussian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 206, "PruArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "Prussian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 204, "PruArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "Prussian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 102, "PruArt.png", 10, 10, 3, true, STATUS_READY, "B", 1, 2, "Prussian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 119, "PruInf.png", 8, 8, 4, true, STATUS_READY, "B", 1, 1, "Prussian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 207, "PruInf.png", 8, 8, 4, true, STATUS_READY, "B", 1, 1, "Prussian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 203, "PruInf.png", 8, 8, 4, true, STATUS_READY, "B", 1, 1, "Prussian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 209, "PruInf.png", 8, 8, 4, true, STATUS_READY, "B", 1, 1, "Prussian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 205, "PruInf.png", 8, 8, 4, true, STATUS_READY, "B", 1, 1, "Prussian");
                 $j = $i;
                 $i=0;
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 103, "multiInf.png", 6, 3, 4, false, STATUS_READY, "B", 1, 1, "russian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 104, "multiInf.png", 6, 3, 4, false, STATUS_READY, "B", 1, 1, "russian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 105, "multiInf.png", 6, 3, 4, false, STATUS_READY, "B", 1, 1, "russian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 106, "multiInf.png", 6, 3, 4, false, STATUS_READY, "B", 1, 1, "russian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 107, "multiInf.png", 6, 3, 4, false, STATUS_READY, "B", 1, 1, "russian");
             }
             // end unit data -------------------------------------------
             if($arg == 1){
                 $this->force->addUnit("infantry-1", RED_FORCE, 501, "multiInf.png", 5, 2, 3, true, STATUS_READY, "R", 1, 1, "french");
 
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 101, "multiCav.png", 6, 3, 5, false, STATUS_READY, "B", 1, 1, "austrian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 102, "multiCav.png", 5, 3, 5, false, STATUS_READY, "B", 1, 1, "austrian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 103, "multiCav.png", 5, 2, 5, false, STATUS_READY, "B", 1, 1, "austrian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 101, "multiCav.png", 6, 3, 5, false, STATUS_READY, "B", 1, 1, "Prussian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 102, "multiCav.png", 5, 3, 5, false, STATUS_READY, "B", 1, 1, "Prussian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 103, "multiCav.png", 5, 2, 5, false, STATUS_READY, "B", 1, 1, "Prussian");
             }
             // unit terrain data----------------------------------------
 
@@ -390,13 +386,9 @@ class Jagersdorf extends Battle {
             $this->terrain->addTerrain(607, LOWER_LEFT_HEXSIDE,"road");
 
             $this->terrain->addTerrain(508, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(508, LOWER_LEFT_HEXSIDE,"road");
 
             $this->terrain->addTerrain(408, HEXAGON_CENTER, "road");
             $this->terrain->addTerrain(408, LOWER_LEFT_HEXSIDE,"road");
-
-            $this->terrain->addTerrain(309, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(309, BOTTOM_HEXSIDE,"road");
 
             $this->terrain->addTerrain(310, HEXAGON_CENTER, "road");
             $this->terrain->addTerrain(310, BOTTOM_HEXSIDE,"road");
@@ -408,10 +400,6 @@ class Jagersdorf extends Battle {
             $this->terrain->addTerrain(312, LOWER_LEFT_HEXSIDE,"road");
 
             $this->terrain->addTerrain(212, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(212, LOWER_LEFT_HEXSIDE,"road");
-
-            $this->terrain->addTerrain(113, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(113, BOTTOM_HEXSIDE,"road");
 
             $this->terrain->addTerrain(114, HEXAGON_CENTER, "road");
             $this->terrain->addTerrain(114, BOTTOM_HEXSIDE, "road");
@@ -427,17 +415,54 @@ class Jagersdorf extends Battle {
             $this->terrain->addTerrain(416, UPPER_LEFT_HEXSIDE,"road");
             $this->terrain->addTerrain(416, HEXAGON_CENTER, "road");
 
+            $this->terrain->addTerrain(616, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(616, LOWER_LEFT_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(716, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(716, LOWER_LEFT_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(815, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(815, LOWER_LEFT_HEXSIDE,"road");
 
 
+            $this->terrain->addTerrain(1404, HEXAGON_CENTER, "road");
 
+            $this->terrain->addTerrain(1505, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1505, UPPER_LEFT_HEXSIDE,"road");
 
+            $this->terrain->addTerrain(1605, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1605, UPPER_LEFT_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1706, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1706, UPPER_LEFT_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1805, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1805, LOWER_LEFT_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1906, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1906, UPPER_LEFT_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(2006, UPPER_LEFT_HEXSIDE,"road");
+            $this->terrain->addTerrain(2006, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(2006, LOWER_LEFT_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(2107, UPPER_LEFT_HEXSIDE,"road");
+            $this->terrain->addTerrain(2107, HEXAGON_CENTER, "road");
+
+            $this->terrain->addTerrain(2108, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(2108, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(2109, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(2109, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(2110, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(2110, LOWER_LEFT_HEXSIDE,"road");
 
 
             $this->terrain->addTerrain(213, UPPER_LEFT_HEXSIDE,"road");
             $this->terrain->addTerrain(213, HEXAGON_CENTER, "road");
 
             $this->terrain->addTerrain(313, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(313, LOWER_LEFT_HEXSIDE,"road");
 
             $this->terrain->addTerrain(412, HEXAGON_CENTER, "road");
             $this->terrain->addTerrain(412, LOWER_LEFT_HEXSIDE,"road");
@@ -481,6 +506,111 @@ class Jagersdorf extends Battle {
             $this->terrain->addTerrain(1714, UPPER_LEFT_HEXSIDE,"road");
             $this->terrain->addTerrain(1714, HEXAGON_CENTER, "road");
             $this->terrain->addTerrain(1714, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1715, LOWER_LEFT_HEXSIDE,"road");
+            $this->terrain->addTerrain(1715, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1715, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1716, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1716, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1717, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1717, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1816, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1816, LOWER_LEFT_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1718, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1718, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1719, LOWER_LEFT_HEXSIDE,"road");
+            $this->terrain->addTerrain(1719, HEXAGON_CENTER, "road");
+
+            $this->terrain->addTerrain(1619, UPPER_LEFT_HEXSIDE,"road");
+            $this->terrain->addTerrain(1619, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1619, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1620, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1620, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1621, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1621, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1622, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1622, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1014, HEXAGON_CENTER, "road");
+
+            $this->terrain->addTerrain(1115, UPPER_LEFT_HEXSIDE,"road");
+            $this->terrain->addTerrain(1115, HEXAGON_CENTER, "road");
+
+            $this->terrain->addTerrain(1214, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1214, LOWER_LEFT_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1315, UPPER_LEFT_HEXSIDE,"road");
+            $this->terrain->addTerrain(1315, HEXAGON_CENTER, "road");
+
+            $this->terrain->addTerrain(1415, UPPER_LEFT_HEXSIDE,"road");
+            $this->terrain->addTerrain(1415, HEXAGON_CENTER, "road");
+
+            $this->terrain->addTerrain(1516, UPPER_LEFT_HEXSIDE,"road");
+            $this->terrain->addTerrain(1516, HEXAGON_CENTER, "road");
+
+            $this->terrain->addTerrain(1615, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1615, LOWER_LEFT_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1016, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1016, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1017, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1017, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1018, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1018, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1019, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1019, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1020, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1020, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1021, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1021, BOTTOM_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(1022, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(1022, BOTTOM_HEXSIDE,"road");
+
+
+            $this->terrain->addTerrain(1117, UPPER_LEFT_HEXSIDE,"road");
+            $this->terrain->addTerrain(1117, HEXAGON_CENTER, "road");
+
+            $this->terrain->addTerrain(1217, UPPER_LEFT_HEXSIDE,"road");
+            $this->terrain->addTerrain(1217, HEXAGON_CENTER, "road");
+
+            $this->terrain->addTerrain(1318, UPPER_LEFT_HEXSIDE,"road");
+            $this->terrain->addTerrain(1318, HEXAGON_CENTER, "road");
+
+            $this->terrain->addTerrain(1418, UPPER_LEFT_HEXSIDE,"road");
+            $this->terrain->addTerrain(1418, HEXAGON_CENTER, "road");
+
+            $this->terrain->addTerrain(1519, UPPER_LEFT_HEXSIDE,"road");
+            $this->terrain->addTerrain(1519, HEXAGON_CENTER, "road");
+
+            $this->terrain->addTerrain(119, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(119, LOWER_LEFT_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(218, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(218, LOWER_LEFT_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(318, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(318, LOWER_LEFT_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(417, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(417, LOWER_LEFT_HEXSIDE,"road");
+
+            $this->terrain->addTerrain(517, UPPER_LEFT_HEXSIDE,"road");
+            $this->terrain->addTerrain(517, HEXAGON_CENTER, "road");
+            $this->terrain->addTerrain(517, LOWER_LEFT_HEXSIDE,"road");
 
 
 //            foreach($trains as $train){

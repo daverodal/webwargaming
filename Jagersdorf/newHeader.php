@@ -1,5 +1,7 @@
 <link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 <style type="text/css">
+    body{
+    }
     #map{
         width: 1023px;
         left: 0px;
@@ -7,6 +9,17 @@
     }
     .blueUnit, .french{
         background-color:rgb(132,181,255);
+    }
+    img.counter{
+        width:32px;
+        height:16px;
+    }
+    .unit div{
+        margin-top:-5px !important;
+        background:white;
+        font-size:12px;
+        font-weight: bold;
+        font-family: serif;
     }
     .frenchVP{
         color:rgb(132,181,255);
@@ -23,11 +36,11 @@
     .armyGreen, .russian{
     background-color:  rgb(148,189,74);
     }
-    .austrian{
-        background-color:rgb(239,115,74);
+    .Prussian{
+        background-color:white;
     }
-    .lightYellow, .austrian{
-        background-color: rgb(255,239,156);
+    .lightYellow, .Prussian{
+        background-color: white;
     }
     .flesh{
         background-color: rgb(239,198,156);
@@ -54,7 +67,7 @@
 #crt{
     width:476px;
 }
-    .austrian div{
+    .Prussian div{
         color:black;
     }
     .russian div{
