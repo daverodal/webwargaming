@@ -58,11 +58,11 @@ class victoryCore
             $gameRules->flashMessages[] = "@hide crt";
         }
         if($attackingId == BLUE_FORCE){
-            $gameRules->flashMessages[] = "Austrian Player Turn";
+            $gameRules->flashMessages[] = "Prussian Player Turn";
             $gameRules->replacementsAvail = 1;
         }
         if($attackingId  == RED_FORCE){
-            $gameRules->flashMessages[] = "French Player Turn";
+            $gameRules->flashMessages[] = "Russian Player Turn";
             $gameRules->replacementsAvail = 10;
         }
 
@@ -79,7 +79,7 @@ class victoryCore
     public function postRecoverUnits($args){
         $b = Battle::getBattle();
         if($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE) {
-            $b->gameRules->flashMessages[] = "French Movement halved this turn.";
+            $b->gameRules->flashMessages[] = "Russian Movement halved this turn.";
         }
 
     }
@@ -94,7 +94,7 @@ class victoryCore
 
         if($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE && $unit->status == STATUS_READY) {
             $this->movementCache->$id = $unit->maxMove;
-            $unit->maxMove = floor($unit->maxMove / 2);
+            $unit->maxMove = 2;
         }
         if($b->gameRules->turn == 1 && $b->gameRules->phase == RED_COMBAT_PHASE && isset($this->movementCache->$id)) {
             $unit->maxMove = $this->movementCache->$id;

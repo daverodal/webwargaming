@@ -1,21 +1,21 @@
 <?php
 require_once "constants.php";
 global $force_name,$phase_name,$mode_name, $event_name, $status_name, $results_name,$combatRatio_name;
-$force_name[1] = "Austrian";
-$force_name[2] = "French";
+$force_name[1] = "Prussian";
+$force_name[2] = "Russian";
 $phase_name = array();
 $phase_name[1] = "Prussian Move";
 $phase_name[2] = "Prussian Combat";
 $phase_name[3] = "Blue Fire Combat";
-$phase_name[4] = "French Move";
-$phase_name[5] = "French Combat";
+$phase_name[4] = "Russian Move";
+$phase_name[5] = "Russian Combat";
 $phase_name[6] = "Red Fire Combat";
 $phase_name[7] = "Victory";
 $phase_name[8] = "Prussian Deploy";
 $phase_name[9] = "Prussian Mech";
 $phase_name[10] = "Prussian Replacement";
-$phase_name[11] = "French Mech";
-$phase_name[12] = "French Replacement";
+$phase_name[11] = "Russian Mech";
+$phase_name[12] = "Russian Replacement";
 $phase_name[13] = "";
 $phase_name[14] = "";
 
@@ -263,26 +263,26 @@ class Jagersdorf extends Battle {
             if($arg == 0){
 
                 for($i = 1;$i<= 11;$i++){
-                    $this->force->addUnit("infantry-1", RED_FORCE, 1305+$i, "RusInf.png",2,2,3, true, STATUS_READY, "R", 1, 1, "french");
+                    $this->force->addUnit("infantry-1", RED_FORCE, 1305+$i, "RusInf.png",2,2,3, true, STATUS_READY, "R", 1, 1, "Russian");
 
                 }
                 for($i = 1;$i<= 12;$i++){
-                    $this->force->addUnit("infantry-1", RED_FORCE, 1505+$i, "RusInf.png",2,2,3, true, STATUS_READY, "R", 1, 1, "french");
+                    $this->force->addUnit("infantry-1", RED_FORCE, 1505+$i, "RusInf.png",2,2,3, true, STATUS_READY, "R", 1, 1, "Russian");
 
                 }
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "RusInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 2, 1, "french");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "RusInf.png",10, 10, 4, true, STATUS_CAN_REINFORCE, "R", 2, 1, "french");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "RusInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 2, 1, "french");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "RusInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 2, 1, "Russian");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "RusInf.png",10, 10, 4, true, STATUS_CAN_REINFORCE, "R", 2, 1, "Russian");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "RusInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 2, 1, "Russian");
 
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "RusInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 3, 1, "french");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "RusInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 3, 1, "french");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "RusInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 3, 1, "french");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "RusCav.png",7, 7, 6, true, STATUS_CAN_REINFORCE, "R", 3, 1, "french");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "RusCav.png",6, 6, 6, true, STATUS_CAN_REINFORCE, "R", 3, 1, "french");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "RusInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 3, 1, "Russian");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "RusInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 3, 1, "Russian");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "RusInf.png",8, 8, 4, true, STATUS_CAN_REINFORCE, "R", 3, 1, "Russian");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "RusCav.png",7, 7, 6, true, STATUS_CAN_REINFORCE, "R", 3, 1, "Russian");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "RusCav.png",6, 6, 6, true, STATUS_CAN_REINFORCE, "R", 3, 1, "Russian");
 
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "RusArt.png",10, 10, 3, true, STATUS_CAN_REINFORCE, "R", 4, 2, "french");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "RusArt.png",12, 12, 3, true, STATUS_CAN_REINFORCE, "R", 4, 2, "french");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "RusArt.png",7, 7, 4, true, STATUS_CAN_REINFORCE, "R", 4, 2, "french");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "RusArt.png",10, 10, 3, true, STATUS_CAN_REINFORCE, "R", 4, 2, "Russian");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "RusArt.png",12, 12, 3, true, STATUS_CAN_REINFORCE, "R", 4, 2, "Russian");
+                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "RusArt.png",7, 7, 4, true, STATUS_CAN_REINFORCE, "R", 4, 2, "Russian");
                 $i = 0;
 
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 202, "PruCav.png", 6, 6, 5, true, STATUS_READY, "B", 1, 1, "Prussian");
@@ -302,7 +302,7 @@ class Jagersdorf extends Battle {
             }
             // end unit data -------------------------------------------
             if($arg == 1){
-                $this->force->addUnit("infantry-1", RED_FORCE, 501, "multiInf.png", 5, 2, 3, true, STATUS_READY, "R", 1, 1, "french");
+                $this->force->addUnit("infantry-1", RED_FORCE, 501, "multiInf.png", 5, 2, 3, true, STATUS_READY, "R", 1, 1, "Russian");
 
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 101, "multiCav.png", 6, 3, 5, false, STATUS_READY, "B", 1, 1, "Prussian");
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 102, "multiCav.png", 5, 3, 5, false, STATUS_READY, "B", 1, 1, "Prussian");

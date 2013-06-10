@@ -7,7 +7,7 @@
         left: 0px;
         top: 00px;
     }
-    .blueUnit, .french{
+    .blueUnit, .Russian{
         background-color:rgb(132,181,255);
     }
     img.counter{
@@ -21,12 +21,12 @@
         font-weight: bold;
         font-family: serif;
     }
-    .frenchVP{
+    .RussianaVP{
         color:rgb(132,181,255);
         background: transparent;
         opacity:1.0;
     }
-    .austrianlVP{
+    .PrussianlVP{
         color:rgb(239,115,74);
         background: transparent;
     }
