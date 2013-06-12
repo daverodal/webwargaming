@@ -34,6 +34,8 @@ define("RED_MECH_PHASE",11);
 define("RED_REPLACEMENT_PHASE",12);
 define("BLUE_DISPLAY_PHASE",13);
 define("RED_DISPLAY_PHASE",14);
+define("RED_DEPLOY_PHASE",15);
+
 
 $phase_name = array();
 $phase_name[1] = "Rebel Move";
@@ -50,6 +52,7 @@ $phase_name[11] = "Loyalist Mech";
 $phase_name[12] = "Loyalist Replacement";
 $phase_name[13] = "";
 $phase_name[14] = "";
+$phase_name[15] = "red deploy phase";
 
 // game modes
 define("SELECT_TO_MOVE_MODE",1);
@@ -107,6 +110,7 @@ define("SELECT_COUNTER_EVENT",4);
 define("OVER_BUTTON_EVENT",5);
 define("SELECT_BUTTON_EVENT",6);
 define("SELECT_SHIFT_COUNTER_EVENT",7);
+define("KEYPRESS_EVENT",8);
 
 // event names
 $event_name = array();
@@ -157,6 +161,8 @@ define("STATUS_CAN_UPGRADE",31);
 define("STATUS_CAN_ATTACK_LOSE",32);
 define("STATUS_BOMBARDING",33);
 define("STATUS_UNAVAIL_THIS_PHASE",34);
+define("STATUS_CAN_DEPLOY",35);
+define("STATUS_DEPLOYING",36);
 
 
 // unit status names

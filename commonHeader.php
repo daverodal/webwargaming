@@ -769,8 +769,14 @@ x.register("force", function(force,data) {
         if(units[i].forceId !== force.attackingForceId){
             shadow = false;
         }
+        if(units[i].forceMarch){
+            $("#"+i+" .forceMarch").show();
+        }else{
+            $("#"+i+" .forceMarch").hide();
+        }
         switch(units[i].status){
             case <?=STATUS_CAN_REINFORCE?>:
+            case <?=STATUS_CAN_DEPLOY?>:
                 color = "#ccc #666 #666 #ccc";
                 shadow = false;
                 if(units[i].reinforceTurn){
@@ -790,6 +796,7 @@ x.register("force", function(force,data) {
                 }
                 break;
             case <?=STATUS_REINFORCING?>:
+            case <?=STATUS_DEPLOYING?>:
                 shadow = false;
                 boxShadow = '5px 5px 5px #333';
 
@@ -797,7 +804,16 @@ x.register("force", function(force,data) {
 //                color = "orange";
                 break;
             case <?=STATUS_MOVING?>:
-                color = "#ccc #666 #666 #ccc";
+                if(units[i].forceMarch){
+                    $("#"+i+" .forceMarch").show();
+
+                    color = "f00 #666 #666 #f00";
+                }else{
+                    $("#"+i+" .forceMarch").hide();
+
+                    color = "#ccc #666 #666 #ccc";
+
+                }
                 shadow = false;
 //                $("#"+i).css({zIndex: 101});
                 boxShadow = '5px 5px 5px #333';
@@ -1548,6 +1564,45 @@ function doit() {
 });
 $("#mychat").attr("value", "");
 }
+function doitKeypress(key) {
+    var mychat = $("#mychat").attr("value");
+    playAudio();
+    $('body').css({cursor:"wait"});
+    $(this).css({cursor:"wait"});
+    $("#"+id+"").addClass("pushed");
+
+    $("#comlink").html('waiting');
+    $.ajax({url: "<?=site_url("wargame/poke");?>/",
+        type: "POST",
+        data:{id:key,event : <?=KEYPRESS_EVENT?>},
+        error:function(data,text,third){
+            obj = jQuery.parseJSON(data.responseText);
+            if(obj.emsg){
+                alert(obj.emsg);
+            }
+            playAudioBuzz();
+            $('body').css({cursor:"auto"});
+            $(this).css({cursor:"auto"});
+            $("#"+id+"").removeClass("pushed");
+            $("#comlink").html('Working');
+        },
+        success:function(data, textstatus) {
+            var success = +$.parseJSON(data).success;
+            if(success){
+                playAudioLow();
+
+            }else{
+                playAudioBuzz();
+            }
+            $('body').css({cursor:"auto"});
+            $(this).css({cursor:"auto"});
+            $("#"+id+"").removeClass("pushed");
+
+
+        }
+    });
+    $("#mychat").attr("value", "");
+}
 function doitUnit(id) {
     var mychat = $("#mychat").attr("value");
     playAudio();
@@ -1852,8 +1907,7 @@ function initialize() {
     $( "#crtWrapper h4" ).click(function() {
         $( "#crt" ).toggle({effect:"blind",direction:"up"});
     });
-    $("bodxy").bind("keypress",function(){
-    });
+
     var up = 0;
     $( "#hideShow" ).click(function() {
         up ^= 1;
@@ -1871,9 +1925,16 @@ function initialize() {
         }
     });
     fixHeader();
+    $("body").keypress(function(event){
+        doitKeypress(event.which);
+//        if(event.which == 109){
+//            alert("you hi m");
+//        }
+    });
 }
 $(function() {
 });
 $(document).ready(initialize);
+
 
 </script>

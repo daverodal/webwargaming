@@ -413,7 +413,7 @@ return $terrainName;
         // if road, override terrain
 //        echo "Are we? X $hexsideX Y $hexsideY";
         $terrainCode = $this->getTerrainCodeXY($hexsideX,$hexsideY);
-        if($terrainCode->road || $terrainCode->trail){
+        if($railMove && ($terrainCode->road || $terrainCode->trail)){
             $moveCost = .5;
             if($terrainCode->trail){
                 $moveCost = 1;

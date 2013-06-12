@@ -278,6 +278,19 @@ class GameRules {
 
                     case SELECT_MAP_EVENT:
                         return 0;
+                    case KEYPRESS_EVENT:
+                        if($this->moveRules->anyUnitIsMoving){
+                            $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+                            if(!$unit->unitHasNotMoved()){
+                                return false;
+                            }
+                            if($unit->forceMarch == true){
+                                $unit->forceMarch = false;
+                            }else{
+                                $unit->forceMarch = true;
+                            }
+//                            $this->force->units[$this->moveRules->movingUnitId]->forceMarch = $this->force->units[$this->moveRules->movingUnitId]->forceMarch^1;
+                        }
                     case SELECT_COUNTER_EVENT:
                     if(strpos($id,"Hex")){
                         $matchId = array();

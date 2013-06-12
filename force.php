@@ -61,6 +61,7 @@ class unit implements JsonSerializable
     public $eliminationHexagonY;
     public $range;
     public $nationality;
+    public $forceMarch = false;
 
     public function jsonSerialize(){
         if($this->hexagon->name){
@@ -175,8 +176,22 @@ class unit implements JsonSerializable
                 }
                 break;
 
+            case STATUS_DEPLOYING:
+                if ( $this->status == STATUS_CAN_DEPLOY) {
+                    $this->status = $status;
+                    $success = true;
+                }
+                break;
+
             case STATUS_CAN_REINFORCE:
                 if ($this->status == STATUS_REINFORCING) {
+                    $this->status = $status;
+                    $success = true;
+                }
+                break;
+
+            case STATUS_CAN_DEPLOY:
+                if ($this->status == STATUS_DEPLOYING) {
                     $this->status = $status;
                     $success = true;
                 }
@@ -199,7 +214,7 @@ class unit implements JsonSerializable
                 break;
 
             case STATUS_STOPPED:
-                if ($this->status == STATUS_MOVING) {
+                if ($this->status == STATUS_MOVING || $this->status == STATUS_DEPLOYING) {
                     $this->status = $status;
                     $this->moveAmountUsed = $this->maxMove;
 
@@ -286,7 +301,7 @@ class unit implements JsonSerializable
     }
 
 
-    function set($unitId, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral")
+    function set($unitId, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral", $forceMarch)
     {
         $this->id = $unitId;
         $this->name = $unitName;
@@ -319,6 +334,7 @@ class unit implements JsonSerializable
         $this->combatResults = NR;
         $this->range = $range;
         $this->nationality = $nationality;
+        $this->forceMarch = $forceMarch;
     }
 
     function __construct($data = null)
@@ -399,7 +415,7 @@ class Force
         $this->retreatHexagonList[] = $retreatStep;
     }
 
-    function addUnit($unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range = 1, $nationality = "neutral")
+    function addUnit($unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range = 1, $nationality = "neutral",$forceMarch = true)
     {
         if($unitStatus == STATUS_CAN_REINFORCE){
             if(!$this->reinforceTurns->$unitReinforceTurn){
@@ -409,7 +425,7 @@ class Force
         }
         $id = count($this->units);
         $unit = new unit();
-        $unit->set($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove,  $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range, $nationality);
+        $unit->set($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove,  $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range, $nationality, $forceMarch);
 
         array_push($this->units,$unit);
     }
@@ -785,6 +801,9 @@ class Force
         return $this->units[$id]->reinforceTurn;
     }
 
+    function getUnit($id){
+        return $this->units[$id];
+    }
     function getUnitReinforceZone($id)
     {
         return $this->units[$id]->reinforceZone;
@@ -1337,6 +1356,17 @@ class Force
         return $canReinforce;
     }
 
+    function unitCanDeploy($id)
+    {
+        $canDeploy = false;
+        if ($this->units[$id]->status == STATUS_CAN_DEPLOY
+            && $this->units[$id]->forceId == $this->attackingForceId
+        ) {
+            $canDeploy = true;
+        }
+        return $canDeploy;
+    }
+
     function unitCanRetreat($id)
     {
         $canRetreat = false;
@@ -1515,6 +1545,17 @@ class Force
         return $isReinforcing;
     }
 
+    function unitIsDeploying($id)
+    {
+        if ($this->units[$id]->status == STATUS_DEPLOYING) {
+            $isDeploying = true;
+        }
+        else
+        {
+            $isDeploying = false;
+        }
+        return $isDeploying;
+    }
     function unitIsRetreating($id)
     {
         $isRetreating = false;

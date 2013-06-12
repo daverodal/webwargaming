@@ -86,10 +86,16 @@ class victoryCore
     public function postRecoverUnit($args)
     {
         $unit = $args[0];
+        $b = Battle::getBattle();
+        if(($b->gameRules->phase == RED_MOVE_PHASE || $b->gameRules->phase == BLUE_MOVE_PHASE) && $unit->forceMarch){
+            $unit->forceMarch = false;
+        }
+        if(($b->gameRules->phase == RED_COMBAT_PHASE || $b->gameRules->phase == BLUE_COMBAT_PHASE) && $unit->forceMarch){
+            $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+        }
         if($unit->forceId == 1) {
             return;
         }
-        $b = Battle::getBattle();
         $id = $unit->id;
 
         if($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE && $unit->status == STATUS_READY) {

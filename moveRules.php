@@ -57,7 +57,7 @@ class MoveRules{
             $this->movingUnitId = NONE;
             $this->anyUnitIsMoving = false;
             $this->storm = false;
-            $this->railMove = false;
+            $this->railMove = true;
             $this->stickyZOC = false;
         }
     }
@@ -118,6 +118,10 @@ class MoveRules{
 //                    $this->startMoving($id);
                     $dirty = true;
                 }
+                if ($this->force->unitIsDeploying($this->movingUnitId) == true) {
+                    $this->deploy($this->movingUnitId, $hexagon);
+                    $dirty = true;
+                }
             }
         }
         else
@@ -134,9 +138,10 @@ class MoveRules{
                     if ($this->force->unitIsReinforcing($id) == true) {
                         $this->stopReinforcing($id);
                         $dirty = true;
-
-
-
+                    }
+                    if ($this->force->unitIsDeploying($id) == true) {
+                        $this->stopDeploying($id);
+                        $dirty = true;
                     }
                 }
                 else
@@ -156,8 +161,12 @@ class MoveRules{
                         $this->startReinforcing($id, $turn);
                         $dirty = true;
                     }
+                    if ($this->force->unitCanDeploy($id) == true) {
+                        $this->startDeploying($id, $turn);
+                        $dirty = true;
+                    }
                     // clicked on another unit
-                    return $dirty;
+                    return true;
                     $this->moveOver($this->movingUnitId, $id, $hexagon);
                 }
             }
@@ -165,13 +174,17 @@ class MoveRules{
             {
                 // no one is moving, so start new move
                 if ($this->force->unitCanMove($id) == true) {
-                    $this->calcMove($id);
                     $this->startMoving($id);
+                    $this->calcMove($id);
                     $dirty = true;
                 }
                 if ($this->force->unitCanReinforce($id) == true) {
                      $this->startReinforcing($id, $turn);
                      $dirty = true;
+                }
+                if ($this->force->unitCanDeploy($id) == true) {
+                    $this->startDeploying($id, $turn);
+                    $dirty = true;
                 }
             }
         }
@@ -206,7 +219,7 @@ class MoveRules{
     function bfsMoves(){
         $hist = array();
         $cnt = 0;
-
+        $unit = $this->force->units[$this->movingUnitId];
         while(count($this->moveQueue) > 0){
             $cnt++;
             $hexPath = array_shift($this->moveQueue);
@@ -278,7 +291,7 @@ class MoveRules{
                     continue;
                 }
 
-                $moveAmount = $this->terrain->getTerrainMoveCost($theHex, $newHex, $this->railMove) + $exitCost;
+                $moveAmount = $this->terrain->getTerrainMoveCost($theHex, $newHex,$unit->forceMarch) + $exitCost;
                 $newMapHex = $this->mapData->getHex($newHexNum);
                 $isZoc = $this->force->mapHexIsZOC($newMapHex);
                 if($isZoc && is_numeric($this->enterZoc)){
@@ -383,7 +396,7 @@ class MoveRules{
         for($i = 1; $i <= 6; $i++){
             $newHex = new Hexagon($hexNum);
             $newHex->getAdjacentHexagon($i);
-            $moveAmount = $this->terrain->getTerrainMoveCost($startHex, $newHex, $this->railMove);
+            $moveAmount = $this->terrain->getTerrainMoveCost($startHex, $newHex, $unit->forceMarch);
 //            $moveAmount = 1;
             if($moveAmount <= 0){
                 $moveAmount = 1;
@@ -461,7 +474,7 @@ class MoveRules{
     function moveWillCauseStop($id, $moveOverUnitId, $hexagon)
     {
         $willCauseStop = false;
-        $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id), $hexagon, $this->railMove);
+        $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id), $hexagon, $this->force->units[$id]->forceMarch);
 
         // out of moves stop
         if ($this->force->unitWillUseMaxMove($id, $moveAmount) == true) {
@@ -490,7 +503,7 @@ class MoveRules{
     function moveHasCausedStop( $startHex, $endHex, $movePoints)
     {
         $willCauseStop = false;
-        $moveAmount = $this->terrain->getTerrainMoveCost($startHex, $endHex, $this->railMove);
+        $moveAmount = $this->terrain->getTerrainMoveCost($startHex, $endHex, $this->forceMarch);
 
         // out of moves stop
         if ($moveAmount > $movePoints) {
@@ -539,7 +552,7 @@ class MoveRules{
         }
         // condition 2
         // check if unit has enough move points
-        $moveAmount = $this->terrain->getTerrainMoveCost($startHex, $hexagon, $this->railMove);
+        $moveAmount = $this->terrain->getTerrainMoveCost($startHex, $hexagon,$movingUnit->forceMarch);
 
         // need move points, but can always move at least one hexagon
         //  can always move at least one hexagon
@@ -576,7 +589,7 @@ class MoveRules{
 
     function updateMoveData(unit $movingUnit, Hexagon $hexagon)
     {
-        $moveAmount = $this->terrain->getTerrainMoveCost($movingUnit->getUnitHexagon(), $hexagon, $this->railMove);
+        $moveAmount = $this->terrain->getTerrainMoveCost($movingUnit->getUnitHexagon(), $hexagon, $movingUnit->forceMarch);
         if ($this->force->hexagonIsZOC($movingUnit->id, $hexagon) == true) {
             if(is_numeric($this->enterZoc)){
                 $moveAmount += $this->enterZoc;
@@ -639,7 +652,29 @@ class MoveRules{
             }
         }
     }
-
+    function startDeploying($id, $turn)
+    {
+        if ($this->force->getUnitReinforceTurn($id) <= $turn) {
+            if ($this->force->units[$id]->setStatus( STATUS_DEPLOYING) == true) {
+                $movesLeft = 0;
+                $zoneName = $this->force->units[$id]->reinforceZone;
+                $zones = $this->terrain->getReinforceZones($zoneName);
+                foreach($zones as $zone){
+//                    echo "Start $startHex ".$startHex->name;
+//                    die("starting to rein ");
+                    $startHex = $zone->hexagon->name;
+                    $hexPath = new HexPath();
+                    $hexPath->name = $startHex;
+                    $hexPath->pointsLeft = $movesLeft;
+                    $hexPath->pathToHere = array();
+                    $hexPath->firstHex = true;
+                    $this->moves->$startHex =$hexPath;
+                }
+                $this->anyUnitIsMoving = true;
+                $this->movingUnitId = $id;
+            }
+        }
+    }
     function startReplacing($id)
     {
             if ($this->force->units[$id]->setStatus( STATUS_CAN_REPLACE) == true) {
@@ -687,11 +722,42 @@ class MoveRules{
             }
         }
     }
+    function deploy($id, $hexagon)
+    {
+        if ($this->force->unitIsDeploying($id) == true) {
+            if ($this->force->getUnitReinforceZone($id) == $this->terrain->getReinforceZone($hexagon)) {
+                // get move cost
+
+                // override move cost if road movement
+                $hexpart = new Hexpart($hexagon->getX(), $hexagon->getY());
+
+                $movingUnit = $this->force->units[$id];
+                if ($movingUnit->setStatus( STATUS_STOPPED) == true) {
+                    $this->force->updateMoveStatus($id, $hexagon, 0);
+                    $this->anyUnitIsMoving = false;
+                    $this->movingUnitId = NONE;
+                    $this->moves = new stdClass();
+                }
+
+            }
+        }
+    }
 
     function stopReinforcing($id)
     {
         if ($this->force->unitIsReinforcing($id) == true) {
             if ($this->force->units[$id]->setStatus( STATUS_CAN_REINFORCE) == true) {
+                $this->anyUnitIsMoving = false;
+                $this->movingUnitId = NONE;
+                $this->moves = new stdClass();
+            }
+        }
+    }
+
+    function stopDeploying($id)
+    {
+        if ($this->force->unitIsDeploying($id) == true) {
+            if ($this->force->units[$id]->setStatus( STATUS_CAN_DEPLOY) == true) {
                 $this->anyUnitIsMoving = false;
                 $this->movingUnitId = NONE;
                 $this->moves = new stdClass();
@@ -707,9 +773,7 @@ class MoveRules{
     {
         // id will be map if map event
         if ($eventType == SELECT_MAP_EVENT) {
-            echo "HI again ";
             if ($this->anyUnitIsMoving == true) {
-                echo "hi for the last time ";
                 $this->retreat($this->movingUnitId, $hexagon);
             }
         }
@@ -812,7 +876,6 @@ class MoveRules{
     {
         /* @var  unit */
         $movingUnit = $this->force->units[$id];
-        echo "call retreat ";
         if($this->retreatIsBlocked($id)){
 
             $hexagon = $movingUnit->getUnitHexagon();
@@ -822,14 +885,10 @@ class MoveRules{
             $this->stopMove($movingUnit);
             $this->force->eliminateUnit($id);
         }
-        echo "still calling ";
-        var_dump($hexagon);
-        var_dump($this->rangeIsOneHexagon($movingUnit->getUnitHexagon(), $hexagon));
         if ($this->rangeIsOneHexagon($movingUnit->getUnitHexagon(), $hexagon)
             && $this->hexagonIsBlocked($id, $hexagon) === false
             && $this->terrain->isExit($hexagon) === false
         ) {
-            echo "why this much";
 
             $this->force->addToRetreatHexagonList($id, $movingUnit->getUnitHexagon());
             // set move amount to 0

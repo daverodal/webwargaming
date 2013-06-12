@@ -108,7 +108,7 @@ class CombatRules
     // attacker
     {
 
-        if ($this->currentDefender !== false)
+        if ($this->currentDefender !== false && $this->force->units[$id]->status != STATUS_UNAVAIL_THIS_PHASE)
         {
             $los = new Los();
             $los->setOrigin($this->force->getUnitHexagon($id));
