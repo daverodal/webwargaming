@@ -64,11 +64,13 @@ class unit implements JsonSerializable
     public $forceMarch = false;
 
     public function jsonSerialize(){
+        if(is_object($this->hexagon)){
         if($this->hexagon->name){
             $this->hexagon = $this->hexagon->getName();
 
         }else{
             $this->hexagon = $this->hexagon->parent;
+        }
         }
         return $this;
     }
@@ -461,9 +463,12 @@ class Force
         $battle = Battle::getBattle();
         $this->clearRetreatHexagonList();
 
+        $distance = 1;
 
                 switch ($combatResults)
                 {
+                    case EX2:
+                        $distance = 2;
                     case EX:
                         if($this->units[$defenderId]->isReduced){
                             $this->units[$defenderId]->status = STATUS_ELIMINATING;
@@ -473,7 +478,7 @@ class Force
                             $this->units[$defenderId]->status = STATUS_CAN_RETREAT;
                             $this->units[$defenderId]->isReduced = true;
                             $this->units[$defenderId]->strength = $this->units[$defenderId]->minStrength;
-                            $this->units[$defenderId]->retreatCountRequired = 2;
+                            $this->units[$defenderId]->retreatCountRequired = $distance;
                             $this->exchangeAmount = $this->units[$defenderId]->maxStrength - $this->units[$defenderId]->minStrength;
                         }
                         $this->units[$defenderId]->moveCount = 0;
@@ -497,15 +502,17 @@ class Force
 
                     case DE:
                         $this->units[$defenderId]->status = STATUS_ELIMINATING;
-                        $this->units[$defenderId]->retreatCountRequired = 2;
+                        $this->units[$defenderId]->retreatCountRequired = $distance;
                         $this->units[$defenderId]->moveCount = 0;
                         $this->addToRetreatHexagonList($defenderId, $this->getUnitHexagon($defenderId));
                         break;
 
+                    case DRL2:
+                        $distance = 2;
                     case DRL:
                         if($this->units[$defenderId]->isReduced){
                             $this->units[$defenderId]->status = STATUS_ELIMINATING;
-                            $this->units[$defenderId]->retreatCountRequired = 2;
+                            $this->units[$defenderId]->retreatCountRequired = $distance;
                             $this->units[$defenderId]->moveCount = 0;
                             $this->addToRetreatHexagonList($defenderId, $this->getUnitHexagon($defenderId));
 
@@ -514,12 +521,14 @@ class Force
                             $this->units[$defenderId]->isReduced = true;
                             $this->units[$defenderId]->strength = $this->units[$defenderId]->minStrength;
                             $this->units[$defenderId]->status = STATUS_CAN_RETREAT;
-                            $this->units[$defenderId]->retreatCountRequired = 2;
+                            $this->units[$defenderId]->retreatCountRequired = $distance;
                         }
                         break;
+                    case DR2:
+                        $distance = 2;
                     case DR:
                         $this->units[$defenderId]->status = STATUS_CAN_RETREAT;
-                        $this->units[$defenderId]->retreatCountRequired = 2;
+                        $this->units[$defenderId]->retreatCountRequired = $distance;
                         break;
 
                     case NE:
@@ -551,6 +560,7 @@ class Force
             if ($this->units[$attacker]->status == STATUS_ATTACKING) {
                 switch ($combatResults)
                 {
+                    case EX2:
                     case EX:
                         $this->units[$attacker]->status = STATUS_CAN_EXCHANGE;
                         $this->units[$attacker]->retreatCountRequired = 0;
@@ -574,9 +584,11 @@ class Force
 
                     case AR:
                         $this->units[$attacker]->status = STATUS_CAN_RETREAT;
-                        $this->units[$attacker]->retreatCountRequired = 1;
+                        $this->units[$attacker]->retreatCountRequired = $distance;
                         break;
 
+                    case DRL2:
+                    case DR2:
                     case DRL:
                     case DR:
                         $this->units[$attacker]->status = STATUS_CAN_ADVANCE;
