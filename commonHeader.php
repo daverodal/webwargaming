@@ -1,3 +1,4 @@
+<?php global $force_name;?>
 <link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 <style type="text/css">
 body{
@@ -30,6 +31,7 @@ h4:hover{
     font-family:sans-serif;
 }
 #floatMessage{
+    white-space: nowrap;
     position:absolute;
     display:none;
     background:rgba(255,255,255,.9);
@@ -141,8 +143,8 @@ h4:hover{
     position:fixed;
     width:99%;
     top:0px;
-    background:#99cc99;
-    background:rgb(132,181,255);
+    /*background:#99cc99;*/
+    /*background:rgb(132,181,255);*/
     padding-bottom:5px;
     z-index:2000;
 }
@@ -759,6 +761,7 @@ x.register("force", function(force,data) {
     var boxShadow;
     var shadow;
     $("#floatMessage").hide();
+    var showStatus = false;
     for (i in units) {
         color = "#ccc #666 #666 #ccc";
         $("#"+i + " .arrow").css({opacity: "0.0"});
@@ -899,9 +902,13 @@ x.register("force", function(force,data) {
 
         }
         if(status){
-            var x = $("#"+i).css('left').replace(/px/,"");
-            var y = $("#"+i).css('top').replace(/px/,"");
-            var mapWidth = $("body").css('width').replace(/px/,"");
+            showStatus = true;
+//            var x = $("#"+i).css('left').replace(/px/,"");
+//            var y = $("#"+i).css('top').replace(/px/,"");
+            var x = $("#"+i).position().left;
+            var y = $("#"+i).position().top;
+            var mapWidth = $("body").width();
+            var mapHeight = $("#gameViewer").height();
 //                    $("#map").css('width').replace(/px/,"");
 
 //            if(x < mapWidth/2){
@@ -918,22 +925,69 @@ x.register("force", function(force,data) {
 //
 //
 //            }
-            x = parseInt(x);
-            mapWidth = parseInt(mapWidth);
-            if(x > mapWidth/2){
-                var floatWidth = $("#floatMessage").width();
-                    x -= (100 + floatWidth);
-//                x = (mapWidth - x);
-//                x += 100;
-                $("#floatMessage").css('left',x+"px");
-                $("#floatMessage").css('right',"auto");
-//
-            }else{
-                x += 100;
-                $("#floatMessage").css('left',x+"px");
-                $("#floatMessage").css('right',"auto");
+
+//            alert($("#"+i).offset().top);
+//            y = $("#"+i).offset().top;
+//            var mapOffset  = $("#gameImages").css('top').replace(/px/,"");
+            var mapOffset  = $("#gameImages").position().top;
+
+            if(mapOffset === "auto"){
+                mapOffset = 0;
             }
-            $("#floatMessage").css('top',y+"px");
+            var moveAmt;
+//            alert($("#crt").offset().top);
+//            alert($("#gameViewer").offset().top);
+            if(mapOffset + y > 2*mapHeight/3){
+                 moveAmt = (100 + (mapOffset + y)/3);
+                if(moveAmt > 250){
+                    moveAmt = 250;
+                }
+                y -= moveAmt;
+
+//                if(y + mapOffset < 180){
+//                    y = 180 - mapOffset;
+//                }
+//                alert("B");
+            }else{
+//                alert("a");
+                 moveAmt = (mapHeight - (mapOffset + y ))/2;
+                if(moveAmt > 200){
+                    moveAmt = 200;
+                }
+                y += moveAmt;
+            }
+//            y = y + off;
+//            alert(off);
+//            x = parseInt(x);
+//            y = parseInt(y) + off.top;
+//            if(y > mapHeight/2){
+//                y -= 200 + off.top;
+//            }else{
+//                y += 200 - off.top;
+//            }
+//            mapWidth = parseInt(mapWidth);
+//            alert($("#crt").offset().top);
+//            alert($("#crt").height());
+//            if(x > mapWidth/2){
+//                var floatWidth = $("#floatMessage").width();
+//                    x -= (300 + floatWidth);
+////                x = (mapWidth - x);
+////                x += 100;
+//                $("#floatMessage").css('left',x+"px");
+//                $("#floatMessage").css('right',"auto");
+////
+//            }else{
+//                x += 100;
+//                $("#floatMessage").css('left',x+"px");
+//                $("#floatMessage").css('right',"auto");
+//            }
+//            alert(y);
+            var dragged = $("#floatMessage").attr('hasDragged');
+
+            if(dragged != 'true'){
+                $("#floatMessage").css('top',y+"px");
+                $("#floatMessage").css('left',x+"px");
+            }
             $("#floatMessage").show();
             $("#floatMessage p").html(status);
             status = "";
@@ -951,6 +1005,10 @@ x.register("force", function(force,data) {
 
 
     }
+    if(!showStatus){
+        $("#floatMessage").removeAttr("hasDragged");
+    }
+
 });
 x.register("chats", function(chats) {
     var str;
@@ -993,17 +1051,24 @@ x.register("gameRules", function(gameRules,data) {
 
         var pix = turn  + (turn - 1) * 36 + 1;
     if(gameRules.attackingForceId == 1){
-        $("#header").css("background","rgb(223,88,66)");
+//        $("#header").css("background","rgb(223,88,66)");
+
+        $("#header").removeClass("playerTwo").addClass("playerOne");
         $("#turnCounter").css("background","rgb(0,128,0)");
         $("#turnCounter").css("color","white");
-        $("#crt").css("border-color","rgb(223,88,66)");
-        $(".row1,.row3,.row5").css("background-color","rgb(223,88,66)");
+//        $("#crt").css("border-color","rgb(223,88,66)");
+        $("#crt").addClass("playerOne").removeClass("playerTwo");
+//        $(".row1,.row3,.row5").css("background-color","rgb(223,88,66)");
+        $(".row1,.row3,.row5").addClass("playerOne").removeClass("playerTwo");
     }else{
-        $("#header").css("background","rgb(132,181,255)");
+        $("#header").removeClass("playerOne").addClass("playerTwo");
+        $(".row1,.row3,.row5").addClass("playerTwo").removeClass("playerOne");
+        $("#crt").addClass("playerTwo").removeClass("playerOne");
+//        $("#header").css("background","rgb(132,181,255)");
         $("#turnCounter").css("background","rgb(0,128,255)");
         $("#turnCounter").css("color","white");
-        $("#crt").css("border-color","rgb(132,181,255)");
-        $(".row1,.row3,.row5").css("background-color","rgb(132,181,255)");
+//        $("#crt").css("border-color","rgb(132,181,255)");
+//        $(".row1,.row3,.row5").css("background-color","rgb(132,181,255)");
     }
 
     var html = "<span id='turn'>Turn "+turn+"</span> ";
@@ -1059,7 +1124,7 @@ x.register("gameRules", function(gameRules,data) {
     }
 });
 x.register("vp", function(vp){
-        $("#victory").html(" Victory: <span class='rebelFace'>Rebel </span>"+vp[1]+ " <span class='loyalistFace'>Loyalist </span>"+vp[2]+"");
+        $("#victory").html(" Victory: <span class='rebelFace'><?=$force_name[1]?> </span>"+vp[1]+ " <span class='loyalistFace'><?=$force_name[2];?> </span>"+vp[2]+"");
 
 });
 x.register("games", function(games) {
@@ -1084,7 +1149,7 @@ function flashMessage(playerStatus){
     var y = 200;
 //    fixHeader();
     var mess = flashMessages.shift();
-    var mess = flashMessages.shift();
+//    var mess = flashMessages.shift();
     $("#FlashMessage").remove();
     while(mess){
 
@@ -1530,7 +1595,7 @@ x.register("combatRules", function(combatRules,data) {
 
             }
             if(!noCombats){
-                str += "Resolved Combats: "+resolvedCombats+"";
+                str += " Resolved Combats: "+resolvedCombats+"";
             }
             $("#status").html(lastCombat+str);
             $("#status").show();
@@ -1603,7 +1668,7 @@ function doitKeypress(key) {
     });
     $("#mychat").attr("value", "");
 }
-function doitUnit(id) {
+function doitUnit(id,event) {
     var mychat = $("#mychat").attr("value");
     playAudio();
     $('body').css({cursor:"wait"});
@@ -1613,7 +1678,7 @@ function doitUnit(id) {
     $("#comlink").html('waiting');
     $.ajax({url: "<?=site_url("wargame/poke");?>/",
         type: "POST",
-        data:{id:id,event : <?=SELECT_COUNTER_EVENT?>},
+        data:{id:id,event : event.shiftKey ? <?=SELECT_SHIFT_COUNTER_EVENT;?> : <?=SELECT_COUNTER_EVENT?>},
         error:function(data,text,third){
             obj = jQuery.parseJSON(data.responseText);
             if(obj.emsg){
@@ -1756,7 +1821,7 @@ function counterMouseDown(event) {
     if(!id){
         id = $(event.target).parent().attr("id");
     }
-    doitUnit(id);
+    doitUnit(id,event);
 }
 
 function nextPhaseMouseDown(event) {
@@ -1816,8 +1881,10 @@ function initialize() {
     $("#gameImages").on("mousedown",".specialHexes",mapMouseDown);
 
     $("#nextPhaseButton").on('mousedown',nextPhaseMouseDown);
-    $( "#gameImages" ).draggable({stop:fixCrt});
-    $("#floatMessage").draggable();
+    $( "#gameImages" ).draggable({stop:fixCrt, distance:15});
+    $("#floatMessage").draggable({stop:function(){
+        $(this).attr('hasDragged','true');
+    }});
     $("#muteButton").click(function(){
        if(!mute){
            $("#muteButton").html("un-mute");

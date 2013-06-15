@@ -51,7 +51,6 @@ $oneHalfImageHeight = 16;
 
 class MartianCivilWar extends Battle {
 
-    /* @var Mapdata */
     public $mapData;
     public $mapViewer;
     public $playerData;

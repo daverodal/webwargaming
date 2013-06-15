@@ -3,7 +3,7 @@
 <header id="header">
 <div id="headerContent">
     <div id="leftHeader">
-            <span style="font-size:1.0em">Welcome {user} {player} to <span style="font-family:'Nosifer';">The Martian Civil War</span><span
+            <span style="font-size:1.0em">Welcome {user} {player} to <span style="font-family:'Nosifer';">Gross Jagersdorf</span><span
                     style="font-style: italic;">&ldquo;{wargame}&rdquo;</span></span>
 
     </div>
@@ -32,8 +32,9 @@
                     <li>   Welcome {user}</li>
                     <li>you are playing as  <?=$player;?></li>
                     <li>
-                        in <span style="font-family:'Nosifer';">The Martian Civil War</span></li>
+                        in <span style="font-family:'Berkshire Swash';">Gross Jagersdorf</span></li>
                     <li> The file is called {wargame}</li>
+                    <li>Game Designer: Lance Runolfsson</li>
 
                     <li class="closer"></li>
                 </ul>

@@ -132,6 +132,7 @@ class GameRules {
     function processEvent($event, $id, $hexagon, $click)
     {
 
+        /* @var Hexagon $hexagon */
         global $phase_name, $event_name, $mode_name;
 
         $now = time();
@@ -141,10 +142,11 @@ class GameRules {
         $interaction->id = $id;
         $interaction->hexagon = $hexagon;
         $interaction->time = $now;
-        $eventname = $event_name[$event];
-        $modename = $mode_name[$this->mode];
-        $phasename = $phase_name[$this->phase];
+//        $eventname = $event_name[$event];
+//        $modename = $mode_name[$this->mode];
+//        $phasename = $phase_name[$this->phase];
 
+        /* @var $battle Battle */
         $battle = Battle::getBattle();
         $mapData = $battle->mapData;
 //        $mapData = MapData::getInstance();
@@ -205,7 +207,9 @@ class GameRules {
                             }
                         }
                         if($this->force->attackingForceId == $this->force->units[$id]->forceId){
-                            if($this->force->units[$id]->setStatus(STATUS_ELIMINATED)){
+                            /* @var Unit $unit */
+                            $unit = $this->force->getUnit($id);
+                            if($unit->setStatus(STATUS_ELIMINATED)){
                                 $this->currentReplacement = false;
                                 $this->moveRules->stopReplacing($id);
                                 break;
@@ -213,7 +217,9 @@ class GameRules {
 
                             if ($this->force->units[$id]->status == STATUS_ELIMINATED) {
                                 if ($this->currentReplacement !== false && $this->currentReplacement != $id) {
-                                    $this->force->units[$this->currentReplacement]->setStatus(STATUS_ELIMINATED);
+                                    /* @var Unit $unit */
+                                    $unit = $this->force->getUnit($this->currentReplacement);
+                                    $unit->setStatus(STATUS_ELIMINATED);
                                 }
 //                                $this->force->units[$id]->status = STATUS_CAN_REPLACE;
                                 $this->currentReplacement = $id;
@@ -280,6 +286,7 @@ class GameRules {
                         return 0;
                     case KEYPRESS_EVENT:
                         if($this->moveRules->anyUnitIsMoving){
+                            /* @var Unit $unit */
                             $unit = $this->force->getUnit($this->moveRules->movingUnitId);
                             if(!$unit->unitHasNotMoved()){
                                 return false;
@@ -329,6 +336,7 @@ class GameRules {
                        $shift = false;
                 switch ($event) {
 
+                    /** @noinspection PhpMissingBreakStatementInspection */
                     case SELECT_SHIFT_COUNTER_EVENT:
                         $shift = true;
                         /* fall through */
@@ -399,7 +407,7 @@ class GameRules {
                         break;
 
                     case SELECT_BUTTON_EVENT:
-                        $this->force->undoDefendersWithoutAttackers();
+                        $this->combatRules->undoDefendersWithoutAttackers();
                         if ($this->gameHasCombatResolutionMode == true) {
                             $this->mode = COMBAT_RESOLUTION_MODE;
                         } else {
@@ -548,6 +556,7 @@ class GameRules {
         if ($this->force->moreCombatToResolve() == false && $this->moveRules->anyUnitIsMoving == false) {
             for ($i = 0; $i < count($this->phaseChanges); $i++) {
 
+                /* @var Battle $battle */
                 $battle = Battle::getBattle();
                 $victory = $battle->victory;
                 if ($this->phaseChanges[$i]->currentPhase == $this->phase) {
@@ -608,16 +617,16 @@ class GameRules {
 
         //	var info;
         global $phase_name, $force_name, $mode_name;
-        $info = "turn: " + $this->turn;
-        $info += " " + $phase_name[$this->phase];
-        $info += " ( " + $force_name[$this->force->getVictorId()];
+        $info = "turn: " . $this->turn;
+        $info .= " " . $phase_name[$this->phase];
+        $info .= " ( " . $force_name[$this->force->getVictorId()];
         if ($this->turn < $this->maxTurn) {
-            $info += " is winning )";
+            $info .= " is winning )";
         } else {
-            $info += " wins! )";
+            $info .= " wins! )";
         }
-        $info += "<br />&nbsp; " + $mode_name[$this->mode];
-        $info += "<br />last force to occupy Marysville wins";
+        $info .= "<br />&nbsp; " . $mode_name[$this->mode];
+        $info .= "<br />last force to occupy Marysville wins";
 
         return $info;
     }

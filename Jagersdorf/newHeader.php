@@ -1,4 +1,5 @@
 <link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
 <style type="text/css">
     body{
     }
@@ -81,6 +82,14 @@
         color:black;
     }
 
+    .playerOne{
+        background:rgb(255,253,127);
+        border-color:rgb(255,253,127) !important;
+    }
+    .playerTwo{
+        background:rgb(76,184,0);
+        border-color:rgb(76,184,0) !important;
+    }
 #TECWrapper .closer{
     height:0px;
     padding:0px;

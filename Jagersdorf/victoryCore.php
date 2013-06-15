@@ -51,29 +51,20 @@ class victoryCore
         $attackingId = $arg[0];
         $battle = Battle::getBattle();
 
+        /* @var GameRules $gameRules */
         $gameRules = $battle->gameRules;
+        $attackingId = $gameRules->attackingForceId;
         $turn = $gameRules->turn;
+        $gameRules->flashMessages[] = "@hide crt";
 
-        if($this->phase == BLUE_MOVE_PHASE || $this->phase ==  RED_MOVE_PHASE){
-            $gameRules->flashMessages[] = "@hide crt";
-        }
+
         if($attackingId == BLUE_FORCE){
-            $gameRules->flashMessages[] = "Prussian Player Turn";
-            $gameRules->replacementsAvail = 1;
+            $gameRules->flashMessages[] = "Russian Player Turn";
         }
         if($attackingId  == RED_FORCE){
-            $gameRules->flashMessages[] = "Russian Player Turn";
-            $gameRules->replacementsAvail = 10;
+            $gameRules->flashMessages[] = "Prussian Player Turn";
         }
 
-        if($this->phase == BLUE_MOVE_PHASE || $this->phase ==  RED_MOVE_PHASE){
-            $this->flashMessages[] = "@hide crt";
-            if($this->force->reinforceTurns->$turn->$attackingId){
-                $this->flashMessages[] = "You have reinforcements.";
-                $this->flashMessages[] = "@show OBC";
-
-            }
-        }
 
     }
     public function postRecoverUnits($args){

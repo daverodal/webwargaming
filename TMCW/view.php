@@ -2,11 +2,6 @@
 <div id="theDiv">
 <header id="header">
     <div id="headerContent">
-        <div id="leftHeader">
-            <span style="font-size:1.0em">Welcome {user} {player} to <span style="font-family:'Nosifer';">The Martian Civil War</span><span
-                    style="font-style: italic;">&ldquo;{wargame}&rdquo;</span></span>
-
-        </div>
         <div id="rightHeader">
             <div id="mouseMove">mouse</div>
             <div id="comlinkWrapper" style="float:right;">
@@ -34,6 +29,7 @@
                         <li>
                             in <span style="font-family:'Nosifer';">The Martian Civil War</span></li>
                         <li> The file is called {wargame}</li>
+                        <li>Game Designer: David Rodal</li>
 
                         <li class="closer"></li>
                     </ul>

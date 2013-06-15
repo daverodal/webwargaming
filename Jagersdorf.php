@@ -167,7 +167,7 @@ class Jagersdorf extends Battle {
             $this->force = new Force($data->force);
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
-            $this->moveRules->stickyZOC = true;
+            $this->moveRules->stickyZOC = false;
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
@@ -186,6 +186,7 @@ class Jagersdorf extends Battle {
             $this->terrain = new Terrain();
             $this->terrain->setMaxHex("2323");
             $this->moveRules = new MoveRules($this->force, $this->terrain);
+            $this->moveRules->exitZoc = "stop";
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);

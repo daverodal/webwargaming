@@ -18,6 +18,14 @@
     .sympth{
         background-color:gold;
     }
+    .playerOne{
+        background:rgb(223,88,66);
+        border-color:rgb(223,88,66) !important;
+    }
+    .playerTwo{
+        background:rgb(132,181,255);
+        border-color:rgb(132,181,255) !important;
+    }
     .armyGreen, .lloyalist{
     background-color:  rgb(148,189,74);
     }
