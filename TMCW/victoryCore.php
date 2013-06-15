@@ -35,7 +35,7 @@ class victoryCore{
             $this->victoryPoints[$victorId] += $vp;
         }else{
             $victorId = 1;
-            $this->victoryPoints[$victorId] += $vp/2;
+//            $this->victoryPoints[$victorId] += $vp/2;
         }
     }
     public function incrementTurn(){
@@ -100,11 +100,13 @@ class victoryCore{
                 if($v == 1){
                     if($k == 2414 || $k == 2415 || $k == 2515){
                         $vp[$v] += 5;
-                    }else{
+                    }elseif($k >= 2514){
+                       $vp[$v] += 3;
+                    } else{
                         $vp[$v]++;
                     }
                 }else{
-                    $vp[$v] += .5;
+//                    $vp[$v] += .5;
                 }
             }
         }

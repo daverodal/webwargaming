@@ -177,7 +177,7 @@ class MartianCivilWar extends Battle {
             $this->victory = new Victory("TMCW");
             $this->display = new Display();
             $this->mapData->setData(30,20,"js/Martian.png");
-            $this->mapData->setSpecialHexes(array(407=>RED_FORCE,1909=>RED_FORCE,1515=>RED_FORCE,516=>RED_FORCE,2414=>RED_FORCE,2415=>RED_FORCE,2515=>RED_FORCE,1508=>RED_FORCE));
+            $this->mapData->setSpecialHexes(array(407=>RED_FORCE,1909=>RED_FORCE,1515=>RED_FORCE,516=>RED_FORCE,2414=>RED_FORCE,2415=>RED_FORCE,2515=>RED_FORCE,1508=>RED_FORCE,2514=>RED_FORCE,2614=>RED_FORCE,2615=>RED_FORCE,2416=>RED_FORCE,2516=>RED_FORCE,2615=>RED_FORCE,2716=>RED_FORCE,2816=>RED_FORCE,2917=>RED_FORCE,3017=>RED_FORCE));
             $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
