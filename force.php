@@ -52,13 +52,10 @@ class unit implements JsonSerializable
     public $combatNumber;
     public $combatIndex;
     public $combatOdds;
-    public $hasContact;
     public $moveCount;
     public $retreatCountRequired;
     public $combatResults;
     public $dieRoll;
-    public $eliminationHexagonX;
-    public $eliminationHexagonY;
     public $range;
     public $nationality;
     public $forceMarch = false;

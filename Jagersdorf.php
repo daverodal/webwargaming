@@ -108,7 +108,6 @@ class Jagersdorf extends Battle {
         $data->mapViewer = $this->mapViewer;
         $data->moveRules = $this->moveRules->save();
         $data->force = $this->force;
-        $data->terrain = $this->terrain;
         $data->gameRules = $this->gameRules->save();
         $data->combatRules = $this->combatRules->save();
         $data->players = $this->players;
