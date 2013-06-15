@@ -21,12 +21,21 @@ class victoryCore{
     }
     public function reduceUnit($args){
         $unit = $args[0];
+        if($unit->strength == $unit->maxStrength){
+            if($unit->status == STATUS_ELIMINATED){
+                $vp = $unit->maxStrength;
+            }else{
+                $vp = $unit->maxStrength - $unit->minStrength;
+            }
+        }else{
+            $vp = $unit->minStrength;
+        }
         if($unit->forceId == 1){
             $victorId = 2;
-            $this->victoryPoints[$victorId] += $unit->strength;
+            $this->victoryPoints[$victorId] += $vp;
         }else{
             $victorId = 1;
-            $this->victoryPoints[$victorId] += $unit->strength;
+            $this->victoryPoints[$victorId] += $vp/2;
         }
     }
     public function incrementTurn(){
