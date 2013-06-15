@@ -1676,7 +1676,7 @@ function doitUnit(id,event) {
     $("#"+id+"").addClass("pushed");
 
     $("#comlink").html('waiting');
-    $.ajax({url: "<?=site_url("wargame/poke");?>/",
+    $.ajax({url: "<?=site_url("wargame/poke?XDEBUG_PROFILE=true");?>/",
         type: "POST",
         data:{id:id,event : event.shiftKey ? <?=SELECT_SHIFT_COUNTER_EVENT;?> : <?=SELECT_COUNTER_EVENT?>},
         error:function(data,text,third){
