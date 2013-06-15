@@ -59,6 +59,7 @@ class unit implements JsonSerializable
     public $range;
     public $nationality;
     public $forceMarch = false;
+    public $dirty;
 
     public function jsonSerialize(){
         if(is_object($this->hexagon)){
@@ -266,6 +267,7 @@ class unit implements JsonSerializable
             default:
                 break;
         }
+        $this->dirty = true;
         return $success;
     }
 
@@ -281,6 +283,7 @@ class unit implements JsonSerializable
         }
 
         $this->hexagon = $hexagon;
+        $this->dirty = true;
         $mapHex = $mapData->getHex($this->hexagon->getName());
         if($mapHex){
             $mapHex->setUnit($this->forceId,$this->id);
@@ -302,6 +305,7 @@ class unit implements JsonSerializable
 
     function set($unitId, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral", $forceMarch)
     {
+        $this->dirty = true;
         $this->id = $unitId;
         $this->name = $unitName;
         $this->forceId = $unitForceId;
@@ -347,6 +351,7 @@ class unit implements JsonSerializable
                 }
                 $this->$k = $v;
             }
+            $this->dirty = false;
         }
     }
 }
