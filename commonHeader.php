@@ -1733,12 +1733,19 @@ function doitMap(x,y) {
 return true;
 }
 function doitNext() {
+    playAudio();
+
     $.ajax({url: "<?=site_url("wargame/poke/");?>/",
         type: "POST",
         data:{event: <?=SELECT_BUTTON_EVENT?>},
         success:function(data, textstatus) {
+            playAudioLow();
 
-    }
+    },     error:function(data,text){
+            playAudioBuzz();
+            $('body').css({cursor:"auto"});
+            $(this).css({cursor:"auto"});
+        }
 });
 
 }
