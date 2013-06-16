@@ -24,12 +24,12 @@ class CombatResultsTable
     function __construct(){
         $this->combatResultsHeader = array("1:1","2:1","3:1","4:1","5:1","6:1");
 	    $this->combatResultsTable = array(
-            array(DR, DRL, DE, DE, DE, DE),
-            array(DR, EX, DRL, DE, DE, DE),
-            array(EX, EX, DRL, DRL, DE, DE),
-            array(EX, DR, EX, EX, DE, DE),
-            array(AL, DR, DR, DR, DRL, DE),
-            array(AL, AL, DR, DR, EX, DE),
+            array(DR2, DRL2, DE, DE, DE, DE),
+            array(DR2, EX2, DRL2, DE, DE, DE),
+            array(EX2, EX2, DRL2, DRL2, DE, DE),
+            array(EX2, DR2, EX2, EX2, DE, DE),
+            array(AL, DR2, DR2, DR2, DRL2, DE),
+            array(AL, AL, DR2, DR2, EX, DE),
         );
 
         $this->combatOddsTable = array(
