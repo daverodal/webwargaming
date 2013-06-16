@@ -251,7 +251,7 @@ class MoveRules{
             $theHex = new Hexagon($hexNum);
             $mapHex = $this->mapData->getHex($hexNum);
 
-            if($this->force->mapHexIsOccupied($mapHex)){
+            if($this->force->mapHexIsOccupiedFriendly($mapHex)){
                 $this->moves->$hexNum->isOccupied = true;
             }
             if($this->force->mapHexIsOccupiedEnemy($mapHex)){

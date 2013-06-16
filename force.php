@@ -277,6 +277,7 @@ class unit implements JsonSerializable
         $battle = Battle::getBattle();
         $mapData = $battle->mapData;
 //        $mapData = MapData::getInstance();
+        /* @var MapHex $mapHex */
         $mapHex = $mapData->getHex($this->hexagon->getName());
         if($mapHex){
             $mapHex->unsetUnit($this->forceId,$this->id);
@@ -865,8 +866,12 @@ class Force
         return $isZOC;
     }
 
-    function mapHexIsOccupied($mapHex)
+    function mapHexIsOccupiedFriendly(MapHex $mapHex)
     {
+        if($mapHex->isOccupied($this->attackingForceId)){
+            return true;
+        }
+        return false;
         $isOccupied = false;
         if(is_array($mapHex->forces)){
             foreach($mapHex->forces as $force)
@@ -887,6 +892,7 @@ class Force
     }
 
     function mapHexIsZoc(MapHex $mapHex){
+        return $mapHex->isEnemyZoc($this->defendingForceId);
         $neighbors = $mapHex->neighbors;
 
         if($neighbors){
@@ -925,8 +931,9 @@ class Force
 
         return $isOccupied;
     }
-    function mapHexIsOccupiedEnemy($mapHex)
+    function mapHexIsOccupiedEnemy(MapHex $mapHex)
     {
+        return $mapHex->isOccupied($this->defendingForceId);
         $isOccupied = false;
         $friendlyId = $this->attackingForceId;
 

@@ -15,7 +15,7 @@ class MapHex {
     public $name;
     public $neighbors;
     public $dirty;
-    public function __construct($name, $forces = false){
+    public function __construct($name, $forces = false, $zocs = false){
         $this->name = $name;
         $this->dirty = false;
         $this->neighbors = array();
@@ -37,6 +37,12 @@ class MapHex {
         }else{
             $this->forces = array(new stdClass(),new stdClass(), new stdClass());
         }
+        if($zocs !== false){
+            $this->dirty = true;
+            $this->zocs = $zocs;
+        }else{
+            $this->zocs = array(new stdClass(),new stdClass(), new stdClass());
+        }
 
     }
 
@@ -44,6 +50,16 @@ class MapHex {
         if(isset($this->forces[$forceId]->$id)){
             unset($this->forces[$forceId]->$id);
             $this->dirty = true;
+        }
+        $neighbors = $this->neighbors;
+        $mapData = MapData::getInstance();
+        foreach($neighbors as $neighbor){
+            $hex = $mapData->getHex($neighbor);
+            if($hex){
+                unset($hex->zocs[$forceId]->$id);
+
+            }
+
         }
     }
     public function setUnit($forceId, $id){
@@ -54,7 +70,29 @@ class MapHex {
             $this->forces[$forceId] = new stdClass();
         }
         $this->forces[$forceId]->$id = $id;
+        $neighbors = $this->neighbors;
+        $mapData = MapData::getInstance();
+        foreach($neighbors as $neighbor){
+            $hex = $mapData->getHex($neighbor);
+            if($hex){
+            if(!$hex->zocs){
+                $hex->zocs = array(new stdClass(),new stdClass(),new stdClass());
+            }
+
+            if(!$hex->zocs[$forceId]){
+                $hex->zocs[$forceId] = new stdClass();
+            }
+            $hex->zocs[$forceId]->$id = $id;
+            }
+        }
+
         $this->dirty = true;
+    }
+    public function isEnemyZoc($forceId){
+        return count((array)$this->zocs[$forceId]);
+    }
+    public function isOccupied($forceId){
+        return count((array)$this->forces[$forceId]);
     }
 }
 class MapData implements JsonSerializable{
@@ -76,8 +114,8 @@ class MapData implements JsonSerializable{
 //            var_dump(count($hex->forces[1]));
 //            var_dump($hex->forces[1]);
 
-            $f1 = count((array)$hex->forces[1]);
-            $f2 = count((array)$hex->forces[2]);
+            $f1 = count((array)$hex->forces[1]) + count((array)$hex->zocs[1]);
+            $f2 = count((array)$hex->forces[2]) + count((array)$hex->zocs[2]);
             if(!$f1 && !$f2){
                 unset($this->hexes->$k);
                 continue;
@@ -116,7 +154,7 @@ class MapData implements JsonSerializable{
             for($j = 0;$j<= $this->maxY+1;$j++){
                 $name = sprintf("%02d%02d",$i,$j);
                 if(isset($hexes->$name) && $hexes->$name){
-                    $x = new MapHex($name,$hexes->$name->forces);
+                    $x = new MapHex($name,$hexes->$name->forces,$hexes->$name->zocs);
                 }else{
                     $x = new MapHex($name);
                 }
