@@ -202,7 +202,7 @@ class Terrain
     /*
      * private !
      */
-    private function getTerrainCode(Hexagon $hexpart)
+    private function getTerrainCode(Hexpart $hexpart)
     {
         $x = $hexpart->getX();
         $y = $hexpart->getY();
