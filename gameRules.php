@@ -249,6 +249,7 @@ class GameRules {
                 switch ($event) {
 
                     case SELECT_MAP_EVENT:
+                        return 0;
                     case SELECT_COUNTER_EVENT:
                     if(strpos($id,"Hex")){
                         $matchId = array();
@@ -256,7 +257,7 @@ class GameRules {
                         $matchHex = array();
                         preg_match("/Hex(.*)/",$id,$matchHex);
                         $id = $matchId[0];
-                        $hexagon = new Hexagon($matchHex[1]);
+                        $hexagon = $matchHex[1];
                         $event = SELECT_MAP_EVENT;
                     }
                          $this->moveRules->moveUnit($event, $id, $hexagon, $this->turn);
@@ -305,7 +306,7 @@ class GameRules {
                         $matchHex = array();
                         preg_match("/Hex(.*)/",$id,$matchHex);
                         $id = $matchId[0];
-                        $hexagon = new Hexagon($matchHex[1]);
+                        $hexagon = $matchHex[1];
                         $event = SELECT_MAP_EVENT;
                     }
                     if($id === false){

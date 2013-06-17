@@ -91,61 +91,54 @@ class Terrain
 
             $this->allAreAttackingAcrossRiverCombatEffect = 1;
 
-            /* TODO
-             * This needs to be removed and all other learn to call setMaxHex :P
-            */
-//            $this->maxTerrainY = 150;
-//            $this->maxTerrainX = 200;
-//
-//            for ($x = 0; $x < $this->maxTerrainX; $x++) {
-//                for ($y = 0; $y < $this->maxTerrainY; $y++) {
-//                    $this->terrainArray[$y][$x] = new stdClass();
-//                }
-//
-//            }
+            $mapData = MapData::getInstance();
+
+
+            $x = $mapData->maxX;
+            $y = $mapData->maxY;
+            $hexName = sprintf("%02d%02d",$x,$y);
+
+            list($x, $y) = Hexagon::getHexPartXY($hexName);
+            $this->maxTerrainY = $y + 4;/* add 4 for bottom and even/odd columns */
+            $this->maxTerrainX = $x;
+
+            for ($x = 0; $x <= $this->maxTerrainX; $x++) {
+                for ($y = 0; $y <= $this->maxTerrainY; $y++) {
+                    $this->terrainArray[$y][$x] = new stdClass();
+                }
+
+            }
         }
     }
 
-    public function setMaxHex($hexName){
-        $hexagon = new Hexagon($hexName);
-        $this->maxTerrainX = $hexagon->getX() + 1;
-        $this->maxTerrainY = $hexagon->getY() + 2;
+    /* this method will die someday  sooner than later */
+    public function setMaxHex(){
+        return;
+        $mapData = MapData::getInstance();
+
+
+        $x = $mapData->maxX;
+        $y = $mapData->maxY;
+        $hexName = sprintf("%02d%02d",$x,$y);
+
+        new Hexagon();
+        list($x, $y) = Hexagon::getHexPartXY($hexName);
+//        echo "X $x Y $y";
+        $this->maxTerrainY = $y + 4;/* for bottom and even odd columns */
+        $this->maxTerrainX = $x;
+//        echo $this->maxTerrainY; echo " ";
+
+        // jejej
+
         for ($x = 0; $x < $this->maxTerrainX; $x++) {
-            for ($y = 0; $y < $this->maxTerrainY; $y++) {
+            for ($y = 0; $y <= $this->maxTerrainY; $y++) {
                 $this->terrainArray[$y][$x] = new stdClass();
             }
 
         }
+//        var_dump($this->terrainArray[92][34]);
     }
 
-
-    /*
-     * can be removed
-     */
-    /*
-function addTown($name, $hexagonName)
-{
-$hexagon = new Hexagon($hexagonName);
-$town = new Town($name, $hexagon);
-array_push($this->towns, $town);
-}*/
-    /*
-     * can be removed
-     */
-    /*
-function getTownName($hexagon) {
-
-$townName = "";
-for ( $i = 0; $i < count($this->towns); $i++ ) {
-
-    if ( $this->towns[$i]->hexagon->equals($hexagon) ) {
-
-        $townName += $this->towns[$i]->name;
-    }
-}
-return $townName;
-}
-*/
     /*
      * public
      */
@@ -188,8 +181,6 @@ return $townName;
                 break;
 
         }
-        if($terrainName == "road"){
-        }
         if ($feature = $this->terrainFeatures->$terrainName) {
             if ($feature->isExclusive === true) {
                 $this->terrainArray[$y][$x] = new stdClass();
@@ -211,12 +202,11 @@ return $townName;
     /*
      * private !
      */
-    private function getTerrainCode($hexpart)
+    private function getTerrainCode(Hexagon $hexpart)
     {
-//        $x->aa->bb = 3;
         $x = $hexpart->getX();
         $y = $hexpart->getY();
-        if (($x >= 0 && $x < $this->maxTerrainX) && ($y >= 0 && $y < $this->maxTerrainY))
+        if (($x >= 0 && $x <= $this->maxTerrainX) && ($y >= 0 && $y <= $this->maxTerrainY))
             $terrainCode = $this->terrainArray[$y][$x];
         else
             $terrainCode = 0;
@@ -230,33 +220,14 @@ return $townName;
      */
     private function getTerrainCodeXY($x,$y)
     {
-      if (($x >= 0 && $x < $this->maxTerrainX) && ($y >= 0 && $y < $this->maxTerrainY))
+      if (($x >= 0 && $x <= $this->maxTerrainX) && ($y >= 0 && $y <= $this->maxTerrainY))
             $terrainCode = $this->terrainArray[$y][$x];
         else
             $terrainCode = 0;
 
         return $terrainCode;
     }
-    /*
-     * can be removed
-     */
-    /*
-function getTerrainDisplayName($hexpart) {
 
-$code = $this->getTerrainCode($hexpart);
-$terrainName = "";
-
-    for($i = 0; $i < count($this->terrainFeatures); $i++ ) {
-
-        if( ($this->terrainFeatures[$i]->code & $code) == $this->terrainFeatures[$i]->code ) {
-
-            $terrainName += $this->terrainFeatures[$i]->displayName;
-            $terrainName += " ";
-        }
-    }
-//}
-return $terrainName;
-}*/
     /*
      * public
      */
@@ -276,7 +247,6 @@ return $terrainName;
     function terrainIsXY($x,$y, $terrainName)
     {
         $terrainCode = $this->getTerrainCodeXY($x,$y);
-        $found = false;
         if ($terrainCode->$terrainName) {
             return true;
         }
@@ -372,7 +342,9 @@ return $terrainName;
 
         $name = $hexagon->name;
 //        $hexpart = new Hexpart($hexagon->getX(), $hexagon->getY());
-        $terrains = $this->terrainArray[$hexagon->getY()][$hexagon->getX()];
+        list($endX, $endY) = Hexagon::getHexPartXY($hexagon);
+
+        $terrains = $this->terrainArray[$endY][$endX];
 
         foreach ($terrains as $terrainFeature) {
             $entranceCost += $this->terrainFeatures->$terrainFeature->entranceCost;
@@ -397,17 +369,28 @@ return $terrainName;
         }
         return $traverseCost;
 
-    }    /*
+    }
+
+    /*
      * very public
      * used in moveRules
      */
     function getTerrainMoveCost($startHexagon, $endHexagon, $railMove)
     {
+        if(is_object($startHexagon)){
+            $startHexagon = $startHexagon->name;
+        }
+        if(is_object($endHexagon)){
+            $endHexagon = $endHexagon->name;
+    }
         $moveCost = 0;
-        $name = $endHexagon->name;
-
-        $hexsideX = ($startHexagon->getX() + $endHexagon->getX()) / 2;
-        $hexsideY = ($startHexagon->getY() + $endHexagon->getY()) / 2;
+//        $name = $endHexagon->name;
+        list($startX, $startY) = Hexagon::getHexPartXY($startHexagon);
+        list($endX, $endY) = Hexagon::getHexPartXY($endHexagon);
+//        $hexsideX = ($startHexagon->getX() + $endHexagon->getX()) / 2;
+//        $hexsideY = ($startHexagon->getY() + $endHexagon->getY()) / 2;
+        $hexsideX = ($startX + $endX) / 2;
+        $hexsideY = ($startY + $endY) / 2;
 //        $hexpart = new Hexpart($hexsideX, $hexsideY);
 
         // if road, override terrain
@@ -533,7 +516,13 @@ else
     {
         $isExit = false;
 
-        $hexpart = new Hexpart($hexagon->getX(), $hexagon->getY());
+        if (is_object($hexagon)) {
+            $X = $hexagon->getX();
+            $Y = $hexagon->getY();
+        } else {
+            list($X, $Y) = Hexagon::getHexPartXY($hexagon);
+        }
+        $hexpart = new Hexpart($X, $Y);
 
         $terrainCode = $this->getTerrainCode($hexpart);
 

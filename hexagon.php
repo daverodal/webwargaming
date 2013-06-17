@@ -38,27 +38,70 @@ class HexPath implements JsonSerializable{
 }
 class Hexagon  {
 
-	public $evenColumnShiftDown;
+	public static $evenColumnShiftDown;
 	public $number;
 	public $x = false, $y = false;
 	public $name;
-	public $minX, $minY;
-	public $maxX, $maxY;
+    private static $setup = false;
+	public static $minX, $minY;
+	public static $maxX, $maxY;
     public $parent = "gameImages";
 
+    public static function setMinMax(){
+        $mapData = MapData::getInstance();
+        $x = $mapData->maxX;
+        $y = $mapData->maxY;
+
+        self::$evenColumnShiftDown = true;
+        self::$minX = 4;
+        self::$minY = 8;
+
+        self::$maxY = 4 * ( $y - 1 ) + self::$minY + 2;/* 4 for even odd columns and bottom_hexside */
+
+        if(self::$evenColumnShiftDown == true)
+        {
+            if ( $x % 2 == 0 ) self::$maxY += 2;
+        } else {
+            if ( $x % 2 == 0 ) self::$maxY -= 2;
+        }
+
+        self::$maxX = 2 * ( $x - 1 ) + self::$minX;
+        self::$setup = true;
+
+    }
 
     function __construct($a1 = false, $a2 = false){
-        $mapData = MapData::getInstance();
+        if(!self::$setup){
+            self::setMinMax();
+        }
+//        $mapData = MapData::getInstance();
 
-        $this->evenColumnShiftDown = true;
+//        self::$evenColumnShiftDown = true;
         $this->number = 0;
         $this->x = 0;
         $this->y = 0;
         $this->name = "";
-        $this->minX = 4;
-        $this->minY = 8;
-        $this->maxX = $mapData->maxX * 2 + 2;
-        $this->maxY = $mapData->maxY * 4 + 4 + 2;
+//        self::$minX = 4;
+//        self::$minY = 8;
+//        self::$maxX = $mapData->maxX * 2 + 2;
+//       self::$maxY = $mapData->maxY * 4 + 4 + 2;
+
+        // jej
+//        $x = $mapData->maxX;
+//        $y = $mapData->maxY;
+//
+//        self::$maxY = 4 * ( $y - 1 ) + self::$minY;
+//
+//        if(self::$evenColumnShiftDown == true)
+//        {
+//            if ( $x % 2 == 0 ) self::$maxY += 2;
+//        } else {
+//            if ( $x % 2 == 0 ) self::$maxY -= 2;
+//        }
+//
+//        self::$maxX = 2 * ( $x - 1 ) + self::$minX;
+        // jejej
+
 
         // Hexagon(name)
         if ( $a1 !== false && $a2 === false ) {
@@ -111,69 +154,64 @@ function setXY( $x, $y ) {
 
 private function calculateHexagonNumber()
 {
-  	$x = ( ($this->x - $this->minX ) / 2 ) + 1;
+  	$x = ( ($this->x - self::$minX ) / 2 ) + 1;
 
-	if($this->evenColumnShiftDown == true)
+	if(self::$evenColumnShiftDown == true)
 	{
-    		$y = floor((($this->y - $this->minY) / 4) + 1);
+    		$y = floor((($this->y - self::$minY) / 4) + 1);
   	} else {
-    		$y = floor((($this->y - $this->minY + 2) / 4) + 1);
+    		$y = floor((($this->y - self::$minY + 2) / 4) + 1);
   	}
   	$this->number = $x * 100 + $y;
 }
+public static function getHexPartXY($name){
+    if(!self::$setup){
+        self::setMinMax();
+    }
+    $x = floor( $name / 100 );
+    $y = $name - ( $x * 100 );
 
+    $retY = 4 * ( $y - 1 ) + self::$minY;
+
+    if(self::$evenColumnShiftDown == true)
+    {
+        if ( $x % 2 == 0 ) $retY += 2;
+    } else {
+        if ( $x % 2 == 0 ) $retY -= 2;
+    }
+
+    $retX = 2 * ( $x - 1 ) + self::$minX;
+    if ($retX >= self::$minX && $retY >= self::$minY && $retX <= self::$maxX && $retY <= self::$maxY){
+        return array($retX, $retY);
+    }
+
+    return false;
+}
 private function calculateHexpartXY() {
 
 
  	$x = floor( $this->number / 100 );
 	$y = $this->number - ( $x * 100 );
 
- 	$this->y = 4 * ( $y - 1 ) + $this->minY;
+ 	$this->y = 4 * ( $y - 1 ) + self::$minY;
 
-	if($this->evenColumnShiftDown == true)
+	if(self::$evenColumnShiftDown == true)
 	{
 		if ( $x % 2 == 0 ) $this->y += 2;
 	} else {
 		if ( $x % 2 == 0 ) $this->y -= 2;
 	}
 	
-	$this->x = 2 * ( $x - 1 ) + $this->minX;
+	$this->x = 2 * ( $x - 1 ) + self::$minX;
 }
 
-private function parseX($number) {
 
-
-	$x = floor($number / 100);
-	$x = 2 * ( $x - 1 ) + $this->minX;
-
-	return $x;
-}
-
-private function parseY($number) {
-
-
-	$x = floor(number / 100);
-	$y = hexagon_Number % 100;
-
-	$y = 4 * ( $y - 1 ) + $this->miny;
-
-	if ($this->evenColumnsShiftDown == true)
-	{
-		if ($x % 2 == 0) $y += 2;
-	}
-	else
-	{
-		if ($x % 2 == 0) $y -= 2;
-	}
-
-	return $y;
-}
 
 private function calculateHexagonName() {
 
     $this->name = "";
     
-	if ($this->x >= $this->minX && $this->y >= $this->minY && $this->x <= $this->maxX && $this->y <= $this->maxY)
+	if ($this->x >= self::$minX && $this->y >= self::$minY && $this->x <= self::$maxX && $this->y <= self::$maxY)
 	{
 	    if ($this->number < 1000) {
 	        $this->name = "0" + $this->number;

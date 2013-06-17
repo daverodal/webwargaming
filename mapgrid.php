@@ -88,7 +88,7 @@ class MapHex {
 
         $this->dirty = true;
     }
-    public function isEnemyZoc($forceId){
+    public function isZoc($forceId){
         return count((array)$this->zocs[$forceId]);
     }
     public function isOccupied($forceId){

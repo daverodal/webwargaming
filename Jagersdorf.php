@@ -177,13 +177,13 @@ class Jagersdorf extends Battle {
             $this->genTerrain = true;
             $this->victory = new Victory("Jagersdorf");
 
-             $this->mapData->setData(22,22,"js/ColorGrossMain.jpg");
+             $this->mapData->setData(21,22,"js/ColorGrossMain.jpg");
 
             $this->display = new Display();
             $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
-            $this->terrain->setMaxHex("2323");
+//            $this->terrain->setMaxHex("2223");
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->moveRules->exitZoc = "stop";
             $this->combatRules = new CombatRules($this->force, $this->terrain);
@@ -387,6 +387,7 @@ class Jagersdorf extends Battle {
             $this->terrain->addReinforceZone("101","B");
 
 
+
 //            $deployZones = array(103,104,106,107,201,202,203,204,205,206,209,210,305,306,307,309,310,406,407,408,409,410);
 //            for($i = 1;$i <= 10;$i++){
 //                for($j= 1; $j<=2;$j++){
@@ -396,7 +397,7 @@ class Jagersdorf extends Battle {
 //            }
 
             for ($col = 100; $col <= 2100; $col += 100) {
-                for ($row = 1; $row <= 21; $row++) {
+                for ($row = 1; $row <= 22; $row++) {
                     $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
@@ -405,7 +406,10 @@ class Jagersdorf extends Battle {
                 }
             }
 
-
+            $offMap = array(101,301,501,701,801,901,1001,1101,1201,1301,1302,1401,1402,1501,1502,1503,1601,1602,1603,1701,1702,1703,1801,1802,1803,1901,1902,1903,2001,2002,2003,2101,2102,2103);
+            foreach($offMap as $off){
+                $this->terrain->addTerrain($off, HEXAGON_CENTER, "offmap");
+            }
 
 
             $this->terrain->addTerrain(1902, BOTTOM_HEXSIDE,"road");

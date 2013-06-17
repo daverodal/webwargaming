@@ -892,7 +892,7 @@ class Force
     }
 
     function mapHexIsZoc(MapHex $mapHex){
-        return $mapHex->isEnemyZoc($this->defendingForceId);
+        return $mapHex->isZoc($this->defendingForceId);
         $neighbors = $mapHex->neighbors;
 
         if($neighbors){
