@@ -30,6 +30,7 @@ class MoveRules{
     public $exitZoc = 0;
     public $noZocZoc = false;
     public $noZocZocOneHex = false;
+    public $oneHex = true;
     function save(){
         $data = new StdClass();
         foreach($this as $k => $v){
@@ -157,8 +158,8 @@ class MoveRules{
                         $dirty = true;
                     }
                     if ($this->force->unitCanMove($id) == true) {
-                        $this->calcMove($id);
                         $this->startMoving($id);
+                        $this->calcMove($id);
                         $dirty = true;
                     }
                     if ($this->force->unitCanReinforce($id) == true) {
@@ -297,7 +298,7 @@ class MoveRules{
                 }
                 $newHexNum = $mapHex->neighbors[$i - 1];
 //                $newHex = new Hexagon($newHexNum);
-                $moveAmount = $this->terrain->getTerrainMoveCost($hexNum, $newHexNum,$unit->forceMarch) + $exitCost;
+                $moveAmount = $this->terrain->getTerrainMoveCost($hexNum, $newHexNum,$unit->forceMarch, $unit) + $exitCost;
                 $newMapHex = $this->mapData->getHex($newHexNum);
                 if($newMapHex->isOccupied($this->force->defendingForceId)){
                     continue;
@@ -313,8 +314,11 @@ class MoveRules{
                 if($this->noZocZoc && $isZoc && $hexPath->isZoc){
                     continue;
                 }
-
-                if($movePoints - $moveAmount >= 0 || (!($isZoc && $hexPath->isZoc && $this->noZocZocOneHex)) && $hexPath->firstHex === true){
+                /*
+                 * TODO order is important in if statement check if doing zoc zoc move first then if just one hex move.
+                 * Then check if oneHex and firstHex
+                 */
+                if($movePoints - $moveAmount >= 0 || (($isZoc && $hexPath->isZoc && !$this->noZocZocOneHex) && $hexPath->firstHex === true) || ($hexPath->firstHex === true && $this->oneHex === true)){
                     $head = false;
                     if(isset($this->moves->$newHexNum)){
                         if($this->moves->$newHexNum->pointsLeft > ($movePoints - $moveAmount) ){
@@ -491,7 +495,7 @@ class MoveRules{
     function moveWillCauseStop($id, $moveOverUnitId, $hexagon)
     {
         $willCauseStop = false;
-        $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id)->name, $hexagon->name, $this->force->units[$id]->forceMarch);
+        $moveAmount = $this->terrain->getTerrainMoveCost($this->force->getUnitHexagon($id)->name, $hexagon->name, $this->force->units[$id]->forceMarch,$this->force->getUnit($id));
 
         // out of moves stop
         if ($this->force->unitWillUseMaxMove($id, $moveAmount) == true) {
@@ -564,6 +568,9 @@ class MoveRules{
         if($startHex === false){
             $startHex = $movingUnit->getUnitHexagon()->name;
         }
+        if($firstHex === false){
+            $firstHex = $movingUnit->unitHasNotMoved();
+        }
         // condition 1
         // can only move to nearby hexagon
         if ($this->rangeIsOneHexagon($startHex, $hexagon) == false) {
@@ -571,12 +578,12 @@ class MoveRules{
         }
         // condition 2
         // check if unit has enough move points
-        $moveAmount = $this->terrain->getTerrainMoveCost($startHex, $hexagon,$movingUnit->forceMarch);
+        $moveAmount = $this->terrain->getTerrainMoveCost($startHex, $hexagon,$movingUnit->forceMarch,$movingUnit);
 
         // need move points, but can always move at least one hexagon
-        //  can always move at least one hexagon
+        //  can always move at least one hexagon if this->oneHex is true
         //  only check move amount if unit has been moving
-        if ($firstHex == false) {
+        if (!($firstHex == true && $this->oneHex)) {
             if ($movingUnit->unitHasMoveAmountAvailable($moveAmount) == false) {
                 $isValid = false;
             }
@@ -612,7 +619,7 @@ class MoveRules{
         /* @var MapData $mapData */
         $mapData = $battle->mapData;
 
-        $moveAmount = $this->terrain->getTerrainMoveCost($movingUnit->getUnitHexagon()->name, $hexagon, $movingUnit->forceMarch);
+        $moveAmount = $this->terrain->getTerrainMoveCost($movingUnit->getUnitHexagon()->name, $hexagon, $movingUnit->forceMarch,$movingUnit);
         /* @var MapHex $mapHex */
         $mapHex = $mapData->getHex($hexagon);
         if ($mapHex->isZoc($this->force->defendingForceId) == true) {

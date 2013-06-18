@@ -28,6 +28,7 @@ class TerrainFeature
     public $traverseCost;
     public $combatEffect;
     public $isExclusive;
+    public $altEntranceCost;
 
     function __construct($terrainFeatureName, $terrainFeatureDisplayName, $terrainFeatureLetter,
                          $terrainFeatureEntranceCost, $terrainFeatureTraverseCost,
@@ -42,6 +43,7 @@ class TerrainFeature
         $this->traverseCost = $terrainFeatureTraverseCost;
         $this->combatEffect = $terrainFeatureCombatEffect;
         $this->isExclusive = $terrainFeatureIsExclusive;
+        $this->altEntranceCost = new stdClass();
 
     }
 }
@@ -111,6 +113,12 @@ class Terrain
         }
     }
 
+    public function addAltEntranceCost($terrain,$altClass,$entranceCost){
+        $feature = $this->terrainFeatures->$terrain;
+        if($feature){
+            $feature->altEntranceCost->$altClass = $entranceCost;
+        }
+    }
     /* this method will die someday  sooner than later */
     public function setMaxHex(){
         return;
@@ -335,7 +343,7 @@ class Terrain
     /*
      * can be private
      */
-    private function getTerrainEntranceMoveCost($hexagon)
+    private function getTerrainEntranceMoveCost($hexagon, unit $unit)
     {
 
         $entranceCost = 0;
@@ -347,7 +355,15 @@ class Terrain
         $terrains = $this->terrainArray[$endY][$endX];
 
         foreach ($terrains as $terrainFeature) {
-            $entranceCost += $this->terrainFeatures->$terrainFeature->entranceCost;
+            /* @var TerrainFeature $feature */
+            $feature = $this->terrainFeatures->$terrainFeature;
+
+            if($unit->class && $feature->altEntranceCost->{$unit->class}){
+                $entranceCost += $feature->altEntranceCost->{$unit->class};
+            }else{
+                $entranceCost += $feature->entranceCost;
+
+            }
         }
         return $entranceCost;
     }
@@ -375,7 +391,7 @@ class Terrain
      * very public
      * used in moveRules
      */
-    function getTerrainMoveCost($startHexagon, $endHexagon, $railMove)
+    function getTerrainMoveCost($startHexagon, $endHexagon, $railMove, unit $unit)
     {
         if(is_object($startHexagon)){
             $startHexagon = $startHexagon->name;
@@ -417,7 +433,7 @@ else
          {
 
             //  get entrance cost
-            $moveCost = $this->getTerrainEntranceMoveCost($endHexagon);
+            $moveCost = $this->getTerrainEntranceMoveCost($endHexagon, $unit);
             $moveCost += $this->getTerrainCodeCost($terrainCode);
 
             // check hexside for river

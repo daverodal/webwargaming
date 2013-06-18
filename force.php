@@ -59,6 +59,7 @@ class unit implements JsonSerializable
     public $range;
     public $nationality;
     public $forceMarch = false;
+    public $class;
     public $dirty;
 
     public function jsonSerialize(){
@@ -304,12 +305,13 @@ class unit implements JsonSerializable
     }
 
 
-    function set($unitId, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral", $forceMarch)
+    function set($unitId, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral", $forceMarch, $class)
     {
         $this->dirty = true;
         $this->id = $unitId;
         $this->name = $unitName;
         $this->forceId = $unitForceId;
+        $this->class = $class;
         $this->hexagon = new Hexagon($unitHexagon);
         /* blah! this can get called from the constructor of Battle. so we can't get ourselves while creating ourselves */
 //        $battle = Battle::getBattle();
@@ -420,7 +422,7 @@ class Force
         $this->retreatHexagonList[] = $retreatStep;
     }
 
-    function addUnit($unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range = 1, $nationality = "neutral",$forceMarch = true)
+    function addUnit($unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range = 1, $nationality = "neutral",$forceMarch = true, $class = false)
     {
         if($unitStatus == STATUS_CAN_REINFORCE){
             if(!$this->reinforceTurns->$unitReinforceTurn){
@@ -430,7 +432,7 @@ class Force
         }
         $id = count($this->units);
         $unit = new unit();
-        $unit->set($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove,  $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range, $nationality, $forceMarch);
+        $unit->set($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove,  $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range, $nationality, $forceMarch, $class);
 
         array_push($this->units,$unit);
     }
