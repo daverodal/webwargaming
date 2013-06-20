@@ -42,10 +42,6 @@
     width:579px;
     left:-230px;
 }
-#crtWrapper h4{
-    width: 135px;
-
-}
 #crt{
     width:476px;
 }

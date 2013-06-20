@@ -180,7 +180,7 @@ class NapOnMars extends Battle {
             $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
-            $this->terrain->setMaxHex("2010");
+//            $this->terrain->setMaxHex("2010");
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);

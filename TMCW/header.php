@@ -52,10 +52,6 @@
     width:514px;
 }
 
-#crtWrapper h4{
-    width: 135px;
-
-}
 #crt{
     width:308px;
 }
@@ -73,6 +69,9 @@
 #TECWrapper .closer{
     height:0px;
     padding:0px;
+}
+.reduced{
+    color:white;
 }
 #TECWrapper .colOne.riverHex{
     background-image: url('<?=base_url()?>js/river.png');
@@ -217,5 +216,17 @@
         padding:5px 20px 5px 0px;
     }
     #VCWrapper img, #VCWrapper div{
+    }
+    #GRWrapper h4{
+        width:auto !important;
+    }
+    #GR{
+        width:600px;
+        left:-260px
+    }
+    #GRWrapper{
+        width:10%;
+        left:48%;
+        bottom:0px;
     }
 </style>

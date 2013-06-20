@@ -56,14 +56,14 @@ class Hexagon  {
         self::$minX = 4;
         self::$minY = 8;
 
-        self::$maxY = 4 * ( $y - 1 ) + self::$minY + 2;/* 4 for even odd columns and bottom_hexside */
+        self::$maxY = 4 * ( $y - 1 ) + self::$minY + 2;
 
-        if(self::$evenColumnShiftDown == true)
-        {
-            if ( $x % 2 == 0 ) self::$maxY += 2;
-        } else {
-            if ( $x % 2 == 0 ) self::$maxY -= 2;
-        }
+//        if(self::$evenColumnShiftDown == true)
+//        {
+//            if ( $x % 2 == 0 ) self::$maxY += 2;
+//        } else {
+//            if ( $x % 2 == 0 ) self::$maxY -= 2;
+//        }
 
         self::$maxX = 2 * ( $x - 1 ) + self::$minX;
         self::$setup = true;

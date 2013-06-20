@@ -235,7 +235,7 @@ h4:hover{
 #statusDiv{
 
 }
-#crtWrapper , #OBCWrapper,#TECWrapper,#VCWrapper,#jumpWrapper,#menuWrapper,#infoWrapper{
+#crtWrapper , #OBCWrapper,#TECWrapper,#VCWrapper,#jumpWrapper,#menuWrapper,#infoWrapper,#GRWrapper{
     user-select:none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -243,7 +243,7 @@ h4:hover{
     position: absolute;
 
 }
-#crtWrapper h4, #OBCWrapper h4, #TECWrapper h4,#VCWrapper h4,#jumpWrapper h4,#menuWrapper h4,#infoWrapper h4{
+#crtWrapper .WrapperLabel, #OBCWrapper .WrapperLabel, #TECWrapper .WrapperLabel,#VCWrapper .WrapperLabel,#jumpWrapper .WrapperLabel,#menuWrapper .WrapperLabel,#infoWrapper .WrapperLabel, #GRWrapper .WrapperLabel{
     margin:0;
     border:none;
     user-select:none;
@@ -366,13 +366,20 @@ h4:hover{
     width:579px;
     left:-230px;
 }
+#GR{
+    background:white;
+    height:500px;
+    overflow-y:scroll;
+    width:80%;
+    padding:0 20px 10px;
+}
 #VC{
     background:white;
     width:579px;
     left:-230px;
 }
-#crtWrapper h4{
-    width: 135px;
+#crtWrapper .WrapperLabel{
+    width: auto;
 
 }
 #crt{
@@ -389,7 +396,7 @@ font-size:22px;
 #OBCWrapper h4 {
     width:2em;
 }
-#OBC, #crt, #TEC,#VC,#jump,#menu,#info{
+#OBC, #crt, #TEC,#VC,#jump,#menu,#info,#GR{
     position:absolute;
     z-index:30;
     display:none;
@@ -636,6 +643,7 @@ body{
         /*text-indent:3px;*/
         font-size:<?=$unitFontSize?>;
         font-weight:bold;
+        font-family: serif;
         -webkit-user-select:none;
         }
     .unit img {
@@ -695,7 +703,7 @@ function fixItAll(){
     fixCrt();
 }
 function fixHeader(){
-    height = $("#VCWrapper h4").height();
+    height = $("#crtWrapper h4").height();
         $("#bottomHeader").css("height",height);
 //    $("#crtWrapper").animate({left:0},300);
 //    $("#crt").animate({left:0},300);
@@ -1258,8 +1266,13 @@ x.register("mapUnits", function(mapUnits) {
         }
         var  move = mapUnits[i].maxMove - mapUnits[i].moveAmountUsed;
         var str = mapUnits[i].strength;
+        var reduced = mapUnits[i].isReduced;
+        var reduceDisp = "<span>";
+        if(reduced){
+            reduceDisp = "<span class='reduced'>";
+        }
         var symb = mapUnits[i].isReduced ? " - " : " - ";
-        $("#"+i+" div").html(str + symb + move);
+        $("#"+i+" div").html(reduceDisp + str + symb + move + "</span>");
         $("#"+i).attr("src",img);
     }
     var dpBox = $("#deployBox").children().size();
@@ -1292,7 +1305,7 @@ x.register("moveRules", function(moveRules,data) {
 
                 $("#"+newId).css("left",moveRules.hexPath[i].pixX - width/2 +"px");
                 $("#"+newId).css("top",moveRules.hexPath[i].pixY - height/2 +"px");
-                $("#"+newId+" div").html("24 - "+moveRules.hexPath[i].pointsLeft );
+                $("#"+newId+" div span").html("24 - "+moveRules.hexPath[i].pointsLeft );
                 $("#"+newId).css("opacity",.9);
                 $("#"+newId).css("z-index",101);
 
@@ -1313,7 +1326,7 @@ x.register("moveRules", function(moveRules,data) {
             width = $("#"+newId).width();
             height = $("#"+newId).height();
 
-            var label = $("#"+newId+" div").html();
+            var label = $("#"+newId+" div span").html();
             if(data.gameRules.phase == <?=RED_COMBAT_PHASE;?> || data.gameRules.phase == <?=BLUE_COMBAT_PHASE;?>){
                 if(data.gameRules.mode == <?=ADVANCING_MODE;?>){
                 var unit = moveRules.movingUnitId;
@@ -1340,8 +1353,7 @@ x.register("moveRules", function(moveRules,data) {
                 $("#"+newId).attr("path",moveRules.moves[i].pathToHere);
                 $("#"+newId).css({left:moveRules.moves[i].pixX - width/2 +"px",top:moveRules.moves[i].pixY - height/2 +"px"});
                 var newLabel = label.replace(/([-+r]).*/,"$1 "+moveRules.moves[i].pointsLeft);
-
-                $("#"+newId+" div").html(newLabel);
+                $("#"+newId+" div span").html(newLabel);
                 if(moveRules.moves[i].isOccupied){
                     $("#"+newId).addClass("occupied");
 
@@ -1907,42 +1919,51 @@ function initialize() {
 
 
     var Player = 'Markarian';
-    $( "#OBCWrapper h4" ).click(function() {
+    $( "#OBCWrapper .WrapperLabel" ).click(function() {
         $( "#info" ).hide({effect:"blind",direction:"up"});
         $( "#menu" ).hide({effect:"blind",direction:"up"});
         $( "#OBC" ).toggle({effect:"blind",direction:"up"});
         $( "#TEC" ).hide({effect:"blind",direction:"up"});
         $( "#VC" ).hide({effect:"blind",direction:"up"});
     });
-    $( "#TECWrapper h4" ).click(function() {
+    $( "#TECWrapper .WrapperLabel" ).click(function() {
         $( "#info" ).hide({effect:"blind",direction:"up"});
         $( "#menu" ).hide({effect:"blind",direction:"up"});
         $( "#OBC" ).hide({effect:"blind",direction:"up"});
         $( "#VC" ).hide({effect:"blind",direction:"up"});
         $( "#TEC" ).toggle({effect:"blind",direction:"up"});
     });
-    $( "#VCWrapper h4" ).click(function() {
+    $( "#VCWrapper .WrapperLabel" ).click(function() {
         $( "#info" ).hide({effect:"blind",direction:"up"});
         $( "#menu" ).hide({effect:"blind",direction:"up"});
         $( "#OBC" ).hide({effect:"blind",direction:"up"});
         $( "#TEC" ).hide({effect:"blind",direction:"up"});
         $( "#VC" ).toggle({effect:"blind",direction:"up"});
     });
-    $( "#menuWrapper h4" ).click(function() {
+    $( "#menuWrapper .WrapperLabel" ).click(function() {
         $( "#OBC" ).hide({effect:"blind",direction:"up"});
         $( "#TEC" ).hide({effect:"blind",direction:"up"});
         $( "#VC" ).hide({effect:"blind",direction:"up"});
         $( "#info" ).hide({effect:"blind",direction:"up"});
         $( "#menu" ).toggle({effect:"blind",direction:"up"});
     });
-    $( "#infoWrapper h4" ).click(function() {
+    $( "#infoWrapper .WrapperLabel" ).click(function() {
         $( "#OBC" ).hide({effect:"blind",direction:"up"});
         $( "#TEC" ).hide({effect:"blind",direction:"up"});
         $( "#VC" ).hide({effect:"blind",direction:"up"});
         $( "#menu" ).hide({effect:"blind",direction:"up"});
         $( "#info" ).toggle({effect:"blind",direction:"up"});
     });
-    $("#jumpWrapper h4").click(function(){
+    $("#GRWrapper .WrapperLabel").click(function(){
+        $( "#OBC" ).hide({effect:"blind",direction:"up"});
+        $( "#TEC" ).hide({effect:"blind",direction:"up"});
+        $( "#VC" ).hide({effect:"blind",direction:"up"});
+        $( "#info" ).hide({effect:"blind",direction:"up"});
+        $( "#menu" ).hide({effect:"blind",direction:"up"});
+        $( "#crt" ).hide({effect:"blind",direction:"up"});
+        $("#GR").toggle({effect:"blind",direction:"up"});
+    });
+    $("#jumpWrapper .WrapperLabel").click(function(){
         $( "#OBC" ).hide({effect:"blind",direction:"up"});
         $( "#TEC" ).hide({effect:"blind",direction:"up"});
         $( "#VC" ).hide({effect:"blind",direction:"up"});
@@ -1959,14 +1980,14 @@ function initialize() {
         $("#gameImages").css('top',0);
         zoomed = true;
     });
-    $("#crtWrapper h4 .goLeft").click(function(){
+    $("#crtWrapper .WrapperLabel .goLeft").click(function(){
 //    $("#crtWrapper").css("float","left");
         $("#crtWrapper").animate({left:0},300);
         $("#crt").animate({left:"0px"},300);
 
         return false;
     });
-    $("#crtWrapper h4 .goRight").click(function(){
+    $("#crtWrapper .WrapperLabel .goRight").click(function(){
         var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
         var crtWid = $("#crt").css('width').replace(/px/,"");
         crtWid = crtWid - wrapWid + 40;
@@ -1978,7 +1999,7 @@ function initialize() {
     $(".close").click(function(){
         $(this).parent().hide({effect:"blind",direction:"up"});
     })
-    $( "#crtWrapper h4" ).click(function() {
+    $( "#crtWrapper .WrapperLabel" ).click(function() {
         $( "#crt" ).toggle({effect:"blind",direction:"up"});
     });
 

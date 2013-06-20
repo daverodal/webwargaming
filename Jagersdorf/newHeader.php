@@ -68,10 +68,7 @@
     width:579px;
     left:-230px;
 }
-#crtWrapper h4{
-    width: 135px;
 
-}
 #crt{
     width:476px;
 }
@@ -204,5 +201,17 @@
         padding:5px 20px 5px 0px;
     }
     #VCWrapper img, #VCWrapper div{
+    }
+    #GRWrapper h4{
+        width:auto !important;
+    }
+#GR{
+    width:600px;
+    left:-260px
+}
+    #GRWrapper{
+        width:10%;
+        left:48%;
+        bottom:0px;
     }
 </style>

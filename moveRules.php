@@ -29,7 +29,7 @@ class MoveRules{
     public $enterZoc = "stop";
     public $exitZoc = 0;
     public $noZocZoc = false;
-    public $noZocZocOneHex = false;
+    public $noZocZocOneHex = true;
     public $oneHex = true;
     function save(){
         $data = new StdClass();

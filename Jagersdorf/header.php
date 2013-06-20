@@ -262,6 +262,7 @@ fieldset{
     background:#333;
     margin-bottom:5px;
 }
+
 .unit{
     width:64px;
     height:64px;

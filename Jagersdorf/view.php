@@ -1,4 +1,5 @@
 <body xmlns="http://www.w3.org/1999/html">
+<?php //include "help.php";?>
 <div id="theDiv">
 <header id="header">
 <div id="headerContent">
@@ -12,7 +13,7 @@
         <div id="comlinkWrapper" style="float:right;">
             <div id="comlink"></div>
         </div>
-        <div id="menuWrapper"><h4 title="Game Menu">Menu</h4>
+        <div id="menuWrapper"><h4 class="WrapperLabel" title="Game Menu">Menu</h4>
             <div id="menu"><div class="close">X</div>
                 <ul>
                     <li><a id="muteButton">mute</a></li>
@@ -26,7 +27,7 @@
                 </ul>
             </div>
         </div>
-        <div id="infoWrapper"><h4 title="Game Information">Info</h4>
+        <div id="infoWrapper"><h4 class="WrapperLabel" title="Game Information">Info</h4>
             <div id="info"><div class="close">X</div>
                 <ul>
                     <li>   Welcome {user}</li>
@@ -57,7 +58,7 @@
 <span id="hideShow">Rplacements</span>
 <button id="nextPhaseButton">Next Phase</button>
 <div id="crtWrapper">
-    <h4 title='Combat Results Table'><span class="goLeft">&laquo;</span>Crt<span class="goRight">&raquo;</span></h4>
+    <h4 class="WrapperLabel"  title='Combat Results Table'><span class="goLeft">&laquo;</span>Crt<span class="goRight">&raquo;</span></h4>
     <div id="crt"><div class="close">X</div>
         <h3>Combat Odds</h3>
 
@@ -88,10 +89,10 @@
     </div>
 </div>
 <div id="jumpWrapper">
-    <h4 title="Jump Map">Jump</h4>
+    <h4 class="WrapperLabel" title="Jump Map">Jump</h4>
 </div>
 <div id="OBCWrapper">
-    <h4 title='Order of Battle Chart'>OBC</h4>
+    <h4 class="WrapperLabel" title='Order of Battle Chart'>OBC</h4>
     <div id="OBC" style="display:none;"><div class="close">X</div>
         <fieldset>
             <legend>turn 1</legend>
@@ -137,7 +138,7 @@
 </div>
 
 <div id="TECWrapper">
-    <h4 title='Terrain Effects Chart'>TEC</h4>
+    <h4 class="WrapperLabel" title='Terrain Effects Chart'>TEC</h4>
     <DIV id="TEC" style="display:none;"><div class="close">X</div>
         <ul>
             <li>
@@ -201,62 +202,10 @@
         </ul>
     </div>
 </div>
-<div id="VCWrapper">
-    <h4 title="Victory Conditions">VC</h4>
-    <DIV id="VC" style="display:none;"><div class="close">X</div>
-        <ul>
-            <li>
-                <div class="colOne">
-                    <span>Objective</span>
-                </div>
-                <div class="colTwo">For Rebel</div>
-                <div class="colThree">For Loyalists</div>
-                <div class="clear"></div>
-            </li>
-            <li>
-                <div class="colOne ">
-                    <span>Taking small city</span>
-                </div>
-                <div class="colTwo">1 point when taken.</div>
-                <div class="colThree">none.</div>
-                <div class="clear"></div>
-            </li>
-            <li>
-                <div class="colOne ">
-                    <span>Last to enter small city</span>
-                </div>
-                <div class="colTwo">1 point at end of each player turn.</div>
-                <div class="colThree">1/2 point at end of each player turn.</div>
-                <div class="clear"></div>
-            </li>
-            <li>
-                <div class="colOne ">
-                    <span>Taking Cuniform</span>
-                </div>
-                <div class="colTwo">1 point when entering.</div>
-                <div class="colThree">none.</div>
-                <div class="clear"></div>
-            </li>
-            <li>
-                <div class="colOne ">
-                    <span>Last to enter Cuniform</span>
-                </div>
-                <div class="colTwo">5 points at end of each player turn.</div>
-                <div class="colThree">1/2 point at end of each player turn.</div>
-                <div class="clear"></div>
-            </li>
-            <li>
-                <div class="colOne ">
-                    <span>Killing or Reducing Enemy Unit</span>
-                </div>
-                <div class="colTwo">none.</div>
-                <div class="colThree">1 point per strength point lost.</div>
-                <div class="clear"></div>
-            </li>
-
-            <!--    Empty one for the bottom border -->
-            <li class="closer"></li>
-        </ul>
+<div id="GRWrapper">
+    <h4 class="WrapperLabel" title="Game Rules">Rules</h4>
+    <div id="GR" style="display:none"><div class="close">X</div>
+        <?php include "help.php";?>
     </div>
 </div>
 </div>

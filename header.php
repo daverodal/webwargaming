@@ -77,10 +77,6 @@
 #OBC{
     background:white;
 }
-#crtWrapper h4{
-    width: 398px;
-
-}
 
 #OBCWrapper h4 {
     width: 520px;
