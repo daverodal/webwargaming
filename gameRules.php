@@ -131,6 +131,7 @@ class GameRules {
 
     function processEvent($event, $id, $hexagon, $click)
     {
+        echo "EVENT $event $id ";
 
         /* @var Hexagon $hexagon */
         global $phase_name, $event_name, $mode_name;
@@ -339,6 +340,7 @@ class GameRules {
 
                     /** @noinspection PhpMissingBreakStatementInspection */
                     case SELECT_SHIFT_COUNTER_EVENT:
+                        echo "I SAW THTAT ";
                         $shift = true;
                         /* fall through */
                     case SELECT_COUNTER_EVENT:

@@ -143,7 +143,9 @@ class MartianCivilWar extends Battle {
                 break;
 
             case SELECT_COUNTER_EVENT:
-                return $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id),$click);
+            /* fall through */
+            case SELECT_SHIFT_COUNTER_EVENT:
+                return $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id),$click);
 
                 break;
 
