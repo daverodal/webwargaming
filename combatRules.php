@@ -158,7 +158,6 @@ class CombatRules
                     $this->setCombatIndex($cd);
                 } else {
                     foreach($this->combats->{$this->currentDefender}->defenders as $defenderId => $defender){
-                        echo "Defender id $defenderId ";
                     $los = new Los();
 
                     $los->setOrigin($this->force->getUnitHexagon($id));
@@ -176,7 +175,6 @@ class CombatRules
                             }
                             $this->attackers->$id = $cd;
                             $this->combats->$cd->attackers->$id = $bearing;
-                            echo "Def $defenderId $bearing";
                             $this->combats->$cd->defenders->$defenderId = $bearing;
                             $this->setCombatIndex($cd);
 

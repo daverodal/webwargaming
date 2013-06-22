@@ -131,7 +131,6 @@ class GameRules {
 
     function processEvent($event, $id, $hexagon, $click)
     {
-        echo "EVENT $event $id ";
 
         /* @var Hexagon $hexagon */
         global $phase_name, $event_name, $mode_name;

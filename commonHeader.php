@@ -652,7 +652,7 @@ body{
         max-height:100px;
         max-width:100px;
     }
-    .arrow{
+    .arrowClone,.arrow{
         position:absolute;
         pointer-events:none;
         z-index:102;
@@ -773,7 +773,7 @@ x.register("force", function(force,data) {
     for (i in units) {
         color = "#ccc #666 #666 #ccc";
         $("#"+i + " .arrow").css({opacity: "0.0"});
-
+        $("#"+i+" .arrowClone").remove();
         boxShadow = "none";
 //        $("#"+i).css({zIndex: 100});
         shadow = true;
@@ -1436,7 +1436,10 @@ x.register("combatRules", function(combatRules,data) {
         cD = combatRules.currentDefender;
         if(combatRules.combats && Object.keys(combatRules.combats).length > 0){
                 if(cD !== false){
-                $("#"+cD).css({borderColor: "yellow"});
+                    var defenders = combatRules.combats[cD].defenders;
+                    for(var loop in defenders){
+                        $("#"+loop).css({borderColor: "yellow"});
+                    }
                     if(!chattyCrt){
                         $("#crt").show({effect:"blind",direction:"up"});
                         chattyCrt = true;
@@ -1461,16 +1464,25 @@ x.register("combatRules", function(combatRules,data) {
 
 
                             attackers = combatRules.combats[i].attackers;
+                            defenders = combatRules.combats[i].defenders;
+
                             var theta = 0;
                             for(var j in attackers){
-                                theta = attackers[j];
+                                var numDef = Object.keys(defenders).length;
+                                for(k in defenders){
+                                $("#"+j+ " .arrow").clone().addClass('arrowClone').addClass('arrow'+k).insertAfter("#"+j+ " .arrow").removeClass('arrow');
+                                if(numDef > 1){
+                                    theta = defenders[k];
+
+                                }else{
+                                    theta = attackers[j];
+                                }
                                 theta *= 15;
                                 theta += 180;
-                                $("#"+j+ " .arrow").css({opacity: "1.0"});
-                                $("#"+j+ " .arrow").css({webkitTransform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
-                                $("#"+j+ " .arrow").css({transform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
-
-
+                                $("#"+j+ " .arrow"+k).css({opacity: "1.0"});
+                                $("#"+j+ " .arrow"+k).css({webkitTransform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
+                                $("#"+j+ " .arrow"+k).css({transform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
+                                }
                             }
 
                             var atk = combatRules.combats[i].attackStrength;
@@ -1506,17 +1518,17 @@ x.register("combatRules", function(combatRules,data) {
                 str += "There are "+combatIndex+" Combats";
                 if(cD !== false){
                     attackers = combatRules.combats[cD].attackers;
-                    var theta = 0;
-                    for(var i in attackers){
-                                      theta = attackers[i];
-                        theta *= 15;
-                        theta += 180;
-                        $("#"+i+ " .arrow").css({display: "block"});
-                        $("#"+i+ " .arrow").css({opacity: "1.0"});
-                        $("#"+i+ " .arrow").css({webkitTransform: 'scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
-
-
-                    }
+//                    var theta = 0;
+//                    for(var i in attackers){
+//                                      theta = attackers[i];
+//                        theta *= 15;
+//                        theta += 180;
+//                        $("#"+i+ " .arrow").css({display: "block"});
+//                        $("#"+i+ " .arrow").css({opacity: "1.0"});
+//                        $("#"+i+ " .arrow").css({webkitTransform: 'scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
+//
+//
+//                    }
                 }
                 str += "";
                 $("#crtOddsExp").html(activeCombatLine);
