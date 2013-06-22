@@ -22,7 +22,7 @@ class victoryCore{
     public function reduceUnit($args){
         $unit = $args[0];
         if($unit->strength == $unit->maxStrength){
-            if($unit->status == STATUS_ELIMINATED){
+            if($unit->status == STATUS_ELIMINATING || $unit->status == STATUS_RETREATING){
                 $vp = $unit->maxStrength;
             }else{
                 $vp = $unit->maxStrength - $unit->minStrength;
