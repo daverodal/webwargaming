@@ -339,7 +339,6 @@ class GameRules {
 
                     /** @noinspection PhpMissingBreakStatementInspection */
                     case SELECT_SHIFT_COUNTER_EVENT:
-                        echo "I SAW THTAT ";
                         $shift = true;
                         /* fall through */
                     case SELECT_COUNTER_EVENT:

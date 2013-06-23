@@ -443,6 +443,18 @@ class Force
         }
         return $this->retreatHexagonList[0]->hexagon;
     }
+    function getAllFirstRetreatHexes($id){
+        if(count($this->retreatHexagonList) == 0){
+            throw new Exception("Cannot get reatreat hex");
+        }
+        $hexes = array();
+        foreach($this->retreatHexagonList as $hexList){
+            if($hexList->stepNumber == 0){
+                $hexes[] = $hexList->hexagon;
+            }
+        }
+        return $hexes;
+    }
     function advanceIsOnRetreatList($id, $hexagon)
     {
         $isOnList = false;
@@ -466,7 +478,7 @@ class Force
     function applyCRTresults($defenderId, $attackers, $combatResults, $dieRoll)
     {
         $battle = Battle::getBattle();
-        $this->clearRetreatHexagonList();
+//        $this->clearRetreatHexagonList();
 
         $distance = 1;
 
