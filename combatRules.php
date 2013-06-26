@@ -108,18 +108,20 @@ class CombatRules
                 } else {
                     if($shift){
                         if(isset($this->defenders->$id)){
-                            foreach($combats->attackers as $attackerId => $attacker){
-                                $this->force->undoAttackerSetup($attackerId);
-                                unset($this->attackers->$attackerId);
+                            if($combatId === $this->currentDefender){
+                                foreach($combats->attackers as $attackerId => $attacker){
+                                    $this->force->undoAttackerSetup($attackerId);
+                                    unset($this->attackers->$attackerId);
+                                }
+                                foreach($combats->defenders as $defenderId => $defender){
+                                    $this->force->setStatus($defenderId, STATUS_READY);
+                                    unset($this->defenders->$defenderId);
+                                }
+                                unset($this->combats->{$combatId});
+                                $this->currentDefender = false;
+                            }else{
+                                $this->currentDefender = $combatId;
                             }
-                            foreach($combats->defenders as $defenderId => $defender){
-                                $this->force->setStatus($defenderId, STATUS_READY);
-                                unset($this->defenders->$defenderId);
-                            }
-                            unset($this->combats->{$combatId});
-                            $this->currentDefender = false;
-                        }else{
-                            $this->defenders->$id = $this->currentDefender;
                         }
                     }else{
                         if ($combatId === $this->currentDefender) {
@@ -141,6 +143,7 @@ class CombatRules
                         $this->defenders->$id = $this->currentDefender;
                     }else{
                         $this->currentDefender = $id;
+                        $this->defenders->$id = $id;
                     }
                 }else{
                     $this->currentDefender = $id;
