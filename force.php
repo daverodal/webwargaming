@@ -294,6 +294,7 @@ class unit implements JsonSerializable
                 if($mapData->specialHexes->$mapHexName != $this->forceId){
                     if($this->forceId == 1){
                         $battle->victory->victoryPoints[1]++;
+                        $mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>+1 vp</span>";
                     }
                     $mapData->specialHexes->$mapHexName = $this->forceId;
                     $mapData->specialHexesChanges->$mapHexName = true;

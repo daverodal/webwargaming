@@ -151,6 +151,7 @@ class GameRules {
         $mapData = $battle->mapData;
 //        $mapData = MapData::getInstance();
         $mapData->specialHexesChanges = new stdClass();
+        $mapData->specialHexesVictory = new stdClass();
         $this->flashMessages = array();
         $this->turnChange = false;
 

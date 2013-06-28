@@ -33,9 +33,15 @@ class victoryCore{
         if($unit->forceId == 1){
             $victorId = 2;
             $this->victoryPoints[$victorId] += $vp;
+            $hex  = $unit->hexagon;
+            $battle = Battle::getBattle();
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='loyalistVictoryPoints'>+$vp vp</span>";
         }else{
-            $victorId = 1;
-//            $this->victoryPoints[$victorId] += $vp/2;
+//            $victorId = 1;
+//            $hex  = $unit->hexagon;
+//            $battle = Battle::getBattle();
+//            $battle->mapData->specialHexesVictory->{$hex->name} = "+$vp vp";
+//            $this->victoryPoints[$victorId] += $vp;
         }
     }
     public function incrementTurn(){
@@ -98,13 +104,15 @@ class victoryCore{
         if($specialHexes){
             foreach($specialHexes as $k=>$v){
                 if($v == 1){
+                    $points = 1;
                     if($k == 2414 || $k == 2415 || $k == 2515){
-                        $vp[$v] += 5;
-                    }elseif($k >= 2514){
-                       $vp[$v] += 3;
-                    } else{
-                        $vp[$v]++;
+                        $points = 5;
+                    }elseif($k >= 2416){
+                        $points = 3;
                     }
+                    $vp[$v] += $points;
+                    $battle = Battle::getBattle();
+                    $battle->mapData->specialHexesVictory->$k = "<span class='rebelVictoryPoints'>+$points vp</span>";
                 }else{
 //                    $vp[$v] += .5;
                 }
