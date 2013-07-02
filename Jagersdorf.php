@@ -137,8 +137,10 @@ class Jagersdorf extends Battle {
                 break;
 
             case SELECT_COUNTER_EVENT:
+                /* fall through */
+            case SELECT_SHIFT_COUNTER_EVENT:
 
-                $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id),$click);
+                return $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id),$click);
                 break;
 
 

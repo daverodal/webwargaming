@@ -986,13 +986,16 @@ class MoveRules{
     {
         /* @var Hexagon $hexagon */
         $hexagon = $this->force->getFirstRetreatHex($id);
-        $startHex = $hexagon->name;
-        $hexPath = new HexPath();
-        $hexPath->name = $startHex;
-        $hexPath->pointsLeft = $this->force->units[$id]->maxMove;
-        $hexPath->pathToHere = array();
-        $hexPath->firstHex = true;
-        $this->moves->$startHex = $hexPath;
+        $hexes = $this->force->getAllFirstRetreatHexes($id);
+        foreach($hexes as $hexagon){
+            $startHex = $hexagon->name;
+            $hexPath = new HexPath();
+            $hexPath->name = $startHex;
+            $hexPath->pointsLeft = $this->force->units[$id]->maxMove;
+            $hexPath->pathToHere = array();
+            $hexPath->firstHex = true;
+            $this->moves->$startHex = $hexPath;
+        }
 
         /* @var Unit $unit */
         $unit = $this->force->getUnit($id);
