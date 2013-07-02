@@ -272,7 +272,7 @@ class MartianCivilWar extends Battle {
 
             $this->force->addUnit("infantry-1", RED_FORCE, 2415, "multiRecon.png",5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 2416, "multiRecon.png",5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist");
-            $this->force->addUnit("infantry-1", RED_FORCE, 2417, "multiMech.png",5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist");
+            $this->force->addUnit("infantry-1", RED_FORCE, 2417, "multiRecon.png",5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 2515, "multiMech.png",9, 4, 6, true, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 2516, "multiArmor.png",7, 3, 6, true, STATUS_READY, "L", 1, 1, "loyalist");
             $this->force->addUnit("infantry-1", RED_FORCE, 2517, "multiArmor.png",7, 3, 6, true, STATUS_READY, "L", 1, 1, "loyalist");
