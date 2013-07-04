@@ -60,6 +60,7 @@ class unit implements JsonSerializable
     public $nationality;
     public $forceMarch = false;
     public $class;
+    public $supplied = true;
     public $dirty;
 
     public function jsonSerialize(){
@@ -1116,7 +1117,7 @@ class Force
                     }
                 if($mode  == MOVING_MODE && $moveRules->stickyZOC){
                     if($this->units[$id]->forceId == $this->attackingForceId &&
-                        $this->unitIsZOC($id,  $this->units[$id]->range )){
+                        $this->unitIsZOC($id,  1 )){
                         $status = STATUS_STOPPED;
                     }
                 }

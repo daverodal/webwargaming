@@ -135,8 +135,10 @@ class NapOnMars extends Battle {
                 break;
 
             case SELECT_COUNTER_EVENT:
+                /* fall through */
+            case SELECT_SHIFT_COUNTER_EVENT:
 
-                $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id),$click);
+                $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id),$click);
                 break;
 
             case SELECT_BUTTON_EVENT:

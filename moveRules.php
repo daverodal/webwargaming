@@ -188,6 +188,7 @@ class MoveRules{
                 // no one is moving, so start new move
                 if ($this->force->unitCanMove($id) == true) {
                     $this->startMoving($id);
+//                    $this->calcSupply($id);
                     $this->calcMove($id);
                     $dirty = true;
                 }
@@ -203,7 +204,26 @@ class MoveRules{
         }
         return $dirty;
     }
+    function calcSupply($id){
+        global $numWalks;
+        global $numBangs;
+        $numWalks = 0;
+        $numBangs = 0;
+        $startHex = $this->force->units[$id]->hexagon;
+        $movesLeft = $this->force->units[$id]->maxMove - $this->force->units[$id]->moveAmountUsed;
+        $this->moves = new stdClass();
+        $this->moveQueue = array();
+        $hexPath = new HexPath();
+        $hexPath->name = $startHex->name;
+        $hexPath->pointsLeft = $movesLeft;
+        $hexPath->pathToHere = array();
+        $hexPath->firstHex = true;
+        $hexPath->isOccupied = true;
+        $this->moveQueue[] = $hexPath;
+        var_dump($this->bfsCommunication());
+        die("suspply?");
 
+    }
     function calcMove($id){
         global $numWalks;
         global $numBangs;
@@ -352,6 +372,149 @@ class MoveRules{
 
         }
         return;
+    }
+    function bfsCommunication(){
+        $hist = array();
+        $cnt = 0;
+        $unit = $this->force->units[$this->movingUnitId];
+        while(count($this->moveQueue) > 0){
+            $cnt++;
+            $hexPath = array_shift($this->moveQueue);
+            $hexNum = $hexPath->name;
+//            $hist[$hexNum]++;
+//            $movePoints = $hexPath->pointsLeft;
+            if(!$hexNum){
+                continue;
+            }
+            if($hexNum == 3020){
+                var_dump($hexPath->pathToHere);
+                echo "Cnt $cnt ";
+                return true;
+            }
+            if(!isset($this->moves->$hexNum)) {
+                /* first time here */
+                $this->moves->$hexNum = $hexPath;
+//                $theHex = new Hexagon($hexNum);
+//                if(!$theHex->name){/* dunno if this still happens */
+//                    $this->moves->$hexNum->isValid = false;
+//                    continue;
+//                }
+            }else{
+                /* invalid hex */
+                if($this->moves->$hexNum->isValid === false){
+                    continue;
+//                    throw new Exception("This shouldn 't happen bfsMoves");
+//                    return;
+                }
+                /* already been here with more points */
+//                if($this->moves->$hexNum->pointsLeft >= $movePoints){
+//                    continue;
+//
+//                }
+                /* been here, done that */
+                continue;
+            }
+//            $theHex = new Hexagon($hexNum);
+            /* @var MapHex $mapHex */
+            $mapHex = $this->mapData->getHex($hexNum);
+
+            if($mapHex->isOccupied($this->force->attackingForceId)){
+                $this->moves->$hexNum->isOccupied = true;
+            }
+            if($mapHex->isOccupied($this->force->defendingForceId)){
+                $this->moves->$hexNum->isValid = false;
+                continue;
+            }
+//            $this->moves->$hexNum->pointsLeft = $movePoints;
+            $this->moves->$hexNum->pathToHere = $hexPath->pathToHere;
+
+            if($this->moves->$hexNum->isZoc == NULL){
+                $this->moves->$hexNum->isZoc = $this->force->mapHexIsZOC($mapHex);
+            }
+            $exitCost = 0;
+            if($this->moves->$hexNum->isZoc){
+//                if(is_numeric($this->exitZoc)){
+//                    $exitCost += $this->exitZoc;
+//                }
+////                $this->moves->$hexNum->pointsLeft = 0;
+//                if(!$hexPath->firstHex){
+//                    if($this->enterZoc == 'stop'){
+//                        continue;
+//                    }
+//                }
+                if(!$this->moves->$hexNum->isOccupied){
+                    continue;
+                }
+
+            }
+            $path = $hexPath->pathToHere;
+            $path[] = $hexNum;
+
+            for($i = 1; $i <= 6; $i++){
+//                $newHex = new Hexagon($mapHex->neighbors[$i - 1]);
+//                $newHex = new Hexagon($hexNum);
+//                $newHex->getAdjacentHexagon($i);
+                $gnuHex = Hexagon::getHexPartXY($mapHex->neighbors[$i - 1]);
+                if(!$gnuHex){
+
+                    continue;
+                }
+
+                if($this->terrain->terrainIsXY($gnuHex[0],$gnuHex[1],"offmap")){
+
+                    continue;
+                }
+                $newHexNum = $mapHex->neighbors[$i - 1];
+//                $newHex = new Hexagon($newHexNum);
+//                $moveAmount = $this->terrain->getTerrainMoveCost($hexNum, $newHexNum,$unit->forceMarch, $unit) + $exitCost;
+                $newMapHex = $this->mapData->getHex($newHexNum);
+                if($newMapHex->isOccupied($this->force->defendingForceId)){
+                    continue;
+                }
+                $isZoc = $this->force->mapHexIsZOC($newMapHex);
+//                if($isZoc && is_numeric($this->enterZoc)){
+//                    $moveAmount += (int)$this->enterZoc;
+//                }
+//            $moveAmount = .5;
+//                if($moveAmount <= 0){
+//                    $moveAmount = 1;
+//                }
+                if($this->noZocZoc && $isZoc && $hexPath->isZoc){
+                    continue;
+                }
+                /*
+                 * TODO order is important in if statement check if doing zoc zoc move first then if just one hex move.
+                 * Then check if oneHex and firstHex
+                 */
+//                if($movePoints - $moveAmount >= 0 || (($isZoc && $hexPath->isZoc && !$this->noZocZocOneHex) && $hexPath->firstHex === true) || ($hexPath->firstHex === true && $this->oneHex === true)){
+                    $head = false;
+                if($i == 2 || $i == 3){
+                    $head = true;
+                }
+                    if(isset($this->moves->$newHexNum)){
+                        continue;
+//                        if($this->moves->$newHexNum->pointsLeft > ($movePoints - $moveAmount) ){
+//                            continue;
+//                        }
+                    }
+                    $newPath = new HexPath();
+                    $newPath->name = $newHexNum;
+                    $newPath->pathToHere = $path;
+//                    $newPath->pointsLeft = $movePoints - $moveAmount;
+                    if($this->exitZoc === "stop" && $hexPath->isZoc){
+                        $newPath->pointsLeft = 0;
+                    }
+                    if($head){
+                        array_unshift($this->moveQueue, $newPath);
+                    }else{
+                        $this->moveQueue[] = $newPath;
+
+                    }
+//                }
+            }
+
+        }
+        return false;
     }
     function walkMoves($startHex, $movePoints, $path, $firstHex = false, $depth = false){
 

@@ -1927,7 +1927,7 @@ x.register("mapUnits", function(mapUnits) {
         if(reduced){
             reduceDisp = "<span class='reduced'>";
         }
-        var symb = mapUnits[i].isReduced ? " - " : " - ";
+        var symb = mapUnits[i].supplied !== false ? " - " : " <span class='reduced'>u</span> ";
         $("#"+i+" div").html(reduceDisp + str + symb + move + "</span>");
         $("#"+i).attr("src",img);
     }
