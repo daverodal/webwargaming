@@ -152,9 +152,17 @@ class MoveRules{
                 {
                     /* @var Unit $movingUnit */
                     $movingUnit = $this->force->units[$this->movingUnitId];
-
+                    $movingUnitId = $this->movingUnitId;
                     if ($movingUnit->unitIsMoving() == true) {
                         $this->stopMove($movingUnit);
+                        $dirty = true;
+                    }
+                    if ($this->force->unitIsReinforcing($movingUnitId) == true) {
+                        $this->stopReinforcing($movingUnitId);
+                        $dirty = true;
+                    }
+                    if ($this->force->unitIsDeploying($movingUnitId) == true) {
+                        $this->stopDeploying($movingUnitId);
                         $dirty = true;
                     }
                     if ($this->force->unitCanMove($id) == true) {
@@ -671,8 +679,6 @@ class MoveRules{
                 $zoneName = $unit->reinforceZone;
                 $zones = $this->terrain->getReinforceZones($zoneName);
                 foreach($zones as $zone){
-//                    echo "Start $startHex ".$startHex->name;
-//                    die("starting to rein ");
                     $startHex = $zone->hexagon->name;
                     $hexPath = new HexPath();
                     $hexPath->name = $startHex;
