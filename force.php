@@ -483,7 +483,8 @@ class Force
 //        $this->clearRetreatHexagonList();
 
         $distance = 1;
-
+                list($defenderId, $attackers, $combatResults, $dieRoll) = $battle->victory->preCombatResults($defenderId, $attackers, $combatResults, $dieRoll);
+        $vacated = false;
                 switch ($combatResults)
                 {
                     case EX2:
@@ -554,7 +555,22 @@ class Force
                         $this->units[$defenderId]->status = STATUS_NO_RESULT;
                         $this->units[$defenderId]->retreatCountRequired = 0;
                         break;
+                    case DL:
+                        if($this->units[$defenderId]->isReduced){
+                            $vacated = true;
+                            $this->units[$defenderId]->status = STATUS_ELIMINATING;
+                            $this->units[$defenderId]->retreatCountRequired = 0;
+                            $this->units[$defenderId]->moveCount = 0;
+                            $this->addToRetreatHexagonList($defenderId, $this->getUnitHexagon($defenderId));
 
+                        }else{
+                            $battle->victory->reduceUnit($this->units[$defenderId]);
+                            $this->units[$defenderId]->isReduced = true;
+                            $this->units[$defenderId]->strength = $this->units[$defenderId]->minStrength;
+                            $this->units[$defenderId]->status = STATUS_DEFENDED;
+                            $this->units[$defenderId]->retreatCountRequired = 0;
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -611,6 +627,16 @@ class Force
                     case DRL:
                     case DR:
                         $this->units[$attacker]->status = STATUS_CAN_ADVANCE;
+                        $this->units[$attacker]->retreatCountRequired = 0;
+                        break;
+
+                    case DL:
+                        /* for multi defender combats */
+                        if($vacated || $this->units[$attacker]->status == STATUS_CAN_ADVANCE){
+                            $this->units[$attacker]->status = STATUS_CAN_ADVANCE;
+                        }else{
+                            $this->units[$attacker]->status = STATUS_NO_RESULT;
+                        }
                         $this->units[$attacker]->retreatCountRequired = 0;
                         break;
 
@@ -1085,10 +1111,10 @@ class Force
 //                    if($this->unitIsZOC($id)){
 //                        $status = STATUS_STOPPED;
 //                    }
-                    if($phase == BLUE_MECH_PHASE && $this->units[$id]->forceId == BLUE_FORCE && $this->units[$id]->maxMove < 6){
+                    if($phase == BLUE_MECH_PHASE && $this->units[$id]->forceId == BLUE_FORCE && $this->units[$id]->class != "mech"){
                         $status = STATUS_STOPPED;
                     }
-                    if($phase == RED_MECH_PHASE && $this->units[$id]->forceId == RED_FORCE && $this->units[$id]->maxMove < 6){
+                    if($phase == RED_MECH_PHASE && $this->units[$id]->forceId == RED_FORCE && $this->units[$id]->class != "mech"){
                         $status = STATUS_STOPPED;
                     }
                     if($phase == BLUE_REPLACEMENT_PHASE || $phase == RED_REPLACEMENT_PHASE){

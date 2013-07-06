@@ -2019,7 +2019,7 @@ x.register("moveRules", function(moveRules,data) {
                 $("#"+'firstclone').clone(true).attr('id',newId).appendTo('#gameImages');
                 $("#"+newId).attr("path",moveRules.moves[i].pathToHere);
                 $("#"+newId).css({left:moveRules.moves[i].pixX - width/2 +"px",top:moveRules.moves[i].pixY - height/2 +"px"});
-                var newLabel = label.replace(/([-+r]).*/,"$1 "+moveRules.moves[i].pointsLeft);
+                var newLabel = label.replace(/((?:<span[^>]*>)?[-+ru](?:<\/span>)?).*/,"$1 "+moveRules.moves[i].pointsLeft);
                 $("#"+newId+" div span").html(newLabel);
                 if(moveRules.moves[i].isOccupied){
                     $("#"+newId).addClass("occupied");

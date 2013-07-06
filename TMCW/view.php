@@ -28,7 +28,7 @@
                         <li>   Welcome {user}</li>
                         <li>you are playing as  <?=$player;?></li>
                         <li>
-                            in <span style="font-family:'Nosifer';">The Martian Civil War</span></li>
+                            in <span style="font-family:'Nosifer';">The Martian Civil War-{arg}</span> </li>
                         <li> The file is called {wargame}</li>
                         <li>Game Designer: David Rodal</li>
 
