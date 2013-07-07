@@ -567,7 +567,6 @@ class GameRules {
                     $this->replacementsAvail = false;
                     $this->phaseClicks[] = $click+1;
                     if($this->attackingForceId != $this->phaseChanges[$i]->nextAttackerId){
-
                         $victory->playerTurnChange($this->phaseChanges[$i]->nextAttackerId);
                         $this->turnChange = true;
                     }

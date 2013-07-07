@@ -204,26 +204,40 @@ class MoveRules{
         }
         return $dirty;
     }
-    function calcSupply($id,$goal,$bias = array()){
-        global $numWalks;
-        global $numBangs;
-        $numWalks = 0;
-        $numBangs = 0;
-        $startHex = $this->force->units[$id]->hexagon;
-        $movesLeft = $this->force->units[$id]->maxMove - $this->force->units[$id]->moveAmountUsed;
+    function calcSupplyHex($startHex,$goal,$bias = array(),$attackingForceId = false){
         $this->moves = new stdClass();
         $this->moveQueue = array();
         $hexPath = new HexPath();
-        $hexPath->name = $startHex->name;
-        $hexPath->pointsLeft = $movesLeft;
+        $hexPath->name = $startHex;
         $hexPath->pathToHere = array();
         $hexPath->firstHex = true;
         $hexPath->isOccupied = true;
         $this->moveQueue[] = $hexPath;
-        $ret = $this->bfsCommunication($goal,$bias);
+        $ret = $this->bfsCommunication($goal,$bias, $attackingForceId);
         $this->moves = new stdClass();
         $this->moveQueue = array();
         return $ret;
+    }
+    function calcSupply($id,$goal,$bias = array()){
+        global $numWalks;
+        global $numBangs;
+        $attackingForceId = $this->force->units[$id]->forceId;
+        $startHex = $this->force->units[$id]->hexagon;
+        echo $startHex->name;
+        echo " att $attackingForceId ";
+        return $this->calcSupplyHex($startHex->name,$goal, $bias,$attackingForceId);
+//        $this->moves = new stdClass();
+//        $this->moveQueue = array();
+//        $hexPath = new HexPath();
+//        $hexPath->name = $startHex->name;
+//        $hexPath->pathToHere = array();
+//        $hexPath->firstHex = true;
+//        $hexPath->isOccupied = true;
+//        $this->moveQueue[] = $hexPath;
+//        $ret = $this->bfsCommunication($goal,$bias, $attackingForceId);
+//        $this->moves = new stdClass();
+//        $this->moveQueue = array();
+//        return $ret;
     }
     function calcMove($id){
         global $numWalks;
@@ -377,7 +391,7 @@ class MoveRules{
         }
         return;
     }
-    function bfsCommunication($goal,$bias){
+    function bfsCommunication($goal,$bias,$attackingForceId = false){
         $goalArray = array();
         if(is_array($goal)){
             foreach($goal as $key => $val){
@@ -386,12 +400,18 @@ class MoveRules{
         }else{
             $goalArray[$goal] = true;
         }
-        $attackingForceId = $this->force->attackingForceId;
-        $defendingForceId = $this->force->defendingForceId;
+        if($attackingForceId !== false){
+            $defendingForceId = $this->force->Enemy($attackingForceId);
+        }else{
+            $attackingForceId = $this->force->attackingForceId;
+            $defendingForceId = $this->force->defendingForceId;
+        }
+
         $hist = array();
         $cnt = 0;
 //        $unit = $this->force->units[$this->movingUnitId];
         while(count($this->moveQueue) > 0){
+
             $cnt++;
             $hexPath = array_shift($this->moveQueue);
             $hexNum = $hexPath->name;
@@ -429,7 +449,7 @@ class MoveRules{
             $this->moves->$hexNum->pathToHere = $hexPath->pathToHere;
 
             if($this->moves->$hexNum->isZoc == NULL){
-                $this->moves->$hexNum->isZoc = $this->force->mapHexIsZOC($mapHex);
+                $this->moves->$hexNum->isZoc = $this->force->mapHexIsZOC($mapHex, $defendingForceId);
             }
             $exitCost = 0;
             if($this->moves->$hexNum->isZoc){

@@ -69,6 +69,8 @@ class victoryCore{
         }
     }
     public function phaseChange(){
+
+        echo "Phase ";
         /* @var $battle MartianCivilWar */
         $battle = Battle::getBattle();
         /* @var $gameRules GameRules */
@@ -97,6 +99,7 @@ class victoryCore{
         if($gameRules->phase == BLUE_MOVE_PHASE || $gameRules->phase ==  RED_MOVE_PHASE){
             $gameRules->flashMessages[] = "@hide deadpile";
         }
+        echo "Changecd ";
     }
     public function postRecoverUnit($args)
     {
@@ -108,6 +111,7 @@ class victoryCore{
         if($unit->forceId != $b->gameRules->attackingForceId){
             return;
         }
+        echo "Post ".$b->arg;
         if($b->arg == "Supply"){
             if($unit->forceId == BLUE_FORCE){
                 $goal = array(101,102,103,104,201,301,401,501,601,701,801,901,1001);
@@ -116,9 +120,13 @@ class victoryCore{
                 $goal = array(3014,3015,3016,3017,3018,3019,3020,2620,2720,2820,2920);
                 $bias =  array(2=>true,3=>true);
             }
+            echo "move ".$b->gameRules->mode;
             if($b->gameRules->mode == MOVING_MODE){
+                echo "About ";
                 if($unit->status == STATUS_READY){
+                    echo "calc? ";
                     $unit->supplied = $b->moveRules->calcSupply($unit->id,$goal,$bias);
+                    echo "did it ";
                 }else{
                     return;
                 }
@@ -133,7 +141,9 @@ class victoryCore{
             }
             if($b->gameRules->mode == COMBAT_SETUP_MODE){
                 if($unit->status == STATUS_READY){
+                    echo "Down under ".$unit->attackingForceId;
                     $unit->supplied = $b->moveRules->calcSupply($unit->id,$goal, $bias);
+                    echo "Well ";
                 }else{
                     return;
                 }
@@ -186,6 +196,7 @@ class victoryCore{
         }
     }
     public function playerTurnChange($arg){
+        echo "HERE";
         $attackingId = $arg[0];
         $battle = Battle::getBattle();
         $mapData = $battle->mapData;
@@ -207,22 +218,61 @@ class victoryCore{
 
            /*only get special VPs' at end of first Movement Phase */
 //        var_dump($specialHexes);
+        echo "isn't that special ";
         if($specialHexes){
-            foreach($specialHexes as $k=>$v){
-                if($v == 1){
-                    $points = 1;
-                    if($k == 2414 || $k == 2415 || $k == 2515){
-                        $points = 5;
-                    }elseif($k >= 2416){
-                        $points = 3;
+            $arg = $battle->arg;
+            if($arg == "Supply"){
+                $inCity = false;
+                $roadCut = false;
+                foreach($specialHexes as $k=>$v){
+                    if($v == BLUE_FORCE){
+                        $points = 1;
+                        if($k == 2414 || $k == 2415 || $k == 2515){
+                            $inCity = true;
+                            $points = 5;
+                        }elseif($k >= 2416){
+                            /* Remember the first road Cut */
+                            if($roadCut === false){
+                                $roadCut = $k;
+                            }
+                            continue;
+                        }
+                        $vp[$v] += $points;
+                        $battle->mapData->specialHexesVictory->$k = "<span class='rebelVictoryPoints'>+$points vp</span>";
+                    }else{
+    //                    $vp[$v] += .5;
                     }
-                    $vp[$v] += $points;
-                    $battle = Battle::getBattle();
-                    $battle->mapData->specialHexesVictory->$k = "<span class='rebelVictoryPoints'>+$points vp</span>";
-                }else{
-//                    $vp[$v] += .5;
                 }
-            }
+                if($roadCut !== false){
+                    $vp[BLUE_FORCE] += 3;
+                    $battle->mapData->specialHexesVictory->$roadCut = "<span class='rebelVictoryPoints'>+3 vp</span>";
+                }
+                if(!$inCity){
+                    /* Cuneiform isolated? */
+                    $cuneiform = 2515;
+                    if(!$battle->moveRules->calcSupplyHex($cuneiform, array(3014,3015,3016,3017,3018,3019,3020,2620,2720,2820,2920),array(2=>true,3=>true),RED_FORCE)){
+                        $vp[BLUE_FORCE] += 5;
+
+                        $battle->mapData->specialHexesVictory->$cuneiform = "<span class='rebelVictoryPoints'>+5 vp</span>";
+
+                    }
+                }
+            }else{
+                foreach($specialHexes as $k=>$v){
+                    if($v == 1){
+                        $points = 1;
+                        if($k == 2414 || $k == 2415 || $k == 2515){
+                            $points = 5;
+                        }elseif($k >= 2416){
+                            $points = 3;
+                        }
+                        $vp[$v] += $points;
+                        $battle = Battle::getBattle();
+                        $battle->mapData->specialHexesVictory->$k = "<span class='rebelVictoryPoints'>+$points vp</span>";
+                    }else{
+                        //                    $vp[$v] += .5;
+                    }
+                }            }
         }
        $this->victoryPoints = $vp;
     }

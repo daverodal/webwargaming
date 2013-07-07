@@ -933,8 +933,11 @@ class Force
         return $isOccupied;
     }
 
-    function mapHexIsZoc(MapHex $mapHex){
-        return $mapHex->isZoc($this->defendingForceId);
+    function mapHexIsZoc(MapHex $mapHex, $defendingForceId = false){
+        if($defendingForceId === false){
+            $defendingForceId = $this->defendingForceId;
+        }
+        return $mapHex->isZoc($defendingForceId);
         $neighbors = $mapHex->neighbors;
 
         if($neighbors){
@@ -1553,6 +1556,15 @@ class Force
         return $isEliminated;
     }
 
+    function enemy($forceId){
+        if($forceId == BLUE_FORCE){
+            return RED_FORCE;
+        }
+        if($forceId == RED_FORCE){
+            return BLUE_FORCE;
+        }
+        throw new Exception("Enemy Unknown $id");
+    }
     function unitIsEnemy($id)
     {
         $isEnemy = false;
