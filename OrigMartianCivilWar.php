@@ -37,17 +37,17 @@ class OMCW extends Battle {
     public $victory;
 
     public $players;
-    static function getHeader($playerData){
+    static function getHeader($name, $playerData){
         $playerData = array_shift($playerData);
         foreach($playerData as $k => $v){
             $$k = $v;
         }
         @include_once "OMCW/header.php";
     }
-    static function getView( $mapUrl){
+    static function getView( $name, $mapUrl,$player = 0, $arg = false, $argTwo = false){
         @include_once "OMCW/view.php";
     }
-    static function playAs($wargame){
+    static function playAs($name, $wargame){
         @include_once "OMCW/playAs.php";
     }
     public function resize($small,$player){
