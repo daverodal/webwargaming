@@ -55,40 +55,7 @@
         background-color: rgb(223,88,66);
     }
 
-#phaseDiv,#statusDiv,#chatsDiv,#crtWrapper{
-    float:left;
-}
-#crtWrapper , #OBCWrapper{
-    user-select:none;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    float:left;
-    position: relative;
-
-}
-#crtWrapper h4, #OBCWrapper h4{
-    margin:0;
-    border:none;
-    user-select:none;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-
-}
-#OBC{
-    background:white;
-}
-
-#OBCWrapper h4 {
-    width: 520px;
-}
-#OBC, #crt{
-    position:absolute;
-    z-index:30;
-}
-#OBCWrapper h4:focus,#crtWrapper h4:focus{
-outline: -webkit-focus-ring-color none;
-}
-body{
+    body{
         background:#eee;
         color:#333;
     }
@@ -102,10 +69,6 @@ body{
         background:white;
         border-radius:9px;
     }
-    #OBC fieldset{
-        float:left;
-        min-height: 100px;
-    }
     .left{
         float:left;
     }
@@ -115,6 +78,8 @@ body{
     #crt{
         border-radius:15px;
         border:10px solid #1AF;
+    //position:relative;
+        width:308px;
         background:#fff;color:black;
         font-weight:bold;
         padding:1px 5px 10px 15px;
@@ -126,6 +91,7 @@ body{
     }
     #crt span{
         width:32px;
+    // position:absolute;
     }
     .col1{
         left:20px;
@@ -198,8 +164,8 @@ body{
         margin-bottom:5px;
     }
     #leftcol {
-        /*float:left;
-        width:360px;*/
+        float:left;
+        width:360px;
     }
     #rightCol{
         /*float:right;*/
@@ -246,9 +212,15 @@ body{
     }
     #map {
         -webkit-user-select:none;
+
+        width:1044px;
+        height:850px;
+        width:783px;
+        height:638px;
     width:<?=$mapWidth;?>;/*really*/
     height:<?=$mapHeight;?>;
-
+        /*width:787px;*/
+        /*height:481px;*/
         }
     #gameImages {
         width:<?=$mapWidth;?>;/*really*/
@@ -315,9 +287,6 @@ body{
     }
     .clone{
         /*pointer-events:none;*/
-    }
-    .occupied{
-        display:none;
     }
 </style>
 <script>
@@ -414,9 +383,7 @@ x.register("mapUnits", function(mapUnits) {
             if(mapUnits[i].parent != "gameImages"){
                 $("#"+ i).css({top:"0"});
                 $("#"+ i).css({left:"0"});
-                if(!mapUnits[i].parent.match(/^gameTurn/)){
-                    $("#"+ i).css({float:"left"});
-                }
+                $("#"+ i).css({float:"left"});
                 $("#"+ i).css({position:"relative"});
             }  else{
                 $("#"+ i).css({float:"none"});
@@ -436,7 +403,7 @@ x.register("mapUnits", function(mapUnits) {
         }
         var  move = mapUnits[i].maxMove - mapUnits[i].moveAmountUsed;
         var str = mapUnits[i].strength;
-        var symb = mapUnits[i].isReduced ? " r " : " - ";
+        var symb = mapUnits[i].isReduced ? " + " : " - ";
         $("#"+i+" div").html(str + symb + move);
         $("#"+i).attr("src",img);
     }
@@ -455,7 +422,6 @@ x.register("moveRules", function(moveRules) {
 
 //        $("#status").html("Unit #:"+moveRules.movingUnitId+" is currently moving");
         if(moveRules.hexPath){
-            alert("WHAT IS A HEXPATH!");
             id = moveRules.movingUnitId;
             for( i in moveRules.hexPath){
                 newId = id+"Hex"+i;
@@ -478,37 +444,35 @@ x.register("moveRules", function(moveRules) {
         }
         if(moveRules.moves){
             id = moveRules.movingUnitId;
-            newId = "firstclone";
-            $("#"+id).clone(true).attr('id',newId).appendTo('#gameImages');
-            $("#"+newId+" .arrow").hide();
-            $("#"+newId).addClass("clone");
-
-            width = $("#"+newId).width();
-            height = $("#"+newId).height();
-
-            var label = $("#"+newId+" div").html();
-
-            $("#"+newId).css({opacity:.4,
-                zIndex:102,
-                borderColor:"#ccc #333 #333 #ccc",
-                boxShadow:"none"}
-            );
             for( i in moveRules.moves){
                 newId = id+"Hex"+i;
-//                if(!moveRules.moves[i].isValid){
-//                    continue;
-//                }
-//                if(moveRules.moves[i].isOccupied){
-////                    continue;
-//                }
-
-                $("#"+'firstclone').clone(true).attr('id',newId).appendTo('#gameImages');
-                $("#"+newId).attr("path",moveRules.moves[i].pathToHere);
-                $("#"+newId).css({left:moveRules.moves[i].pixX - width/2 +"px",top:moveRules.moves[i].pixY - height/2 +"px"});
-                var newLabel = label.replace(/([-+r]).*/,"$1 "+moveRules.moves[i].pointsLeft);
-
-                $("#"+newId+" div").html(newLabel);
+                if(!moveRules.moves[i].isValid){
+                    continue;
+                }
                 if(moveRules.moves[i].isOccupied){
+//                    continue;
+                }
+
+                $("#"+id).clone(true).attr('id',newId).appendTo('#gameImages');
+                $("#"+newId+" .arrow").hide();
+                $("#"+newId).addClass("clone");
+                $("#"+newId).css("top",20);
+                $("#"+newId).attr("path",moveRules.moves[i].pathToHere);
+
+                width = $("#"+newId).width();
+                height = $("#"+newId).height();
+
+                $("#"+newId).css("left",moveRules.moves[i].pixX - width/2 +"px");
+                $("#"+newId).css("top",moveRules.moves[i].pixY - height/2 +"px");
+                var label = $("#"+newId+" div").html();
+                var newLabel = label.replace(/([-+]).*/,"$1 "+Math.floor(moveRules.moves[i].pointsLeft));
+                $("#"+newId+" div").html(newLabel);
+                $("#"+newId).css("opacity",.4);
+                $("#"+newId).css("z-index",102);
+                $("#"+newId).css("border-color","#ccc #333 #333 #ccc");
+                $("#"+newId).css("box-shadow","none");
+                if(moveRules.moves[i].isOccupied){
+                    $("#"+newId).css("display","none");
                     $("#"+newId).addClass("occupied");
 
 
@@ -518,7 +482,6 @@ x.register("moveRules", function(moveRules) {
 
 
             }
-            $("#firstclone").remove();
         }
         $(".clone").hover(function(){
                     $(this).css("opacity",1.0).css("border-color","#fff").css('box-shadow','#333 5px 5px 5px');
@@ -832,13 +795,13 @@ function seeUnits(){
     $(".unit").css("opacity",1.);
 }
 function seeBoth(){
-    $(".unit").css("opacity",.3);
+    $(".unit").css("opacity",.2);
 }
 function doit() {
     var mychat = $("#mychat").attr("value");
     $.ajax({url: "<?=site_url("wargame/add/");?>",
         type: "POST",
-        data:{chat:mychat,
+        data:{chat:mychat
     },
     success:function(data, textstatus) {
     }
@@ -1189,7 +1152,7 @@ function initialize() {
     updateForm();
 }
 $(function() {
-    $( "#gameImages" ).draggable({distance:15,axis:"x"});
+    $( "#gameImages" ).draggable({distance:15});
 });
 $(function(){initialize();});
 </script>

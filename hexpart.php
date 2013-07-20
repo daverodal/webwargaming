@@ -31,8 +31,8 @@ class Hexpart
 		$this->x = $arguments[0];
 		$this->y = $arguments[1];
 		
-		$this->calculateHexpartType();
-		$this->calculateHexpartName();
+//		$this->calculateHexpartType();
+//		$this->calculateHexpartName();
 	}
 }
 
@@ -47,10 +47,10 @@ function setXY($x, $y)
 
 function setXYwithNameAndType( $hexagonName, $hexpartType )
 {
-	$hexagon = new Hexagon($hexagonName);
+	$hexagon = new Hexagon($hexagonName);//
 
-	$this->x = $hexagon.getX();
-	$this->y = $hexagon.getY();
+	$this->x = $hexagon->getX();
+	$this->y = $hexagon->getY();
 
 	switch ( $hexpartType ) {
 	

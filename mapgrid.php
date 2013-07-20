@@ -8,7 +8,189 @@
 // either version 2 of the License, or (at your option) any later version. 
 
 // MapData Constructor
-class MapData{
+class MapHex {
+    private $evenHexesShiftDown = true;
+    public $forces;
+    public $zocs;
+    public $name;
+    public $neighbors;
+    public $dirty;
+    public function __construct($name, $forces = false, $zocs = false){
+        $this->name = $name;
+        $this->dirty = false;
+        $this->neighbors = array();
+        $row = $name%100;
+        $col = floor($name / 100);
+        $colShift = array(0,1,1,0,-1,-1);
+        if($col & 1){
+            $rowShift = array(-1,-1,0,1,0,-1);
+        }else{
+            $rowShift = array(-1,0,1,1,1,0);
+        }
+        for($i = 0;$i<6;$i++){
+            $neighbor = $row+$rowShift[$i]+(($col+$colShift[$i])*100);
+            $this->neighbors[]  = $neighbor;
+        }
+        if($forces !== false){
+            $this->dirty = true;
+            $this->forces = $forces;
+        }else{
+            $this->forces = array(new stdClass(),new stdClass(), new stdClass());
+        }
+        if($zocs !== false){
+            $this->dirty = true;
+            $this->zocs = $zocs;
+        }else{
+            $this->zocs = array(new stdClass(),new stdClass(), new stdClass());
+        }
+
+    }
+
+    public function unsetUnit($forceId, $id){
+        if(isset($this->forces[$forceId]->$id)){
+            unset($this->forces[$forceId]->$id);
+            $this->dirty = true;
+        }
+        $neighbors = $this->neighbors;
+        $mapData = MapData::getInstance();
+        foreach($neighbors as $neighbor){
+            $hex = $mapData->getHex($neighbor);
+            if($hex){
+                unset($hex->zocs[$forceId]->$id);
+
+            }
+
+        }
+    }
+    public function setUnit($forceId, $id){
+        if(!$this->forces){
+            $this->forces = array(new stdClass(),new stdClass(), new stdClass());
+        }
+        if(!$this->forces[$forceId]){
+            $this->forces[$forceId] = new stdClass();
+        }
+        $this->forces[$forceId]->$id = $id;
+        $neighbors = $this->neighbors;
+        $mapData = MapData::getInstance();
+        foreach($neighbors as $neighbor){
+            $hex = $mapData->getHex($neighbor);
+            if($hex){
+            if(!$hex->zocs){
+                $hex->zocs = array(new stdClass(),new stdClass(),new stdClass());
+            }
+
+            if(!$hex->zocs[$forceId]){
+                $hex->zocs[$forceId] = new stdClass();
+            }
+            $hex->zocs[$forceId]->$id = $id;
+            }
+        }
+
+        $this->dirty = true;
+    }
+    public function isZoc($forceId){
+        return count((array)$this->zocs[$forceId]);
+    }
+    public function isOccupied($forceId){
+        return count((array)$this->forces[$forceId]);
+    }
+}
+class MapData implements JsonSerializable{
+
+    public $hexes;
+    public $maxX;
+    public $maxY;
+    public $specialHexes;
+    private static $instance;
+    public $mapUrl;
+    public $vp;
+
+    private function __construct(){
+        $this->vp = array(0,0,0);
+    }
+
+    function jsonSerialize(){
+        foreach($this->hexes as $k => $hex){
+//            var_dump(count($hex->forces[1]));
+//            var_dump($hex->forces[1]);
+
+            $f1 = count((array)$hex->forces[1]) + count((array)$hex->zocs[1]);
+            $f2 = count((array)$hex->forces[2]) + count((array)$hex->zocs[2]);
+            if(!$f1 && !$f2){
+                unset($this->hexes->$k);
+                continue;
+            }
+//            if(!$hex->dirty){
+//                continue;
+//            }
+            unset($this->hexes->$k->dirty);
+            unset($this->hexes->$k->neighbors);
+        }
+        return $this;
+    }
+        public static function getInstance(){
+        if(!MapData::$instance){
+            MapData::$instance = new MapData();
+        }
+        return MapData::$instance;
+
+    }
+    public function init($data){
+        $hexes = $data->hexes;
+        unset($data->hexes);
+
+        foreach($data as $k => $v){
+            if($k == "hexes"){
+//                $this->hexes = new stdClass();
+//                foreach($v as $hexName => $hex){
+//                    $this->hexes->$hexName = new MapHex($hex->name,$hex->forces);
+//                }
+            }else{
+                $this->$k = $v;
+            }
+        }
+        $this->hexes = new stdClass();
+        for($i = 0; $i <= $this->maxX+1;$i++){
+            for($j = 0;$j<= $this->maxY+1;$j++){
+                $name = sprintf("%02d%02d",$i,$j);
+                if(isset($hexes->$name) && $hexes->$name){
+                    $x = new MapHex($name,$hexes->$name->forces,$hexes->$name->zocs);
+                }else{
+                    $x = new MapHex($name);
+                }
+                $this->hexes->$name = $x;
+            }
+        }
+    }
+    function setSpecialHexes($hexes){
+        if(!$this->specialHexes){
+            $this->specialHexes = new stdClass();
+        }
+        foreach($hexes as $k => $v){
+            $k = sprintf("%04d","0000".$k);
+            $this->specialHexes->$k = $v;
+        }
+    }
+    function setData($maxRight,$maxBottom, $map)
+    {
+        $this->mapUrl = $map;
+        $this->maxY = $maxBottom;
+        $this->maxX = $maxRight;
+        $this->hexes = new stdClass();
+        for($i = 0; $i <= $maxRight+1;$i++){
+            for($j = 0;$j<= $maxBottom+1;$j++){
+                $name = sprintf("%02d%02d",$i,$j);
+                $this->hexes->$name = new MapHex($name);
+            }
+        }
+    }
+
+    function getHex($name){
+        $name = sprintf("%04d",$name);
+        return $this->hexes->$name;
+    }
+}
+class MapViewer{
 
     public $originX;
     public $originY;
@@ -136,7 +318,6 @@ class MapGrid{
             $hexpartY = (2 * $this->row);
             $this->distanceFromTopEdgeOfHexagon = $this->mapGridY - ($this->row * $this->topHeight);
         }
-
         $this->hexpart->setXY($hexpartX, $hexpartY);
     }
 

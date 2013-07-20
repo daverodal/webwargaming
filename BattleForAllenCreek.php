@@ -1,7 +1,7 @@
 <?php
 require_once "constants.php";
 require_once "combatRules.php";
-require_once "crt.php";
+require_once "BAC/crt.php";
 require_once "force.php";
 require_once "gameRules.php";
 require_once "hexagon.php";
@@ -19,7 +19,7 @@ $oneHalfImageHeight = 16;
 
 
 
-class BattleForAllenCreek {
+class BattleForAllenCreek extends Battle {
 
     public $mapData;
     public $force;
@@ -29,23 +29,21 @@ class BattleForAllenCreek {
     public $gameRules;
     public $prompt;
     public $players;
-    public $playerData;
-
 
     static function getHeader($name, $playerData){
         $playerData = array_shift($playerData);
         foreach($playerData as $k => $v){
             $$k = $v;
         }
-        @include_once "header.php";
+        @include_once "BAC/header.php";
+    }
+    static function getView($name, $mapUrl,$player = 0, $arg = false){
+        global $force_name;
+        $player = $force_name[$player];
+        @include_once "BAC/view.php";
     }
     static function playAs($name, $wargame){
-        redirect("wargame/enterHotseat/$wargame");
-    }
-
-
-    static function getView($name, $mapUrl, $player = 0, $art = false){
-        @include_once "view.php";
+        @include_once "BAC/playAs.php";
     }
 
 
@@ -66,8 +64,9 @@ class BattleForAllenCreek {
 
     function poke($event, $id, $x, $y, $user){
         $playerId = $this->gameRules->attackingForceId;
+        echo "user $user";
+        echo "pid $playerId";
         if($this->players[$this->gameRules->attackingForceId] != $user){
-            echo "Nope $user";
             return false;
         }
 
@@ -79,8 +78,6 @@ class BattleForAllenCreek {
                 break;
 
             case SELECT_COUNTER_EVENT:
-                echo "COUNTER $id";
-
                 $this->gameRules->processEvent(SELECT_COUNTER_EVENT, $id, $this->force->getUnitHexagon($id));
 
                 break;
@@ -95,52 +92,45 @@ class BattleForAllenCreek {
     }
     function __construct($data = null)
     {
+        $this->mapData = MapData::getInstance();
+
         if ($data) {
-            $this->mapData = array(new MapData($data->mapData[0]),new MapData($data->mapData[1]),new MapData($data->mapData[2]));
+            $this->mapData->init($data->mapData);
+            $this->mapViewer = array(new MapViewer($data->mapViewer[0]),new MapViewer($data->mapViewer[1]),new MapViewer($data->mapViewer[2]));
             $this->force = new Force($data->force);
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $data->gameRules);
+            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = $data->players;
-            $this->playerData = $data->playerData;
 
         } else {
-            $this->mapData = array(new MapData(),new MapData(),new MapData());
+            $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->combatRules = new CombatRules($this->force, $this->terrain);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force);
+            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = array("","","");
-            $this->playerData = new stdClass();
-            for($player = 0;$player <= 2;$player++){
-                $this->playerData->${player} = new stdClass();
-                $this->playerData->${player}->mapWidth = "744px";
-                $this->playerData->${player}->mapHeight = "425px";
-                $this->playerData->${player}->unitSize = "32px";
-                $this->playerData->${player}->unitFontSize = "12px";
-                $this->playerData->${player}->unitMargin = "-21px";
-            }
 
 
             // mapData
-            $this->mapData[0]->setData(18, 20, // originX, originY
-                20, 20, // top hexagon height, bottom hexagon height
-                12, 24, // hexagon edge width, hexagon center width
-                505, 505 // max right hexagon, max bottom hexagon
+            $this->mapViewer[0]->setData(64,76, // originX, originY
+                25, 25, // top hexagon height, bottom hexagon height
+                14, 28, // hexagon edge width, hexagon center width
+                3020, 3020 // max right hexagon, max bottom hexagon
             );
-            $this->mapData[1]->setData(18, 20, // originX, originY
-                20, 20, // top hexagon height, bottom hexagon height
-                12, 24, // hexagon edge width, hexagon center width
-                505, 505 // max right hexagon, max bottom hexagon
+            $this->mapViewer[1]->setData(60,71, // originX, originY
+                23.5,23.5, // top hexagon height, bottom hexagon height
+                14, 28, // hexagon edge width, hexagon center width
+                3020, 3020 // max right hexagon, max bottom hexagon
             );
-            $this->mapData[2]->setData(18, 20, // originX, originY
-                20, 20, // top hexagon height, bottom hexagon height
-                12, 24, // hexagon edge width, hexagon center width
-                505, 505 // max right hexagon, max bottom hexagon
+            $this->mapViewer[2]->setData(64,76, // originX, originY
+                25, 25, // top hexagon height, bottom hexagon height
+                14, 28, // hexagon edge width, hexagon center width
+                3020, 3020 // max right hexagon, max bottom hexagon
             );
 
             // game data

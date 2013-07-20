@@ -22,14 +22,14 @@ class CombatResultsTable
 	//     index is 0 to 5;  dieSidesCount = 6
     
     function __construct(){
-        $this->combatResultsHeader = array("1:1","2:1","3:1","4:1","5:1","6:1");
+        $this->combatResultsHeader = array("1:5","1:4","1:3","1:2","1:1","2:1","3:1","4:1","5:1","6:1");
 	    $this->combatResultsTable = array(
-            array(DR, DRL, DE, DE, DE, DE),
-            array(DR, EX, DRL, DE, DE, DE),
-            array(EX, EX, DRL, DRL, DE, DE),
-            array(EX, DR, EX, EX, DE, DE),
-            array(AL, DR, DR, DR, DRL, DE),
-            array(AL, AL, DR, DR, EX, DE),
+            array(AE, AR, AR, AR, DR, DR, DR, DE, DE, DE),
+            array(AE, AE, AR, AR, DR, DR, DR, DE, DE, DE),
+            array(AE, AE, AE, AR, DR, DR, DR, DR, DE, DE),
+            array(AE, AE, AE, AR, AR, DR, DR, DR, DE, DE),
+            array(AE, AE, AE, AR, AR, EX, DR, EX, EX, DE),
+            array(AE, AE, AE, AE, AR, AR, EX, EX, EX, DE),
         );
 
         $this->combatOddsTable = array(
@@ -41,7 +41,7 @@ class CombatResultsTable
             array()
         );
 
-        $this->combatIndexCount = 6;
+        $this->combatIndexCount = 10;
         $this->maxCombatIndex = $this->combatIndexCount - 1;
         $this->dieSideCount = 6;
         $this->combatResultCount = 5;
@@ -54,8 +54,16 @@ class CombatResultsTable
             return $this->combatResultsTable[$Die][$index];
         }
 
-    function getCombatIndex(){
-        return 3;
+    function getCombatDisplay(){
+        return $this->combatResultsHeader;
+    }
+    function getCombatIndex($attackStrength, $defenseStrength){
+        if($attackStrength >= $defenseStrength){
+            $combatIndex = floor($attackStrength / $defenseStrength)+3;
+        }else{
+            $combatIndex = 5 - floor($defenseStrength /$attackStrength );
+        }
+        return $combatIndex;
     }
     function setCombatOddsTable()
     {

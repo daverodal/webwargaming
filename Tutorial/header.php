@@ -1,7 +1,220 @@
 <link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 <style type="text/css">
+h2 #status{
+    font-size:16px;
+}
+h5{
+    margin:0px;
+}
+#rightHeader{
+    width:50%;
+    float:right;
+}
+#TECWrapper{
+    /*float:left;*/
+}
+#TECWrapper .closer{
+    height:0px;
+    padding:0px;
+}
+#TECWrapper .colOne.riverHex{
+    background-image: url('<?=base_url()?>js/river.png');
+    background-position:0px -26px;
+}
+#TECWrapper .colOne.bridgeHex{
+    background-image: url('<?=base_url()?>js/riverRoad.png');
+    background-position:0px -26px;
+}
+#TECWrapper .colOne.blankHex{
+    background-image: url('<?=base_url()?>js/blank.png');
+}
+#TECWrapper .colOne.forestHex{
+    background-image: url('<?=base_url()?>js/forest 2.png');
+}
+#TECWrapper .colOne.mountainHex{
+    background-image: url('<?=base_url()?>js/mountain.png');
+}
+#TECWrapper .colOne.roadHex{
+    background-image: url('<?=base_url()?>js/road.png');
+    background-position:0px -26px;
+}
+#TECWrapper .colOne{
+    background-size:400px;
+    width:220px;
+    height:56px;
+    margin-left:20px;
+}
+#TECWrapper .colOne.header{
+    height:26px;
+}
+#TECWrapper .colOne.header span{
+    margin-left:40px;
+}
+#TECWrapper .colTwo{
+    width:180px;
+}
+#TECWrapper .colThree{
+    width:136px;
+}
+#TECWrapper .colOne span{
+     margin-top:12px;
+     margin-left: 80px;
+     display:inline-block;
+ }
+#TECWrapper .colTwo, #TECWrapper .colThree{
+    margin-top:12px;
+}
+#TECWrapper .colOne,
+#TECWrapper .colTwo,
+#TECWrapper .colThree{
+    float:left;
+}
+#TECWrapper div{
+    /*height:112px;*/
+}
+#TECWrapper li{
+    list-style-type: none;
+    /*height:79px;*/
+    border:0 solid black;
+    border-width:1px 1px 0 1px;
+    padding:5px 20px 5px 0px;
+}
+#TECWrapper img, #TECWrapper div{
+}
+video{
+    border:10px #aaa solid;
+    box-shadow:10px 10px 10px #999;
+    margin-right:10px;
+}
+#leftHeader{
+    width:49%;
+    float:left;
+}
+#comlinkWrapper{
+    border:1px solid black;
+    border-radius: 10px;
+    background:white;
+    padding:0 5px 0 5px;
+    font-style: italic;
+}
+.specialHexes,.specialHexesVP{
+    position:absolute;
+    text-transform: capitalize;
+    background:yellow;
+    opacity:.8;
+}
+.specialHexesVP{
+    text-shadow:0px 0px 1px white,
+    0px 0px 1px white,
+    0px 0px 1px white,
+    0px 0px 2px white,
+    0px 0px 2px white,
+    0px 0px 2px white,
+    0px 0px 3px white,
+    0px 0px 3px white,
+    0px 0px 3px white,
+    0px 0px 4px white,
+    0px 0px 4px white,
+    0px 0px 4px white,
+    0px 0px 5px white,
+    0px 0px 5px white,
+    0px 0px 5px white,
+    0px 0px 6px white,
+    0px 0px 6px white,
+    0px 0px 6px white,
+    0px 0px 7px white,
+    0px 0px 7px white,
+    0px 0px 7px white,
+    0px 0px 8px white,
+    0px 0px 8px white,
+    0px 0px 8px white,
+    0px 0px 9px white,
+    0px 0px 9px white,
+    0px 0px 9px white,
+    0px 0px 10px white,
+    0px 0px 10px white,
+    0px 0px 10px white;
+}
+#display{
+    display:none;
+    position:fixed;
+    top:25%;
+    width:90%;
+    left:5%;
+    padding:30px 0;
+    background:rgba(255,255,255,.9);
+    font-size:100px;
+    text-align: center;
+    border:#000 solid 10px;
+    border-radius: 30px;
+    z-index:4;
+}
+.flashMessage{
+    position:absolute;
+    width:80%;
+    background:rgba(255,255,255,.9);
+    /*background:transparent;*/
+    text-align: center;
+    border-radius:30px;
+    border:10px solid black;
+    /*border:none;*/
+    font-size:45px;
+    z-index:1000;
+}
+#display button{
+    font-size:30px;
+}
+#comlinkWrapper h4{
+    font-weight: bold;
+    margin:3px;
+}
+#header{
+    position:fixed;
+    width:99%;
+    top:0px;
+    background:#99cc99;
+    background:rgb(132,181,255);
+    z-index:2000;
+}
+#mouseMove{
+    display:none;
+}
+#headerContent{
+    min-height:110px;
+}
+#nextPhaseButton{
+    font-size:15px;
+    position: absolute;
+    bottom: 0px;
+    left:20%;
+}
+    #header a, #header a:visited{
+        color:white;
+    }
+    #header a:hover{
+        color:#ddd;
+    }
+    #header h2{
+        margin: 10px 0 5px;
+    }
+    #content{
+        margin-top:140px;
+    }
+    .clear{
+        clear:both !important;
+        float:none !important;
+    }
     .blueUnit, .loyalist{
         background-color:rgb(132,181,255);
+    }
+    .loyalistVP{
+        color:rgb(132,181,255);
+        background: transparent;
+        opacity:1.0;
+    }
+    .rebelVP{
+        color:rgb(239,115,74);
+        background: transparent;
     }
     .darkBlueUnit{
         background-color:rgb(99,136,192);
@@ -15,7 +228,7 @@
     .sympth{
         background-color:gold;
     }
-    .armyGreen, .loyalist{
+    .armyGreen, .lloyalist{
     background-color:  rgb(148,189,74);
     }
     .gold{
@@ -55,35 +268,82 @@
         background-color: rgb(223,88,66);
     }
 
-#phaseDiv,#statusDiv,#chatsDiv,#crtWrapper{
-    float:left;
+#phaseDiv,#statusDiv,#chatsDiv,#crtWrapper,#victoryDiv{
+    display:inline;
+    vertical-align: top;
+    /*float:left;*/
 }
-#crtWrapper , #OBCWrapper{
+#statusDiv{
+
+}
+#crtWrapper , #OBCWrapper, #TECWrapper{
     user-select:none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-    float:left;
-    position: relative;
+    /*float:left;*/
+    position: absolute;
 
 }
-#crtWrapper h4, #OBCWrapper h4{
+#crtWrapper h4, #OBCWrapper h4, #TECWrapper h4{
     margin:0;
     border:none;
     user-select:none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
+    cursor: pointer;
 
+}
+#crtWrapper{
+    left:0px;
+    bottom:0px;
+    display:none;
+}
+#TECWrapper{
+    width:120px;
+    left:0%;
+    bottom:0px;
+}
+#TEC ul{
+    margin:0;
+    padding:0
+}
+#OBCWrapper{
+    width:120px;
+    left:25%;
+    bottom:0px;
+    display:none;
+}
+#hideShow{
+    cursor:pointer;
+    margin-left:55%;
+    display:none;
 }
 #OBC{
     background:white;
+    width:514px;
 }
+#TEC{
+    background:white;
+    width:579px;
+}
+#crtWrapper h4{
+    width: 349px;
 
-#OBCWrapper h4 {
-    width: 520px;
 }
-#OBC, #crt{
+#clickCnt{
+    float:left;
+    padding:3px;
+}
+#crtWrapper h4 .goLeft,#crtWrapper h4 .goRight{
+font-size:22px;
+    padding:0 15px;
+}
+#OBCWrapper h4 {
+}
+#OBC, #crt, #TEC{
     position:absolute;
     z-index:30;
+    display:none;
 }
 #OBCWrapper h4:focus,#crtWrapper h4:focus{
 outline: -webkit-focus-ring-color none;
@@ -92,11 +352,17 @@ body{
         background:#eee;
         color:#333;
     }
+
+    #clock{
+        /*width:100px;*/
+    }
     #status{
-        text-align:right;
+        /*height:70px;*/
+        /*overflow-y:scroll;*/
+        /*text-align:right;*/
     }
     #status legend{
-        text-align:left;
+        /*text-align:left;*/
     }
     fieldset{
         background:white;
@@ -114,10 +380,12 @@ body{
     }
     #crt{
         border-radius:15px;
-        border:10px solid #1AF;
+        border:10px solid rgb(132,181,255);
         background:#fff;color:black;
+    ;
         font-weight:bold;
         padding:1px 5px 10px 15px;
+        box-shadow: 0px 0px 2px black;
     }
     #crt h3{
         height:40px;
@@ -147,7 +415,8 @@ body{
     }
     .roll, #odds{
         height:20px;
-        background :#1af;
+        /*background :#1af;*/
+        background: rgb(132,181,255);
         margin-right:14px
     }
     #odds{
@@ -196,6 +465,10 @@ body{
         overflow:hidden;
         background:#620;
         margin-bottom:5px;
+        /*width:332px;*/
+        /*margin:auto;*/
+        float:left;
+        display:none;
     }
     #leftcol {
         /*float:left;
@@ -282,6 +555,7 @@ body{
         height:49px;
         position:absolute;
         left:0;top:0;
+        z-index:3;
     width:<?=$unitSize?>;
     height:<?=$unitSize?>;
         /*width:32px;*/
@@ -321,6 +595,26 @@ body{
     }
 </style>
 <script>
+$(document).ready(function(){
+    $("#timeMachine").click(function(){
+        x.timeTravel = true;
+        if(x.current){
+            x.current.abort();
+        }
+        var click = $("#clickCnt").html();
+        click--;
+        x.fetch(click);
+    });
+    $("#timeSurge").click(function(){
+        var click = $("#clickCnt").html();
+        click++;
+        x.fetch(click);
+    });
+    $("#timeLive").click(function(){
+        x.timeTravel = false;
+        x.fetch(0);
+    });
+});
 x = new Sync("<?=site_url("wargame/fetch/");?>");
 x.register("chats", function(chats) {
     var str;
@@ -331,6 +625,14 @@ x.register("chats", function(chats) {
         $("#chats").prepend(str);
     }
 });
+x.register("clicks",function(clicks){
+    for(var i in clicks){
+        alert(clicks[i]);
+    }
+});
+x.register("click",function(click){
+    $("#clickCnt").html(click);
+});
 x.register("users", function(users) {
     var str;
     $("#users").html("");
@@ -340,6 +642,12 @@ x.register("users", function(users) {
     }
 });
 x.register("gameRules", function(gameRules) {
+    if(gameRules.display.currentMessage){
+        $("#display").html(gameRules.display.currentMessage+"<button onclick='doitNext()'>Next</button>").show();
+    }else{
+        $("#display").html("").hide();
+    }
+    var status = "&nbsp;";
     turn = gameRules.turn;
     if("gameTurn"+turn != $("#turnCounter").parent().attr("id")){
         $("#gameTurn"+turn).prepend($("#turnCounter"));
@@ -363,7 +671,7 @@ x.register("gameRules", function(gameRules) {
         case <?=BLUE_REPLACEMENT_PHASE?>:
         case <?=RED_REPLACEMENT_PHASE?>:
             if(gameRules.replacementsAvail !== false && gameRules.replacementsAvail != null){
-                html += "<br>There are "+gameRules.replacementsAvail+" available";
+                status = "There are "+gameRules.replacementsAvail+" available";
             }
             break;
     }
@@ -377,6 +685,12 @@ x.register("gameRules", function(gameRules) {
             break;
     }
     $("#clock").html(html);
+    $("#status").html(status);
+//    $("#victory").html("Rebel "+gameRules.vp[1]+ " Loyalist "+gameRules.vp[2]);
+});
+x.register("vp", function(vp){
+        $("#victory").html("Rebel "+vp[1]+ " Loyalist "+vp[2]);
+
 });
 x.register("games", function(games) {
     var str;
@@ -388,6 +702,115 @@ x.register("games", function(games) {
 });
 x.register("clock", function(clock) {
     //$("#clock").html(clock);
+});
+var flashMessages;
+x.register("flashMessages",function(messages,data){
+
+//    alert("flash");
+//    alert(messages[0]);
+    flashMessages = messages;
+    flashMessage(data.gameRules.playerStatus);
+//    alert("WHY");
+});
+function flashMessage(playerStatus){
+    var x = 30;
+    var y = 100;
+//    alert("HERE");
+
+    var mess = flashMessages.shift();
+//    alert(mess);
+    $("#FlashMessage").remove();
+    while(mess){
+
+        if(mess.match(/^@/)){
+            if(mess.match(/^@forward/)){
+                if(playerStatus == "hot seat"){
+                    game = mess.match(/^@forward ([^,]*)/);
+                    newPlayer = game[1];
+                    if(newPlayer != Player){
+<!--                       window.location = "--><?//=site_url("wargame/changeWargame");?><!--";-->
+                    }
+                }
+                /* we only loop of we failed to forward */
+                var mess = flashMessages.shift();
+                continue;
+            }
+            if(mess.match(/^@video/)){
+//                game = mess.match(/^@show ([^,]*)/);
+//                id = game[1];
+//                $("#"+id).show({effect:"blind",direction:"up",complete:flashMessage});
+//                playLadies();
+                return;
+            }
+            if(mess.match(/^@gameover/)){
+                $("#gameViewer").append('<div id="FlashMessage" style="top:'+y+'px;left:'+x+'px;" class="flashMessage">'+"Victory"+'</div>');
+                $("#FlashMessage").animate({opacity:0},2400,flashMessage);
+
+//                game = mess.match(/^@show ([^,]*)/);
+//                id = game[1];
+//                $("#"+id).show({effect:"blind",direction:"up",complete:flashMessage});
+                playLadies();
+                return;
+            }
+            if(mess.match(/^@show/)){
+                game = mess.match(/^@show ([^,]*)/);
+                id = game[1];
+                $("#"+id).show({effect:"blind",direction:"up",complete:flashMessage});
+                return;
+            }
+            if(mess.match(/^@hide/)){
+                game = mess.match(/^@hide ([^,]*)/);
+                id = game[1];
+                $("#"+id).hide({effect:"blind",direction:"up",complete:flashMessage});
+                return;
+            }        }
+        $("#gameViewer").append('<div id="FlashMessage" style="top:'+y+'px;left:'+x+'px;" class="flashMessage">'+mess+'</div>');
+        $("#FlashMessage").animate({opacity:0},2400,flashMessage);
+        return;
+    }
+}
+x.register("specialHexes", function(specialHexes, data) {
+
+//    $(".specialHexes").remove();
+    var lab = ['unowned','rebel','loyalist'];
+    for(var i in specialHexes){
+        var newHtml = lab[specialHexes[i]];
+        var curHtml = $("#special"+i).html();
+        if(newHtml != curHtml){
+            var x = i.match(/x(\d*)y/)[1];
+            var y = i.match(/y(\d*)\D*/)[1];
+            var hexI = i.replace(/\./,"");
+            $("#special"+hexI).remove();
+            if(data.specialHexesChanges[i]){
+            $("#gameImages").append('<div id="special'+hexI+'" style="border-radius:30px;border:10px solid black;top:'+y+'px;left:'+x+'px;font-size:205px;z-index:1000;" class="'+lab[specialHexes[i]]+' specialHexes">'+lab[specialHexes[i]]+'</div>');
+                $('#special'+hexI).animate({fontSize:"16px",zIndex:0,borderWidth:"0px",borderRadius:"0px"},1600,function(){
+                    playLadies();
+//                    var id = $(this).attr('id');
+//                    var myClass = $(this).attr('class');
+//                    if(myClass.match(/loyalist/)){
+//                        myClass = "loyalist";
+//                    }else{
+//                        myClass = "rebel"
+//                    }
+//
+//                    var x = id.match(/x(\d*)y/)[1];
+//                    var y = id.match(/y(\d*)\D*/)[1];
+//                    $("#gameImages").append('<div id="specialVP'+i+'" style="border-radius:5px;top:'+y+'px;left:'+x+'px;font-size:80px;z-index:1000;" class="'+myClass+'VP specialHexesVP">+1 VP</div>');
+//                    $(".specialHexesVP").animate({opacity:0.0,top:y-80},2200,function(){
+//                        $(this).remove();
+//                    });
+
+                });
+
+            }else{
+                $("#gameImages").append('<div id="special'+hexI+'" style="border-radius:0px;border:0px;top:'+y+'px;left:'+x+'px;font-size:16px;z-index:0;" class="'+lab[specialHexes[i]]+' specialHexes">'+lab[specialHexes[i]]+'</div>');
+
+            }
+
+        }
+    }
+//    $(".specialHexes").bind("mousedown",mapMouseDown);
+
 });
 x.register("mapUnits", function(mapUnits) {
     var str;
@@ -448,7 +871,7 @@ x.register("mapUnits", function(mapUnits) {
 });
 x.register("moveRules", function(moveRules) {
     var str;
-    $("#status").html("");
+    /*$("#status").html("");*/
     $(".clone").remove();
     if(moveRules.movingUnitId >= 0){
 //        alert("MovingUnitid"+moveRules.movingUnitId);
@@ -495,12 +918,12 @@ x.register("moveRules", function(moveRules) {
             );
             for( i in moveRules.moves){
                 newId = id+"Hex"+i;
-//                if(!moveRules.moves[i].isValid){
+                if(!moveRules.moves[i].isValid){
+                    continue;
+                }
+                if(moveRules.moves[i].isOccupied){
 //                    continue;
-//                }
-//                if(moveRules.moves[i].isOccupied){
-////                    continue;
-//                }
+                }
 
                 $("#"+'firstclone').clone(true).attr('id',newId).appendTo('#gameImages');
                 $("#"+newId).attr("path",moveRules.moves[i].pathToHere);
@@ -650,7 +1073,7 @@ x.register("force", function(force) {
 
 
         }
-        $("#status").html(status);
+        /*$("#status").html(status);*/
 //        $("#"+i).css({borderColor: color});
         $("#"+i).css({borderColor: color});
         if(!shadow){
@@ -664,7 +1087,8 @@ x.register("force", function(force) {
 
     }
 });
-x.register("combatRules", function(combatRules) {
+x.register("combatRules", function(combatRules,data) {
+
     for(var combatCol = 1;combatCol <= 6;combatCol++){
         $(".col"+combatCol).css({background:"transparent"});
 //            $(".odd .col"+combatCol).css({color:"white"});
@@ -673,12 +1097,30 @@ x.register("combatRules", function(combatRules) {
     }
     var title = "Combat Results ";
     var cdLine = "";
+    var activeCombat = false;
+    var activeCombatLine = "";
     str = ""
     if(combatRules ){
         cD = combatRules.currentDefender;
-            if(combatRules.combats && Object.keys(combatRules.combats).length > 0){
+        if(combatRules.combats && Object.keys(combatRules.combats).length > 0){
                 if(cD !== false){
                 $("#"+cD).css({borderColor: "yellow"});
+                    $("#crt").show({effect:"blind",direction:"up"});
+                    var x = $("#"+cD).css('left').replace(/px/,"");
+                    var mapWidth = $("body").css('width').replace(/px/,"");
+//                    $("#map").css('width').replace(/px/,"");
+
+                    if(x < mapWidth/2){
+                        var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
+                        var moveLeft = $("body").css('width').replace(/px/,"");
+//                        alert(moveLeft);
+                        $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
+//                        alert('this');
+                    }else{
+                        $("#crtWrapper").animate({left:0},300);
+//                        alert("that");
+
+                    }
                     if(Object.keys(combatRules.combats[cD].attackers).length != 0){
                     combatCol = combatRules.combats[cD].index + 1;
                    if(combatCol >= 1){
@@ -690,10 +1132,11 @@ x.register("combatRules", function(combatRules) {
                    }
                }
             }
-                   var str = "<fieldset><legend>other combats</legend>";
+                   var str = "<div>";
                     cdLine = "";
+                    var combatIndex = 0;
                     for(i in combatRules.combats){
-//                        if(combatRules.combats[i].Die){
+  //                        if(combatRules.combats[i].Die){
 //                            str += " Die "+combatRules.combats[i].Die + " result "+combatRules.combats[i].combatResult;
 //                        }
                         if(combatRules.combats[i].index !== null){
@@ -707,6 +1150,7 @@ x.register("combatRules", function(combatRules) {
                                 theta += 180;
                                 $("#"+j+ " .arrow").css({opacity: "1.0"});
                                 $("#"+j+ " .arrow").css({webkitTransform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
+                                $("#"+j+ " .arrow").css({transform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
 
 
                             }
@@ -729,15 +1173,19 @@ x.register("combatRules", function(combatRules) {
                                 idxDisp = "No effect";
                             }
 
-                            newLine =  "Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>odds = "+ oddsDisp +"<br>Terrain Shift left "+ter+ " = "+idxDisp+"<br><br>";
+                            newLine =  "<h5>odds = "+ oddsDisp +"</h5><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+idxDisp+"</div>";
                             if(cD !== false && cD == i){
-                                cdLine = "<fieldset><legend>Current Combat</legend><strong>"+newLine+"</strong></fieldset>";
-                                newLine = "";
+                                activeCombat = combatIndex;
+                                activeCombatLine = newLine;
+                                /*cdLine = "<fieldset><legend>Current Combat</legend><strong>"+newLine+"</strong></fieldset>";
+                                newLine = "";*/
                             }
-                            str += newLine;
+                            combatIndex++;
+//                            str += newLine;
                         }
 
                     }
+                str += "There are "+combatIndex+" Combats";
                 if(cD !== false){
                     attackers = combatRules.combats[cD].attackers;
                     var theta = 0;
@@ -753,7 +1201,8 @@ x.register("combatRules", function(combatRules) {
 
                     }
                 }
-                str += "</fieldset>";
+                str += "</div>";
+                $("#crtOddsExp").html(activeCombatLine);
                 $("#status").html(cdLine+str);
 
             }
@@ -768,11 +1217,13 @@ x.register("combatRules", function(combatRules) {
                 $(".row"+combatRoll+" .col"+combatCol).css('background-color',"cyan");
 //                    $(".row"+combatRoll+" .col"+combatCol).css('color',"white");
             }
-            str += "<fieldset><legend>Combats to Resolve</legend>";
+            str += "<div>";
             if(Object.keys(combatRules.combatsToResolve) == 0){
                 str += "there are no combats to resolve<br>";
             }
+            var combatsToResolve = 0;
             for(i in combatRules.combatsToResolve){
+                combatsToResolve++;
                 if(combatRules.combatsToResolve[i].index !== null){
                      var atk = combatRules.combatsToResolve[i].attackStrength;
                     var atkDisp = atk;;
@@ -782,17 +1233,27 @@ x.register("combatRules", function(combatRules) {
                     var def = combatRules.combatsToResolve[i].defenseStrength;
                     var ter = combatRules.combatsToResolve[i].terrainCombatEffect;
                     var idx = combatRules.combatsToResolve[i].index+ 1;
-                    newLine = " Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>odds = "+Math.floor(atk/def)+" : 1<br>Terrain Shift left "+ter+ " = "+idx+" : 1<br><br>";
+                    var odds = Math.floor(atk/def);
+                    var oddsDisp = odds + " : 1";
+                    newLine =  "<h5>odds = "+ oddsDisp +"</h5><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+idxDisp+"</div>";
+                    //newLine = " Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>odds = "+Math.floor(atk/def)+" : 1<br>Terrain Shift left "+ter+ " = "+idx+" : 1<br><br>";
 //                    if(combatRules.lastResolveCombat === i){
 //                        lastCombat = "<strong>"+newLine+"</strong>";
 //                        newLine = "";
 //                    }
-                    str += newLine;
+//                    str += newLine;
                 }
 
             }
-            str += "</fieldset><fieldset><legend>Resolved Combats</legend>";
+            if(combatsToResolve){
+            str += "Combats To Resolve: "+combatsToResolve;
+            }
+            str += "</div>";
+            str += "<div>";
+//            str += "</div></fieldset><fieldset><legend>Resolved Combats</legend>";
+            var resolvedCombats = 0;
             for(i in combatRules.resolvedCombats){
+                resolvedCombats++;
                 if(combatRules.resolvedCombats[i].index !== null){
                      atk = combatRules.resolvedCombats[i].attackStrength;
                      atkDisp = atk;;
@@ -804,25 +1265,47 @@ x.register("combatRules", function(combatRules) {
                      idx = combatRules.resolvedCombats[i].index+ 1;
                     newLine = "";
                     if(combatRules.resolvedCombats[i].Die){
-                        newLine += " Die "+combatRules.resolvedCombats[i].Die + " result "+combatRules.resolvedCombats[i].combatResult+"<br>";
+                        $("#crt").show({effect:"blind",direction:"up"});
+                        var x = $("#"+cD).css('left').replace(/px/,"");
+                        var mapWidth = $("body").css('width').replace(/px/,"");
+//                    $("#map").css('width').replace(/px/,"");
+                        /* STATUS_ELIMINATED */
+                        if(data.force.units[cD].status != 22){
+                            if(x < mapWidth/2){
+                                var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
+                                var moveLeft = $("body").css('width').replace(/px/,"");
+    //                        alert(moveLeft);
+                                $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
+    //                        alert('this');
+                            }else{
+                                $("#crtWrapper").animate({left:0},300);
+    //                        alert("that");
+
+                            }
+                        }
+
+//                        newLine += " Die "+combatRules.resolvedCombats[i].Die + " result "+combatRules.resolvedCombats[i].combatResult+"<br>";
                     }
                     newLine += " Attack = "+atkDisp +" / Defender "+def+ " odds = " + atk/def +"<br>= "+Math.floor(atk/def)+" : 1<br>Terrain Shift left "+ter+ " = "+idx+" : 1<br><br>";
                     if(cD === i){
-                        lastCombat = "<fieldset><legend>Last Resolve Combat</legend><strong>"+newLine+"</strong></fieldset>";
+//                        lastCombat = "<fieldset><legend>Last Resolve Combat</legend><strong>"+newLine+"</strong></fieldset>";
                         newLine = "";
                     }
-                    str += newLine;
+//                    str += newLine;
                }
 
             }
-            str += "</fieldset>";
+            str += "Resolved Combats: "+resolvedCombats+"</div>";628
             $("#status").html(lastCombat+str);
 
         }
     }
     $("#crt h3").html(title);
-});
+//    $("#status div").accordion({collapsible: true, active:false});
+//    $("#status div").accordion("option","active",activeCombat);
 
+});
+var globInit = true;
 x.fetch(0);
 
 function seeMap(){
@@ -838,19 +1321,23 @@ function doit() {
     var mychat = $("#mychat").attr("value");
     $.ajax({url: "<?=site_url("wargame/add/");?>",
         type: "POST",
-        data:{chat:mychat,
-    },
+        data:{chat:mychat},
     success:function(data, textstatus) {
+        alert(data);
     }
 });
 $("#mychat").attr("value", "");
 }
 function doitUnit(id) {
     var mychat = $("#mychat").attr("value");
+    playAudio();
     $.ajax({url: "<?=site_url("wargame/poke");?>/",
         type: "POST",
         data:{id:id,event : <?=SELECT_COUNTER_EVENT?>},
     success:function(data, textstatus) {
+        playAudioLow();
+
+
     }
 });
 $("#mychat").attr("value", "");
@@ -863,6 +1350,7 @@ function doitMap(x,y) {
             event : <?=SELECT_MAP_EVENT?>
     },
     success:function(data, textstatus) {
+
     }
 });
 
@@ -872,6 +1360,7 @@ function doitNext() {
         type: "POST",
         data:{event: <?=SELECT_BUTTON_EVENT?>},
         success:function(data, textstatus) {
+
     }
 });
 
@@ -887,105 +1376,22 @@ function doitNext() {
 // either version 2 of the License, or (at your option) any later version.
 
 // main classes for wargame
-var mapData;
-var force;
-var terrain;
-var moveRules;
-var combatRules;
-var gameRules;
-var prompt
 
-// map image data
-var mapOffsetX;
-var mapOffsetY;
+function mapMouseMove(event){
+    var tar = event.target;
 
-// mapGrid values
-// global constants
-var OriginX;
-var OriginY;
-var TopHexagonHeight;
-var BottomHexagonHeight;
-var HexagonEdgeWidth;
-var HexagonCenterWidth;
-var MaxRightHexagon;
-var MaxBottomHexagon;
-// counter image values
-var oneHalfImageWidth;
-var oneHalfImageHeight;
-
-var maxTurn;
-
-// textboxes on form
-var gameStatusText;
-var hexagonText;
-var terrainText;
-var counterText;
-var promptText;
-
-// ------- initialize classes ------------------------------
-//mapData = new MapData();
-//force = new Force();
-//terrain = new Terrain();
-//moveRules = new MoveRules(force, terrain);
-//combatRules = new CombatRules(force, terrain);
-//gameRules = new GameRules(moveRules, combatRules, force);
-//prompt = new Prompt(gameRules, moveRules, combatRules, force, terrain);
-// ------- end initialize classes --------------------------
-
-//function mapMouseMove(event) {
-//
-//    var mapGrid;
-//    mapGrid = new MapGrid(mapData);
-//    var hexagon;
-//
-//    var pixelX, pixelY;
-//    // get pixel coordinates
-//    // this for Netscape browsers
-//    if ( document.addEventListener ) {
-//        pixelX = event.pageX - event.target.offsetLeft;
-//        pixelY = event.pageY - event.target.offsetTop;
-//    }
-//    // this for IE browsers
-//    else {
-//        pixelX =  event.offsetX;
-//        pixelY =  event.offsetY;
-//    }
-//
-//    // update form text
-//    mapGrid.setPixels( pixelX, pixelY );
-//
-//    hexagonText.innerHTML = "&nbsp;";
-//    terrainText.innerHTML = "&nbsp;";
-//
-//    if( terrain.terrainIs(mapGrid.hexagon, "offmap") == false)
-//    {
-//        hexagonText.innerHTML = mapGrid.hexagon.getName();
-//        hexagonText.innerHTML += "&nbsp;";
-//
-//        terrainText.innerHTML = terrain.getTerrainDisplayName(mapGrid.getHexpart());
-//        terrainText.innerHTML += terrain.getTownName(mapGrid.getHexagon());
-//        terrainText.innerHTML +=  "&nbsp;"
-//    }
-//    promptText.innerHTML = prompt.getPrompt(OVER_MAP_EVENT, MAP, mapGrid.getHexagon());
-//    promptText.innerHTML += "&nbsp;";
-//    counterText.innerHTML = "&nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;";
-//}
+//    alert(event.target.x);
+    var x = event.pageX - event.target.x;
+    var y = event.pageY - event.target.y;
+    $("#mouseMove").html("X "+x+" Y "+y);
+}
 
 function mapMouseDown(event) {
 
 
     var pixelX, pixelY;
-    // get pixel coordinates
-    // this for Netscape browsers
-    if ( document.addEventListener ) {
-        pixelX = event.pageX - event.target.offsetLeft;
-        pixelY = event.pageY - event.target.offsetTop;
-    }
-    // this for IE browsers
-    else {
-        pixelX =  event.offsetX;
-        pixelY =  event.offsetY;
-    }
+        pixelX = event.pageX;
+        pixelY = event.pageY;
     var p;
     p = $("#map").offset();
     pixelX -= p.left;
@@ -995,201 +1401,66 @@ function mapMouseDown(event) {
 
 }
 
-//function mapMouseOut(event) {
-//
-//    // this for all browsers
-//    hexagonText.innerHTML = "&nbsp;";
-//    terrainText.innerHTML = "&nbsp;";
-//    counterText.innerHTML = "&nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;";
-//    promptText.innerHTML = "&nbsp;";
-//    window.defaultStatus = "";
-//}
-
-//function counterMouseMove(event) {
-//
-//    var id;
-//
-//    if (document.addEventListener) {
-//        id = event.target.id.toString();
-//    }
-//    // this for IE browsers
-//    else {
-//        id = event.srcElement.id.toString();
-//    }
-//
-//    // update form text
-//    var hexagon = force.getUnitHexagon(id);
-//    var hexpart = new Hexpart(hexagon.getX(), hexagon.getY());
-//
-//    hexagonText.innerHTML = "&nbsp;";
-//    terrainText.innerHTML = "&nbsp;";
-//
-//    if ( terrain.isOnMap(hexagon) == true && force.units[id].status != STATUS_CAN_REINFORCE ) {
-//        hexagonText.innerHTML = hexagon.getName();
-//        hexagonText.innerHTML += "&nbsp;";
-//
-//        terrainText.innerHTML = terrain.getTerrainDisplayName(hexpart);
-//
-//        terrainText.innerHTML += terrain.getTownName(hexagon);
-//        terrainText.innerHTML +=  "&nbsp;"
-//    }
-//
-//    counterText.innerHTML = force.getUnitInfo( id );
-//    promptText.innerHTML = prompt.getPrompt(OVER_COUNTER_EVENT, id, hexagon);
-//    promptText.innerHTML += "&nbsp;";
-//}
-
+function changePosition(player){
+    $("#flash").html(player);
+}
 function counterMouseDown(event) {
     var id;
-    if ( document.addEventListener ) {
-       id = $(event.target).parent().attr("id");
-    }
-    // this for IE browsers
-    else {
-        id = event.srcElement.id.toString();
-    }
+    id = $(event.target).parent().attr("id");
     doitUnit(id);
 }
 
 function nextPhaseMouseDown(event) {
     doitNext();
-
 }
 
-function attachMouseEventsToMap(objectName) {
 
-    object = document.getElementById(objectName);
-    // this for Netscape browsers
-    if ( object.addEventListener ) {
-//        object.addEventListener("mousemove", mapMouseMove, true);
-        object.addEventListener("mousedown", mapMouseDown, true);
-//        object.addEventListener("mouseout", mapMouseOut, true);
-    }
-    // this for IE browsers
-    else {
-//        object.attachEvent("onmousemove", mapMouseMove);
-        object.attachEvent("onmousedown", mapMouseDown);
-//        object.attachEvent("onmouseout", mapMouseOut);
-    }
-
-    mapOffsetX = parseInt(object.style.left);
-    mapOffsetY = parseInt(object.style.top);
-
-    return true;
-}
 
 function attachMouseEventsToCounter(objectName) {
-
-    $("#"+objectName).bind('mousedown',true,counterMouseDown);
+    $("#"+objectName).on('mousedown',counterMouseDown);
     return;
-
-    var id;
-    id = parseInt(objectName, 10);
-    object  = document.getElementById(objectName);
-
-    // this for Netscape browsers
-    if ( object.addEventListener ) {
-//        object.addEventListener("mousemove", counterMouseMove, true);
-        object.addEventListener("mousedown", counterMouseDown, true);
-//        object.addEventListener("mouseout", mapMouseOut, true);
-        return true;
-    }
-    // this for IE browsers
-    else {
-//        object.attachEvent("onmousemove", counterMouseMove);
-        object.attachEvent("onmousedown", counterMouseDown);
-//        object.attachEvent("onmouseout", mapMouseOut);
-        return true;
-    }
 }
 
-function attachMouseEventsToButton(objName) {
+function playme(){
+    var vid = $('video').get(0);
+    vid.currentTime = 200;
 
-    obj = document.getElementById(objName);
-    if ( obj.addEventListener != null ) {
-        obj.addEventListener("mousedown", this.nextPhaseMouseDown, true);
-        return true;
-    }
-    else {
-        obj.attachEvent("onmousedown", this.nextPhaseMouseDown);
-        return true;
-    }
 }
+function playAudio(){
+    var aud = $('.pop').get(0);
+<!--    aud.src = "--><?//=base_url().'js/pop.m4a'?><!--";-->
+    aud.play();
 
-function moveCounter(id) {
-
-    var mapGrid;
-    mapGrid = new MapGrid(mapData);
-
-    var counterObj;
-    counterObj = document.getElementById( id );
-
-    mapGrid.setHexagonXY( this.force.getUnitHexagon(id).getX(), this.force.getUnitHexagon(id).getY());
-
-    var x = mapGrid.getPixelX() - (document.getElementById("map").width) - (parseInt(id) * document.getElementById(id).width) - (document.getElementById(id).width / 2);
-    counterObj.style.left = x + "px";
-    var y = mapGrid.getPixelY() - (document.getElementById(id).height / 2);
-    counterObj.style.top = y + "px";
 }
+function playAudioLow(){
+    var aud = $('.poop').get(0);
+<!--    aud.src = "--><?//=base_url().'js/pop.m4a'?><!--";-->
+    aud.play();
 
-function updateForm() {
-    var id;
+}function playLadies(){
+    var vid = $('video').get(0);
+    vid.src = "<?=base_url().'js/OldLadies.m4v'?>";
+    vid.play();
 
-    for ( id = 0; id < force.units.length; id++ ) {
-        this.moveCounter( id );
-    }
-    gameStatusText.innerHTML = gameRules.getInfo();
-}
-
-function createImage(id, src, x, y)
-{
-    var newImage = document.createElement("img");
-    newImage.setAttribute("id", id);
-    newImage.setAttribute("alt", id);
-    newImage.setAttribute("src", src);
-    newImage.setAttribute("class", "counter");
-    newImage.style.position = "relative";
-    newImage.style.left = x + "px";
-    newImage.style.top = y + "px";
-
-    document.getElementById("gameImages").appendChild(newImage);
 }
 
 function initialize() {
 
     // setup events --------------------------------------------
-    this.attachMouseEventsToMap("map");
+    $("#map").bind("mousedown",mapMouseDown);
+//    $("#map").bind("mousemove",mapMouseMove);
+    $(".unit").on('mousedown',counterMouseDown);
+    $("#gameImages").on("mousedown",".specialHexes",mapMouseDown);
+//    $("#gameViewer").hide();
 
-    $(".unit").bind('mousedown',true,counterMouseDown);
-//    var id;
-//    for(id = 0;id < 35;id++){
-//        this.attachMouseEventsToCounter(id);
-//    }
-//    for ( id = 0; id < force.units.length; id++ ) {
-//        createImage( id, force.units[id].image, 0, 0 );
-//        this.attachMouseEventsToCounter( id );
-//    }
-
-    attachMouseEventsToButton("nextPhaseButton");
+    $("#nextPhaseButton").on('mousedown',nextPhaseMouseDown);
+    $( "#gameImages" ).draggable({distance:40,axis:"x"});
+    $("video").bind("ended",function(){
+        $("#gameViewer").show(1000);
+    });
     // end setup events ----------------------------------------
-
-    // for web browsers that have addEventListener
-    //if ( document.addEventListener ) {
-    gameStatusText = document.getElementById("gameStatusText");
-    hexagonText = document.getElementById("hexagonText");
-    terrainText = document.getElementById("terrainText");
-    counterText = document.getElementById("counterText");
-    promptText = document.getElementById("promptText");
-    //}
-
-    counterText.innerHTML = "counter&nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;";
-
-    //mapText.innerHTML = this.terrain.getTerrainList();
-
-    updateForm();
 }
 $(function() {
-    $( "#gameImages" ).draggable({distance:15,axis:"x"});
 });
-$(function(){initialize();});
+$(document).ready(initialize);
 </script>

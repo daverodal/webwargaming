@@ -26,38 +26,51 @@
     <div id="leftcol">
         <?php global $results_name;?>
 
-        <div id="crtWrapper">
-            <h4>View Crt</h4>
-            <div id="crt">
-                <h3>Combat Odds</h3>
+        <div id="crt">
+            <h3>Combat Odds</h3>
 
-                <div id="odds">
-                    <span class="col0">&nbsp;</span>
-                    <?php
-                        $crt = new CombatResultsTable();
-
-    $i = 1;
-                        foreach($crt->combatResultsHeader as $odds){
-                            ?>
-                            <span class="col<?=$i++?>"><?=$odds?></span>
-                       <?php } ?>
-                </div>
-                <?php
-                    $rowNum = 1;$odd = ($rowNum & 1) ? "odd" : "even";
-                    foreach ($crt->combatResultsTable as $row) {
+            <div id="odds"><span class="col0">&nbsp;</span></span><span class="col1">1:1</span> <span
+                class="col2">2:1</span> <span class="col3">3:1</span> <span class="col4">4:1</span> <span
+                class="col5">5:1</span> <span class="col6">6:1</span></div>
+            <?php
+            $crt = new CombatResultsTable();
+            $rowNum = 1;$odd = ($rowNum & 1) ? "odd" : "even";
+            foreach ($crt->combatResultsTable as $row) {
                 ?>
-                    <div class="roll <?="row$rowNum $odd"?>">
-                        <span class="col0"><?=$rowNum++?></span>
-                        <?php $col = 1;foreach ($row as $cell) { ?>
-                        <span class="col<?=$col++?>"><?=$results_name[$cell]?></span>
+                <div class="roll <?="row$rowNum $odd"?>">
+                    <span class="col0"><?=$rowNum++?></span>
+                    <?php $col = 1;foreach ($row as $cell) { ?>
+                    <span class="col<?=$col++?>"><?=$results_name[$cell]?></span>
 
-                        <?php }?>
-                    </div>
                     <?php }?>
-            </div>
+                </div>
+                <?php }?>
         </div>
+        <button id="nextPhaseButton">Next Phase</button>
+        <div style="clear:both;"></div>
 
-        <!-- <div id="chatDiv">
+        <fieldset style="">
+            <legend>Phase Mode
+            </legend>
+            <div id="clock"></div>
+        </fieldset>
+        <fieldset style="">
+            <legend>Status
+            </legend>
+            <div id="status"></div>
+        </fieldset>
+        <fieldset style="display:none;">
+            <legend>Users
+            </legend>
+            <div id="users"></div>
+        </fieldset>
+        <div style="clear:both;"></div>
+        <fieldset style="display:none;">
+            <legend>Games
+            </legend>
+            <div id="games"></div>
+        </fieldset>
+        <div style="float:left;margin-left: 80px">
             <form onsubmit="doit();return false;" id="chatform" method="post">
 
                 <input id="mychat" name="chats" type="text">
@@ -68,10 +81,8 @@
                     <div id="chats"></div>
                 </fieldset>
             </form>
-        </div>-->
-        <div id="OBCWrapper">
-            <h4>Order of Battle</h4>
-        <div id="OBC" style="display:none;">
+        </div>
+        <div style="clear:both;height:100px;" id="OBC">
             <fieldset>
                 <legend>turn 1</legend>
                 <div id="gameTurn1">
@@ -108,14 +119,12 @@
                 <div id="gameTurn7">
                 </div>
             </fieldset>
-            <div style="clear:both"></div>
         </div>
 
 
+        <div style="clear:both;"></div>
 
     </div>
-        </div>
-    <div style="clear:both;"></div>
     <div id="rightCol">
         <div id="deployWrapper">
             <div style="margin-right:3px;" class="left">deploy on turn one</div>
@@ -125,7 +134,7 @@
 
         <div id="gameViewer" style="position:relative;">
             <div id="gameImages" class="ui-widget-content">
-                <img id="map" alt="map" src="<?php echo base_url();?>js/Martian.png"
+                <img id="map" alt="map" src="<?php echo base_url().$mapUrl;?>"
                      style="position: relative;visibility: visible;z-index: 0;">
                 <?php $id = 0;?>
                 {units}
@@ -142,20 +151,6 @@
             <!-- end gameImages -->
         </div>
         <div style="clear:both;height:20px;"></div>
-        <button id="nextPhaseButton">Next Phase</button>
-
-        <fieldset id="phaseDiv">
-            <legend>Phase Mode
-            </legend>
-            <div id="clock"></div>
-        </fieldset>
-        <fieldset id="statusDiv">
-            <legend>Status
-            </legend>
-            <div id="status"></div>
-        </fieldset>
-        <div style="clear:both;height:20px;"></div>
-
         <div style="position:relative;" id="deadpile">
             <div style="right:10px;font-size:50px;font-family:sans-serif;bottom:10px;position:absolute;color:#666;">
                 Retired Units
@@ -163,24 +158,5 @@
         </div>
     </div>
 
-<script type="text/javascript">
-//    $( "#crtWrapper" ).accordion({
-//        collapsible: true,
-//        active: false,
-//    });
-//    $( "#OBCWrapper").accordion({
-//        collapsible: true,
-//        active: false
-//
-//    })
-$( "#OBCWrapper h4" ).click(function() {
-    $( "#OBC" ).toggle({effect:"blind",direction:"up"});
-});
-$( "#crtWrapper h4" ).click(function() {
-    $( "#crt" ).toggle({effect:"blind",direction:"left"});
-});
-$( "#TECWrapper h4" ).click(function() {
-    $( "#TEC" ).toggle({effect:"blind",direction:"up"});
-});
-</script>
+
 </body></html>

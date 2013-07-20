@@ -7,7 +7,8 @@
 // as published by the Free Software Foundation;
 // either version 2 of the License, or (at your option) any later version. 
 
-class Los {
+class Los
+{
     public $originX, $originY;
     public $endPointX, $endPointY;
     public $range;
@@ -25,16 +26,25 @@ class Los {
             0, 6, 4, 5, 2, 3, 1);
     }
 
-    function setOrigin(Hexagon $hexagon)
+    function setOrigin($hexagon)
     {
-        $this->originX = $hexagon->getX();
-        $this->originY = $hexagon->getY();
+        if (is_object($hexagon)) {
+            $this->originX = $hexagon->getX();
+            $this->originY = $hexagon->getY();
+        } else {
+            list($this->originX, $this->originY) = Hexagon::getHexPartXY($hexagon);
+        }
+
     }
 
-    function setEndPoint(Hexagon $hexagon)
+    function setEndPoint($hexagon)
     {
-        $this->endPointX = $hexagon->getX();
-        $this->endPointY = $hexagon->getY();
+        if (is_object($hexagon)) {
+            $this->endPointX = $hexagon->getX();
+            $this->endPointY = $hexagon->getY();
+        } else {
+            list($this->endPointX, $this->endPointY) = Hexagon::getHexPartXY($hexagon);
+        }
     }
 
     function getRange()
@@ -92,8 +102,7 @@ class Los {
         if ($delta_x < 0) {
             if ($delta_y > 0) $quadrant = 0;
             else            $quadrant = 1;
-        }
-        else {
+        } else {
             if ($delta_y > 0) $quadrant = 2;
             else            $quadrant = 3;
         }
@@ -189,9 +198,7 @@ class Los {
 
                         $hexpart8 = new Hexpart($x, $y);
                         array_push($losArray, $hexpart8);
-                    }
-                    else
-                    {
+                    } else {
                         if ($offset1 < $offset2) {
                             $hexsideX = ($x + $x1) / 2;
                             $hexsideY = ($y + $y1) / 2;
