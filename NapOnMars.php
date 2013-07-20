@@ -72,7 +72,7 @@ class NapOnMars extends Battle {
         @include_once "NOM/playAs.php";
     }
 
-    static function getView($name, $mapUrl,$player = 0, $arg = false){
+    static function getView($name, $mapUrl,$player = 0, $arg = false, $argTwo = false){
 
         @include_once "NOM/view.php";
     }
@@ -148,7 +148,7 @@ class NapOnMars extends Battle {
         }
         return true;
     }
-    function __construct($data = null, $arg = false)
+    function __construct($data = null, $arg = false, $argTwo = false)
     {
         $this->mapData = MapData::getInstance();
         if ($data) {
