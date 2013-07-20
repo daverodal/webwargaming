@@ -12,6 +12,7 @@ class RetreatStep
     /* @var Hexagon */
     public $hexagon;
 
+    /* @var Hexagon $RetreatHexagon */
     function set($RetreatStepStepNumber, $RetreatHexagon)
     {
         $this->stepNumber = $RetreatStepStepNumber;
@@ -236,7 +237,7 @@ class unit implements JsonSerializable
 
             case STATUS_EXITED:
                 if ($this->status == STATUS_MOVING) {
-                    $this->status = status;
+                    $this->status = $status;
                     $success = true;
                 }
                 break;
@@ -336,7 +337,6 @@ class unit implements JsonSerializable
         $this->combatNumber = 0;
         $this->combatIndex = 0;
         $this->combatOdds = "";
-        $this->hasContact = false;
         $this->moveCount = 0;
         $this->retreatCountRequired = 0;
         $this->combatResults = NR;
@@ -677,6 +677,7 @@ class Force
 
     function eliminateUnit($id)
     {
+        /* @var unit $unit */
         $unit = $this->units[$id];
         $battle = Battle::getBattle();
         $battle->victory->reduceUnit($unit);
@@ -692,6 +693,7 @@ class Force
         }
         $unit->status = STATUS_ELIMINATED;
         $unit->isReduced = true;
+        $unit->supplied = true;
         $unit->strength = $this->units[$id]->minStrength;
         $col = 0;
 //        if($unit->forceId == 2){
@@ -1357,7 +1359,7 @@ class Force
     {
             if ($this->units[$id]->status == STATUS_CAN_REPLACE) {
                 $this->units[$id]->status = STATUS_REPLACED;
-                $this->units[$id]->isReduced = true;
+//                $this->units[$id]->isReduced = true;
                 $this->units[$id]->updateMoveStatus($hexagon,0);
                 return $id;
             }
@@ -1563,7 +1565,7 @@ class Force
         if($forceId == RED_FORCE){
             return BLUE_FORCE;
         }
-        throw new Exception("Enemy Unknown $id");
+        throw new Exception("Enemy Unknown $forceId");
     }
     function unitIsEnemy($id)
     {

@@ -65,6 +65,7 @@ class MartianCivilWar extends Battle {
     public $victory;
     public $genTerrain = false;
     public $arg;
+    public $argTwo;
 
     public $players;
     static function getHeader($name,$playerData){
@@ -77,7 +78,7 @@ class MartianCivilWar extends Battle {
         @include_once "commonHeader.php";
         @include_once "TMCW/header.php";
     }
-    static function getView($mapUrl,$player = 0, $player = 0, $arg = false){
+    static function getView($mapUrl,$player = 0, $player = 0, $arg = false, $argTwo = false){
         global $force_name;
         $player = $force_name[$player];
         @include_once "TMCW/view.php";
@@ -113,6 +114,7 @@ class MartianCivilWar extends Battle {
     {
         $data = new stdClass();
         $data->arg = $this->arg;
+        $data->argTwo = $this->argTwo;
         $data->mapData = $this->mapData;
         $data->mapViewer = $this->mapViewer;
         $data->moveRules = $this->moveRules->save();
@@ -158,12 +160,13 @@ class MartianCivilWar extends Battle {
         }
         return true;
     }
-    function __construct($data = null, $arg = false)
+    function __construct($data = null, $arg = false, $argTwo = false)
     {
 
         $this->mapData = MapData::getInstance();
         if ($data) {
             $this->arg = $data->arg;
+            $this->argTwo = $data->argTwo;
             $this->genTerrain = false;
             $this->victory = new Victory("TMCW",$data);
             $this->display = new Display($data->display);
@@ -180,6 +183,7 @@ class MartianCivilWar extends Battle {
             $this->playerData = $data->playerData;
         } else {
             $this->arg = $arg;
+            $this->argTwo = $argTwo;
             $this->genTerrain = true;
             $this->victory = new Victory("TMCW");
             $this->display = new Display();
@@ -303,15 +307,20 @@ class MartianCivilWar extends Battle {
             $this->force->addUnit("infantry-1", RED_FORCE, 2516, "multiArmor.png",7, 3, 6, true, STATUS_READY, "L", 1, 1, "loyalist",true,"mech");
             $this->force->addUnit("infantry-1", RED_FORCE, 2517, "multiArmor.png",7, 3, 6, true, STATUS_READY, "L", 1, 1, "loyalist",true,"mech");
 
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist",true,"mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist",true,"mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist",true,"mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist",true,"mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist",true,"mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist",true,"mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist",true,"mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 5, 1, "loyalist",true,"mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 5, 1, "loyalist",true,"mech");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, false, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist",true,"mech");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, false, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist",true,"mech");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiRecon.png",5, 2, 9, false, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist",true,"mech");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, false, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist",true,"mech");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, false, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist",true,"mech");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, false, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist",true,"mech");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiRecon.png",5, 2, 9, false, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist",true,"mech");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiMech.png",9, 4, 6, false, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist",true,"mech");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiMech.png",9, 4, 6, false, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist",true,"mech");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiRecon.png",5, 2, 9, false, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist",true,"mech");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiRecon.png",5, 2, 9, false, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist",true,"mech");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "multiArmor.png",7, 3, 6, false, STATUS_CAN_REINFORCE, "L", 5, 1, "loyalist",true,"mech");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "multiArmor.png",7, 3, 6, false, STATUS_CAN_REINFORCE, "L", 5, 1, "loyalist",true,"mech");
+            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "multiRecon.png",5, 2, 9, false, STATUS_CAN_REINFORCE, "L", 5, 1, "loyalist",true,"mech");
 //            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist");
 //            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist");
 //            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist");

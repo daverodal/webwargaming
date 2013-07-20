@@ -74,7 +74,7 @@ class Jagersdorf extends Battle {
         @include_once "Jagersdorf/playAs.php";
     }
 
-    static function getView($name, $mapUrl,$player = 0, $arg = false){
+    static function getView($name, $mapUrl,$player = 0, $arg = false, $argTwo = false){
 
         @include_once "Jagersdorf/view.php";
     }
@@ -156,7 +156,7 @@ class Jagersdorf extends Battle {
         }
         return true;
     }
-    function __construct($data = null, $arg = false)
+    function __construct($data = null, $arg = false, $argTwo = false)
     {
         $this->mapData = MapData::getInstance();
         if ($data) {
