@@ -315,6 +315,9 @@ class CombatRules
                 return false;
             }
         }
+        if(!isset($this->combatsToResolve->$id)){
+            return false;
+        }
         $this->currentDefender = $id;
         // Math->random yields number between 0 and 1
         //  6 * Math->random yields number between 0 and 6
