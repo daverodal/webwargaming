@@ -36,6 +36,7 @@ class Tutorial extends Battle {
     public $victory;
     public $genTerrain;
     public $arg;
+    public $argTwo;
 
     public $players;
     static function getHeader($name,$playerData){
@@ -47,7 +48,7 @@ class Tutorial extends Battle {
         @include_once "Tutorial/newHeader.php";
 
     }
-    static function getView($name, $mapUrl,$player = 0,$arg = false){
+    static function getView($name, $mapUrl,$player = 0,$arg = false, $argTwo = false){
         global $force_name;
         $player = $force_name[$player];
         @include_once "Tutorial/view.php";
@@ -98,6 +99,7 @@ class Tutorial extends Battle {
             $data->terrain = $this->terrain;
         }
         $data->arg = $this->arg;
+        $data->argTwo = $this->argTwo;
         return $data;
     }
 
@@ -125,9 +127,10 @@ class Tutorial extends Battle {
         }
         return true;
     }
-    function __construct($data = null, $arg = false)
+    function __construct($data = null, $arg = false, $argTwo = false)
     {
         $this->arg = $arg;
+        $this->argTwo = $argTwo;
         $this->mapData = MapData::getInstance();
         if ($data) {
             $this->genTerrain = false;
