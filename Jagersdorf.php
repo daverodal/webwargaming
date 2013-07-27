@@ -1,4 +1,5 @@
 <?php
+/* comment */
 require_once "constants.php";
 global $force_name,$phase_name,$mode_name, $event_name, $status_name, $results_name,$combatRatio_name;
 $force_name[1] = "Prussian";
