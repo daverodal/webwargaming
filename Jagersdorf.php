@@ -363,7 +363,6 @@ class Jagersdorf extends Battle {
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 416, "PruCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "Prussian",false,'artCav');
 
 
-                $j = $i;
                 $i=0;
             }
             // end unit data -------------------------------------------
