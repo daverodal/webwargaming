@@ -224,7 +224,7 @@ class MoveRules{
         $attackingForceId = $this->force->units[$id]->forceId;
         $startHex = $this->force->units[$id]->hexagon;
         echo $startHex->name;
-        echo " att $attackingForceId ";
+        echo " id $id att $attackingForceId ";
         return $this->calcSupplyHex($startHex->name,$goal, $bias,$attackingForceId);
 //        $this->moves = new stdClass();
 //        $this->moveQueue = array();
@@ -402,6 +402,7 @@ class MoveRules{
         }
         if($attackingForceId !== false){
             $defendingForceId = $this->force->Enemy($attackingForceId);
+            echo " def $defendingForceId ";
         }else{
             $attackingForceId = $this->force->attackingForceId;
             $defendingForceId = $this->force->defendingForceId;
@@ -453,6 +454,7 @@ class MoveRules{
             }
             $exitCost = 0;
             if($this->moves->$hexNum->isZoc){
+                echo " isZoc $hexNum ";
 //                if(is_numeric($this->exitZoc)){
 //                    $exitCost += $this->exitZoc;
 //                }
@@ -465,6 +467,7 @@ class MoveRules{
                 if(!$this->moves->$hexNum->isOccupied){
                     continue;
                 }
+                echo " saved $hexNum ";
 
             }
             $path = $hexPath->pathToHere;
@@ -488,10 +491,10 @@ class MoveRules{
 //                $newHex = new Hexagon($newHexNum);
 //                $moveAmount = $this->terrain->getTerrainMoveCost($hexNum, $newHexNum,$unit->forceMarch, $unit) + $exitCost;
                 $newMapHex = $this->mapData->getHex($newHexNum);
-                if($newMapHex->isOccupied($this->force->defendingForceId)){
+                if($newMapHex->isOccupied($defendingForceId)){
                     continue;
                 }
-                $isZoc = $this->force->mapHexIsZOC($newMapHex);
+                $isZoc = $this->force->mapHexIsZOC($newMapHex, $defendingForceId);
 //                if($isZoc && is_numeric($this->enterZoc)){
 //                    $moveAmount += (int)$this->enterZoc;
 //                }
@@ -521,9 +524,9 @@ class MoveRules{
                     $newPath->name = $newHexNum;
                     $newPath->pathToHere = $path;
 //                    $newPath->pointsLeft = $movePoints - $moveAmount;
-                    if($this->exitZoc === "stop" && $hexPath->isZoc){
-                        $newPath->pointsLeft = 0;
-                    }
+//                    if($this->exitZoc === "stop" && $hexPath->isZoc){
+//                        $newPath->pointsLeft = 0;
+//                    }
                     if($head){
                         array_unshift($this->moveQueue, $newPath);
                     }else{

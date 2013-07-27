@@ -109,9 +109,9 @@ class victoryCore{
         $b = Battle::getBattle();
         $id = $unit->id;
         if($unit->forceId != $b->gameRules->attackingForceId){
-            return;
+//            return;
         }
-        echo "Post ".$b->arg;
+//        echo "Post ".$b->arg;
         if($b->arg == "Supply"){
             if($unit->forceId == BLUE_FORCE){
                 $goal = array(101,102,103,104,201,301,401,501,601,701,801,901,1001);
@@ -120,13 +120,13 @@ class victoryCore{
                 $goal = array(3014,3015,3016,3017,3018,3019,3020,2620,2720,2820,2920);
                 $bias =  array(2=>true,3=>true);
             }
-            echo "move ".$b->gameRules->mode;
+//            echo "move ".$b->gameRules->mode;
             if($b->gameRules->mode == MOVING_MODE){
-                echo "About ";
-                if($unit->status == STATUS_READY){
-                    echo "calc? ";
+//                echo "About ";
+                if($unit->status == STATUS_READY || $unit->status == STATUS_UNAVAIL_THIS_PHASE){
+//                    echo "calc? ";
                     $unit->supplied = $b->moveRules->calcSupply($unit->id,$goal,$bias);
-                    echo "did it ";
+//                    echo "did it ";
                 }else{
                     return;
                 }
@@ -140,20 +140,24 @@ class victoryCore{
                 }
             }
             if($b->gameRules->mode == COMBAT_SETUP_MODE){
-                if($unit->status == STATUS_READY){
-                    echo "Down under ".$unit->attackingForceId;
+                if($unit->status == STATUS_READY || $unit->status == STATUS_DEFENDING || $unit->status == STATUS_UNAVAIL_THIS_PHASE){
+//                    echo "Down under ".$unit->attackingForceId;
                     $unit->supplied = $b->moveRules->calcSupply($unit->id,$goal, $bias);
-                    echo "Well ";
+//                    echo "Well ";
                 }else{
                     return;
                 }
-                if(!$unit->supplied && !isset($this->combatCache->$id)) {
+                if($unit->forceId == $b->gameRules->attackingForceId && !$unit->supplied && !isset($this->combatCache->$id)) {
                     $this->combatCache->$id = $unit->strength;
                     $unit->strength = floor($unit->strength / 2);
                 }
                 if($unit->supplied && isset($this->combatCache->$id)) {
                     $unit->strength = $this->combatCache->$id;
                     unset($this->combatCache->$id);
+                }
+                if($unit->supplied && isset($this->movementCache->$id)) {
+                    $unit->maxMove = $this->movementCache->$id;
+                    unset($this->movementCache->$id);
                 }
             }
         }
