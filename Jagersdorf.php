@@ -241,7 +241,7 @@ class Jagersdorf extends Battle {
 //            );
 
             // game data
-            $this->gameRules->setMaxTurn(7);
+            $this->gameRules->setMaxTurn(12);
 //            if($arg == 0){
 //                $this->gameRules->setInitialPhaseMode(BLUE_MOVE_PHASE,MOVING_MODE);
 //

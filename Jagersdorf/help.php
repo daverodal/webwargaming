@@ -327,7 +327,7 @@ Combat Results Table.
         East most Bridge of Alm creek. Prussian Victory
     </li>
 
-    <li>There are no Russian units in the Norkitten forest or it’s clearing. Prussian Victory.</li>
+    <li>There are no Russian units in the Norkitten forest or it's clearing. Prussian Victory.</li>
 
 
     <li>Any Prussian turn concludes with no Prussian units within 5 hexes of Gross Jagersdorf (inclusive) and north of
