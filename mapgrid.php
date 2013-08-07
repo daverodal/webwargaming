@@ -7,7 +7,6 @@
 // as published by the Free Software Foundation;
 // either version 2 of the License, or (at your option) any later version. 
 
-// MapData Constructor
 class MapHex {
     private $evenHexesShiftDown = true;
     public $forces;
@@ -95,6 +94,7 @@ class MapHex {
         return count((array)$this->forces[$forceId]);
     }
 }
+
 class MapData implements JsonSerializable{
 
     public $hexes;
@@ -128,12 +128,11 @@ class MapData implements JsonSerializable{
         }
         return $this;
     }
-        public static function getInstance(){
+    public static function getInstance(){
         if(!MapData::$instance){
             MapData::$instance = new MapData();
         }
         return MapData::$instance;
-
     }
     public function init($data){
         $hexes = $data->hexes;
@@ -190,6 +189,7 @@ class MapData implements JsonSerializable{
         return $this->hexes->$name;
     }
 }
+
 class MapViewer{
 
     public $originX;

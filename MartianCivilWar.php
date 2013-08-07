@@ -56,6 +56,7 @@ class MartianCivilWar extends Battle
 {
     /* a comment */
 
+    /* @var MapData $mapData */
     public $mapData;
     public $mapViewer;
     public $playerData;
@@ -176,7 +177,7 @@ class MartianCivilWar extends Battle
     }
 
     function __construct($data = null, $arg = false, $argTwo = false)
-    {;
+    {
 
         $this->mapData = MapData::getInstance();
         if ($data) {
