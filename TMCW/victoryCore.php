@@ -43,6 +43,13 @@ class victoryCore{
 
     }
 
+    public function postReinforceZones($args){
+        list($zones, $unit) = $args;
+
+        $zones[] = new ReinforceZone(2414,2414);
+        return $zones;
+    }
+
     public function reduceUnit($args){
         $unit = $args[0];
         if($unit->strength == $unit->maxStrength){
@@ -125,7 +132,7 @@ class victoryCore{
         }
 //        echo "Post ".$b->arg;
         if($b->arg == "Supply"){
-            if($unit->forceId == BLUE_FORCE){
+            if($unit->forceId == REBEL_FORCE){
                 $goal = array(101,102,103,104,201,301,401,501,601,701,801,901,1001);
                 $bias = array(5=>true,6=>true);
             }else{
@@ -223,11 +230,11 @@ class victoryCore{
         if($gameRules->phase == BLUE_MECH_PHASE || $gameRules->phase == RED_MECH_PHASE){
             $gameRules->flashMessages[] = "@hide crt";
         }
-        if($attackingId == BLUE_FORCE){
+        if($attackingId == REBEL_FORCE){
             $gameRules->flashMessages[] = "Rebel Player Turn";
             $gameRules->replacementsAvail = 1;
         }
-        if($attackingId  == RED_FORCE){
+        if($attackingId  == LOYALIST_FORCE){
             $gameRules->flashMessages[] = "Loyalist Player Turn";
             $gameRules->replacementsAvail = 10;
         }
@@ -241,7 +248,7 @@ class victoryCore{
                 $inCity = false;
                 $roadCut = false;
                 foreach($specialHexes as $k=>$v){
-                    if($v == BLUE_FORCE){
+                    if($v == REBEL_FORCE){
                         $points = 1;
                         if($k == 2414 || $k == 2415 || $k == 2515){
                             $inCity = true;
@@ -260,14 +267,14 @@ class victoryCore{
                     }
                 }
                 if($roadCut !== false){
-                    $vp[BLUE_FORCE] += 3;
+                    $vp[REBEL_FORCE] += 3;
                     $battle->mapData->specialHexesVictory->$roadCut = "<span class='rebelVictoryPoints'>+3 vp</span>";
                 }
                 if(!$inCity){
                     /* Cuneiform isolated? */
                     $cuneiform = 2515;
                     if(!$battle->moveRules->calcSupplyHex($cuneiform, array(3014,3015,3016,3017,3018,3019,3020,2620,2720,2820,2920),array(2=>true,3=>true),RED_FORCE)){
-                        $vp[BLUE_FORCE] += 5;
+                        $vp[REBEL_FORCE] += 5;
 
                         $battle->mapData->specialHexesVictory->$cuneiform = "<span class='rebelVictoryPoints'>+5 vp</span>";
 

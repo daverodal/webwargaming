@@ -22,7 +22,7 @@ class Victory{
         if($this->core && method_exists($this->core,$name)){
             return $this->core->$name($arguments);
         }
-        return $arguments;
+        return $arguments[0];
 
     }
     public function &__get($name){

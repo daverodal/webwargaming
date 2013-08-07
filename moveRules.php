@@ -925,11 +925,13 @@ class MoveRules{
     }
     function startReplacing($id)
     {
-            /* @var Unit $unit */
+        $battle  = Battle::getBattle();
+        /* @var Unit $unit */
         $unit = $this->force->getUnit($id);
             if ($unit->setStatus( STATUS_CAN_REPLACE) == true) {
                 $movesLeft = 0;
                 $zones = $this->terrain->getReinforceZones($this->force->getUnitReinforceZone($id));
+                $zones = $battle->victory->postReinforceZones($zones,$unit);
                 foreach($zones as $zone){
                     $startHex = $zone->hexagon->name;
                     $hexPath = new HexPath();
@@ -937,7 +939,7 @@ class MoveRules{
                     $hexPath->pointsLeft = $movesLeft;
                     $hexPath->pathToHere = array();
                     $hexPath->firstHex = true;
-                    $this->moves->$startHex =$hexPath;
+                    $this->moves->$startHex = $hexPath;
                 }
                 $this->anyUnitIsMoving = true;
                 $this->movingUnitId = $id;

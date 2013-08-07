@@ -150,8 +150,12 @@ class GameRules {
         $battle = Battle::getBattle();
         $mapData = $battle->mapData;
 //        $mapData = MapData::getInstance();
+
+        //TODO Ugly Ugly Ugly Ugly
         $mapData->specialHexesChanges = new stdClass();
         $mapData->specialHexesVictory = new stdClass();
+        //TODO Ugly Ugly Ugly Ugly
+
         $this->flashMessages = array();
         $this->turnChange = false;
 

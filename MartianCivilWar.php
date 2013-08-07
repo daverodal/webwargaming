@@ -29,6 +29,9 @@ $mode_name[19] = "";
 $mode_name[1] = "";
 $mode_name[2] = "";
 
+define("REBEL_FORCE",BLUE_FORCE);
+define("LOYALIST_FORCE",RED_FORCE);
+
 require_once "combatRules.php";
 require_once "TMCW/crt.php";
 require_once "force.php";
