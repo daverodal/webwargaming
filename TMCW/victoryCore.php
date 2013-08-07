@@ -31,6 +31,18 @@ class victoryCore{
         $ret->combatCache = $this->combatCache;
         return $ret;
     }
+
+    public function specialHexChange($args){
+        $battle = Battle::getBattle();
+
+        list($mapHexName, $forceId) = $args;
+        if($forceId == 1){
+            $this->victoryPoints[$forceId]++;
+            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>+1 vp</span>";
+        }
+
+    }
+
     public function reduceUnit($args){
         $unit = $args[0];
         if($unit->strength == $unit->maxStrength){
