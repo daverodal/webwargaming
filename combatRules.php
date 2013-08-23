@@ -264,6 +264,12 @@ class CombatRules
             $combats->terrainCombatEffect = null;
             return;
         }
+        /*
+         * TODO this make me very unhappy
+         */
+        if (method_exists($this->crt, 'setCombatIndex')) {
+            return $this->crt->setCombatIndex($defenderId);
+        }
         $defenders = $combats->defenders;
         $attackStrength = $this->force->getAttackerStrength($combats->attackers);
         $defenseStrength = 0;

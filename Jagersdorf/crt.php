@@ -57,6 +57,60 @@ class CombatResultsTable
     function getCombatDisplay(){
         return $this->combatResultsHeader;
     }
+
+    public function setCombatIndex($defenderId){
+
+        /* @var Jagersdorf $battle */
+        $battle = Battle::getBattle();
+        $combats = $battle->combatRules->combats->$defenderId;
+        $hexagon = $battle->force->units[$defenderId]->hexagon;
+        $hexpart = new Hexpart();
+        $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
+
+        $isClear = $battle->terrain->terrainIs($hexpart,'clear');
+
+        $defenders = $combats->defenders;
+
+        $attackStrength = $battle->force->getAttackerStrength($combats->attackers);
+        $defenseStrength = 0;
+        foreach($defenders as $defId => $defender){
+            $defenseStrength += $battle->force->getDefenderStrength($defId);
+        }
+
+        $combinedArms = array();
+
+        if($attackStrength >= $defenseStrength){
+            foreach($combats->attackers as $attackerId => $attacker){
+                $combinedArms[$battle->force->units[$attackerId]->class]++;
+            }
+            if(!$isClear){
+                unset($combinedArms['cavalry']);
+            }
+        }
+
+        $armsShift = count($combinedArms) - 1;
+        if($armsShift < 0){
+            $armsShift = 0;
+        }
+
+
+        $combatIndex = $this->getCombatIndex($attackStrength, $defenseStrength);
+        /* Do this before terrain effects */
+        if ($combatIndex >= $this->maxCombatIndex) {
+            $combatIndex = $this->maxCombatIndex;
+        }
+
+        $terrainCombatEffect = $battle->combatRules->getDefenderTerrainCombatEffect($defenderId);
+
+        $combatIndex -= $terrainCombatEffect;
+        $combatIndex += $armsShift;
+
+        $combats->attackStrength = $attackStrength;
+        $combats->defenseStrength = $defenseStrength;
+        $combats->terrainCombatEffect = $terrainCombatEffect + $armsShift;
+        $combats->index = $combatIndex;
+    }
+
     function getCombatIndex($attackStrength, $defenseStrength){
         if($attackStrength >= $defenseStrength){
             $combatIndex = floor($attackStrength / $defenseStrength)+3;
