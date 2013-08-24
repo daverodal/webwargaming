@@ -1,4 +1,5 @@
 <?php
+require_once "crtTraits.php";
 require_once "constants.php";
 require_once "combatRules.php";
 require_once "Tutorial/crt.php";

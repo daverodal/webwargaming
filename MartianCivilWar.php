@@ -32,6 +32,7 @@ $mode_name[2] = "";
 define("REBEL_FORCE",BLUE_FORCE);
 define("LOYALIST_FORCE",RED_FORCE);
 
+require_once "crtTraits.php";
 require_once "combatRules.php";
 require_once "TMCW/crt.php";
 require_once "force.php";
@@ -45,6 +46,7 @@ require_once "prompt.php";
 require_once "terrain.php";
 require_once "display.php";
 require_once "victory.php";
+
 // battlefforallencreek.js
 
 // counter image values

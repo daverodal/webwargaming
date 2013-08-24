@@ -7,8 +7,12 @@
 // as published by the Free Software Foundation;
 // either version 2 of the License, or (at your option) any later version. 
 
+
 class CombatResultsTable
 {
+    use divCombatShiftTerrain;
+
+//    use crtTraits
     	public $combatIndexCount;
     	public $maxCombatIndex;
     	public $dieSideCount;
@@ -106,6 +110,52 @@ class CombatResultsTable
        }
     }
 
+    function setCombatIndeqx($defenderId){
+        $battle = Battle::getBattle();
+        $combatRules = $battle->combatRules;
+        $combats = $battle->combatRules->combats->$defenderId;
+        $force = $battle->force;
+        $hexagon = $battle->force->units[$defenderId]->hexagon;
+        $hexpart = new Hexpart();
+        $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
+
+        if (count((array)$combats->attackers) == 0) {
+            $combats->index = null;
+            $combats->attackStrength = null;
+            $combats->defenseStrength = null;
+            $combats->terrainCombatEffect = null;
+            return;
+        }
+
+        $defenders = $combats->defenders;
+        $attackStrength = 0;
+
+        foreach ($combats->attackers as $id => $v)
+        {
+            $attackStrength += $force->units[$id]->strength;
+        }
+//        $attackStrength = $this->force->getAttackerStrength($combats->attackers);
+        $defenseStrength = 0;
+        foreach ($defenders as $defId => $defender) {
+            $defenseStrength += $force->getDefenderStrength($defId);
+        }
+        $combatIndex = $this->getCombatIndex($attackStrength, $defenseStrength);
+        /* Do this before terrain effects */
+        if ($combatIndex >= $this->maxCombatIndex) {
+            $combatIndex = $this->maxCombatIndex;
+        }
+
+
+        $terrainCombatEffect = $combatRules->getDefenderTerrainCombatEffect($defenderId);
+
+        $combatIndex -= $terrainCombatEffect;
+
+        $combats->attackStrength = $attackStrength;
+        $combats->defenseStrength = $defenseStrength;
+        $combats->terrainCombatEffect = $terrainCombatEffect;
+        $combats->index = $combatIndex;
+//    $this->force->storeCombatIndex($defenderId, $combatIndex);
+    }
     function getCombatOddsList($combatIndex)
     {
         global $results_name;

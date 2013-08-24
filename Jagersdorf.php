@@ -77,6 +77,11 @@ class Jagersdorf extends Battle {
         @include_once "Jagersdorf/playAs.php";
     }
 
+    static function enterMulti(){
+        echo "hi";
+        @include_once "Jagersdorf/enterMulti.php";
+    }
+
     static function getView($name, $mapUrl,$player = 0, $arg = false, $argTwo = false){
 
         @include_once "Jagersdorf/view.php";

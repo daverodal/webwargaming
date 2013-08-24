@@ -67,6 +67,14 @@ class CombatResultsTable
         $hexpart = new Hexpart();
         $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
 
+        if (count((array)$combats->attackers) == 0) {
+            $combats->index = null;
+            $combats->attackStrength = null;
+            $combats->defenseStrength = null;
+            $combats->terrainCombatEffect = null;
+            return;
+        }
+
         $isClear = $battle->terrain->terrainIs($hexpart,'clear');
         $isTown = $battle->terrain->terrainIs($hexpart,'town');
         $isHill = $battle->terrain->terrainIs($hexpart,'hill');
@@ -134,6 +142,8 @@ class CombatResultsTable
 
         $combatIndex = $this->getCombatIndex($attackStrength, $defenseStrength);
         /* Do this before terrain effects */
+        $combatIndex += $armsShift;
+
         if ($combatIndex >= $this->maxCombatIndex) {
             $combatIndex = $this->maxCombatIndex;
         }
@@ -141,7 +151,6 @@ class CombatResultsTable
 //        $terrainCombatEffect = $battle->combatRules->getDefenderTerrainCombatEffect($defenderId);
 
 //        $combatIndex -= $terrainCombatEffect;
-        $combatIndex += $armsShift;
 
         $combats->attackStrength = $attackStrength;
         $combats->defenseStrength = $defenseStrength;
@@ -209,6 +218,7 @@ class CombatResultsTable
 
     function getCombatOddsList($combatIndex)
     {
+        die("sad");
         global $results_name;
        $combatOddsList = "";
        //  combatOddsList  += "combat differential: " + combatIndex;

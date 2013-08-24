@@ -19,7 +19,7 @@ $phase_name[12] = "French Replacement";
 $phase_name[13] = "";
 $phase_name[14] = "";
 
-
+require_once "crtTraits.php";
 require_once "combatRules.php";
 require_once "NOM/crt.php";
 require_once "force.php";

@@ -1,4 +1,5 @@
 <?php
+require_once "crtTraits.php";
 require_once "constants.php";
 require_once "combatRules.php";
 require_once "OMCW/crt.php";
@@ -119,6 +120,7 @@ class OMCW extends Battle {
     }
     function __construct($data = null)
     {
+        echo "Hi";
         $this->mapData = MapData::getInstance();
         $this->victory = new Victory();
         if ($data) {

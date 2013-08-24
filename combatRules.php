@@ -169,7 +169,7 @@ class CombatRules
                     unset($this->attackers->$id);
                     unset($this->combats->$cd->attackers->$id);
                     unset($this->combats->$cd->thetas->$id);
-                    $this->setCombatIndex($cd);
+                    $this->crt->setCombatIndex($cd);
                 } else {
                     $good = true;
                     foreach ($this->combats->{$this->currentDefender}->defenders as $defenderId => $defender) {
@@ -198,7 +198,7 @@ class CombatRules
                                     $oldCd = $this->attackers->$id;
                                     unset($this->combats->$oldCd->attackers->$id);
                                     unset($this->combats->$oldCd->thetas->$id);
-                                    $this->setCombatIndex($oldCd);
+                                    $this->crt->setCombatIndex($oldCd);
                                 }
                                 $this->attackers->$id = $cd;
                                 $this->combats->$cd->attackers->$id = $bearing;
@@ -207,7 +207,7 @@ class CombatRules
                                     $this->combats->$cd->thetas->$id = new stdClass();
                                 }
                                 $this->combats->$cd->thetas->$id->$defenderId = $bearing;
-                                $this->setCombatIndex($cd);
+                                $this->crt->setCombatIndex($cd);
                             }
                         }
                     }
@@ -253,7 +253,7 @@ class CombatRules
     }
 
 
-    function setCombatIndex($defenderId)
+    function setCombatIndexx($defenderId)
     {
 
         $combats = $this->combats->$defenderId;
@@ -271,7 +271,13 @@ class CombatRules
             return $this->crt->setCombatIndex($defenderId);
         }
         $defenders = $combats->defenders;
-        $attackStrength = $this->force->getAttackerStrength($combats->attackers);
+        $attackStrength = 0;
+
+        foreach ($combats->attackers as $id => $v)
+        {
+            $attackStrength += $this->units[$id]->strength;
+        }
+//        $attackStrength = $this->force->getAttackerStrength($combats->attackers);
         $defenseStrength = 0;
         foreach ($defenders as $defId => $defender) {
             $defenseStrength += $this->force->getDefenderStrength($defId);
