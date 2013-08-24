@@ -94,7 +94,7 @@ class CombatRules
 //            }
             $combats = $this->combats->$id;
             $combatId = $id;
-            if(isset($this->defenders->$id)){
+            if (isset($this->defenders->$id)) {
                 $combatId = $this->defenders->$id;
 //                $cd = $this->defenders->$id;
                 $combats = $this->combats->$combatId;
@@ -104,26 +104,26 @@ class CombatRules
 //                unset($this->currnetDefender[$id]);
 //            }
                 if ($this->currentDefender === false) {
-                        $this->currentDefender = $this->defenders->$id;
+                    $this->currentDefender = $this->defenders->$id;
                 } else {
-                    if($shift){
-                        if(isset($this->defenders->$id)){
-                            if($combatId === $this->currentDefender){
-                                foreach($combats->attackers as $attackerId => $attacker){
+                    if ($shift) {
+                        if (isset($this->defenders->$id)) {
+                            if ($combatId === $this->currentDefender) {
+                                foreach ($combats->attackers as $attackerId => $attacker) {
                                     $this->force->undoAttackerSetup($attackerId);
                                     unset($this->attackers->$attackerId);
                                 }
-                                foreach($combats->defenders as $defenderId => $defender){
+                                foreach ($combats->defenders as $defenderId => $defender) {
                                     $this->force->setStatus($defenderId, STATUS_READY);
                                     unset($this->defenders->$defenderId);
                                 }
                                 unset($this->combats->{$combatId});
                                 $this->currentDefender = false;
-                            }else{
+                            } else {
                                 $this->currentDefender = $combatId;
                             }
                         }
-                    }else{
+                    } else {
                         if ($combatId === $this->currentDefender) {
                             $this->currentDefender = false;
                         } else {
@@ -132,20 +132,20 @@ class CombatRules
                     }
                 }
             } else {
-                if($shift){
-                    if($this->currentDefender !== false){
-                        foreach($this->combats->{$this->currentDefender}->attackers as $attackerId => $attacker){
+                if ($shift) {
+                    if ($this->currentDefender !== false) {
+                        foreach ($this->combats->{$this->currentDefender}->attackers as $attackerId => $attacker) {
                             $this->force->undoAttackerSetup($attackerId);
                             unset($this->attackers->$attackerId);
                             unset($this->combats->$cd->attackers->$attackerId);
                             unset($this->combats->$cd->thetas->$attackerId);
                         }
                         $this->defenders->$id = $this->currentDefender;
-                    }else{
+                    } else {
                         $this->currentDefender = $id;
                         $this->defenders->$id = $id;
                     }
-                }else{
+                } else {
                     $this->currentDefender = $id;
                     $this->defenders->$id = $id;
                 }
@@ -155,7 +155,7 @@ class CombatRules
                 if (!$this->combats) {
                     $this->combats = new  stdClass();
                 }
-                if(!$this->combats->$cd){
+                if (!$this->combats->$cd) {
                     $this->combats->$cd = new Combat();
                 }
                 $this->combats->$cd->defenders->$id = $id;
@@ -172,7 +172,7 @@ class CombatRules
                     $this->setCombatIndex($cd);
                 } else {
                     $good = true;
-                    foreach($this->combats->{$this->currentDefender}->defenders as $defenderId => $defender){
+                    foreach ($this->combats->{$this->currentDefender}->defenders as $defenderId => $defender) {
                         $los = new Los();
 
                         $los->setOrigin($this->force->getUnitHexagon($id));
@@ -183,8 +183,8 @@ class CombatRules
                             break;
                         }
                     }
-                    if($good){
-                        foreach($this->combats->{$this->currentDefender}->defenders as $defenderId => $defender){
+                    if ($good) {
+                        foreach ($this->combats->{$this->currentDefender}->defenders as $defenderId => $defender) {
                             $los = new Los();
 
                             $los->setOrigin($this->force->getUnitHexagon($id));
@@ -227,7 +227,7 @@ class CombatRules
                 continue;
             }
             if (count((array)$combat->attackers) == 0) {
-                foreach($combat->defenders as $defenderId => $defender){
+                foreach ($combat->defenders as $defenderId => $defender) {
                     $this->force->setStatus($defenderId, STATUS_READY);
                     unset($this->defenders->$defenderId);
                 }
@@ -273,7 +273,7 @@ class CombatRules
         $defenders = $combats->defenders;
         $attackStrength = $this->force->getAttackerStrength($combats->attackers);
         $defenseStrength = 0;
-        foreach($defenders as $defId => $defender){
+        foreach ($defenders as $defId => $defender) {
             $defenseStrength += $this->force->getDefenderStrength($defId);
         }
         $combatIndex = $this->crt->getCombatIndex($attackStrength, $defenseStrength);
@@ -308,10 +308,10 @@ class CombatRules
     {
         global $results_name;
         if ($this->force->unitIsEnemy($id) && !isset($this->combatsToResolve->$id)) {
-            if(isset($this->defenders->$id)){
+            if (isset($this->defenders->$id)) {
                 $id = $this->defenders->$id;
-            }else{
-            return false;
+            } else {
+                return false;
             }
         }
         if ($this->force->unitIsFriendly($id)) {
@@ -321,7 +321,7 @@ class CombatRules
                 return false;
             }
         }
-        if(!isset($this->combatsToResolve->$id)){
+        if (!isset($this->combatsToResolve->$id)) {
             return false;
         }
         $this->currentDefender = $id;
@@ -338,8 +338,8 @@ class CombatRules
         $this->combatsToResolve->$id->Die = $Die + 1;
         $this->combatsToResolve->$id->combatResult = $results_name[$combatResults];
         $this->force->clearRetreatHexagonList();
-        foreach($this->combatsToResolve->{$id}->defenders as $defenderId => $defender){
-             $this->force->applyCRTresults($defenderId, $this->combatsToResolve->{$id}->attackers, $combatResults, $Die);
+        foreach ($this->combatsToResolve->{$id}->defenders as $defenderId => $defender) {
+            $this->force->applyCRTresults($defenderId, $this->combatsToResolve->{$id}->attackers, $combatResults, $Die);
         }
         $this->lastResolvedCombat = $this->combatsToResolve->$id;
         if (!$this->resolvedCombats) {
@@ -384,6 +384,29 @@ class CombatRules
 
         return $allAttackingAcrossRiver;
     }
+
+    function thisAttackAcrossRiver($defenderId, $attackerId)
+    {
+
+
+//     $attackerHexagonList = array();
+//    $attackerHexagonList = $this->force->getAttackerHexagonList($combatNumber);
+        $attackerHexagon = $this->force->getCombatHexagon($attackerId);
+        /* @var Hexagon $defenderHexagon */
+        $defenderHexagon = $this->force->getCombatHexagon($defenderId);
+
+
+        $hexsideX = ($defenderHexagon->getX() + $attackerHexagon->getX()) / 2;
+        $hexsideY = ($defenderHexagon->getY() + $attackerHexagon->getY()) / 2;
+
+        $hexside = new Hexpart($hexsideX, $hexsideY);
+
+        if ($this->terrain->terrainIs($hexside, "river") === false) {
+            return false;
+        }
+        return true;
+    }
+
 
     function getCombatOddsList($combatIndex)
     {

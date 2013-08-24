@@ -38,7 +38,7 @@ require_once "display.php";
 require_once "terrain.php";
 require_once "victory.php";
 
-// battleforallencreek.js
+// battleforallenriver.js
 
 // counter image values
 $oneHalfImageWidth = 16;
@@ -383,8 +383,7 @@ class Jagersdorf extends Battle {
             $this->terrain->addTerrainFeature("town", "town", "t", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
             $this->terrain->addTerrainFeature("hill", "hill", "h", 1, 0, 0, true);
-            $this->terrain->addTerrainFeature("creek", "Martian creek", "v", 0, 1, 1, false);
-            $this->terrain->addTerrainFeature("eastedge", "East Edge", "m", 0, 0, 0, false);
+            $this->terrain->addTerrainFeature("river", "river", "v", 0, 1,0, false);
             $this->terrain->addAltEntranceCost('forest','artillary',3);
             $this->terrain->addAltEntranceCost('forest','cavalry',3);
             $this->terrain->addReinforceZone("101","B");
@@ -765,123 +764,123 @@ class Jagersdorf extends Battle {
             $this->terrain->addTerrain(517, HEXAGON_CENTER, "road");
             $this->terrain->addTerrain(517, LOWER_LEFT_HEXSIDE,"road");
 
-            $this->terrain->addTerrain(114, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(114, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(214, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(214, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(214, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(214, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(314, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(315, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(314, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(315, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(413, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(414, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(413, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(414, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(513, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(514, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(513, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(514, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(612, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(613, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(612, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(613, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(712, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(713, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(712, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(713, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(812, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(812, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(812, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(812, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(913, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(913, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(913, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(913, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1012, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1013, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1012, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1013, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1113, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1113, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1113, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1113, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1212, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1213, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1212, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1213, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1313, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1313, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1313, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1313, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1413, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1413, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1413, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1413, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1513, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1514, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1513, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1514, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1613, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1613, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1613, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1613, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1714, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1714, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1714, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1714, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1813, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1814, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1813, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1814, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1914, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1914, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1914, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1914, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(2013, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(2014, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(2013, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(2014, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(2114, LOWER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(2114, LOWER_LEFT_HEXSIDE,"river");
 
 
-            $this->terrain->addTerrain(119, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(119, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(219, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(219, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(219, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(219, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(319, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(320, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(319, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(320, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(418, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(419, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(418, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(419, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(519, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(519, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(519, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(519, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(619, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(619, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(619, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(619, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(720, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(720, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(720, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(720, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(820, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(820, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(820, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(820, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(920, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(921, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(920, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(921, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1019, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1020, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1019, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1020, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1120, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1120, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1120, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1120, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1219, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1220, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1219, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1220, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1319, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1320, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1319, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1320, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1418, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1419, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1418, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1419, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1518, BOTTOM_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1519, UPPER_LEFT_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1518, BOTTOM_HEXSIDE,"river");
+            $this->terrain->addTerrain(1519, UPPER_LEFT_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1618, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1618, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1618, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1618, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1719, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1719, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1719, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1719, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1819, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1819, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1819, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1819, BOTTOM_HEXSIDE,"river");
 
-            $this->terrain->addTerrain(1920, LOWER_LEFT_HEXSIDE,"creek");
-            $this->terrain->addTerrain(1920, BOTTOM_HEXSIDE,"creek");
+            $this->terrain->addTerrain(1920, LOWER_LEFT_HEXSIDE,"river");
+            $this->terrain->addTerrain(1920, BOTTOM_HEXSIDE,"river");
 
 
 
@@ -890,14 +889,14 @@ class Jagersdorf extends Battle {
 //            $this->terrain->addTerrain(606, HEXAGON_CENTER, "forest");
 //            $this->terrain->addTerrain(408, HEXAGON_CENTER, "rough");
 //
-//            $this->terrain->addTerrain(405, BOTTOM_HEXSIDE, "creek");
-//            $this->terrain->addTerrain(406, UPPER_LEFT_HEXSIDE, "creek");
-//            $this->terrain->addTerrain(406, LOWER_LEFT_HEXSIDE, "creek");
-//            $this->terrain->addTerrain(406, BOTTOM_HEXSIDE, "creek");
-//            $this->terrain->addTerrain(505, LOWER_LEFT_HEXSIDE, "creek");
-//            $this->terrain->addTerrain(506, UPPER_LEFT_HEXSIDE, "creek");
-//            $this->terrain->addTerrain(507, LOWER_LEFT_HEXSIDE, "creek");
-//            $this->terrain->addTerrain(508, UPPER_LEFT_HEXSIDE, "creek");
+//            $this->terrain->addTerrain(405, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(406, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(406, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(406, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(505, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(506, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(507, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(508, UPPER_LEFT_HEXSIDE, "river");
 //
 //            $this->terrain->addTerrain(705, HEXAGON_CENTER, "town");
 //            $this->terrain->addTerrain(1202, HEXAGON_CENTER, "town");

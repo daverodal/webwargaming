@@ -144,7 +144,6 @@ class Terrain
             }
 
         }
-//        var_dump($this->terrainArray[92][34]);
     }
 
     /*

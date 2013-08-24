@@ -111,8 +111,6 @@ class MapData implements JsonSerializable{
 
     function jsonSerialize(){
         foreach($this->hexes as $k => $hex){
-//            var_dump(count($hex->forces[1]));
-//            var_dump($hex->forces[1]);
 
             $f1 = count((array)$hex->forces[1]) + count((array)$hex->zocs[1]);
             $f2 = count((array)$hex->forces[2]) + count((array)$hex->zocs[2]);

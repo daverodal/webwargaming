@@ -236,7 +236,6 @@ class victoryCore{
         }
 
            /*only get special VPs' at end of first Movement Phase */
-//        var_dump($specialHexes);
         if($specialHexes){
             $arg = $battle->arg;
             if($arg == "Supply"){

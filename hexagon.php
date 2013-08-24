@@ -31,7 +31,6 @@ class HexPath implements JsonSerializable{
         unset($this->name);
         unset($this->depth);
         unset($this->firstHex);
-//        var_dump($this->name);
         return $this;
     }
 
