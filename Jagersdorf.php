@@ -4,6 +4,8 @@ require_once "constants.php";
 global $force_name,$phase_name,$mode_name, $event_name, $status_name, $results_name,$combatRatio_name;
 $force_name[1] = "Prussian";
 $force_name[2] = "Russian";
+define("PRUSSIAN_FORCE",1);
+define("RUSSIAN_FORCE",2);
 $phase_name = array();
 $phase_name[1] = "Prussian Move";
 $phase_name[2] = "Prussian Combat";
@@ -133,7 +135,6 @@ class Jagersdorf extends Battle {
             case SELECT_MAP_EVENT:
                 $mapGrid = new MapGrid($this->mapViewer[$playerId]);
                 $mapGrid->setPixels($x, $y);
-           echo "Hex".$mapGrid->getHexagon()->name;
                 $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon(),$click );
                 break;
 
@@ -379,12 +380,10 @@ class Jagersdorf extends Battle {
             $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("road", "road", "r", 0, 0, 0, false);
-            $this->terrain->addTerrainFeature("fortified", "fortified", "h", 0, 0, 1, false);
-            $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 1, false);
+            $this->terrain->addTerrainFeature("town", "town", "t", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
-            $this->terrain->addTerrainFeature("rough", "rough", "g", 3, 0, 1, true);
+            $this->terrain->addTerrainFeature("hill", "hill", "h", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("creek", "Martian creek", "v", 0, 1, 1, false);
-            $this->terrain->addTerrainFeature("newrichmond", "New Richmond", "m", 0, 0, 1, false);
             $this->terrain->addTerrainFeature("eastedge", "East Edge", "m", 0, 0, 0, false);
             $this->terrain->addAltEntranceCost('forest','artillary',3);
             $this->terrain->addAltEntranceCost('forest','cavalry',3);
@@ -409,6 +408,20 @@ class Jagersdorf extends Battle {
 
                 }
             }
+
+            $this->terrain->addTerrain(803,HEXAGON_CENTER,'town');
+
+            $this->terrain->addTerrain(408,HEXAGON_CENTER,'town');
+            $this->terrain->addTerrain(309,HEXAGON_CENTER,'town');
+            $this->terrain->addTerrain(2105,HEXAGON_CENTER,'town');
+            $this->terrain->addTerrain(213,HEXAGON_CENTER,'town');
+            $this->terrain->addTerrain(113,HEXAGON_CENTER,'town');
+            $this->terrain->addTerrain(915,HEXAGON_CENTER,'town');
+            $this->terrain->addTerrain(1015,HEXAGON_CENTER,'town');
+            $this->terrain->addTerrain(1916,HEXAGON_CENTER,'town');
+
+
+            $this->terrain->addTerrain(807,HEXAGON_CENTER,'hill');
 
             $offMap = array(101,301,501,701,801,901,1001,1101,1201,1301,1302,1401,1402,1501,1502,1503,1601,1602,1603,1701,1702,1703,1801,1802,1803,1901,1902,1903,2001,2002,2003,2101,2102,2103);
             foreach($offMap as $off){

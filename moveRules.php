@@ -223,8 +223,6 @@ class MoveRules{
         global $numBangs;
         $attackingForceId = $this->force->units[$id]->forceId;
         $startHex = $this->force->units[$id]->hexagon;
-        echo $startHex->name;
-        echo " id $id att $attackingForceId ";
         return $this->calcSupplyHex($startHex->name,$goal, $bias,$attackingForceId);
 //        $this->moves = new stdClass();
 //        $this->moveQueue = array();
@@ -402,7 +400,6 @@ class MoveRules{
         }
         if($attackingForceId !== false){
             $defendingForceId = $this->force->Enemy($attackingForceId);
-            echo " def $defendingForceId ";
         }else{
             $attackingForceId = $this->force->attackingForceId;
             $defendingForceId = $this->force->defendingForceId;
@@ -454,7 +451,6 @@ class MoveRules{
             }
             $exitCost = 0;
             if($this->moves->$hexNum->isZoc){
-                echo " isZoc $hexNum ";
 //                if(is_numeric($this->exitZoc)){
 //                    $exitCost += $this->exitZoc;
 //                }
@@ -467,7 +463,6 @@ class MoveRules{
                 if(!$this->moves->$hexNum->isOccupied){
                     continue;
                 }
-                echo " saved $hexNum ";
 
             }
             $path = $hexPath->pathToHere;
@@ -931,7 +926,7 @@ class MoveRules{
             if ($unit->setStatus( STATUS_CAN_REPLACE) == true) {
                 $movesLeft = 0;
                 $zones = $this->terrain->getReinforceZones($this->force->getUnitReinforceZone($id));
-                $zones = $battle->victory->postReinforceZones($zones,$unit);
+                list($zones) = $battle->victory->postReinforceZones($zones,$unit);
                 foreach($zones as $zone){
                     $startHex = $zone->hexagon->name;
                     $hexPath = new HexPath();

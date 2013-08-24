@@ -22,14 +22,14 @@ class CombatResultsTable
 	//     index is 0 to 5;  dieSidesCount = 6
     
     function __construct(){
-        $this->combatResultsHeader = array("1:5","1:4","1:3","1:2","1:1","2:1","3:1","4:1","5:1","6:1");
+        $this->combatResultsHeader = array("1:4","1:3","1:2","1:1","1.5:1","2:1","3:1","4:1","5:1","6:1");
 	    $this->combatResultsTable = array(
-            array(AE, AR, AR, AR, DR, DR, DR, DE, DE, DE),
-            array(AE, AE, AR, AR, DR, DR, DR, DE, DE, DE),
-            array(AE, AE, AE, AR, DR, DR, DR, DR, DE, DE),
-            array(AE, AE, AE, AR, AR, DR, DR, DR, DE, DE),
-            array(AE, AE, AE, AR, AR, EX, DR, EX, EX, DE),
-            array(AE, AE, AE, AE, AR, AR, EX, EX, EX, DE),
+            array( AE, AE, AE, AE, AR, AR, DR, DR, DR, DR),
+            array( AE, AE, AE, AR, AR, AR, DR, DR, DR, DR),
+            array( AE, AE, AE, AR, AR, DR, EX, DR, DE, DE),
+            array( AE, AE, AR, AR, DR, DR, EX, DE, DE, DE),
+            array( AE, AE, AR, AR, DR, EX, DE, DE, DE, DE),
+            array( AR, AR, AR, DR, EX, EX, DE, DE, DE, DE),
         );
 
         $this->combatOddsTable = array(
@@ -68,13 +68,26 @@ class CombatResultsTable
         $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
 
         $isClear = $battle->terrain->terrainIs($hexpart,'clear');
+        $isTown = $battle->terrain->terrainIs($hexpart,'town');
+        $isHill = $battle->terrain->terrainIs($hexpart,'hill');
+        $isForest = $battle->terrain->terrainIs($hexpart,'forest');
 
         $defenders = $combats->defenders;
 
         $attackStrength = $battle->force->getAttackerStrength($combats->attackers);
         $defenseStrength = 0;
         foreach($defenders as $defId => $defender){
-            $defenseStrength += $battle->force->getDefenderStrength($defId);
+            $unit = $battle->force->units[$defId];
+            $class = $unit->class;
+            $unitDefense = $battle->force->getDefenderStrength($defId);
+            if($unit->forceId == PRUSSIAN_FORCE && $class == "infantry" && $isClear){
+                $unitDefense += 1;
+            }
+            if($unit->forceId == RUSSIAN_FORCE  && $class == "infantry" && ($isTown || $isForest)){
+                $unitDefense += 1;
+            }
+
+            $defenseStrength += $unitDefense * (($isTown && $class != 'cavalry') || $isHill ? 2 : 1);
         }
 
         $combinedArms = array();
@@ -100,22 +113,26 @@ class CombatResultsTable
             $combatIndex = $this->maxCombatIndex;
         }
 
-        $terrainCombatEffect = $battle->combatRules->getDefenderTerrainCombatEffect($defenderId);
+//        $terrainCombatEffect = $battle->combatRules->getDefenderTerrainCombatEffect($defenderId);
 
-        $combatIndex -= $terrainCombatEffect;
+//        $combatIndex -= $terrainCombatEffect;
         $combatIndex += $armsShift;
 
         $combats->attackStrength = $attackStrength;
         $combats->defenseStrength = $defenseStrength;
-        $combats->terrainCombatEffect = $terrainCombatEffect + $armsShift;
+        $combats->terrainCombatEffect = $armsShift;
         $combats->index = $combatIndex;
     }
 
     function getCombatIndex($attackStrength, $defenseStrength){
+        $ratio = $attackStrength / $defenseStrength;
         if($attackStrength >= $defenseStrength){
-            $combatIndex = floor($attackStrength / $defenseStrength)+3;
+            $combatIndex = floor($ratio)+2;
+            if($ratio >= 1.5){
+                $combatIndex++;
+            }
         }else{
-            $combatIndex = 5 - floor($defenseStrength /$attackStrength );
+            $combatIndex = 4 - ceil($defenseStrength /$attackStrength );
         }
         return $combatIndex;
     }

@@ -47,7 +47,7 @@ class victoryCore{
         list($zones, $unit) = $args;
 
         $zones[] = new ReinforceZone(2414,2414);
-        return $zones;
+        return array($zones);
     }
 
     public function reduceUnit($args){
@@ -89,7 +89,6 @@ class victoryCore{
     }
     public function phaseChange(){
 
-        echo "Phase ";
         /* @var $battle MartianCivilWar */
         $battle = Battle::getBattle();
         /* @var $gameRules GameRules */
@@ -110,7 +109,6 @@ class victoryCore{
         if($gameRules->phase == BLUE_REPLACEMENT_PHASE || $gameRules->phase ==  RED_REPLACEMENT_PHASE){
             $gameRules->flashMessages[] = "@show deadpile";
             $forceId = $gameRules->attackingForceId;
-            var_dump($battle->force->reinforceTurns);
             if($battle->force->reinforceTurns->$turn->$forceId){
                 $gameRules->flashMessages[] = "Reinforcements have been moved to the dead pile";
             }
@@ -118,7 +116,6 @@ class victoryCore{
         if($gameRules->phase == BLUE_MOVE_PHASE || $gameRules->phase ==  RED_MOVE_PHASE){
             $gameRules->flashMessages[] = "@hide deadpile";
         }
-        echo "Changecd ";
     }
     public function postRecoverUnit($args)
     {
@@ -219,7 +216,6 @@ class victoryCore{
         }
     }
     public function playerTurnChange($arg){
-        echo "HERE";
         $attackingId = $arg[0];
         $battle = Battle::getBattle();
         $mapData = $battle->mapData;
@@ -241,7 +237,6 @@ class victoryCore{
 
            /*only get special VPs' at end of first Movement Phase */
 //        var_dump($specialHexes);
-        echo "isn't that special ";
         if($specialHexes){
             $arg = $battle->arg;
             if($arg == "Supply"){
