@@ -303,11 +303,11 @@ class NapOnMars extends Battle {
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 205, "multiInf.png", 8, 8, 4, true, STATUS_READY, "B", 1, 1, "austrian");
                 $j = $i;
                 $i=0;
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 103, "multiInf.png", 6, 3, 4, false, STATUS_READY, "B", 1, 1, "russian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 104, "multiInf.png", 6, 3, 4, false, STATUS_READY, "B", 1, 1, "russian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 105, "multiInf.png", 6, 3, 4, false, STATUS_READY, "B", 1, 1, "russian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 106, "multiInf.png", 6, 3, 4, false, STATUS_READY, "B", 1, 1, "russian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 107, "multiInf.png", 6, 3, 4, false, STATUS_READY, "B", 1, 1, "russian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 103, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "russian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 104, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "russian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 105, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "russian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 106, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "russian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 107, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "russian");
             }
             // end unit data -------------------------------------------
             if($arg == 1){
