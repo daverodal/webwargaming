@@ -1,6 +1,6 @@
 <link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 <style type="text/css">
-    .blueUnit, .french{
+    .blueUnit, .french, .playerTwo{
         background-color:rgb(132,181,255);
     }
     .frenchVP{
@@ -21,7 +21,7 @@
     .austrian{
         background-color:rgb(239,115,74);
     }
-    .lightYellow, .austrian{
+    .lightYellow, .austrian, .playerOne{
         background-color: rgb(255,239,156);
     }
     .flesh{

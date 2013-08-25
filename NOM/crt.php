@@ -62,7 +62,7 @@ class CombatResultsTable
         if($attackStrength >= $defenseStrength){
             $combatIndex = floor($attackStrength / $defenseStrength)+3;
         }else{
-            $combatIndex = 5 - floor($defenseStrength /$attackStrength );
+            $combatIndex = 5 - ceil($defenseStrength /$attackStrength );
         }
         return $combatIndex;
     }
