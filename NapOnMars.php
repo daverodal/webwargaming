@@ -172,7 +172,7 @@ class NapOnMars extends Battle {
             $this->victory = new Victory("NOM");
 
             if($arg == 0){
-                $this->mapData->setData(20,10,"js/mcw.png");
+                $this->mapData->setData(20,10,"js/Lourdes.png");
             }
             if($arg == 1){
                 $this->mapData->setData(7,7 , "js/tut1.png");
@@ -203,7 +203,7 @@ class NapOnMars extends Battle {
                     );
                 }
                 if($arg == 0){
-                    $this->mapViewer[$player]->setData(57,83, // originX, originY
+                    $this->mapViewer[$player]->setData(65,85, // originX, originY
                         27.5, 27.5, // top hexagon height, bottom hexagon height
                         16, 32// hexagon edge width, hexagon center width
                     );
@@ -404,6 +404,7 @@ class NapOnMars extends Battle {
             $this->terrain->addTerrain(1308, HEXAGON_CENTER, "fortified");
             $this->terrain->addTerrain(1309, HEXAGON_CENTER, "fortified");
             $this->terrain->addTerrain(1310, HEXAGON_CENTER, "fortified");
+            $this->terrain->addTerrain(1404, HEXAGON_CENTER, "fortified");
             $this->terrain->addTerrain(1405, HEXAGON_CENTER, "fortified");
             $this->terrain->addTerrain(1501, HEXAGON_CENTER, "fortified");
             $this->terrain->addTerrain(1502, HEXAGON_CENTER, "fortified");
