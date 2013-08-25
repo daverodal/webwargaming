@@ -1651,7 +1651,7 @@ class Force
             for ($i = 0; $i < count($this->units); $i++)
             {
                 $los->setEndPoint($this->units[$i]->hexagon);
-                if ($los->getRange() == $range
+                if ($los->getRange() <= $range
                     && $this->units[$i]->forceId != $this->units[$id]->forceId
                     && $this->units[$i]->status != STATUS_CAN_REINFORCE
                     && $this->units[$i]->status != STATUS_ELIMINATED
