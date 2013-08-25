@@ -78,27 +78,28 @@ class victoryCore
     }
     public function postRecoverUnits($args){
         $b = Battle::getBattle();
-        if($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE) {
-            $b->gameRules->flashMessages[] = "French Movement halved this turn.";
-        }
+//        if($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE) {
+//            $b->gameRules->flashMessages[] = "French Movement halved this turn.";
+//        }
 
     }
     public function postRecoverUnit($args)
     {
+        return $args;
         $unit = $args[0];
         if($unit->forceId == 1) {
             return;
         }
         $b = Battle::getBattle();
         $id = $unit->id;
-
-        if($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE && $unit->status == STATUS_READY) {
-            $this->movementCache->$id = $unit->maxMove;
-            $unit->maxMove = floor($unit->maxMove / 2);
-        }
-        if($b->gameRules->turn == 1 && $b->gameRules->phase == RED_COMBAT_PHASE && isset($this->movementCache->$id)) {
-            $unit->maxMove = $this->movementCache->$id;
-            unset($this->movementCache->$id);
-        }
+//
+//        if($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE && $unit->status == STATUS_READY) {
+//            $this->movementCache->$id = $unit->maxMove;
+//            $unit->maxMove = floor($unit->maxMove / 2);
+//        }
+//        if($b->gameRules->turn == 1 && $b->gameRules->phase == RED_COMBAT_PHASE && isset($this->movementCache->$id)) {
+//            $unit->maxMove = $this->movementCache->$id;
+//            unset($this->movementCache->$id);
+//        }
     }
 }
