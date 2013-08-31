@@ -17,6 +17,7 @@ Class Combat
     public $Die;
     public $combatResult;
     public $thetas;
+    public $useAlt = false;
 
     public function __construct()
     {
@@ -336,11 +337,10 @@ class CombatRules
         //  Math->floor gives lower integer, which is now 0,1,2,3,4,5
 
         $Die = floor($this->crt->dieSideCount * (rand() / getrandmax()));
-//        $Die = 0;
+      $Die = 5;
 //        $index = $this->force->getUnitCombatIndex($id);
         $index = $this->combatsToResolve->$id->index;
-
-        $combatResults = $this->crt->getCombatResults($Die, $index);
+        $combatResults = $this->crt->getCombatResults($Die, $index, $this->combatsToResolve->$id);
         $this->combatsToResolve->$id->Die = $Die + 1;
         $this->combatsToResolve->$id->combatResult = $results_name[$combatResults];
         $this->force->clearRetreatHexagonList();

@@ -1,13 +1,7 @@
 <body xmlns="http://www.w3.org/1999/html">
-<?php //include "help.php";?>
 <div id="theDiv">
 <header id="header">
 <div id="headerContent">
-    <div id="leftHeader">
-            <span style="font-size:1.0em">Welcome {user} {player} to <span style="font-family:'Nosifer';">Gross Jagersdorf</span><span
-                    style="font-style: italic;">&ldquo;{wargame}&rdquo;</span></span>
-
-    </div>
     <div id="rightHeader">
         <div id="mouseMove">mouse</div>
         <div id="comlinkWrapper" style="float:right;">
@@ -33,9 +27,9 @@
                     <li>   Welcome {user}</li>
                     <li>you are playing as  <?=$player;?></li>
                     <li>
-                        in <span style="font-family:'Berkshire Swash';">Gross Jagersdorf</span></li>
+                        in <span style="font-family:'Nosifer';">The Martian Civil War</span></li>
                     <li> The file is called {wargame}</li>
-                    <li>Game Designer: Lance Runolfsson</li>
+                    <li>Game Designer: David Rodal</li>
 
                     <li class="closer"></li>
                 </ul>
@@ -58,11 +52,10 @@
 <span id="hideShow">Rplacements</span>
 <button id="nextPhaseButton">Next Phase</button>
 <div id="crtWrapper">
-    <h4 class="WrapperLabel"  title='Combat Results Table'><span class="goLeft">&laquo;</span>Crt<span class="goRight">&raquo;</span></h4>
+    <h4 class="WrapperLabel" title='Combat Results Table'><span class="goLeft">&laquo;</span>Crt<span class="goRight">&raquo;</span></h4>
     <div id="crt"><div class="close">X</div>
         <h3>Combat Odds</h3>
 
-        <div class="tableWrapper main">
         <div id="odds">
             <span class="col0">&nbsp;</span>
             <?php
@@ -72,7 +65,7 @@
             foreach($crt->combatResultsHeader as $odds){
                 ?>
                 <span class="col<?=$i++?>"><?=$odds?></span>
-                <?php } ?>
+            <?php } ?>
         </div>
         <?php
         $rowNum = 1;$odd = ($rowNum & 1) ? "odd" : "even";
@@ -81,37 +74,11 @@
             <div class="roll <?="row$rowNum $odd"?>">
                 <span class="col0"><?=$rowNum++?></span>
                 <?php $col = 1;foreach ($row as $cell) { ?>
-                <span class="col<?=$col++?>"><?=$results_name[$cell]?></span>
+                    <span class="col<?=$col++?>"><?=$results_name[$cell]?></span>
 
                 <?php }?>
             </div>
-            <?php }?>
-        </div>
-        <div class="tableWrapper alt">
-            <div id="odds">
-                <span class="col0">&nbsp;</span>
-                <?php
-                $crt = new CombatResultsTable();
-
-                $i = 1;
-                foreach($crt->combatResultsHeader as $odds){
-                    ?>
-                    <span class="col<?=$i++?>"><?=$odds?></span>
-                <?php } ?>
-            </div>
-            <?php
-            $rowNum = 1;$odd = ($rowNum & 1) ? "odd" : "even";
-            foreach ($crt->combatResultsTableCav as $row) {
-                ?>
-                <div class="roll <?="row$rowNum $odd"?>">
-                    <span class="col0"><?=$rowNum++?></span>
-                    <?php $col = 1;foreach ($row as $cell) { ?>
-                        <span class="col<?=$col++?>"><?=$results_name[$cell]?></span>
-
-                    <?php }?>
-                </div>
-            <?php }?>
-        </div>
+        <?php }?>
         <div id="crtOddsExp"></div>
     </div>
 </div>
@@ -229,10 +196,62 @@
         </ul>
     </div>
 </div>
-<div id="GRWrapper">
-    <h4 class="WrapperLabel" title="Game Rules">Rules</h4>
-    <div id="GR" style="display:none"><div class="close">X</div>
-        <?php include "help.php";?>
+<div id="VCWrapper">
+    <h4 class="WrapperLabel" title="Victory Conditions">VC</h4>
+    <DIV id="VC" style="display:none;"><div class="close">X</div>
+        <ul>
+            <li>
+                <div class="colOne">
+                    <span>Objective</span>
+                </div>
+                <div class="colTwo">For Rebel</div>
+                <div class="colThree">For Loyalists</div>
+                <div class="clear"></div>
+            </li>
+            <li>
+                <div class="colOne ">
+                    <span>Taking small city</span>
+                </div>
+                <div class="colTwo">1 point when taken.</div>
+                <div class="colThree">none.</div>
+                <div class="clear"></div>
+            </li>
+            <li>
+                <div class="colOne ">
+                    <span>Last to enter small city</span>
+                </div>
+                <div class="colTwo">1 point at end of each player turn.</div>
+                <div class="colThree">1/2 point at end of each player turn.</div>
+                <div class="clear"></div>
+            </li>
+            <li>
+                <div class="colOne ">
+                    <span>Taking Cuniform</span>
+                </div>
+                <div class="colTwo">1 point when entering.</div>
+                <div class="colThree">none.</div>
+                <div class="clear"></div>
+            </li>
+            <li>
+                <div class="colOne ">
+                    <span>Last to enter Cuniform</span>
+                </div>
+                <div class="colTwo">5 points at end of each player turn.</div>
+                <div class="colThree">1/2 point at end of each player turn.</div>
+                <div class="clear"></div>
+            </li>
+            <li>
+                <div class="colOne ">
+                    <span>Killing or Reducing Enemy Unit</span>
+                </div>
+                <div class="colTwo">none.</div>
+                <div class="colThree">1 point per strength point lost.</div>
+                <div class="clear"></div>
+            </li>
+
+            <!--    Empty one for the bottom border -->
+            <li class="closer"></li>
+        </ul>
     </div>
 </div>
 </div>
@@ -250,23 +269,23 @@
             </div>
         </div>
         <div id="gameViewer">
-            <div id="gameImages" class="ui-widget-content">
-                <img id="map" alt="map" src="<?php echo base_url().$mapUrl;?>"
-                     style="position: relative;visibility: visible;z-index: 0;">
-                <?php $id = 0;?>
-                {units}
-                <div class="unit {class}" id="{id}" alt="0"><p class="forceMarch">M</p><section></section>
-                    <img class="arrow" src="<?php echo base_url();?>js/short-red-arrow-md.png" class="counter">
-                    <img src="<?php echo base_url();?>js/{image}" class="counter">
+            <div id="gameContainer">
+                <div id="gameImages" class="ui-widget-content">
+                    <img id="map" alt="map" src="<?php echo base_url().$mapUrl;?>"
+                         style="position: relative;visibility: visible;z-index: 0;">
+                    <?php $id = 0;?>
+                    {units}
+                    <div class="unit {class}" id="{id}" alt="0"><section></section>
+                        <img class="arrow" src="<?php echo base_url();?>js/short-red-arrow-md.png" class="counter">
+                        <img src="<?php echo base_url();?>js/{image}" class="counter">
 
-                    <div>5 - 4</div>
+                        <div>5 - 4</div>
 
+                    </div>
+                    {/units}
+                    <div id="floatMessage"><header></header><p></p></div>
                 </div>
-                {/units}
-                <div id="floatMessage"><header></header><p></p></div>
             </div>
-
-            <!-- end gameImages -->
         </div>
         <audio class="pop"  src="<?=base_url().'js/pop.m4a'?>"></audio>
         <audio class="poop"  src="<?=base_url().'js/lowpop.m4a'?>"></audio>

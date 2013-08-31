@@ -387,7 +387,7 @@ class Jagersdorf extends Battle {
             $this->terrain->addTerrainFeature("road", "road", "r", 0, 0, 0, false);
             $this->terrain->addTerrainFeature("town", "town", "t", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
-            $this->terrain->addTerrainFeature("hill", "hill", "h", 1, 0, 0, true);
+            $this->terrain->addTerrainFeature("hill", "hill", "h", 2, 0, 0, true);
             $this->terrain->addTerrainFeature("river", "river", "v", 0, 1,0, false);
             $this->terrain->addAltEntranceCost('forest','artillary',3);
             $this->terrain->addAltEntranceCost('forest','cavalry',3);
@@ -427,7 +427,7 @@ class Jagersdorf extends Battle {
 
             $this->terrain->addTerrain(807,HEXAGON_CENTER,'hill');
 
-            $offMap = array(101,301,501,701,801,901,1001,1101,1201,1301,1302,1401,1402,1501,1502,1503,1601,1602,1603,1701,1702,1703,1801,1802,1803,1901,1902,1903,2001,2002,2003,2101,2102,2103);
+            $offMap = array(101,301,501,701,801,901,1001,1101,1201,1301,1302,1401,1402,1501,1502,1503,1601,1602,1603,1701,1702,1703,1801,1802,1803,1901,1902,1903,2001,2002,2003,2020,2021,2022,2101,2102,2103,2115,2116,2117,2118,2119,2120,2121,2122);
             foreach($offMap as $off){
                 $this->terrain->addTerrain($off, HEXAGON_CENTER, "offmap");
             }

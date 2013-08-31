@@ -31,7 +31,14 @@ class CombatResultsTable
             array( AE, AE, AR, AR, DR, EX, DE, DE, DE, DE),
             array( AR, AR, AR, DR, EX, EX, DE, DE, DE, DE),
         );
-
+        $this->combatResultsTableCav = array(
+            array( AE, AE, AE, AE, AR, AR, DR, DR, DR, DR),
+            array( AE, AE, AE, AR, AR, AR, DR, DR, DR, DR),
+            array( AE, AE, AE, AR, AR, DR, DR, DR, DR, DR),
+            array( AE, AE, AR, AR, DR, DR, DR, DR, DR, DR),
+            array( AE, AE, AR, AR, DR, DR, DR, DR, DR, DR),
+            array( AR, AR, AR, DR, DR, DR, DR, DR, DR, DR),
+        );
         $this->combatOddsTable = array(
             array(),
             array(),
@@ -49,9 +56,13 @@ class CombatResultsTable
         $this->setCombatOddsTable();
     }
 
-        function getCombatResults($Die, $index)
+        function getCombatResults($Die, $index, $combat)
         {
-            return $this->combatResultsTable[$Die][$index];
+            if($combat->useAlt){
+                return $this->combatResultsTableCav[$Die][$index];
+            }else{
+                return $this->combatResultsTable[$Die][$index];
+            }
         }
 
     function getCombatDisplay(){
@@ -84,6 +95,7 @@ class CombatResultsTable
 
         $attackers = $combats->attackers;
         $attackStrength = 0;
+        $attackersCav = false;
         foreach($attackers as $attackerId => $attacker){
             $unit = $battle->force->units[$attackerId];
             $unitStrength = $unit->strength;
@@ -101,6 +113,7 @@ class CombatResultsTable
             }
 
             if($unit->class == "cavalry"){
+                $attackersCav = true;
                 if($battle->combatRules->thisAttackAcrossRiver($defenderId,$attackerId) || !$isClear){
                     $unitStrength /= 2;
                 }
@@ -109,10 +122,14 @@ class CombatResultsTable
         }
 //        $attackStrength = $battle->force->getAttackerStrength($combats->attackers);
         $defenseStrength = 0;
+        $defendersAllCav = true;
         foreach($defenders as $defId => $defender){
             $unit = $battle->force->units[$defId];
             $class = $unit->class;
             $unitDefense = $battle->force->getDefenderStrength($defId);
+            if($unit->class != 'cavalry'){
+                $defendersAllCav = false;
+            }
             if($unit->forceId == PRUSSIAN_FORCE && $class == "infantry" && $isClear){
                 $unitDefense += 1;
             }
@@ -156,6 +173,10 @@ class CombatResultsTable
         $combats->defenseStrength = $defenseStrength;
         $combats->terrainCombatEffect = $armsShift;
         $combats->index = $combatIndex;
+        $combats->useAlt = false;
+        if($defendersAllCav && !$attackersCav){
+            $combats->useAlt = true;
+        }
     }
 
     function getCombatIndex($attackStrength, $defenseStrength){
@@ -172,6 +193,7 @@ class CombatResultsTable
     }
     function setCombatOddsTable()
     {
+        return;
         $odds = array();
 
     //    var Die;

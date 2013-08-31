@@ -72,6 +72,13 @@
 #crt{
     width:476px;
 }
+.tableWrapper.alt{
+    display:none;
+}
+    #altCrt{
+        display:none;
+        width:476px;
+    }
     .Prussian div{
         color:black;
     }
@@ -234,6 +241,13 @@ x.register("combatRules", function(combatRules,data) {
         if(combatRules.combats && Object.keys(combatRules.combats).length > 0){
             if(cD !== false){
                 var defenders = combatRules.combats[cD].defenders;
+                if(combatRules.combats[cD].useAlt){
+                    $('.tableWrapper.main').hide();
+                    $('.tableWrapper.alt').show();
+                }else{
+                    $('.tableWrapper.main').show();
+                    $('.tableWrapper.alt').hide();
+                }
                 for(var loop in defenders){
                     $("#"+loop).css({borderColor: "yellow"});
                 }
