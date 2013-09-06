@@ -268,17 +268,17 @@ class NapoleonsTrainingAcademy extends Battle {
             if($arg == 0){
 
 
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 204, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "british");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 205, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "british");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 206, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "british");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 104, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "british");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 105, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "british");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 106, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "british");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 202, "multiInf.png", 4, 4, 4, true, STATUS_READY, "B", 1, 1, "british");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 208, "multiInf.png", 5, 5, 4, true, STATUS_READY, "B", 1, 1, "british");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 207, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "british");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 203, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "british");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 209, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "british");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 204, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "british",false,"cavalry");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 205, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "british",false,"cavalry");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 206, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "british",false,"cavalry");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 104, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "british",false,"artillary");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 105, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "british",false,"artillary");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 106, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "british",false,"artillary");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 202, "multiInf.png", 4, 4, 4, true, STATUS_READY, "B", 1, 1, "british",false,"infantry");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 208, "multiInf.png", 5, 5, 4, true, STATUS_READY, "B", 1, 1, "british",false,"infantry");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 207, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "british",false,"infantry");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 203, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "british",false,"infantry");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 209, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "british",false,"infantry");
 //
 //                $this->force->addUnit("infantry-1", BLUE_FORCE, 103, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "austrian");
 //                $this->force->addUnit("infantry-1", BLUE_FORCE, 104, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "austrian");
@@ -286,17 +286,17 @@ class NapoleonsTrainingAcademy extends Battle {
 //                $this->force->addUnit("infantry-1", BLUE_FORCE, 106, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "austrian");
 //                $this->force->addUnit("infantry-1", BLUE_FORCE, 107, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "austrian");
             }
-            $this->force->addUnit("infantry-1", RED_FORCE, 1804, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "french");
-            $this->force->addUnit("infantry-1", RED_FORCE, 1805, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "french");
-            $this->force->addUnit("infantry-1", RED_FORCE, 1806, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "french");
-            $this->force->addUnit("infantry-1", RED_FORCE, 1904, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "french");
-            $this->force->addUnit("infantry-1", RED_FORCE, 1905, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "french");
-            $this->force->addUnit("infantry-1", RED_FORCE, 1906, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "french");
-            $this->force->addUnit("infantry-1", RED_FORCE, 1802, "multiInf.png", 4, 4, 4, true, STATUS_READY, "B", 1, 1, "french");
-            $this->force->addUnit("infantry-1", RED_FORCE, 1808, "multiInf.png", 5, 5, 4, true, STATUS_READY, "B", 1, 1, "french");
-            $this->force->addUnit("infantry-1", RED_FORCE, 1807, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "french");
-            $this->force->addUnit("infantry-1", RED_FORCE, 1803, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "french");
-            $this->force->addUnit("infantry-1", RED_FORCE, 1809, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "french");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1804, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "french",false,"cavalry");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1805, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "french",false,"cavalry");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1806, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "french",false,"cavalry");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1904, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "french",false,"artillary");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1905, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "french",false,"artillary");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1906, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "french",false,"artillary");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1802, "multiInf.png", 4, 4, 4, true, STATUS_READY, "B", 1, 1, "french",false,"infantry");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1808, "multiInf.png", 5, 5, 4, true, STATUS_READY, "B", 1, 1, "french",false,"infantry");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1807, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "french",false,"infantry");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1803, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "french",false,"infantry");
+            $this->force->addUnit("infantry-1", RED_FORCE, 1809, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "french",false,"infantry");
 
 //            $this->force->addUnit("infantry-1", BLUE_FORCE, 1903, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "french");
 //            $this->force->addUnit("infantry-1", BLUE_FORCE, 1904, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "french");

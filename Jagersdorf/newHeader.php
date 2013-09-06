@@ -75,7 +75,7 @@
 .tableWrapper.alt{
     display:none;
 }
-    #altCrt{
+    .alt{
         display:none;
         width:476px;
     }
