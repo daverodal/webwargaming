@@ -2368,7 +2368,11 @@ function doitKeypress(key) {
         type: "POST",
         data:{id:key,event : <?=KEYPRESS_EVENT?>},
         error:function(data,text,third){
-            obj = jQuery.parseJSON(data.responseText);
+            try{
+                obj = jQuery.parseJSON(data.responseText);
+            }catch(e){
+                alert(data);
+            }
             if(obj.emsg){
                 alert(obj.emsg);
             }
@@ -2379,7 +2383,11 @@ function doitKeypress(key) {
             $("#comlink").html('Working');
         },
         success:function(data, textstatus) {
-            var success = +$.parseJSON(data).success;
+            try{
+                var success = +$.parseJSON(data).success;
+            }catch(e){
+                alert(data);
+            }
             if(success){
                 playAudioLow();
 
@@ -2407,7 +2415,11 @@ function doitUnit(id,event) {
         type: "POST",
         data:{id:id,event : event.shiftKey ? <?=SELECT_SHIFT_COUNTER_EVENT;?> : <?=SELECT_COUNTER_EVENT?>},
         error:function(data,text,third){
-            obj = jQuery.parseJSON(data.responseText);
+            try{
+                obj = jQuery.parseJSON(data.responseText);
+            }catch(e){
+                alert(data);
+            }
             if(obj.emsg){
                 alert(obj.emsg);
             }
@@ -2418,7 +2430,12 @@ function doitUnit(id,event) {
             $("#comlink").html('Working');
         },
     success:function(data, textstatus) {
-        var success = +$.parseJSON(data).success;
+        try{
+            var success = +$.parseJSON(data).success;
+        }catch(e){
+            alert(data);
+            alert(e);
+        }
         if(success){
             playAudioLow();
 
@@ -2447,11 +2464,28 @@ function doitMap(x,y) {
             event : <?=SELECT_MAP_EVENT?>
     },
     success:function(data, textstatus) {
-        playAudioLow();
+        try{
+            var success = +$.parseJSON(data).success;
+        }catch(e){
+            alert(data);
+            alert(e);
+        }
+        if(success){
+            playAudioLow();
+
+        }else{
+            playAudioBuzz();
+        }
         $('body').css({cursor:"auto"});
         $(this).css({cursor:"auto"});
     },
         error:function(data,text){
+            try{
+                var success = +$.parseJSON(data).success;
+            }catch(e){
+                alert(data);
+                alert(e);
+            }
             playAudioBuzz();
             $('body').css({cursor:"auto"});
             $(this).css({cursor:"auto"});
@@ -2466,9 +2500,21 @@ function doitNext() {
         type: "POST",
         data:{event: <?=SELECT_BUTTON_EVENT?>},
         success:function(data, textstatus) {
+            try{
+                var success = +$.parseJSON(data).success;
+            }catch(e){
+                alert(data);
+                alert(e);
+            }
             playAudioLow();
 
     },     error:function(data,text){
+            try{
+                var success = +$.parseJSON(data).success;
+            }catch(e){
+                alert(data);
+                alert(e);
+            }
             playAudioBuzz();
             $('body').css({cursor:"auto"});
             $(this).css({cursor:"auto"});
