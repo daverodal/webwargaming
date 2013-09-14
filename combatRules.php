@@ -185,10 +185,25 @@ class CombatRules
                             $good = false;
                             break;
                         }
-                        $mapHex = $mapData->getHex($this->force->getUnitHexagon($id)->name);
-                        if( $this->force->mapHexIsZOC($mapHex) && $range > 1 ){
-                            $good = false;
-                            break;
+                        if($range > 1){
+                            $hexParts = $los->getlosList();
+                            array_shift($hexParts);
+                            array_pop($hexParts);
+                            // remove first and last hexPart
+                            foreach($hexParts as $hexPart){
+                                if($this->terrain->terrainIs($hexPart,"forest") || $this->terrain->terrainIs($hexPart,"town") || $this->terrain->terrainIs($hexPart,"hill")){
+                                    $good = false;
+                                    break;
+                                }
+                            }
+                            if($good === false){
+                                break;
+                            }
+                            $mapHex = $mapData->getHex($this->force->getUnitHexagon($id)->name);
+                            if( $this->force->mapHexIsZOC($mapHex)){
+                                $good = false;
+                                break;
+                            }
                         }
 
                     }
