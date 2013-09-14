@@ -124,8 +124,7 @@ retreat are eliminated.
 be retreated by the owning player 1 hex after the attack is announced and before the die is rolled.
 
 <h4>Advance after combat</h4> If a defending hex is left vacant any adjacent attacker that participated in the attack my
-be moved into that hex. This must be done before the next attack is resolved. Artillery units may NOT advance after combat. See Page 4 for more on combat and the
-Combat Results Table.
+be moved into that hex. This must be done before the next attack is resolved. Artillery units may NOT advance after combat.
 
 <h2>Combat Results</h2>
 
