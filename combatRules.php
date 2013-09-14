@@ -337,7 +337,7 @@ class CombatRules
         //  Math->floor gives lower integer, which is now 0,1,2,3,4,5
 
         $Die = floor($this->crt->dieSideCount * (rand() / getrandmax()));
-      $Die = 5;
+//      $Die = 5;
 //        $index = $this->force->getUnitCombatIndex($id);
         $index = $this->combatsToResolve->$id->index;
         $combatResults = $this->crt->getCombatResults($Die, $index, $this->combatsToResolve->$id);
