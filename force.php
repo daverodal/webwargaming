@@ -652,6 +652,8 @@ class Force
                 $this->units[$attacker]->moveCount = 0;
             }
         }
+        $battle->victory->postCombatResults($defenderId, $attackers, $combatResults, $dieRoll);
+
         $this->removeEliminatingUnits();
     }
 

@@ -104,7 +104,8 @@
         attacked even if only by artillery bombardment.
     </li>
     <li>All combat is between adjacent units except that artillery may attack units up to two hexes away (Bombardment).
-        Including into but not over town, hill or woods.
+        Including into but not over town, hill or woods. Artillery units may not participate in bombardment attacks if they adjacent to an enemy unit,
+        they must attack an adjacent unit if they attack at all.
     </li>
 </ul>
 <h4>Multi Hex Multi Unit Combat</h4>
@@ -123,7 +124,7 @@ retreat are eliminated.
 be retreated by the owning player 1 hex after the attack is announced and before the die is rolled.
 
 <h4>Advance after combat</h4> If a defending hex is left vacant any adjacent attacker that participated in the attack my
-be moved into that hex. This must be done before the next attack is resolved. See Page 4 for more on combat and the
+be moved into that hex. This must be done before the next attack is resolved. Artillery units may NOT advance after combat. See Page 4 for more on combat and the
 Combat Results Table.
 
 <h2>Combat Results</h2>

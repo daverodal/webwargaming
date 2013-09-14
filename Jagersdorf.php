@@ -327,9 +327,9 @@ class Jagersdorf extends Battle {
                 $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png",2, 2, 3, true, STATUS_CAN_DEPLOY, "R", 1, 1, "Russian",false, 'infantry');
                 $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png",2, 2, 3, true, STATUS_CAN_DEPLOY, "R", 1, 1, "Russian",false, 'infantry');
 
-                $this->force->addUnit("infantry-1", RED_FORCE, 807, "RusArt.png",4, 4, 3, true, STATUS_READY, "R", 1, 2, "Russian",false,'artillary');
-                $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArt.png",4, 4, 3, true, STATUS_CAN_DEPLOY, "R", 1, 2, "Russian",false,'artillary');
-                $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArt.png",4, 4, 3, true, STATUS_CAN_DEPLOY, "R", 1, 2, "Russian",false,'artillary');
+                $this->force->addUnit("infantry-1", RED_FORCE, 807, "RusArt.png",4, 4, 3, true, STATUS_READY, "R", 1, 2, "Russian",false,'artillery');
+                $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArt.png",4, 4, 3, true, STATUS_CAN_DEPLOY, "R", 1, 2, "Russian",false,'artillery');
+                $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArt.png",4, 4, 3, true, STATUS_CAN_DEPLOY, "R", 1, 2, "Russian",false,'artillery');
 
 
 
@@ -348,8 +348,8 @@ class Jagersdorf extends Battle {
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 406, "PruCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "Prussian",false,'cavalry');
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 407, "PruCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "Prussian",false,'cavalry');
 
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 412, "PruArt.png", 3, 3, 3, true, STATUS_READY, "B", 1, 2, "Prussian",false,'artillary');
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 312, "PruArt.png", 3, 3, 3, true, STATUS_READY, "B", 1, 2, "Prussian",false,'artillary');
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 412, "PruArt.png", 3, 3, 3, true, STATUS_READY, "B", 1, 2, "Prussian",false,'artillery');
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 312, "PruArt.png", 3, 3, 3, true, STATUS_READY, "B", 1, 2, "Prussian",false,'artillery');
 
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 512, "PruInf.png", 5, 5, 3, true, STATUS_READY, "B", 1, 1, "Prussian",false, 'infantry');
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 513, "PruInf.png", 5, 5, 3, true, STATUS_READY, "B", 1, 1, "Prussian",false, 'infantry');
@@ -389,7 +389,7 @@ class Jagersdorf extends Battle {
             $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
             $this->terrain->addTerrainFeature("hill", "hill", "h", 2, 0, 0, true);
             $this->terrain->addTerrainFeature("river", "river", "v", 0, 1,0, false);
-            $this->terrain->addAltEntranceCost('forest','artillary',3);
+            $this->terrain->addAltEntranceCost('forest','artillery',3);
             $this->terrain->addAltEntranceCost('forest','cavalry',3);
             $this->terrain->addReinforceZone("101","B");
 

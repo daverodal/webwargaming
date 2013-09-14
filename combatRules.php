@@ -86,6 +86,8 @@ class CombatRules
 
     function setupCombat($id, $shift = false)
     {
+        $mapData = MapData::getInstance();
+
         $cd = $this->currentDefender;
 
         if ($this->force->unitIsEnemy($id) == true) {
@@ -183,6 +185,12 @@ class CombatRules
                             $good = false;
                             break;
                         }
+                        $mapHex = $mapData->getHex($this->force->getUnitHexagon($id)->name);
+                        if( $this->force->mapHexIsZOC($mapHex) && $range > 1 ){
+                            $good = false;
+                            break;
+                        }
+
                     }
                     if ($good) {
                         foreach ($this->combats->{$this->currentDefender}->defenders as $defenderId => $defender) {
