@@ -74,6 +74,17 @@ class victoryCore
         }
 
     }
+
+    public function postCombatResults($args){
+        list($defenderId, $attackers, $combatResults, $dieRoll) = $args;
+        $b = Battle::getBattle();
+        foreach ($attackers as $attackerId => $val) {
+            $unit = $b->force->units[$attackerId];
+            if ($unit->class == "artillery" && $unit->status == STATUS_CAN_ADVANCE) {
+                $unit->status = STATUS_ATTACKED;
+            }
+        }
+    }
     public function postRecoverUnit($args)
     {
         $unit = $args[0];
