@@ -355,6 +355,13 @@ x.register("combatRules", function(combatRules,data) {
                 combatRoll = combatRules.lastResolvedCombat.Die;
                 $(".col"+combatCol).css('background-color',"rgba(255,255,1,.6)");
                 $(".row"+combatRoll+" .col"+combatCol).css('background-color',"cyan");
+                if(combatRules.lastResolvedCombat.useAlt){
+                    $('.tableWrapper.main').hide();
+                    $('.tableWrapper.alt').show();
+                }else{
+                    $('.tableWrapper.main').show();
+                    $('.tableWrapper.alt').hide();
+                }
 //                    $(".row"+combatRoll+" .col"+combatCol).css('color',"white");
             }
             str += "";
