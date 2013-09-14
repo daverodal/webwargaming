@@ -416,16 +416,20 @@ class Jagersdorf extends Battle {
             $this->terrain->addTerrain(803,HEXAGON_CENTER,'town');
 
             $this->terrain->addTerrain(408,HEXAGON_CENTER,'town');
+            $this->terrain->addTerrain(408,LOWER_LEFT_HEXSIDE,'town');
             $this->terrain->addTerrain(309,HEXAGON_CENTER,'town');
             $this->terrain->addTerrain(2105,HEXAGON_CENTER,'town');
             $this->terrain->addTerrain(213,HEXAGON_CENTER,'town');
+            $this->terrain->addTerrain(213,UPPER_LEFT_HEXSIDE,'town');
             $this->terrain->addTerrain(113,HEXAGON_CENTER,'town');
             $this->terrain->addTerrain(915,HEXAGON_CENTER,'town');
             $this->terrain->addTerrain(1015,HEXAGON_CENTER,'town');
+            $this->terrain->addTerrain(1015,UPPER_LEFT_HEXSIDE,'town');
             $this->terrain->addTerrain(1916,HEXAGON_CENTER,'town');
 
 
             $this->terrain->addTerrain(807,HEXAGON_CENTER,'hill');
+            $this->terrain->addTerrain(807,BOTTOM_HEXSIDE,'hill');
 
             $offMap = array(101,301,501,701,801,901,1001,1101,1201,1301,1302,1401,1402,1501,1502,1503,1601,1602,1603,1701,1702,1703,1801,1802,1803,1901,1902,1903,2001,2002,2003,2020,2021,2022,2101,2102,2103,2115,2116,2117,2118,2119,2120,2121,2122);
             foreach($offMap as $off){
@@ -437,6 +441,9 @@ class Jagersdorf extends Battle {
                 $this->terrain->addTerrain($woodsHex, HEXAGON_CENTER, "forest");
 
             }
+            $this->terrain->addTerrain(908, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(908, BOTTOM_HEXSIDE, "forest");
+
 
             $this->terrain->addTerrain(1902, BOTTOM_HEXSIDE,"road");
             $this->terrain->addTerrain(1903, UPPER_LEFT_HEXSIDE,"road");
