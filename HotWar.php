@@ -205,11 +205,11 @@ class HotWar extends Battle
             $this->genTerrain = true;
             $this->victory = new Victory("HotWar");
             $this->display = new Display();
-            $this->mapData->setData(30, 20, "js/HotWar.jpg");
+            $this->mapData->setData(10, 12, "js/HotWar.jpg");
             $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
-            $this->terrain->setMaxHex("3020");
+            $this->terrain->setMaxHex("1012");
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             if ($arg == "Supply") {
                 $this->moveRules->enterZoc = 2;
@@ -246,20 +246,20 @@ class HotWar extends Battle
 //                18, 36, // hexagon edge width, hexagon center width
 //                1410, 1410 // max right hexagon, max bottom hexagon
 //            );
-            $this->mapViewer[0]->setData(55, 120, // originX, originY
-                41, 41, // top hexagon height, bottom hexagon height
-                23, 47, // hexagon edge width, hexagon center width
-                3020, 3020 // max right hexagon, max bottom hexagon
+            $this->mapViewer[0]->setData(46.5 * 1.5 + 23.25 - 40, 3*40.27 - 9, // originX, originY
+                40.27, 40.27, // top hexagon height, bottom hexagon height
+                23.25, 46.5, // hexagon edge width, hexagon center width
+                1012, 1012 // max right hexagon, max bottom hexagon
             );
-            $this->mapViewer[1]->setData(55, 120, // originX, originY
-                41, 41, // top hexagon height, bottom hexagon height
-                23, 47, // hexagon edge width, hexagon center width
-                3020, 3020 // max right hexagon, max bottom hexagon
+            $this->mapViewer[1]->setData(46.5 * 1.5 + 23.25 - 40, 3*40.27 - 9, // originX, originY
+                40.27, 40.27, // top hexagon height, bottom hexagon height
+                23.25, 46.5, // hexagon edge width, hexagon center width
+                1012, 1012 // max right hexagon, max bottom hexagon
             );
-            $this->mapViewer[2]->setData(55, 120, // originX, originY
-                41, 41, // top hexagon height, bottom hexagon height
-                23, 47, // hexagon edge width, hexagon center width
-                3020, 3020 // max right hexagon, max bottom hexagon
+            $this->mapViewer[2]->setData(46.5 * 1.5 + 23.25 - 40, 3*40.27 - 9, // originX, originY
+                40.27, 40.27, // top hexagon height, bottom hexagon height
+                23.25, 46.5, // hexagon edge width, hexagon center width
+                1012, 1012 // max right hexagon, max bottom hexagon
             );
 
             // game data
@@ -280,100 +280,32 @@ class HotWar extends Battle
 
             // unit data -----------------------------------------------
             //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
-            $this->force->addUnit("infantry-1", RED_FORCE, 407, "natoMech.png", 3, 3, 3, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'inf');
-            $this->force->addUnit("infantry-1", RED_FORCE, 516, "natoTank.png", 5, 5, 3, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'inf');
-            $this->force->addUnit("infantry-1", RED_FORCE, 1515, "natoArt.png", 3, 3, 3, true, STATUS_READY, "L", 1, 3, "loyalist", true, 'inf');
-            $this->force->addUnit("infantry-1", RED_FORCE, 1612, "natoTow.png", 2, 2, 3, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'inf');
-            $this->force->addUnit("infantry-1", RED_FORCE, 1316, "natoCopter.png", 3, 3, 40, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'inf');
-            $this->force->addUnit("infantry-1", RED_FORCE, 2207, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'inf');
-            $this->force->addUnit("infantry-1", RED_FORCE, 2210, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'inf');
-            $this->force->addUnit("infantry-1", RED_FORCE, 208, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'inf');
-            $this->force->addUnit("infantry-1", RED_FORCE, 508, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'inf');
-            $this->force->addUnit("infantry-1", RED_FORCE, 512, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'inf');
-            $this->force->addUnit("infantry-1", RED_FORCE, 1909, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'inf');
-            $this->force->addUnit("infantry-1", RED_FORCE, 914, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'inf');
+            $this->force->addUnit("infantry-1", RED_FORCE, 407, "natoMech.png", 3, 3, 3, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'mech');
+            $this->force->addUnit("infantry-1", RED_FORCE, 409, "natoMech.png", 3, 3, 3, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'mech');
+            $this->force->addUnit("infantry-1", RED_FORCE, 408, "natoMech.png", 3, 3, 3, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'mech');
+            $this->force->addUnit("infantry-1", RED_FORCE, 410, "natoMech.png", 3, 3, 3, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'mech');
+            $this->force->addUnit("infantry-1", RED_FORCE, 508, "natoTank.png", 5, 5, 3, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'mech');
+            $this->force->addUnit("infantry-1", RED_FORCE, 510, "natoTank.png", 5, 5, 3, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'mech');
+            $this->force->addUnit("infantry-1", RED_FORCE, 612, "natoTow.png", 2, 2, 3, true, STATUS_READY, "L", 1, 1, "loyalist", true, 'mech');
 
 //
 //            for($i = 1;$i<= 10;$i+=2){
 //                $this->force->addUnit("infantry-1", RED_FORCE, 500+$i, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
 //
-//            }
-
-            for ($i = 7; $i <= 10; $i += 2) {
-                $this->force->addUnit("infantry-1", RED_FORCE, 1000 + $i, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
-
-            }
-
-            $this->force->addUnit("infantry-1", RED_FORCE, 2415, "multiRecon.png", 5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist", true, "mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, 2416, "multiRecon.png", 5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist", true, "mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, 2417, "multiRecon.png", 5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist", true, "mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, 2515, "multiMech.png", 9, 4, 6, true, STATUS_READY, "L", 1, 1, "loyalist", true, "mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, 2516, "multiArmor.png", 7, 3, 6, true, STATUS_READY, "L", 1, 1, "loyalist", true, "mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, 2517, "multiArmor.png", 7, 3, 6, true, STATUS_READY, "L", 1, 1, "loyalist", true, "mech");
-
-
-            $bigLoyalist = $argTwo == "BIGLoyal";
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png", 7, 3, 6, !$bigLoyalist, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist", true, "mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png", 7, 3, 6, !$bigLoyalist, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist", true, "mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png", 9, 4, 6, !$bigLoyalist, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist", true, "mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png", 9, 4, 6, !$bigLoyalist, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist", true, "mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png", 9, 4, 6, !$bigLoyalist, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist", true, "mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiMech.png", 9, 4, 6, !$bigLoyalist, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist", true, "mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiMech.png", 9, 4, 6, !$bigLoyalist, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist", true, "mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "multiArmor.png", 7, 3, 6, !$bigLoyalist, STATUS_CAN_REINFORCE, "L", 5, 1, "loyalist", true, "mech");
-            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "multiArmor.png", 7, 3, 6, !$bigLoyalist, STATUS_CAN_REINFORCE, "L", 5, 1, "loyalist", true, "mech");
-
-            if ($bigLoyalist) {
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiRecon.png", 5, 2, 9, $bigLoyalist, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist", true, "mech");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiRecon.png", 5, 2, 9, $bigLoyalist, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist", true, "mech");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiRecon.png", 5, 2, 9, $bigLoyalist, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist", true, "mech");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiRecon.png", 5, 2, 9, $bigLoyalist, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist", true, "mech");
-                $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "multiRecon.png", 5, 2, 9, $bigLoyalist, STATUS_CAN_REINFORCE, "L", 5, 1, "loyalist", true, "mech");
-            }
-
-//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist");
-//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist");
-//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist");
-//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist");
-//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist");
-//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist");
-//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn4", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "L", 4, 1, "loyalist");
-//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 5, 1, "loyalist");
-//            $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn5", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "L", 5, 1, "loyalist");
-
-
+//
             $i = 1;
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth", true, "inf");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth", true, "inf");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth", true, "inf");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth", true, "inf");
-            $j = $i;
-            $i = 0;
-            $j = 11;
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth", true, "inf");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth", true, "inf");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth", true, "inf");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth", true, "inf");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth", true, "inf");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth", true, "inf");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sovietTank.png", 4, 4, 3, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sovietTank.png", 4, 4, 3, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sovietTank.png", 4, 4, 3, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sovietTank.png", 4, 4, 3, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sovietMech.png", 2, 2, 3, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sovietMech.png", 2, 2, 3, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sovietMech.png", 2, 2, 3, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sovietMech.png", 2, 2, 3, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sovietRecon.png", 1, 1, 3, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sovietRecon.png", 1, 1, 3, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sovietRecon.png", 1, 1, 3, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "sovietRecon.png", 1, 1, 3, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel", true, "mech");
 
             // end unit data -------------------------------------------
 
@@ -407,14 +339,14 @@ class HotWar extends Battle
 //            }
             $loyalReinf = array(3016, 3017, 3018, 3019, 3020, 2320, 2420, 2520, 2620, 2720, 2820, 2920);
             foreach ($loyalReinf as $zone) {
-                $this->terrain->addReinforceZone($zone, "L");
+//                $this->terrain->addReinforceZone($zone, "L");
 
             }
             /*
              * First put clear everywhere, hexes and hex sides
              */
-            for ($col = 100; $col <= 3000; $col += 100) {
-                for ($row = 1; $row <= 20; $row++) {
+            for ($col = 100; $col <= 1000; $col += 100) {
+                for ($row = 1; $row <= 12; $row++) {
                     $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
@@ -430,7 +362,7 @@ class HotWar extends Battle
                 1305, 1307, 1311, 1406, 1410, 1506, 1507, 1510, 1511, 1607, 1609, 1707, 1708, 1709);
 
             foreach ($hexes as $hex) {
-                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "rough");
+//                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "rough");
             }
 
             $hexes = array(219, 220, 319, 418, 517, 518, 615, 616, 715,
@@ -439,231 +371,231 @@ class HotWar extends Battle
 
 
             foreach ($hexes as $hex) {
-                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "forest");
+//                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "forest");
             }
 
             $hexes = array("0407", "0516", 1515, 1909);
 
             foreach ($hexes as $hex) {
-                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "town");
+//                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "town");
             }
             $hexes = array(2414, 2415, 2515);
 
             foreach ($hexes as $hex) {
-                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "newrichmond");
+//                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "newrichmond");
             }
 
             for ($i = 3001; $i <= 3020; $i++) {
-                $this->terrain->addTerrain($i, HEXAGON_CENTER, "eastedge");
+//                $this->terrain->addTerrain($i, HEXAGON_CENTER, "eastedge");
 
             }
 
             for ($i = 101; $i <= 120; $i++) {
-                $this->terrain->addTerrain($i, HEXAGON_CENTER, "westedge");
+//                $this->terrain->addTerrain($i, HEXAGON_CENTER, "westedge");
 
             }
 
-            $this->terrain->addTerrain(813, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(814, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(814, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(814, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(815, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(815, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(815, BOTTOM_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(714, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(715, UPPER_LEFT_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(614, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(615, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(615, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(616, UPPER_LEFT_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(516, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(516, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(516, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(515, LOWER_LEFT_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(414, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(414, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(414, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(416, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(417, UPPER_LEFT_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(317, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(318, UPPER_LEFT_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(217, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(218, UPPER_LEFT_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(118, BOTTOM_HEXSIDE, "river");
-
-
-            $this->terrain->addTerrain(911, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(911, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(912, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(912, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(913, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(913, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(914, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(914, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(915, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(915, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(916, UPPER_LEFT_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(1011, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1011, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1012, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1012, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1013, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1013, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1014, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1014, BOTTOM_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(1112, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1112, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1113, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1113, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1114, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1114, LOWER_LEFT_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(1112, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1011, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1011, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1011, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1011, UPPER_LEFT_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(1404, BOTTOM_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(1504, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(1505, UPPER_LEFT_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(1603, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(1604, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1604, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(1605, UPPER_LEFT_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(1703, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(1704, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1704, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(1705, UPPER_LEFT_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(1802, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(1803, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1803, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(1804, UPPER_LEFT_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(1902, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(1903, UPPER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1903, LOWER_LEFT_HEXSIDE, "river");
-            $this->terrain->addTerrain(1904, UPPER_LEFT_HEXSIDE, "river");
-
-
-            $this->terrain->addTerrain(2001, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(2002, UPPER_LEFT_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(2101, BOTTOM_HEXSIDE, "river");
-            $this->terrain->addTerrain(2102, UPPER_LEFT_HEXSIDE, "river");
-
-            $this->terrain->addTerrain(2201, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(813, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(814, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(814, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(814, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(815, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(815, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(815, BOTTOM_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(714, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(715, UPPER_LEFT_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(614, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(615, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(615, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(616, UPPER_LEFT_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(516, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(516, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(516, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(515, LOWER_LEFT_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(414, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(414, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(414, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(416, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(417, UPPER_LEFT_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(317, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(318, UPPER_LEFT_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(217, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(218, UPPER_LEFT_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(118, BOTTOM_HEXSIDE, "river");
+//
+//
+//            $this->terrain->addTerrain(911, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(911, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(912, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(912, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(913, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(913, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(914, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(914, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(915, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(915, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(916, UPPER_LEFT_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(1011, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1011, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1012, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1012, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1013, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1013, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1014, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1014, BOTTOM_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(1112, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1112, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1113, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1113, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1114, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1114, LOWER_LEFT_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(1112, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1011, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1011, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1011, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1011, UPPER_LEFT_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(1404, BOTTOM_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(1504, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1505, UPPER_LEFT_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(1603, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1604, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1604, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1605, UPPER_LEFT_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(1703, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1704, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1704, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1705, UPPER_LEFT_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(1802, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1803, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1803, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1804, UPPER_LEFT_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(1902, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1903, UPPER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1903, LOWER_LEFT_HEXSIDE, "river");
+//            $this->terrain->addTerrain(1904, UPPER_LEFT_HEXSIDE, "river");
+//
+//
+//            $this->terrain->addTerrain(2001, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(2002, UPPER_LEFT_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(2101, BOTTOM_HEXSIDE, "river");
+//            $this->terrain->addTerrain(2102, UPPER_LEFT_HEXSIDE, "river");
+//
+//            $this->terrain->addTerrain(2201, UPPER_LEFT_HEXSIDE, "river");
 
             /*
              * Now put the roads and trails on top of verything else
              */
-            for ($i = 401; $i <= 410; $i++) {
-                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
-                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
-
-            }
-            $this->terrain->addTerrain(411, HEXAGON_CENTER, "road");
-
-            $this->terrain->addTerrain(512, UPPER_LEFT_HEXSIDE, "road");
-
-            for ($i = 512; $i <= 515; $i++) {
-                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
-                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
-
-            }
-
-            $this->terrain->addTerrain(516, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(516, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(416, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(416, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(317, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(317, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(217, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(217, LOWER_LEFT_HEXSIDE, "road");
-            $this->terrain->addTerrain(118, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(118, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(119, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(119, BOTTOM_HEXSIDE, "road");
-            $this->terrain->addTerrain(120, HEXAGON_CENTER, "road");
-            $this->terrain->addTerrain(120, BOTTOM_HEXSIDE, "road");
-
-
-            $hexes = array(612, 713, 813, 914, 1014, 1115, 1215, 1316);
-            foreach ($hexes as $hex) {
-                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "road");
-                $this->terrain->addTerrain($hex, UPPER_LEFT_HEXSIDE, "road");
-
-            }
-            $hexes = array(1415, 1515, 1614, 1714, 1813, 1913, 2012, 2615);
-            foreach ($hexes as $hex) {
-                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "road");
-                $this->terrain->addTerrain($hex, LOWER_LEFT_HEXSIDE, "road");
-
-            }
-
-            for ($i = 2401; $i <= 2405; $i++) {
-                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
-                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
-
-            }
-            $hexes = array(2406, 2307, 2207, 2108, 2008, 1909, 1809, 1710,
-                2516, 2413);
-            foreach ($hexes as $hex) {
-                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "road");
-                $this->terrain->addTerrain($hex, LOWER_LEFT_HEXSIDE, "road");
-            }
-            for ($i = 1610; $i <= 1614; $i++) {
-                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
-                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
-
-            }
-
-            for ($i = 2411; $i <= 2413; $i++) {
-                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
-                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
-
-            }
-
-            $hexes = array(2009, 2110, 2210, 2311, 2411, 2113, 2213, 2214, 2414, 2515, 2616, 2716, 2816, 2917, 3017
-            , 2314, 2514, 2614, 2416, 2615);
-            foreach ($hexes as $hex) {
-                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "road");
-                $this->terrain->addTerrain($hex, UPPER_LEFT_HEXSIDE, "road");
-            }
-            $this->terrain->addTerrain(2614, BOTTOM_HEXSIDE, "road");
-
-            for ($i = 2314; $i <= 2315; $i++) {
-                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
-                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
-
-            }
-            $this->terrain->addTerrain(2316, HEXAGON_CENTER, "road");
-
-            $hexes = array(505, 605, 706, 806, 907, 1007, 1108, 1208, 1309, 1409, 1808, 1909);
-            foreach ($hexes as $hex) {
-                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "trail");
-                $this->terrain->addTerrain($hex, UPPER_LEFT_HEXSIDE, "trail");
-
-            }
-            $hexes = array(1509, 1608, 1708);
-            foreach ($hexes as $hex) {
-                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "trail");
-                $this->terrain->addTerrain($hex, LOWER_LEFT_HEXSIDE, "trail");
-
-            }
+//               for ($i = 401; $i <= 410; $i++) {
+//                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
+//                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
+//
+//            }
+//            $this->terrain->addTerrain(411, HEXAGON_CENTER, "road");
+//
+//            $this->terrain->addTerrain(512, UPPER_LEFT_HEXSIDE, "road");
+//
+//            for ($i = 512; $i <= 515; $i++) {
+//                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
+//                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
+//
+//            }
+//
+//            $this->terrain->addTerrain(516, HEXAGON_CENTER, "road");
+//            $this->terrain->addTerrain(516, LOWER_LEFT_HEXSIDE, "road");
+//            $this->terrain->addTerrain(416, HEXAGON_CENTER, "road");
+//            $this->terrain->addTerrain(416, LOWER_LEFT_HEXSIDE, "road");
+//            $this->terrain->addTerrain(317, HEXAGON_CENTER, "road");
+//            $this->terrain->addTerrain(317, LOWER_LEFT_HEXSIDE, "road");
+//            $this->terrain->addTerrain(217, HEXAGON_CENTER, "road");
+//            $this->terrain->addTerrain(217, LOWER_LEFT_HEXSIDE, "road");
+//            $this->terrain->addTerrain(118, HEXAGON_CENTER, "road");
+//            $this->terrain->addTerrain(118, BOTTOM_HEXSIDE, "road");
+//            $this->terrain->addTerrain(119, HEXAGON_CENTER, "road");
+//            $this->terrain->addTerrain(119, BOTTOM_HEXSIDE, "road");
+//            $this->terrain->addTerrain(120, HEXAGON_CENTER, "road");
+//            $this->terrain->addTerrain(120, BOTTOM_HEXSIDE, "road");
+//
+//
+//            $hexes = array(612, 713, 813, 914, 1014, 1115, 1215, 1316);
+//            foreach ($hexes as $hex) {
+//                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "road");
+//                $this->terrain->addTerrain($hex, UPPER_LEFT_HEXSIDE, "road");
+//
+//            }
+//            $hexes = array(1415, 1515, 1614, 1714, 1813, 1913, 2012, 2615);
+//            foreach ($hexes as $hex) {
+//                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "road");
+//                $this->terrain->addTerrain($hex, LOWER_LEFT_HEXSIDE, "road");
+//
+//            }
+//
+//            for ($i = 2401; $i <= 2405; $i++) {
+//                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
+//                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
+//
+//            }
+//            $hexes = array(2406, 2307, 2207, 2108, 2008, 1909, 1809, 1710,
+//                2516, 2413);
+//            foreach ($hexes as $hex) {
+//                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "road");
+//                $this->terrain->addTerrain($hex, LOWER_LEFT_HEXSIDE, "road");
+//            }
+//            for ($i = 1610; $i <= 1614; $i++) {
+//                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
+//                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
+//
+//            }
+//
+//            for ($i = 2411; $i <= 2413; $i++) {
+//                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
+//                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
+//
+//            }
+//
+//            $hexes = array(2009, 2110, 2210, 2311, 2411, 2113, 2213, 2214, 2414, 2515, 2616, 2716, 2816, 2917, 3017
+//            , 2314, 2514, 2614, 2416, 2615);
+//            foreach ($hexes as $hex) {
+//                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "road");
+//                $this->terrain->addTerrain($hex, UPPER_LEFT_HEXSIDE, "road");
+//            }
+//            $this->terrain->addTerrain(2614, BOTTOM_HEXSIDE, "road");
+//
+//            for ($i = 2314; $i <= 2315; $i++) {
+//                $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
+//                $this->terrain->addTerrain($i, BOTTOM_HEXSIDE, "road");
+//
+//            }
+//            $this->terrain->addTerrain(2316, HEXAGON_CENTER, "road");
+//
+//            $hexes = array(505, 605, 706, 806, 907, 1007, 1108, 1208, 1309, 1409, 1808, 1909);
+//            foreach ($hexes as $hex) {
+//                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "trail");
+//                $this->terrain->addTerrain($hex, UPPER_LEFT_HEXSIDE, "trail");
+//
+//            }
+//            $hexes = array(1509, 1608, 1708);
+//            foreach ($hexes as $hex) {
+//                $this->terrain->addTerrain($hex, HEXAGON_CENTER, "trail");
+//                $this->terrain->addTerrain($hex, LOWER_LEFT_HEXSIDE, "trail");
+//
+//            }
 
 
             // end terrain data ----------------------------------------
