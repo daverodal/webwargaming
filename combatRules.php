@@ -191,7 +191,7 @@ class CombatRules
                             array_pop($hexParts);
                             // remove first and last hexPart
                             foreach($hexParts as $hexPart){
-                                if($this->terrain->terrainIs($hexPart,"forest") || $this->terrain->terrainIs($hexPart,"town") || $this->terrain->terrainIs($hexPart,"hill")){
+                                if($this->terrain->terrainIs($hexPart,"blocksRanged")){
                                     $good = false;
                                     break;
                                 }
