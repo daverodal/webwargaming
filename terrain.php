@@ -29,10 +29,11 @@ class TerrainFeature
     public $combatEffect;
     public $isExclusive;
     public $altEntranceCost;
+    public $blocksRanged;
 
     function __construct($terrainFeatureName, $terrainFeatureDisplayName, $terrainFeatureLetter,
                          $terrainFeatureEntranceCost, $terrainFeatureTraverseCost,
-                         $terrainFeatureCombatEffect, $terrainFeatureIsExclusive)
+                         $terrainFeatureCombatEffect, $terrainFeatureIsExclusive, $blocksRanged)
     {
 
 
@@ -43,6 +44,7 @@ class TerrainFeature
         $this->traverseCost = $terrainFeatureTraverseCost;
         $this->combatEffect = $terrainFeatureCombatEffect;
         $this->isExclusive = $terrainFeatureIsExclusive;
+        $this->blocksRanged = $blocksRanged;
         $this->altEntranceCost = new stdClass();
 
     }
@@ -149,10 +151,10 @@ class Terrain
     /*
      * public
      */
-    function addTerrainFeature($name, $displayName, $letter, $entranceCost, $traverseCost, $combatEffect, $isExclusive)
+    function addTerrainFeature($name, $displayName, $letter, $entranceCost, $traverseCost, $combatEffect, $isExclusive, $blocksRanged = false)
     {
 
-        $this->terrainFeatures->$name = new TerrainFeature($name, $displayName, $letter, $entranceCost, $traverseCost, $combatEffect, $isExclusive);
+        $this->terrainFeatures->$name = new TerrainFeature($name, $displayName, $letter, $entranceCost, $traverseCost, $combatEffect, $isExclusive, $blocksRanged);
     }
 
     /*
@@ -193,6 +195,9 @@ class Terrain
                 $this->terrainArray[$y][$x] = new stdClass();
             }
             $this->terrainArray[$y][$x]->$terrainName = $terrainName;
+            if($feature->blocksRanged){
+                $this->terrainArray[$y][$x]->blocksRanged = "blocksRanged";
+            }
         }
 
     }

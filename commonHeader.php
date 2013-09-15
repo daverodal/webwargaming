@@ -2434,7 +2434,6 @@ function doitUnit(id,event) {
             var success = +$.parseJSON(data).success;
         }catch(e){
             alert(data);
-            alert(e);
         }
         if(success){
             playAudioLow();
@@ -2468,7 +2467,6 @@ function doitMap(x,y) {
             var success = +$.parseJSON(data).success;
         }catch(e){
             alert(data);
-            alert(e);
         }
         if(success){
             playAudioLow();
@@ -2484,7 +2482,6 @@ function doitMap(x,y) {
                 var success = +$.parseJSON(data).success;
             }catch(e){
                 alert(data);
-                alert(e);
             }
             playAudioBuzz();
             $('body').css({cursor:"auto"});
@@ -2504,7 +2501,6 @@ function doitNext() {
                 var success = +$.parseJSON(data).success;
             }catch(e){
                 alert(data);
-                alert(e);
             }
             playAudioLow();
 
@@ -2513,7 +2509,6 @@ function doitNext() {
                 var success = +$.parseJSON(data).success;
             }catch(e){
                 alert(data);
-                alert(e);
             }
             playAudioBuzz();
             $('body').css({cursor:"auto"});

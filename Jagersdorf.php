@@ -385,9 +385,9 @@ class Jagersdorf extends Battle {
             $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("road", "road", "r", 0, 0, 0, false);
-            $this->terrain->addTerrainFeature("town", "town", "t", 1, 0, 0, true);
-            $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
-            $this->terrain->addTerrainFeature("hill", "hill", "h", 2, 0, 0, true);
+            $this->terrain->addTerrainFeature("town", "town", "t", 1, 0, 0, true, true);
+            $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true, true);
+            $this->terrain->addTerrainFeature("hill", "hill", "h", 2, 0, 0, true, true);
             $this->terrain->addTerrainFeature("river", "river", "v", 0, 1,0, false);
             $this->terrain->addAltEntranceCost('forest','artillery',3);
             $this->terrain->addAltEntranceCost('forest','cavalry',3);
@@ -441,15 +441,157 @@ class Jagersdorf extends Battle {
                 $this->terrain->addTerrain($woodsHex, HEXAGON_CENTER, "forest");
 
             }
+
+            $this->terrain->addTerrain(220, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(220, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(220, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(221, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(221, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(221, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(222, UPPER_LEFT_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(301, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(302, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(302, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(320, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(320, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(321, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(321, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(321, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(322, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(322, LOWER_LEFT_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(402, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(402, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(402, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(403, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(403, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(403, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(404, UPPER_LEFT_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(419, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(419, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(420, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(420, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(420, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(421, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(421, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(421, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(422, UPPER_LEFT_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(503, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(503, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(503, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(504, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(504, LOWER_LEFT_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(520, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(520, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(520, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(521, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(521, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(521, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(522, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(522, LOWER_LEFT_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(908, UPPER_LEFT_HEXSIDE, "forest");
             $this->terrain->addTerrain(908, LOWER_LEFT_HEXSIDE, "forest");
             $this->terrain->addTerrain(908, BOTTOM_HEXSIDE, "forest");
 
+            $this->terrain->addTerrain(909, UPPER_LEFT_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1007, LOWER_LEFT_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1009, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1009, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1108, UPPER_LEFT_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1110, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1110, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1110, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1111, UPPER_LEFT_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1208, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1208, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1209, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1209, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1210, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1210, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1210, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1211, UPPER_LEFT_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1309, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1309, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1309, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1310, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1310, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1310, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1311, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1311, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1311, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1312, UPPER_LEFT_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1408, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1408, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1409, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1409, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1409, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1410, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1410, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1410, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1411, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1411, LOWER_LEFT_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1509, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1509, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1509, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1510, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1510, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1510, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1511, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1511, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1511, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1512, UPPER_LEFT_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1609, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1609, LOWER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1609, BOTTOM_HEXSIDE, "forest");
+
+            $this->terrain->addTerrain(1610, UPPER_LEFT_HEXSIDE, "forest");
+            $this->terrain->addTerrain(1610, LOWER_LEFT_HEXSIDE, "forest");
 
             $this->terrain->addTerrain(1902, BOTTOM_HEXSIDE,"road");
             $this->terrain->addTerrain(1903, UPPER_LEFT_HEXSIDE,"road");
             $this->terrain->addTerrain(1903, LOWER_LEFT_HEXSIDE,"road");
             $this->terrain->addTerrain(1904, UPPER_LEFT_HEXSIDE,"road");
-            $this->terrain->addTerrain($i, HEXAGON_CENTER, "road");
 
             $this->terrain->addTerrain(102, HEXAGON_CENTER, "road");
 
