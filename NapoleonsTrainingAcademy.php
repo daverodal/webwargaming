@@ -66,7 +66,7 @@ class NapoleonsTrainingAcademy extends Battle {
             $$k = $v;
         }
         @include_once "commonHeader.php";
-        @include_once "NTA/newHeader.php";
+        @include_once "NTA/header.php";
     }
     static function playAs($name, $wargame){
         @include_once "NTA/playAs.php";

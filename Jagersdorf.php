@@ -71,7 +71,7 @@ class Jagersdorf extends Battle {
             $$k = $v;
         }
         @include_once "commonHeader.php";
-        @include_once "Jagersdorf/newHeader.php";
+        @include_once "Jagersdorf/header.php";
     }
     static function playAs($name, $wargame){
         @include_once "Jagersdorf/playAs.php";

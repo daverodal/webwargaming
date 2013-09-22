@@ -66,7 +66,7 @@ class NapOnMars extends Battle {
             $$k = $v;
         }
         @include_once "commonHeader.php";
-        @include_once "NOM/newHeader.php";
+        @include_once "NOM/header.php";
     }
     static function playAs($name, $wargame){
         @include_once "NOM/playAs.php";

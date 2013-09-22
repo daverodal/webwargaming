@@ -46,7 +46,7 @@ class Tutorial extends Battle {
             $$k = $v;
         }
         @include_once "commonHeader.php";
-        @include_once "Tutorial/newHeader.php";
+        @include_once "Tutorial/header.php";
 
     }
     static function getView($name, $mapUrl,$player = 0,$arg = false, $argTwo = false){
