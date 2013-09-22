@@ -221,6 +221,9 @@
         left:48%;
         bottom:0px;
     }
+    .game-name{
+        font-family:'Berkshire Swash';
+    }
 </style>
 <script type="text/javascript">
 x.register("combatRules", function(combatRules,data) {

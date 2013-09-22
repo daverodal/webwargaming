@@ -497,10 +497,6 @@ x.register("moveRules", function(moveRules) {
 
 
                 }
-
-                attachMouseEventsToCounter(newId);
-
-
             }
         }
         $(".clone").hover(function(){
@@ -1144,14 +1140,6 @@ function initialize() {
     this.attachMouseEventsToMap("map");
 
     $(".unit").bind('mousedown',true,counterMouseDown);
-//    var id;
-//    for(id = 0;id < 35;id++){
-//        this.attachMouseEventsToCounter(id);
-//    }
-//    for ( id = 0; id < force.units.length; id++ ) {
-//        createImage( id, force.units[id].image, 0, 0 );
-//        this.attachMouseEventsToCounter( id );
-//    }
 
     attachMouseEventsToButton("nextPhaseButton");
     // end setup events ----------------------------------------

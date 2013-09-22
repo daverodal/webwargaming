@@ -1,13 +1,7 @@
 <body xmlns="http://www.w3.org/1999/html">
-<?php //include "help.php";?>
 <div id="theDiv">
 <header id="header">
 <div id="headerContent">
-    <div id="leftHeader">
-            <span style="font-size:1.0em">Welcome {user} {player} to <span style="font-family:'Nosifer';">Gross Jagersdorf</span><span
-                    style="font-style: italic;">&ldquo;{wargame}&rdquo;</span></span>
-
-    </div>
     <div id="rightHeader">
         <div id="mouseMove">mouse</div>
         <div id="comlinkWrapper" style="float:right;">
@@ -33,7 +27,7 @@
                     <li>   Welcome {user}</li>
                     <li>you are playing as  <?=$player;?></li>
                     <li>
-                        in <span style="font-family:'Berkshire Swash';">Gross Jagersdorf</span></li>
+                            in <span class="game-name">{gameName}-{arg}</span> </li>
                     <li> The file is called {wargame}</li>
                     <li>Game Designer: Lance Runolfsson</li>
 
@@ -159,9 +153,6 @@
         </fieldset>
         <div style="clear:both"></div>
     </div>
-
-
-
 </div>
 
 <div id="TECWrapper">
@@ -235,7 +226,6 @@
         <?php include "help.php";?>
     </div>
 </div>
-</div>
 </header>
 <div id="content">
     <div id="rightCol">
@@ -250,6 +240,7 @@
             </div>
         </div>
         <div id="gameViewer">
+            <div id="gameContainer">
             <div id="gameImages" class="ui-widget-content">
                 <img id="map" alt="map" src="<?php echo base_url().$mapUrl;?>"
                      style="position: relative;visibility: visible;z-index: 0;">
@@ -259,14 +250,13 @@
                     <img class="arrow" src="<?php echo base_url();?>js/short-red-arrow-md.png" class="counter">
                     <img src="<?php echo base_url();?>js/{image}" class="counter">
 
-                    <div>5 - 4</div>
+                    <div class="unit-numbers">5 - 4</div>
 
                 </div>
                 {/units}
                 <div id="floatMessage"><header></header><p></p></div>
             </div>
-
-            <!-- end gameImages -->
+            </div>
         </div>
         <audio class="pop"  src="<?=base_url().'js/pop.m4a'?>"></audio>
         <audio class="poop"  src="<?=base_url().'js/lowpop.m4a'?>"></audio>

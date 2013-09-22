@@ -652,9 +652,6 @@ x.register("moveRules", function(moveRules,data) {
 
                 }
                 /* apparently cloning attaches the mouse events */
-                attachMouseEventsToCounter(newId);
-
-
             }
             $("#firstclone").remove();
         }

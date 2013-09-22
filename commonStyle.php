@@ -1100,9 +1100,10 @@ fieldset{
 }
 #crt{
     border-radius:15px;
-    border:10px solid rgb(132,181,255);
+    border-width: 10px;
+    border-style: solid;
+    /*border:10px solid rgb(132,181,255);*/
     background:#fff;color:black;
-;
     font-weight:bold;
     padding:1px 5px 10px 15px;
     box-shadow: 0px 0px 2px black;

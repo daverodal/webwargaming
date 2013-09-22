@@ -229,4 +229,7 @@
         left:48%;
         bottom:0px;
     }
+    .unit-numbers{
+        display:none;
+    }
 </style>

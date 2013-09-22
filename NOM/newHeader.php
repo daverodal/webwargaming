@@ -2,6 +2,7 @@
 <style type="text/css">
     .blueUnit, .french, .playerTwo{
         background-color:rgb(132,181,255);
+        border-color:rgb(132,181,255);
     }
     .frenchVP{
         color:rgb(132,181,255);
@@ -23,6 +24,7 @@
     }
     .lightYellow, .austrian, .playerOne{
         background-color: rgb(255,239,156);
+        border-color:rgb(255,239,156);
     }
     .flesh{
         background-color: rgb(239,198,156);
@@ -121,4 +123,20 @@
 }
 #TECWrapper img, #TECWrapper div{
 }
+    #GRWrapper h4{
+        width:auto !important;
+    }
+    #GR{
+        width:600px;
+        left:-260px
+    }
+    #GRWrapper{
+        width:10%;
+        left:48%;
+        bottom:0px;
+    }
+    .game-name{
+        word-break:break-all;
+        font-family:'Nosifer';
+    }
 </style>

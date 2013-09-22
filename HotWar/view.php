@@ -1,6 +1,5 @@
 <body xmlns="http://www.w3.org/1999/html">
 <div id="theDiv">
-<?php // include "help.php";?>
 <header id="header">
     <div id="headerContent">
         <div id="rightHeader">
@@ -28,7 +27,7 @@
                         <li>   Welcome {user}</li>
                         <li>you are playing as  <?=$player;?></li>
                         <li>
-                            in <span style="font-family:'Nosifer';">The Martian Civil War-{arg}</span> </li>
+                            in <span class="game-name">{gameName}-{arg}</span> </li>
                         <li> The file is called {wargame}</li>
                         <li>Game Designer: David Rodal</li>
 
@@ -127,9 +126,6 @@
             </fieldset>
             <div style="clear:both"></div>
         </div>
-
-
-
     </div>
 
     <div id="TECWrapper">
@@ -199,69 +195,11 @@
     </div>
     <div id="GRWrapper">
         <h4 class="WrapperLabel" title="Game Rules">Rules</h4>
-        <div id="GR" style="display:none"><div class="close">X</div>
+        <div id="GR" style="display:none">
+            <div class="close">X</div>
             <?php  include "help.php";?>
         </div>
     </div>
-<!--    <div id="VCWrapper">-->
-<!--        <h4 class="WrapperLabel" title="Victory Conditions">VC</h4>-->
-<!--        <DIV id="VC" style="display:none;"><div class="close">X</div>-->
-<!--            <ul>-->
-<!--                <li>-->
-<!--                    <div class="colOne">-->
-<!--                        <span>Objective</span>-->
-<!--                    </div>-->
-<!--                    <div class="colTwo">For Rebel</div>-->
-<!--                    <div class="colThree">For Loyalists</div>-->
-<!--                    <div class="clear"></div>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <div class="colOne ">-->
-<!--                        <span>Taking small city</span>-->
-<!--                    </div>-->
-<!--                    <div class="colTwo">1 point when taken.</div>-->
-<!--                    <div class="colThree">none.</div>-->
-<!--                    <div class="clear"></div>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <div class="colOne ">-->
-<!--                        <span>Last to enter small city</span>-->
-<!--                    </div>-->
-<!--                    <div class="colTwo">1 point at end of each player turn.</div>-->
-<!--                    <div class="colThree">1/2 point at end of each player turn.</div>-->
-<!--                    <div class="clear"></div>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <div class="colOne ">-->
-<!--                        <span>Taking Cuniform</span>-->
-<!--                    </div>-->
-<!--                    <div class="colTwo">1 point when entering.</div>-->
-<!--                    <div class="colThree">none.</div>-->
-<!--                    <div class="clear"></div>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <div class="colOne ">-->
-<!--                        <span>Last to enter Cuniform</span>-->
-<!--                    </div>-->
-<!--                    <div class="colTwo">5 points at end of each player turn.</div>-->
-<!--                    <div class="colThree">1/2 point at end of each player turn.</div>-->
-<!--                    <div class="clear"></div>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <div class="colOne ">-->
-<!--                        <span>Killing or Reducing Enemy Unit</span>-->
-<!--                    </div>-->
-<!--                    <div class="colTwo">none.</div>-->
-<!--                    <div class="colThree">1 point per strength point lost.</div>-->
-<!--                    <div class="clear"></div>-->
-<!--                </li>-->
-
-                <!--    Empty one for the bottom border -->
-<!--                <li class="closer"></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-</div>
 </header>
 <div id="content">
     <div id="rightCol">
@@ -286,7 +224,7 @@
                     <img class="arrow" src="<?php echo base_url();?>js/short-red-arrow-md.png" class="counter">
                     <img src="<?php echo base_url();?>js/{image}" class="counter">
 
-                    <div style="display:none;">5 - 4</div>
+                    <div class="unit-numbers">5 - 4</div>
 
                 </div>
                 {/units}

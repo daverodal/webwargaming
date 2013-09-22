@@ -229,4 +229,8 @@
         left:48%;
         bottom:0px;
     }
+    .game-name{
+        word-break:break-all;
+        font-family:'Nosifer';
+    }
 </style>
