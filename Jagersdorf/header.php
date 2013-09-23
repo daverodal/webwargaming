@@ -65,7 +65,7 @@
 }
 #TEC{
     background:white;
-    width:579px;
+    width:779px;
     left:-230px;
 }
 
@@ -140,7 +140,7 @@
     padding-right:10px;
 }
 #TECWrapper .colThree{
-    width:136px;
+    width:315px;
 }
 #TECWrapper .colOne span{
      margin-top:12px;

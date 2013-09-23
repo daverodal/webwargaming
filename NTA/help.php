@@ -42,6 +42,10 @@
         text-decoration: none;
     }
 </style>
+<div id="GRWrapper">
+<h4 class="WrapperLabel" title="Game Rules">Rules</h4>
+<div id="GR" style="display:none">
+<div class="close">X</div>
 <div id="gameRules">
 <H1>
    Napoleons Training Academy 
@@ -364,3 +368,4 @@ be moved into that hex. This must be done before the next attack is resolved. Ar
     David M. Rodal
 </div>
 </div>
+</div></div>

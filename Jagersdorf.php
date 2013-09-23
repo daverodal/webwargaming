@@ -1,4 +1,7 @@
 <?php
+
+set_include_path(__DIR__ . "/Jagersdorf". PATH_SEPARATOR . __DIR__ . "/stdIncludes" . PATH_SEPARATOR .  get_include_path());
+
 /* comment */
 require_once "constants.php";
 global $force_name,$phase_name,$mode_name, $event_name, $status_name, $results_name,$combatRatio_name;
@@ -25,7 +28,7 @@ $phase_name[15] = "Russian deploy phase";
 
 
 require_once "combatRules.php";
-require_once "Jagersdorf/crt.php";
+require_once "crt.php";
 require_once "force.php";
 require_once "gameRules.php";
 require_once "hexagon.php";
@@ -71,20 +74,20 @@ class Jagersdorf extends Battle {
             $$k = $v;
         }
         @include_once "commonHeader.php";
-        @include_once "Jagersdorf/header.php";
+        @include_once "header.php";
     }
     static function playAs($name, $wargame){
-        @include_once "Jagersdorf/playAs.php";
+        @include_once "playAs.php";
     }
 
     static function enterMulti(){
         echo "hi";
-        @include_once "Jagersdorf/enterMulti.php";
+        @include_once "enterMulti.php";
     }
 
     static function getView($name, $mapUrl,$player = 0, $arg = false, $argTwo = false){
 
-        @include_once "Jagersdorf/view.php";
+        @include_once "view.php";
     }
     public function resize($small,$player){
         if($small){

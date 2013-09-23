@@ -16,8 +16,6 @@
                             <li><a id="muteButton">mute</a></li>
                             <li><a href="<?= site_url("wargame/leaveGame"); ?>">Go To Lobby</a></li>
                             <li><a href="<?= site_url("wargame/logout"); ?>">logout</a></li>
-                            <!--                        <li><a href="-->
-                            <?//=site_url("wargame/unitInit/MartianCivilWar");?><!--">Restart Game</a></li>-->
                             <li><a href="#" onclick="seeUnits();return false;">See Units</a></li>
                             <li><a href="#" onclick="seeBoth();return false;">See Both</a></li>
                             <li><a href="#" onclick="seeMap();return false;">See Map</a></li>
@@ -36,8 +34,8 @@
                             <li>
                                 in <span class="game-name">{gameName}-{arg}</span></li>
                             <li> The file is called {wargame}</li>
-                            <li>Game Designer: Lance Runolfsson</li>
-
+                            <!-- TODO: make game credits from DB -->
+                            <li>Game Designer: David Rodal</li>
                             <li class="closer"></li>
                         </ul>
                     </div>
@@ -56,7 +54,7 @@
         </div>
         <?php global $results_name; ?>
         <div id="bottomHeader" style="clear:both;">
-            <span id="hideShow">Dead Pile</span>
+            <span id="hideShow">Retired Units</span>
             <button id="nextPhaseButton">Next Phase</button>
             <div id="crtWrapper">
                 <h4 class="WrapperLabel" title='Combat Results Table'>
@@ -66,62 +64,32 @@
                     <div class="close">X</div>
                     <h3>Combat Odds</h3>
 
-                    <div class="tableWrapper main">
-                        <div id="odds">
-                            <span class="col0">&nbsp;</span>
-                            <?php
-                            $crt = new CombatResultsTable();
-
-                            $i = 1;
-                            foreach ($crt->combatResultsHeader as $odds) {
-                                ?>
-                                <span class="col<?= $i++ ?>"><?= $odds ?></span>
-                            <?php } ?>
-                        </div>
+                    <div id="odds">
+                        <span class="col0">&nbsp;</span>
                         <?php
-                        $rowNum = 1;
-                        $odd = ($rowNum & 1) ? "odd" : "even";
-                        foreach ($crt->combatResultsTable as $row) {
-                            ?>
-                            <div class="roll <?= "row$rowNum $odd" ?>">
-                                <span class="col0"><?= $rowNum++ ?></span>
-                                <?php $col = 1;
-                                foreach ($row as $cell) {
-                                    ?>
-                                    <span class="col<?= $col++ ?>"><?= $results_name[$cell] ?></span>
+                        $crt = new CombatResultsTable();
 
-                                <?php } ?>
-                            </div>
+                        $i = 1;
+                        foreach ($crt->combatResultsHeader as $odds) {
+                            ?>
+                            <span class="col<?= $i++ ?>"><?= $odds ?></span>
                         <?php } ?>
                     </div>
-                    <div class="tableWrapper alt">
-                        <div id="odds">
-                            <span class="col0">&nbsp;</span>
-                            <?php
-                            $crt = new CombatResultsTable();
-
-                            $i = 1;
-                            foreach ($crt->combatResultsHeader as $odds) {
+                    <?php
+                    $rowNum = 1;
+                    $odd = ($rowNum & 1) ? "odd" : "even";
+                    foreach ($crt->combatResultsTable as $row) {
+                        ?>
+                        <div class="roll <?= "row$rowNum $odd" ?>">
+                            <span class="col0"><?= $rowNum++ ?></span>
+                            <?php $col = 1;
+                            foreach ($row as $cell) {
                                 ?>
-                                <span class="col<?= $i++ ?>"><?= $odds ?></span>
+                                <span class="col<?= $col++ ?>"><?= $results_name[$cell] ?></span>
+
                             <?php } ?>
                         </div>
-                        <?php
-                        $rowNum = 1;
-                        $odd = ($rowNum & 1) ? "odd" : "even";
-                        foreach ($crt->combatResultsTableCav as $row) {
-                            ?>
-                            <div class="roll <?= "row$rowNum $odd" ?>">
-                                <span class="col0"><?= $rowNum++ ?></span>
-                                <?php $col = 1;
-                                foreach ($row as $cell) {
-                                    ?>
-                                    <span class="col<?= $col++ ?>"><?= $results_name[$cell] ?></span>
-
-                                <?php } ?>
-                            </div>
-                        <?php } ?>
-                    </div>
+                    <?php } ?>
                     <div id="crtOddsExp"></div>
                 </div>
             </div>
@@ -133,7 +101,8 @@
 
             <?php include_once "tec.php"; ?>
 
-            <?php include_once "help.php"; ?>
+            <?php include "help.php"; ?>
+
     </header>
     <div id="content">
         <div id="rightCol">
@@ -150,22 +119,21 @@
             <div id="gameViewer">
                 <div id="gameContainer">
                     <div id="gameImages" class="ui-widget-content">
-                        <img id="map" alt="map" src="<?php echo base_url() . $mapUrl; ?>"
-                             style="position: relative;visibility: visible;z-index: 0;">
+                        <img id="map" alt="map" src="<?php echo base_url() . $mapUrl; ?>">
                         <?php $id = 0; ?>
                         {units}
-                        <div class="unit {class}" id="{id}" alt="0"><p class="forceMarch">M</p>
+                        <div class="unit {class}" id="{id}" alt="0">
                             <section></section>
                             <img class="arrow" src="<?php echo base_url(); ?>js/short-red-arrow-md.png" class="counter">
                             <img src="<?php echo base_url(); ?>js/{image}" class="counter">
 
                             <div class="unit-numbers">5 - 4</div>
-
                         </div>
                         {/units}
                         <div id="floatMessage">
                             <header></header>
-                            <p></p></div>
+                            <p></p>
+                        </div>
                     </div>
                 </div>
             </div>

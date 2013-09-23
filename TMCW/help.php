@@ -29,6 +29,10 @@
         text-decoration: none;
     }
 </style>
+<div id="GRWrapper">
+    <h4 class="WrapperLabel" title="Game Rules">Rules</h4>
+    <div id="GR" style="display:none">
+        <div class="close">X</div>
 <div id="gameRules">
     <h1>The Martian Civil War</h1>
     <h2>Rules of Play</h2>
@@ -148,3 +152,4 @@
     <p>At the end of 7 game turns the game is over and victory is determined.</p>
     <h2>Movement</h2>
 </div>
+        </div></div>

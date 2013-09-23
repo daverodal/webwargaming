@@ -1,4 +1,6 @@
 <?php
+set_include_path(__DIR__ . "/OMCW". PATH_SEPARATOR . __DIR__ . "/stdIncludes" . PATH_SEPARATOR .  get_include_path());
+
 require_once "crtTraits.php";
 require_once "constants.php";
 require_once "combatRules.php";
@@ -43,10 +45,11 @@ class OMCW extends Battle {
         foreach($playerData as $k => $v){
             $$k = $v;
         }
-        @include_once "OMCW/header.php";
+        @include_once "commonHeader.php";
+        @include_once "header.php";
     }
-    static function getView( $name, $mapUrl,$player = 0, $arg = false, $argTwo = false){
-        @include_once "OMCW/view.php";
+    static function getView($name, $mapUrl,$player = 0, $arg = false, $argTwo = false){
+        @include_once "view.php";
     }
     static function playAs($name, $wargame){
         @include_once "OMCW/playAs.php";

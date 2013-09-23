@@ -1,4 +1,5 @@
 <?php
+set_include_path(__DIR__ . "/TMCW". PATH_SEPARATOR . __DIR__ . "/stdIncludes" . PATH_SEPARATOR .  get_include_path());
 require_once "constants.php";
 global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
 $force_name = array();
@@ -92,7 +93,7 @@ class MartianCivilWar extends Battle
     {
         global $force_name;
         $player = $force_name[$player];
-        @include_once "TMCW/view.php";
+        @include_once "view.php";
     }
 
     static function playAs($name, $wargame)

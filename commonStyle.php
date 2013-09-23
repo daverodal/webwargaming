@@ -1240,6 +1240,8 @@ fieldset{
     width:<?=$mapWidth;?>;/*really*/
     height:<?=$mapHeight;?>;
     height:<?=$mapHeight;?>;
+    position:relative;
+    z-index: 0;
 }
 #gameImages {
     width:<?=$mapWidth;?>;/*really*/
@@ -1319,5 +1321,9 @@ fieldset{
 }
 .occupied{
     display:none;
+}
+#TEC{
+    max-height:500px;
+    overflow:auto;
 }
 </style>
