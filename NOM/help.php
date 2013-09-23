@@ -29,4 +29,10 @@
         text-decoration: none;
     }
 </style>
+<div id="GRWrapper">
+    <h4 class="WrapperLabel" title="Game Rules">Rules</h4>
+    <div id="GR" style="display:none">
+        <div class="close">X</div>
 <div id="gameRules">Napoleon On Mars</div>
+        </div>
+    </div>

@@ -31,7 +31,10 @@
                     <span>Town</span>
                 </div>
                 <div class="colTwo">1 Movement Point</div>
-                <div class="colThree">Russian Infantry +1 when defending in or attacking into forest, Infantry and artillery units are doubled when defending on a hill. this happens AFTER any +1 for russian infantry. Cavalry attacking a town are halved in addition. Towns block artillery bombardment.</div>
+                <div class="colThree">Russian Infantry +1 when defending in or attacking into town,
+                    Infantry and artillery units are doubled when defending on a town.
+                    this happens AFTER any +1 for russian infantry.
+                    Cavalry attacking a town are halved. Towns block artillery bombardment.</div>
                 <div class="clear"></div>
             </li>
             <li>
