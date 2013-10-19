@@ -224,8 +224,31 @@
     .game-name{
         font-family:'Berkshire Swash';
     }
+
+    #altTable, #mainTable{
+        position:absolute;
+        right:18px;
+    }
 </style>
 <script type="text/javascript">
+$(document).ready(function(){
+    $("#altTable").on('click',function(){
+        $(this).hide();
+        $("#mainTable").show();
+        $('.tableWrapper.main').hide();
+        $('.tableWrapper.alt').show();
+    });
+    $("#mainTable").on('click',function(){
+        $(this).hide();
+        $("#altTable").show();
+        $('.tableWrapper.alt').hide();
+        $('.tableWrapper.main').show();
+    });
+    $("#altTable").show();
+    $("#mainTable").hide();
+    $(".tableWrapper.alt").hide();
+    $(".tableWrapper.main").show();
+});
 x.register("combatRules", function(combatRules,data) {
 
     for(var combatCol = 1;combatCol <= 10;combatCol++){

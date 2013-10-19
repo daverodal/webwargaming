@@ -64,6 +64,8 @@
 
                 <div id="crt">
                     <div class="close">X</div>
+                    <div id="altTable">show cavalry table</div>
+                    <div id="mainTable">show normal table</div>
                     <h3>Combat Odds</h3>
 
                     <div class="tableWrapper main">
