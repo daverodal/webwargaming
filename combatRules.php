@@ -332,6 +332,7 @@ class CombatRules
         unset($this->combatsToResolve);
         $this->currentDefender = false;
         $this->attackers = new stdClass();
+        $this->defenders = new stdClass();
     }
 
     function resolveCombat($id)
@@ -465,6 +466,9 @@ class CombatRules
                 }
             }
         }
+    }
+
+    function combatResolutionMode(){
         $this->combatsToResolve = $this->combats;
         unset($this->combats);
     }

@@ -354,8 +354,14 @@ class GameRules {
                     case SELECT_BUTTON_EVENT:
                         $this->combatRules->undoDefendersWithoutAttackers();
                         if ($this->gameHasCombatResolutionMode == true) {
-                            $this->mode = COMBAT_RESOLUTION_MODE;
-                            $this->force->recoverUnits($this->phase,$this->moveRules,$this->mode);
+                            if (!$this->force->requiredCombats()) {
+                                $this->combatRules->combatResolutionMode();
+                                $this->mode = COMBAT_RESOLUTION_MODE;
+                                $this->force->clearRequiredCombats();
+                                $this->force->recoverUnits($this->phase, $this->moveRules, $this->mode);
+                            }else{
+                                $this->flashMessages[] = "Required Combats Remain";
+                            }
                         } else {
                             $this->mode = COMBAT_SETUP_MODE;
                         }
@@ -560,11 +566,10 @@ class GameRules {
             $this->moveRules->stopMove($this->force->units[$this->moveRules->movingUnitId]);
         }
         if ($this->force->moreCombatToResolve() == false && $this->moveRules->anyUnitIsMoving == false) {
+            /* @var Battle $battle */
+            $battle = Battle::getBattle();
+            $victory = $battle->victory;
             for ($i = 0; $i < count($this->phaseChanges); $i++) {
-
-                /* @var Battle $battle */
-                $battle = Battle::getBattle();
-                $victory = $battle->victory;
                 if ($this->phaseChanges[$i]->currentPhase == $this->phase) {
                     $this->phase = $this->phaseChanges[$i]->nextPhase;
                     $this->mode = $this->phaseChanges[$i]->nextMode;

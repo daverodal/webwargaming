@@ -184,6 +184,7 @@ class NapoleonsTrainingAcademy extends Battle {
             $this->display = new Display();
             $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
+            $this->force->combatRequired = true;
             $this->terrain = new Terrain();
 //            $this->terrain->setMaxHex("2010");
             $this->moveRules = new MoveRules($this->force, $this->terrain);

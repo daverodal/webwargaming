@@ -40,6 +40,7 @@
                 </div>
                 <span id="clock"></span>
                 <span id="status"></span>
+                <span id="requiredCombats"></span>
                 <span id="victory"></span>
             </div>
             <div style="clear:both;"></div>
@@ -60,6 +61,8 @@
 
                 <div id="crt">
                     <div class="close">X</div>
+                    <div id="altTable">show cavalry table</div>
+                    <div id="mainTable">show normal table</div>
                     <h3>Combat Odds</h3>
 
                     <div class="tableWrapper main">

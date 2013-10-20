@@ -143,8 +143,36 @@
         word-break:break-all;
         font-family:'Nosifer';
     }
+    #requiredCombats{
+        background:white;
+        padding:0 3px;
+        font-family:sans-serif;
+    }
+    #altTable, #mainTable{
+        position:absolute;
+        right:18px;
+        text-decoration: underline;
+    }
 </style>
 <script type="text/javascript">
+$(document).ready(function(){
+    $("#altTable").on('click',function(){
+        $(this).hide();
+        $("#mainTable").show();
+        $('.tableWrapper.main').hide();
+        $('.tableWrapper.alt').show();
+    });
+    $("#mainTable").on('click',function(){
+        $(this).hide();
+        $("#altTable").show();
+        $('.tableWrapper.alt').hide();
+        $('.tableWrapper.main').show();
+    });
+    $("#altTable").show();
+    $("#mainTable").hide();
+    $(".tableWrapper.alt").hide();
+    $(".tableWrapper.main").show();
+});
 x.register("combatRules", function(combatRules,data) {
 
 for(var combatCol = 1;combatCol <= 10;combatCol++){

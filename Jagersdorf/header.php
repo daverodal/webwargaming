@@ -9,7 +9,7 @@
         top: 00px;
     }
     .blueUnit, .Russian{
-        background-color:rgb(132,181,255);
+        background-color:white;
     }
     img.counter{
         width:32px;

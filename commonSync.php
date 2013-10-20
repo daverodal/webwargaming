@@ -13,8 +13,11 @@ x.register("force", function(force,data) {
     var shadow;
     $("#floatMessage").hide();
     var showStatus = false;
+    var totalAttackers = 0;
+    var totalDefenders = 0;
     for (i in units) {
         color = "#ccc #666 #666 #ccc";
+        style = "solid";
         $("#"+i + " .arrow").css({opacity: "0.0"});
         $("#"+i+" .arrowClone").remove();
         boxShadow = "none";
@@ -27,6 +30,11 @@ x.register("force", function(force,data) {
             $("#"+i+" .forceMarch").show();
         }else{
             $("#"+i+" .forceMarch").hide();
+        }
+        if(force.requiredDefenses[i] === true){
+            color = "black";
+            style = "dotted";
+            totalDefenders++;
         }
         switch(units[i].status){
             case <?=STATUS_CAN_REINFORCE?>:
@@ -47,6 +55,11 @@ x.register("force", function(force,data) {
 //                    shadow = false;
 
 //                    color = "purple";
+                }
+                if(force.requiredAttacks[i] === true){
+                    color =  "black";
+                    style = "dotted";
+                    totalAttackers++;
                 }
                 break;
             case <?=STATUS_REINFORCING?>:
@@ -245,7 +258,7 @@ x.register("force", function(force,data) {
         }
         /*$("#status").html(status);*/
 //        $("#"+i).css({borderColor: color});
-        $("#"+i).css({borderColor: color});
+        $("#"+i).css({borderColor: color,borderStyle:style});
         if(shadow){
             $("#"+i+" section").addClass("shadowy");
         }else{
@@ -256,6 +269,12 @@ x.register("force", function(force,data) {
 
 
     }
+    if(totalAttackers || totalDefenders){
+        $("#requiredCombats").html(totalAttackers+" attackers "+totalDefenders+" defenders required");
+    }else{
+        $("#requiredCombats").html('');
+    }
+
     if(!showStatus){
         $("#floatMessage").removeAttr("hasDragged");
     }

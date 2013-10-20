@@ -621,7 +621,7 @@ class MoveRules{
         $victory->preStartMovingUnit($unit);
 
         /*
-         * remove the true || to make Active Locking zoc's
+         * Don't think this is important test. Unit will be STATUS_STOPPED if cannot move.
          */
         if (!$this->stickyZOC || $this->force->unitIsZOC($id) == false) {
             if ($unit->setStatus( STATUS_MOVING) == true) {

@@ -204,6 +204,25 @@ class unit implements JsonSerializable
             case STATUS_DEFENDING:
             case STATUS_ATTACKING:
                 $this->status = $status;
+                $id = $this->id;
+                if($status === STATUS_ATTACKING){
+                    if(isset($battle->force->requiredAttacks->$id)){
+                        $battle->force->requiredAttacks->$id = false;
+                    }
+                }
+                if($status === STATUS_DEFENDING){
+                    if(isset($battle->force->requiredDefenses->$id)){
+                        $battle->force->requiredDefenses->$id = false;
+                    }
+                }
+                if($status === STATUS_READY){
+                    if(isset($battle->force->requiredAttacks->$id)){
+                        $battle->force->requiredAttacks->$id = true;
+                    }
+                    if(isset($battle->force->requiredDefenses->$id)){
+                        $battle->force->requiredDefenses->$id = true;
+                    }
+                }
                 break;
 
             case STATUS_MOVING:
@@ -373,6 +392,9 @@ class Force
     public $eliminationTrayHexagonX;
     public $eliminationTrayHexagonY;
     public $exchangeAmount;
+    public $requiredAttacks;
+    public $requiredDefenses;
+    public $combatRequired;
 
     function __construct($data = null)
     {
@@ -405,10 +427,26 @@ class Force
             $this->retreatHexagonList = array();
             $this->eliminationTrayHexagonX = 1;
             $this->eliminationTrayHexagonY = 2;
+            $this->requiredAttacks = new stdClass();
+            $this->requiredDefenses = new stdClass();
+            $this->combatRequired = false;
         }
     }
 
 
+    function requiredCombats(){
+        foreach($this->requiredAttacks as $attack){
+            if($attack === true){
+                return true;
+            }
+        }
+        foreach($this->requiredDefenses as $defense){
+            if($defense === true){
+                return true;
+            }
+        }
+        return false;
+    }
     function addToRetreatHexagonList($id, $retreatHexagon)
     {
 
@@ -1078,6 +1116,10 @@ class Force
         return $moreCombatToResolve;
     }
 
+    function clearRequiredCombats(){
+        $this->requiredAttacks = new stdClass();
+        $this->requiredDefenses = new stdClass();
+    }
     function recoverUnits($phase,$moveRules, $mode)
     {
         $battle  = Battle::getBattle();
@@ -1132,8 +1174,12 @@ class Force
                     if($phase == BLUE_COMBAT_PHASE || $phase == RED_COMBAT_PHASE){
                         if($mode == COMBAT_SETUP_MODE){
                             $status = STATUS_UNAVAIL_THIS_PHASE;
-                            if($this->units[$id]->forceId == $this->attackingForceId &&
-                                $this->unitIsZOC($id,  $this->units[$id]->range )){
+                            /* unitIsZoc has Side Effect */
+                            $isZoc = $this->unitIsZoc($id);
+                            if($isZoc){
+                                $this->markRequired($id);
+                            }
+                            if($this->units[$id]->forceId == $this->attackingForceId && ($isZoc || $this->unitIsInRange($id))){
                                 $status = STATUS_READY;
                             }
                         }
@@ -1148,7 +1194,7 @@ class Force
                     }
                 if($mode  == MOVING_MODE && $moveRules->stickyZOC){
                     if($this->units[$id]->forceId == $this->attackingForceId &&
-                        $this->unitIsZOC($id,  1 )){
+                        $this->unitIsZOC($id)){
                         $status = STATUS_STOPPED;
                     }
                 }
@@ -1347,12 +1393,17 @@ class Force
         }else{
         $this->units[$id]->status = STATUS_ATTACKING;
         }
+        if(isset($this->requiredAttacks->$id)){
+            $this->requiredAttacks->$id = false;
+        }
     }
 
     function setupDefender($id)
     {
         $this->units[$id]->status = STATUS_DEFENDING;
-        ;
+        if(isset($this->requiredDefenses->$id)){
+            $this->requiredDefenses->$id = false;
+        }
     }
 
     function getEliminated($id, $hexagon)
@@ -1392,6 +1443,9 @@ class Force
         $this->units[$id]->status = STATUS_READY;
         $this->units[$id]->combatNumber = 0;
         $this->units[$id]->combatIndex = 0;
+        if(isset($this->requiredAttacks->$id)){
+            $this->requiredAttacks->$id = true;
+        }
     }
 
 
@@ -1642,16 +1696,42 @@ class Force
         return $isRetreating;
     }
 
-    function unitIsZOC($id, $range = 1)
+    function unitIsZOC($id)
+    {
+        $battle = Battle::getBattle();
+        /* @var mapData $mapData */
+        $mapData = $battle->mapData;
+        /* @var unit $unit */
+        $unit = $this->units[$id];
+
+        $mapHex = $mapData->getHex($unit->hexagon->name);
+        if ($this->mapHexIsZoc($mapHex, $unit->forceId == $this->attackingForceId ? $this->defendingForceId : $this->attackingForceId)) {
+            return true;
+        }
+        return false;
+    }
+
+    function markRequired($id){
+        if($this->combatRequired){
+            if ($this->units[$id]->forceId == $this->attackingForceId) {
+                $this->markRequiredAttack($id);
+            } else {
+                $this->markRequiredDefense($id);
+            }
+        }
+    }
+    function unitIsInRange($id)
     {
         $isZOC = false;
-
+        $range = $this->units[$id]->range;
+        if($range <= 1){
+            return false;
+        }
         if ($this->ZOCrule == true) {
             $los = new Los();
             $los->setOrigin($this->units[$id]->hexagon);
 
-            for ($i = 0; $i < count($this->units); $i++)
-            {
+            for ($i = 0; $i < count($this->units); $i++) {
                 $los->setEndPoint($this->units[$i]->hexagon);
                 if ($los->getRange() <= $range
                     && $this->units[$i]->forceId != $this->units[$id]->forceId
@@ -1664,6 +1744,12 @@ class Force
             }
         }
         return $isZOC;
+    }
+    function markRequiredAttack($id){
+        $this->requiredAttacks->$id = true;
+    }
+    function markRequiredDefense($id){
+        $this->requiredDefenses->$id = true;
     }
     function hexIsZOC($hexagon, $range = 1)
     {
