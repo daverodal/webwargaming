@@ -74,6 +74,10 @@ class NapOnMars extends Battle {
         @include_once "playAs.php";
     }
 
+    static function playMulti($name, $wargame){
+        @include_once "playMulti.php";
+    }
+
     static function getView($name, $mapUrl,$player = 0, $arg = false, $argTwo = false){
 
         @include_once "view.php";
@@ -298,7 +302,7 @@ class NapOnMars extends Battle {
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 206, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "austrian");
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 204, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "austrian");
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 102, "multiArt.png", 10, 10, 3, true, STATUS_READY, "B", 1, 2, "austrian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 101, "multiInf.png", 8, 8, 4, true, STATUS_READY, "B", 1, 1, "austrian");
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 108, "multiInf.png", 8, 8, 4, true, STATUS_READY, "B", 1, 1, "austrian");
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 207, "multiInf.png", 8, 8, 4, true, STATUS_READY, "B", 1, 1, "austrian");
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 203, "multiInf.png", 8, 8, 4, true, STATUS_READY, "B", 1, 1, "austrian");
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 209, "multiInf.png", 8, 8, 4, true, STATUS_READY, "B", 1, 1, "austrian");

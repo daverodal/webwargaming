@@ -54,6 +54,11 @@ class OMCW extends Battle {
     static function playAs($name, $wargame){
         @include_once "OMCW/playAs.php";
     }
+
+    static function playMulti($name, $wargame){
+        @include_once "playMulti.php";
+    }
+
     public function resize($small,$player){
         if($small){
             $this->mapViewer[$player]->setData(44,60, // originX, originY

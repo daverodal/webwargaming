@@ -131,6 +131,7 @@ class unit implements JsonSerializable
     {
         $battle = Battle::getBattle();
         $success = false;
+        $prevStatus = $this->status;
         switch ($status)
         {
             case STATUS_EXCHANGED:
@@ -203,23 +204,25 @@ class unit implements JsonSerializable
             case STATUS_READY:
             case STATUS_DEFENDING:
             case STATUS_ATTACKING:
+                echo "sss SETSTATUS $status ";
                 $this->status = $status;
                 $id = $this->id;
                 if($status === STATUS_ATTACKING){
-                    if(isset($battle->force->requiredAttacks->$id)){
+                    if($battle->force->combatRequired && isset($battle->force->requiredAttacks->$id)){
                         $battle->force->requiredAttacks->$id = false;
                     }
                 }
                 if($status === STATUS_DEFENDING){
-                    if(isset($battle->force->requiredDefenses->$id)){
+                    if($battle->force->combatRequired && isset($battle->force->requiredDefenses->$id)){
                         $battle->force->requiredDefenses->$id = false;
                     }
                 }
                 if($status === STATUS_READY){
-                    if(isset($battle->force->requiredAttacks->$id)){
+
+                    if($battle->force->combatRequired && isset($battle->force->requiredAttacks->$id)){
                         $battle->force->requiredAttacks->$id = true;
                     }
-                    if(isset($battle->force->requiredDefenses->$id)){
+                    if($battle->force->combatRequired && isset($battle->force->requiredDefenses->$id)){
                         $battle->force->requiredDefenses->$id = true;
                     }
                 }
@@ -1387,21 +1390,26 @@ class Force
 
     function setupAttacker($id, $range)
     {
+        echo "setup Attacker $id";
         if($range > 1){
             $this->units[$id]->status = STATUS_BOMBARDING;
 
         }else{
         $this->units[$id]->status = STATUS_ATTACKING;
         }
-        if(isset($this->requiredAttacks->$id)){
+
+        if($this->combatRequired && isset($this->requiredAttacks->$id)){
             $this->requiredAttacks->$id = false;
         }
     }
 
     function setupDefender($id)
     {
+        echo "setup Defender $id";
         $this->units[$id]->status = STATUS_DEFENDING;
-        if(isset($this->requiredDefenses->$id)){
+        $battle = Battle::getBattle();
+
+        if($this->combatRequired && isset($this->requiredDefenses->$id)){
             $this->requiredDefenses->$id = false;
         }
     }
@@ -1440,10 +1448,11 @@ class Force
 
     function undoAttackerSetup($id)
     {
+        echo "Undef attacker $id ";
         $this->units[$id]->status = STATUS_READY;
         $this->units[$id]->combatNumber = 0;
         $this->units[$id]->combatIndex = 0;
-        if(isset($this->requiredAttacks->$id)){
+        if($this->combatRequired && isset($this->requiredAttacks->$id)){
             $this->requiredAttacks->$id = true;
         }
     }

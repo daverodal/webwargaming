@@ -4,6 +4,7 @@
     }
     #gameRules{
         font-family:sans-serif;
+        display:none;
     }
     #gameRules table, #gameRules th, #gameRules td{
         border:1px solid black;

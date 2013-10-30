@@ -103,6 +103,11 @@ class HotWar extends Battle
         @include_once "playAs.php";
     }
 
+    static function playMulti($name, $wargame){
+        @include_once "playMulti.php";
+    }
+
+
     public function resize($small, $player)
     {
         if ($small) {

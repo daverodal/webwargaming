@@ -87,6 +87,8 @@ class CombatRules
     function setupCombat($id, $shift = false)
     {
         $mapData = MapData::getInstance();
+        $battle = Battle::getBattle();
+        $victory = $battle->victory;
 
         $cd = $this->currentDefender;
 
@@ -115,10 +117,12 @@ class CombatRules
                                 foreach ($combats->attackers as $attackerId => $attacker) {
                                     $this->force->undoAttackerSetup($attackerId);
                                     unset($this->attackers->$attackerId);
+                                    $victory     ->postUnsetAttacker($this->units[$attackerId]);
                                 }
                                 foreach ($combats->defenders as $defenderId => $defender) {
                                     $this->force->setStatus($defenderId, STATUS_READY);
                                     unset($this->defenders->$defenderId);
+                                    $victory->postUnsetDefender($this->units[$defenderId]);
                                 }
                                 unset($this->combats->{$combatId});
                                 $this->currentDefender = false;
@@ -142,6 +146,7 @@ class CombatRules
                             unset($this->attackers->$attackerId);
                             unset($this->combats->$cd->attackers->$attackerId);
                             unset($this->combats->$cd->thetas->$attackerId);
+                            $victory->postUnsetAttacker($this->units[$attackerId]);
                         }
                         $this->defenders->$id = $this->currentDefender;
                     } else {
@@ -162,6 +167,7 @@ class CombatRules
                     $this->combats->$cd = new Combat();
                 }
                 $this->combats->$cd->defenders->$id = $id;
+//                $victory->postSetDefender($this->force->units[$id]);
             }
         } else // attacker
         {
@@ -172,6 +178,7 @@ class CombatRules
                     unset($this->attackers->$id);
                     unset($this->combats->$cd->attackers->$id);
                     unset($this->combats->$cd->thetas->$id);
+                    $victory->postUnsetAttacker($this->units[$id]);
                     $this->crt->setCombatIndex($cd);
                 } else {
                     $good = true;
@@ -231,9 +238,11 @@ class CombatRules
                                     $this->combats->$cd->thetas->$id = new stdClass();
                                 }
                                 $this->combats->$cd->thetas->$id->$defenderId = $bearing;
+                                $victory->postSetDefender($this->force->units[$defenderId]);
                                 $this->crt->setCombatIndex($cd);
                             }
                         }
+                        $victory->postSetAttacker($this->force->units[$id]);
                     }
                 }
             }
@@ -243,6 +252,8 @@ class CombatRules
 
     function cleanUpAttacklessDefenders()
     {
+        $battle = Battle::getBattle();
+        $victory = $battle->victory;
         if (!$this->combats) {
             $this->combats = new stdClass();
         }
@@ -254,6 +265,7 @@ class CombatRules
                 foreach ($combat->defenders as $defenderId => $defender) {
                     $this->force->setStatus($defenderId, STATUS_READY);
                     unset($this->defenders->$defenderId);
+                    $victory->postUnsetDefender($this->force->units[$defenderId]);
                 }
                 unset($this->combats->$id);
             }
@@ -447,10 +459,13 @@ class CombatRules
     {
         $this->currentDefender = false;
         if ($this->combats) {
+            $battle = Battle::getBattle();
+            $victory = $battle->victory;
             foreach ($this->combats as $defenderId => $combat) {
                 if (count((array)$combat->attackers) == 0) {
                     unset($this->combats->$defenderId);
                     $this->force->setStatus($defenderId, STATUS_READY);
+                    $victory->postUnsetDefender($this->force->units[$defenderId]);
                     continue;
                 }
                 if ($combat->index < 0) {
@@ -458,10 +473,12 @@ class CombatRules
                         foreach ($combat->attackers as $attackerId => $attacker) {
                             unset($this->attackers->$attackerId);
                             $this->force->setStatus($attackerId, STATUS_READY);
+                            $victory->postUnsetAttacker($this->force->units[$attackerId]);
                         }
                     }
                     unset($this->combats->$defenderId);
                     $this->force->setStatus($defenderId, STATUS_READY);
+                    $victory->postUnsetDefender($this->force->units[$defenderId]);
                     continue;
                 }
             }

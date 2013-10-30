@@ -32,6 +32,7 @@ x.register("force", function(force,data) {
             $("#"+i+" .forceMarch").hide();
         }
         if(force.requiredDefenses[i] === true){
+
             color = "black";
             style = "dotted";
             totalDefenders++;

@@ -80,6 +80,10 @@ class Jagersdorf extends Battle {
         @include_once "playAs.php";
     }
 
+    static function playMulti($name, $wargame){
+        @include_once "playMulti.php";
+    }
+
     static function enterMulti(){
         echo "hi";
         @include_once "enterMulti.php";

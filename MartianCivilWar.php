@@ -102,6 +102,10 @@ class MartianCivilWar extends Battle
         @include_once "TMCW/playAs.php";
     }
 
+    static function playMulti($name, $wargame){
+        @include_once "playMulti.php";
+    }
+
     public function resize($small, $player)
     {
         if ($small) {
