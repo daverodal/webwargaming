@@ -85,7 +85,6 @@ class Jagersdorf extends Battle {
     }
 
     static function enterMulti(){
-        echo "hi";
         @include_once "enterMulti.php";
     }
 

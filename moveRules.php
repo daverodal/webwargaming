@@ -67,7 +67,6 @@ class MoveRules{
 // id will be map if map event, id will be unit id if counter event
     function moveUnit($eventType, $id, $hexagon, $turn)
     {
-        var_dump($id);
         $dirty = false;
         if ($eventType == SELECT_MAP_EVENT) {
             if ($this->anyUnitIsMoving) {
@@ -340,7 +339,6 @@ class MoveRules{
                 }
                 $newHexNum = $mapHex->neighbors[$i - 1];
 //                $newHex = new Hexagon($newHexNum);
-                var_dump($this->movingUnitId);
                 $moveAmount = $this->terrain->getTerrainMoveCost($hexNum, $newHexNum,$unit->forceMarch, $unit) + $exitCost;
                 $newMapHex = $this->mapData->getHex($newHexNum);
                 if($newMapHex->isOccupied($this->force->defendingForceId)){

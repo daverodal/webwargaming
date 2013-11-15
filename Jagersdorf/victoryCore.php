@@ -94,9 +94,7 @@ class victoryCore
         /* @var Force $force */
         $force = $battle->force;
         $force->clearRequiredCombats();
-        var_dump($cR->attackers);
         $defenderForceId = $force->defendingForceId;
-        var_dump($defenderForceId);
         foreach($cR->attackers as $attackId => $combatId){
             $mapHex = $mapData->getHex($force->getUnitHexagon($attackId)->name);
             $neighbors = $mapHex->neighbors;
@@ -105,15 +103,10 @@ class victoryCore
                 $hex = $mapData->getHex($neighbor);
                 if($hex->isOccupied($defenderForceId)){
                     $units = $hex->forces[$defenderForceId];
-                    var_dump($units);
                     foreach($units as $unitId=>$unitVal){
                         $requiredVal = true;
-                        echo "unit id $unitId ";
-                        var_dump($cR->defenders);
                         $combatId = $cR->defenders->$unitId;
-                        if($combatId){
-                            echo "hii ";
-                            echo "combat id $combatId ";
+                        if($combatId !== null){
                             $attackers = $cR->combats->$combatId->attackers;
                             if($attackers){
                                 if(count((array)$attackers) > 0){
@@ -123,34 +116,28 @@ class victoryCore
 
                         }
 
-                        echo "her ";
                         $force->requiredDefenses->$unitId = $requiredVal;
-                        echo " aaare ";
                     }
                 }
             }
         }
     }
     public function postUnsetAttacker($args){
-        echo "Post Unset Attacker";
         $this->calcFromAttackers();
         list($unit) = $args;
         $id = $unit->id;
     }
     public function postUnsetDefender($args){
-        echo "Post Unset Defender ";
         $this->calcFromAttackers();
 
         list($unit) = $args;
     }
     public function postSetAttacker($args){
-        echo "Post Attacker ";
         $this->calcFromAttackers();
 
         list($unit) = $args;
     }
     public function postSetDefender($args){
-        echo "Post set Defender ";
         $this->calcFromAttackers();
 
     }

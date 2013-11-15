@@ -204,7 +204,6 @@ class unit implements JsonSerializable
             case STATUS_READY:
             case STATUS_DEFENDING:
             case STATUS_ATTACKING:
-                echo "sss SETSTATUS $status ";
                 $this->status = $status;
                 $id = $this->id;
                 if($status === STATUS_ATTACKING){
@@ -1390,7 +1389,6 @@ class Force
 
     function setupAttacker($id, $range)
     {
-        echo "setup Attacker $id";
         if($range > 1){
             $this->units[$id]->status = STATUS_BOMBARDING;
 
@@ -1405,7 +1403,6 @@ class Force
 
     function setupDefender($id)
     {
-        echo "setup Defender $id";
         $this->units[$id]->status = STATUS_DEFENDING;
         $battle = Battle::getBattle();
 
@@ -1448,7 +1445,6 @@ class Force
 
     function undoAttackerSetup($id)
     {
-        echo "Undef attacker $id ";
         $this->units[$id]->status = STATUS_READY;
         $this->units[$id]->combatNumber = 0;
         $this->units[$id]->combatIndex = 0;
