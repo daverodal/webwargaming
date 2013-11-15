@@ -31,17 +31,6 @@ class victoryCore
         return $ret;
     }
 
-    public function reduceUnit($args)
-    {
-        $unit = $args[0];
-        if($unit->forceId == 1) {
-            $victorId = 2;
-            $this->victoryPoints[$victorId] += $unit->strength;
-        } else {
-            $victorId = 1;
-            $this->victoryPoints[$victorId] += $unit->strength;
-        }
-    }
 
     public function phaseChange()
     {
@@ -51,30 +40,22 @@ class victoryCore
         $attackingId = $arg[0];
         $battle = Battle::getBattle();
 
+        /* @var GameRules $gameRules */
         $gameRules = $battle->gameRules;
         $turn = $gameRules->turn;
-
-        if($this->phase == BLUE_MOVE_PHASE || $this->phase ==  RED_MOVE_PHASE){
+        if($gameRules->phase == BLUE_MOVE_PHASE || $gameRules->phase ==  RED_MOVE_PHASE){
             $gameRules->flashMessages[] = "@hide crt";
         }
+
+        if ($turn > $gameRules->maxTurn){
+            return;
+        }
         if($attackingId == BLUE_FORCE){
-            $gameRules->flashMessages[] = "Austrian Player Turn";
-            $gameRules->replacementsAvail = 1;
+            $gameRules->flashMessages[] = "Red Player Turn";
         }
         if($attackingId  == RED_FORCE){
-            $gameRules->flashMessages[] = "French Player Turn";
-            $gameRules->replacementsAvail = 10;
+            $gameRules->flashMessages[] = "Blue Player Turn";
         }
-
-        if($this->phase == BLUE_MOVE_PHASE || $this->phase ==  RED_MOVE_PHASE){
-            $this->flashMessages[] = "@hide crt";
-            if($this->force->reinforceTurns->$turn->$attackingId){
-                $this->flashMessages[] = "You have reinforcements.";
-                $this->flashMessages[] = "@show OBC";
-
-            }
-        }
-
     }
     public function postRecoverUnits($args){
         $b = Battle::getBattle();
@@ -82,6 +63,25 @@ class victoryCore
 //            $b->gameRules->flashMessages[] = "French Movement halved this turn.";
 //        }
 
+    }
+    public function gameOver(){
+
+        $battle = Battle::getBattle();
+
+        $ownerObj = $battle->mapData->specialHexes;
+        foreach($ownerObj as $owner){
+            break;
+        }
+        if($owner == 0){
+            $name = "Nobody Wins";
+        }
+        if($owner == 1){
+            $name = "<span class='rebelFace'>Red Wins </span>";
+        }
+        if($owner == 2){
+            $name = "<span class='loyalistFace'>Blue Wins </span>";
+        }
+        $battle->gameRules->flashMessages[] = $name;
     }
     public function postRecoverUnit($args)
     {

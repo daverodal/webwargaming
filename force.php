@@ -313,7 +313,7 @@ class unit implements JsonSerializable
         if($mapHex){
             $mapHex->setUnit($this->forceId,$this->id);
             $mapHexName = $mapHex->name;
-            if($mapData->specialHexes->$mapHexName){
+            if(isset($mapData->specialHexes->$mapHexName)){
                 if($mapData->specialHexes->$mapHexName != $this->forceId){
                     $victory = $battle->victory;
                     $victory->specialHexChange($mapHexName, $this->forceId);

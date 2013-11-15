@@ -54,7 +54,7 @@ class victoryCore
         $gameRules = $battle->gameRules;
         $turn = $gameRules->turn;
 
-        if($this->phase == BLUE_MOVE_PHASE || $this->phase ==  RED_MOVE_PHASE){
+        if($gameRules->phase == BLUE_MOVE_PHASE || $gameRules->phase ==  RED_MOVE_PHASE){
             $gameRules->flashMessages[] = "@hide crt";
         }
         if($attackingId == BLUE_FORCE){
@@ -66,11 +66,11 @@ class victoryCore
             $gameRules->replacementsAvail = 10;
         }
 
-        if($this->phase == BLUE_MOVE_PHASE || $this->phase ==  RED_MOVE_PHASE){
-            $this->flashMessages[] = "@hide crt";
-            if($this->force->reinforceTurns->$turn->$attackingId){
-                $this->flashMessages[] = "You have reinforcements.";
-                $this->flashMessages[] = "@show OBC";
+        if($gameRules->phase == BLUE_MOVE_PHASE || $gameRules->phase ==  RED_MOVE_PHASE){
+            $gameRules->flashMessages[] = "@hide crt";
+            if($gameRules->force->reinforceTurns->$turn->$attackingId){
+                $gameRules->flashMessages[] = "You have reinforcements.";
+                $gameRules->flashMessages[] = "@show OBC";
 
             }
         }

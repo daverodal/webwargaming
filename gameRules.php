@@ -159,6 +159,7 @@ class GameRules {
         $this->flashMessages = array();
         $this->turnChange = false;
 
+        echo "mode ".$this->mode;
         switch ($this->mode) {
 
             case REPLACING_MODE:
@@ -575,6 +576,9 @@ class GameRules {
                     $this->mode = $this->phaseChanges[$i]->nextMode;
                     $this->replacementsAvail = false;
                     $this->phaseClicks[] = $click+1;
+                    if ($this->phaseChanges[$i]->phaseWillIncrementTurn == true) {
+                       $this->incrementTurn();
+                    }
                     if($this->attackingForceId != $this->phaseChanges[$i]->nextAttackerId){
                         $victory->playerTurnChange($this->phaseChanges[$i]->nextAttackerId);
                         $this->turnChange = true;
@@ -583,16 +587,12 @@ class GameRules {
                     $victory->phaseChange();
                     $this->defendingForceId = $this->phaseChanges[$i]->nextDefenderId;
 
-                    if ($this->phaseChanges[$i]->phaseWillIncrementTurn == true) {
-
-                        $this->incrementTurn();
-                    }
-                    $turn = $this->turn;
                     $this->force->setAttackingForceId($this->attackingForceId);
 
                     $this->force->recoverUnits($this->phase,$this->moveRules, $this->mode);
 
                     if ($this->turn > $this->maxTurn) {
+                        $victory->gameOver();
                         $this->flashMessages[] = "@gameover";
                         $this->mode = GAME_OVER_MODE;
                         $this->phase = GAME_OVER_PHASE;

@@ -438,7 +438,7 @@ function flashMessage(playerStatus){
                 return;
             }
             if(mess.match(/^@gameover/)){
-                $("#gameViewer").append('<div id="FlashMessage" style="top:'+y+'px;left:'+x+'px;" class="flashMessage">'+"Victory"+'</div>');
+                $("#gameViewer").append('<div id="FlashMessage" style="top:'+y+'px;left:'+x+'px;" class="flashMessage">'+"Game Over"+'</div>');
                 $("#FlashMessage").animate({opacity:0},2400,flashMessage);
 
 //                game = mess.match(/^@show ([^,]*)/);

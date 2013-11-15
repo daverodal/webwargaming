@@ -897,6 +897,7 @@ class MoveRules{
     }
     function startDeploying($id, $turn)
     {
+        echo "Start Deploying $id ";
         if ($this->force->getUnitReinforceTurn($id) <= $turn) {
             /* @var Unit $unit */
             $unit = $this->force->getUnit($id);

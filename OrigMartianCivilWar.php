@@ -37,6 +37,7 @@ class OMCW extends Battle {
     public $combatRules;
     public $gameRules;
     public $prompt;
+    public $display;
     public $victory;
 
     public $players;
@@ -48,7 +49,10 @@ class OMCW extends Battle {
         @include_once "commonHeader.php";
         @include_once "header.php";
     }
-    static function getView($name, $mapUrl,$player = 0, $arg = false, $argTwo = false){
+    static function getView($name, $mapUrl, $player = 0, $player = 0, $arg = false, $argTwo = false)
+    {
+        global $force_name;
+        $player = $force_name[$player];
         @include_once "view.php";
     }
     static function playAs($name, $wargame){
@@ -93,38 +97,43 @@ class OMCW extends Battle {
         $data->gameRules = $this->gameRules->save();
         $data->combatRules = $this->combatRules->save();
         $data->players = $this->players;
+        $data->display = $this->display;
         $data->playerData = $this->playerData;
         return $data;
     }
 
-    function poke($event, $id, $x, $y, $user, $click){
+    function poke($event, $id, $x, $y, $user, $click)
+    {
+        echo "Poke ";
+
         $playerId = $this->gameRules->attackingForceId;
-        if($this->players[$this->gameRules->attackingForceId] != $user){
+        if ($this->players[$this->gameRules->attackingForceId] != $user) {
             return false;
         }
 
-        switch($event){
+        echo "Past ";
+        switch ($event) {
             case SELECT_MAP_EVENT:
                 $mapGrid = new MapGrid($this->mapViewer[$playerId]);
                 $mapGrid->setPixels($x, $y);
-                $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon(),$click );
+                return $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon(), $click);
                 break;
 
             case SELECT_COUNTER_EVENT:
                 /* fall through */
-            case    SELECT_SHIFT_COUNTER_EVENT:
-
-                $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id),$click);
+            case SELECT_SHIFT_COUNTER_EVENT:
+                echo "did it ";
+                return $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id), $click);
 
                 break;
 
             case SELECT_BUTTON_EVENT:
-                $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0,0 );
-
+                $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0, $click);
 
         }
-        return true;
+        echo "Poked ";
 
+        return true;
     }
     function __construct($data = null)
     {
@@ -241,26 +250,26 @@ class OMCW extends Battle {
 
 
             $i = 1;
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "R", 1, 1, "rebel");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_DEPLOY, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_DEPLOY, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_DEPLOY, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_DEPLOY, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_DEPLOY, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_DEPLOY, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_DEPLOY, "R", 1, 1, "rebel");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_DEPLOY, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_DEPLOY, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_DEPLOY, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_DEPLOY, "R", 1, 1, "sympth");
             $j = $i;
             $i=0;
             $j=11;
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_DEPLOY, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_DEPLOY, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_DEPLOY, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_DEPLOY, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_DEPLOY, "R", 1, 1, "sympth");
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_DEPLOY, "R", 1, 1, "sympth");
 
              // end unit data -------------------------------------------
 

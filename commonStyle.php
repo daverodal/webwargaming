@@ -787,6 +787,7 @@ h4:hover{
     /*border:none;*/
     font-size:100px;
     z-index:1000;
+    pointer-events:none;
 }
 #display button{
     font-size:30px;

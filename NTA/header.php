@@ -1,15 +1,15 @@
 <link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 <style type="text/css">
-    .blueUnit, .french, .playerTwo{
+    .blueUnit, .blue, .playerTwo{
         background-color:rgb(132,181,255);
         border-color:rgb(132,181,255);
     }
-    .frenchVP{
+    .blueVP{
         color:rgb(132,181,255);
         background: transparent;
         opacity:1.0;
     }
-    .austrianlVP{
+    .redlVP{
         color:rgb(239,115,74);
         background: transparent;
     }
@@ -19,10 +19,10 @@
     .armyGreen, .russian{
     background-color:  rgb(148,189,74);
     }
-    .austrian{
+    .red{
         background-color:rgb(239,115,74);
     }
-    .lightYellow, .austrian{
+    .lightYellow{
         background-color: rgb(255,239,156);
         border-color: rgb(255,239,156);
     }
@@ -51,7 +51,7 @@
 .tableWrapper.alt{
     display:none;
 }
-    .austrian div{
+    .red div{
         color:black;
     }
     .russian div{
@@ -145,7 +145,7 @@
     }
     #requiredCombats{
         background:white;
-        padding:0 3px;
+        padding:0 0px;
         font-family:sans-serif;
     }
     #altTable, #mainTable{
@@ -385,6 +385,27 @@ $("#status").show();
 }
 $("#crt h3").html(title);
 
+
+});
+
+x.register("vp", function(vp,data){
+    var ownerObj = data.specialHexes;
+    var owner;
+    for(i in ownerObj){
+       owner = ownerObj[i];
+        break;
+    }
+    var name;
+    if(owner == 0){
+        name = "Nobody Owns the tree";
+    }
+    if(owner == 1){
+        name = "<span class='rebelFace'>Red owns the tree </span>";
+    }
+    if(owner == 2){
+        name = "<span class='loyalistFace'>Blue owns the tree </span>";
+    }
+    $("#victory").html(name);
 
 });
 </script>
