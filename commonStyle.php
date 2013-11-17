@@ -28,6 +28,9 @@ h4:hover{
     padding:0 3px;
     font-family:sans-serif;
 }
+#victory{
+    padding:0;
+}
 #floatMessage{
     white-space: nowrap;
     position:absolute;

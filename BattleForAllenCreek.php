@@ -64,8 +64,6 @@ class BattleForAllenCreek extends Battle {
 
     function poke($event, $id, $x, $y, $user){
         $playerId = $this->gameRules->attackingForceId;
-        echo "user $user";
-        echo "pid $playerId";
         if($this->players[$this->gameRules->attackingForceId] != $user){
             return false;
         }

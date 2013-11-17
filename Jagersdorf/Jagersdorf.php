@@ -1,6 +1,6 @@
 <?php
 
-set_include_path(__DIR__ . "/Jagersdorf". PATH_SEPARATOR . __DIR__ . "/stdIncludes" . PATH_SEPARATOR .  get_include_path());
+set_include_path(__DIR__ .  PATH_SEPARATOR .  get_include_path());
 
 /* comment */
 require_once "constants.php";

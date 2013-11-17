@@ -133,12 +133,9 @@ class Terrain
 
         new Hexagon();
         list($x, $y) = Hexagon::getHexPartXY($hexName);
-//        echo "X $x Y $y";
         $this->maxTerrainY = $y + 4;/* for bottom and even odd columns */
         $this->maxTerrainX = $x;
-//        echo $this->maxTerrainY; echo " ";
 
-        // jejej
 
         for ($x = 0; $x < $this->maxTerrainX; $x++) {
             for ($y = 0; $y <= $this->maxTerrainY; $y++) {
@@ -414,7 +411,6 @@ class Terrain
 //        $hexpart = new Hexpart($hexsideX, $hexsideY);
 
         // if road, override terrain
-//        echo "Are we? X $hexsideX Y $hexsideY";
         $terrainCode = $this->getTerrainCodeXY($hexsideX,$hexsideY);
         if($railMove && ($terrainCode->road || $terrainCode->trail)){
             $moveCost = .5;
@@ -423,13 +419,9 @@ class Terrain
             }
         }
 //        if ($this->terrainIsXY($hexsideX, $hexsideY, "road") == true) {
-//            echo "ROAD TO RHOSE ISLAND";
 //            $moveCost = .5;
-//            echo "mc $moveCost\n";
 //        } elseif($this->terrainIsXY($hexsideX,$hexsideY, "trail") == true){
-//            echo "TRAIL THROUGH HELL";
 //            $moveCost = 1;
-//            echo "mc $moveCost\n";
 
 
 //        }

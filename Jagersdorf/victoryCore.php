@@ -11,15 +11,18 @@ class victoryCore
 {
     public $victoryPoints;
     private $movementCache;
+    public $gameOver;
 
     function __construct($data)
     {
         if($data) {
             $this->movementCache = $data->victory->movementCache;
             $this->victoryPoints = $data->victory->victoryPoints;
+            $this->gameOver = $data->victory->gameOver;
         } else {
-            $this->victoryPoints = array(0, 0, 0);
+            $this->victoryPoints = array(0, 0, 22);
             $this->movementCache = new stdClass();
+            $this->gameOver = false;
         }
     }
 
@@ -47,6 +50,40 @@ class victoryCore
     {
     }
 
+    private function checkVictory($battle){
+        $gameRules = $battle->gameRules;
+        $attackingId = $gameRules->attackingForceId;
+        $turn = $gameRules->turn;
+        if(!$this->gameOver){
+            $prussianWin = $russianWin = false;
+            if($this->victoryPoints[RUSSIAN_FORCE] > 20){
+                $russianWin = true;
+            }
+            if($this->victoryPoints[PRUSSIAN_FORCE] > 25){
+                $prussianWin = true;
+            }
+            if($russianWin && $prussianWin){
+                $this->winner = 0;
+                $gameRules->flashMessages[] = "Tie Game";
+            }
+            if($russianWin){
+                $this->winner = RUSSIAN_FORCE;
+                $gameRules->flashMessages[] = "Russian Win on Kills";
+            }
+            if($prussianWin){
+                $this->winner = RUSSIAN_FORCE;
+                $gameRules->flashMessages[] = "Prussian Win on Kills";
+            }
+            if($russianWin || $prussianWin){
+                $gameRules->flashMessages[] = "Game Over";
+                $this->gameOver = true;
+                $gameRules->mode = GAME_OVER_MODE;
+                $gameRules->phase = GAME_OVER_PHASE;
+                return true;
+            }
+        }
+        return false;
+    }
     public function playerTurnChange($arg){
         $attackingId = $arg[0];
         $battle = Battle::getBattle();
@@ -57,11 +94,14 @@ class victoryCore
         $turn = $gameRules->turn;
         $gameRules->flashMessages[] = "@hide crt";
 
-
-        if($attackingId == BLUE_FORCE){
+        if($this->checkVictory($battle)){
+            return;
+        }
+        /* $attackingId hasn't been switched yet XD */
+        if($attackingId == PRUSSIAN_FORCE){
             $gameRules->flashMessages[] = "Russian Player Turn";
         }
-        if($attackingId  == RED_FORCE){
+        if($attackingId  == RUSSIAN_FORCE){
             $gameRules->flashMessages[] = "Prussian Player Turn";
         }
 

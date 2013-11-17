@@ -159,7 +159,6 @@ class GameRules {
         $this->flashMessages = array();
         $this->turnChange = false;
 
-        echo "mode ".$this->mode;
         switch ($this->mode) {
 
             case REPLACING_MODE:

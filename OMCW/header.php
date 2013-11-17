@@ -244,7 +244,7 @@
         color:white;
         border-radius:10px;
         border:10px solid #555;
-        background:#333;
+        background:#aaa;
         margin-bottom:5px;
     }
     .unit{
@@ -287,6 +287,15 @@
     }
     .clone{
         /*pointer-events:none;*/
+    }
+
+    .playerOne{
+        background:rgb(223,88,66);
+        border-color:rgb(223,88,66) !important;
+    }
+    .playerTwo{
+        background:rgb(148,189,74);;
+        border-color:rgb(132,181,255) !important;
     }
 </style>
 <script>

@@ -928,20 +928,12 @@ class Force
 
             for ($i = 0; $i < count($this->units); $i++)
             {
-//                echo "eye $i ";
                 $los->setEndPoint($this->units[$i]->hexagon);
-//                echo "los ".$los->getRange();
-                if($los->getRange() == 1){
-//                                    echo "ids ".$this->units[$i]->forceId." and ".$this->units[$id]->forceId;
-//                    echo "status ".$this->units[$i]->status;
-
-                }
                 if ($los->getRange() == 1
                     && $this->units[$i]->forceId != $this->units[$id]->forceId
                     && $this->units[$i]->status != STATUS_CAN_REINFORCE
                     && $this->units[$i]->status != STATUS_ELIMINATED
                 ) {
-//                    echo "ZOC!!!!";
                     $isZOC = true;
                     break;
                 }
@@ -1278,113 +1270,6 @@ class Force
     function setStatus($id, $status)
     {
         return $this->units[$id]->setStatus($status);
-      /*  $success = false;
-        switch ($status)
-        {
-            case STATUS_EXCHANGED:
-                if ($this->units[$id]->forceId == $this->attackingForceId && ($this->units[$id]->status == STATUS_CAN_ATTACK_LOSE || $this->units[$id]->status == STATUS_CAN_EXCHANGE)) {
-                    if($this->units[$id]->isReduced){
-                        $this->units[$id]->status = STATUS_ELIMINATING;
-                        $amtLost = $this->units[$id]->minStrength;
-                    }else{
-                        $this->units[$id]->strength = $this->units[$id]->minStrength;
-                        $this->units[$id]->isReduced = true;
-                        $amtLost = $this->units[$id]->maxStrength - $this->units[$id]->minStrength;
-                    }
-                    echo "Amount Lost $amtLost";
-                    $this->exchangeAmount -= $amtLost;
-                    if($this->exchangeAmount <= 0){
-                        $success = true;
-                    }
-                }
-                break;
-
-            case STATUS_REINFORCING:
-                if ($this->units[$id]->forceId == $this->attackingForceId && $this->units[$id]->status == STATUS_CAN_REINFORCE) {
-                    $this->units[$id]->status = $status;
-                    $success = true;
-                }
-                break;
-
-            case STATUS_CAN_REINFORCE:
-                if ($this->units[$id]->forceId == $this->attackingForceId && $this->units[$id]->status == STATUS_REINFORCING) {
-                    $this->units[$id]->status = $status;
-                    $success = true;
-                }
-                break;
-
-            case STATUS_READY:
-            case STATUS_DEFENDING:
-            case STATUS_ATTACKING:
-                $this->units[$id]->status = $status;
-                break;
-
-            case STATUS_MOVING:
-                if ($this->units[$id]->forceId == $this->attackingForceId
-                    && ($this->units[$id]->status == STATUS_READY || $this->units[$id]->status == STATUS_REINFORCING)
-                ) {
-                    $this->units[$id]->status = $status;
-                    $this->units[$id]->moveCount = 0;
-                    $this->units[$id]->moveAmountUsed = 0;
-                    $success = true;
-                }
-                break;
-
-            case STATUS_STOPPED:
-                if ($this->units[$id]->status == STATUS_MOVING) {
-                    $this->units[$id]->status = $status;
-                    $this->units[$id]->moveAmountUsed = $this->units[$id]->maxMove;
-
-                    $success = true;
-                }
-                if ($this->units[$id]->status == STATUS_ADVANCING) {
-                    $this->units[$id]->status = STATUS_ADVANCED;
-//                    $this->units[$id]->moveAmountUsed = $$this->units[$id]->maxMove;
-                    $success = true;
-                }
-                if ($this->units[$id]->status == STATUS_RETREATING) {
-                    $this->units[$id]->status = STATUS_RETREATED;
-//                    $this->units[$id]->moveAmountUsed = $$this->units[$id]->maxMove;
-                    $success = true;
-                }
-                break;
-
-            case STATUS_EXITED:
-                if ($this->units[$id]->status == STATUS_MOVING) {
-                    $this->units[$id]->status = status;
-                    $success = true;
-                }
-                break;
-
-            case STATUS_RETREATING:
-                if ($this->units[$id]->status == STATUS_CAN_RETREAT) {
-                    $this->units[$id]->status = $status;
-                    $this->units[$id]->moveCount = 0;
-                    $this->units[$id]->moveAmountUsed = 0;
-                    $success = true;
-                }
-                break;
-
-            case STATUS_ADVANCING:
-                if ($this->units[$id]->status == STATUS_CAN_ADVANCE) {
-                    $this->units[$id]->status = $status;
-                    $this->units[$id]->moveCount = 0;
-                    $this->units[$id]->moveAmountUsed = 0;
-                    $success = true;
-                }
-                break;
-
-            case STATUS_ADVANCED:
-                if ($this->units[$id]->status == STATUS_ADVANCING) {
-                    $this->units[$id]->status = $status;
-                    $success = true;
-                }
-                break;
-
-            default:
-                break;
-        }
-        return $success;*/
     }
 
     function setupAttacker($id, $range)

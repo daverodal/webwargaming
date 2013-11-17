@@ -641,21 +641,6 @@ class MoveRules{
         }
     }
 
-//    function moveOver($id, $moveOverUnitId, $hexagon)
-//    {
-//        if ($this->force->unitIsFriendly($moveOverUnitId) == true) {
-//            if ($this->moveIsValid($id, $hexagon) == true) {
-//                if ($this->moveWillCauseStop($id, $moveOverUnitId, $hexagon) == false) {
-//                    $this->updateMoveData($this->force->units[$id], $hexagon);
-//                }
-//                else
-//                {
-//                    echo "unit cannot end move in hexagon with another unit";
-//                }
-//            }
-//        }
-//    }
-
     function stopMove(unit $movingUnit)
     {
         $battle  = Battle::getBattle();
@@ -897,7 +882,6 @@ class MoveRules{
     }
     function startDeploying($id, $turn)
     {
-        echo "Start Deploying $id ";
         if ($this->force->getUnitReinforceTurn($id) <= $turn) {
             /* @var Unit $unit */
             $unit = $this->force->getUnit($id);
