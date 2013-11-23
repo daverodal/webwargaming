@@ -1,10 +1,10 @@
 <?php
-set_include_path(__DIR__ . "/OMCW". PATH_SEPARATOR . __DIR__ . "/stdIncludes" . PATH_SEPARATOR .  get_include_path());
+set_include_path( __DIR__ . PATH_SEPARATOR .  get_include_path());
 
 require_once "crtTraits.php";
 require_once "constants.php";
 require_once "combatRules.php";
-require_once "OMCW/crt.php";
+require_once "crt.php";
 require_once "force.php";
 require_once "gameRules.php";
 require_once "hexagon.php";
@@ -60,7 +60,7 @@ class OMCW extends Battle {
         @include_once "view.php";
     }
     static function playAs($name, $wargame){
-        @include_once "OMCW/playAs.php";
+        @include_once "playAs.php";
     }
 
     static function playMulti($name, $wargame){

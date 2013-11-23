@@ -20,7 +20,7 @@ class victoryCore
             $this->victoryPoints = $data->victory->victoryPoints;
             $this->gameOver = $data->victory->gameOver;
         } else {
-            $this->victoryPoints = array(0, 0, 22);
+            $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
             $this->gameOver = false;
         }

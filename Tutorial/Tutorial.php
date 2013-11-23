@@ -1,8 +1,10 @@
 <?php
+set_include_path(__DIR__ . PATH_SEPARATOR . get_include_path());
+
 require_once "crtTraits.php";
 require_once "constants.php";
 require_once "combatRules.php";
-require_once "Tutorial/crt.php";
+require_once "crt.php";
 require_once "force.php";
 require_once "gameRules.php";
 require_once "hexagon.php";
@@ -46,16 +48,16 @@ class Tutorial extends Battle {
             $$k = $v;
         }
         @include_once "commonHeader.php";
-        @include_once "Tutorial/header.php";
+        @include_once "header.php";
 
     }
     static function getView($name, $mapUrl,$player = 0,$arg = false, $argTwo = false){
         global $force_name;
         $player = $force_name[$player];
-        @include_once "Tutorial/view.php";
+        @include_once "view.php";
     }
     static function playAs($name, $wargame){
-        @include_once "Tutorial/playAs.php";
+        @include_once "playAs.php";
     }
     public function resize($small,$player){
         if($small){
