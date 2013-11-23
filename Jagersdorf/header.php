@@ -270,9 +270,13 @@ x.register("combatRules", function(combatRules,data) {
                 if(combatRules.combats[cD].useAlt){
                     $('.tableWrapper.main').hide();
                     $('.tableWrapper.alt').show();
+                    $('#mainTable').show();
+                    $('#altTable').hide();
                 }else{
                     $('.tableWrapper.main').show();
                     $('.tableWrapper.alt').hide();
+                    $('#mainTable').hide();
+                    $('#altTable').show();
                 }
                 for(var loop in defenders){
                     $("#"+loop).css({borderColor: "yellow"});
@@ -384,9 +388,14 @@ x.register("combatRules", function(combatRules,data) {
                 if(combatRules.lastResolvedCombat.useAlt){
                     $('.tableWrapper.main').hide();
                     $('.tableWrapper.alt').show();
+                    $('#mainTable').show();
+                    $('#altTable').hide();
+
                 }else{
                     $('.tableWrapper.main').show();
                     $('.tableWrapper.alt').hide();
+                    $('#mainTable').hide();
+                    $('#altTable').show();
                 }
 //                    $(".row"+combatRoll+" .col"+combatCol).css('color',"white");
             }

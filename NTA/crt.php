@@ -22,22 +22,22 @@ class CombatResultsTable
 	//     index is 0 to 5;  dieSidesCount = 6
     
     function __construct(){
-        $this->combatResultsHeader = array("1:4","1:3","1:2","1:1","1.5:1","2:1","3:1","4:1","5:1","6:1");
+        $this->combatResultsHeader = array("1:5","1:4","1:3","1:2","1:1","2:1","3:1","4:1","5:1","6:1");
 	    $this->combatResultsTable = array(
-            array( AE, AE, AE, AE, AR, AR, DR, DR, DR, DR),
-            array( AE, AE, AE, AR, AR, AR, DR, DR, DR, DR),
-            array( AE, AE, AE, AR, AR, DR, EX, DR, DE, DE),
-            array( AE, AE, AR, AR, DR, DR, EX, DE, DE, DE),
-            array( AE, AE, AR, AR, DR, EX, DE, DE, DE, DE),
-            array( AR, AR, AR, DR, EX, EX, DE, DE, DE, DE),
+            array(AE, AR, AR, DR, DR, DR, DE, DE, DE, DE),
+            array(AE, AE, AR, AR, DR, DR, DR, DE, DE, DE),
+            array(AE, AE, AE, AR, DR, DR, DR, DR, DE, DE),
+            array(AE, AE, AE, AR, AR, DR, DR, DR, DE, DE),
+            array(AE, AE, AE, AR, AR, EX, DR, EX, EX, DE),
+            array(AE, AE, AE, AE, AR, AR, EX, EX, EX, DE),
         );
         $this->combatResultsTableCav = array(
-            array( AE, AE, AE, AE, AR, AR, DR, DR, DR, DR),
-            array( AE, AE, AE, AR, AR, AR, DR, DR, DR, DR),
-            array( AE, AE, AE, AR, AR, DR, DR, DR, DR, DR),
-            array( AE, AE, AR, AR, DR, DR, DR, DR, DR, DR),
-            array( AE, AE, AR, AR, DR, DR, DR, DR, DR, DR),
-            array( AR, AR, AR, DR, DR, DR, DR, DR, DR, DR),
+            array(AE, AR, AR, DR, DR, DR, DR, DR, DR, DR),
+            array(AE, AE, AR, AR, DR, DR, DR, DR, DR, DR),
+            array(AE, AE, AE, AR, DR, DR, DR, DR, DR, DR),
+            array(AE, AE, AE, AR, AR, DR, DR, DR, DR, DR),
+            array(AE, AE, AE, AR, AR, DR, DR, DR, DR, DR),
+            array(AE, AE, AE, AE, AR, AR, DR, DR, DR, DR),
         );
         $this->combatOddsTable = array(
             array(),
@@ -182,12 +182,9 @@ class CombatResultsTable
     function getCombatIndex($attackStrength, $defenseStrength){
         $ratio = $attackStrength / $defenseStrength;
         if($attackStrength >= $defenseStrength){
-            $combatIndex = floor($ratio)+2;
-            if($ratio >= 1.5){
-                $combatIndex++;
-            }
+            $combatIndex = floor($ratio)+3;
         }else{
-            $combatIndex = 4 - ceil($defenseStrength /$attackStrength );
+            $combatIndex = 5 - ceil($defenseStrength /$attackStrength );
         }
         return $combatIndex;
     }

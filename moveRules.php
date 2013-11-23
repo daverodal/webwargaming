@@ -165,18 +165,27 @@ class MoveRules{
                         $this->stopDeploying($movingUnitId);
                         $dirty = true;
                     }
-                    if ($this->force->unitCanMove($id) == true) {
-                        $this->startMoving($id);
-                        $this->calcMove($id);
-                        $dirty = true;
-                    }
-                    if ($this->force->unitCanReinforce($id) == true) {
-                        $this->startReinforcing($id, $turn);
-                        $dirty = true;
-                    }
-                    if ($this->force->unitCanDeploy($id) == true) {
-                        $this->startDeploying($id, $turn);
-                        $dirty = true;
+
+                    if($eventType == KEYPRESS_EVENT){
+                        if ($this->force->unitCanMove($movingUnitId) == true) {
+                            $this->startMoving($movingUnitId);
+                            $this->calcMove($movingUnitId);
+                            $dirty = true;
+                        }
+                    }else{
+                        if ($this->force->unitCanMove($id) == true) {
+                            $this->startMoving($id);
+                            $this->calcMove($id);
+                            $dirty = true;
+                        }
+                        if ($this->force->unitCanReinforce($id) == true) {
+                            $this->startReinforcing($id, $turn);
+                            $dirty = true;
+                        }
+                        if ($this->force->unitCanDeploy($id) == true) {
+                            $this->startDeploying($id, $turn);
+                            $dirty = true;
+                        }
                     }
                     // clicked on another unit
                     return $dirty;
