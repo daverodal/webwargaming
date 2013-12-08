@@ -1,0 +1,11 @@
+{
+  "NapsTraining": {
+    "name": "Napoleon's Training Academy",
+    "path": "NTA",
+    "fileName": "NapoleonsTrainingAcademy.php",
+    "scenarios": {
+      "main": {
+      }
+    }
+  }
+}

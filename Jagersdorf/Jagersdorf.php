@@ -294,7 +294,6 @@ class Jagersdorf extends Battle {
             // unit data -----------------------------------------------
             //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
 
-            if($arg == 0){
 //
 //                for($i = 1;$i<= 11;$i++){
 //                    $this->force->addUnit("infantry-1", RED_FORCE, 1305+$i, "RusInf.png",2,2,3, true, STATUS_READY, "R", 1, 1, "Russian");
@@ -313,6 +312,10 @@ class Jagersdorf extends Battle {
                     $this->terrain->addReinforceZone($zone, "RC");
                 }
 
+                $artRange = 2;
+                if($argTwo && $argTwo->longRangeArt === true){
+                    $artRange = 3;
+                }
                 $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png",3, 3, 3, true, STATUS_CAN_DEPLOY, "R", 1, 1, "Russian",false, 'infantry');
                 $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png",3, 3, 3, true, STATUS_CAN_DEPLOY, "R", 1, 1, "Russian",false, 'infantry');
                 $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png",3, 3, 3, true, STATUS_CAN_DEPLOY, "R", 1, 1, "Russian",false, 'infantry');
@@ -338,9 +341,9 @@ class Jagersdorf extends Battle {
                 $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png",2, 2, 3, true, STATUS_CAN_DEPLOY, "R", 1, 1, "Russian",false, 'infantry');
                 $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png",2, 2, 3, true, STATUS_CAN_DEPLOY, "R", 1, 1, "Russian",false, 'infantry');
 
-                $this->force->addUnit("infantry-1", RED_FORCE, 807, "RusArt.png",4, 4, 3, true, STATUS_READY, "R", 1, 3, "Russian",false,'artillery');
-                $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArt.png",4, 4, 3, true, STATUS_CAN_DEPLOY, "R", 1, 3, "Russian",false,'artillery');
-                $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArt.png",4, 4, 3, true, STATUS_CAN_DEPLOY, "R", 1, 3, "Russian",false,'artillery');
+                $this->force->addUnit("infantry-1", RED_FORCE, 807, "RusArt.png",4, 4, 3, true, STATUS_READY, "R", 1, $artRange, "Russian",false,'artillery');
+                $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArt.png",4, 4, 3, true, STATUS_CAN_DEPLOY, "R", 1, $artRange, "Russian",false,'artillery');
+                $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArt.png",4, 4, 3, true, STATUS_CAN_DEPLOY, "R", 1, $artRange, "Russian",false,'artillery');
 
 
 
@@ -359,8 +362,8 @@ class Jagersdorf extends Battle {
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 406, "PruCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "Prussian",false,'cavalry');
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 407, "PruCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "Prussian",false,'cavalry');
 
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 412, "PruArt.png", 3, 3, 3, true, STATUS_READY, "B", 1, 3, "Prussian",false,'artillery');
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 312, "PruArt.png", 3, 3, 3, true, STATUS_READY, "B", 1, 3, "Prussian",false,'artillery');
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 412, "PruArt.png", 3, 3, 3, true, STATUS_READY, "B", 1, $artRange, "Prussian",false,'artillery');
+                $this->force->addUnit("infantry-1", BLUE_FORCE, 312, "PruArt.png", 3, 3, 3, true, STATUS_READY, "B", 1, $artRange, "Prussian",false,'artillery');
 
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 512, "PruInf.png", 5, 5, 3, true, STATUS_READY, "B", 1, 1, "Prussian",false, 'infantry');
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 513, "PruInf.png", 5, 5, 3, true, STATUS_READY, "B", 1, 1, "Prussian",false, 'infantry');
@@ -381,15 +384,9 @@ class Jagersdorf extends Battle {
 
 
                 $i=0;
-            }
-            // end unit data -------------------------------------------
-            if($arg == 1){
-                $this->force->addUnit("infantry-1", RED_FORCE, 501, "multiInf.png", 5, 2, 3, true, STATUS_READY, "R", 1, 1, "Russian");
 
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 101, "multiCav.png", 6, 3, 5, false, STATUS_READY, "B", 1, 1, "Prussian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 102, "multiCav.png", 5, 3, 5, false, STATUS_READY, "B", 1, 1, "Prussian");
-                $this->force->addUnit("infantry-1", BLUE_FORCE, 103, "multiCav.png", 5, 2, 5, false, STATUS_READY, "B", 1, 1, "Prussian");
-            }
+            // end unit data -------------------------------------------
+
             // unit terrain data----------------------------------------
 
             // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive

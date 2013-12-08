@@ -155,7 +155,7 @@ class NapoleonsTrainingAcademy extends Battle {
         }
         return true;
     }
-    function __construct($data = null, $arg = false, $argTwo = false)
+    function __construct($data = null, $arg = false, $scenario = false)
     {
         $this->mapData = MapData::getInstance();
         if ($data) {
@@ -175,16 +175,12 @@ class NapoleonsTrainingAcademy extends Battle {
             $this->players = $data->players;
             $this->playerData = $data->playerData;
         } else {
+
             $this->genTerrain = true;
             $this->victory = new Victory("NTA");
 
-            if($arg == 0){
                 $this->mapData->setData(19,9,"js/centre.png");
-            }
-            if($arg == 1){
-                $this->mapData->setData(7,7 , "js/tut1.png");
 
-            }
             $this->mapData->setSpecialHexes(array(1005=>0));
             $this->display = new Display();
             $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
@@ -205,18 +201,11 @@ class NapoleonsTrainingAcademy extends Battle {
                 $this->playerData->${player}->unitSize = "32px";
                 $this->playerData->${player}->unitFontSize = "12px";
                 $this->playerData->${player}->unitMargin = "-21px";
-                if($arg == 1){
-                    $this->mapViewer[$player]->setData(62,80, // originX, originY
-                        26.5, 26.5, // top hexagon height, bottom hexagon height
-                        15, 30// hexagon edge width, hexagon center width
-                    );
-                }
-                if($arg == 0){
+
                     $this->mapViewer[$player]->setData(65,85, // originX, originY
                         27.5, 27.5, // top hexagon height, bottom hexagon height
                         16, 32// hexagon edge width, hexagon center width
                     );
-                }
             }
 
 
@@ -247,18 +236,10 @@ class NapoleonsTrainingAcademy extends Battle {
 
             // game data
             $this->gameRules->setMaxTurn(7);
-            if($arg == 0){
                 $this->gameRules->setInitialPhaseMode(BLUE_MOVE_PHASE,MOVING_MODE);
 
-            }
-            if($arg == 1){
-                $this->gameRules->setInitialPhaseMode(BLUE_MOVE_PHASE,DISPLAY_MODE);
 
-            }
-
-            if($arg == 0){
                 $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
-            }
 
 //            $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
@@ -273,7 +254,6 @@ class NapoleonsTrainingAcademy extends Battle {
 
             // unit data -----------------------------------------------
             //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
-            if($arg == 0){
 
 
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 204, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "red",false,"cavalry");
@@ -293,7 +273,7 @@ class NapoleonsTrainingAcademy extends Battle {
 //                $this->force->addUnit("infantry-1", BLUE_FORCE, 105, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "austrian");
 //                $this->force->addUnit("infantry-1", BLUE_FORCE, 106, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "austrian");
 //                $this->force->addUnit("infantry-1", BLUE_FORCE, 107, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "austrian");
-            }
+
             $this->force->addUnit("infantry-1", RED_FORCE, 1804, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "blue",false,"cavalry");
             $this->force->addUnit("infantry-1", RED_FORCE, 1805, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "blue",false,"cavalry");
             $this->force->addUnit("infantry-1", RED_FORCE, 1806, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "blue",false,"cavalry");

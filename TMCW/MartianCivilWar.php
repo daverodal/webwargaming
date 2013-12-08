@@ -212,7 +212,8 @@ class MartianCivilWar extends Battle
             $this->victory = new Victory("TMCW");
             $this->display = new Display();
             $this->mapData->setData(30, 20, "js/MartianIV.png");
-            if ($arg == "Supply") {
+
+            if ($argTwo && $argTwo->supply === true) {
                 $this->mapData->setSpecialHexes(array(407 => RED_FORCE, 1909 => RED_FORCE, 1515 => RED_FORCE, 516 => RED_FORCE,
                     2414 => RED_FORCE, 2415 => RED_FORCE, 2515 => RED_FORCE, 1508 => RED_FORCE,
                     2615 => RED_FORCE, 2615 => RED_FORCE, 2716 => RED_FORCE, 2816 => RED_FORCE,
@@ -230,7 +231,7 @@ class MartianCivilWar extends Battle
             $this->terrain = new Terrain();
             $this->terrain->setMaxHex("3020");
             $this->moveRules = new MoveRules($this->force, $this->terrain);
-            if ($arg == "Supply") {
+            if ($argTwo && $argTwo->supply === true) {
                 $this->moveRules->enterZoc = 2;
                 $this->moveRules->exitZoc = 1;
                 $this->moveRules->noZocZocOneHex = true;
@@ -330,8 +331,10 @@ class MartianCivilWar extends Battle
             $this->force->addUnit("infantry-1", RED_FORCE, 2516, "multiArmor.png", 7, 3, 6, true, STATUS_READY, "L", 1, 1, "loyalist", true, "mech");
             $this->force->addUnit("infantry-1", RED_FORCE, 2517, "multiArmor.png", 7, 3, 6, true, STATUS_READY, "L", 1, 1, "loyalist", true, "mech");
 
-
-            $bigLoyalist = $argTwo == "BIGLoyal";
+            $bigLoyalist = false;
+            if($argTwo && $argTwo->bigLoyal){
+                $bigLoyalist = true;
+            }
             $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png", 7, 3, 6, !$bigLoyalist, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist", true, "mech");
             $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiArmor.png", 7, 3, 6, !$bigLoyalist, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist", true, "mech");
             $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn3", "multiMech.png", 9, 4, 6, !$bigLoyalist, STATUS_CAN_REINFORCE, "L", 3, 1, "loyalist", true, "mech");

@@ -127,7 +127,7 @@ class victoryCore{
         if($unit->forceId != $b->gameRules->attackingForceId){
 //            return;
         }
-        if($b->arg == "Supply"){
+        if($b->argTwo->supply === true){
             if($unit->forceId == REBEL_FORCE){
                 $goal = array(101,102,103,104,201,301,401,501,601,701,801,901,1001);
                 $bias = array(5=>true,6=>true);

@@ -1,0 +1,24 @@
+{
+  "MartianCivilWar": {
+    "name": "The Martian Civil War",
+    "path": "TMCW",
+    "fileName": "MartianCivilWar.php",
+    "scenarios": {
+      "Supply": {
+        "description": "Includes Supply rules, zoc +2 to enter +1 to leave",
+        "supply": true,
+        "bigLoyal": false
+      },
+      "SupplyBigloyal": {
+        "description": "Same as Supply scenario above except big loyalist reinforcements",
+        "supply": true,
+        "bigLoyal": true
+      },
+      "Orig": {
+        "description": "original game, stop on enter zoc, no supply",
+        "supply": false,
+        "bigLoyal": false
+      }
+    }
+  }
+}
