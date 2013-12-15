@@ -413,6 +413,7 @@ class MartianCivilWar extends Battle
 
             // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
             $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
+            $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("road", "road", "r", 0, 0, 0, false);
             $this->terrain->addTerrainFeature("trail", "trail", "r", 0, 0, 0, false);
@@ -455,6 +456,12 @@ class MartianCivilWar extends Battle
                 }
             }
 
+//            $this->terrain->addTerrain(501,UPPER_LEFT_HEXSIDE, "blocked");
+//            $this->terrain->addTerrain(501,LOWER_LEFT_HEXSIDE, "blocked");
+//            $this->terrain->addTerrain(502,UPPER_LEFT_HEXSIDE, "blocked");
+//            $this->terrain->addTerrain(502,LOWER_LEFT_HEXSIDE, "blocked");
+//            $this->terrain->addTerrain(503,UPPER_LEFT_HEXSIDE, "blocked");
+//            $this->terrain->addTerrain(503,LOWER_LEFT_HEXSIDE, "blocked");
             /*
              * Next put terrain like rough and forest because they are exclusive and will cancel what else is there.
              */

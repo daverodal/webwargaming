@@ -252,6 +252,28 @@ class Terrain
 
     /*
      * public
+     * Check the hexside AND destination Hex
+     */
+    function terrainIsHexSide($startHex,$endHex, $terrainName)
+    {
+        list($startX, $startY) = Hexagon::getHexPartXY($startHex);
+        list($endX, $endY) = Hexagon::getHexPartXY($endHex);
+        $hexsideX = ($startX + $endX) / 2;
+        $hexsideY = ($startY + $endY) / 2;
+
+        $terrainCode = $this->getTerrainCodeXY($hexsideX,$hexsideY);
+        if ($terrainCode->$terrainName) {
+            return true;
+        }
+        $terrainCode = $this->getTerrainCodeXY($endX, $endY);
+        if($terrainCode->$terrainName){
+            return true;
+        }
+        return false;
+    }
+
+    /*
+     * public
      */
     function terrainIsXY($x,$y, $terrainName)
     {

@@ -336,17 +336,20 @@ class MoveRules{
 //                $newHex = new Hexagon($mapHex->neighbors[$i - 1]);
 //                $newHex = new Hexagon($hexNum);
 //                $newHex->getAdjacentHexagon($i);
-                $gnuHex = Hexagon::getHexPartXY($mapHex->neighbors[$i - 1]);
+                $newHexNum = $mapHex->neighbors[$i - 1];
+                $gnuHex = Hexagon::getHexPartXY($newHexNum);
                 if(!$gnuHex){
 
                     continue;
                 }
 
+                if($this->terrain->terrainIsHexSide($hexNum,$newHexNum, "blocked")){
+                    continue;
+                }
                 if($this->terrain->terrainIsXY($gnuHex[0],$gnuHex[1],"offmap")){
 
                     continue;
                 }
-                $newHexNum = $mapHex->neighbors[$i - 1];
 //                $newHex = new Hexagon($newHexNum);
                 $moveAmount = $this->terrain->getTerrainMoveCost($hexNum, $newHexNum,$unit->forceMarch, $unit) + $exitCost;
                 $newMapHex = $this->mapData->getHex($newHexNum);
@@ -478,22 +481,18 @@ class MoveRules{
             $path[] = $hexNum;
 
             for($i = 1; $i <= 6; $i++){
-//                $newHex = new Hexagon($mapHex->neighbors[$i - 1]);
-//                $newHex = new Hexagon($hexNum);
-//                $newHex->getAdjacentHexagon($i);
-                $gnuHex = Hexagon::getHexPartXY($mapHex->neighbors[$i - 1]);
+                $newHexNum = $mapHex->neighbors[$i - 1];
+                $gnuHex = Hexagon::getHexPartXY($newHexNum);
                 if(!$gnuHex){
-
+                    continue;
+                }
+                if($this->terrain->terrainIsHexSide($hexNum,$newHexNum, "blocked")){
                     continue;
                 }
 
                 if($this->terrain->terrainIsXY($gnuHex[0],$gnuHex[1],"offmap")){
-
                     continue;
                 }
-                $newHexNum = $mapHex->neighbors[$i - 1];
-//                $newHex = new Hexagon($newHexNum);
-//                $moveAmount = $this->terrain->getTerrainMoveCost($hexNum, $newHexNum,$unit->forceMarch, $unit) + $exitCost;
                 $newMapHex = $this->mapData->getHex($newHexNum);
                 if($newMapHex->isOccupied($defendingForceId)){
                     continue;
@@ -684,6 +683,7 @@ class MoveRules{
         }
     }
 
+ /* No longer used
     function moveWillCauseStop($id, $moveOverUnitId, $hexagon)
     {
         $willCauseStop = false;
@@ -700,7 +700,6 @@ class MoveRules{
         }
 
         // if using 'can always move one hexagon' and stop rule
-        /* @var Unit $unit */
         $unit = $this->force->getUnit($id);
         if ($unit->unitHasNotMoved() == true) {
             if (($unit->unitHasMoveAmountAvailable($moveAmount) == false)) {
@@ -715,6 +714,7 @@ class MoveRules{
 
         return $willCauseStop;
     }
+*/
 //    function moveHasCausedStop( $startHex, $endHex, $movePoints)
 //    {
 //        $willCauseStop = false;
@@ -795,14 +795,14 @@ class MoveRules{
         return $isValid;
     }
 
-    function isAlongRail($fromHex, $toHex)
-    {
-        if($this->terrain->moveIsInto($toHex, "fortified") || $this->terrain->moveIsInto($toHex, "newrichmond")){
-
-            return true;
-        }
-        return false;
-    }
+//    function isAlongRail($fromHex, $toHex)
+//    {
+//        if($this->terrain->moveIsInto($toHex, "fortified") || $this->terrain->moveIsInto($toHex, "newrichmond")){
+//
+//            return true;
+//        }
+//        return false;
+//    }
 
 
     function updateMoveData(unit $movingUnit, $hexagon)
@@ -1096,13 +1096,12 @@ class MoveRules{
             return true;
             /* off map hexes have no name */
         }
-//        $unitHexagon = $this->force->units[$id]->getUnitHexagon();
 
-//        $hexsideX = ($hexagon->getX() + $unitHexagon->getX($id)) / 2;
-//        $hexsideY = ($hexagon->getY() + $unitHexagon->getY($id)) / 2;
-
-//        $hexpart = new Hexpart($hexsideX, $hexsideY);
         // make sure hexagon is not ZOC
+        $startHex = $this->force->units[$id]->hexagon;
+         if($this->terrain->terrainIsHexSide($startHex->name, $hexagon->name, "blocked")){
+            $isBlocked = true;
+        }
         if (($this->force->hexagonIsZOC($id, $hexagon) == true)) {
             $isBlocked = true;
         }
