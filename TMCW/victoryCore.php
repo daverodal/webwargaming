@@ -135,6 +135,16 @@ class victoryCore{
                 $goal = array(3014,3015,3016,3017,3018,3019,3020,2620,2720,2820,2920);
                 $bias =  array(2=>true,3=>true);
             }
+            if($b->gameRules->mode == REPLACING_MODE){
+                if($unit->status == STATUS_CAN_UPGRADE){
+                    $unit->supplied = $b->moveRules->calcSupply($unit->id,$goal,$bias);
+                    if(!$unit->supplied){
+                        /* TODO: make this not cry  (call a method) */
+                        $unit->status = STATUS_STOPPED;
+                    }
+                }
+                return;
+            }
             if($b->gameRules->mode == MOVING_MODE){
                 if($unit->status == STATUS_READY || $unit->status == STATUS_UNAVAIL_THIS_PHASE){
                     $unit->supplied = $b->moveRules->calcSupply($unit->id,$goal,$bias);

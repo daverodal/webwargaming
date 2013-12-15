@@ -18,6 +18,12 @@
         "description": "original game, stop on enter zoc, no supply",
         "supply": false,
         "bigLoyal": false
+      },
+      "FastLoyal":{
+        "description": "Supply Rules, loyalist move 8, more infantry to start",
+        "supply":true,
+        "loyalMechMove": 8,
+        "loyalExtraInf": true
       }
     }
   }
