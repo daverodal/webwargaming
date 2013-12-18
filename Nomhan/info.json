@@ -1,0 +1,13 @@
+{
+  "Nomhan": {
+    "name": "The Battle of Nomhan",
+    "path": "Nomhan",
+    "fileName": "Nomhan.php",
+    "scenarios": {
+      "Supply": {
+        "description": "Includes Supply rules, zoc +2 to enter +1 to leave",
+        "supply": true
+      }
+    }
+  }
+}
