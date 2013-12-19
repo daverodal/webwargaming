@@ -3,7 +3,7 @@
         body{
             background:#ccc;
             color:#333;
-            background: url("<?=base_url("js/marsrover.jpg")?>") #333 no-repeat;
+            background: url("<?=base_url("js/KhalkhinGolSoldiers.jpg")?>") #333 no-repeat;
             background-position: 25% 0;
             background-size:1700px;
         }
@@ -55,8 +55,8 @@
 </head>
 <body>
 <div class="wrapper">
-    <div class="left rebel big">REBEL</div>
-    <div class="right loyalist big">LOYALIST</div>
+    <div class="left rebel big">Japanese</div>
+    <div class="right loyalist big">Soviet</div>
     <div class="clear"></div>
     <div class="left big rebel">
         YOU

@@ -44,9 +44,11 @@ class victoryCore{
     }
 
     public function postReinforceZones($args){
-        list($zones, $unit) = $args;
+        $battle = battle::getBattle();
+        /* @var $terrain terrain */
+        $terrain = $battle->terrain;
+        $zones = $terrain->getReinforceZones("W");
 
-        $zones[] = new ReinforceZone(2414,2414);
         return array($zones);
     }
 
@@ -153,7 +155,12 @@ class victoryCore{
                 return;
             }
             if($b->gameRules->mode == MOVING_MODE){
-                if($unit->status == STATUS_READY || $unit->status == STATUS_UNAVAIL_THIS_PHASE){
+                /* First Turn Japaneese Suprise */
+                if($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE && $unit->status == STATUS_CAN_REINFORCE) {
+                    $this->movementCache->$id = $unit->maxMove;
+                    $unit->maxMove = $unit->maxMove * 2;
+                }
+                 if($unit->status == STATUS_READY || $unit->status == STATUS_UNAVAIL_THIS_PHASE){
                     $unit->supplied = $b->moveRules->calcSupply($unit->id,$goal,$bias);
                 }else{
                     return;
@@ -168,6 +175,10 @@ class victoryCore{
                 }
             }
             if($b->gameRules->mode == COMBAT_SETUP_MODE){
+                if($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_COMBAT_PHASE && isset($this->movementCache->$id)) {
+                    $unit->maxMove = $this->movementCache->$id;
+                    unset($this->movementCache->$id);
+                }
                 if($unit->status == STATUS_READY || $unit->status == STATUS_DEFENDING || $unit->status == STATUS_UNAVAIL_THIS_PHASE){
                     $unit->supplied = $b->moveRules->calcSupply($unit->id,$goal, $bias);
                 }else{
@@ -236,13 +247,13 @@ class victoryCore{
         if($gameRules->phase == BLUE_MECH_PHASE || $gameRules->phase == RED_MECH_PHASE){
             $gameRules->flashMessages[] = "@hide crt";
         }
-        if($attackingId == REBEL_FORCE){
-            $gameRules->flashMessages[] = "Rebel Player Turn";
-            $gameRules->replacementsAvail = 1;
+        if($attackingId == SOVIET_FORCE){
+            $gameRules->flashMessages[] = "Soviet Player Turn";
+            $gameRules->replacementsAvail = 2;
         }
-        if($attackingId  == LOYALIST_FORCE){
-            $gameRules->flashMessages[] = "Loyalist Player Turn";
-            $gameRules->replacementsAvail = 10;
+        if($attackingId  == JAPANESE_FORCE){
+            $gameRules->flashMessages[] = "Japanese Player Turn";
+//            $gameRules->replacementsAvail = 10;
         }
 
            /*only get special VPs' at end of first Movement Phase */

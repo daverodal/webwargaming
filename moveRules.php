@@ -1239,12 +1239,10 @@ class MoveRules{
         $unit = $this->force->getUnit($id);
         $startHexagon = $unit->getUnitHexagon();
         if ($this->force->advanceIsOnRetreatList($id, $hexagon) == true && $this->rangeIsOneHexagon($startHexagon, $hexagon) == true) {
-            //alert("retreat list: true");
             $isValid = true;
         }
         else
         {
-            //alert("retreat list: false");
         }
 
         return $isValid;

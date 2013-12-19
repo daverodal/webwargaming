@@ -1,8 +1,7 @@
 <body>
 <style>
     body{
-        background:url("<?=base_url("js/Mars.jpg")?>") #333 no-repeat;
-        background-position:center;
+        background:url("<?=base_url("js/KhalkhinGolTank.jpg")?>") #333 no-repeat;
         background-size:100%;
     }
     h1{
@@ -52,11 +51,17 @@
     a:hover{
         text-decoration: underline;
     }
+    @font-face{
+        font-family: Zenzai;
+        src: url('<?=base_url("js/CHOWFUN.ttf");?>');
+    }
+    .zenFont{
+        font-family:Zenzai;
+    }
 </style>
-<link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
 
-<h2 style=""> Welcome to</h2>
-    <h1 style="text-align:center;font-size:90px;font-family:'Great Vibes'">The Martian Civil War</h1>
+<h2 class="zenFont"> Welcome to</h2>
+    <h1 class="zenFont" style="text-align:center;font-size:90px;line-height:40px;">The Nomonhan Incident</h1>
 <div class="clear">&nbsp;</div>
 <fieldset ><Legend>Play As </Legend>
     <a class="link"  href="<?=site_url("wargame/enterHotseat");?>/<?=$wargame?>">Play Hotseat</a><br>

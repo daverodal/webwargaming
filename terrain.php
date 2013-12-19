@@ -274,6 +274,20 @@ class Terrain
 
     /*
      * public
+     * Check the hexside AND destination Hex
+     */
+    function terrainIsHex($hex, $terrainName)
+    {
+        list($endX, $endY) = Hexagon::getHexPartXY($hex);
+
+        $terrainCode = $this->getTerrainCodeXY($endX, $endY);
+        if($terrainCode->$terrainName){
+            return true;
+        }
+        return false;
+    }
+    /*
+     * public
      */
     function terrainIsXY($x,$y, $terrainName)
     {
@@ -492,10 +506,6 @@ else
 
         $terrains = $this->terrainArray[$hexagon->getY()][$hexagon->getX()];
         foreach ($terrains as $terrainFeature) {
-            if ($terrainFeature == "fortified" && $attackingForceId == 2) {
-                /* German don't benefit from fortificatons */
-                continue;
-            }
             $combatEffect += $this->terrainFeatures->$terrainFeature->combatEffect;
         }
         return $combatEffect;

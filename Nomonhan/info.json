@@ -1,8 +1,8 @@
 {
-  "Nomhan": {
-    "name": "The Battle of Nomhan",
-    "path": "Nomhan",
-    "fileName": "Nomhan.php",
+  "Nomonhan": {
+    "name": "The Nomonhan Incident",
+    "path": "Nomonhan",
+    "fileName": "Nomonhan.php",
     "scenarios": {
       "Supply": {
         "description": "Includes Supply rules, zoc +2 to enter +1 to leave",
