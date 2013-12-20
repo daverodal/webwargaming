@@ -957,6 +957,9 @@ class MoveRules{
                     /* @var Unit $movingUnit */
                     $movingUnit = $this->force->getUnit($id);
                     if ($movingUnit->setStatus( STATUS_MOVING) == true) {
+                        $battle  = Battle::getBattle();
+                        $victory = $battle->victory;
+                        $victory->reinforceUnit($movingUnit, $hexagon);
                         $this->force->updateMoveStatus($id, $hexagon, 0);
 //                        $this->stopMove($movingUnit);
                     }

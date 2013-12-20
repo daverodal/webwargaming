@@ -80,6 +80,21 @@
 .reduced{
     color:white;
 }
+#zoom{
+    margin-left:6em;
+}
+#zoom{
+    cursor: pointer;
+}
+#zoom :first-child{
+    text-decoration: underline;
+}
+#clock{
+    margin-left:0;
+}
+#infoWrapper .WrapperLabel{
+    width:auto;
+}
 #TECWrapper .colOne.riverHex{
     background-image: url('<?=base_url()?>js/river.png');
     background-position:0px -26px;
@@ -241,7 +256,6 @@
         font-family:'Nosifer';
     }
 #gameTurn6{
-    width:120px;
 }
 #gameTurn6 .unit{
     float:left;

@@ -4,8 +4,8 @@
     "path": "Nomonhan",
     "fileName": "Nomonhan.php",
     "scenarios": {
-      "Supply": {
-        "description": "Includes Supply rules, zoc +2 to enter +1 to leave",
+      "standard": {
+        "description": "Standard scenario. Japan vs Soviet Union",
         "supply": true
       }
     }

@@ -448,10 +448,18 @@ class Terrain
 
         // if road, override terrain
         $terrainCode = $this->getTerrainCodeXY($hexsideX,$hexsideY);
-        if($railMove && ($terrainCode->road || $terrainCode->trail)){
+        if($railMove && ($terrainCode->road || $terrainCode->trail || $terrainCode->ford)){
             $moveCost = .5;
             if($terrainCode->trail){
                 $moveCost = 1;
+            }
+            if($terrainCode->ford){
+                if($this->terrainIsHex($endHexagon, "road")){
+                    $moveCost = .5;
+                }else{
+                    $moveCost = $this->getTerrainEntranceMoveCost($endHexagon, $unit);
+                }
+                $moveCost += 2;
             }
         }
 //        if ($this->terrainIsXY($hexsideX, $hexsideY, "road") == true) {

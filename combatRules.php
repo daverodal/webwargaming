@@ -212,6 +212,11 @@ class CombatRules
                                 break;
                             }
                         }
+                        if($range == 1){
+                            if($this->terrain->terrainIsHexSide($this->force->getUnitHexagon($id)->name,$this->force->getUnitHexagon($defenderId)->name,"blocked")){
+                                $good = false;
+                            }
+                        }
 
                     }
                     if ($good) {

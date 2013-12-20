@@ -30,7 +30,7 @@
     }
 </style>
 <div id="GRWrapper">
-    <h4 class="WrapperLabel" title="Game Rules">Rules</h4>
+    <h4 class="WrapperLabel" title="Game Rules">Staging</h4>
     <div id="GR" style="display:none">
         <div class="close">X</div>
 <div id="gameRules">

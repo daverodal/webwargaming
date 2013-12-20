@@ -482,7 +482,9 @@ function initialize() {
         $( "#info" ).hide({effect:"blind",direction:"up"});
         $( "#menu" ).hide({effect:"blind",direction:"up"});
         $( "#crt" ).hide({effect:"blind",direction:"up"});
-        $("#GR").toggle({effect:"blind",direction:"up"});
+        $("#deployWrapper").toggle({effect:"blind",direction:"up",complete:function(){
+            fixHeader();
+        }});
     });
     $("#jumpWrapper .WrapperLabel").click(function(){
         $( "#OBC" ).hide({effect:"blind",direction:"up"});

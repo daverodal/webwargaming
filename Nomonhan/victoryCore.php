@@ -52,6 +52,20 @@ class victoryCore{
         return array($zones);
     }
 
+    public function reinforceUnit($args){
+        /* @var $unit unit
+         * @var $hexagon Hexagon
+         */
+        list($unit, $hexagon) = $args;
+
+        if($unit->forceId == SOVIET_FORCE && $unit->reinforceTurn == 6){
+            $victorId = SOVIET_FORCE;
+            $vp = 0 - $unit->maxStrength;
+            $this->victoryPoints[$victorId] += $vp;
+            $battle = Battle::getBattle();
+            $battle->mapData->specialHexesVictory->{$hexagon->name} = "<span class='loyalistVictoryPoints'>$vp vp</span>";
+        }
+    }
     public function reduceUnit($args){
         $unit = $args[0];
         if($unit->strength == $unit->maxStrength){
@@ -63,22 +77,21 @@ class victoryCore{
         }else{
             $vp = $unit->minStrength;
         }
-        if($unit->forceId == 1){
-            $victorId = 2;
-            $this->victoryPoints[$victorId] += $vp;
+        if($unit->forceId == JAPANESE_FORCE){
+            $victorId = SOVIET_FORCE;
             if($unit->class == "mech" || $unit->class == "artillery"){
-                $this->victoryPoints[$victorId] += $vp;
+                $vp += $vp;
             }
+            $this->victoryPoints[$victorId] += $vp;
             $hex  = $unit->hexagon;
             $battle = Battle::getBattle();
             $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='loyalistVictoryPoints'>+$vp vp</span>";
         }else{
-            $victorId = 1;
+            $victorId = JAPANESE_FORCE;
             $this->victoryPoints[$victorId] += $vp;
             $hex  = $unit->hexagon;
             $battle = Battle::getBattle();
             $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='rebelVictoryPoints'>+$vp vp</span>";
-            $this->victoryPoints[$victorId] += $vp;
         }
     }
     public function incrementTurn(){
@@ -120,6 +133,12 @@ class victoryCore{
         }
         if($gameRules->phase == BLUE_MOVE_PHASE || $gameRules->phase ==  RED_MOVE_PHASE){
             $gameRules->flashMessages[] = "@hide deadpile";
+            if($turn >= 6 && $gameRules->phase == RED_MOVE_PHASE){
+                $gameRules->flashMessages[] = "@show deployWrapper";
+            }
+        }
+        if($gameRules->phase == RED_COMBAT_PHASE){
+            $gameRules->flashMessages[] = "@hide deployWrapper";
         }
     }
     public function postRecoverUnit($args)
@@ -133,7 +152,7 @@ class victoryCore{
 //            return;
         }
         if($b->argTwo->supply === true){
-            if($unit->forceId == REBEL_FORCE){
+            if($unit->forceId == JAPANESE_FORCE){
                 for($i = 101;$i <= 3701;$i += 100){
                     $goal[] = $i;
                 }
@@ -223,17 +242,15 @@ class victoryCore{
     public function preStartMovingUnit($arg){
         $unit = $arg[0];
         $battle = Battle::getBattle();
-        if($battle->arg == "Supply"){
-            if($unit->class != 'mech'){
-                $battle->moveRules->enterZoc = "stop";
-                $battle->moveRules->exitZoc = 0;
-                $battle->moveRules->noZocZoc = true;
-            }else{
-                $battle->moveRules->enterZoc = 2;
-                $battle->moveRules->exitZoc = 1;
-                $battle->moveRules->noZocZoc = false;
+        if($unit->class != 'mech'){
+            $battle->moveRules->enterZoc = "stop";
+            $battle->moveRules->exitZoc = 0;
+            $battle->moveRules->noZocZoc = true;
+        }else{
+            $battle->moveRules->enterZoc = 2;
+            $battle->moveRules->exitZoc = 1;
+            $battle->moveRules->noZocZoc = false;
 
-            }
         }
     }
     public function playerTurnChange($arg){

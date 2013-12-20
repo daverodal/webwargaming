@@ -141,21 +141,15 @@ class CombatResultsTable
             if($unit->class == "artillery"){
                 $defArt = true;
             }
-            echo "Unitstr $unitStr ";
             if($terrain->terrainIsHex($unitHex->name, "rough") || $terrain->terrainIsHex($unitHex->name, "hills")){
-                echo "Rough ";
                     $unitStr *= 2;
             }
-            echo "about to";
             if($terrain->terrainIsHex($unitHex->name, "marsh")){
-                echo "MARSH!!! ";
-                echo $unit->class;
                 $defMarsh = true;
                 if($unit->class == "inf" || $unit->class == "cavalry"){
                         $unitStr *= 2;
                 }
             }
-                var_dump($defenders);
             $defenseStrength += $unitStr;
         }
 
@@ -163,7 +157,10 @@ class CombatResultsTable
         foreach ($combats->attackers as $id => $v) {
             $unit = $force->units[$id];
             $unitStr = $unit->strength;
-            if($unit->class != 'artillery' && $terrain->terrainIsHexSide($defHex->name,$unit->hexagon->name, "river")){
+            if($unit->class != 'artillery' && $terrain->terrainIsHexSide($defHex->name,$unit->hexagon->name, "blocked")){
+                    $unitStr = 0;
+            }
+            if($unit->class != 'artillery' && ($terrain->terrainIsHexSide($defHex->name,$unit->hexagon->name, "river") || $terrain->terrainIsHexSide($defHex->name,$unit->hexagon->name, "ford"))){
                 $unitStr /= 2;
             }
             if($defMarsh && $force->units[$id]->class == 'mech'){
