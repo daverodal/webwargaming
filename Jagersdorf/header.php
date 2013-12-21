@@ -94,6 +94,18 @@
         background:rgb(76,184,0);
         border-color:rgb(76,184,0) !important;
     }
+    #zoom{
+        margin-left:6em;
+    }
+    #zoom{
+        cursor: pointer;
+    }
+    #zoom :first-child{
+        text-decoration: underline;
+    }
+    #clock{
+        margin-left:0;
+    }
 #TECWrapper .closer{
     height:0px;
     padding:0px;

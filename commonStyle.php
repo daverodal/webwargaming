@@ -924,6 +924,18 @@ h4:hover{
     left:60%;
     bottom:0px;
 }
+#zoom{
+    margin-left:6em;
+}
+#zoom{
+    cursor: pointer;
+}
+#zoom :first-child{
+    text-decoration: underline;
+}
+#clock{
+    margin-left:0;
+}
 #TECWrapper{
     width:9%;
     left:32%;

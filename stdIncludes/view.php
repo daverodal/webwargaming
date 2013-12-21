@@ -40,6 +40,15 @@
                         </ul>
                     </div>
                 </div>
+                <span  id="zoom">
+                    <span onClick="$('#zoom span').css('text-decoration','none');$('#gameImages').css({zoom:1 , top:'0px',left:'0px'});$(this).css('text-decoration','underline');">Zoom 1</span>
+                    <span onClick="$('#zoom span').css('text-decoration','none');$('#gameImages').css({zoom:.8 , top:'0px',left:'0px'});$(this).css('text-decoration','underline');">.8</span>
+                    <span onClick="$('#zoom span').css('text-decoration','none');$('#gameImages').css({zoom:.7 , top:'0px',left:'0px'});$(this).css('text-decoration','underline');">.7</span>
+                    <span onClick="$('#zoom span').css('text-decoration','none');$('#gameImages').css({zoom:.5 , top:'0px',left:'0px'});$(this).css('text-decoration','underline');">.5</span>
+                    <span onClick="$('#zoom span').css('text-decoration','none');$('#gameImages').css({zoom:.4 , top:'0px',left:'0px'});$(this).css('text-decoration','underline');">.4</span>
+                    <span onClick="$('#zoom span').css('text-decoration','none');$('#gameImages').css({zoom:.3 , top:'0px',left:'0px'});$(this).css('text-decoration','underline');">.3</span>
+                </span>
+
                 <span id="clock"></span>
                 <span id="status"></span>
                 <span id="victory"></span>
