@@ -349,6 +349,7 @@ function doZoom(event){
     if(top > 0){
         top = 0;
     }
+    // TODO: make this more modern
     $("#gameImages").css({MozTransform:"translate(0,0) scale(1.0)"});
 $("#gameImages").animate({zoom:1.0,left:left,top:top},1500);
 }
@@ -495,6 +496,7 @@ function initialize() {
         $( "#crt" ).hide({effect:"blind",direction:"up"});
         $("#gameContainer").css("margin",0);
         $("#gameImages").css({zoom:.3,overflow:"visible"});
+        // TODO: make this more modern (transform)
         $("#gameImages").css({MozTransform:"translate(-33%, -33%) scale(.3)"});
         $("html, body").animate({scrollTop:"0px"});
 
@@ -548,6 +550,28 @@ function initialize() {
 //        if(event.which == 109){
 //            alert("you hi m");
 //        }
+    });
+    $("#zoom span").each(function(){
+        $(this).click(function(){
+            $("#zoom span").css({textDecoration:"none"});
+            $(this).css({textDecoration:"underline"});
+            var zoom = $(this).data('zoom');
+            if(!zoom){
+                zoom = $(this).html();
+            }
+            zoom = zoom - 0;
+
+            var vHeight = $('#gameViewer').height();
+            var vWidth = $('#gameViewer').width();
+            vHeight /= 2;
+            vWidth /= 2;
+            var top = $('#gameImages').css('top').replace(/auto/,"0").replace(/px/,'');
+            vHeight -= top;
+            var left = $('#gameImages').css('left').replace(/auto/,"0").replace(/px/,'');
+            vWidth -= left;
+            $("#gameImages").css('-webkit-transform-origin',vWidth+"px "+vHeight+"px");
+            $("#gameImages").css('transform','scale('+zoom+','+zoom+')');
+        });
     });
 }
 $(function() {

@@ -80,15 +80,6 @@
 .reduced{
     color:white;
 }
-#zoom{
-    margin-left:6em;
-}
-#zoom{
-    cursor: pointer;
-}
-#zoom :first-child{
-    text-decoration: underline;
-}
 #clock{
     margin-left:0;
 }
