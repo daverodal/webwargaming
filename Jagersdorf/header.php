@@ -207,7 +207,7 @@
 
     #TECWrapper img, #TECWrapper div {
     }
-  }
+
 
     #GR {
         width: 600px;

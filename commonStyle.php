@@ -1048,7 +1048,6 @@ width:3em;
     max-height:500px;
     min-height:100px;
     overflow-y:auto;
-    width:80%;
     padding:0 20px 10px;
 }
 #VC{
