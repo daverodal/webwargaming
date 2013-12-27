@@ -1,4 +1,4 @@
-<div id="OBCWrapper">
+<div class="dropDown" id="OBCWrapper">
     <h4 class="WrapperLabel" title='Order of Battle Chart'>OBC</h4>
     <div id="OBC" style="display:none;"><div class="close">X</div>
             <h2>There are 20 turns</h2>

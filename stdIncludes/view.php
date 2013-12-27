@@ -64,8 +64,6 @@
         </div>
         <?php global $results_name; ?>
         <div id="bottomHeader" style="clear:both;">
-            <span id="hideShow">Retired Units</span>
-            <button id="nextPhaseButton">Next Phase</button>
             <div id="crtWrapper">
                 <h4 class="WrapperLabel" title='Combat Results Table'>
                     <span class="goLeft">&laquo;</span>Crt<span class="goRight">&raquo;</span></h4>
@@ -103,7 +101,9 @@
                     <div id="crtOddsExp"></div>
                 </div>
             </div>
-            <div id="jumpWrapper">
+            <button id="nextPhaseButton">Next Phase</button>
+
+            <div class="dropDown" id="jumpWrapper">
                 <h4 class="WrapperLabel" title="Jump Map">Jump</h4>
             </div>
 
@@ -112,6 +112,8 @@
             <?php include_once "tec.php"; ?>
 
             <?php include "help.php"; ?>
+            <span id="hideShow">Retired Units</span>
+            <span id="showDeploy">Deploy/Staging Box</span>
 
     </header>
     <div id="content">

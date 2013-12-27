@@ -816,9 +816,10 @@ h4:hover{
 }
 #nextPhaseButton{
     font-size:15px;
-    position: absolute;
+    position: static;
     bottom: 0;
     left:17%;
+    display:inline-block;
 }
 #header a, #header a:visited{
     color:white;
@@ -895,13 +896,27 @@ h4:hover{
 #statusDiv{
 
 }
-#crtWrapper , #OBCWrapper,#TECWrapper,#VCWrapper,#jumpWrapper,#menuWrapper,#infoWrapper,#GRWrapper{
+#infoWrapper, #menuWrapper{
     user-select:none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     /*float:left;*/
     position: absolute;
+}
+#crtWrapper , #OBCWrapper,#TECWrapper,#VCWrapper,#jumpWrapper,#GRWrapper{
+    user-select:none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    /*float:left;*/
+    position: relative;
+    display:inline-block;
 
+}
+.dropDown , #hideShow, #showDeploy{
+    border:1px solid #333;
+}
+.dropDownSelected{
+    color:white;
 }
 #crtWrapper .WrapperLabel, #OBCWrapper .WrapperLabel, #TECWrapper .WrapperLabel,#VCWrapper .WrapperLabel,#jumpWrapper .WrapperLabel,#menuWrapper .WrapperLabel,#infoWrapper .WrapperLabel, #GRWrapper .WrapperLabel{
     margin:0;
@@ -910,18 +925,16 @@ h4:hover{
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     cursor: pointer;
-    width:3em;
+    /*width:3em;*/
+}
+#menuWrapper .WrapperLabel,#infoWrapper .WrapperLabel{
+width:3em;
 }
 #menuWrapper h4{
     width:2.5em;
 }
 #crtWrapper{
     left:0px;
-    bottom:0px;
-}
-#OBCWrapper{
-    width:10%;
-    left:60%;
     bottom:0px;
 }
 #zoom{
@@ -935,11 +948,6 @@ h4:hover{
 }
 #clock{
     margin-left:0;
-}
-#TECWrapper{
-    width:9%;
-    left:32%;
-    bottom:0px;
 }
 #menuWrapper{
     width:6em;
@@ -968,17 +976,17 @@ h4:hover{
     text-decoration:none;
 }
 #VCWrapper{
-    width:10%;
-    left:48%;
-    bottom:0px;
+    /*width:10%;*/
+    /*left:48%;*/
+    /*bottom:0px;*/
 }
 #jumpWrapper{
-    width:6%;
-    left:41%;
-    bottom:0px;
+    /*width:6%;*/
+    /*left:41%;*/
+    /*bottom:0px;*/
 }
 #OBC{
-    left:-240px;
+    /*left:0px;*/
 }
 #TEC ul{
     margin:0;
@@ -1016,11 +1024,9 @@ h4:hover{
     margin:0;
     padding:0
 }
-#hideShow{
+#hideShow,#showDeploy{
     cursor:pointer;
-    left:69%;
-    position: absolute;
-    bottom: 0px;
+    position: static;
     font-weight: bold;
 }
 #OBC{
@@ -1036,7 +1042,6 @@ h4:hover{
 #TEC{
     background:white;
     width:579px;
-    left:-230px;
 }
 #GR{
     background:white;
@@ -1067,7 +1072,7 @@ h4:hover{
     padding:0 10px;
 }
 #OBCWrapper h4 {
-    width:2em;
+    /*width:2em;*/
 }
 #OBC, #crt, #TEC,#VC,#jump,#menu,#info,#GR{
     position:absolute;

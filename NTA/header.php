@@ -43,7 +43,6 @@
     }
 
     #OBC {
-        left: -240px;
     }
 
     #OBC {
@@ -165,15 +164,7 @@
 
     #GR {
         width: 600px;
-        left: -260px
     }
-
-    #GRWrapper {
-        width: 10%;
-        left: 48%;
-        bottom: 0px;
-    }
-
     .game-name {
         word-break: break-all;
         font-family: 'Nosifer';

@@ -441,58 +441,71 @@ function initialize() {
 
 
     var Player = 'Markarian';
-    $( "#OBCWrapper .WrapperLabel" ).click(function() {
-        $( "#info" ).hide({effect:"blind",direction:"up"});
-        $( "#menu" ).hide({effect:"blind",direction:"up"});
-        $( "#OBC" ).toggle({effect:"blind",direction:"up"});
-        $( "#TEC" ).hide({effect:"blind",direction:"up"});
-        $( "#VC" ).hide({effect:"blind",direction:"up"});
+//    $("#OBCWrapper .WrapperLabel").click(function(){
+//        alert("HELY");
+//       $(".dropDown > div").show({effect:"blind",direction:"up",done:function(){
+//       alert(this);});
+//       }
+//    });
+    $( ".dropDown .WrapperLabel" ).click(function() {
+        $(this).parent().siblings(".dropDown").children('div').hide({effect:"blind",direction:"up",complete:function(){
+                $(this).parent().children('h4').removeClass('dropDownSelected');
+        }});
+
+        $(this).next().toggle({effect:"blind",direction:"up",complete:function(){
+            if($(this).is(":visible")){
+                $(this).parent().children('h4').addClass('dropDownSelected');
+            }else{
+                $(this).parent().children('h4').removeClass('dropDownSelected');
+            }
+        }
+        });
+//        $( "#info" ).hide({effect:"blind",direction:"up"});
+//        $( "#menu" ).hide({effect:"blind",direction:"up"});
+//        $( "#OBC" ).toggle({effect:"blind",direction:"up"});
+//        $( "#TEC" ).hide({effect:"blind",direction:"up"});
+//        $( "#VC" ).hide({effect:"blind",direction:"up"});
     });
-    $( "#TECWrapper .WrapperLabel" ).click(function() {
-        $( "#info" ).hide({effect:"blind",direction:"up"});
-        $( "#menu" ).hide({effect:"blind",direction:"up"});
-        $( "#OBC" ).hide({effect:"blind",direction:"up"});
-        $( "#VC" ).hide({effect:"blind",direction:"up"});
-        $( "#TEC" ).toggle({effect:"blind",direction:"up"});
-    });
-    $( "#VCWrapper .WrapperLabel" ).click(function() {
-        $( "#info" ).hide({effect:"blind",direction:"up"});
-        $( "#menu" ).hide({effect:"blind",direction:"up"});
-        $( "#OBC" ).hide({effect:"blind",direction:"up"});
-        $( "#TEC" ).hide({effect:"blind",direction:"up"});
-        $( "#VC" ).toggle({effect:"blind",direction:"up"});
-    });
+//    $( "#TECWrapper .WrapperLabel" ).click(function() {
+//        $( "#info" ).hide({effect:"blind",direction:"up"});
+//        $( "#menu" ).hide({effect:"blind",direction:"up"});
+//        $( "#OBC" ).hide({effect:"blind",direction:"up"});
+//        $( "#VC" ).hide({effect:"blind",direction:"up"});
+//        $( "#TEC" ).toggle({effect:"blind",direction:"up"});
+//    });
+//    $( "#VCWrapper .WrapperLabel" ).click(function() {
+//        $( "#info" ).hide({effect:"blind",direction:"up"});
+//        $( "#menu" ).hide({effect:"blind",direction:"up"});
+//        $( "#OBC" ).hide({effect:"blind",direction:"up"});
+//        $( "#TEC" ).hide({effect:"blind",direction:"up"});
+//        $( "#VC" ).toggle({effect:"blind",direction:"up"});
+//    });
     $( "#menuWrapper .WrapperLabel" ).click(function() {
-        $( "#OBC" ).hide({effect:"blind",direction:"up"});
-        $( "#TEC" ).hide({effect:"blind",direction:"up"});
-        $( "#VC" ).hide({effect:"blind",direction:"up"});
+        $( ".dropDown > div" ).hide({effect:"blind",direction:"up"});
         $( "#info" ).hide({effect:"blind",direction:"up"});
         $( "#menu" ).toggle({effect:"blind",direction:"up"});
     });
     $( "#infoWrapper .WrapperLabel" ).click(function() {
-        $( "#OBC" ).hide({effect:"blind",direction:"up"});
-        $( "#TEC" ).hide({effect:"blind",direction:"up"});
-        $( "#VC" ).hide({effect:"blind",direction:"up"});
+        $( ".dropDown > div" ).hide({effect:"blind",direction:"up"});
         $( "#menu" ).hide({effect:"blind",direction:"up"});
         $( "#info" ).toggle({effect:"blind",direction:"up"});
     });
-    $("#GRWrapper .WrapperLabel").click(function(){
-        $( "#OBC" ).hide({effect:"blind",direction:"up"});
-        $( "#TEC" ).hide({effect:"blind",direction:"up"});
-        $( "#VC" ).hide({effect:"blind",direction:"up"});
-        $( "#info" ).hide({effect:"blind",direction:"up"});
-        $( "#menu" ).hide({effect:"blind",direction:"up"});
-        $( "#crt" ).hide({effect:"blind",direction:"up"});
-        $("#GR").toggle({effect:"blind",direction:"up",complete:function(){
-            fixHeader();
-        }});
-    });
+//    $("#GRWrapper .WrapperLabel").click(function(){
+//        $( "#OBC" ).hide({effect:"blind",direction:"up"});
+//        $( "#TEC" ).hide({effect:"blind",direction:"up"});
+//        $( "#VC" ).hide({effect:"blind",direction:"up"});
+//        $( "#info" ).hide({effect:"blind",direction:"up"});
+//        $( "#menu" ).hide({effect:"blind",direction:"up"});
+//        $( "#crt" ).hide({effect:"blind",direction:"up"});
+//        $("#GR").toggle({effect:"blind",direction:"up",complete:function(){
+//            fixHeader();
+//        }});
+//    });
     $("#jumpWrapper .WrapperLabel").click(function(){
-        $( "#OBC" ).hide({effect:"blind",direction:"up"});
-        $( "#TEC" ).hide({effect:"blind",direction:"up"});
-        $( "#VC" ).hide({effect:"blind",direction:"up"});
-        $( "#info" ).hide({effect:"blind",direction:"up"});
-        $( "#menu" ).hide({effect:"blind",direction:"up"});
+//        $('.dropDown > div').hide({effect:"blind",direction:"up"});
+//        $('.dropDownSelected').removeClass('dropDownSelected');
+//        $(this).parent().siblings('.dropDown').children('.dropDownSelected').removeClass('dropDownSelected');
+
         $( "#crt" ).hide({effect:"blind",direction:"up"});
         $("#gameContainer").css("margin",0);
         $("#gameImages").css({zoom:.3,overflow:"visible"});
@@ -543,6 +556,12 @@ function initialize() {
             $("#content").animate({marginTop:howFar+"px"},"slow");
 
         }
+    });
+    $( "#showDeploy" ).click(function() {
+        up ^= 1;
+        $( "#deployWrapper" ).toggle({effect:"blind",direction:"up",complete:fixHeader});
+        fixHeader();
+        return;
     });
     fixHeader();
     $("body").keypress(function(event){

@@ -1,5 +1,6 @@
 <link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 <style type="text/css">
+    /* Unit Styles */
     .blueUnit, .loyalist{
         background-color:rgb(132,181,255);
     }
@@ -44,9 +45,16 @@
     .brightRed, .rebel, .sympth{
         background-color: rgb(223,88,66);
     }
-#OBC{
-    left:-240px;
-}
+    .rebel div{
+        color:black;
+    }
+    .sympth div{
+        color:black;
+    }
+    .reduced{
+        color:white;
+    }
+    /* dropdown styles */
 #OBC{
     background:white;
     width:514px;
@@ -55,24 +63,16 @@
 #crt{
     width:308px;
 }
-    .rebel div{
-        color:black;
-    }
-    .sympth div{
-        color:black;
-    }
+
 #TEC{
     background:white;
     width:579px;
-    left:-230px;
 }
 #TECWrapper .closer{
     height:0px;
     padding:0px;
 }
-.reduced{
-    color:white;
-}
+
 #TECWrapper .colOne.riverHex{
     background-image: url('<?=base_url()?>js/river.png');
     background-position:0px -26px;
@@ -222,12 +222,12 @@
     }
     #GR{
         width:600px;
-        left:-260px
+        /*left:-260px*/
     }
     #GRWrapper{
-        width:10%;
-        left:48%;
-        bottom:0px;
+        /*width:10%;*/
+        /*left:48%;*/
+        /*bottom:0px;*/
     }
     .game-name{
         word-break:break-all;

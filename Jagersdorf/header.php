@@ -57,16 +57,12 @@
         color:white;
     }
 #OBC{
-    left:-240px;
-}
-#OBC{
     background:white;
     width:514px;
 }
 #TEC{
     background:white;
     width:779px;
-    left:-230px;
 }
 
 #crt{
@@ -98,6 +94,10 @@
     #clock{
         margin-left:0;
     }
+.dropDownSelected{
+    background:white;
+    color:black;
+}
 #TECWrapper .closer{
     height:0px;
     padding:0px;
@@ -218,12 +218,8 @@
     }
 #GR{
     width:600px;
-    left:-260px
 }
     #GRWrapper{
-        width:10%;
-        left:48%;
-        bottom:0px;
     }
     .game-name{
         font-family:'Berkshire Swash';

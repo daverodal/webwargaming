@@ -33,17 +33,17 @@
         background-color: rgb(223,88,66);
     }
 #OBC{
-    left:-240px;
-}
-#OBC{
     background:white;
     width:514px;
 }
 #TEC{
     background:white;
     width:579px;
-    left:-230px;
 }
+.dropDownSelected{
+        background:white;
+        color:black;
+    }
 #crt{
     width:476px;
 }
@@ -128,12 +128,6 @@
     }
     #GR{
         width:600px;
-        left:-260px
-    }
-    #GRWrapper{
-        width:10%;
-        left:48%;
-        bottom:0px;
     }
     .game-name{
         word-break:break-all;

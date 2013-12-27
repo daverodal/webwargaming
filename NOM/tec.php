@@ -1,4 +1,4 @@
-<div id="TECWrapper">
+<div class="dropDown" id="TECWrapper">
     <h4 class="WrapperLabel" title='Terrain Effects Chart'>TEC</h4>
 
     <DIV id="TEC" style="display:none;">
