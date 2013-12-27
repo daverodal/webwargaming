@@ -483,7 +483,7 @@ function initialize() {
         $( "#info" ).hide({effect:"blind",direction:"up"});
         $( "#menu" ).hide({effect:"blind",direction:"up"});
         $( "#crt" ).hide({effect:"blind",direction:"up"});
-        $("#deployWrapper").toggle({effect:"blind",direction:"up",complete:function(){
+        $("#GR").toggle({effect:"blind",direction:"up",complete:function(){
             fixHeader();
         }});
     });
