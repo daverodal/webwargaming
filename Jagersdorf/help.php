@@ -234,10 +234,10 @@ be moved into that hex. This must be done before the next attack is resolved. Ar
         <h4>Terrain Effects on Combat</h4>
         <ul>
             <li>Russian Infantry units are +1 to their combat factor when Attacking into or Defending in woods or
-                towns.
+                towns, unless they are attacking across a creek or bridge.
             </li>
 
-            <li>Prussian Infantry units are +1 to their combat factor when Attacking into or Defending in clear,</li>
+            <li>Prussian Infantry units are +1 to their combat factor when Attacking into or Defending in clear,  unless they are attacking across a creek or bridge.</li>
 
             <li>All Cavalry units combat factors are divided by 2 when attacking into hexes or across hex sides other
                 than clear.
