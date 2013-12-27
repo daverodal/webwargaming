@@ -149,19 +149,11 @@
 
     #TECWrapper li {
         list-style-type: none;
-        /*height:79px;*/
-        border: 0 solid black;
-        border-width: 1px 1px 0 1px;
         padding: 5px 20px 5px 0px;
     }
 
     #TECWrapper img, #TECWrapper div {
     }
-
-    #GRWrapper h4 {
-        width: auto !important;
-    }
-
     #GR {
         width: 600px;
     }

@@ -916,7 +916,7 @@ h4:hover{
     border:1px solid #333;
 }
 .dropDownSelected{
-    color:white;
+    background:white;
 }
 #crtWrapper .WrapperLabel, #OBCWrapper .WrapperLabel, #TECWrapper .WrapperLabel,#VCWrapper .WrapperLabel,#jumpWrapper .WrapperLabel,#menuWrapper .WrapperLabel,#infoWrapper .WrapperLabel, #GRWrapper .WrapperLabel{
     margin:0;
