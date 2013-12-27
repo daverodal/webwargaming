@@ -588,8 +588,8 @@ function initialize() {
             vHeight -= top;
             var left = $('#gameImages').css('left').replace(/auto/,"0").replace(/px/,'');
             vWidth -= left;
-            $("#gameImages").css('-webkit-transform-origin',vWidth+"px "+vHeight+"px");
-            $("#gameImages").css('transform','scale('+zoom+','+zoom+')');
+            $("#gameImages").css('-webkit-transform-origin',vWidth+"px "+vHeight+"px").css('transform-origin',vWidth+"px "+vHeight+"px");
+            $("#gameImages").css('transform','scale('+zoom+','+zoom+')').css('-webkig-transform','scale('+zoom+','+zoom+')');
         });
     });
 }
