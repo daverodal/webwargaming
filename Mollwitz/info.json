@@ -1,0 +1,16 @@
+{
+  "Mollwitz": {
+    "name": "Mollwitz",
+    "path": "Mollwitz",
+    "fileName": "Mollwitz.php",
+    "scenarios": {
+      "orig": {
+        "description": "Original Rules"
+      },
+      "longRangeArtillery": {
+        "description": "artillery have range of 3",
+        "longRangeArt": true
+      }
+    }
+  }
+}
