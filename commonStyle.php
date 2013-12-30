@@ -46,6 +46,11 @@ h4:hover{
 #floatMessage header{
     font-size:35px;
 }
+#altTable, #mainTable {
+    position: absolute;
+    right: 18px;
+    cursor:pointer;
+}
 #comlinkWrapper{
     border:1px solid black;
     border-radius: 10px;

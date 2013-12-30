@@ -38,10 +38,10 @@ class victoryCore
         $unit = $args[0];
         if($unit->forceId == 1) {
             $victorId = 2;
-            $this->victoryPoints[$victorId] += $unit->strength;
+            $this->victoryPoints[$victorId] += $unit->strength * 100;
         } else {
             $victorId = 1;
-            $this->victoryPoints[$victorId] += $unit->strength;
+            $this->victoryPoints[$victorId] += $unit->strength * 100;
         }
     }
 

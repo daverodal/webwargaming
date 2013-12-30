@@ -62,10 +62,14 @@
 
     p.forceMarch {
         position: absolute;
-        top: -18px;
-        right: 0px;
+        top: -19px;
+        right: 2px;
         display: none;
         color: white;
+        text-transform: lowercase;
+    }
+    .Austrian p.forceMarch {
+        color:black;
     }
 
     #OBC {
@@ -116,6 +120,9 @@
     .dropDownSelected {
         background: white;
         color: black;
+    }
+    #tecImage{
+        width:7
     }
 
     #TECWrapper .closer {

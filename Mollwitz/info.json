@@ -5,11 +5,25 @@
     "fileName": "Mollwitz.php",
     "scenarios": {
       "orig": {
-        "description": "Original Rules"
+        "description": "Original Rules. Artillery doesn't add to combined arms bonus"
       },
-      "longRangeArtillery": {
-        "description": "artillery have range of 3",
-        "longRangeArt": true
+      "artilleryCombined": {
+        "description": "Artillery will add combined arms bonus",
+        "artSupport":true
+      }
+    }
+  },
+  "Zorndorf": {
+    "name": "Zorndorf, the battle of.... htat's it.",
+    "path": "Mollwitz",
+    "fileName": "Zorndorf.php",
+    "scenarios": {
+      "orig": {
+        "description": "Original Rules. Artillery doesn't add to combined arms bonus"
+      },
+      "artilleryCombined": {
+        "description": "Artillery will add combined arms bonus",
+        "artSupport":true
       }
     }
   }

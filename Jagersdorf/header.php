@@ -220,6 +220,7 @@
     #altTable, #mainTable {
         position: absolute;
         right: 18px;
+        cursor:pointer;
     }
 </style>
 <script type="text/javascript">

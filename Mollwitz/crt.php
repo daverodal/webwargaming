@@ -25,19 +25,19 @@ class CombatResultsTable
     {
         $this->combatResultsHeader = array("1:4", "1:3", "1:2", "1:1", "1.5:1", "2:1", "3:1", "4:1", "5:1", "6:1");
         $this->combatResultsTable = array(
-            array(AE, AE, AE, AE, AR, AR, DR, DR, DR, DR),
+            array(AE, AE, AE, AR, AR, AR, DR, DR, DR, DR),
             array(AE, AE, AE, AR, AR, AR, DR, DR, DR, DE),
-            array(AE, AE, AE, AR, AR, DR, EX, DR, DE, DE),
+            array(AE, AE, AE, AR, DR, DR, EX, DR, DE, DE),
             array(AE, AE, AR, AR, DR, DR, EX, DE, DE, DE),
-            array(AE, AE, AR, AR, DR, EX, DE, DE, DE, DE),
-            array(AR, AR, AR, DR, EX, EX, DE, DE, DE, DE),
+            array(AE, AE, AR, DR, DR, EX, DE, DE, DE, DE),
+            array(AR, AR, AR, EX, EX, EX, DE, DE, DE, DE),
         );
         $this->combatResultsTableCav = array(
-            array(AE, AE, AE, AE, AR, AR, DR, DR, DR, DR),
             array(AE, AE, AE, AR, AR, AR, DR, DR, DR, DR),
-            array(AE, AE, AE, AR, AR, DR, DR, DR, DR, DR),
+            array(AE, AE, AE, AR, AR, AR, DR, DR, DR, DR),
+            array(AE, AE, AE, AR, DR, DR, DR, DR, DR, DR),
             array(AE, AE, AR, AR, DR, DR, DR, DR, DR, DR),
-            array(AE, AE, AR, AR, DR, DR, DR, DR, DR, DR),
+            array(AE, AE, AR, DR, DR, DR, DR, DR, DR, DR),
             array(AR, AR, AR, DR, DR, DR, DR, DR, DR, DR),
         );
         $this->combatOddsTable = array(
@@ -76,6 +76,7 @@ class CombatResultsTable
 
         /* @var Jagersdorf $battle */
         $battle = Battle::getBattle();
+        $argTwo = $battle->argTwo;
         $combats = $battle->combatRules->combats->$defenderId;
         $hexagon = $battle->force->units[$defenderId]->hexagon;
         $hexpart = new Hexpart();
@@ -151,7 +152,7 @@ class CombatResultsTable
 
         if ($attackStrength >= $defenseStrength) {
             foreach ($combats->attackers as $attackerId => $attacker) {
-                if($battle->force->units[$attackerId]->class != "artillery"){
+                if($argTwo->artSupport || $battle->force->units[$attackerId]->class != "artillery"){
                     $combinedArms[$battle->force->units[$attackerId]->class]++;
                 }
             }

@@ -1,7 +1,5 @@
 <?php
 
-set_include_path(__DIR__ .  PATH_SEPARATOR .  get_include_path());
-
 /* comment */
 require_once "constants.php";
 global $force_name,$phase_name,$mode_name, $event_name, $status_name, $results_name,$combatRatio_name;
@@ -130,6 +128,8 @@ class Jagersdorf extends Battle {
         $data->victory = $this->victory->save();
         $data->terrainName = "terrain-Jagersdorf";
         $data->genTerrain = $this->genTerrain;
+        $data->arg = $this->arg;
+        $data->argTwo = $this->argTwo;
         if($this->genTerrain){
             $data->terrain = $this->terrain;
         }
@@ -173,6 +173,8 @@ class Jagersdorf extends Battle {
     {
         $this->mapData = MapData::getInstance();
         if ($data) {
+            $this->arg = $data->arg;
+            $this->argTwo = $data->argTwo;
             $this->genTerrain = false;
             $this->victory = new Victory("Jagersdorf",$data);
             $this->display = new Display($data->display);
@@ -189,6 +191,8 @@ class Jagersdorf extends Battle {
             $this->players = $data->players;
             $this->playerData = $data->playerData;
         } else {
+            $this->arg = $arg;
+            $this->argTwo = $argTwo;
             $this->genTerrain = true;
             $this->victory = new Victory("Jagersdorf");
 

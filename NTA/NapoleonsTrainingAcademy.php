@@ -1,5 +1,4 @@
 <?php
-set_include_path(__DIR__ .  PATH_SEPARATOR .  get_include_path());
 
 require_once "constants.php";
 global $force_name,$phase_name,$mode_name, $event_name, $status_name, $results_name,$combatRatio_name;
