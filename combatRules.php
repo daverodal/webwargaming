@@ -293,54 +293,6 @@ class CombatRules
         return $terrainCombatEffect;
     }
 
-
-    function setCombatIndexx($defenderId)
-    {
-
-        $combats = $this->combats->$defenderId;
-        if (count((array)$combats->attackers) == 0) {
-            $combats->index = null;
-            $combats->attackStrength = null;
-            $combats->defenseStrength = null;
-            $combats->terrainCombatEffect = null;
-            return;
-        }
-        /*
-         * TODO this make me very unhappy
-         */
-        if (method_exists($this->crt, 'setCombatIndex')) {
-            return $this->crt->setCombatIndex($defenderId);
-        }
-        $defenders = $combats->defenders;
-        $attackStrength = 0;
-
-        foreach ($combats->attackers as $id => $v)
-        {
-            $attackStrength += $this->units[$id]->strength;
-        }
-//        $attackStrength = $this->force->getAttackerStrength($combats->attackers);
-        $defenseStrength = 0;
-        foreach ($defenders as $defId => $defender) {
-            $defenseStrength += $this->force->getDefenderStrength($defId);
-        }
-        $combatIndex = $this->crt->getCombatIndex($attackStrength, $defenseStrength);
-        /* Do this before terrain effects */
-        if ($combatIndex >= $this->crt->maxCombatIndex) {
-            $combatIndex = $this->crt->maxCombatIndex;
-        }
-
-
-        $terrainCombatEffect = $this->getDefenderTerrainCombatEffect($defenderId);
-
-        $combatIndex -= $terrainCombatEffect;
-
-        $combats->attackStrength = $attackStrength;
-        $combats->defenseStrength = $defenseStrength;
-        $combats->terrainCombatEffect = $terrainCombatEffect;
-        $combats->index = $combatIndex;
-//    $this->force->storeCombatIndex($defenderId, $combatIndex);
-    }
-
     function cleanUp()
     {
         unset($this->combats);

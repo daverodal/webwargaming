@@ -114,15 +114,18 @@ class victoryCore{
         $turn = $gameRules->turn;
 
 
-        if($gameRules->phase != BLUE_COMBAT_PHASE || $gameRules->phase == RED_COMBAT_PHASE){
-            /* Restore all unsupplied strengths */
+        if ($gameRules->phase == RED_COMBAT_PHASE || $gameRules->phase == BLUE_COMBAT_PHASE) {
+            $gameRules->flashMessages[] = "@hide deployWrapper";
+        } else {
+            $gameRules->flashMessages[] = "@hide crt";
+
+            /* Restore all un-supplied strengths */
             $force = $battle->force;
             foreach($this->combatCache as $id => $strength){
                 $unit = $force->getUnit($id);
                 $unit->strength = $strength;
                 unset($this->combatCache->$id);
             }
-            $gameRules->flashMessages[] = "@hide crt";
         }
         if($gameRules->phase == BLUE_REPLACEMENT_PHASE || $gameRules->phase ==  RED_REPLACEMENT_PHASE){
             $gameRules->flashMessages[] = "@show deadpile";
@@ -136,9 +139,6 @@ class victoryCore{
             if($turn >= 6 && $gameRules->phase == RED_MOVE_PHASE){
                 $gameRules->flashMessages[] = "@show deployWrapper";
             }
-        }
-        if($gameRules->phase == RED_COMBAT_PHASE){
-            $gameRules->flashMessages[] = "@hide deployWrapper";
         }
     }
     public function postRecoverUnit($args)
@@ -175,10 +175,10 @@ class victoryCore{
             }
             if($b->gameRules->mode == MOVING_MODE){
                 /* First Turn Japaneese Suprise */
-                if($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE && $unit->status == STATUS_CAN_REINFORCE) {
-                    $this->movementCache->$id = $unit->maxMove;
-                    $unit->maxMove = $unit->maxMove * 2;
-                }
+//                if($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE && $unit->status == STATUS_CAN_REINFORCE) {
+//                    $this->movementCache->$id = $unit->maxMove;
+//                    $unit->maxMove = $unit->maxMove * 2;
+//                }
                  if($unit->status == STATUS_READY || $unit->status == STATUS_UNAVAIL_THIS_PHASE){
                     $unit->supplied = $b->moveRules->calcSupply($unit->id,$goal,$bias);
                 }else{

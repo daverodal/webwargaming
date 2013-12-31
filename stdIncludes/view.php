@@ -119,7 +119,7 @@
     <div id="content">
         <div id="rightCol">
             <div id="deployWrapper">
-                <div style="margin-right:3px;" class="left">deploy on turn one</div>
+                <div style="margin-right:3px;" class="left">Deploy/Staging area</div>
                 <div id="deployBox"></div>
                 <div style="clear:both;"></div>
             </div>

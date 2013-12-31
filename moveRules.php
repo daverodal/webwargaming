@@ -876,6 +876,9 @@ class MoveRules{
                 $zoneName = $unit->reinforceZone;
                 $zones = $this->terrain->getReinforceZones($zoneName);
                 foreach($zones as $zone){
+                    if($this->force->hexagonIsOccupied($zone->hexagon)){
+                        continue;
+                    }
                     $startHex = $zone->hexagon->name;
                     $hexPath = new HexPath();
                     $hexPath->name = $startHex;
@@ -900,6 +903,9 @@ class MoveRules{
                 $zones = $this->terrain->getReinforceZones($zoneName);
                 foreach($zones as $zone){
                     $startHex = $zone->hexagon->name;
+                    if($this->force->hexagonIsOccupied($zone->hexagon)){
+                        continue;
+                    }
                     $hexPath = new HexPath();
                     $hexPath->name = $startHex;
                     $hexPath->pointsLeft = $movesLeft;
@@ -922,6 +928,9 @@ class MoveRules{
                 $zones = $this->terrain->getReinforceZones($this->force->getUnitReinforceZone($id));
                 list($zones) = $battle->victory->postReinforceZones($zones,$unit);
                 foreach($zones as $zone){
+                    if($this->force->hexagonIsOccupied($zone->hexagon)){
+                        continue;
+                    }
                     $startHex = $zone->hexagon->name;
                     $hexPath = new HexPath();
                     $hexPath->name = $startHex->name;

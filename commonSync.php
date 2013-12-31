@@ -623,7 +623,34 @@ x.register("moveRules", function(moveRules,data) {
             $("#"+newId).addClass("clone");
             $("#"+newId).css({position:"Absolute"});
 
+            $("#"+newId+" section").css({backgroundColor:'transparent'});
+            $("#firstclone").hover(function(){
+                    if(opacity != 1){
+                        $(this).css("border-color","#fff");
+                    }
+                    $(this).css("opacity",1.0).css('box-shadow','#333 5px 5px 5px');
+                    var path = $(this).attr("path");
+                    var pathes = path.split(",");
+                    for(i in pathes){
+                        $("#"+id+"Hex"+pathes[i]).css("opacity",1.0).css("border-color","#fff").css('box-shadow','#333 5px 5px 5px');
+                        $("#"+id+"Hex"+pathes[i]+".occupied").css("display","block");
 
+                    }
+                },
+                function(){
+                    if(opacity != 1){
+                        $(this).css("border-color","transparent");
+                    }
+                    $(this).css("opacity",opacity).css('box-shadow','none');
+                    var path = $(this).attr("path");
+                    var pathes = path.split(",");
+                    for(i in pathes){
+                        $("#"+id+"Hex"+pathes[i]).css("opacity",.4).css("border-color","transparent").css('box-shadow','none');
+                        $("#"+id+"Hex"+pathes[i]+".occupied").css("display","none");
+
+                    }
+
+                });
             width = $("#"+newId).width();
             height = $("#"+newId).height();
 
@@ -675,33 +702,7 @@ x.register("moveRules", function(moveRules,data) {
             }
             $("#firstclone").remove();
         }
-        $(".clone").hover(function(){
-                if(opacity != 1){
-                    $(this).css("border-color","#fff");
-                }
-                $(this).css("opacity",1.0).css('box-shadow','#333 5px 5px 5px');
-                var path = $(this).attr("path");
-                var pathes = path.split(",");
-                for(i in pathes){
-                    $("#"+id+"Hex"+pathes[i]).css("opacity",1.0).css("border-color","#fff").css('box-shadow','#333 5px 5px 5px');
-                    $("#"+id+"Hex"+pathes[i]+".occupied").css("display","block");
 
-                }
-            },
-            function(){
-                if(opacity != 1){
-                    $(this).css("border-color","transparent");
-                }
-                $(this).css("opacity",opacity).css('box-shadow','none');
-                var path = $(this).attr("path");
-                var pathes = path.split(",");
-                for(i in pathes){
-                    $("#"+id+"Hex"+pathes[i]).css("opacity",.4).css("border-color","transparent").css('box-shadow','none');
-                    $("#"+id+"Hex"+pathes[i]+".occupied").css("display","none");
-
-                }
-
-            });
     }
 });
 

@@ -24,6 +24,7 @@ $phase_name[12] = "<span class='loyalistFace'>Soviet</span> Replacement Phase";
 $phase_name[13] = "";
 $phase_name[14] = "";
 $phase_name[15] = "Soviet deploy phase";
+$phase_name[16] = "Japanese surprise movement phase";
 
 $mode_name[3] = "Combat Setup Phase";
 $mode_name[4] = "Combat Resolution Phase";
@@ -173,10 +174,11 @@ class Nomonhan extends MartianCivilWar
             $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
             $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */
             $this->force->setAttackingForceId($this->attackingForceId); /* so object oriented */
-            $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_SURPRISE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
 
 //            $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
 //            $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_SURPRISE_MOVE_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, BLUE_MECH_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_MECH_PHASE, RED_REPLACEMENT_PHASE, REPLACING_MODE, RED_FORCE, BLUE_FORCE, false);
