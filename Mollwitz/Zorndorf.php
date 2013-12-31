@@ -60,7 +60,7 @@ class Zorndorf extends Mollwitz
             $$k = $v;
         }
         @include_once "commonHeader.php";
-        @include_once "/header.php";
+        @include_once "header.php";
         @include_once "ZorndorfHeader.php";
     }
 
