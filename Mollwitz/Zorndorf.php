@@ -84,7 +84,28 @@ class Zorndorf extends Mollwitz
 
         @include_once "view.php";
     }
-
+    function save()
+    {
+        $data = new stdClass();
+        $data->mapData = $this->mapData;
+        $data->mapViewer = $this->mapViewer;
+        $data->moveRules = $this->moveRules->save();
+        $data->force = $this->force;
+        $data->gameRules = $this->gameRules->save();
+        $data->combatRules = $this->combatRules->save();
+        $data->players = $this->players;
+        $data->playerData = $this->playerData;
+        $data->display = $this->display;
+        $data->victory = $this->victory->save();
+        $data->terrainName = "terrain-Zorndorf";
+        $data->genTerrain = $this->genTerrain;
+        $data->arg = $this->arg;
+        $data->argTwo = $this->argTwo;
+        if ($this->genTerrain) {
+            $data->terrain = $this->terrain;
+        }
+        return $data;
+    }
     function __construct($data = null, $arg = false, $argTwo = false)
     {
         $this->mapData = MapData::getInstance();
