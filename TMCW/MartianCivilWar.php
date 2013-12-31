@@ -35,7 +35,7 @@ define("LOYALIST_FORCE",RED_FORCE);
 
 require_once "crtTraits.php";
 require_once "combatRules.php";
-require_once "TMCW/crt.php";
+require_once "crt.php";
 require_once "force.php";
 require_once "gameRules.php";
 require_once "hexagon.php";
@@ -86,20 +86,21 @@ class MartianCivilWar extends Battle
             $$k = $v;
         }
         @include_once "commonHeader.php";
-        @include_once "TMCW/header.php";
+        @include_once "header.php";
     }
 
     static function getView($name, $mapUrl, $player = 0, $player = 0, $arg = false, $argTwo = false)
     {
         global $force_name;
         $player = $force_name[$player];
+
         @include_once "view.php";
     }
 
     static function playAs($name, $wargame)
     {
 
-        @include_once "TMCW/playAs.php";
+        @include_once "playAs.php";
     }
 
     static function playMulti($name, $wargame){

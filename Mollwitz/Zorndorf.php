@@ -292,8 +292,8 @@ class Zorndorf extends Mollwitz
 
 
 
-            for ($col = 100; $col <= 1900; $col += 100) {
-                for ($row = 1; $row <= 14; $row++) {
+            for ($col = 100; $col <= 3800; $col += 100) {
+                for ($row = 1; $row <= 29; $row++) {
                     $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
@@ -301,6 +301,12 @@ class Zorndorf extends Mollwitz
 
                 }
             }
+
+
+
+
+
+
             $this->terrain->addTerrain(101 ,1 , "forest");
             $this->terrain->addTerrain(301 ,1 , "forest");
             $this->terrain->addTerrain(401 ,1 , "forest");
@@ -1785,6 +1791,7 @@ class Zorndorf extends Mollwitz
             $this->terrain->addReinforceZone(2426,'B');
             $this->terrain->addReinforceZone(2527,'B');
             $this->terrain->addReinforceZone(2627,'B');
+            $this->terrain->addReinforceZone(1412,'A');
             // end terrain data ----------------------------------------
 
         }

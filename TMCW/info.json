@@ -26,5 +26,16 @@
         "loyalExtraInf": true
       }
     }
+  },
+  "NotNomonhan": {
+    "name": "The Nomonhan Affair",
+    "path": "TMCW",
+    "fileName": "Nomonhan.php",
+    "scenarios": {
+      "standard": {
+        "description": "Standard scenario. Japan vs Soviet Union",
+        "supply": true
+      }
+    }
   }
 }
