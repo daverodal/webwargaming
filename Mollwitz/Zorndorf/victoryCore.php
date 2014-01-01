@@ -36,12 +36,16 @@ class victoryCore
     public function reduceUnit($args)
     {
         $unit = $args[0];
+        $mult = 1;
+        if($unit->class == "artillery"){
+            $mult = 2;
+        }
         if($unit->forceId == 1) {
             $victorId = 2;
-            $this->victoryPoints[$victorId] += $unit->strength * 100;
+            $this->victoryPoints[$victorId] += $unit->strength * $mult;
         } else {
             $victorId = 1;
-            $this->victoryPoints[$victorId] += $unit->strength * 100;
+            $this->victoryPoints[$victorId] += $unit->strength * $mult;
         }
     }
 
@@ -54,26 +58,26 @@ class victoryCore
         $attackingId = $gameRules->attackingForceId;
         $turn = $gameRules->turn;
         if(!$this->gameOver){
-            $prussian = $austrianWin = false;
-            if($this->victoryPoints[AUSTRIAN_FORCE] > 30){
-                $austrianWin = true;
-            }
-            if($this->victoryPoints[PRUSSIAN_FORCE] > 20){
-                $prussianWin = true;
-            }
-            if($austrianWin && $prussianWin){
+            $prussianWin = $russianWin = false;
+//            if($this->victoryPoints[RUSSIAN_FORCE] > 30){
+//                $russianWin = true;
+//            }
+//            if($this->victoryPoints[PRUSSIAN_FORCE] > 20){
+//                $prussianWin = true;
+//            }
+            if($russianWin && $prussianWin){
                 $this->winner = 0;
                 $gameRules->flashMessages[] = "Tie Game";
             }
-            if($austrianWin){
-                $this->winner = AUSTRIAN_FORCE;
-                $gameRules->flashMessages[] = "Austrian Win on Kills";
+            if($russianWin){
+                $this->winner = RUSSIAN_FORCE;
+                $gameRules->flashMessages[] = "Russian Win on Kills";
             }
             if($prussianWin){
                 $this->winner = PRUSSIAN_FORCE;
                 $gameRules->flashMessages[] = "Prussian Win on Kills";
             }
-            if($austrianWin || $prussianWin){
+            if($russianWin || $prussianWin){
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
                 $gameRules->mode = GAME_OVER_MODE;
@@ -98,7 +102,7 @@ class victoryCore
         }
         /* $attackingId hasn't been switched yet XD */
         if($attackingId == PRUSSIAN_FORCE){
-            $gameRules->flashMessages[] = "Austrian Player Turn";
+            $gameRules->flashMessages[] = "Russian Player Turn";
         }
         if($attackingId  == RUSSIAN_FORCE){
             $gameRules->flashMessages[] = "Prussian Player Turn";

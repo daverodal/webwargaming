@@ -76,6 +76,7 @@ class CombatResultsTable
 
         /* @var Jagersdorf $battle */
         $battle = Battle::getBattle();
+        $argTwo = $battle->argTwo;
         $combats = $battle->combatRules->combats->$defenderId;
         $hexagon = $battle->force->units[$defenderId]->hexagon;
         $hexpart = new Hexpart();
@@ -94,11 +95,17 @@ class CombatResultsTable
         $isHill = $battle->terrain->terrainIs($hexpart, 'hill');
         $isForest = $battle->terrain->terrainIs($hexpart, 'forest');
 
+        if($isTown || $isForest || $isHill){
+            $isClear = false;
+        }
+
         $defenders = $combats->defenders;
 
         $attackers = $combats->attackers;
         $attackStrength = 0;
         $attackersCav = false;
+        $combinedArms = array();
+
         foreach ($attackers as $attackerId => $attacker) {
             $unit = $battle->force->units[$attackerId];
             $unitStrength = $unit->strength;
@@ -108,6 +115,7 @@ class CombatResultsTable
                 $acrossRiver = true;
             }
             if ($unit->class == "infantry") {
+                $combinedArms[$battle->force->units[$attackerId]->class]++;
                 if ($unit->forceId == PRUSSIAN_FORCE && $isClear && !$acrossRiver) {
                     $unitStrength++;
                 }
@@ -123,11 +131,16 @@ class CombatResultsTable
                 $attackersCav = true;
                 if ($battle->combatRules->thisAttackAcrossRiver($defenderId, $attackerId) || !$isClear) {
                     $unitStrength /= 2;
+                }else{
+                    $combinedArms[$battle->force->units[$attackerId]->class]++;
                 }
+            }
+            if($unit->class == "artillery"){
+                $combinedArms[$battle->force->units[$attackerId]->class]++;
             }
             $attackStrength += $unitStrength;
         }
-//        $attackStrength = $battle->force->getAttackerStrength($combats->attackers);
+
         $defenseStrength = 0;
         $defendersAllCav = true;
         foreach ($defenders as $defId => $defender) {
@@ -147,22 +160,15 @@ class CombatResultsTable
             $defenseStrength += $unitDefense * (($isTown && $class != 'cavalry') || $isHill ? 2 : 1);
         }
 
-        $combinedArms = array();
 
+        $armsShift = 0;
         if ($attackStrength >= $defenseStrength) {
-            foreach ($combats->attackers as $attackerId => $attacker) {
-                $combinedArms[$battle->force->units[$attackerId]->class]++;
+            $armsShift = count($combinedArms) - 1;
             }
-            if (!$isClear) {
-                unset($combinedArms['cavalry']);
-            }
-        }
 
-        $armsShift = count($combinedArms) - 1;
         if ($armsShift < 0) {
             $armsShift = 0;
         }
-
 
         $combatIndex = $this->getCombatIndex($attackStrength, $defenseStrength);
         /* Do this before terrain effects */

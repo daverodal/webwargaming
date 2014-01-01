@@ -65,7 +65,7 @@
 <body>
 <div class="wrapper">
     <div class="left Prussian big">Prussians</div>
-    <div class="right Russian big">Austrian</div>
+    <div class="right Russian big">Russians</div>
     <div class="clear"></div>
     <div class="left big Prussian">
         YOU

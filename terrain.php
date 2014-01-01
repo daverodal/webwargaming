@@ -188,8 +188,16 @@ class Terrain
 
         }
         if ($feature = $this->terrainFeatures->$terrainName) {
+            /* new feature is exclusive */
             if ($feature->isExclusive === true) {
-                $this->terrainArray[$y][$x] = new stdClass();
+                $thisHexpart = $this->terrainArray[$y][$x];
+                /* reset all exclusive terrains found, leave non exclusive ones */
+                foreach($thisHexpart as $thisTerrainName => $thisTerrainValue){
+                    if($this->terrainFeatures->$thisTerrainName->isExclusive){
+                        unset($this->terrainArray[$y][$x]->$thisTerrainName);
+                    }
+                }
+//                $this->terrainArray[$y][$x] = new stdClass();
             }
             $this->terrainArray[$y][$x]->$terrainName = $terrainName;
             if($feature->blocksRanged){
