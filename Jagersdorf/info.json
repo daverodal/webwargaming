@@ -4,12 +4,14 @@
     "path": "Jagersdorf",
     "fileName": "Jagersdorf.php",
     "scenarios": {
-      "orig": {
-        "description": "Original Rules"
-      },
       "longRangeArtillery": {
         "description": "artillery have range of 3",
         "longRangeArt": true
+      },
+      "prussianDeploys": {
+        "description": "Prussians has setup mode artillery have range of 3",
+        "longRangeArt": true,
+        "prussianDeploy":true
       }
     }
   }

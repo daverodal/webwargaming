@@ -218,59 +218,19 @@ class Jagersdorf extends Battle {
                 $this->playerData->${player}->unitSize = "32px";
                 $this->playerData->${player}->unitFontSize = "12px";
                 $this->playerData->${player}->unitMargin = "-21px";
-                if($arg == 1){
-                    $this->mapViewer[$player]->setData(62,80, // originX, originY
-                        26.5, 26.5, // top hexagon height, bottom hexagon height
-                        15, 30// hexagon edge width, hexagon center width
-                    );
-                }
-                if($arg == 0){
-                    $this->mapViewer[$player]->setData(66,103, // originX, originY
-                        27.5, 27.5, // top hexagon height, bottom hexagon height
-                        16, 32// hexagon edge width, hexagon center width
-                    );
-                }
+
+                $this->mapViewer[$player]->setData(66,103, // originX, originY
+                    27.5, 27.5, // top hexagon height, bottom hexagon height
+                    16, 32// hexagon edge width, hexagon center width
+                );
             }
 
 
 
-            // mapData
-            /*            $this->mapData->setData(88,117, // originX, originY
-                            40, 40, // top hexagon height, bottom hexagon height
-                            24, 48, // hexagon edge width, hexagon center width
-                            1410, 1410 // max right hexagon, max bottom hexagon
-                        );*/
-//            $this->mapData->setData(66,87, // originX, originY
-//                30, 30, // top hexagon height, bottom hexagon height
-//                18, 36, // hexagon edge width, hexagon center width
-//                1410, 1410 // max right hexagon, max bottom hexagon
-//            );
-//            $this->mapViewer[0]->setData(57,83, // originX, originY
-//                27.5, 27.5, // top hexagon height, bottom hexagon height
-//                16, 32// hexagon edge width, hexagon center width
-//            );
-//            $this->mapViewer[1]->setData(57,83, // originX, originY
-//                27.5, 27.5, // top hexagon height, bottom hexagon height
-//                16, 32 // hexagon edge width, hexagon center width
-//            );
-//            $this->mapViewer[2]->setData(57,83, // originX, originY
-//                27.5, 27.5, // top hexagon height, bottom hexagon height
-//                16, 32 // hexagon edge width, hexagon center width
-//            );
 
             // game data
             $this->gameRules->setMaxTurn(12);
-//            if($arg == 0){
-//                $this->gameRules->setInitialPhaseMode(BLUE_MOVE_PHASE,MOVING_MODE);
-//
-//            }
-//            if($arg == 1){
-//
-//            }
-//
-//            if($arg == 0){
-//                $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
-//            }
+
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE,DEPLOY_MODE);
             $this->gameRules->attackingForceId = RED_FORCE;/* object oriented! */
             $this->gameRules->defendingForceId = BLUE_FORCE;/* object oriented! */
@@ -278,35 +238,20 @@ class Jagersdorf extends Battle {
 
 
             /**
-             * not prussian deploy phase for now
+             * not not prussian deploy phase for now
+             */
             $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_DEPLOY_PHASE, DEPLOY_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
-            */
-            $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+//            $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
 
-//            $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
 
-//            $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE,BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
 
             // force data
-            //$this->force->setEliminationTrayXY(900);
 
-            // unit data -----------------------------------------------
-            //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
-
-//
-//                for($i = 1;$i<= 11;$i++){
-//                    $this->force->addUnit("infantry-1", RED_FORCE, 1305+$i, "RusInf.png",2,2,3, true, STATUS_READY, "R", 1, 1, "Russian");
-//
-//                }
-//                for($i = 1;$i<= 12;$i++){
-//                    $this->force->addUnit("infantry-1", RED_FORCE, 1505+$i, "RusInf.png",2,2,3, true, STATUS_READY, "R", 1, 1, "Russian");
-//
-//                }
                 $russianZones = array(1505,1605,1508,1706,1805,1807,1707,1607,1904,1905,1908,1909,2009,2010,2011,1912,1812,1714,1813,1914,2013,2113,1913,2114,2012,2111,2104,2105,2106,2107,2108,2109,2110,2112,2004,2005,2006,2007,2008,1906,1806,1907);
                 foreach ($russianZones as $zone) {
                     $this->terrain->addReinforceZone($zone, "R");
@@ -360,6 +305,33 @@ class Jagersdorf extends Battle {
                 $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png",1, 1, 6, true, STATUS_CAN_DEPLOY, "RC", 1, 1, "Russian",false,'cavalry');
                 $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png",1, 1, 6, true, STATUS_CAN_DEPLOY, "RC", 1, 1, "Russian",false,'cavalry');
 
+            if($argTwo && $argTwo->prussianDeploy){
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "PC", 1, 1, "Prussian",false,'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "PC", 1, 1, "Prussian",false,'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, "PC", 1, 1, "Prussian",false,'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "PC", 1, 1, "Prussian",false,'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "PC", 1, 1, "Prussian",false,'cavalry');
+
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruArt.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "P", 1, $artRange, "Prussian",false,'artillery');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruArt.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "P", 1, $artRange, "Prussian",false,'artillery');
+
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, "P", 1, 1, "Prussian",false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, "P", 1, 1, "Prussian",false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "P", 1, 1, "Prussian",false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "P", 1, 1, "Prussian",false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "P", 1, 1, "Prussian",false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "P", 1, 1, "Prussian",false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "P", 1, 1, "Prussian",false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "P", 1, 1, "Prussian",false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "P", 1, 1, "Prussian",false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "P", 1, 1, "Prussian",false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "P", 1, 1, "Prussian",false, 'infantry');
+
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "PC", 1, 1, "Prussian",false,'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "PC", 1, 1, "Prussian",false,'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, "PC", 1, 1, "Prussian",false,'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "PC", 1, 1, "Prussian",false,'cavalry');
+            }else{
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 306, "PruCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "Prussian",false,'cavalry');
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 307, "PruCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "Prussian",false,'cavalry');
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 405, "PruCav.png", 3, 3, 6, true, STATUS_READY, "B", 1, 1, "Prussian",false,'cavalry');
@@ -386,8 +358,17 @@ class Jagersdorf extends Battle {
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 316, "PruCav.png", 3, 3, 6, true, STATUS_READY, "B", 1, 1, "Prussian",false,'cavalry');
                 $this->force->addUnit("infantry-1", BLUE_FORCE, 416, "PruCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "Prussian",false,'cavalry');
 
+}
+            $prussianCavZones = [306,307,405,406,407,115, 215,316,416];
+            foreach ($prussianCavZones as $zone) {
+                $this->terrain->addReinforceZone($zone, "PC");
+            }
 
-                $i=0;
+            $prussianZones = [412, 312, 313, 314, 512, 513, 311, 411, 413, 314, 214, 114, 211, 110, 111, 112, 113, 210,  212, 213];
+            foreach ($prussianZones as $zone) {
+                $this->terrain->addReinforceZone($zone, "P");
+            }
+            $i=0;
 
             // end unit data -------------------------------------------
 
@@ -404,16 +385,6 @@ class Jagersdorf extends Battle {
             $this->terrain->addAltEntranceCost('forest','artillery',3);
             $this->terrain->addAltEntranceCost('forest','cavalry',3);
             $this->terrain->addReinforceZone("101","B");
-
-
-
-//            $deployZones = array(103,104,106,107,201,202,203,204,205,206,209,210,305,306,307,309,310,406,407,408,409,410);
-//            for($i = 1;$i <= 10;$i++){
-//                for($j= 1; $j<=2;$j++){
-//                    $this->terrain->addReinforceZone($j*100 + $i,"B");
-//
-//                }
-//            }
 
             for ($col = 100; $col <= 2100; $col += 100) {
                 for ($row = 1; $row <= 22; $row++) {

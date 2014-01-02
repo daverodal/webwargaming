@@ -144,6 +144,7 @@
             <?php include_once "obc.php"; ?>
 
             <?php include_once "tec.php"; ?>
+            <?php include "timeTravel.php"; ?>
 
             <?php include_once "help.php"; ?>
             <span id="hideShow">Dead Pile</span>

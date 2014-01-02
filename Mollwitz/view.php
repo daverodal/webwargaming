@@ -59,11 +59,6 @@
             </div>
             <div style="clear:both;"></div>
 
-            <!--            <div id="clickCnt"></div>-->
-            <!--        <button id="timeMachine">Time Travel</button>-->
-            <!--        <button id="timeSurge">Time Surge</button>-->
-            <!--        <button id="timeLive">Live</button>-->
-            <!--        <span id="phaseClicks"></span>-->
         </div>
         <?php global $results_name; ?>
         <div id="bottomHeader" style="clear:both;">
@@ -144,6 +139,7 @@
             <?php include_once "obc.php"; ?>
 
             <?php include_once "tec.php"; ?>
+            <?php include "timeTravel.php"; ?>
 
             <?php include_once "help.php"; ?>
             <span id="hideShow">Dead Pile</span>

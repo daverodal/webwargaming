@@ -829,6 +829,9 @@ h4:hover{
 #header a, #header a:visited{
     color:white;
 }
+#phaseClicks a{
+    color:black;
+}
 #header a:hover{
     color:#ddd !important;
 }
@@ -908,7 +911,7 @@ h4:hover{
     /*float:left;*/
     position: absolute;
 }
-#crtWrapper , #OBCWrapper,#TECWrapper,#VCWrapper,#jumpWrapper,#GRWrapper{
+#TimeWrapper, #crtWrapper , #OBCWrapper,#TECWrapper,#VCWrapper,#jumpWrapper,#GRWrapper{
     user-select:none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -923,7 +926,7 @@ h4:hover{
 .dropDownSelected{
     background:white;
 }
-#crtWrapper .WrapperLabel, #OBCWrapper .WrapperLabel, #TECWrapper .WrapperLabel,#VCWrapper .WrapperLabel,#jumpWrapper .WrapperLabel,#menuWrapper .WrapperLabel,#infoWrapper .WrapperLabel, #GRWrapper .WrapperLabel{
+#TimeWrapper .WrapperLabel, #crtWrapper .WrapperLabel, #OBCWrapper .WrapperLabel, #TECWrapper .WrapperLabel,#VCWrapper .WrapperLabel,#jumpWrapper .WrapperLabel,#menuWrapper .WrapperLabel,#infoWrapper .WrapperLabel, #GRWrapper .WrapperLabel{
     margin:0;
     border:none;
     user-select:none;
@@ -1001,6 +1004,10 @@ width:3em;
     margin:0;
     padding:0;
 }
+#Time ul{
+    margin:0;
+    padding:0;
+}
 #menu{
     background:white;
     color:#333;
@@ -1044,6 +1051,10 @@ width:3em;
 #OBC .unit section{
     /*background-color:rgba(0,0,0,.3);*/
 }
+#Time{
+    background:white;
+    width:200px;
+}
 #TEC{
     background:white;
     width:579px;
@@ -1078,7 +1089,7 @@ width:3em;
 #OBCWrapper h4 {
     /*width:2em;*/
 }
-#OBC, #crt, #TEC,#VC,#jump,#menu,#info,#GR{
+#OBC, #crt, #TEC,#VC,#jump,#menu,#info,#GR, #Time{
     position:absolute;
     z-index:30;
     display:none;

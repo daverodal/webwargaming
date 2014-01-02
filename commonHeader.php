@@ -27,6 +27,15 @@ $(document).ready(function(){
         click++;
         x.fetch(click);
     });
+    $("#timeBranch").click(function(){
+        x.timeTravel = true;
+        x.timeBranch = true;
+        if(x.current){
+            x.current.abort();
+        }
+        var click = $("#clickCnt").html();
+        x.fetch(click);
+    });
     $("#timeLive").click(function(){
         x.timeTravel = false;
         x.fetch(0);
