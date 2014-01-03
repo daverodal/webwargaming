@@ -419,6 +419,18 @@ x.register("combatRules", function(combatRules, data){
                     $('#mainTable').hide();
                     $('#altTable').show();
                 }
+                var atk = combatRules.lastResolvedCombat.attackStrength;
+                var atkDisp = atk;
+                ;
+
+                var def = combatRules.lastResolvedCombat.defenseStrength;
+                var ter = combatRules.lastResolvedCombat.terrainCombatEffect;
+                var idx = combatRules.lastResolvedCombat.index + 1;
+                var odds = Math.floor(atk / def);
+                var oddsDisp = odds + " : 1";
+                newLine = "<h5>odds = " + oddsDisp + "</h5><div id='crtDetails'>"+combatRules.lastResolvedCombat.combatLog+"</div><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + idxDisp + "</div>";
+
+                $("#crtOddsExp").html(newLine);
 //                    $(".row"+combatRoll+" .col"+combatCol).css('color',"white");
             }
             str += "";
@@ -434,9 +446,7 @@ x.register("combatRules", function(combatRules, data){
                     var atk = combatRules.combatsToResolve[i].attackStrength;
                     var atkDisp = atk;
                     ;
-                    if(combatRules.storm){
-                        atkDisp = atk * 2 + " halved for storm " + atk;
-                    }
+
                     var def = combatRules.combatsToResolve[i].defenseStrength;
                     var ter = combatRules.combatsToResolve[i].terrainCombatEffect;
                     var idx = combatRules.combatsToResolve[i].index + 1;
