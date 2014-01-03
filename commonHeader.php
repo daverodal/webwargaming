@@ -29,11 +29,11 @@ $(document).ready(function(){
     });
     $("#timeBranch").click(function(){
         x.timeTravel = true;
+        x.timeBranch = true;
         if(x.current){
             x.current.abort();
         }
         var click = $("#clickCnt").html();
-        click--;
         x.fetch(click);
     });
     $("#timeLive").click(function(){

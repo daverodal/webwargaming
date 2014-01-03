@@ -241,6 +241,7 @@
     }
     #crtDetailsButton{
         font-size:10px;
+        cursor: pointer;
     }
     #crtDetails{
         display:none;

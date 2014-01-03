@@ -222,10 +222,4 @@
         right: 18px;
         cursor:pointer;
     }
-    #crtDetailsButton{
-        font-size:10px;
-    }
-    #crtDetails{
-        display:none;
-    }
 </style>
