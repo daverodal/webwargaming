@@ -808,8 +808,8 @@ x.register("combatRules", function(combatRules,data) {
                     if(idx < 1){
                         idxDisp = "No effect";
                     }
-
-                    newLine =  "<h5>odds = "+ oddsDisp +"</h5><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+$(".col"+combatCol).html()+"</div>";
+                    var ratio = $(".col"+combatCol).html() || "No Effect";
+                    newLine =  "<h5>odds = "+ oddsDisp +"</h5><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+ratio +"</div>";
                     if(cD !== false && cD == i){
                         activeCombat = combatIndex;
                         activeCombatLine = newLine;

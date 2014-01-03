@@ -50,6 +50,7 @@ class victoryCore
     }
 
     private function checkVictory($battle){
+        global $force_name;
         $gameRules = $battle->gameRules;
         $attackingId = $gameRules->attackingForceId;
         $turn = $gameRules->turn;
@@ -63,15 +64,16 @@ class victoryCore
             }
             if($austrianWin && $prussianWin){
                 $this->winner = 0;
+                $austrianWin = $prussianWin = false;
                 $gameRules->flashMessages[] = "Tie Game";
             }
             if($austrianWin){
                 $this->winner = AUSTRIAN_FORCE;
-                $gameRules->flashMessages[] = "Austrian Win on Kills";
+                $gameRules->flashMessages[] = $force_name[AUSTRIAN_FORCE]."Win on Kills";
             }
             if($prussianWin){
                 $this->winner = PRUSSIAN_FORCE;
-                $gameRules->flashMessages[] = "Prussian Win on Kills";
+                $gameRules->flashMessages[] = $force_name[PRUSSIAN_FORCE]. "Prussian Win on Kills";
             }
             if($austrianWin || $prussianWin){
                 $gameRules->flashMessages[] = "Game Over";
@@ -84,6 +86,7 @@ class victoryCore
         return false;
     }
     public function playerTurnChange($arg){
+        global $force_name;
         $attackingId = $arg[0];
         $battle = Battle::getBattle();
 
@@ -97,12 +100,7 @@ class victoryCore
             return;
         }
         /* $attackingId hasn't been switched yet XD */
-        if($attackingId == PRUSSIAN_FORCE){
-            $gameRules->flashMessages[] = "Austrian Player Turn";
-        }
-        if($attackingId  == RUSSIAN_FORCE){
-            $gameRules->flashMessages[] = "Prussian Player Turn";
-        }
+            $gameRules->flashMessages[] = $force_name[$attackingId]."Player Turn";
 
 
     }

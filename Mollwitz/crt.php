@@ -18,6 +18,7 @@ class CombatResultsTable
     public $combatResultsTable;
     public $combatResultsHeader;
     public $combatOddsTable;
+
     //     combatIndexeCount is 6; maxCombatIndex = 5
     //     index is 0 to 5;  dieSidesCount = 6
 
@@ -26,18 +27,18 @@ class CombatResultsTable
         $this->combatResultsHeader = array("1:4", "1:3", "1:2", "1:1", "1.5:1", "2:1", "3:1", "4:1", "5:1", "6:1");
         $this->combatResultsTable = array(
             array(AE, AE, AE, AR, AR, AR, DR, DR, DR, DR),
-            array(AE, AE, AE, AR, AR, DR, DR, DR, DR, DE),
+            array(AE, AE, AR, AR, AR, DR, DR, DR, DR, DE),
             array(AE, AE, AR, AR, DR, DR, EX, DR, DE, DE),
-            array(AE, AE, AR, NE, DR, DR, EX, DE, DE, DE),
-            array(AE, AE, NE, DR, DR, EX, DE, DE, DE, DE),
+            array(AE, AE, NE, NE, DR, DR, EX, DE, DE, DE),
+            array(AE, AR, NE, DR, DR, EX, DE, DE, DE, DE),
             array(AR, AR, DR, EX, EX, EX, DE, DE, DE, DE),
         );
         $this->combatResultsTableCav = array(
             array(AE, AE, AE, AR, AR, AR, DR, DR, DR, DR),
-            array(AE, AE, AE, AR, AR, DR, DR, DR, DR, DR),
+            array(AE, AE, AR, AR, AR, DR, DR, DR, DR, DR),
             array(AE, AE, AR, AR, DR, DR, DR, DR, DR, DR),
-            array(AE, AE, AR, DR, DR, DR, DR, DR, DR, DR),
             array(AE, AE, NE, DR, DR, DR, DR, DR, DR, DR),
+            array(AE, AR, NE, DR, DR, DR, DR, DR, DR, DR),
             array(AR, AR, DR, DR, DR, DR, DR, DR, DR, DR),
         );
         $this->combatOddsTable = array(
@@ -74,13 +75,11 @@ class CombatResultsTable
     public function setCombatIndex($defenderId)
     {
 
+        $combatLog = "";
         /* @var Jagersdorf $battle */
         $battle = Battle::getBattle();
         $argTwo = $battle->argTwo;
         $combats = $battle->combatRules->combats->$defenderId;
-        $hexagon = $battle->force->units[$defenderId]->hexagon;
-        $hexpart = new Hexpart();
-        $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
 
         if (count((array)$combats->attackers) == 0) {
             $combats->index = null;
@@ -90,72 +89,99 @@ class CombatResultsTable
             return;
         }
 
-        $isClear = $battle->terrain->terrainIs($hexpart, 'clear');
-        $isTown = $battle->terrain->terrainIs($hexpart, 'town');
-        $isHill = $battle->terrain->terrainIs($hexpart, 'hill');
-        $isForest = $battle->terrain->terrainIs($hexpart, 'forest');
+        $defenders = $combats->defenders;
+        $isTown = $isHill = $isForest = false;
 
-        if($isTown || $isForest || $isHill){
+
+        foreach ($defenders as $defId => $defender) {
+            $hexagon = $battle->force->units[$defId]->hexagon;
+            $hexpart = new Hexpart();
+            $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
+
+            $isTown |= $battle->terrain->terrainIs($hexpart, 'town');
+            $isHill |= $battle->terrain->terrainIs($hexpart, 'hill');
+            $isForest |= $battle->terrain->terrainIs($hexpart, 'forest');
+        }
+        $isClear = true;
+        if ($isTown || $isForest || $isHill) {
             $isClear = false;
         }
-
-        $defenders = $combats->defenders;
 
         $attackers = $combats->attackers;
         $attackStrength = 0;
         $attackersCav = false;
         $combinedArms = array();
 
+        $combatLog .= "Attackers<br>";
         foreach ($attackers as $attackerId => $attacker) {
             $unit = $battle->force->units[$attackerId];
             $unitStrength = $unit->strength;
 
             $acrossRiver = false;
-            if ($battle->combatRules->thisAttackAcrossRiver($defenderId, $attackerId)) {
-                $acrossRiver = true;
+            foreach ($defenders as $defId => $defender) {
+                if ($battle->combatRules->thisAttackAcrossRiver($defId, $attackerId)) {
+                    $acrossRiver = true;
+                }
             }
+
             if ($unit->class == "infantry") {
                 $combinedArms[$battle->force->units[$attackerId]->class]++;
-//                if ($unit->forceId == PRUSSIAN_FORCE && $isClear && !$acrossRiver) {
-//                    $unitStrength++;
-//                }
-//                if ($unit->forceId == RUSSIAN_FORCE && ($isTown || $isForest) && !$acrossRiver) {
-//                    $unitStrength++;
-//                }
+                $combatLog .= "$unitStrength Infantry ";
+                if($argTwo->jagersdorfCombat){
+                    if ($unit->forceId == PRUSSIAN_FORCE && $isClear && !$acrossRiver) {
+                        $unitStrength++;
+                        $combatLog .= "+1 for attack into clear ";
+                    }
+                    if ($unit->forceId == RUSSIAN_FORCE && ($isTown || $isForest) && !$acrossRiver) {
+                        $unitStrength++;
+                        $combatLog .= "+1 for attack into town or forest ";
+                    }
+                }
                 if ($acrossRiver) {
+                    $combatLog .= "halved because of river ";
                     $unitStrength /= 2;
                 }
             }
 
             if ($unit->class == "cavalry") {
+                $combatLog .= "$unitStrength Cavalry ";
                 $attackersCav = true;
-                if ($battle->combatRules->thisAttackAcrossRiver($defenderId, $attackerId) || !$isClear) {
+                if ($acrossRiver || !$isClear) {
+                    $combatLog .= " halved for terrain, loses combined arms bonus ";
                     $unitStrength /= 2;
-                }else{
+                } else {
                     $combinedArms[$battle->force->units[$attackerId]->class]++;
                 }
             }
-            if($unit->class == "artillery"){
+            if ($unit->class == "artillery") {
+                $combatLog .= "$unitStrength Artillery ";
                 $combinedArms[$battle->force->units[$attackerId]->class]++;
             }
             $attackStrength += $unitStrength;
         }
+//        $combatLog .= "<br>";
 
         $defenseStrength = 0;
         $defendersAllCav = true;
+        $combatLog .= "<br>Defenders<br>";
         foreach ($defenders as $defId => $defender) {
             $unit = $battle->force->units[$defId];
             $class = $unit->class;
             $unitDefense = $battle->force->getDefenderStrength($defId);
+            $combatLog .= "$unitDefense ".$unit->class." ";;
             if ($unit->class != 'cavalry') {
                 $defendersAllCav = false;
             }
-//            if ($unit->forceId == PRUSSIAN_FORCE && $class == "infantry" && $isClear) {
-//                $unitDefense += 1;
-//            }
-//            if ($unit->forceId == RUSSIAN_FORCE && $class == "infantry" && ($isTown || $isForest)) {
-//                $unitDefense += 1;
-//            }
+            if($argTwo->jagersdorfCombat){
+                if ($unit->forceId == PRUSSIAN_FORCE && $class == "infantry" && $isClear) {
+                    $unitDefense += 1;
+                    $combatLog .= "+1 for defending in clear ";
+                }
+                if ($unit->forceId == RUSSIAN_FORCE && $class == "infantry" && ($isTown || $isForest)) {
+                    $unitDefense += 1;
+                    $combatLog .= "+1 for defending in town or forest ";
+                }
+            }
 
             $defenseStrength += $unitDefense * (($isTown && $class != 'cavalry') || $isHill ? 2 : 1);
         }
@@ -189,7 +215,9 @@ class CombatResultsTable
         $combats->useAlt = false;
         if ($defendersAllCav && !$attackersCav) {
             $combats->useAlt = true;
+            $combatLog .= "using cavalry table ";
         }
+        $combats->combatLog = $combatLog;
     }
 
     function getCombatIndex($attackStrength, $defenseStrength)

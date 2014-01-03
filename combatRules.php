@@ -283,14 +283,21 @@ class CombatRules
 
     function getDefenderTerrainCombatEffect($defenderId)
     {
-        $terrainCombatEffect = $this->terrain->getDefenderTerrainCombatEffect($this->force->getCombatHexagon($defenderId), $this->force->attackingForceId);
-        if ($this->allAreAttackingAcrossRiver($defenderId)) {
-
-            $terrainCombatEffect += $this->terrain->getAllAreAttackingAcrossRiverCombatEffect();
-
+        $defenders = $this->combats->$defenderId->defenders;
+        $bestDefenderTerrainEffect = 0;
+        foreach($defenders as $defId => $def){
+            $terrainCombatEffect = $this->terrain->getDefenderTerrainCombatEffect($this->force->getCombatHexagon($defId), $this->force->attackingForceId);
+            if ($this->allAreAttackingAcrossRiver($defId)) {
+                $riverCombatEffect = $this->terrain->getAllAreAttackingAcrossRiverCombatEffect();
+                if($riverCombatEffect > $terrainCombatEffect){
+                    $terrainCombatEffect = $riverCombatEffect;
+                }
+            }
+            if($terrainCombatEffect > $bestDefenderTerrainEffect){
+                $bestDefenderTerrainEffect = $terrainCombatEffect;
+            }
         }
-
-        return $terrainCombatEffect;
+        return $bestDefenderTerrainEffect;
     }
 
     function cleanUp()
@@ -359,10 +366,8 @@ class CombatRules
     function allAreAttackingAcrossRiver($defenderId)
     {
 
+        $defenderId = $this->defenders->$defenderId;
         $allAttackingAcrossRiver = true;
-
-//     $attackerHexagonList = array();
-//    $attackerHexagonList = $this->force->getAttackerHexagonList($combatNumber);
         $attackerHexagonList = $this->combats->$defenderId->attackers;
         /* @var Hexagon $defenderHexagon */
         $defenderHexagon = $this->force->getCombatHexagon($defenderId);
@@ -420,9 +425,11 @@ class CombatRules
             $victory = $battle->victory;
             foreach ($this->combats as $defenderId => $combat) {
                 if (count((array)$combat->attackers) == 0) {
+                    foreach($combat->defenders as $defId => $def){
+                        $this->force->setStatus($defId, STATUS_READY);
+                        $victory->postUnsetDefender($this->force->units[$defId]);
+                    }
                     unset($this->combats->$defenderId);
-                    $this->force->setStatus($defenderId, STATUS_READY);
-                    $victory->postUnsetDefender($this->force->units[$defenderId]);
                     continue;
                 }
                 if ($combat->index < 0) {
@@ -433,9 +440,11 @@ class CombatRules
                             $victory->postUnsetAttacker($this->force->units[$attackerId]);
                         }
                     }
+                    foreach($combat->defenders as $defId => $def){
+                        $this->force->setStatus($defId, STATUS_READY);
+                        $victory->postUnsetDefender($this->force->units[$defId]);
+                    }
                     unset($this->combats->$defenderId);
-                    $this->force->setStatus($defenderId, STATUS_READY);
-                    $victory->postUnsetDefender($this->force->units[$defenderId]);
                     continue;
                 }
             }

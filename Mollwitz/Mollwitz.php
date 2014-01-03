@@ -1,12 +1,4 @@
 <?php
-
-if(!isset($arg) || !isset($argTwo)){
-    echo "ARG ";
-    var_dump($arg);
-    echo "Arg Two ";
-    var_dump($argTwo);
-    die('no args');
-}
 /* comment */
 require_once "constants.php";
 global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;

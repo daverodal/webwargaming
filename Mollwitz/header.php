@@ -12,9 +12,9 @@
         background-color: white;
     }
 
-    img.counter {
+    .unit img.counter {
         width: 32px;
-        height: 16px;
+        height:20px;
     }
 
     .unit div {
@@ -23,6 +23,13 @@
         font-size: 12px;
         font-weight: bold;
         font-family: serif;
+    }
+
+    .unit img {
+        /*width:auto;*/
+        /*height:auto;*/
+        /*max-height:auto;*/
+        /*max-width:auto;*/
     }
 
     .RussianaVP {
@@ -60,6 +67,12 @@
         background-color: rgb(223, 88, 66);
     }
 
+    .unit-numbers{
+        border: 1px solid black;
+        border-top:none;
+        height:11px;
+        line-height:11px;
+    }
     p.forceMarch {
         position: absolute;
         top: -19px;
@@ -226,9 +239,19 @@
         position: absolute;
         right: 18px;
     }
+    #crtDetailsButton{
+        font-size:10px;
+    }
+    #crtDetails{
+        display:none;
+    }
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
+    $("#crtDetailsButton").on('click',function(){
+        $('#crtDetails').toggle();
+        return false;
+    });
     $("#altTable").on('click', function(){
         $(this).hide();
         $("#mainTable").show();
@@ -245,6 +268,7 @@ $(document).ready(function(){
     $("#mainTable").hide();
     $(".tableWrapper.alt").hide();
     $(".tableWrapper.main").show();
+
 });
 x.register("combatRules", function(combatRules, data){
 
@@ -337,7 +361,7 @@ x.register("combatRules", function(combatRules, data){
                         idxDisp = "No effect";
                     }
 
-                    newLine = "<h5>odds = " + oddsDisp + "</h5><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + $(".col" + combatCol).html() + "</div>";
+                    newLine = "<h5>odds = " + oddsDisp + " </h5><div id='crtDetails'>"+combatRules.combats[i].combatLog+"</div><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + $(".col" + combatCol).html() + "</div>";
                     if(cD !== false && cD == i){
                         activeCombat = combatIndex;
                         activeCombatLine = newLine;

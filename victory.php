@@ -12,10 +12,18 @@ class Victory{
         if($name == null){
             return;
         }
-        $class = __DIR__."/".$name."/victoryCore.php";
+        $class = __DIR__."/".$name;
+        if(!strstr($class,".php")){
+            $className = "victoryCore";
+            $class .= "/victoryCore.php";
+        }else{
+            $matches = [];
+            $className = basename($name);
+            $className = preg_replace("/.php/","",$className);
+        }
         if(file_exists($class)){
             require_once($class);
-            $this->core = new victoryCore($data);
+            $this->core = new $className($data);
         }
     }
     public function __call($name, $arguments){

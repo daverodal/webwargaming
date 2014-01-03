@@ -113,7 +113,7 @@ class Zorndorf extends Mollwitz
             $this->arg = $data->arg;
             $this->argTwo = $data->argTwo;
             $this->genTerrain = false;
-            $this->victory = new Victory("Mollwitz/Zorndorf", $data);
+            $this->victory = new Victory("Mollwitz/Zorndorf/zorndorfVictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
@@ -131,7 +131,7 @@ class Zorndorf extends Mollwitz
             $this->arg = $arg;
             $this->argTwo = $argTwo;
             $this->genTerrain = true;
-            $this->victory = new Victory("Mollwitz/Zorndorf");
+            $this->victory = new Victory("Mollwitz/Zorndorf/zorndorfVictoryCore.php");
 
             $this->mapData->setData(38, 29, "js/Zorndorf.jpg");
 

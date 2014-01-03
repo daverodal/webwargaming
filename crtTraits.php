@@ -34,7 +34,6 @@ trait divCombatShiftTerrain
         foreach ($combats->attackers as $id => $v) {
             $attackStrength += $force->units[$id]->strength;
         }
-//        $attackStrength = $this->force->getAttackerStrength($combats->attackers);
         $defenseStrength = 0;
         foreach ($defenders as $defId => $defender) {
             $defenseStrength += $force->getDefenderStrength($defId);
@@ -46,6 +45,7 @@ trait divCombatShiftTerrain
         }
 
 
+        /* @var $combatRules CombatRules */
         $terrainCombatEffect = $combatRules->getDefenderTerrainCombatEffect($defenderId);
 
         $combatIndex -= $terrainCombatEffect;

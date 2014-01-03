@@ -128,6 +128,7 @@
                             </div>
                         <?php } ?>
                     </div>
+                    <div id="crtDetailsButton">details</div>
                     <div id="crtOddsExp"></div>
                 </div>
             </div>
