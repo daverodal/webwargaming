@@ -20,7 +20,7 @@
     h1{
         text-align:center;
         font-size:90px;
-        font-family:'Monsieur La Doulaise';
+        font-family:'Pinyon Scrip';
         color:#f66;
         margin-top:0px;
         text-shadow: 0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,

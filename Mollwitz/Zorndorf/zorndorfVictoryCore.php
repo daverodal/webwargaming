@@ -50,9 +50,8 @@ class zorndorfVictoryCore extends victoryCore
         }
     }
 
-    private function checkVictory($battle){
+    private function checkVictory($attackingId,$battle){
         $gameRules = $battle->gameRules;
-        $attackingId = $gameRules->attackingForceId;
         $turn = $gameRules->turn;
         if(!$this->gameOver){
             $prussianWin = $russianWin = false;
