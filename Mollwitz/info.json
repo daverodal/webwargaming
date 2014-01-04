@@ -1,22 +1,22 @@
 {
   "Mollwitz": {
-    "name": "Mollwitz",
+    "name": "The Battle of Mollwitz",
     "path": "Mollwitz",
     "fileName": "Mollwitz.php",
     "scenarios": {
       "artilleryCombined": {
-        "description": "Artillery will add combined arms bonus",
+        "description": "Standard Scenario",
         "artSupport":true
       }
     }
   },
   "Zorndorf": {
-    "name": "Zorndorf, the battle of.... htat's it.",
+    "name": "The Battle of Zorndorf.",
     "path": "Mollwitz",
     "fileName": "Zorndorf.php",
     "scenarios": {
       "artilleryCombined": {
-        "description": "Artillery will add combined arms bonus",
+        "description": "Standard Scenario",
         "artSupport":true
       }
     }
