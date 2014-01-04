@@ -72,6 +72,7 @@
         border-top:none;
         height:11px;
         line-height:11px;
+        font-size:10px !important;
     }
     p.forceMarch {
         position: absolute;

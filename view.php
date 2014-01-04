@@ -13,7 +13,7 @@
 <a href="<?=site_url("wargame/resize/0");?>">BIG</a>
 <a href="<?=site_url("wargame/resize/1");?>">small</a>
 <a href="<?=site_url("wargame/createWargame");?>">Create Wargame</a>
-<a href="<?=site_url("wargame/logout");?>">logout</a>
+<a href="<?=site_url("users/logout");?>">logout</a>
 {games}
 <a href="<?=site_url("wargame/unitInit/{name}/{arg}");?>">{name} {arg}</a>
 {/games}<!--<a href="--><?//=site_url("wargame/resize/0");?><!--">BIG</a>-->

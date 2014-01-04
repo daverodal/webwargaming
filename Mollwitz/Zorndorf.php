@@ -774,6 +774,7 @@ class Zorndorf extends Mollwitz
         $this->terrain->addTerrain(1201 ,1 , "road");
         $this->terrain->addTerrain(1301 ,3 , "road");
         $this->terrain->addTerrain(305 ,2 , "road");
+        $this->terrain->addTerrain(305 ,2 , "river");
         $this->terrain->addTerrain(306 ,1 , "road");
         $this->terrain->addTerrain(406 ,4 , "road");
         $this->terrain->addTerrain(410 ,2 , "road");
@@ -826,6 +827,7 @@ class Zorndorf extends Mollwitz
         $this->terrain->addTerrain(1502 ,4 , "blocked");
         $this->terrain->addTerrain(1501 ,2 , "blocked");
         $this->terrain->addTerrain(1601 ,4 , "trail");
+        $this->terrain->addTerrain(1601 ,4 , "river");
         $this->terrain->addTerrain(2310 ,1 , "blocked");
         $this->terrain->addTerrain(2411 ,1 , "blocked");
         $this->terrain->addTerrain(2611 ,1 , "blocked");
@@ -1229,7 +1231,6 @@ class Zorndorf extends Mollwitz
         $this->terrain->addTerrain(2415 ,4 , "river");
         $this->terrain->addTerrain(2414 ,2 , "river");
         $this->terrain->addTerrain(2515 ,3 , "river");
-        $this->terrain->addTerrain(412 ,3 , "river");
         $this->terrain->addTerrain(413 ,4 , "river");
         $this->terrain->addTerrain(413 ,3 , "river");
         $this->terrain->addTerrain(414 ,4 , "river");
@@ -1344,6 +1345,7 @@ class Zorndorf extends Mollwitz
         $this->terrain->addReinforceZone(512,'A');
         $this->terrain->addTerrain(512 ,4 , "road");
         $this->terrain->addTerrain(513 ,4 , "road");
+        $this->terrain->addTerrain(513 ,4 , "river");
         $this->terrain->addTerrain(513 ,1 , "road");
         $this->terrain->addReinforceZone(513,'A');
         $this->terrain->addTerrain(613 ,1 , "road");
@@ -1950,5 +1952,11 @@ class Zorndorf extends Mollwitz
         $this->terrain->addTerrain(3406 ,4 , "trail");
         $this->terrain->addTerrain(3507 ,4 , "trail");
         $this->terrain->addTerrain(3607 ,4 , "trail");
+        $this->terrain->addTerrain(411 ,2 , "river");
+        $this->terrain->addTerrain(411 ,2 , "road");
+        $this->terrain->addTerrain(512 ,3 , "river");
+        $this->terrain->addTerrain(412 ,2 , "river");
+        $this->terrain->addTerrain(412 ,4 , "river");
+        $this->terrain->addTerrain(412 ,4 , "road");
     }
 }

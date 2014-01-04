@@ -11,7 +11,7 @@
                 <ul>
                     <li><a id="muteButton">mute</a></li>
                     <li><a href="<?=site_url("wargame/leaveGame");?>">Go To Lobby</a></li>
-                    <li><a href="<?=site_url("wargame/logout");?>">logout</a></li>
+                    <li><a href="<?=site_url("users/logout");?>">logout</a></li>
                     <!--                        <li><a href="--><?//=site_url("wargame/unitInit/MartianCivilWar");?><!--">Restart Game</a></li>-->
                     <li><a href="#" onclick="seeUnits();return false;">See Units</a></li>
                     <li><a href="#" onclick="seeBoth();return false;">See Both</a></li>
