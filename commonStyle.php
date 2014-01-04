@@ -1327,6 +1327,8 @@ fieldset{
     /*height:32px;*/
 }
 .unit section{
+    top:0px;
+    left:0px;
     height:100%;
     width:100%;
     position:absolute;
@@ -1342,16 +1344,28 @@ fieldset{
     font-family: serif;
     -webkit-user-select:none;
 }
-.unit img {
+.unit .unitSize{
+    font-size:10px;
+    line-height: 5px;
+    text-align: center;
+    color:black;
+}
+.unit img{
     width:100%;
     height:100%;
     max-height:100px;
     max-width:100px;
 }
+.unit .counter {
+    width:100%;
+    height:29px;
+
+}
 .arrowClone,.arrow{
     position:absolute;
     pointer-events:none;
     z-index:102;
+    top:0px;
 }
 .clone{
     /*pointer-events:none;*/
