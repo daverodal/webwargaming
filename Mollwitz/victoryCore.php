@@ -49,10 +49,9 @@ class victoryCore
     {
     }
 
-    private function checkVictory($battle){
+    private function checkVictory($attackingId, $battle){
         global $force_name;
         $gameRules = $battle->gameRules;
-        $attackingId = $gameRules->attackingForceId;
         $turn = $gameRules->turn;
         if(!$this->gameOver){
             $prussian = $austrianWin = false;
@@ -78,8 +77,6 @@ class victoryCore
             if($austrianWin || $prussianWin){
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
-                $gameRules->mode = GAME_OVER_MODE;
-                $gameRules->phase = GAME_OVER_PHASE;
                 return true;
             }
         }
@@ -92,14 +89,13 @@ class victoryCore
 
         /* @var GameRules $gameRules */
         $gameRules = $battle->gameRules;
-        $attackingId = $gameRules->attackingForceId;
         $turn = $gameRules->turn;
         $gameRules->flashMessages[] = "@hide crt";
 
-        if($this->checkVictory($battle)){
+        if($this->checkVictory($attackingId,$battle)){
             return;
         }
-        /* $attackingId hasn't been switched yet XD */
+
             $gameRules->flashMessages[] = $force_name[$attackingId]."Player Turn";
 
 

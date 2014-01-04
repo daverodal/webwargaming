@@ -53,10 +53,9 @@ class jagerVictoryCore extends victoryCore
     {
     }
 
-    private function checkVictory($battle){
+    private function checkVictory($attackingId, $battle){
         global $force_name;
         $gameRules = $battle->gameRules;
-        $attackingId = $gameRules->attackingForceId;
         $turn = $gameRules->turn;
         if(!$this->gameOver){
             $prussianWin = $russianWin = false;
@@ -82,8 +81,8 @@ class jagerVictoryCore extends victoryCore
             if($russianWin || $prussianWin){
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
-                $gameRules->mode = GAME_OVER_MODE;
-                $gameRules->phase = GAME_OVER_PHASE;
+//                $gameRules->mode = GAME_OVER_MODE;
+//                $gameRules->phase = GAME_OVER_PHASE;
                 return true;
             }
         }

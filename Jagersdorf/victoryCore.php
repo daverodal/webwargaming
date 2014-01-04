@@ -90,7 +90,6 @@ class victoryCore
 
         /* @var GameRules $gameRules */
         $gameRules = $battle->gameRules;
-        $attackingId = $gameRules->attackingForceId;
         $turn = $gameRules->turn;
         $gameRules->flashMessages[] = "@hide crt";
 

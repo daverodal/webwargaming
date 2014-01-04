@@ -444,7 +444,6 @@ function flashMessage(playerStatus){
 //                game = mess.match(/^@show ([^,]*)/);
 //                id = game[1];
 //                $("#"+id).show({effect:"blind",direction:"up",complete:flashMessage});
-                playLadies();
                 return;
             }
         }

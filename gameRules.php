@@ -593,8 +593,8 @@ class GameRules {
                     if ($this->turn > $this->maxTurn) {
                         $victory->gameOver();
                         $this->flashMessages[] = "@gameover";
-                        $this->mode = GAME_OVER_MODE;
-                        $this->phase = GAME_OVER_PHASE;
+//                        $this->mode = GAME_OVER_MODE;
+//                        $this->phase = GAME_OVER_PHASE;
                     }
 
 
