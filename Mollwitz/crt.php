@@ -28,7 +28,7 @@ class CombatResultsTable
         $this->combatResultsTable = array(
             array(AE, AE, AE, AR, AR, AR, DR, DR, DR, DR),
             array(AE, AE, AR, AR, AR, DR, DR, DR, DR, DE),
-            array(AE, AE, AR, AR, DR, DR, EX, DR, DE, DE),
+            array(AE, AE, AR, AR, DR, DR, DR, DR, DE, DE),
             array(AE, AE, NE, NE, DR, DR, EX, DE, DE, DE),
             array(AE, AR, NE, DR, DR, EX, DE, DE, DE, DE),
             array(AR, AR, DR, DR, EX, EX, DE, DE, DE, DE),
