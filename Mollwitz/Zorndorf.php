@@ -1958,5 +1958,6 @@ class Zorndorf extends Mollwitz
         $this->terrain->addTerrain(412 ,2 , "river");
         $this->terrain->addTerrain(412 ,4 , "river");
         $this->terrain->addTerrain(412 ,4 , "road");
+        $this->terrain->addTerrain(1501 ,2 , "blocked");
     }
 }
