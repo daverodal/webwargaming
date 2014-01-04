@@ -905,14 +905,14 @@ h4:hover{
 
 }
 #infoWrapper, #menuWrapper{
-    user-select:none;
+    user-select:text;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     /*float:left;*/
     position: absolute;
 }
 #TimeWrapper, #crtWrapper , #OBCWrapper,#TECWrapper,#VCWrapper,#jumpWrapper,#GRWrapper{
-    user-select:none;
+    user-select:text;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     /*float:left;*/
@@ -929,7 +929,7 @@ h4:hover{
 #TimeWrapper .WrapperLabel, #crtWrapper .WrapperLabel, #OBCWrapper .WrapperLabel, #TECWrapper .WrapperLabel,#VCWrapper .WrapperLabel,#jumpWrapper .WrapperLabel,#menuWrapper .WrapperLabel,#infoWrapper .WrapperLabel, #GRWrapper .WrapperLabel{
     margin:0;
     border:none;
-    user-select:none;
+    user-select:text;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     cursor: pointer;

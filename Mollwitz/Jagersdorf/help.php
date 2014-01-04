@@ -58,19 +58,35 @@
     No Supply.
 </header>
 <h2>Turn Order</h2>
+<p>The game is divided in to phases as you complete each phase click 'Next Phase' on the top bar to proceed to the next phase. </p>
 <ol>
 
 
-    <li>Prussian Movement Phase</li>
+    <li><h3>On the first turn of the game you will be instructed to deploy units.</h3>
+        <p>The units you need to deploy will appear in the top bar. When you click on a unit a ghost of it will appear on the map. Click on one of the ghosts and the unit will be placed on the map. (you are not required to deploy all of your units you can decline to place some of the units to balance the game.</p></li>
+    <li><h3>Prussian Movement Phase</h3>
+    <p>
+        Click on one of your units. Ghosts will appear where it can legally move. Click on a ghost to move the unit to that location. If it has remaining movement that will be indicated by Ghosts. If you are satisfied with your move click on it again and the ghosts will disappear.
+        Road Movement: Your units may move faster along roads but you must put them into road Move mode to get the benefit. Click on a unit before you move it. Now press <M> you will now see that your unit can move further along roads. This is also the Only way to use bridges. Units that road move may not attack in the following combat phase.
+    </p></li>
 
-    <li> Prussian Attack Phase</li>
+    <li> <h3>Prussian Attack Phase</h3>
+    <p>
+        A] Attack planning Phase: When you start your attack phase all of your units that are eligible to attack will be highlighted. Click on a hostile unit you want to attack then click on one of your adjacent highlighted units. A red arrow will appear indicating that your unit is now committed to an attack. At the same time the combat results table will appear showing you the possible results. You can add more units to the attack by clicking on them. You can also have your unit attack more than one hostile unit by pressing <Shift> and clicking on your unit again then clicking on the new target. You may not make attacks at less than 1-4 odds.
+            Artillery: Designate artillery attacks the same way but you may attack a hostile unit up to 3 hexes away (or 2 if reduced visibility) if your artillery is not adjacent to a hostile unit. And you have a clear line of sight.
 
-    <li>Russian Movement Phase (No Russian unit may expend more than 2 MP on turn 1 only)</li>
+            B] Combat Resolution Phase: Click on a hostile unit you targeted in attack planning. The combat result will appear. If the hostile unit needs to be retreated click on it and move it one space. See Retreats bellow. If your unit is allowed to advance click on it and move it in to the hex vacated by the hostile unit, or if you do not want to advance click on your unit again. Move on to the next combat. Once complete click on next phase to move to your opponent’s turn
+    </p></li>
 
-    <li>Russian Attack phase</li>
+    <li><h3>Russian Movement Phase (No Russian unit may expend more than 2 MP on turn 1 only)</h3><p>see Prussian Movement above.</p></li>
 
-    <li>Turn End</li>
+    <li><h3>Russian Attack phase</h3><p>see Prussian Attack above.</p></li>
+
+    <li><h3>Turn End</h3></li>
 </ol>
+<h2>Stacking</h2>
+<p>No more than one unit may occupy the same hex at any given, however friendly units may move through each other.</p>
+
 <h2>Movement</h2>
 
 <p>The Second Number on the counter is Movement Points <abbr title="Movement Points">(MP)</abbr>.</p>
@@ -116,16 +132,21 @@
 
 <p>A single unit may attack any or all hostile units that it is adjacent to so long as the odds are not worse than 1-4.
     All attacks against a group of contiguous defenders may be grouped together and resolved as a single attack so long
-    as those defenders occupy a single terrain type.</p>
+    as all attackers are within range of all defenders. The terrain applied to the combat situation is the most favorable to the defender.</p>
+<p>In order to attack more than one unit, click on a defender (it should get a yellow border),
+    then click on the second defender you with to attack while holding down the shift key (you should see two units with a yellow border).
+    you may click on eligible attackers and arrows should appear point at both defenders.
+</p>
 
 <p>
-<h4>Retreats</h4> Whenever obligated by combat result, or choosing to retreat a unit before combat, the owning player
-retreats his units obeying the following requirements. Units may not retreat off board, or into enemy zones of control,
-the minimum number friendly of friendly units may be displaced 1 hex each to allow a unit to retreat. Units that cannot
+<h4>Retreats</h4> Whenever obligated by combat result,  the attacking player
+retreats the units (attacking or defending) obeying the following requirements. Units may not retreat off board, or into enemy zones of control,
+If a unit cannot find an empty it may retreat over friendly hexes until it finds an empty hex. Units that cannot
 retreat are eliminated.
 </p>
-<h4>Retreat Before Combat</h4> Any cavalry unit that is attacked solely by infantry may instead of suffering the attack
-be retreated by the owning player 1 hex after the attack is announced and before the die is rolled.
+<h4>Retreat Before Combat</h4> To simmulate retreat before combat, when only non cavalry units are attacking only cavalry units
+the cavalry can do a "retreat before combat" this is reflected in the 'cavalry combat results table', which has all DR's where EX's or DE's would be.
+You may click on the crt where it says "see cavalry table" or "see normal table" to toggle between them.
 
 <h4>Advance after combat</h4> If a defending hex is left vacant any adjacent attacker that participated in the attack my
 be moved into that hex. This must be done before the next attack is resolved. Artillery units may NOT advance after combat.

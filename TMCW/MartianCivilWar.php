@@ -89,7 +89,7 @@ class MartianCivilWar extends Battle
         @include_once "header.php";
     }
 
-    static function getView($name, $mapUrl, $player = 0, $player = 0, $arg = false, $argTwo = false)
+    static function getView($name, $mapUrl, $player = 0, $arg = false, $argTwo = false)
     {
         global $force_name;
         $player = $force_name[$player];
