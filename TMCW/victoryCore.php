@@ -225,7 +225,7 @@ class victoryCore
     {
         $unit = $arg[0];
         $battle = Battle::getBattle();
-        if ($battle->arg == "Supply") {
+        if ($battle->argTwo->supply === true) {
             if ($unit->class != 'mech') {
                 $battle->moveRules->enterZoc = "stop";
                 $battle->moveRules->exitZoc = 0;
@@ -262,8 +262,8 @@ class victoryCore
 
         /*only get special VPs' at end of first Movement Phase */
         if ($specialHexes) {
-            $arg = $battle->arg;
-            if ($arg == "Supply") {
+            $argTwo = $battle->argTwo;
+            if ($argTwo->supply === true) {
                 $inCity = false;
                 $roadCut = false;
                 foreach ($specialHexes as $k => $v) {
