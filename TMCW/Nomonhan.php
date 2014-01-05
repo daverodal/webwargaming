@@ -61,7 +61,8 @@ class Nomonhan extends MartianCivilWar
     public $victory;
     public $genTerrain = false;
     public $arg;
-    public $argTwo;
+    public $scenario;
+    public $game;
 
     public $players;
 
@@ -83,7 +84,8 @@ class Nomonhan extends MartianCivilWar
     {
         $data = new stdClass();
         $data->arg = $this->arg;
-        $data->argTwo = $this->argTwo;
+        $data->scenario = $this->scenario;
+        $data->game = $this->game;
         $data->mapData = $this->mapData;
         $data->mapViewer = $this->mapViewer;
         $data->moveRules = $this->moveRules->save();
@@ -102,13 +104,13 @@ class Nomonhan extends MartianCivilWar
         return $data;
     }
 
-    function __construct($data = null, $arg = false, $argTwo = false)
+    function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
 
         $this->mapData = MapData::getInstance();
         if ($data) {
             $this->arg = $data->arg;
-            $this->argTwo = $data->argTwo;
+            $this->scenario = $data->scenario;
             $this->genTerrain = false;
             $this->victory = new Victory("TMCW/Nomonhan", $data);
             $this->display = new Display($data->display);
@@ -125,7 +127,7 @@ class Nomonhan extends MartianCivilWar
             $this->playerData = $data->playerData;
         } else {
             $this->arg = $arg;
-            $this->argTwo = $argTwo;
+            $this->scenario = $scenario;
             $this->genTerrain = true;
             $this->victory = new Victory("TMCW/Nomonhan");
             $this->display = new Display();
@@ -136,7 +138,7 @@ class Nomonhan extends MartianCivilWar
             $this->terrain = new Terrain();
             $this->terrain->setMaxHex("4025");
             $this->moveRules = new MoveRules($this->force, $this->terrain);
-            if ($argTwo && $argTwo->supply === true) {
+            if ($scenario && $scenario->supply === true) {
                 $this->moveRules->enterZoc = 2;
                 $this->moveRules->exitZoc = 1;
                 $this->moveRules->noZocZocOneHex = true;

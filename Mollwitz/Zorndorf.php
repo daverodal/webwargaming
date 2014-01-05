@@ -79,7 +79,7 @@ class Zorndorf extends Mollwitz
         @include_once "enterMulti.php";
     }
 
-    static function getView($name, $mapUrl, $player = 0, $arg = false, $argTwo = false)
+    static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false, $game = false)
     {
 
         @include_once "view.php";
@@ -100,18 +100,20 @@ class Zorndorf extends Mollwitz
         $data->terrainName = "terrain-Zorndorf";
         $data->genTerrain = $this->genTerrain;
         $data->arg = $this->arg;
-        $data->argTwo = $this->argTwo;
+        $data->scenario = $this->scenario;
+        $data->game = $this->game;
         if ($this->genTerrain) {
             $data->terrain = $this->terrain;
         }
         return $data;
     }
-    function __construct($data = null, $arg = false, $argTwo = false)
+    function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
         $this->mapData = MapData::getInstance();
         if ($data) {
             $this->arg = $data->arg;
-            $this->argTwo = $data->argTwo;
+            $this->scenario = $data->scenario;
+            $this->game = $data->game;
             $this->genTerrain = false;
             $this->victory = new Victory("Mollwitz/Zorndorf/zorndorfVictoryCore.php", $data);
             $this->display = new Display($data->display);
@@ -129,7 +131,8 @@ class Zorndorf extends Mollwitz
             $this->playerData = $data->playerData;
         } else {
             $this->arg = $arg;
-            $this->argTwo = $argTwo;
+            $this->scenario = $scenario;
+            $this->game = $game;
             $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Zorndorf/zorndorfVictoryCore.php");
 

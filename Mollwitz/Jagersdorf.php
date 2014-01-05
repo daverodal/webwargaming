@@ -88,7 +88,7 @@ class Jagersdorf extends Battle {
         @include_once "enterMulti.php";
     }
 
-    static function getView($name, $mapUrl,$player = 0, $arg = false, $argTwo = false){
+    static function getView($name, $mapUrl,$player = 0, $arg = false, $scenario = false, $game = false){
 
         @include_once "view.php";
     }
@@ -131,7 +131,8 @@ class Jagersdorf extends Battle {
         $data->terrainName = "terrain-Jagersdorf";
         $data->genTerrain = $this->genTerrain;
         $data->arg = $this->arg;
-        $data->argTwo = $this->argTwo;
+        $data->scenario = $this->scenario;
+        $data->game = $this->game;
         if($this->genTerrain){
             $data->terrain = $this->terrain;
         }
@@ -171,12 +172,13 @@ class Jagersdorf extends Battle {
         }
         return true;
     }
-    function __construct($data = null, $arg = false, $argTwo = false)
+    function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
         $this->mapData = MapData::getInstance();
         if ($data) {
             $this->arg = $data->arg;
-            $this->argTwo = $data->argTwo;
+            $this->scenario = $data->scenario;
+            $this->game = $data->game;
             $this->genTerrain = false;
             $this->victory = new Victory("Mollwitz/Jagersdorf/jagerVictoryCore.php",$data);
             $this->display = new Display($data->display);
@@ -194,7 +196,8 @@ class Jagersdorf extends Battle {
             $this->playerData = $data->playerData;
         } else {
             $this->arg = $arg;
-            $this->argTwo = $argTwo;
+            $this->scenario = $scenario;
+            $this->game = $game;
             $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Jagersdorf/jagerVictoryCore.php");
 
@@ -242,7 +245,7 @@ class Jagersdorf extends Battle {
             /**
              * not not prussian deploy phase for now
              */
-            if($argTwo->prussianDeploy){
+            if($scenario->prussianDeploy){
                 $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_DEPLOY_PHASE, DEPLOY_MODE, BLUE_FORCE, RED_FORCE, false);
                 $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             }else{
@@ -308,7 +311,7 @@ class Jagersdorf extends Battle {
                 $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png",1, 1, 6, true, STATUS_CAN_DEPLOY, "RC", 1, 1, "Russian",false,'cavalry');
                 $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png",1, 1, 6, true, STATUS_CAN_DEPLOY, "RC", 1, 1, "Russian",false,'cavalry');
 
-            if($argTwo && $argTwo->prussianDeploy){
+            if($scenario && $scenario->prussianDeploy){
             $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "PC", 1, 1, "Prussian",false,'cavalry');
             $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "PC", 1, 1, "Prussian",false,'cavalry');
             $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, "PC", 1, 1, "Prussian",false,'cavalry');

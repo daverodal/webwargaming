@@ -9,9 +9,6 @@
 include "victoryCore.php";
 class zorndorfVictoryCore extends victoryCore
 {
-    public $victoryPoints;
-    private $movementCache;
-    public $gameOver;
 
     function __construct($data)
     {
@@ -26,13 +23,6 @@ class zorndorfVictoryCore extends victoryCore
         }
     }
 
-    public function save()
-    {
-        $ret = new stdClass();
-        $ret->victoryPoints = $this->victoryPoints;
-        $ret->movementCache = $this->movementCache;
-        return $ret;
-    }
 
     public function reduceUnit($args)
     {
@@ -50,17 +40,17 @@ class zorndorfVictoryCore extends victoryCore
         }
     }
 
-    private function checkVictory($attackingId,$battle){
+    protected function checkVictory($attackingId,$battle){
         $gameRules = $battle->gameRules;
         $turn = $gameRules->turn;
         if(!$this->gameOver){
             $prussianWin = $russianWin = false;
-//            if($this->victoryPoints[RUSSIAN_FORCE] > 30){
-//                $russianWin = true;
-//            }
-//            if($this->victoryPoints[PRUSSIAN_FORCE] > 20){
-//                $prussianWin = true;
-//            }
+            if($this->victoryPoints[RUSSIAN_FORCE] > 62 && ($this->victoryPoints[RUSSIAN_FORCE] - $this->victoryPoints[PRUSSIAN_FORCE] > 10)){
+                $russianWin = true;
+            }
+            if($this->victoryPoints[PRUSSIAN_FORCE] > 62 && ($this->victoryPoints[PRUSSIAN_FORCE] - $this->victoryPoints[RUSSIAN_FORCE] > 10)){
+                $prussianWin = true;
+            }
             if($russianWin && $prussianWin){
                 $this->winner = 0;
                 $gameRules->flashMessages[] = "Tie Game";

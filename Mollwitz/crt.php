@@ -78,7 +78,7 @@ class CombatResultsTable
         $combatLog = "";
         /* @var Jagersdorf $battle */
         $battle = Battle::getBattle();
-        $argTwo = $battle->argTwo;
+        $scenario = $battle->scenario;
         $combats = $battle->combatRules->combats->$defenderId;
 
         if (count((array)$combats->attackers) == 0) {
@@ -127,7 +127,7 @@ class CombatResultsTable
             if ($unit->class == "infantry") {
                 $combinedArms[$battle->force->units[$attackerId]->class]++;
                 $combatLog .= "$unitStrength Infantry ";
-                if($argTwo->jagersdorfCombat){
+                if($scenario->jagersdorfCombat){
                     if ($unit->forceId == PRUSSIAN_FORCE && $isClear && !$acrossRiver) {
                         $unitStrength++;
                         $combatLog .= "+1 for attack into clear ";
@@ -172,7 +172,7 @@ class CombatResultsTable
             if ($unit->class != 'cavalry') {
                 $defendersAllCav = false;
             }
-            if($argTwo->jagersdorfCombat){
+            if($scenario->jagersdorfCombat){
                 if ($unit->forceId == PRUSSIAN_FORCE && $class == "infantry" && $isClear) {
                     $unitDefense += 1;
                     $combatLog .= "+1 for defending in clear ";

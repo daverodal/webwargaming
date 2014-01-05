@@ -148,7 +148,7 @@ class jagerVictoryCore extends victoryCore
             }
         }
 
-        if($bothSides == 2){
+        if($bothSides > 0){
             return true;
         }
         return false;

@@ -73,7 +73,7 @@ class MartianCivilWar extends Battle
     public $victory;
     public $genTerrain = false;
     public $arg;
-    public $argTwo;
+    public $scenario;
 
     public $players;
 
@@ -89,7 +89,7 @@ class MartianCivilWar extends Battle
         @include_once "header.php";
     }
 
-    static function getView($name, $mapUrl, $player = 0, $arg = false, $argTwo = false)
+    static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false)
     {
         global $force_name;
         $player = $force_name[$player];
@@ -136,7 +136,7 @@ class MartianCivilWar extends Battle
     {
         $data = new stdClass();
         $data->arg = $this->arg;
-        $data->argTwo = $this->argTwo;
+        $data->scenario = $this->scenario;
         $data->mapData = $this->mapData;
         $data->mapViewer = $this->mapViewer;
         $data->moveRules = $this->moveRules->save();
@@ -184,13 +184,13 @@ class MartianCivilWar extends Battle
         return true;
     }
 
-    function __construct($data = null, $arg = false, $argTwo = false)
+    function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
 
         $this->mapData = MapData::getInstance();
         if ($data) {
             $this->arg = $data->arg;
-            $this->argTwo = $data->argTwo;
+            $this->scenario = $data->scenario;
             $this->genTerrain = false;
             $this->victory = new Victory("TMCW", $data);
             $this->display = new Display($data->display);
@@ -207,13 +207,13 @@ class MartianCivilWar extends Battle
             $this->playerData = $data->playerData;
         } else {
             $this->arg = $arg;
-            $this->argTwo = $argTwo;
+            $this->scenario = $scenario;
             $this->genTerrain = true;
             $this->victory = new Victory("TMCW");
             $this->display = new Display();
             $this->mapData->setData(30, 20, "js/MartianIV.png");
 
-            if ($argTwo && $argTwo->supply === true) {
+            if ($scenario && $scenario->supply === true) {
                 $this->mapData->setSpecialHexes(array(407 => RED_FORCE, 1909 => RED_FORCE, 1515 => RED_FORCE, 516 => RED_FORCE,
                     2414 => RED_FORCE, 2415 => RED_FORCE, 2515 => RED_FORCE, 1508 => RED_FORCE,
                     2615 => RED_FORCE, 2615 => RED_FORCE, 2716 => RED_FORCE, 2816 => RED_FORCE,
@@ -231,7 +231,7 @@ class MartianCivilWar extends Battle
             $this->terrain = new Terrain();
             $this->terrain->setMaxHex("3020");
             $this->moveRules = new MoveRules($this->force, $this->terrain);
-            if ($argTwo && $argTwo->supply === true) {
+            if ($scenario && $scenario->supply === true) {
                 $this->moveRules->enterZoc = 2;
                 $this->moveRules->exitZoc = 1;
                 $this->moveRules->noZocZocOneHex = true;
@@ -325,8 +325,8 @@ class MartianCivilWar extends Battle
             }
 
             $loyalMechMove = 6;
-            if(isset($argTwo->loyalMechMove)){
-                $loyalMechMove = $argTwo->loyalMechMove;
+            if(isset($scenario->loyalMechMove)){
+                $loyalMechMove = $scenario->loyalMechMove;
             }
             $this->force->addUnit("infantry-1", RED_FORCE, 2415, "multiRecon.png", 5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist", true, "mech");
             $this->force->addUnit("infantry-1", RED_FORCE, 2416, "multiRecon.png", 5, 2, 9, false, STATUS_READY, "L", 1, 1, "loyalist", true, "mech");
@@ -336,10 +336,10 @@ class MartianCivilWar extends Battle
             $this->force->addUnit("infantry-1", RED_FORCE, 2517, "multiArmor.png", 7, 3, $loyalMechMove, true, STATUS_READY, "L", 1, 1, "loyalist", true, "mech");
 
             $bigLoyalist = false;
-            if($argTwo && $argTwo->bigLoyal){
+            if($scenario && $scenario->bigLoyal){
                 $bigLoyalist = true;
             }
-            if(isset($argTwo->loyalExtraInf)){
+            if(isset($scenario->loyalExtraInf)){
                 $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiInf.png", 2, 1, 4, false, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist", true, 'inf');
                 $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiInf.png", 2, 1, 4, false, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist", true, 'inf');
                 $this->force->addUnit("infantry-1", RED_FORCE, "gameTurn2", "multiInf.png", 2, 1, 4, false, STATUS_CAN_REINFORCE, "L", 2, 1, "loyalist", true, 'inf');

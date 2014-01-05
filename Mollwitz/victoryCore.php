@@ -55,11 +55,23 @@ class victoryCore
         $turn = $gameRules->turn;
         if(!$this->gameOver){
             $prussian = $austrianWin = false;
-            if($this->victoryPoints[AUSTRIAN_FORCE] > 30){
+            if($this->victoryPoints[AUSTRIAN_FORCE] > 35){
                 $austrianWin = true;
+                $reason = "Win on kills";
             }
-            if($this->victoryPoints[PRUSSIAN_FORCE] > 20){
+            if($this->victoryPoints[PRUSSIAN_FORCE] > 35){
                 $prussianWin = true;
+                $reason = "Win on kills";
+            }
+            if($turn > 1){
+                if($attackingId == PRUSSIAN_FORCE &&  $this->isMollwitz()){
+                    $prussianWin = true;
+                    $reason = " Occupy Mollwitz";
+                }
+                if($attackingId == AUSTRIAN_FORCE &&  $this->isNeudorf()){
+                    $austrianWin = true;
+                    $reason = " Occupy Neudorf";
+                }
             }
             if($austrianWin && $prussianWin){
                 $this->winner = 0;
@@ -68,11 +80,11 @@ class victoryCore
             }
             if($austrianWin){
                 $this->winner = AUSTRIAN_FORCE;
-                $gameRules->flashMessages[] = $force_name[AUSTRIAN_FORCE]." Win on Kills";
+                $gameRules->flashMessages[] = $force_name[AUSTRIAN_FORCE]." $reason";
             }
             if($prussianWin){
                 $this->winner = PRUSSIAN_FORCE;
-                $gameRules->flashMessages[] = $force_name[PRUSSIAN_FORCE]. " Win on Kills";
+                $gameRules->flashMessages[] = $force_name[PRUSSIAN_FORCE]. " $reason";
             }
             if($austrianWin || $prussianWin){
                 $gameRules->flashMessages[] = "Game Over";
@@ -82,6 +94,31 @@ class victoryCore
         }
         return false;
     }
+    private function isMollwitz(){
+        $mollwitz = [602,702];
+        $b = Battle::getBattle();
+        $force = $b->force;
+        $units = $force->units;
+        foreach($units as $unit){
+            if($unit->forceId == PRUSSIAN_FORCE && in_array($unit->hexagon->name, $mollwitz) ){
+                return true;
+            }
+        }
+        return false;
+    }
+    private function isNeudorf(){
+        $neudorf = [911];
+        $b = Battle::getBattle();
+        $force = $b->force;
+        $units = $force->units;
+        foreach($units as $unit){
+            if($unit->forceId == AUSTRIAN_FORCE && in_array($unit->hexagon->name, $neudorf) ){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function playerTurnChange($arg){
         global $force_name;
         $attackingId = $arg[0];

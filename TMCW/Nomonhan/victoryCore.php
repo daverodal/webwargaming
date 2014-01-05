@@ -151,7 +151,7 @@ class victoryCore{
         if($unit->forceId != $b->gameRules->attackingForceId){
 //            return;
         }
-        if($b->argTwo->supply === true){
+        if($b->scenario->supply === true){
             if($unit->forceId == JAPANESE_FORCE){
                 for($i = 101;$i <= 3701;$i += 100){
                     $goal[] = $i;

@@ -143,7 +143,7 @@ class victoryCore
         if ($unit->forceId != $b->gameRules->attackingForceId) {
 //            return;
         }
-        if ($b->argTwo->supply === true) {
+        if ($b->scenario->supply === true) {
             if ($unit->forceId == REBEL_FORCE) {
                 $goal = array(101, 102, 103, 104, 201, 301, 401, 501, 601, 701, 801, 901, 1001);
                 $bias = array(5 => true, 6 => true);
@@ -225,7 +225,7 @@ class victoryCore
     {
         $unit = $arg[0];
         $battle = Battle::getBattle();
-        if ($battle->argTwo->supply === true) {
+        if ($battle->scenario->supply === true) {
             if ($unit->class != 'mech') {
                 $battle->moveRules->enterZoc = "stop";
                 $battle->moveRules->exitZoc = 0;
@@ -262,8 +262,8 @@ class victoryCore
 
         /*only get special VPs' at end of first Movement Phase */
         if ($specialHexes) {
-            $argTwo = $battle->argTwo;
-            if ($argTwo->supply === true) {
+            $scenario = $battle->scenario;
+            if ($scenario->supply === true) {
                 $inCity = false;
                 $roadCut = false;
                 foreach ($specialHexes as $k => $v) {

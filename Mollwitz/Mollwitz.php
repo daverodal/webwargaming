@@ -91,7 +91,7 @@ class Mollwitz extends Battle
         @include_once "enterMulti.php";
     }
 
-    static function getView($name, $mapUrl, $player = 0, $arg = false, $argTwo = false)
+    static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false, $game = false)
     {
 
         @include_once "view.php";
@@ -138,7 +138,8 @@ class Mollwitz extends Battle
         $data->terrainName = "terrain-Mollwitz";
         $data->genTerrain = $this->genTerrain;
         $data->arg = $this->arg;
-        $data->argTwo = $this->argTwo;
+        $data->scenario = $this->scenario;
+        $data->game = $this->game;
         if ($this->genTerrain) {
             $data->terrain = $this->terrain;
         }
@@ -182,12 +183,13 @@ class Mollwitz extends Battle
         return true;
     }
 
-    function __construct($data = null, $arg = false, $argTwo = false)
+    function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
         $this->mapData = MapData::getInstance();
         if ($data) {
             $this->arg = $data->arg;
-            $this->argTwo = $data->argTwo;
+            $this->scenario = $data->scenario;
+            $this->game = $data->game;
             $this->genTerrain = false;
             $this->victory = new Victory("Mollwitz", $data);
             $this->display = new Display($data->display);
@@ -205,7 +207,8 @@ class Mollwitz extends Battle
             $this->playerData = $data->playerData;
         } else {
             $this->arg = $arg;
-            $this->argTwo = $argTwo;
+            $this->scenario = $scenario;
+            $this->game = $game;
             $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz");
 
@@ -238,7 +241,7 @@ class Mollwitz extends Battle
             }
 
             // game data
-            $this->gameRules->setMaxTurn(10);
+            $this->gameRules->setMaxTurn(12);
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
             $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */
