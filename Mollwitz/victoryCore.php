@@ -49,7 +49,7 @@ class victoryCore
     {
     }
 
-    private function checkVictory($attackingId, $battle){
+    protected function checkVictory($attackingId, $battle){
         global $force_name;
         $gameRules = $battle->gameRules;
         $turn = $gameRules->turn;
