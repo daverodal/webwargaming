@@ -56,9 +56,19 @@ class jagerVictoryCore extends victoryCore
                 $reason = "Win on Kills";
                 $prussianWin = true;
             }
-            if(!$this->isNorkitten()){
-                $prussianWin = true;
-                $reason = "Win because, No Russian units in Norkitten Woods";
+            if($turn > 1){
+                if($this->isNorkitten()){
+                    $prussianWin = true;
+                    $reason = "Win because, No Russian units in Norkitten Woods";
+                }
+                if($this->isJagersdorf()){
+                    $russianWin = true;
+                    $reason = "Win because, No Prussians within 5 hexes of Jagersdorf";
+                }
+                if($this->isAlmCreek()){
+                    $prussianWin = true;
+                    $reason = "Win because, No Russians below alm creek and prussians own allm creek bridge";
+                }
             }
             if($russianWin && $prussianWin){
                 $this->winner = 0;
@@ -99,10 +109,50 @@ class jagerVictoryCore extends victoryCore
         $units = $force->units;
         foreach($units as $unit){
             if($unit->forceId == RUSSIAN_FORCE && in_array($unit->hexagon->name, $norKitten) ){
-                return true;
+                return false;
             }
         }
+        return true;
+    }
+
+    protected function isJagersdorf(){
+        $jagersdorf = [108,208,309,409,510,610,711,712,612,513,413,314,214,114,113,213,313,412,512,611,511,411,312,212,112,211,311,410,310,210,111,110,209,109];
+        $b = Battle::getBattle();
+        $force = $b->force;
+        $units = $force->units;
+        foreach($units as $unit){
+            if($unit->forceId == PRUSSIAN_FORCE && in_array($unit->hexagon->name, $jagersdorf) ){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    protected function isAlmCreek(){
+        $almCreek = [115,116,117,118,119,219,218,217,216,215,315,316,317,318,319,418,417,416,415,414,514,515,516,517,518,519,619,
+        618,617,616,615,614,613,713,714,715,716,717,718,719,820,720,819,818,817,816,815,814,813,914,915,916,917,918,919,920,
+        1019,1018,1017,1016,1015,1014,1013,1114,1115,1116,1117,1118,1119,1120,1219,1218,1217,1216,1215,1214,1213,1314,1315,
+        1316,1317,1318,1319,1418,1417,1416,1415,1414,1514,1515,1516,1517,1518,1618,1617,1616,1615,1614,1715,1716,1717,1718,
+        1719,1819,1818,1817,1816,1815,1814,1915,1916,1917,1918,1919,1920,2019,2018,2017,2014,2015,2016];
+        $almBridge = [1714,1715];
+        $b = Battle::getBattle();
+        $force = $b->force;
+        $units = $force->units;
+        $bothSides = 0;
+        foreach($units as $unit){
+            if($unit->forceId == RUSSIAN_FORCE && in_array($unit->hexagon->name, $almCreek)){
+                return false;
+            }
+            if($unit->forceId == PRUSSIAN_FORCE && in_array($unit->hexagon->name, $almBridge) ){
+                $bothSides++;
+            }
+        }
+
+        if($bothSides == 2){
+            return true;
+        }
         return false;
+
     }
 
     public function postRecoverUnit($args)
