@@ -50,9 +50,15 @@ class jagerVictoryCore extends victoryCore
             $prussianWin = $russianWin = false;
             if($this->victoryPoints[RUSSIAN_FORCE] > 20){
                 $russianWin = true;
+                $reason = "Win on Kills";
             }
             if($this->victoryPoints[PRUSSIAN_FORCE] > 25){
+                $reason = "Win on Kills";
                 $prussianWin = true;
+            }
+            if(!$this->isNorkitten()){
+                $prussianWin = true;
+                $reason = "Win because, No Russian units in Norkitten Woods";
             }
             if($russianWin && $prussianWin){
                 $this->winner = 0;
@@ -61,11 +67,11 @@ class jagerVictoryCore extends victoryCore
             }
             if($russianWin){
                 $this->winner = RUSSIAN_FORCE;
-                $gameRules->flashMessages[] = "Russian Win on Kills";
+                $gameRules->flashMessages[] = "Russian $reason";
             }
             if($prussianWin){
-                $this->winner = RUSSIAN_FORCE;
-                $gameRules->flashMessages[] = "Prussian Win on Kills";
+                $this->winner = PRUSSIAN_FORCE;
+                $gameRules->flashMessages[] = "Prussian $reason";
             }
             if($russianWin || $prussianWin){
                 $gameRules->flashMessages[] = "Game Over";
@@ -86,6 +92,18 @@ class jagerVictoryCore extends victoryCore
 
     }
 
+    private function isNorkitten(){
+        $norKitten = [808,908,909,1007,1008,1009,1010,1111,1110,1109,1108,1208,1209,1210,1312,1311,1211,1310,1309,1408,1409,1410,1411,1512,1511,1510,1509,1609,1610];
+        $b = Battle::getBattle();
+        $force = $b->force;
+        $units = $force->units;
+        foreach($units as $unit){
+            if($unit->forceId == RUSSIAN_FORCE && in_array($unit->hexagon->name, $norKitten) ){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public function postRecoverUnit($args)
     {

@@ -68,11 +68,11 @@ class victoryCore
             }
             if($austrianWin){
                 $this->winner = AUSTRIAN_FORCE;
-                $gameRules->flashMessages[] = $force_name[AUSTRIAN_FORCE]."Win on Kills";
+                $gameRules->flashMessages[] = $force_name[AUSTRIAN_FORCE]." Win on Kills";
             }
             if($prussianWin){
                 $this->winner = PRUSSIAN_FORCE;
-                $gameRules->flashMessages[] = $force_name[PRUSSIAN_FORCE]. "Prussian Win on Kills";
+                $gameRules->flashMessages[] = $force_name[PRUSSIAN_FORCE]. " Win on Kills";
             }
             if($austrianWin || $prussianWin){
                 $gameRules->flashMessages[] = "Game Over";
@@ -96,7 +96,7 @@ class victoryCore
             return;
         }
 
-            $gameRules->flashMessages[] = $force_name[$attackingId]."Player Turn";
+            $gameRules->flashMessages[] = $force_name[$attackingId]." Player Turn";
 
 
     }
