@@ -1350,6 +1350,10 @@ fieldset{
     text-align: center;
     color:black;
 }
+.unit .unit-numbers{
+    height:12px;
+    font-size:11px;
+}
 .unit img{
     width:100%;
     height:100%;
