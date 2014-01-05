@@ -196,9 +196,9 @@ class Jagersdorf extends Battle {
             $this->arg = $arg;
             $this->argTwo = $argTwo;
             $this->genTerrain = true;
-            $this->victory = new Victory("Mollwitz/Jagersdorf/jagerVictoryCore.php");
+            $this->victory = new Victory("Jagersdorf/jagerVictoryCore.php");
 
-             $this->mapData->setData(21,22,"js/ColorGrossMain.jpg");
+            $this->mapData->setData(21,22,"js/ColorGrossMain.jpg");
 
             $this->display = new Display();
             $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
