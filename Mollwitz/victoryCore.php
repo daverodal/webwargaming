@@ -9,7 +9,7 @@
 class victoryCore
 {
     public $victoryPoints;
-    private $movementCache;
+    public $movementCache;
     public $gameOver;
 
     function __construct($data)

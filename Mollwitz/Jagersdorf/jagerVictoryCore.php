@@ -12,9 +12,6 @@ require_once "victoryCore.php";
 
 class jagerVictoryCore extends victoryCore
 {
-    public $victoryPoints;
-    private $movementCache;
-    public $gameOver;
 
     function __construct($data)
     {
@@ -27,14 +24,6 @@ class jagerVictoryCore extends victoryCore
             $this->movementCache = new stdClass();
             $this->gameOver = false;
         }
-    }
-
-    public function save()
-    {
-        $ret = new stdClass();
-        $ret->victoryPoints = $this->victoryPoints;
-        $ret->movementCache = $this->movementCache;
-        return $ret;
     }
 
     public function reduceUnit($args)
