@@ -6,4 +6,13 @@
         background: rgb(76, 184, 0);
         border-color: rgb(76, 184, 0) !important;
     }
+    .unit.Austrian .counterWrapper{
+        background:white;
+    }
+    .unit.Russian .counterWrapper{
+        background:rgb(0, 156, 29);
+    }
+    .unit.Prussian .counterWrapper{
+        background:rgb(1,23,222);
+    }
 </style>
