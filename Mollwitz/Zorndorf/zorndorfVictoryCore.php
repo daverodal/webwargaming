@@ -66,8 +66,8 @@ class zorndorfVictoryCore extends victoryCore
             if($russianWin || $prussianWin){
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
-                $gameRules->mode = GAME_OVER_MODE;
-                $gameRules->phase = GAME_OVER_PHASE;
+//                $gameRules->mode = GAME_OVER_MODE;
+//                $gameRules->phase = GAME_OVER_PHASE;
                 return true;
             }
         }
