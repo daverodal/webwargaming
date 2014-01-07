@@ -951,8 +951,11 @@ width:3em;
 #zoom{
     cursor: pointer;
 }
-#zoom :first-child{
+#zoom .defaultZoom{
     text-decoration: underline;
+}
+#zoom span{
+    border:1px solid #333;
 }
 #clock{
     margin-left:0;
@@ -1314,10 +1317,6 @@ fieldset{
     margin-right:5px;
 }
 .unit{
-    width:64px;
-    height:64px;
-    width:48px;
-    height:49px;
     position:absolute;
     left:0;top:0;
     z-index:3;
@@ -1334,14 +1333,9 @@ fieldset{
     position:absolute;
     background:transparent;
 }
-.unit div {
+.unit .unit-numbers {
     text-align:center;
-    margin-top:<?=$unitMargin?>;
     color:black;
-    /*text-indent:3px;*/
-    font-size:<?=$unitFontSize?>;
-    font-weight:bold;
-    font-family: serif;
     -webkit-user-select:none;
 }
 .unit .unitSize{
@@ -1355,21 +1349,16 @@ fieldset{
     font-size:11px;
 }
 .unit img{
-    width:100%;
-    height:100%;
-    max-height:100px;
-    max-width:100px;
 }
 .unit .counter {
-    width:100%;
-    height:29px;
-
 }
 .arrowClone,.arrow{
     position:absolute;
     pointer-events:none;
     z-index:102;
     top:0px;
+    width:100%;
+    height:100%;
 }
 .clone{
     /*pointer-events:none;*/

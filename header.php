@@ -275,27 +275,8 @@ body{
         background:#333;
         margin-bottom:5px;
     }
-    .unit{
-        width:64px;
-        height:64px;
-        width:48px;
-        height:49px;
-        position:absolute;
-        left:0;top:0;
-    width:<?=$unitSize?>;
-    height:<?=$unitSize?>;
-        /*width:32px;*/
-        /*height:32px;*/
-        }
-    .unit div {
-        text-align:center;
-    margin-top:<?=$unitMargin?>;
-    color:black;
-        /*text-indent:3px;*/
-    font-size:<?=$unitFontSize?>;
-    font-weight:bold;
-    -webkit-user-select:none;
-        }
+
+
     .rebel div{
         color:black;
     }
@@ -303,10 +284,6 @@ body{
         color:black;
     }
     .unit img {
-        width:100%;
-        height:100%;
-        max-height:100px;
-        max-width:100px;
     }
     .arrow{
         position:absolute;

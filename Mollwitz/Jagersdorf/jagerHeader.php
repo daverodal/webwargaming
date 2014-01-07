@@ -19,10 +19,8 @@
         height: 16px;
     }
 
-    .unit div {
-        margin-top: -5px !important;
+    .unit .unit-numbers {
         background: white;
-        font-size: 12px;
         font-weight: bold;
         font-family: serif;
     }

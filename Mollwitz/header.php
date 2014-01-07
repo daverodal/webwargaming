@@ -11,25 +11,37 @@
     .blueUnit, .Russian {
         background-color: white;
     }
-
-    .unit img.counter {
-        width: 32px;
-        height:20px;
+    .unit{
+        border:solid black;
+        border-width: 3px;
     }
 
-    .unit div {
-        margin-top: -5px !important;
-        background: white;
-        font-size: 12px;
-        font-weight: bold;
-        font-family: serif;
+    .unit .counterWrapper img.counter {
+        width: 14px;
+        height:14px;
+        display:block;
+        border-right:1px solid black;
+
+    }
+    .unit .counterWrapper{
+        border:solid black 1px;
+        height:14px;
+    }
+    .unit.Austrian .counterWrapper{
+        background:white;
+    }
+    .unit.Russian .counterWrapper{
+        background:rgb(0, 156, 29);
+    }
+    .unit.Prussian .counterWrapper{
+        background:rgb(1,23,222);
+    }
+    .unit .unit-numbers {
+
     }
 
     .unit img {
-        /*width:auto;*/
-        /*height:auto;*/
-        /*max-height:auto;*/
-        /*max-width:auto;*/
+
     }
 
     .RussianaVP {
@@ -67,12 +79,16 @@
         background-color: rgb(223, 88, 66);
     }
 
-    .unit-numbers{
+    .unit .unit-numbers{
         border: 1px solid black;
-        border-top:none;
-        height:11px;
-        line-height:11px;
-        font-size:10px !important;
+        border-top:1px;
+        height:15px;
+        line-height:16px;
+        font-size:16px !important;
+        letter-spacing:-1px;
+        background: white;
+        font-weight: bold;
+        font-family: serif;
     }
     p.forceMarch {
         position: absolute;

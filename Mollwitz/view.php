@@ -43,7 +43,12 @@
                     </div>
                 </div>
                 <span  id="zoom">
-                    <span data-zoom="1">Zoom 1</span>
+                    <span>2.0</span>
+                    <span>1.5</span>
+                    <span>1.3</span>
+                    <span>1.2</span>
+                    <span>1.1</span>
+                    <span class="defaultZoom" data-zoom="1">Zoom 1</span>
                     <span>.9</span>
                     <span>.8</span>
                     <span>.7</span>
@@ -165,10 +170,13 @@
                              style="position: relative;visibility: visible;z-index: 0;">
                         <?php $id = 0; ?>
                         {units}
-                        <div class="unit {class}" id="{id}" alt="0"><p class="forceMarch">M</p>
+                        <div class="unit {class}" id="{id}" alt="0">
+                            <nav class="counterWrapper"><img src="<?php echo base_url(); ?>js/{image}" class="counter"></nav>
+                            <p class="forceMarch">M</p>
                             <section></section>
+
                             <img class="arrow" src="<?php echo base_url(); ?>js/short-red-arrow-md.png" class="counter">
-                            <img src="<?php echo base_url(); ?>js/{image}" class="counter">
+
 
                             <div class="unit-numbers">5 - 4</div>
 
