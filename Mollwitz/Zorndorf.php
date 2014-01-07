@@ -191,114 +191,114 @@ class Zorndorf extends Mollwitz
 
             $pruDeploy = $coinFlip == 1 ? "B": "C";
 
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
 
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInf.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'infantry');
 
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruArt.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, $artRange, "Prusian", false, 'artillery');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruArt.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, $artRange, "Prusian", false, 'artillery');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruArt.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, $artRange, "Prusian", false, 'artillery');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruArt.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, $artRange, "Prusian", false, 'artillery');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruArt.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, $artRange, "Prusian", false, 'artillery');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, $artRange, "Prusian", false, 'artillery');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, $artRange, "Prusian", false, 'artillery');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, $artRange, "Prusian", false, 'artillery');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, $artRange, "Prusian", false, 'artillery');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, $artRange, "Prusian", false, 'artillery');
 
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCavBadge.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCavBadge.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCavBadge.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCavBadge.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
 
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
 
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCav.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
-
-
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, $pruDeploy, 1, 1, "Prusian", false, 'cavalry');
 
 
 
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
 
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInf.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
 
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArt.png", 4, 4, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Russian", false, 'artillery');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArt.png", 4, 4, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Russian", false, 'artillery');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArt.png", 4, 4, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Russian", false, 'artillery');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArt.png", 4, 4, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Russian", false, 'artillery');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArt.png", 4, 4, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Russian", false, 'artillery');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
 
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png", 1, 1, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png", 1, 1, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png", 1, 1, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png", 1, 1, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png", 1, 1, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png", 1, 1, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
 
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png", 4, 4, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArtBadge.png", 4, 4, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Russian", false, 'artillery');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArtBadge.png", 4, 4, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Russian", false, 'artillery');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArtBadge.png", 4, 4, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Russian", false, 'artillery');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArtBadge.png", 4, 4, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Russian", false, 'artillery');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArtBadge.png", 4, 4, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Russian", false, 'artillery');
 
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png", 1, 1, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png", 1, 1, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png", 1, 1, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png", 1, 1, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png", 1, 1, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png", 1, 1, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
 
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
-            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCav.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png", 4, 4, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'cavalry');
 
 
 
