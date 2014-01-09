@@ -1,8 +1,5 @@
 <script>
 x = new Sync("<?=site_url("wargame/fetch/");?>");
-$(document).ready(function(){
-
-
 x.register("force", function(force,data) {
 //        if(this.animate !== false){
 //            self.clearInterval(this.animate);
@@ -412,6 +409,7 @@ x.register("games", function(games) {
 x.register("clock", function(clock) {
     //$("#clock").html(clock);
 });
+var flashMessages;
 x.register("flashMessages",function(messages,data){
 
     flashMessages = messages;
@@ -707,7 +705,29 @@ x.register("moveRules", function(moveRules,data) {
     }
 });
 
+function fixCrt(){
+    if(!cD){
+        return;
+    }
+    var off = parseInt($("#gameImages").offset().left);
+    var x = parseInt($("#"+cD).css('left').replace(/px/,"")) + off;
+    var mapWidth = $("body").css('width').replace(/px/,"");
+    $("#map").css('width').replace(/px/,"");
+    if(x < mapWidth/2){
+        var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
+        var crtWid = $("#crt").css('width').replace(/px/,"");
+        crtWid = 0 - (crtWid - wrapWid + 40);
 
+        var moveLeft = $("body").css('width').replace(/px/,"");
+        $("#crt").animate({left:crtWid},300);
+        $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
+    }else{
+        $("#crtWrapper").animate({left:0},300);
+        $("#crt").animate({left:0},300);
+    }
+}
+var chattyCrt = false;
+var cD; /* object oriented! */
 x.register("combatRules", function(combatRules,data) {
 
     for(var combatCol = 1;combatCol <= 10;combatCol++){
@@ -915,32 +935,6 @@ x.register("combatRules", function(combatRules,data) {
 
 
 });
-x.fetch(0);
-});
-function fixCrt(){
-    if(!cD){
-        return;
-    }
-    var off = parseInt($("#gameImages").offset().left);
-    var x = parseInt($("#"+cD).css('left').replace(/px/,"")) + off;
-    var mapWidth = $("body").css('width').replace(/px/,"");
-    $("#map").css('width').replace(/px/,"");
-    if(x < mapWidth/2){
-        var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
-        var crtWid = $("#crt").css('width').replace(/px/,"");
-        crtWid = 0 - (crtWid - wrapWid + 40);
-
-        var moveLeft = $("body").css('width').replace(/px/,"");
-        $("#crt").animate({left:crtWid},300);
-        $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
-    }else{
-        $("#crtWrapper").animate({left:0},300);
-        $("#crt").animate({left:0},300);
-    }
-}
-var chattyCrt = false;
-var cD; /* object oriented! */
 var globInit = true;
-var flashMessages;
-
+x.fetch(0);
 </script>
