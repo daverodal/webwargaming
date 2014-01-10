@@ -18,6 +18,13 @@
         background-color:orange;
     }
 
+    .unit .counter {
+        margin-top:1px;
+    }
+    .unit .unit-numbers{
+        margin-top:-23px;
+        letter-spacing:-1px;
+    }
 #map{
     width:1800px !important;
 }

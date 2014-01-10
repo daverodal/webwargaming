@@ -5,6 +5,7 @@
     "fileName": "NapoleonsTrainingAcademy.php",
     "scenarios": {
       "main": {
+        "description":"Introductory Game "
       }
     }
   }

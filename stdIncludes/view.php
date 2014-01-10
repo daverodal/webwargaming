@@ -41,7 +41,12 @@
                     </div>
                 </div>
                 <span  id="zoom">
-                    <span data-zoom="1">Zoom 1</span>
+                    <span>2.0</span>
+                    <span>1.5</span>
+                    <span>1.3</span>
+                    <span>1.2</span>
+                    <span>1.1</span>
+                    <span class="defaultZoom" data-zoom="1">Zoom 1</span>
                     <span>.9</span>
                     <span>.8</span>
                     <span>.7</span>

@@ -76,6 +76,7 @@ class Nomonhan extends MartianCivilWar
         }
         @include_once "commonHeader.php";
         @include_once "header.php";
+        @include_once "nomonhanHeader.php";
     }
 
 
