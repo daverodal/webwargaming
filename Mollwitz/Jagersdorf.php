@@ -90,6 +90,7 @@ class Jagersdorf extends Battle {
 
     static function getView($name, $mapUrl,$player = 0, $arg = false, $scenario = false, $game = false){
 
+        global $force_name;
         @include_once "view.php";
     }
     public function resize($small,$player){

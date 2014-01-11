@@ -32,7 +32,7 @@
                         <div class="close">X</div>
                         <ul>
                             <li> Welcome {user}</li>
-                            <li>you are playing as  <?= $player; ?></li>
+                            <li>you are playing as  <?= $force_name[$player]; ?></li>
                             <li>
                                 in <span class="game-name">{gameName}-{arg}</span></li>
                             <li> The file is called {wargame}</li>

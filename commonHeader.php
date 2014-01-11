@@ -3,6 +3,7 @@
 <?php include_once("commonStyle.php");?>
 <script>
 var zoomed = false;
+var globalZoom = 1;
 
 $(document).ready(function(){
     $("#phaseClicks").on("click",".phaseClick",function(){
@@ -333,6 +334,9 @@ function mapClick(event) {
     /*
      * Account for maps zooming in and out
      */
+    if(!globalZoom){
+        globalZoom = 1;
+    }
     pixelX /= globalZoom;
     pixelY /= globalZoom;
     doitMap(pixelX,pixelY);
