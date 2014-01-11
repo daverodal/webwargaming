@@ -157,13 +157,14 @@ class CombatResultsTable
                 $combatLog .= "$unitStrength Artillery ";
                 $combinedArms[$battle->force->units[$attackerId]->class]++;
             }
+            $combatLog .= "<br>";
             $attackStrength += $unitStrength;
         }
 //        $combatLog .= "<br>";
 
         $defenseStrength = 0;
         $defendersAllCav = true;
-        $combatLog .= "<br>Defenders<br>";
+        $combatLog .= " = $attackStrength<br>Defenders<br>";
         foreach ($defenders as $defId => $defender) {
             $unit = $battle->force->units[$defId];
             $class = $unit->class;
@@ -184,9 +185,10 @@ class CombatResultsTable
             }
 
             $defenseStrength += $unitDefense * (($isTown && $class != 'cavalry') || $isHill ? 2 : 1);
+            $combatLog .= "<br>";
         }
 
-
+        $combatLog .= " = $defenseStrength";
         $armsShift = 0;
         if ($attackStrength >= $defenseStrength) {
             $armsShift = count($combinedArms) - 1;

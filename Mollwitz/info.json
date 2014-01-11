@@ -7,6 +7,11 @@
       "artilleryCombined": {
         "description": "Standard Scenario",
         "artSupport":true
+      },
+      "prussianClear": {
+        "description": "Prussians get +1 for att/def in clear",
+        "artSupport":true,
+        "jagersdorfCombat":true
       }
     }
   },
