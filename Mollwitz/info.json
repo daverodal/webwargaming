@@ -9,9 +9,10 @@
         "artSupport":true
       },
       "prussianClear": {
-        "description": "Prussians get +1 for att/def in clear",
+        "description": "Prussians get +1 for att/def in clear, art is 3 str",
         "artSupport":true,
-        "jagersdorfCombat":true
+        "jagersdorfCombat":true,
+        "artStr": true
       }
     }
   },
