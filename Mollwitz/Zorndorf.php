@@ -144,6 +144,9 @@ class Zorndorf extends Mollwitz
             $this->terrain = new Terrain();
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->moveRules->exitZoc = "stop";
+            if($scenario->noZocZoc === true){
+                $this->moveRules->noZocZoc = true;
+            }
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);

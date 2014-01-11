@@ -18,6 +18,11 @@
       "artilleryCombined": {
         "description": "Standard Scenario",
         "artSupport":true
+      },
+      "noZoc": {
+        "description": "Units may not move directly from one zoc to another",
+        "artSupport":true,
+        "noZocZoc": true
       }
     }
   },
