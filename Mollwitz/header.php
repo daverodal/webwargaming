@@ -36,8 +36,8 @@
     .unit.Prussian .counterWrapper{
         background:rgb(1,23,222);
     }
-    .unit .unit-numbers {
-
+    .unit .unit-numbers .infoLen7{
+        font-size:13px;
     }
 
     .unit img {

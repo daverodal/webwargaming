@@ -23,7 +23,9 @@
     }
     .unit .unit-numbers{
         margin-top:-23px;
-        letter-spacing:-1px;
+    }
+    .unit .unit-numbers .infoLen8{
+        letter-spacing: -1px;
     }
 #map{
     width:1800px !important;

@@ -572,7 +572,10 @@ x.register("mapUnits", function(mapUnits) {
             reduceDisp = "<span class='reduced'>";
         }
         var symb = mapUnits[i].supplied !== false ? " - " : " <span class='reduced'>u</span> ";
-        $("#"+i+" div").html(reduceDisp + str + symb + move + "</span>");
+        var html = reduceDisp + str + symb + move + "</span>"
+        $("#"+i+" div").html(html);
+        var len  = $("#"+i+" div").text().length;
+        $("#"+i+" div span ").addClass("infoLen"+len);
         $("#"+i).attr("src",img);
     }
     var dpBox = $("#deployBox").children().size();
@@ -691,7 +694,7 @@ x.register("moveRules", function(moveRules,data) {
                 $("#"+newId).attr("path",moveRules.moves[i].pathToHere);
                 $("#"+newId).css({left:moveRules.moves[i].pixX - width/2 +"px",top:moveRules.moves[i].pixY - height/2 +"px"});
                 var newLabel = label.replace(/((?:<span[^>]*>)?[-+ru](?:<\/span>)?).*/,"$1 "+moveRules.moves[i].pointsLeft);
-                $("#"+newId+" div span").html(newLabel);
+                $("#"+newId+" div span").html(newLabel).addClass('infoLen'+newLabel.length);
                 if(moveRules.moves[i].isOccupied){
                     $("#"+newId).addClass("occupied");
 
