@@ -330,6 +330,11 @@ function mapClick(event) {
         zoomed = false;
         return;
     }
+    /*
+     * Account for maps zooming in and out
+     */
+    pixelX /= globalZoom;
+    pixelY /= globalZoom;
     doitMap(pixelX,pixelY);
 }
 
@@ -579,6 +584,11 @@ function initialize() {
 //            alert("you hi m");
 //        }
     });
+
+    /*
+     * attach click events to zoom buttons. use Transform not zoom to perform zoom
+     * Set globalZoom so clicks on map are still correct.
+     */
     $("#zoom span").each(function(){
         $(this).click(function(){
             $("#zoom span").css({textDecoration:"none"});
@@ -588,7 +598,7 @@ function initialize() {
                 zoom = $(this).html();
             }
             zoom = zoom - 0;
-
+            globalZoom = zoom;
             var vHeight = $('#gameViewer').height();
             var vWidth = $('#gameViewer').width();
             vHeight /= 2;
