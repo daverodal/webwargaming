@@ -62,6 +62,7 @@ class MapHex {
         }
     }
     public function setUnit($forceId, $id){
+//        $battle = Battle::getBattle();
         if(!$this->forces){
             $this->forces = array(new stdClass(),new stdClass(), new stdClass());
         }
@@ -71,7 +72,17 @@ class MapHex {
         $this->forces[$forceId]->$id = $id;
         $neighbors = $this->neighbors;
         $mapData = MapData::getInstance();
+//        $blocksZoc = $mapData->blocks;
+//        $unitHex = $battle->force->units[$id]->hexagon;
+//        var_dump($unitHex);
         foreach($neighbors as $neighbor){
+//            if($blocksZoc->blocked && $battle->terrain->terrainIsHexSide($unitHex->name, $neighbor, "blocked")){
+//                continue;
+//            }
+//            if($blocksZoc->blocksnonroad && $battle->terrain->terrainIsHexSide($unitHex->name, $neighbor, "blocksnonroad")){
+//
+//                continue;
+//            }
             $hex = $mapData->getHex($neighbor);
             if($hex){
             if(!$hex->zocs){
@@ -104,9 +115,11 @@ class MapData implements JsonSerializable{
     private static $instance;
     public $mapUrl;
     public $vp;
+    public $blocksZoc;
 
     private function __construct(){
         $this->vp = array(0,0,0);
+        $this->blocksZoc = new stdClass();
     }
 
     function jsonSerialize(){

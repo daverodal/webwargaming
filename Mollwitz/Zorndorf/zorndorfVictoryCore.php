@@ -40,12 +40,26 @@ class zorndorfVictoryCore extends victoryCore
         }
     }
 
+    public function specialHexChange($args)
+    {
+        $battle = Battle::getBattle();
+
+        list($mapHexName, $forceId) = $args;
+        if ($forceId == PRUSSIAN_FORCE) {
+            $this->victoryPoints[PRUSSIAN_FORCE]  += 5;
+            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+5 Prussian vp</span>";
+        }
+        if ($forceId == RUSSIAN_FORCE) {
+            $this->victoryPoints[PRUSSIAN_FORCE]  -= 5;
+            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='russian'>-5 Prussian vp</span>";
+        }
+    }
     protected function checkVictory($attackingId,$battle){
         $gameRules = $battle->gameRules;
         $turn = $gameRules->turn;
         if(!$this->gameOver){
             $prussianWin = $russianWin = false;
-            if(($this->victoryPoints[RUSSIAN_FORCE] > 62) && ($this->victoryPoints[RUSSIAN_FORCE] - $this->victoryPoints[PRUSSIAN_FORCE] > 10)){
+            if(($this->victoryPoints[RUSSIAN_FORCE] > 62) && ($this->victoryPoints[RUSSIAN_FORCE] - ($this->victoryPoints[PRUSSIAN_FORCE]) > 10)){
                 $russianWin = true;
             }
             if(($this->victoryPoints[PRUSSIAN_FORCE] > 62) && ($this->victoryPoints[PRUSSIAN_FORCE] - $this->victoryPoints[RUSSIAN_FORCE] > 10)){
@@ -61,7 +75,8 @@ class zorndorfVictoryCore extends victoryCore
             }
             if($prussianWin){
                 $this->winner = PRUSSIAN_FORCE;
-                $gameRules->flashMessages[] = "Prussian Win on Kills";
+                $msg = "Prussian Win 62 or more VP's";
+                $gameRules->flashMessages[] = $msg;
             }
             if($russianWin || $prussianWin){
                 $gameRules->flashMessages[] = "Game Over";

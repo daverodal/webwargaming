@@ -346,6 +346,9 @@ class MoveRules{
                 if($this->terrain->terrainIsHexSide($hexNum,$newHexNum, "blocked")){
                     continue;
                 }
+                if(!$unit->forceMarch && $this->terrain->terrainIsHexSide($hexNum,$newHexNum, "blocksnonroad")){
+                    continue;
+                }
                 if($this->terrain->terrainIsXY($gnuHex[0],$gnuHex[1],"offmap")){
 
                     continue;
