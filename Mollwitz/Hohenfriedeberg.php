@@ -169,10 +169,6 @@ class Hohenfriedeberg extends Battle
     public function init(){
 
         $artRange = 3;
-        $artStr = 2;
-        if($this->scenario->artStr){
-            $artStr = 3;
-        }
 
         $this->force->addUnit("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Prussian", false, 'infantry');
         $this->force->addUnit("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Prussian", false, 'infantry');
@@ -286,7 +282,9 @@ class Hohenfriedeberg extends Battle
             $this->terrain = new Terrain();
 //            $this->terrain->setMaxHex("2223");
             $this->moveRules = new MoveRules($this->force, $this->terrain);
+            $this->moveRules->enterZoc = "stop";
             $this->moveRules->exitZoc = "stop";
+            $this->moveRules->noZocZoc = true;
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
@@ -356,6 +354,7 @@ class Hohenfriedeberg extends Battle
 
                 }
             }
+            $specialHexA = [];
             $this->terrain->addTerrain(801 ,1 , "forest");
             $this->terrain->addReinforceZone(801,'A');
             $this->terrain->addTerrain(801 ,2 , "forest");
@@ -418,6 +417,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addReinforceZone(210,'A');
             $this->terrain->addTerrain(611 ,1 , "forest");
             $this->terrain->addReinforceZone(611,'A');
+            $this->terrain->addTerrain(611 ,1 , "road");
             $this->terrain->addTerrain(204 ,1 , "town");
             $this->terrain->addReinforceZone(204,'A');
             $this->terrain->addTerrain(305 ,4 , "town");
@@ -473,6 +473,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addReinforceZone(2112,'B');
             $this->terrain->addTerrain(2111 ,2 , "town");
             $this->terrain->addTerrain(2111 ,2 , "river");
+            $this->terrain->addTerrain(2111 ,2 , "trail");
             $this->terrain->addTerrain(2111 ,1 , "town");
             $this->terrain->addReinforceZone(2111,'B');
             $this->terrain->addTerrain(2110 ,2 , "town");
@@ -488,6 +489,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addTerrain(1912 ,2 , "river");
             $this->terrain->addTerrain(2112 ,4 , "town");
             $this->terrain->addTerrain(2112 ,4 , "river");
+            $this->terrain->addTerrain(2112 ,4 , "trail");
             $this->terrain->addTerrain(716 ,1 , "town");
             $this->terrain->addReinforceZone(716,'A');
             $this->terrain->addTerrain(815 ,3 , "town");
@@ -501,6 +503,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addTerrain(120 ,2 , "town");
             $this->terrain->addTerrain(121 ,1 , "town");
             $this->terrain->addReinforceZone(121,'A');
+            $specialHexA[] = 121;
             $this->terrain->addTerrain(220 ,4 , "town");
             $this->terrain->addTerrain(220 ,3 , "town");
             $this->terrain->addTerrain(220 ,1 , "town");
@@ -514,12 +517,14 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addReinforceZone(321,'A');
             $this->terrain->addTerrain(321 ,2 , "town");
             $this->terrain->addTerrain(321 ,2 , "river");
+            $this->terrain->addTerrain(321 ,2 , "trail");
             $this->terrain->addTerrain(322 ,1 , "town");
             $this->terrain->addTerrain(620 ,1 , "town");
             $this->terrain->addReinforceZone(620,'A');
             $this->terrain->addTerrain(720 ,3 , "town");
             $this->terrain->addTerrain(720 ,1 , "town");
             $this->terrain->addReinforceZone(720,'A');
+            $specialHexA[] = 720;
             $this->terrain->addTerrain(820 ,4 , "town");
             $this->terrain->addTerrain(820 ,1 , "town");
             $this->terrain->addReinforceZone(820,'A');
@@ -533,6 +538,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addTerrain(824 ,1 , "town");
             $this->terrain->addTerrain(924 ,3 , "town");
             $this->terrain->addTerrain(924 ,3 , "river");
+            $this->terrain->addTerrain(924 ,3 , "trail");
             $this->terrain->addTerrain(924 ,1 , "town");
             $this->terrain->addTerrain(322 ,4 , "town");
             $this->terrain->addTerrain(322 ,4 , "river");
@@ -576,9 +582,11 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addReinforceZone(2309,'B');
             $this->terrain->addTerrain(123 ,1 , "swamp");
             $this->terrain->addTerrain(222 ,1 , "swamp");
+            $this->terrain->addTerrain(222 ,1 , "road");
             $this->terrain->addTerrain(323 ,1 , "swamp");
             $this->terrain->addTerrain(124 ,1 , "swamp");
             $this->terrain->addTerrain(124 ,1 , "road");
+            $specialHexA[] = 124;
             $this->terrain->addTerrain(223 ,1 , "swamp");
             $this->terrain->addTerrain(223 ,1 , "road");
             $this->terrain->addTerrain(324 ,1 , "swamp");
@@ -597,6 +605,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addReinforceZone(1201,'A');
             $this->terrain->addReinforceZone(102,'A');
             $this->terrain->addTerrain(102 ,1 , "road");
+            $specialHexA[] = 102;
             $this->terrain->addReinforceZone(202,'A');
             $this->terrain->addTerrain(202 ,1 , "road");
             $this->terrain->addReinforceZone(302,'A');
@@ -617,6 +626,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addReinforceZone(1003,'A');
             $this->terrain->addReinforceZone(1203,'A');
             $this->terrain->addReinforceZone(104,'A');
+            $specialHexA[] = 104;
             $this->terrain->addReinforceZone(304,'A');
             $this->terrain->addReinforceZone(704,'A');
             $this->terrain->addReinforceZone(804,'A');
@@ -631,6 +641,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addTerrain(805 ,1 , "road");
             $this->terrain->addReinforceZone(905,'A');
             $this->terrain->addReinforceZone(106,'A');
+            $specialHexA[] = 106;
             $this->terrain->addReinforceZone(206,'A');
             $this->terrain->addReinforceZone(806,'A');
             $this->terrain->addReinforceZone(906,'A');
@@ -645,6 +656,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addReinforceZone(907,'A');
             $this->terrain->addTerrain(907 ,1 , "road");
             $this->terrain->addReinforceZone(108,'A');
+            $specialHexA[] = 108;
             $this->terrain->addReinforceZone(208,'A');
             $this->terrain->addReinforceZone(308,'A');
             $this->terrain->addReinforceZone(408,'A');
@@ -671,6 +683,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addReinforceZone(512,'A');
             $this->terrain->addReinforceZone(612,'A');
             $this->terrain->addReinforceZone(712,'A');
+            $this->terrain->addTerrain(712 ,1 , "road");
             $this->terrain->addReinforceZone(113,'A');
             $this->terrain->addReinforceZone(213,'A');
             $this->terrain->addReinforceZone(313,'A');
@@ -678,6 +691,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addReinforceZone(513,'A');
             $this->terrain->addReinforceZone(613,'A');
             $this->terrain->addReinforceZone(713,'A');
+            $this->terrain->addTerrain(713 ,1 , "road");
             $this->terrain->addReinforceZone(114,'A');
             $this->terrain->addReinforceZone(214,'A');
             $this->terrain->addReinforceZone(314,'A');
@@ -686,7 +700,9 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addReinforceZone(614,'A');
             $this->terrain->addReinforceZone(714,'A');
             $this->terrain->addReinforceZone(814,'A');
+            $this->terrain->addTerrain(814 ,1 , "road");
             $this->terrain->addReinforceZone(813,'A');
+            $this->terrain->addTerrain(813 ,1 , "road");
             $this->terrain->addReinforceZone(115,'A');
             $this->terrain->addReinforceZone(215,'A');
             $this->terrain->addReinforceZone(315,'A');
@@ -703,6 +719,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addTerrain(616 ,1 , "road");
             $this->terrain->addReinforceZone(117,'A');
             $this->terrain->addTerrain(117 ,1 , "road");
+            $specialHexA[] = 117;
             $this->terrain->addReinforceZone(217,'A');
             $this->terrain->addTerrain(217 ,1 , "road");
             $this->terrain->addReinforceZone(317,'A');
@@ -760,6 +777,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addTerrain(122 ,2 , "river");
             $this->terrain->addTerrain(222 ,4 , "river");
             $this->terrain->addTerrain(221 ,2 , "river");
+            $this->terrain->addTerrain(221 ,2 , "road");
             $this->terrain->addTerrain(421 ,4 , "river");
             $this->terrain->addTerrain(420 ,2 , "river");
             $this->terrain->addTerrain(521 ,3 , "river");
@@ -1141,10 +1159,22 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addReinforceZone(2403,'B');
             $this->terrain->addReinforceZone(2402,'B');
             $this->terrain->addReinforceZone(2401,'B');
+            $this->terrain->addTerrain(611 ,4 , "road");
+            $this->terrain->addTerrain(712 ,4 , "road");
+            $this->terrain->addTerrain(712 ,2 , "road");
+            $this->terrain->addTerrain(813 ,4 , "road");
+            $this->terrain->addTerrain(813 ,2 , "road");
+            $this->terrain->addTerrain(915 ,4 , "road");
+            $this->terrain->addTerrain(222 ,2 , "road");
+
+            foreach($specialHexA as $specialHexId){
+                $specialHexes[$specialHexId] = AUSTRIAN_FORCE;
+            }
+            $this->mapData->setSpecialHexes($specialHexes);
+
 
             // end terrain data ----------------------------------------
 
         }
-        $this->moveRules->noZocZoc = true;
     }
 }

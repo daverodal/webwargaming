@@ -216,7 +216,7 @@ class Jagersdorf extends Battle {
         $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png",1, 1, 6, true, STATUS_CAN_DEPLOY, "RC", 1, 1, "Russian",false,'cavalry');
         $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png",1, 1, 6, true, STATUS_CAN_DEPLOY, "RC", 1, 1, "Russian",false,'cavalry');
 
-        if($scenario && $scenario->prussianDeploy){
+        if($this->scenario && $this->scenario->prussianDeploy){
             $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCavBadge.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "PC", 1, 1, "Prussian",false,'cavalry');
             $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCavBadge.png", 2, 2, 5, true, STATUS_CAN_DEPLOY, "PC", 1, 1, "Prussian",false,'cavalry');
             $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruCavBadge.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, "PC", 1, 1, "Prussian",false,'cavalry');
@@ -286,7 +286,6 @@ class Jagersdorf extends Battle {
             $this->force = new Force($data->force);
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
-            $this->moveRules->stickyZOC = false;
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
@@ -309,8 +308,10 @@ class Jagersdorf extends Battle {
             $this->terrain = new Terrain();
 //            $this->terrain->setMaxHex("2223");
             $this->moveRules = new MoveRules($this->force, $this->terrain);
+            $this->moveRules->enterZoc = "stop";
             $this->moveRules->exitZoc = "stop";
             $this->moveRules->noZocZoc = true;
+            $this->moveRules->stickyZOC = false;
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
@@ -1029,73 +1030,6 @@ class Jagersdorf extends Battle {
 
             $this->terrain->addTerrain(1920, LOWER_LEFT_HEXSIDE,"river");
             $this->terrain->addTerrain(1920, BOTTOM_HEXSIDE,"river");
-
-
-
-//            foreach($trains as $train){
-//            }
-//            $this->terrain->addTerrain(606, HEXAGON_CENTER, "forest");
-//            $this->terrain->addTerrain(408, HEXAGON_CENTER, "rough");
-//
-//            $this->terrain->addTerrain(405, BOTTOM_HEXSIDE, "river");
-//            $this->terrain->addTerrain(406, UPPER_LEFT_HEXSIDE, "river");
-//            $this->terrain->addTerrain(406, LOWER_LEFT_HEXSIDE, "river");
-//            $this->terrain->addTerrain(406, BOTTOM_HEXSIDE, "river");
-//            $this->terrain->addTerrain(505, LOWER_LEFT_HEXSIDE, "river");
-//            $this->terrain->addTerrain(506, UPPER_LEFT_HEXSIDE, "river");
-//            $this->terrain->addTerrain(507, LOWER_LEFT_HEXSIDE, "river");
-//            $this->terrain->addTerrain(508, UPPER_LEFT_HEXSIDE, "river");
-//
-//            $this->terrain->addTerrain(705, HEXAGON_CENTER, "town");
-//            $this->terrain->addTerrain(1202, HEXAGON_CENTER, "town");
-//            $this->terrain->addTerrain(1605, HEXAGON_CENTER, "newrichmond");
-//            $this->terrain->addTerrain(1705, HEXAGON_CENTER, "newrichmond");
-//            $this->terrain->addTerrain(1706, HEXAGON_CENTER, "newrichmond");
-//
-//            for($i = 1; $i <= 10;$i++){
-//                $this->terrain->addTerrain(2000+$i, HEXAGON_CENTER, "eastedge");
-//            }
-
-
-            $hexpart = new Hexpart();
-            $hexpart->setXYwithNameAndType(1910,HEXAGON_CENTER);
-            $hexpart->setXYwithNameAndType(2010,HEXAGON_CENTER);
-            $terrain = $this->terrain;
-
-//            $this->terrain->addTerrain(1007, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1008, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1009, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1010, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1107, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1206, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1306, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1307, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1308, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1309, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1310, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1405, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1501, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1502, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1503, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1504, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1505, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1506, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1507, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1508, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1509, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1510, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1604, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1606, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1702, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1703, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1704, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1707, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1801, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1803, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1804, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1806, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(1903, HEXAGON_CENTER, "fortified");
-//            $this->terrain->addTerrain(2002, HEXAGON_CENTER, "fortified");
 
 
             // end terrain data ----------------------------------------

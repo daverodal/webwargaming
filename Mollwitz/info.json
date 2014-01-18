@@ -4,13 +4,11 @@
     "path": "Mollwitz",
     "fileName": "Mollwitz.php",
     "scenarios": {
-      "artilleryCombined": {
-        "description": "Standard Scenario",
-        "artSupport":true
+      "main": {
+        "description": "Standard Scenario"
       },
       "prussianClear": {
         "description": "Prussians get +1 for att/def in clear, art is 3 str",
-        "artSupport":true,
         "jagersdorfCombat":true,
         "artStr": true
       }
@@ -23,10 +21,7 @@
     "scenarios": {
       "main": {
         "description": "Standard Scenario",
-        "artSupport":true,
-        "jagersdorfCombat":true,
-        "artStr": true,
-        "longRangeArt": true
+        "jagersdorfCombat":true
       }
     }
   },
@@ -35,14 +30,8 @@
     "path": "Mollwitz",
     "fileName": "Zorndorf.php",
     "scenarios": {
-      "artilleryCombined": {
-        "description": "Standard Scenario",
-        "artSupport":true
-      },
-      "noZoc": {
-        "description": "Units may not move directly from one zoc to another",
-        "artSupport":true,
-        "noZocZoc": true
+      "main": {
+        "description": "Standard Scenario"
       }
     }
   },
@@ -51,18 +40,14 @@
     "path": "Mollwitz",
     "fileName": "Jagersdorf.php",
     "scenarios": {
-      "longRangeArtillery": {
+      "main": {
         "jagersdorfCombat":true,
-        "description": "Prussians are pre deployed",
-        "longRangeArt": true,
-        "noZocZoc": true
+        "description": "Prussians are pre deployed"
       },
       "prussianDeploys": {
         "description": "Prussians has setup mode ",
         "jagersdorfCombat":true,
-        "longRangeArt": true,
-        "prussianDeploy":true,
-        "noZocZoc": true
+        "prussianDeploy":true
       }
     }
   }

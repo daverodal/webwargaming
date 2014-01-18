@@ -108,6 +108,9 @@ class Zorndorf extends Mollwitz
         return $data;
     }
     function init(){
+
+        $artRange = 3;
+
         $coinFlip = floor(2 * (rand() / getrandmax()));
 
         $pruDeploy = $coinFlip == 1 ? "B": "C";
@@ -239,7 +242,6 @@ class Zorndorf extends Mollwitz
             $this->force = new Force($data->force);
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
-            $this->moveRules->stickyZOC = false;
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
@@ -263,10 +265,10 @@ class Zorndorf extends Mollwitz
             $this->terrain = new Terrain();
             $this->mapData->terrain = $this->terrain;
             $this->moveRules = new MoveRules($this->force, $this->terrain);
+            $this->moveRules->enterZoc = "stop";
             $this->moveRules->exitZoc = "stop";
-            if($scenario->noZocZoc === true){
-                $this->moveRules->noZocZoc = true;
-            }
+            $this->moveRules->noZocZoc = true;
+            $this->moveRules->stickyZOC = false;
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
@@ -314,7 +316,6 @@ class Zorndorf extends Mollwitz
             // force data
 
 
-            $artRange = 3;
 
 
             // end unit data -------------------------------------------
@@ -349,7 +350,7 @@ class Zorndorf extends Mollwitz
             }
 
 
-        }
+
 
         $this->terrain->addTerrain(1801 ,4 , "blocked");
         $this->terrain->addTerrain(1701 ,2 , "blocked");
@@ -2210,5 +2211,6 @@ class Zorndorf extends Mollwitz
         $this->terrain->addReinforceZone(3915,'B');
         $this->terrain->addReinforceZone(3916,'B');
         $this->terrain->addReinforceZone(3917,'B');
+        }
     }
 }

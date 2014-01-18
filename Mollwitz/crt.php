@@ -131,6 +131,7 @@ class CombatResultsTable
                 }
             }
 
+            $attackerHalved = false;
             if ($unit->class == "infantry") {
                 $combinedArms[$battle->force->units[$attackerId]->class]++;
                 $combatLog .= "$unitStrength Infantry ";
@@ -144,16 +145,8 @@ class CombatResultsTable
                         $combatLog .= "+1 for attack into town or forest ";
                     }
                 }
-                if ($isSwamp) {
-                    $combatLog .= "halved for attacking into swamp ";
-                    $unitStrength /= 2;
-                }
-                if ($attackerIsSwamp) {
-                    $combatLog .= "halved for attacking from swamp ";
-                    $unitStrength /= 2;
-                }
-                if ($acrossRiver) {
-                    $combatLog .= "halved because of river ";
+                if ($isSwamp || $attackerIsSwamp || $acrossRiver) {
+                    $combatLog .= "attacker halved for terrain ";
                     $unitStrength /= 2;
                 }
             }
@@ -161,16 +154,11 @@ class CombatResultsTable
             if ($unit->class == "cavalry") {
                 $combatLog .= "$unitStrength Cavalry ";
                 $attackersCav = true;
-                if($attackerIsSwamp){
-                    $combatLog .= " halved for attacking from swamp, loses combined arms bonus ";
-                    $unitStrength /= 2;
-                }
-                if ($acrossRiver || !$isClear) {
+
+                if ($attackerIsSwamp || $acrossRiver || !$isClear) {
                     $combatLog .= " halved for terrain, loses combined arms bonus ";
                     $unitStrength /= 2;
-                }
-                /* DeMorgan would come in handy here */
-                if(!($attackerIsSwamp || $acrossRiver || !$isClear)){
+                }else{
                     $combinedArms[$battle->force->units[$attackerId]->class]++;
                 }
             }

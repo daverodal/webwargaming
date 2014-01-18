@@ -50,49 +50,47 @@ class hohenfriedebergVictoryCore extends victoryCore
         }
     }
 
-//    public function specialHexChange($args)
-//    {
-//        $battle = Battle::getBattle();
-//
-//        list($mapHexName, $forceId) = $args;
-//        if ($forceId == PAUSTRIAN_FORCE) {
-//            $this->victoryPoints[PAUSTRIAN_FORCE]  += 5;
-//            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+5 Prussian vp</span>";
-//        }
-//        if ($forceId == AUSTRIAN_FORCE) {
-//            $this->victoryPoints[PAUSTRIAN_FORCE]  -= 5;
-//            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='russian'>-5 Prussian vp</span>";
-//        }
-//    }
+    public function specialHexChange($args)
+    {
+        $battle = Battle::getBattle();
+
+        list($mapHexName, $forceId) = $args;
+        if ($forceId == PRUSSIAN_FORCE) {
+            $this->victoryPoints[PRUSSIAN_FORCE]  += 5;
+            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+5 Prussian vp</span>";
+        }
+        if ($forceId == AUSTRIAN_FORCE) {
+            $this->victoryPoints[PRUSSIAN_FORCE]  -= 5;
+            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-5 Prussian vp</span>";
+        }
+    }
     protected function checkVictory($attackingId,$battle){
         $gameRules = $battle->gameRules;
         $turn = $gameRules->turn;
         if(!$this->gameOver){
-            $prussianWin = $russianWin = false;
-            if(($this->victoryPoints[AUSTRIAN_FORCE] > 60) && ($this->victoryPoints[AUSTRIAN_FORCE] - ($this->victoryPoints[PAUSTRIAN_FORCE]) > 10)){
-                $russianWin = true;
-            }
-            if(($this->victoryPoints[PAUSTRIAN_FORCE] > 60) && ($this->victoryPoints[PAUSTRIAN_FORCE] - $this->victoryPoints[AUSTRIAN_FORCE] > 10)){
+            $prussianWin = $austrianWin = false;
+//            if(($this->victoryPoints[AUSTRIAN_FORCE] > 60) && ($this->victoryPoints[AUSTRIAN_FORCE] - ($this->victoryPoints[PRUSSIAN_FORCE]) > 10)){
+//                $austrianWin = true;
+//            }
+            if(($this->victoryPoints[PRUSSIAN_FORCE] > 60) && ($this->victoryPoints[PRUSSIAN_FORCE] - $this->victoryPoints[AUSTRIAN_FORCE] > 10)){
                 $prussianWin = true;
             }
-            if($russianWin && $prussianWin){
+            if($prussianWin && $turn > 12 && $turn <= 15){
                 $this->winner = 0;
                 $gameRules->flashMessages[] = "Tie Game";
             }
-            if($russianWin){
+            if(!$prussianWin && $turn > 15){
                 $this->winner = AUSTRIAN_FORCE;
-                $gameRules->flashMessages[] = "Russian Win on Kills";
+                $gameRules->flashMessages[] = "Austrians Win";
             }
-            if($prussianWin){
-                $this->winner = PAUSTRIAN_FORCE;
-                $msg = "Prussian Win 62 or more VP's";
+            if($prussianWin && $turn <= 12){
+                $this->winner = PRUSSIAN_FORCE;
+                $msg = "Prussian Win 60 On or before turn 12";
                 $gameRules->flashMessages[] = $msg;
             }
-            if($russianWin || $prussianWin){
+            if($austrianWin || $prussianWin){
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
-//                $gameRules->mode = GAME_OVER_MODE;
-//                $gameRules->phase = GAME_OVER_PHASE;
                 return true;
             }
         }
