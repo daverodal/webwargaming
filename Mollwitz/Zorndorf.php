@@ -291,8 +291,8 @@ class Zorndorf extends Mollwitz
             // game data
 
 
-            $this->mapData->setSpecialHexes([211 => RUSSIAN_FORCE, 312 => RUSSIAN_FORCE, 411 => RUSSIAN_FORCE, 412 => RUSSIAN_FORCE,
-                2007 => RUSSIAN_FORCE, 2107 => RUSSIAN_FORCE]);
+            $this->mapData->setSpecialHexes([312 => RUSSIAN_FORCE, 412 => RUSSIAN_FORCE, 512 => RUSSIAN_FORCE, 513 => RUSSIAN_FORCE,
+                2108 => RUSSIAN_FORCE, 2207 => RUSSIAN_FORCE]);
 
             $this->gameRules->setMaxTurn(15);
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
