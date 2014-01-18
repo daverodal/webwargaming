@@ -90,20 +90,20 @@ class CombatResultsTable
         }
 
         $defenders = $combats->defenders;
-        $isTown = $isHill = $isForest = false;
+        $isTown = $isHill = $isForest = $isSwamp = false;
 
 
         foreach ($defenders as $defId => $defender) {
             $hexagon = $battle->force->units[$defId]->hexagon;
             $hexpart = new Hexpart();
             $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
-
             $isTown |= $battle->terrain->terrainIs($hexpart, 'town');
             $isHill |= $battle->terrain->terrainIs($hexpart, 'hill');
             $isForest |= $battle->terrain->terrainIs($hexpart, 'forest');
+            $isSwamp |= $battle->terrain->terrainIs($hexpart, 'swamp');
         }
         $isClear = true;
-        if ($isTown || $isForest || $isHill) {
+        if ($isTown || $isForest || $isHill || $isSwamp) {
             $isClear = false;
         }
 
@@ -116,6 +116,13 @@ class CombatResultsTable
         foreach ($attackers as $attackerId => $attacker) {
             $unit = $battle->force->units[$attackerId];
             $unitStrength = $unit->strength;
+
+            $hexagon = $unit->hexagon;
+            $hexpart = new Hexpart();
+            $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
+
+            $attackerIsSwamp = $battle->terrain->terrainIs($hexpart, 'swamp');
+
 
             $acrossRiver = false;
             foreach ($defenders as $defId => $defender) {
@@ -137,6 +144,14 @@ class CombatResultsTable
                         $combatLog .= "+1 for attack into town or forest ";
                     }
                 }
+                if ($isSwamp) {
+                    $combatLog .= "halved for attacking into swamp ";
+                    $unitStrength /= 2;
+                }
+                if ($attackerIsSwamp) {
+                    $combatLog .= "halved for attacking from swamp ";
+                    $unitStrength /= 2;
+                }
                 if ($acrossRiver) {
                     $combatLog .= "halved because of river ";
                     $unitStrength /= 2;
@@ -146,15 +161,25 @@ class CombatResultsTable
             if ($unit->class == "cavalry") {
                 $combatLog .= "$unitStrength Cavalry ";
                 $attackersCav = true;
+                if($attackerIsSwamp){
+                    $combatLog .= " halved for attacking from swamp, loses combined arms bonus ";
+                    $unitStrength /= 2;
+                }
                 if ($acrossRiver || !$isClear) {
                     $combatLog .= " halved for terrain, loses combined arms bonus ";
                     $unitStrength /= 2;
-                } else {
+                }
+                /* DeMorgan would come in handy here */
+                if(!($attackerIsSwamp || $acrossRiver || !$isClear)){
                     $combinedArms[$battle->force->units[$attackerId]->class]++;
                 }
             }
             if ($unit->class == "artillery") {
                 $combatLog .= "$unitStrength Artillery ";
+                if($isSwamp){
+                    $unitStrength /= 2;
+                    $combatLog .= "halved for attacking into swamp ";
+                }
                 $combinedArms[$battle->force->units[$attackerId]->class]++;
             }
             $combatLog .= "<br>";

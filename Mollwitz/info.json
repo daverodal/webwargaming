@@ -21,15 +21,12 @@
     "path": "Mollwitz",
     "fileName": "Hohenfriedeberg.php",
     "scenarios": {
-      "artilleryCombined": {
+      "main": {
         "description": "Standard Scenario",
-        "artSupport":true
-      },
-      "prussianClear": {
-        "description": "Prussians get +1 for att/def in clear, art is 3 str",
         "artSupport":true,
         "jagersdorfCombat":true,
-        "artStr": true
+        "artStr": true,
+        "longRangeArt": true
       }
     }
   },

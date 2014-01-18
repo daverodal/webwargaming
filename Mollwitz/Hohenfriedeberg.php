@@ -256,7 +256,7 @@ class Hohenfriedeberg extends Battle
             $this->scenario = $data->scenario;
             $this->game = $data->game;
             $this->genTerrain = false;
-            $this->victory = new Victory("Mollwitz", $data);
+            $this->victory = new Victory("Mollwitz/Hohenfriedeberg/hohenfriedebergVictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
@@ -275,7 +275,7 @@ class Hohenfriedeberg extends Battle
             $this->scenario = $scenario;
             $this->game = $game;
             $this->genTerrain = true;
-            $this->victory = new Victory("Mollwitz");
+            $this->victory = new Victory("Mollwitz/Hohenfriedeberg/hohenfriedebergVictoryCore.php");
 
             $this->mapData->setData(24, 24, "js/Hohenfriedeberg3.jpg");
 
@@ -343,7 +343,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addTerrainFeature("river", "river", "v", 0, 1, 0, false);
             $this->terrain->addAltEntranceCost('forest', 'cavalry', 4);
             $this->terrain->addTerrainFeature("trail", "trail", "r", 0, 0, 0, false);
-            $this->terrain->addTerrainFeature("swamp", "swamp", "s", 6, 0, 1, true, false);
+            $this->terrain->addTerrainFeature("swamp", "swamp", "s", 9, 0, 1, true, false);
 
 
 
