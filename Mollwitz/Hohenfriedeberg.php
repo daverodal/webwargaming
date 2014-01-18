@@ -1166,6 +1166,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addTerrain(813 ,2 , "road");
             $this->terrain->addTerrain(915 ,4 , "road");
             $this->terrain->addTerrain(222 ,2 , "road");
+            $this->terrain->addTerrain(1713 ,4 , "road");
 
             foreach($specialHexA as $specialHexId){
                 $specialHexes[$specialHexId] = AUSTRIAN_FORCE;
