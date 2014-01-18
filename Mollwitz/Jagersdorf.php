@@ -310,6 +310,7 @@ class Jagersdorf extends Battle {
 //            $this->terrain->setMaxHex("2223");
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->moveRules->exitZoc = "stop";
+            $this->moveRules->noZocZoc = true;
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);

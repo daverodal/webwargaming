@@ -1145,5 +1145,6 @@ class Hohenfriedeberg extends Battle
             // end terrain data ----------------------------------------
 
         }
+        $this->moveRules->noZocZoc = true;
     }
 }

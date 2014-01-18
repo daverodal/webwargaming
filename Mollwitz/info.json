@@ -54,13 +54,15 @@
       "longRangeArtillery": {
         "jagersdorfCombat":true,
         "description": "Prussians are pre deployed",
-        "longRangeArt": true
+        "longRangeArt": true,
+        "noZocZoc": true
       },
       "prussianDeploys": {
         "description": "Prussians has setup mode ",
         "jagersdorfCombat":true,
         "longRangeArt": true,
-        "prussianDeploy":true
+        "prussianDeploy":true,
+        "noZocZoc": true
       }
     }
   }

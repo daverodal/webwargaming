@@ -653,5 +653,6 @@ class Mollwitz extends Battle
             // end terrain data ----------------------------------------
 
         }
+        $this->moveRules->noZocZoc = true;
     }
 }
