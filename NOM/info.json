@@ -5,6 +5,7 @@
     "fileName": "NapOnMars.php",
     "scenarios": {
       "main": {
+        "description": "An invented game testing a framework "
       }
     }
   }

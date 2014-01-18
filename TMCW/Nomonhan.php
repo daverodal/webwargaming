@@ -105,6 +105,79 @@ class Nomonhan extends MartianCivilWar
         return $data;
     }
 
+    public function init(){
+        // unit data -----------------------------------------------
+        //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
+
+        // SOVIET Initial forces, can deploy on turn 1
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "R", 1, 1, "soviet", true, 'inf');
+        $this->force->addUnit("inf-1", SOVIET_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "R", 1, 1, "soviet", true, 'inf');
+        $this->force->addUnit("inf-1", SOVIET_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "R", 1, 1, "soviet", true, 'inf');
+        $this->force->addUnit("inf-1", SOVIET_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "R", 1, 1, "soviet", true, 'inf');
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "deployBox", "multiCav.png", 3, 1, 8, false, STATUS_CAN_DEPLOY, "R", 1, 1, "soviet", true, 'cavalry');
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "deployBox", "multiCav.png", 3, 1, 8, false, STATUS_CAN_DEPLOY, "R", 1, 1, "soviet", true, 'cavalry');
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "deployBox", "multiCav.png", 3, 1, 8, false, STATUS_CAN_DEPLOY, "R", 1, 1, "soviet", true, 'cavalry');
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "deployBox", "multiCav.png", 3, 1, 8, false, STATUS_CAN_DEPLOY, "R", 1, 1, "soviet", true, 'cavalry');
+
+        // Soviet Reinforcemenets, can deploy turn 6
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiRecon.png", 2, 1, 12, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiRecon.png", 2, 1, 12, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArmor.png", 7, 3, 12, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArmor.png", 7, 3, 12, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArmor.png", 7, 3, 12, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArmor.png", 7, 3, 8, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArmor.png", 7, 3, 8, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArmor.png", 7, 3, 8, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiMech.png", 5, 2, 8, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiMech.png", 5, 2, 8, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiMech.png", 5, 2, 8, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiCav.png", 3, 1, 8, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "cavalry");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArt.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "W", 6, 12, "soviet", true, "artillery");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArt.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "W", 6, 12, "soviet", true, "artillery");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArt.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "W", 6, 12, "soviet", true, "artillery");
+        $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArt.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "W", 6, 12, "soviet", true, "artillery");
+
+
+        // Japanese Forces, all can enter on turn 1
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiRecon.png", 2, 1, 12, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "mech");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "mech");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "mech");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiMech.png", 5, 2, 8, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "mech");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiCav.png", 3, 1, 8, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "cavalry");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiArt.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 10, "japanese", true, "artillery");
+        $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiArt.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 10, "japanese", true, "artillery");
+        // end unit data -------------------------------------------
+
+
+    }
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
 
@@ -191,76 +264,6 @@ class Nomonhan extends MartianCivilWar
             $this->gameRules->addPhaseChange(RED_MECH_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
 
             // force data
-
-            // unit data -----------------------------------------------
-            //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
-
-            // SOVIET Initial forces, can deploy on turn 1
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "R", 1, 1, "soviet", true, 'inf');
-            $this->force->addUnit("inf-1", SOVIET_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "R", 1, 1, "soviet", true, 'inf');
-            $this->force->addUnit("inf-1", SOVIET_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "R", 1, 1, "soviet", true, 'inf');
-            $this->force->addUnit("inf-1", SOVIET_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "R", 1, 1, "soviet", true, 'inf');
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "deployBox", "multiCav.png", 3, 1, 8, false, STATUS_CAN_DEPLOY, "R", 1, 1, "soviet", true, 'cavalry');
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "deployBox", "multiCav.png", 3, 1, 8, false, STATUS_CAN_DEPLOY, "R", 1, 1, "soviet", true, 'cavalry');
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "deployBox", "multiCav.png", 3, 1, 8, false, STATUS_CAN_DEPLOY, "R", 1, 1, "soviet", true, 'cavalry');
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "deployBox", "multiCav.png", 3, 1, 8, false, STATUS_CAN_DEPLOY, "R", 1, 1, "soviet", true, 'cavalry');
-
-            // Soviet Reinforcemenets, can deploy turn 6
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiRecon.png", 2, 1, 12, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiRecon.png", 2, 1, 12, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArmor.png", 7, 3, 12, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArmor.png", 7, 3, 12, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArmor.png", 7, 3, 12, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArmor.png", 7, 3, 8, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArmor.png", 7, 3, 8, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArmor.png", 7, 3, 8, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "inf");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiMech.png", 5, 2, 8, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiMech.png", 5, 2, 8, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiMech.png", 5, 2, 8, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "mech");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiCav.png", 3, 1, 8, false, STATUS_CAN_REINFORCE, "W", 6, 1, "soviet", true, "cavalry");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArt.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "W", 6, 12, "soviet", true, "artillery");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArt.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "W", 6, 12, "soviet", true, "artillery");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArt.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "W", 6, 12, "soviet", true, "artillery");
-            $this->force->addUnit("infantry-1", SOVIET_FORCE, "gameTurn6", "multiArt.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "W", 6, 12, "soviet", true, "artillery");
-
-
-            // Japanese Forces, all can enter on turn 1
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiRecon.png", 2, 1, 12, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "mech");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "mech");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "mech");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiMech.png", 5, 2, 8, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "mech");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiInf.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "inf");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiCav.png", 3, 1, 8, false, STATUS_CAN_REINFORCE, "J", 1, 1, "japanese", true, "cavalry");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiArt.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 10, "japanese", true, "artillery");
-            $this->force->addUnit("infantry-1", JAPANESE_FORCE, "deployBox", "multiArt.png", 4, 2, 6, false, STATUS_CAN_REINFORCE, "J", 1, 10, "japanese", true, "artillery");
-            // end unit data -------------------------------------------
 
             // unit terrain data----------------------------------------
 

@@ -554,9 +554,11 @@ x.register("mapUnits", function(mapUnits) {
 
             }
         }
+        width += 6;
+        height += 6;
         if(mapUnits[i].parent == "gameImages"){
 
-            $("#"+i).css({left: -1+mapUnits[i].x-width/2-fudge+"px",top:-1+mapUnits[i].y-height/2-fudge+"px"});
+            $("#"+i).css({left:mapUnits[i].x-width/2-fudge+"px",top:mapUnits[i].y-height/2-fudge+"px"});
         }
         var img = $("#"+i+" img").attr("src");
         if(mapUnits[i].isReduced){

@@ -16,6 +16,23 @@
       }
     }
   },
+  "Hohenfriedeberg": {
+    "name": "The Battle of Hohenfriedeberg",
+    "path": "Mollwitz",
+    "fileName": "Hohenfriedeberg.php",
+    "scenarios": {
+      "artilleryCombined": {
+        "description": "Standard Scenario",
+        "artSupport":true
+      },
+      "prussianClear": {
+        "description": "Prussians get +1 for att/def in clear, art is 3 str",
+        "artSupport":true,
+        "jagersdorfCombat":true,
+        "artStr": true
+      }
+    }
+  },
   "Zorndorf": {
     "name": "The Battle of Zorndorf.",
     "path": "Mollwitz",

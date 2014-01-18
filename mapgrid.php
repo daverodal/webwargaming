@@ -11,10 +11,11 @@ class MapHex {
     private $evenHexesShiftDown = true;
     public $forces;
     public $zocs;
+    public $adjacent;
     public $name;
     public $neighbors;
     public $dirty;
-    public function __construct($name, $forces = false, $zocs = false){
+    public function __construct($name, $forces = false, $zocs = false, $adjacent = false){
         $this->name = $name;
         $this->dirty = false;
         $this->neighbors = array();
@@ -42,7 +43,12 @@ class MapHex {
         }else{
             $this->zocs = array(new stdClass(),new stdClass(), new stdClass());
         }
-
+        if($adjacent !== false){
+            $this->dirty = true;
+            $this->adjacent = $adjacent;
+        }else{
+            $this->adjacent = array(new stdClass(),new stdClass(), new stdClass());
+        }
     }
 
     public function unsetUnit($forceId, $id){
@@ -56,13 +62,13 @@ class MapHex {
             $hex = $mapData->getHex($neighbor);
             if($hex){
                 unset($hex->zocs[$forceId]->$id);
-
+                unset($hex->adjacent[$forceId]->$id);
             }
 
         }
     }
     public function setUnit($forceId, $id){
-//        $battle = Battle::getBattle();
+        $battle = Battle::getBattle();
         if(!$this->forces){
             $this->forces = array(new stdClass(),new stdClass(), new stdClass());
         }
@@ -72,27 +78,37 @@ class MapHex {
         $this->forces[$forceId]->$id = $id;
         $neighbors = $this->neighbors;
         $mapData = MapData::getInstance();
-//        $blocksZoc = $mapData->blocks;
-//        $unitHex = $battle->force->units[$id]->hexagon;
-//        var_dump($unitHex);
+        $blocksZoc = $mapData->blocksZoc;
+        $unitHex = $battle->force->units[$id]->hexagon;
         foreach($neighbors as $neighbor){
-//            if($blocksZoc->blocked && $battle->terrain->terrainIsHexSide($unitHex->name, $neighbor, "blocked")){
-//                continue;
-//            }
-//            if($blocksZoc->blocksnonroad && $battle->terrain->terrainIsHexSide($unitHex->name, $neighbor, "blocksnonroad")){
-//
-//                continue;
-//            }
             $hex = $mapData->getHex($neighbor);
-            if($hex){
-            if(!$hex->zocs){
-                $hex->zocs = array(new stdClass(),new stdClass(),new stdClass());
+
+            if($blocksZoc->blocked && $battle->terrain->terrainIsHexSide($unitHex->name, $neighbor, "blocked")){
+                continue;
             }
 
-            if(!$hex->zocs[$forceId]){
-                $hex->zocs[$forceId] = new stdClass();
+            if($hex){
+                if(!$hex->adjacent){
+                    $hex->adjacent = array(new stdClass(),new stdClass(),new stdClass());
+                }
+
+                if(!$hex->adjacent[$forceId]){
+                    $hex->adjacent[$forceId] = new stdClass();
+                }
+                $hex->adjacent[$forceId]->$id = $id;
             }
-            $hex->zocs[$forceId]->$id = $id;
+            if($blocksZoc->blocksnonroad && $battle->terrain->terrainIsHexSide($unitHex->name, $neighbor, "blocksnonroad")){
+                continue;
+            }
+            if($hex){
+                if(!$hex->zocs){
+                    $hex->zocs = array(new stdClass(),new stdClass(),new stdClass());
+                }
+
+                if(!$hex->zocs[$forceId]){
+                    $hex->zocs[$forceId] = new stdClass();
+                }
+                $hex->zocs[$forceId]->$id = $id;
             }
         }
 
@@ -100,6 +116,9 @@ class MapHex {
     }
     public function isZoc($forceId){
         return count((array)$this->zocs[$forceId]);
+    }
+    public function isAdjacent($forceId){
+        return count((array)$this->adjacent[$forceId]);
     }
     public function isOccupied($forceId){
         return count((array)$this->forces[$forceId]);
@@ -125,8 +144,8 @@ class MapData implements JsonSerializable{
     function jsonSerialize(){
         foreach($this->hexes as $k => $hex){
 
-            $f1 = count((array)$hex->forces[1]) + count((array)$hex->zocs[1]);
-            $f2 = count((array)$hex->forces[2]) + count((array)$hex->zocs[2]);
+            $f1 = count((array)$hex->forces[1]) + count((array)$hex->zocs[1]) + count((array)$hex->adjacent[1]);
+            $f2 = count((array)$hex->forces[2]) + count((array)$hex->zocs[2]) + count((array)$hex->adjacent[2]);
             if(!$f1 && !$f2){
                 unset($this->hexes->$k);
                 continue;
@@ -164,7 +183,7 @@ class MapData implements JsonSerializable{
             for($j = 0;$j<= $this->maxY+1;$j++){
                 $name = sprintf("%02d%02d",$i,$j);
                 if(isset($hexes->$name) && $hexes->$name){
-                    $x = new MapHex($name,$hexes->$name->forces,$hexes->$name->zocs);
+                    $x = new MapHex($name,$hexes->$name->forces,$hexes->$name->zocs, $hexes->$name->adjacent);
                 }else{
                     $x = new MapHex($name);
                 }

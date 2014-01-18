@@ -41,7 +41,16 @@
         background-color: rgb(223, 88, 66);
         border-color: rgb(223, 88, 66);
     }
+    .unit .counter{
+        width:32px;
+        margin-top:-2px;
+    }
+    .unit .unit-numbers{
+        margin-top:-23px;
+        font-size:12px;
+        font-weight:bold;
 
+    }
     #OBC {
     }
 

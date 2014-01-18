@@ -1173,7 +1173,8 @@ class Force
                             if($isZoc){
                                 $this->markRequired($id);
                             }
-                            if($this->units[$id]->forceId == $this->attackingForceId && ($isZoc || $this->unitIsInRange($id))){
+                            $isAdjacent = $this->unitIsAdjacent($id);
+                            if($this->units[$id]->forceId == $this->attackingForceId && ($isZoc || $isAdjacent || $this->unitIsInRange($id))){
                                 $status = STATUS_READY;
                             }
                         }
@@ -1600,6 +1601,23 @@ class Force
         }
         return false;
     }
+
+    function unitIsAdjacent($id)
+    {
+        $battle = Battle::getBattle();
+        /* @var mapData $mapData */
+        $mapData = $battle->mapData;
+        /* @var unit $unit */
+        $unit = $this->units[$id];
+
+        $mapHex = $mapData->getHex($unit->hexagon->name);
+
+        if ($mapHex->isAdjacent($unit->forceId == $this->attackingForceId ? $this->defendingForceId : $this->attackingForceId)) {
+            return true;
+        }
+        return false;
+    }
+
 
     function markRequired($id){
         if($this->combatRequired){

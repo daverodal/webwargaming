@@ -53,7 +53,16 @@
     .russian div{
         color:black;
     }
+    .unit .counter{
+        width:32px;
+        margin-top:-2px;
+    }
+    .unit .unit-numbers{
+        margin-top:-23px;
+        font-size:12px;
+        font-weight:bold;
 
+    }
 #TECWrapper .closer{
     height:0px;
     padding:0px;
