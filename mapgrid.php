@@ -19,18 +19,18 @@ class MapHex {
         $this->name = $name;
         $this->dirty = false;
         $this->neighbors = array();
-        $row = $name%100;
-        $col = floor($name / 100);
-        $colShift = array(0,1,1,0,-1,-1);
-        if($col & 1){
-            $rowShift = array(-1,-1,0,1,0,-1);
-        }else{
-            $rowShift = array(-1,0,1,1,1,0);
-        }
-        for($i = 0;$i<6;$i++){
-            $neighbor = $row+$rowShift[$i]+(($col+$colShift[$i])*100);
-            $this->neighbors[]  = $neighbor;
-        }
+            $row = $name%100;
+            $col = floor($name / 100);
+            $colShift = array(0,1,1,0,-1,-1);
+            if($col & 1){
+                $rowShift = array(-1,-1,0,1,0,-1);
+            }else{
+                $rowShift = array(-1,0,1,1,1,0);
+            }
+            for($i = 0;$i<6;$i++){
+                $neighbor = $row+$rowShift[$i]+(($col+$colShift[$i])*100);
+                $this->neighbors[]  = $neighbor;
+            }
         if($forces !== false){
             $this->dirty = true;
             $this->forces = $forces;
@@ -179,15 +179,17 @@ class MapData implements JsonSerializable{
             }
         }
         $this->hexes = new stdClass();
-        for($i = 0; $i <= $this->maxX+1;$i++){
-            for($j = 0;$j<= $this->maxY+1;$j++){
+        for($i = 1; $i <= $this->maxX+1;$i++){
+            for($j = 1;$j<= $this->maxY+1;$j++){
                 $name = sprintf("%02d%02d",$i,$j);
                 if(isset($hexes->$name) && $hexes->$name){
                     $x = new MapHex($name,$hexes->$name->forces,$hexes->$name->zocs, $hexes->$name->adjacent);
+                    $this->hexes->$name = $x;
                 }else{
-                    $x = new MapHex($name);
+//                    echo "Making Exztra $name ";
+//                    $x = new MapHex($name);
                 }
-                $this->hexes->$name = $x;
+
             }
         }
     }
@@ -206,16 +208,19 @@ class MapData implements JsonSerializable{
         $this->maxY = $maxBottom;
         $this->maxX = $maxRight;
         $this->hexes = new stdClass();
-        for($i = 0; $i <= $maxRight+1;$i++){
-            for($j = 0;$j<= $maxBottom+1;$j++){
+        for($i = 1; $i <= $maxRight+1;$i++){
+            for($j = 1;$j<= $maxBottom+1;$j++){
                 $name = sprintf("%02d%02d",$i,$j);
                 $this->hexes->$name = new MapHex($name);
-            }
+    }
         }
     }
 
     function getHex($name){
         $name = sprintf("%04d",$name);
+        if(!isset($this->hexes->$name)){
+            $this->hexes->$name = new MapHex($name);
+        }
         return $this->hexes->$name;
     }
 }

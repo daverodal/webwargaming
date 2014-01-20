@@ -147,7 +147,8 @@
             <?php include_once "tec.php"; ?>
             <?php include "timeTravel.php"; ?>
 
-            <?php include_once "help.php"; ?>
+            <?php include_once "commonRules.php"; ?>
+            <?php include_once "exclusiveRules.php"; ?>
             <span id="hideShow">Dead Pile</span>
             <span id="showDeploy">Deploy/Staging Box</span>
     </header>
