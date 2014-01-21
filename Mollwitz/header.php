@@ -152,7 +152,7 @@
         color: black;
     }
     #tecImage{
-        width:7
+        width:700px;
     }
 
     #TECWrapper .closer {
@@ -163,84 +163,6 @@
     #VCWrapper .closer {
         height: 0px;
         padding: 0px;
-    }
-
-    #TECWrapper .colOne.riverHex {
-        background-image: url('<?=base_url()?>js/river.png');
-        background-position: 0px -26px;
-    }
-
-    #TECWrapper .colOne.bridgeHex {
-        background-image: url('<?=base_url()?>js/riverRoad.png');
-        background-position: 0px -26px;
-    }
-
-    #TECWrapper .colOne.blankHex {
-        background-image: url('<?=base_url()?>js/blank.png');
-    }
-
-    #TECWrapper .colOne.forestHex {
-        background-image: url('<?=base_url()?>js/forest 2.png');
-    }
-
-    #TECWrapper .colOne.mountainHex {
-        background-image: url('<?=base_url()?>js/mountain.png');
-    }
-
-    #TECWrapper .colOne.roadHex {
-        background-image: url('<?=base_url()?>js/road.png');
-        background-position: 0px -26px;
-    }
-
-    #TECWrapper .colOne.trailHex {
-        background-image: url('<?=base_url()?>js/trail.png');
-        background-position: 0px -26px;
-        background-size: 516px;
-        /* TODO why this different from others */
-    }
-
-    #TECWrapper .colOne {
-        background-size: 400px;
-        width: 220px;
-        height: 56px;
-        margin-left: 20px;
-    }
-
-    #TECWrapper .colTwo {
-        width: 170px;
-        padding-right: 10px;
-    }
-
-    #TECWrapper .colThree {
-        width: 315px;
-    }
-
-    #TECWrapper .colOne span {
-        margin-top: 12px;
-        margin-left: 80px;
-        display: inline-block;
-    }
-
-    #TECWrapper .colTwo, #TECWrapper .colThree {
-        margin-top: 12px;
-    }
-
-    #TECWrapper .colOne,
-    #TECWrapper .colTwo,
-    #TECWrapper .colThree {
-        float: left;
-    }
-
-    #TECWrapper div {
-        /*height:112px;*/
-    }
-
-    #TECWrapper li {
-        list-style-type: none;
-        padding: 5px 20px 5px 0px;
-    }
-
-    #TECWrapper img, #TECWrapper div {
     }
 
 

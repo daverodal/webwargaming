@@ -15,4 +15,13 @@
     .unit.Prussian .counterWrapper{
         background:rgb(1,23,222);
     }
+    #TEC{
+        width:430px;
+    }
+    #TEC img{
+        width:400px;
+    }
+    #GR{
+        left:-200px;
+    }
 </style>

@@ -118,54 +118,13 @@
         color: black;
     }
 
-    #TECWrapper .closer {
-        height: 0px;
-        padding: 0px;
-    }
 
-    #VCWrapper .closer {
-        height: 0px;
-        padding: 0px;
-    }
 
-    #TECWrapper .colOne.riverHex {
-        background-image: url('<?=base_url()?>js/river.png');
-        background-position: 0px -26px;
-    }
-
-    #TECWrapper .colOne.bridgeHex {
-        background-image: url('<?=base_url()?>js/riverRoad.png');
-        background-position: 0px -26px;
-    }
-
-    #TECWrapper .colOne.blankHex {
-        background-image: url('<?=base_url()?>js/blank.png');
-    }
-
-    #TECWrapper .colOne.forestHex {
-        background-image: url('<?=base_url()?>js/forest 2.png');
-    }
-
-    #TECWrapper .colOne.mountainHex {
-        background-image: url('<?=base_url()?>js/mountain.png');
-    }
-
-    #TECWrapper .colOne.roadHex {
-        background-image: url('<?=base_url()?>js/road.png');
-        background-position: 0px -26px;
-    }
-
-    #TECWrapper .colOne.trailHex {
-        background-image: url('<?=base_url()?>js/trail.png');
-        background-position: 0px -26px;
-        background-size: 516px;
-        /* TODO why this different from others */
-    }
 
     #TECWrapper .colOne {
         background-size: 400px;
         width: 220px;
-        height: 56px;
+        height: 60px;
         margin-left: 20px;
     }
 
@@ -180,7 +139,6 @@
 
     #TECWrapper .colOne span {
         margin-top: 12px;
-        margin-left: 80px;
         display: inline-block;
     }
 
@@ -194,18 +152,67 @@
         float: left;
     }
 
+    .hexWrapper{
+        height:100px;
+        width:100px;
+        background-size:650px;
+        float:left;
+    }
     #TECWrapper div {
         /*height:112px;*/
     }
 
     #TECWrapper li {
         list-style-type: none;
-        padding: 5px 20px 5px 0px;
+        padding: 0px 20px 5px 0px;
     }
 
     #TECWrapper img, #TECWrapper div {
     }
 
+
+    #TECWrapper .colOne.riverHex .hexWrapper{
+        background-image: url('<?=base_url()?>js/JagersdorfTerrainKey.jpg');
+        background-position: -179px -308px;
+    }
+
+    #TECWrapper .colOne.blankHex .hexWrapper {
+        background-image: url('<?=base_url()?>js/JagersdorfTerrainKey.jpg');
+        background-position: -192px -181px;
+        margin-bottom:15px;
+    }
+
+    #TECWrapper .colOne.forestHex .hexWrapper {
+        background-image: url('<?=base_url()?>js/JagersdorfTerrainKey.jpg');
+        background-position: -53px -187px;
+    }
+
+    #TECWrapper .colOne.townHex .hexWrapper{
+        background-image: url('<?=base_url()?>js/JagersdorfTerrainKey.jpg');
+        background-position: -61px -62px;
+    }
+
+    #TECWrapper .colOne.mountainHex .hexWrapper{
+        background-image: url('<?=base_url()?>js/JagersdorfTerrainKey.jpg');
+        background-position: -47px -281px;
+    }
+
+    #TECWrapper .colOne.roadHex .hexWrapper{
+        background-image: url('<?=base_url()?>js/JagersdorfTerrainKey.jpg');
+        background-position: -200px -65px;
+    }
+
+    #TECWrapper .colOne.bridgeHex .hexWrapper {
+        background-image: url('<?=base_url()?>js/JagersdorfTerrainKey.jpg');
+        background-position: -343px -64px;
+    }
+
+    #TECWrapper .colOne {
+        background-size: 400px;
+        width: 220px;
+        height: 65px;
+        margin-left: 20px;
+    }
 
     #GR {
         width: 600px;
