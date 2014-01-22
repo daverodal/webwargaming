@@ -7,7 +7,7 @@
 <style>
     body{
         background:#000;
-        background:url("<?=base_url("js/GrossJaegersdorf.jpg")?>") #333 no-repeat;
+        background:url("<?=base_url("js/Prussian_Army_during_battle_of_Mollwitz_1741.jpg")?>") #333 no-repeat;
         background-position:center 10%;
         background-size:100%;
 
@@ -20,7 +20,7 @@
     h1{
         text-align:center;
         font-size:90px;
-        font-family:'Monsieur La Doulaise';
+        font-family:'Pinyon Script';
         color:#f66;
         margin-top:0px;
         text-shadow: 0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,
@@ -51,7 +51,7 @@
 </style>
 <div class="backBox">
 <h2 style="text-align:center;font-size:30px;font-family:'Monsieur La Doulaise'"> Welcome to</h2>
-    <h1 style=""><span>Gross Jagersdorf&nbsp;&nbsp;&nbsp;</span></h1>
+    <h1 style=""><span>The Battle of Mollwitz&nbsp;&nbsp;&nbsp;</span></h1>
 </div>
 <div style="clear:both"></div>
 <fieldset ><Legend>Play As </Legend>
