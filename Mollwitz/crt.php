@@ -90,7 +90,7 @@ class CombatResultsTable
         }
 
         $defenders = $combats->defenders;
-        $isTown = $isHill = $isForest = $isSwamp = false;
+        $isTown = $isHill = $isForest = $isSwamp = $attackerIsSunkenRoad = false;
 
 
         foreach ($defenders as $defId => $defender) {
@@ -122,6 +122,7 @@ class CombatResultsTable
             $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
 
             $attackerIsSwamp = $battle->terrain->terrainIs($hexpart, 'swamp');
+            $attackerIsSunkenRoad |= $battle->terrain->terrainIs($hexpart, 'sunkenroad');
 
 
             $acrossRiver = false;
@@ -131,21 +132,20 @@ class CombatResultsTable
                 }
             }
 
-            $attackerHalved = false;
             if ($unit->class == "infantry") {
                 $combinedArms[$battle->force->units[$attackerId]->class]++;
                 $combatLog .= "$unitStrength Infantry ";
                 if($scenario->jagersdorfCombat){
-                    if ($unit->forceId == PRUSSIAN_FORCE && $isClear && !$acrossRiver) {
+                    if ($unit->nationality == "Prussian" && $isClear && !$acrossRiver) {
                         $unitStrength++;
                         $combatLog .= "+1 for attack into clear ";
                     }
-                    if ($unit->forceId == RUSSIAN_FORCE && ($isTown || $isForest) && !$acrossRiver) {
+                    if ($unit->nationality == "Russian" && ($isTown || $isForest) && !$acrossRiver) {
                         $unitStrength++;
                         $combatLog .= "+1 for attack into town or forest ";
                     }
                 }
-                if ($isSwamp || $attackerIsSwamp || $acrossRiver) {
+                if ($isSwamp || $attackerIsSwamp || $acrossRiver || $attackerIsSunkenRoad) {
                     $combatLog .= "attacker halved for terrain ";
                     $unitStrength /= 2;
                 }
@@ -155,7 +155,7 @@ class CombatResultsTable
                 $combatLog .= "$unitStrength Cavalry ";
                 $attackersCav = true;
 
-                if ($attackerIsSwamp || $acrossRiver || !$isClear) {
+                if ($attackerIsSwamp || $acrossRiver || !$isClear || $attackerIsSunkenRoad) {
                     $combatLog .= " halved for terrain, loses combined arms bonus ";
                     $unitStrength /= 2;
                 }else{

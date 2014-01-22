@@ -118,7 +118,7 @@ class Minden extends Battle
         $data->playerData = $this->playerData;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-Mollwitz";
+        $data->terrainName = "terrain-Minden";
         $data->genTerrain = $this->genTerrain;
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;

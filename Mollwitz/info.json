@@ -35,6 +35,17 @@
       }
     }
   },
+  "Lobositz": {
+    "name": "The Battle of Lobositz",
+    "path": "Mollwitz",
+    "fileName": "Lobositz.php",
+    "scenarios": {
+      "main": {
+        "description": "Standard Scenario",
+        "jagersdorfCombat":true
+      }
+    }
+  },
   "Zorndorf": {
     "name": "The Battle of Zorndorf.",
     "path": "Mollwitz",
