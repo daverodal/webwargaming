@@ -7,7 +7,7 @@
 <style>
     body{
         background:#000;
-        background:url("<?=base_url("js/GrossJaegersdorf.jpg")?>") #333 no-repeat;
+        background:url("<?=base_url("js/Bataille_de_Zorndorf.jpg")?>") #333 no-repeat;
         background-position:center 10%;
         background-size:100%;
 
