@@ -8,6 +8,20 @@
     .playerOne{
         background-color: rgb(61,110,255) !important;
     }
+    .playerOne .dropDown{
+        color:white;
+        border-color:white;
+    }
+    .playerOne #GR{
+        color:#333;
+    }
+    .playerOne #hideShow, .playerOne #showDeploy, .playerOne #crtWrapper, .playerOne #menuWrapper, .playerOne #infoWrapper, .playerOne #zoom{
+        color:white;
+        border-color:white;
+    }
+    .playerOne #zoom span{
+        border-color:white;
+    }
     .unit.AngloAllied .counterWrapper{
         background:#f00;
     }
