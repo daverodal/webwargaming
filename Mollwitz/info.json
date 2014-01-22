@@ -25,6 +25,16 @@
       }
     }
   },
+  "Minden": {
+    "name": "The Battle of Minden",
+    "path": "Mollwitz",
+    "fileName": "Minden.php",
+    "scenarios": {
+      "main": {
+        "description": "Standard Scenario"
+      }
+    }
+  },
   "Zorndorf": {
     "name": "The Battle of Zorndorf.",
     "path": "Mollwitz",
