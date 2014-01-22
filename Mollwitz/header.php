@@ -98,7 +98,7 @@
         color: white;
         text-transform: lowercase;
     }
-    .Austrian p.forceMarch,.french p.forceMarch {
+    .Austrian p.forceMarch,.French p.forceMarch {
         color:black;
     }
 
