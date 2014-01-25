@@ -421,8 +421,8 @@ class MartianCivilWar extends Battle
             $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
-            $this->terrain->addTerrainFeature("road", "road", "r", 0, 0, 0, false);
-            $this->terrain->addTerrainFeature("trail", "trail", "r", 0, 0, 0, false);
+            $this->terrain->addTerrainFeature("road", "road", "r", .5, 0, 0, false);
+            $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
             $this->terrain->addTerrainFeature("fortified", "fortified", "h", 1, 0, 1, true);
             $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 0, false);
             $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);

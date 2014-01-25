@@ -401,6 +401,9 @@ class Terrain
 
         foreach ($terrains as $terrainFeature) {
             /* @var TerrainFeature $feature */
+            if($terrainFeature == "road" || $terrainFeature == "trail"){
+                continue;
+            }
             $feature = $this->terrainFeatures->$terrainFeature;
 
             if($unit->class && $feature->altEntranceCost->{$unit->class}){
@@ -432,10 +435,21 @@ class Terrain
 
     }
 
+    private function getTerrainCodeUnitCost($terrainCode, $unit){
+        $feature = $this->terrainFeatures->$terrainCode;
+        if($unit->class && $feature->altEntranceCost->{$unit->class}){
+            $moveCost = $feature->altEntranceCost->{$unit->class};
+        }else{
+            $moveCost = $feature->entranceCost;
+
+        }
+        return $moveCost;
+
+    }
     /*
-     * very public
-     * used in moveRules
-     */
+      * very public
+      * used in moveRules
+      */
     function getTerrainMoveCost($startHexagon, $endHexagon, $railMove, unit $unit)
     {
         if(is_object($startHexagon)){
@@ -445,68 +459,43 @@ class Terrain
             $endHexagon = $endHexagon->name;
     }
         $moveCost = 0;
-//        $name = $endHexagon->name;
         list($startX, $startY) = Hexagon::getHexPartXY($startHexagon);
         list($endX, $endY) = Hexagon::getHexPartXY($endHexagon);
-//        $hexsideX = ($startHexagon->getX() + $endHexagon->getX()) / 2;
-//        $hexsideY = ($startHexagon->getY() + $endHexagon->getY()) / 2;
         $hexsideX = ($startX + $endX) / 2;
         $hexsideY = ($startY + $endY) / 2;
-//        $hexpart = new Hexpart($hexsideX, $hexsideY);
 
-        // if road, override terrain
+        // if road, or trail,override terrain,  add fordCost where needed
         $terrainCode = $this->getTerrainCodeXY($hexsideX,$hexsideY);
         if($railMove && ($terrainCode->road || $terrainCode->trail || $terrainCode->ford)){
-            $moveCost = .5;
+            $roadCost = $this->getTerrainCodeUnitCost('road',$unit);
+            $trailCost = $this->getTerrainCodeUnitCost('trail',$unit);
+            $fordCost = $this->getTerrainCodeUnitCost('fordCost',$unit);
+            if($roadCost == 0){
+                $roadCost = .5;/* legacy crap */
+            }
+            if($trailCost == 0){
+                $trailCost = 1;/* Legacy */
+            }
+
+            if($fordCost == 0){
+                $fordCost = 2;/* legacy */
+            }
+
+            $moveCost = $roadCost;
             if($terrainCode->trail){
-                $moveCost = 1;
+                $moveCost = $trailCost;
             }
             if($terrainCode->ford){
-                if($this->terrainIsHex($endHexagon, "road")){
-                    $moveCost = .5;
-                }else{
-                    $moveCost = $this->getTerrainEntranceMoveCost($endHexagon, $unit);
-                }
-                $moveCost += 2;
+                $moveCost += $fordCost;
             }
         }
-//        if ($this->terrainIsXY($hexsideX, $hexsideY, "road") == true) {
-//            $moveCost = .5;
-//        } elseif($this->terrainIsXY($hexsideX,$hexsideY, "trail") == true){
-//            $moveCost = 1;
-
-
-//        }
-else
+        else
          {
 
             //  get entrance cost
             $moveCost = $this->getTerrainEntranceMoveCost($endHexagon, $unit);
             $moveCost += $this->getTerrainCodeCost($terrainCode);
-
-            // check hexside for river
-//            $hexpart = new Hexpart($hexsideX, $hexsideY);
-
-//		if( $this->terrainIs($hexpart, "river") == true ) {
-//
-//			$moveCost = $maxMoveAmount;
-//		}
         }
-
-        // move cost on exit is the entrance cost of the leaving hexagon
-//        if ($this->isExit($endHexagon) == true) {
-//            // if leaving road, exit cost is road
-//            $endHexpart = new Hexpart($startHexagon->getX(), $startHexagon->getY());
-//
-//            if ($this->terrainIs($endHexpart, "road") == true) {
-//                $moveCost = $this->getTerrainTraverseCostFor("road");
-//            } else {
-//
-//                // get entrance cost
-//                $moveCost = $this->getTerrainEntranceMoveCost($startHexagon);
-//            }
-//        }
-
         return $moveCost;
     }
 

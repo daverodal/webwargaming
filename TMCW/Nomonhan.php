@@ -271,7 +271,7 @@ class Nomonhan extends MartianCivilWar
             $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("clear", "clear", "c", 1, 0, 0, true);
-            $this->terrain->addTerrainFeature("road", "road", "r", 0, 0, 0, false);
+            $this->terrain->addTerrainFeature("road", "road", "r", .5, 0, 0, false);
             $this->terrain->addTerrainFeature("marsh", "marsh", "m", 2, 0, 2, true);
             $this->terrain->addTerrainFeature("rough", "rough", "g", 2, 0, 2, true);
             $this->terrain->addTerrainFeature("hills", "hills", "h", 4, 0, 2, true);

@@ -355,13 +355,13 @@ class Mollwitz extends Battle
             // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
             $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
-            $this->terrain->addTerrainFeature("road", "road", "r", 0, 0, 0, false);
+            $this->terrain->addTerrainFeature("road", "road", "r", .5, 0, 0, false);
             $this->terrain->addTerrainFeature("town", "town", "t", 1, 0, 0, true, true);
             $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true, true);
             $this->terrain->addTerrainFeature("hill", "hill", "h", 2, 0, 0, true, true);
             $this->terrain->addTerrainFeature("river", "river", "v", 0, 1, 0, false);
             $this->terrain->addAltEntranceCost('forest', 'cavalry', 4);
-            $this->terrain->addTerrainFeature("trail", "trail", "r", 0, 0, 0, false);
+            $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
 
 
             for ($col = 100; $col <= 1900; $col += 100) {
