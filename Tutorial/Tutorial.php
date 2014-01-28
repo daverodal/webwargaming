@@ -95,7 +95,7 @@ class Tutorial extends Battle {
         $data->playerData = $this->playerData;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-Tutorial".$this->arg;
+        $data->terrainName = "terrain-".get_class($this).$this->arg;
         $data->genTerrain = $this->genTerrain;
         if($this->genTerrain){
             $data->terrain = $this->terrain;

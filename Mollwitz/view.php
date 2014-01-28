@@ -151,6 +151,12 @@
             <?php include_once "exclusiveRules.php"; ?>
             <span id="hideShow">Dead Pile</span>
             <span id="showDeploy">Deploy/Staging Box</span>
+            <div class="dropDown" id="CombatLogWrapper">
+                <h4 class="WrapperLabel" title='Combat Log'>Log</h4>
+                <div id="CombatLog" class="dropDownContent" style="display:none;"><div class="close">X</div>
+
+                </div>
+            </div>
     </header>
     <div id="content">
         <div id="rightCol">

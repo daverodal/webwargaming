@@ -90,7 +90,7 @@ class CombatResultsTable
         }
 
         $defenders = $combats->defenders;
-        $isTown = $isHill = $isForest = $isSwamp = $attackerIsSunkenRoad = false;
+        $isTown = $isHill = $isForest = $isSwamp = $attackerIsSunkenRoad = $isRedoubt = false;
 
 
         foreach ($defenders as $defId => $defender) {
@@ -101,6 +101,7 @@ class CombatResultsTable
             $isHill |= $battle->terrain->terrainIs($hexpart, 'hill');
             $isForest |= $battle->terrain->terrainIs($hexpart, 'forest');
             $isSwamp |= $battle->terrain->terrainIs($hexpart, 'swamp');
+            $isRedoubt |= $battle->terrain->terrainIs($hexpart, 'redoubt');
         }
         $isClear = true;
         if ($isTown || $isForest || $isHill || $isSwamp) {
@@ -132,6 +133,15 @@ class CombatResultsTable
                 }
             }
 
+            $acrossRedoubt = false;
+            if($isRedoubt){
+                foreach ($defenders as $defId => $defender) {
+                    if ($battle->combatRules->thisAttackAcrossType($defId, $attackerId, "redoubt")) {
+                        $acrossRedoubt = true;
+                    }
+                }
+            }
+
             if ($unit->class == "infantry") {
                 $combinedArms[$battle->force->units[$attackerId]->class]++;
                 $combatLog .= "$unitStrength Infantry ";
@@ -145,7 +155,7 @@ class CombatResultsTable
                         $combatLog .= "+1 for attack into town or forest ";
                     }
                 }
-                if ($isSwamp || $attackerIsSwamp || $acrossRiver || $attackerIsSunkenRoad) {
+                if ($isSwamp || $attackerIsSwamp || $acrossRiver || $attackerIsSunkenRoad || $acrossRedoubt) {
                     $combatLog .= "attacker halved for terrain ";
                     $unitStrength /= 2;
                 }
@@ -155,16 +165,21 @@ class CombatResultsTable
                 $combatLog .= "$unitStrength Cavalry ";
                 $attackersCav = true;
 
-                if ($attackerIsSwamp || $acrossRiver || !$isClear || $attackerIsSunkenRoad) {
+                if ($attackerIsSwamp || $acrossRiver || !$isClear || $attackerIsSunkenRoad || $acrossRedoubt) {
                     $combatLog .= " halved for terrain, loses combined arms bonus ";
                     $unitStrength /= 2;
                 }else{
+                    var_dump($scenario);
+                    if($scenario->angloCavBonus && $unit->nationality == "AngloAllied"){
+                        $unitStrength++;
+                        $combatLog .= "+1 for attack into clear ";
+                    }
                     $combinedArms[$battle->force->units[$attackerId]->class]++;
                 }
             }
             if ($unit->class == "artillery") {
                 $combatLog .= "$unitStrength Artillery ";
-                if($isSwamp){
+                if($isSwamp || $isRedoubt){
                     $unitStrength /= 2;
                     $combatLog .= "halved for attacking into swamp ";
                 }

@@ -422,6 +422,7 @@ function flashMessage(playerStatus){
     var mess = flashMessages.shift();
 //    var mess = flashMessages.shift();
     $("#FlashMessage").remove();
+    var fadeOut = 2800;
     while(mess){
 
         if(mess.match(/^@/)){
@@ -439,7 +440,7 @@ function flashMessage(playerStatus){
             }
             if(mess.match(/^@gameover/)){
                 $("#gameViewer").append('<div id="FlashMessage" style="top:'+y+'px;left:'+x+'px;" class="flashMessage">'+"Game Over"+'</div>');
-                $("#FlashMessage").animate({opacity:0},2400,flashMessage);
+                $("#FlashMessage").animate({opacity:0},fadeOut,flashMessage);
 
 //                game = mess.match(/^@show ([^,]*)/);
 //                id = game[1];
@@ -448,7 +449,7 @@ function flashMessage(playerStatus){
             }
         }
         $("body").append('<div id="FlashMessage" style="top:'+y+'px;left:'+x+'px;" class="flashMessage">'+mess+'</div>');
-        $("#FlashMessage").animate({opacity:0},2400,flashMessage);
+        $("#FlashMessage").animate({opacity:0},fadeOut,flashMessage);
         return;
     }
 }

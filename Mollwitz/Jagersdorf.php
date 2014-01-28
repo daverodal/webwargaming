@@ -129,7 +129,7 @@ class Jagersdorf extends Battle {
         $data->playerData = $this->playerData;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-Jagersdorf";
+        $data->terrainName = "terrain-".get_class($this);
         $data->genTerrain = $this->genTerrain;
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;

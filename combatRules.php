@@ -411,6 +411,29 @@ class CombatRules
         return true;
     }
 
+    function thisAttackAcrossType($defenderId, $attackerId, $type)
+    {
+
+
+//     $attackerHexagonList = array();
+//    $attackerHexagonList = $this->force->getAttackerHexagonList($combatNumber);
+        $attackerHexagon = $this->force->getCombatHexagon($attackerId);
+        /* @var Hexagon $defenderHexagon */
+        $defenderHexagon = $this->force->getCombatHexagon($defenderId);
+
+
+        $hexsideX = ($defenderHexagon->getX() + $attackerHexagon->getX()) / 2;
+        $hexsideY = ($defenderHexagon->getY() + $attackerHexagon->getY()) / 2;
+
+        $hexside = new Hexpart($hexsideX, $hexsideY);
+
+        if ($this->terrain->terrainIs($hexside, $type) === false) {
+            return false;
+        }
+        return true;
+    }
+
+
 
     function getCombatOddsList($combatIndex)
     {

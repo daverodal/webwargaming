@@ -106,12 +106,12 @@ class Terrain
             $this->maxTerrainY = $y + 4;/* add 4 for bottom and even/odd columns */
             $this->maxTerrainX = $x;
 
-            for ($x = 0; $x <= $this->maxTerrainX; $x++) {
-                for ($y = 0; $y <= $this->maxTerrainY; $y++) {
-                    $this->terrainArray[$y][$x] = new stdClass();
-                }
-
-            }
+//            for ($x = 0; $x <= $this->maxTerrainX; $x++) {
+//                for ($y = 0; $y <= $this->maxTerrainY; $y++) {
+//                    $this->terrainArray[$y][$x] = new stdClass();
+//                }
+//
+//            }
         }
     }
 
@@ -137,12 +137,12 @@ class Terrain
         $this->maxTerrainX = $x;
 
 
-        for ($x = 0; $x < $this->maxTerrainX; $x++) {
-            for ($y = 0; $y <= $this->maxTerrainY; $y++) {
-                $this->terrainArray[$y][$x] = new stdClass();
-            }
-
-        }
+//        for ($x = 0; $x < $this->maxTerrainX; $x++) {
+//            for ($y = 0; $y <= $this->maxTerrainY; $y++) {
+//                $this->terrainArray[$y][$x] = new stdClass();
+//            }
+//
+//        }
     }
 
     /*
@@ -187,6 +187,9 @@ class Terrain
                 break;
 
         }
+        if(!$this->terrainArray[$y][$x]){
+            $this->terrainArray[$y][$x] = new stdClass();
+        }
         if ($feature = $this->terrainFeatures->$terrainName) {
             /* new feature is exclusive */
             if ($feature->isExclusive === true) {
@@ -223,12 +226,7 @@ class Terrain
     {
         $x = $hexpart->getX();
         $y = $hexpart->getY();
-        if (($x >= 0 && $x <= $this->maxTerrainX) && ($y >= 0 && $y <= $this->maxTerrainY))
-            $terrainCode = $this->terrainArray[$y][$x];
-        else
-            $terrainCode = 0;
-
-        return $terrainCode;
+        return $this->getTerrainCodeXY($x, $y);
     }
 
 
@@ -237,11 +235,18 @@ class Terrain
      */
     private function getTerrainCodeXY($x,$y)
     {
-      if (($x >= 0 && $x <= $this->maxTerrainX) && ($y >= 0 && $y <= $this->maxTerrainY))
-            $terrainCode = $this->terrainArray[$y][$x];
-        else
+        if (($x >= 0 && $x <= $this->maxTerrainX) && ($y >= 0 && $y <= $this->maxTerrainY)){
+            if(isset($this->terrainArray) && isset($this->terrainArray->$y) && isset($this->terrainArray->$y->$x)){
+                $terrainCode = $this->terrainArray->$y->$x;
+            }else{
+                $terrainCode = new stdClass();
+            }
+        }else{
             $terrainCode = 0;
-
+        }
+        if(!$terrainCode){
+            $terrainCode = new stdClass();
+        }
         return $terrainCode;
     }
 
@@ -397,7 +402,7 @@ class Terrain
 //        $hexpart = new Hexpart($hexagon->getX(), $hexagon->getY());
         list($endX, $endY) = Hexagon::getHexPartXY($hexagon);
 
-        $terrains = $this->terrainArray[$endY][$endX];
+        $terrains = $this->getTerrainCodeXY($endX,$endY);
 
         foreach ($terrains as $terrainFeature) {
             /* @var TerrainFeature $feature */
@@ -509,7 +514,7 @@ class Terrain
         $hexpart = new Hexpart($hexagon->getX(), $hexagon->getY());
 
 
-        $terrains = $this->terrainArray[$hexagon->getY()][$hexagon->getX()];
+        $terrains = $this->getTerrainCodeXY($hexagon->getx(),$hexagon->getY());
         foreach ($terrains as $terrainFeature) {
             $combatEffect += $this->terrainFeatures->$terrainFeature->combatEffect;
         }
@@ -541,7 +546,7 @@ class Terrain
 
         $hexpart = new Hexpart($hexsideX, $hexsideY);
 
-        $terrains = $this->terrainArray[$hexpart->getY()][$hexpart->getX()];
+        $terrains = $this->getTerrainCodeXY($hexpart->getX(),$hexpart->getY());
         foreach ($terrains as $terrainFeature) {
 
             $combatEffect += $this->terrainFeatures->$terrainFeature->combatEffect;

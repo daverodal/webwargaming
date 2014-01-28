@@ -202,6 +202,15 @@ class MapData implements JsonSerializable{
             $this->specialHexes->$k = $v;
         }
     }
+    function getSpecialHex($name){
+        if(!$this->specialHexes){
+            return false;
+        }
+        if(!$this->specialHexes->$name){
+            return false;
+        }
+        return $this->specialHexes->$name;
+    }
     function setData($maxRight,$maxBottom, $map)
     {
         $this->mapUrl = $map;

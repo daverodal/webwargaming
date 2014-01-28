@@ -922,9 +922,21 @@ h4:hover{
 }
 .dropDown , #hideShow, #showDeploy{
     border:1px solid #333;
+    display:inline-block;
 }
 .dropDownSelected{
     background:white;
+}
+.dropDown .WrapperLabel{
+    margin:0;
+    border:none;
+    cursor:pointer;
+}
+.dropDown .dropDownContent{
+    background:white;
+    position:absolute;
+    z-index:30;
+    display:none;
 }
 #TimeWrapper .WrapperLabel, #crtWrapper .WrapperLabel, #OBCWrapper .WrapperLabel, #TECWrapper .WrapperLabel,#VCWrapper .WrapperLabel,#jumpWrapper .WrapperLabel,#menuWrapper .WrapperLabel,#infoWrapper .WrapperLabel, #GRWrapper .WrapperLabel{
     margin:0;

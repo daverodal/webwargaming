@@ -152,7 +152,11 @@
         color: black;
     }
     #tecImage{
-        width:700px;
+        width:500px;
+    }
+
+    #TEC{
+        width:520px;
     }
 
     #TECWrapper .closer {
@@ -187,6 +191,9 @@
     }
     .specialHexes.russian{
         color:white;
+    }
+    #CombatLog{
+        width:300px;
     }
     .specialHexesVP .austrian,.specialHexesVP .anglo{
         background:transparent;
@@ -1573,8 +1580,13 @@
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
+    DR = {};
+    DR.crtDetails = false;
+
     $("#crtDetailsButton").on('click',function(){
-        $('#crtDetails').toggle();
+        $('#crtDetails').toggle(function(){
+            DR.crtDetails = $(this).css('display') == 'block';
+        });
         return false;
     });
     $("#altTable").on('click', function(){
@@ -1607,7 +1619,9 @@ x.register("combatRules", function(combatRules, data){
     var cdLine = "";
     var activeCombat = false;
     var activeCombatLine = "";
-    str = ""
+    str = "";
+    var toResolveLog = "";
+
     if(combatRules){
         cD = combatRules.currentDefender;
         if(combatRules.combats && Object.keys(combatRules.combats).length > 0){
@@ -1677,14 +1691,7 @@ x.register("combatRules", function(combatRules, data){
                     var ter = combatRules.combats[i].terrainCombatEffect;
                     var idx = combatRules.combats[i].index + 1;
                     var odds = Math.floor(atk / def);
-                    var oddsDisp = odds + " : 1";
-                    if(odds < 1){
-                        oddsDisp = "No effect";
-                    }
-                    var idxDisp = idx + " : 1";
-                    if(idx < 1){
-                        idxDisp = "No effect";
-                    }
+                    var oddsDisp = $(".col" + combatCol).html()
 
                     newLine = "<h5>odds = " + oddsDisp + " </h5><div id='crtDetails'>"+combatRules.combats[i].combatLog+"</div><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + $(".col" + combatCol).html() + "</div>";
                     if(cD !== false && cD == i){
@@ -1716,6 +1723,9 @@ x.register("combatRules", function(combatRules, data){
             str += "";
             $("#crtOddsExp").html(activeCombatLine);
             $("#status").html(cdLine + str);
+            if(DR.crtDetails){
+                $("#crtDetails").toggle();
+            }
             $("#status").show();
 
         }else{
@@ -1726,6 +1736,7 @@ x.register("combatRules", function(combatRules, data){
         var lastCombat = "";
         if(combatRules.combatsToResolve){
             if(combatRules.lastResolvedCombat){
+                toResolveLog = "Current Combat or Last Combat<br>";
                 title += "<strong style='margin-left:20px;font-size:150%'>" + combatRules.lastResolvedCombat.Die + " " + combatRules.lastResolvedCombat.combatResult + "</strong>";
                 combatCol = combatRules.lastResolvedCombat.index + 1;
                 combatRoll = combatRules.lastResolvedCombat.Die;
@@ -1751,8 +1762,11 @@ x.register("combatRules", function(combatRules, data){
                 var ter = combatRules.lastResolvedCombat.terrainCombatEffect;
                 var idx = combatRules.lastResolvedCombat.index + 1;
                 var odds = Math.floor(atk / def);
-                var oddsDisp = odds + " : 1";
-                newLine = "<h5>odds = " + oddsDisp + "</h5><div id='crtDetails'>"+combatRules.lastResolvedCombat.combatLog+"</div><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + idxDisp + "</div>";
+                var oddsDisp = $(".col" + combatCol).html()
+                newLine = "<h5>odds = " + oddsDisp + "</h5><div id='crtDetails'>"+combatRules.lastResolvedCombat.combatLog+"</div><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + oddsDisp + "</div>";
+
+                toResolveLog += newLine;
+                toResolveLog += "Roll: "+combatRules.lastResolvedCombat.Die + " result: " + combatRules.lastResolvedCombat.combatResult+"<br><br>";
 
                 $("#crtOddsExp").html(newLine);
 //                    $(".row"+combatRoll+" .col"+combatCol).css('color',"white");
@@ -1764,6 +1778,7 @@ x.register("combatRules", function(combatRules, data){
                 str += "there are no combats to resolve";
             }
             var combatsToResolve = 0;
+            toResolveLog += "Combats to Resolve<br>";
             for(i in combatRules.combatsToResolve){
                 combatsToResolve++;
                 if(combatRules.combatsToResolve[i].index !== null){
@@ -1773,10 +1788,11 @@ x.register("combatRules", function(combatRules, data){
 
                     var def = combatRules.combatsToResolve[i].defenseStrength;
                     var ter = combatRules.combatsToResolve[i].terrainCombatEffect;
-                    var idx = combatRules.combatsToResolve[i].index + 1;
+                    var combatCol = combatRules.combatsToResolve[i].index + 1;
                     var odds = Math.floor(atk / def);
-                    var oddsDisp = odds + " : 1";
-                    newLine = "<h5>odds = " + oddsDisp + "</h5><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + idxDisp + "</div>";
+                    var oddsDisp = $(".col" + combatCol).html()
+                    newLine = "<h5>odds = " + oddsDisp + "</h5><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + oddsDisp + "</div>";
+                    toResolveLog += newLine;
                 }
 
             }
@@ -1784,7 +1800,9 @@ x.register("combatRules", function(combatRules, data){
                 str += "Combats To Resolve: " + combatsToResolve;
             }
             var resolvedCombats = 0;
+            toResolveLog += "<br>Resolved Combats <br>";
             for(i in combatRules.resolvedCombats){
+                debugger;
                 resolvedCombats++;
                 if(combatRules.resolvedCombats[i].index !== null){
                     atk = combatRules.resolvedCombats[i].attackStrength;
@@ -1818,10 +1836,14 @@ x.register("combatRules", function(combatRules, data){
 
 
                     }
-                    newLine += " Attack = " + atkDisp + " / Defender " + def + " odds = " + atk / def + "<br>= " + Math.floor(atk / def) + " : 1<br>Combined Arms Shift " + ter + " = " + idx + " : 1<br><br>";
+                    var oddsDisp = $(".col" + combatCol).html()
+
+                    newLine += " Attack = " + atkDisp + " / Defender " + def + atk / def + "<br>odds = " + Math.floor(atk / def) + " : 1<br>Combined Arms Shift " + ter + " = " + oddsDisp + "<br>";
+                    newLine += "Roll: "+combatRules.resolvedCombats[i].Die + " result: " + combatRules.resolvedCombats[i].combatResult+"<br><br>";
                     if(cD === i){
                         newLine = "";
                     }
+                    toResolveLog += newLine;
                 }
 
             }
@@ -1833,6 +1855,7 @@ x.register("combatRules", function(combatRules, data){
 
         }
     }
+    $("#CombatLog").html(toResolveLog);
     $("#crt h3").html(title);
 
 

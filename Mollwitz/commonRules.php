@@ -341,6 +341,13 @@ combat.
                 </li>
             <?php } ?>
 
+            <?php if($scenario->angloCavBonus){?>
+
+                        <li class="exclusive" >Anglo Allied Cavalry units are +1 to their combat factor when Attacking into
+                            clear, unless they are attacking across a creek or bridge or redoubt.
+                        </li>
+            <?php } ?>
+
             <li>All Cavalry units combat factors are divided by 2 when attacking into hexes or across hex sides other
                 than clear.
             </li>

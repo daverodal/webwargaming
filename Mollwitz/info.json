@@ -35,6 +35,17 @@
       }
     }
   },
+  "Malplaquet": {
+    "name": "The Battle of Malplaquet",
+    "path": "Mollwitz",
+    "fileName": "Malplaquet.php",
+    "scenarios": {
+      "main": {
+        "description": "Standard Scenario",
+        "angloCavBonus": true
+      }
+    }
+  },
   "Lobositz": {
     "name": "The Battle of Lobositz",
     "path": "Mollwitz",

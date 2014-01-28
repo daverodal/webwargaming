@@ -147,7 +147,7 @@ class HotWar extends Battle
         $data->playerData = $this->playerData;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-MartianCivilWar";
+        $data->terrainName = "terrain-".get_class($this);
         $data->genTerrain = $this->genTerrain;
         if ($this->genTerrain) {
             $data->terrain = $this->terrain;
