@@ -5,21 +5,26 @@
     .unit.French .counterWrapper{
         background:rgb(159,159,159);
     }
-    .playerOne{
+    .playerOne {
+        background-color: rgb(223, 88, 66);
+        border-color: rgb(223, 88, 66);
+    }
+
+    .playerTwo{
         background-color: rgb(61,110,255) !important;
     }
-    .playerOne .dropDown{
+    .playerTwo .dropDown{
         color:white;
         border-color:white;
     }
-    .playerOne #GR{
+    .playerTwo #GR{
         color:#333;
     }
-    .playerOne #hideShow, .playerOne #showDeploy, .playerOne #crtWrapper, .playerOne #menuWrapper, .playerOne #infoWrapper, .playerOne #zoom{
+    .playerTwo #hideShow, .playerTwo #showDeploy, .playerTwo #crtWrapper, .playerTwo #menuWrapper, .playerTwo #infoWrapper, .playerTwo #zoom{
         color:white;
         border-color:white;
     }
-    .playerOne #zoom span{
+    .playerTwo #zoom span{
         border-color:white;
     }
     .unit.AngloAllied .counterWrapper{
@@ -28,6 +33,8 @@
     .austrian.specialHexes{
         color:white;
     }
+
+
 
     .french {
         background: rgb(61,110,255);

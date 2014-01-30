@@ -273,7 +273,7 @@ class Hohenfriedeberg extends Battle
             $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Hohenfriedeberg/hohenfriedebergVictoryCore.php");
 
-            $this->mapData->setData(24, 24, "js/Hohenfriedeberg3.jpg");
+            $this->mapData->setData(24, 24, "js/Hohenfriedeberg3Small.png");
 
             $this->display = new Display();
             $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());

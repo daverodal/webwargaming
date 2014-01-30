@@ -186,7 +186,6 @@ class MapData implements JsonSerializable{
                     $x = new MapHex($name,$hexes->$name->forces,$hexes->$name->zocs, $hexes->$name->adjacent);
                     $this->hexes->$name = $x;
                 }else{
-//                    echo "Making Exztra $name ";
 //                    $x = new MapHex($name);
                 }
 

@@ -136,7 +136,7 @@
                         <?php $id = 0; ?>
                         {units}
                         <div class="unit {class}" id="{id}" alt="0">
-                            <nav class="unitSize">xx</nav>
+                            <nav class="unitSize">xxxx</nav>
                             <section></section>
                             <img class="arrow" src="<?php echo base_url(); ?>js/short-red-arrow-md.png" class="counter">
                             <img src="<?php echo base_url(); ?>js/{image}" class="counter">

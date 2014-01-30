@@ -169,7 +169,6 @@ class CombatResultsTable
                     $combatLog .= " halved for terrain, loses combined arms bonus ";
                     $unitStrength /= 2;
                 }else{
-                    var_dump($scenario);
                     if($scenario->angloCavBonus && $unit->nationality == "AngloAllied"){
                         $unitStrength++;
                         $combatLog .= "+1 for attack into clear ";

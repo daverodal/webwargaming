@@ -205,7 +205,7 @@ class Nomonhan extends MartianCivilWar
             $this->genTerrain = true;
             $this->victory = new Victory("TMCW/Nomonhan");
             $this->display = new Display();
-            $this->mapData->setData(40, 25, "js/Nomonhan3.jpg");
+            $this->mapData->setData(40, 25, "js/Nomonhan3Small.png");
 
             $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
             $this->force = new Force();

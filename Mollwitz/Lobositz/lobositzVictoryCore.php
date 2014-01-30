@@ -67,19 +67,14 @@ class lobositzVictoryCore extends victoryCore
                 $prussianWin = true;
                 $reason .= "Prussian Win On Kills ";
             }
-            var_dump($battle->prussianSpecialHexes);
             foreach($battle->prussianSpecialHexes as $specialHex){
-                var_dump($battle->mapData->getSpecialHex($specialHex));
                 if($battle->mapData->getSpecialHex($specialHex) == AUSTRIAN_FORCE){
                     $austrianWin = true;
                     $reason .= "Austrian Win on Taking Road Hex ";
                 }
             }
-            var_dump($battle->austrianSpecialHexes);
 
             foreach($battle->austrianSpecialHexes as $specialHex){
-                var_dump($battle->mapData->getSpecialHex($specialHex));
-                var_dump(PRUSSIAN_FORCE);
 
                 if($battle->mapData->getSpecialHex($specialHex) == PRUSSIAN_FORCE){
                     $prussianWin = true;

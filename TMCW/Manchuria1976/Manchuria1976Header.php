@@ -26,8 +26,10 @@
     }
 
     .playerTwo {
-        background: rgb(132, 181, 255);
-        border-color: rgb(132, 181, 255) !important;
+        background: rgb(255, 215, 0);
+        border-color: rgb(255, 215, 0) !important;
+
+
     }
 
     .rebelFace {

@@ -27,5 +27,16 @@
         "supply": true
       }
     }
+  },
+  "Manchuria1976": {
+    "name": "Manchuria 1976",
+    "path": "TMCW",
+    "fileName": "Manchuria1976.php",
+    "scenarios": {
+      "standard": {
+        "description": "Standard scenario. Peoples Republic of China vs Soviet Union",
+        "supply": true
+      }
+    }
   }
 }
