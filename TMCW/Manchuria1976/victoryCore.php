@@ -143,13 +143,19 @@ class victoryCore
         if ($unit->forceId != $b->gameRules->attackingForceId) {
 //            return;
         }
+        $goal = array();
         if ($b->scenario->supply === true) {
-            if ($unit->forceId == REBEL_FORCE) {
+            if($unit->forceId == PRC_FORCE){
+                return;/* in supply in china, should verify we ARE in china, but..... */
+            }
+            if ($unit->forceId == SOVIET_FORCE) {
+                for($i = 1;$i <= 33;$i++){
+                    $goal[] = 3900 + $i;
+                }
+                $bias = array(2 => true, 3 => true);
+            } else {
                 $goal = array(101, 102, 103, 104, 201, 301, 401, 501, 601, 701, 801, 901, 1001);
                 $bias = array(5 => true, 6 => true);
-            } else {
-                $goal = array(3014, 3015, 3016, 3017, 3018, 3019, 3020, 2620, 2720, 2820, 2920);
-                $bias = array(2 => true, 3 => true);
             }
             if ($b->gameRules->mode == REPLACING_MODE) {
                 if ($unit->status == STATUS_CAN_UPGRADE) {
