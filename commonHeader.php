@@ -36,8 +36,10 @@ $(document).ready(function(){
         }
         var click = $("#clickCnt").html();
         x.fetch(click);
+        $("#TimeWrapper .WrapperLabel").click();
     });
     $("#timeLive").click(function(){
+        $("#TimeWrapper .WrapperLabel").click();
         x.timeTravel = false;
         x.fetch(0);
     });

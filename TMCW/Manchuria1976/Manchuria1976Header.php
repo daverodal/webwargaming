@@ -2,7 +2,7 @@
 <style type="text/css">
     /* Unit Styles */
     .prc {
-        background-color:  rgb(255, 215, 0);
+        background-color:  rgb(247, 206, 0);
     }
 
     .playerTwoFace, .prcFace {
@@ -18,8 +18,8 @@
     }
 
     .playerTwo {
-        background: rgb(255, 215, 0);
-        border-color: rgb(255, 215, 0) !important;
+        background:   rgb(247, 206, 0);
+        border-color:   rgb(247, 206, 0) !important;
 
 
     }
@@ -33,11 +33,7 @@
     }
 
     .prc {
-        background-color: rgb(255, 215, 0);
-    }
-
-    .rebel div {
-        color: black;
+        background-color:   rgb(247, 206, 0);
     }
 
     .unit .counter{
@@ -49,9 +45,6 @@
         font-size:12px;
         font-weight:bold;
 
-    }
-    .sympth div {
-        color: black;
     }
 
     .reduced {
@@ -67,10 +60,12 @@
     #crt {
         width: 308px;
     }
+    #tecImage{
+        width:500px;
+    }
 
-    #TEC {
-        background: white;
-        width: 579px;
+    #TEC{
+        width:520px;
     }
 
     #TECWrapper .closer {

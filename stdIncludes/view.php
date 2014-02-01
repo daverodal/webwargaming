@@ -111,7 +111,7 @@
 
             <?php include_once "tec.php"; ?>
 
-            <?php include "help.php"; ?>
+            <?php include "commonRules.php"; ?>
             <?php include "timeTravel.php"; ?>
             <span id="hideShow">Retired Units</span>
             <span id="showDeploy">Deploy/Staging Box</span>
