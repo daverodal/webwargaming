@@ -9,17 +9,6 @@
         color: rgb(132, 181, 255);
     }
 
-    .loyalistVP {
-        color: rgb(132, 181, 255);
-        background: transparent;
-        opacity: 1.0;
-    }
-
-    .rebelVP {
-        color: rgb(239, 115, 74);
-        background: transparent;
-    }
-
     .playerOne {
         background: rgb(223, 88, 66);
         border-color: rgb(223, 88, 66) !important;

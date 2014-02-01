@@ -49,54 +49,62 @@
     <h4>Unit Colors</h4>
     <p>The units are in two colors.</p>
     Red is for Rebel. <div class="unit rebel" alt="0" src="<?=base_url();?>js/short-red-arrow-md.png" style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204);   position: relative;"><section></section>
+        <div class="unitSize">xx</div>
         <img src="<?=base_url();?>js/multiArmor.png" class="counter">
-        <div>6 - 8</div>
+        <div class="unit-numbers">6 - 8</div>
     </div>
     <p></p>
     Blue if for Loyalist.
     <div class="unit loyalist" alt="0" src="<?=base_url();?>js/short-red-arrow-md.png" style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204); position: relative;"><section></section>
+        <div class="unitSize">xx</div>
         <img class="arrow" src="<?=base_url();?>js/short-red-arrow-md.png" style="opacity: 0;">
         <img src="<?=base_url();?>js/multiMech.png" class="counter">
 
-        <div>9 - 6</div>
+        <div class="unit-numbers">9 - 6</div>
 
     </div>
 
     <p> The symbol above the numbers represents the unit type.</p>
     This is Armor (tanks).
     <div class="unit rebel" alt="0" src="<?=base_url();?>js/short-red-arrow-md.png" style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204);  position: relative;"><section></section>
+        <div class="unitSize">xx</div>
         <img src="<?=base_url();?>js/multiArmor.png" class="counter">
-        <div>6 - 8</div>
+        <div class="unit-numbers">6 - 8</div>
     </div>
     <p></p>This is Mechinized Infantry (soldiers in half tracks, with small arms).
     <div class="unit rebel" alt="0" src="<?=base_url();?>js/short-red-arrow-md.png" style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204);  position: relative;"><section></section>
+        <div class="unitSize">xx</div>
         <img src="<?=base_url();?>js/multiMech.png" class="counter">
-        <div>4 - 8</div>
+        <div class="unit-numbers">4 - 8</div>
     </div>
     <p></p>This is Infantry. (soldiers on foot, with small arms).
     <div class="unit rebel" alt="0" src="<?=base_url();?>js/short-red-arrow-md.png" style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204); position: relative;"><section></section>
+        <div class="unitSize">xx</div>
         <img src="<?=base_url();?>js/multiInf.png" class="counter">
-        <div>2 - 8</div>
+        <div class="unit-numbers">2 - 8</div>
     </div>
     <p></p>
     The number on the left is the combat strength. The number on the right is the movement allowance
     <div class="unit loyalist" alt="0" src="<?=base_url();?>js/short-red-arrow-md.png" style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204); position: relative;"><section></section>
+        <div class="unitSize">xx</div>
         <img src="<?=base_url();?>js/multiMech.png" class="counter">
-        <div>9 - 6</div>
+        <div class="unit-numbers">9 - 6</div>
     </div>
     The above unit has a combat strength of 9 and a movenent allowance of 6.
     <p></p>
     If a units numbers are in white, that means this unit is at reduced strength and can receive replacements during the replacement phase.
     <div class="clear"></div>
     <div class="unit rebel" alt="0" src="<?=base_url();?>js/short-red-arrow-md.png" style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204); float:left;  position: relative;"><section></section>
+        <div class="unitSize">xx</div>
         <img src="<?=base_url();?>js/multiArmor.png" class="counter">
-        <div><span class="reduced">3 - 8</span></div>
+        <div class="unit-numbers"><span class="reduced">3 - 8</span></div>
     </div>
     <div class="unit loyalist" alt="0" src="<?=base_url();?>js/short-red-arrow-md.png" style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204); float:left; position: relative;"><section></section>
+        <div class="unitSize">xx</div>
         <img class="arrow" src="<?=base_url();?>js/short-red-arrow-md.png" style="opacity: 0;">
         <img src="<?=base_url();?>js/multiMech.png" class="counter">
 
-        <div><span class="reduced">4 - 6</span></div>
+        <div class="unit-numbers"><span class="reduced">4 - 6</span></div>
 
     </div>
 

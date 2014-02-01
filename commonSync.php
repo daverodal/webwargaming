@@ -172,6 +172,9 @@ x.register("force", function(force,data) {
 //            var y = $("#"+i).css('top').replace(/px/,"");
             var x = $("#"+i).position().left;
             var y = $("#"+i).position().top;
+            y /= globalZoom;
+            x /= globalZoom;
+
             var mapWidth = $("body").width();
             var mapHeight = $("#gameViewer").height();
 //                    $("#map").css('width').replace(/px/,"");
@@ -395,7 +398,7 @@ x.register("gameRules", function(gameRules,data) {
     }
 });
 x.register("vp", function(vp){
-    $("#victory").html(" Victory: <span class='rebelFace'><?=$force_name[1]?> </span>"+vp[1]+ " <span class='loyalistFace'><?=$force_name[2];?> </span>"+vp[2]+"");
+    $("#victory").html(" Victory: <span class='playerOneFace'><?=$force_name[1]?> </span>"+vp[1]+ " <span class='playerTwoFace'><?=$force_name[2];?> </span>"+vp[2]+"");
 
 });
 x.register("games", function(games) {

@@ -1,25 +1,17 @@
 <link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 <style type="text/css">
     /* Unit Styles */
-    .loyalist {
-        background-color: rgb(132, 181, 255);
+    .prc {
+        background-color:  rgb(255, 215, 0);
     }
 
-    .loyalistFace {
-        color: rgb(132, 181, 255);
+    .playerTwoFace, .prcFace {
+        color:  rgb(255, 215, 0);
     }
 
-    .loyalistVP {
-        color: rgb(132, 181, 255);
-        background: transparent;
-        opacity: 1.0;
+    .prcVictoryPoints{
+        color:black;
     }
-
-    .rebelVP {
-        color: rgb(239, 115, 74);
-        background: transparent;
-    }
-
     .playerOne {
         background: rgb(223, 88, 66);
         border-color: rgb(223, 88, 66) !important;
@@ -32,11 +24,11 @@
 
     }
 
-    .rebelFace {
+    .playerOneFace, .sovietFace {
         color: rgb(239, 115, 74);
     }
 
-    .soviet, .rebel, .sympth {
+    .soviet {
         background-color: rgb(223, 88, 66);
     }
 

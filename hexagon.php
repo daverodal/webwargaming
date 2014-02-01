@@ -164,6 +164,9 @@ private function calculateHexagonNumber()
   	$this->number = $x * 100 + $y;
 }
 public static function getHexPartXY($name){
+    if(is_a($name, "Hexagon")){
+        $name = $name->name;
+    }
     if(!self::$setup){
         self::setMinMax();
     }

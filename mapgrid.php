@@ -202,6 +202,8 @@ class MapData implements JsonSerializable{
         }
     }
     function getSpecialHex($name){
+        $name = sprintf("%04d","0000".$name);
+
         if(!$this->specialHexes){
             return false;
         }

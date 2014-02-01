@@ -41,9 +41,13 @@ class victoryCore
         $battle = Battle::getBattle();
 
         list($mapHexName, $forceId) = $args;
-        if ($forceId == 1) {
-            $this->victoryPoints[$forceId]++;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>+1 vp</span>";
+        if ($forceId == SOVIET_FORCE) {
+            $this->victoryPoints[SOVIET_FORCE] += 10;
+            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='sovietVictoryPoints'>+10 Soviet vp</span>";
+        }
+        if ($forceId == PRC_FORCE) {
+            $this->victoryPoints[SOVIET_FORCE] -= 10;
+            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='sovietVictoryPoints'>-10 Soviet vp</span>";
         }
 
     }
@@ -51,9 +55,21 @@ class victoryCore
     public function postReinforceZones($args)
     {
         list($zones, $unit) = $args;
+        if($unit->nationality == "prc"){
+            $battle = Battle::getBattle();
+            /* @var MapData $mapData */
+            $mapData = $battle->mapData;
+            $specialHexes = $battle->specialHexA;
 
-        $zones[] = new ReinforceZone(2414, 2414);
+            $zones = [];
+            foreach($specialHexes as $specialHex){
+                if($mapData->getSpecialHex($specialHex) == PRC_FORCE){
+                    $zones[] = new ReinforceZone($specialHex, $specialHex);
+                }
+            }
+        }
         return array($zones);
+
     }
 
     public function reduceUnit($args)
@@ -68,18 +84,19 @@ class victoryCore
         } else {
             $vp = $unit->minStrength;
         }
-        if ($unit->forceId == 1) {
-            $victorId = 2;
+        if ($unit->forceId == PRC_FORCE) {
+            $victorId = SOVIET_FORCE;
+            $vp /= 2;
             $this->victoryPoints[$victorId] += $vp;
             $hex = $unit->hexagon;
             $battle = Battle::getBattle();
-            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='loyalistVictoryPoints'>+$vp vp</span>";
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='sovietVictoryPoints'>+$vp vp</span>";
         } else {
-//            $victorId = 1;
-//            $hex  = $unit->hexagon;
-//            $battle = Battle::getBattle();
-//            $battle->mapData->specialHexesVictory->{$hex->name} = "+$vp vp";
-//            $this->victoryPoints[$victorId] += $vp;
+            $victorId = PRC_FORCE;
+            $this->victoryPoints[$victorId] += $vp;
+            $hex  = $unit->hexagon;
+            $battle = Battle::getBattle();
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='prcVictoryPoints'>+$vp vp</span>";
         }
     }
 
@@ -236,11 +253,13 @@ class victoryCore
                 $battle->moveRules->enterZoc = "stop";
                 $battle->moveRules->exitZoc = 0;
                 $battle->moveRules->noZocZoc = true;
+                if($battle->terrain->terrainIsHex($unit->hexagon,"mountain")){
+                    $battle->moveRules->noZocZoc = false;
+                }
             } else {
                 $battle->moveRules->enterZoc = 2;
                 $battle->moveRules->exitZoc = 1;
                 $battle->moveRules->noZocZoc = false;
-
             }
         }
     }
@@ -250,8 +269,6 @@ class victoryCore
         $attackingId = $arg[0];
         $battle = Battle::getBattle();
         $mapData = $battle->mapData;
-        $vp = $this->victoryPoints;
-        $specialHexes = $mapData->specialHexes;
         $gameRules = $battle->gameRules;
 
         if ($gameRules->phase == BLUE_MECH_PHASE || $gameRules->phase == RED_MECH_PHASE) {
@@ -259,69 +276,14 @@ class victoryCore
         }
         if ($attackingId == SOVIET_FORCE) {
             $gameRules->flashMessages[] = "Soviet Player Turn";
+            $gameRules->replacementsAvail = 1;
         }
         if ($attackingId == PRC_FORCE) {
             $gameRules->flashMessages[] = "PRC Player Turn";
-            $gameRules->replacementsAvail = 2;
+            $gameRules->replacementsAvail = 5;
         }
 
         /*only get special VPs' at end of first Movement Phase */
-        if ($specialHexes) {
-            $scenario = $battle->scenario;
-            if ($scenario->supply === true) {
-                $inCity = false;
-                $roadCut = false;
-                foreach ($specialHexes as $k => $v) {
-                    if ($v == REBEL_FORCE) {
-                        $points = 1;
-                        if ($k == 2414 || $k == 2415 || $k == 2515) {
-                            $inCity = true;
-                            $points = 5;
-                        } elseif ($k >= 2416) {
-                            /* Remember the first road Cut */
-                            if ($roadCut === false) {
-                                $roadCut = $k;
-                            }
-                            continue;
-                        }
-                        $vp[$v] += $points;
-                        $battle->mapData->specialHexesVictory->$k = "<span class='rebelVictoryPoints'>+$points vp</span>";
-                    } else {
-                        //                    $vp[$v] += .5;
-                    }
-                }
-                if ($roadCut !== false) {
-                    $vp[REBEL_FORCE] += 3;
-                    $battle->mapData->specialHexesVictory->$roadCut = "<span class='rebelVictoryPoints'>+3 vp</span>";
-                }
-                if (!$inCity) {
-                    /* Cuneiform isolated? */
-                    $cuneiform = 2515;
-                    if (!$battle->moveRules->calcSupplyHex($cuneiform, array(3014, 3015, 3016, 3017, 3018, 3019, 3020, 2620, 2720, 2820, 2920), array(2 => true, 3 => true), RED_FORCE)) {
-                        $vp[REBEL_FORCE] += 5;
 
-                        $battle->mapData->specialHexesVictory->$cuneiform = "<span class='rebelVictoryPoints'>+5 vp</span>";
-
-                    }
-                }
-            } else {
-                foreach ($specialHexes as $k => $v) {
-                    if ($v == 1) {
-                        $points = 1;
-                        if ($k == 2414 || $k == 2415 || $k == 2515) {
-                            $points = 5;
-                        } elseif ($k >= 2416) {
-                            $points = 3;
-                        }
-                        $vp[$v] += $points;
-                        $battle = Battle::getBattle();
-                        $battle->mapData->specialHexesVictory->$k = "<span class='rebelVictoryPoints'>+$points vp</span>";
-                    } else {
-                        //                    $vp[$v] += .5;
-                    }
-                }
-            }
-        }
-        $this->victoryPoints = $vp;
     }
 }
