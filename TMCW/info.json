@@ -9,6 +9,11 @@
         "supply": false,
         "bigLoyal": false
       },
+
+    "Alex":{
+      "description": "Supply Rules,",
+      "supply":true
+    },
       "FastLoyal":{
         "description": "Supply Rules, loyalist move 8, more infantry to start",
         "supply":true,
