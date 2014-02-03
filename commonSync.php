@@ -421,7 +421,7 @@ x.register("flashMessages",function(messages,data){
 function flashMessage(playerStatus){
     var x = 100;
     var y = 200;
-//    fixHeader();
+    fixHeader();
     var mess = flashMessages.shift();
 //    var mess = flashMessages.shift();
     $("#FlashMessage").remove();

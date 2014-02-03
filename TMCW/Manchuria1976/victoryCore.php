@@ -54,16 +54,43 @@ class victoryCore
 
     public function postReinforceZones($args)
     {
+        $battle = Battle::getBattle();
+
         list($zones, $unit) = $args;
-        if($unit->nationality == "prc"){
+        if ($unit->nationality == "prc") {
+//            $units = $battle->force->units;
+//            foreach($units as $unit){
+//                echo "Ho ";
+//                var_dump($unit->hexagon->parent);
+//                if($unit->hexagon->parent === "deadpile"){
+//                    echo "Dead ".$unit->id;
+//                }
+//            }
             $battle = Battle::getBattle();
+            $mapData = $battle->mapData;
+
+            if ($unit->class == "gorilla") {
+
+                $newZones = [];
+                /* @var Force $force */
+                $force = $battle->force;
+                foreach ($zones as $zone) {
+                    $mapHex = $mapData->getHex($zone->hexagon->name);
+                    if ($force->mapHexIsZOC($mapHex)) {
+                        continue;
+                    }
+                    $newZones[] = $zone;
+                }
+                return array($newZones);
+            }
+
             /* @var MapData $mapData */
             $mapData = $battle->mapData;
             $specialHexes = $battle->specialHexA;
 
             $zones = [];
-            foreach($specialHexes as $specialHex){
-                if($mapData->getSpecialHex($specialHex) == PRC_FORCE){
+            foreach ($specialHexes as $specialHex) {
+                if ($mapData->getSpecialHex($specialHex) == PRC_FORCE) {
                     $zones[] = new ReinforceZone($specialHex, $specialHex);
                 }
             }
@@ -94,7 +121,7 @@ class victoryCore
         } else {
             $victorId = PRC_FORCE;
             $this->victoryPoints[$victorId] += $vp;
-            $hex  = $unit->hexagon;
+            $hex = $unit->hexagon;
             $battle = Battle::getBattle();
             $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='prcVictoryPoints'>+$vp vp</span>";
         }
@@ -131,7 +158,7 @@ class victoryCore
 
             /* Restore all un-supplied strengths */
             $force = $battle->force;
-            foreach($this->combatCache as $id => $strength){
+            foreach ($this->combatCache as $id => $strength) {
                 $unit = $force->getUnit($id);
                 $unit->strength = $strength;
                 unset($this->combatCache->$id);
@@ -162,11 +189,11 @@ class victoryCore
         }
         $goal = array();
         if ($b->scenario->supply === true) {
-            if($unit->forceId == PRC_FORCE){
-                return;/* in supply in china, should verify we ARE in china, but..... */
+            if ($unit->forceId == PRC_FORCE) {
+                return; /* in supply in china, should verify we ARE in china, but..... */
             }
             if ($unit->forceId == SOVIET_FORCE) {
-                for($i = 1;$i <= 33;$i++){
+                for ($i = 1; $i <= 33; $i++) {
                     $goal[] = 3900 + $i;
                 }
                 $bias = array(2 => true, 3 => true);
@@ -253,7 +280,7 @@ class victoryCore
                 $battle->moveRules->enterZoc = "stop";
                 $battle->moveRules->exitZoc = 0;
                 $battle->moveRules->noZocZoc = true;
-                if($battle->terrain->terrainIsHex($unit->hexagon,"mountain")){
+                if ($battle->terrain->terrainIsHex($unit->hexagon, "mountain")) {
                     $battle->moveRules->noZocZoc = false;
                 }
             } else {

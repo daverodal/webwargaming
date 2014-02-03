@@ -878,6 +878,7 @@ class MoveRules{
                 $movesLeft = $unit->maxMove;
                 $zoneName = $unit->reinforceZone;
                 $zones = $this->terrain->getReinforceZones($zoneName);
+                list($zones) = $battle->victory->postReinforceZones($zones,$unit);
                 foreach($zones as $zone){
                     if($this->force->hexagonIsOccupied($zone->hexagon)){
                         continue;

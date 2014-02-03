@@ -475,6 +475,7 @@ class Force
         $unit->set($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove,  $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range, $nationality, $forceMarch, $class);
 
         array_push($this->units,$unit);
+        return $id;
     }
 
     function getFirstRetreatHex($id){
