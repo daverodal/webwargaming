@@ -1033,14 +1033,19 @@ class Manchuria1976 extends Battle
             $this->terrain->addReinforceZone(2125,'A');
             $this->terrain->addTerrain(2126 ,1 , "mountain");
             $this->terrain->addReinforceZone(2126,'A');
+            $this->terrain->addTerrain(2126 ,1 , "road");
             $this->terrain->addTerrain(2127 ,1 , "mountain");
             $this->terrain->addReinforceZone(2127,'A');
+            $this->terrain->addTerrain(2127 ,1 , "road");
             $this->terrain->addTerrain(2128 ,1 , "mountain");
             $this->terrain->addReinforceZone(2128,'A');
+            $this->terrain->addTerrain(2128 ,1 , "road");
             $this->terrain->addTerrain(2129 ,1 , "mountain");
             $this->terrain->addReinforceZone(2129,'A');
+            $this->terrain->addTerrain(2129 ,1 , "road");
             $this->terrain->addTerrain(2130 ,1 , "mountain");
             $this->terrain->addReinforceZone(2130,'B');
+            $this->terrain->addTerrain(2130 ,1 , "road");
             $this->terrain->addTerrain(2229 ,1 , "mountain");
             $this->terrain->addReinforceZone(2229,'A');
             $this->terrain->addTerrain(2230 ,1 , "mountain");
@@ -1790,6 +1795,7 @@ class Manchuria1976 extends Battle
             $this->terrain->addTerrain(1730 ,3 , "blocked");
             $this->terrain->addTerrain(1731 ,4 , "blocked");
             $this->terrain->addReinforceZone(3033,'B');
+            $this->terrain->addTerrain(3033 ,1 , "road");
             $this->terrain->addReinforceZone(3032,'A');
             $this->terrain->addReinforceZone(2932,'A');
             $this->terrain->addReinforceZone(2830,'A');
@@ -1815,11 +1821,15 @@ class Manchuria1976 extends Battle
             $this->terrain->addReinforceZone(3223,'B');
             $this->terrain->addReinforceZone(3224,'B');
             $this->terrain->addReinforceZone(3133,'B');
+            $this->terrain->addTerrain(3133 ,1 , "road");
             $this->terrain->addReinforceZone(2933,'B');
+            $this->terrain->addTerrain(2933 ,1 , "road");
             $this->terrain->addReinforceZone(2833,'B');
             $this->terrain->addReinforceZone(2832,'B');
+            $this->terrain->addTerrain(2832 ,1 , "road");
             $this->terrain->addReinforceZone(2831,'A');
             $this->terrain->addReinforceZone(2733,'B');
+            $this->terrain->addTerrain(2733 ,1 , "road");
             $this->terrain->addReinforceZone(2732,'A');
             $this->terrain->addReinforceZone(2731,'A');
             $this->terrain->addReinforceZone(2730,'A');
@@ -1838,6 +1848,7 @@ class Manchuria1976 extends Battle
             $this->terrain->addReinforceZone(2922,'A');
             $this->terrain->addReinforceZone(2633,'B');
             $this->terrain->addReinforceZone(2632,'B');
+            $this->terrain->addTerrain(2632 ,1 , "road");
             $this->terrain->addReinforceZone(2631,'A');
             $this->terrain->addReinforceZone(2630,'A');
             $this->terrain->addReinforceZone(2629,'A');
@@ -1855,6 +1866,7 @@ class Manchuria1976 extends Battle
             $this->terrain->addReinforceZone(2528,'A');
             $this->terrain->addReinforceZone(2532,'A');
             $this->terrain->addReinforceZone(2533,'B');
+            $this->terrain->addTerrain(2533 ,1 , "road");
             $this->terrain->addReinforceZone(2708,'A');
             $this->terrain->addReinforceZone(2709,'A');
             $this->terrain->addReinforceZone(2710,'A');
@@ -1909,8 +1921,10 @@ class Manchuria1976 extends Battle
             $this->terrain->addReinforceZone(2423,'A');
             $this->terrain->addReinforceZone(2431,'A');
             $this->terrain->addReinforceZone(2432,'B');
+            $this->terrain->addTerrain(2432 ,1 , "road");
             $this->terrain->addReinforceZone(2433,'B');
             $this->terrain->addReinforceZone(2333,'B');
+            $this->terrain->addTerrain(2333 ,1 , "road");
             $this->terrain->addReinforceZone(2331,'B');
             $this->terrain->addReinforceZone(2332,'B');
             $this->terrain->addReinforceZone(2323,'A');
@@ -1926,10 +1940,15 @@ class Manchuria1976 extends Battle
             $this->terrain->addReinforceZone(2221,'A');
             $this->terrain->addReinforceZone(2231,'B');
             $this->terrain->addReinforceZone(2232,'B');
+            $this->terrain->addTerrain(2232 ,1 , "road");
             $this->terrain->addReinforceZone(2233,'B');
             $this->terrain->addReinforceZone(2133,'B');
             $this->terrain->addReinforceZone(2132,'B');
+            $this->terrain->addTerrain(2132 ,1 , "road");
             $this->terrain->addReinforceZone(2131,'B');
+            $this->terrain->addTerrain(2131 ,1 , "road");
+            $this->terrain->addTerrain(2127 ,2 , "road");
+            $this->terrain->addTerrain(2126 ,2 , "road");
             $this->terrain->addReinforceZone(2122,'A');
             $this->terrain->addReinforceZone(2121,'A');
             $this->terrain->addReinforceZone(2120,'A');
@@ -2054,6 +2073,7 @@ class Manchuria1976 extends Battle
             $this->terrain->addReinforceZone(1933,'B');
             $this->terrain->addReinforceZone(1833,'B');
             $this->terrain->addReinforceZone(2031,'B');
+            $this->terrain->addTerrain(2031 ,1 , "road");
             $this->terrain->addReinforceZone(2032,'B');
             $this->terrain->addReinforceZone(2033,'B');
             $this->terrain->addReinforceZone(1627,'A');
@@ -2240,6 +2260,26 @@ class Manchuria1976 extends Battle
             $this->terrain->addReinforceZone(113,'A');
             $this->terrain->addReinforceZone(114,'A');
             $this->terrain->addReinforceZone(918,'A');
+            $this->terrain->addTerrain(2225 ,3 , "road");
+            $this->terrain->addTerrain(2128 ,2 , "road");
+            $this->terrain->addTerrain(2129 ,2 , "road");
+            $this->terrain->addTerrain(2130 ,2 , "road");
+            $this->terrain->addTerrain(2131 ,3 , "road");
+            $this->terrain->addTerrain(2031 ,3 , "road");
+            $this->terrain->addTerrain(2132 ,4 , "road");
+            $this->terrain->addTerrain(2232 ,4 , "road");
+            $this->terrain->addTerrain(2333 ,4 , "road");
+            $this->terrain->addTerrain(2432 ,3 , "road");
+            $this->terrain->addTerrain(2533 ,4 , "road");
+            $this->terrain->addTerrain(2632 ,3 , "road");
+            $this->terrain->addTerrain(2733 ,4 , "road");
+            $this->terrain->addTerrain(2832 ,3 , "road");
+            $this->terrain->addTerrain(2933 ,4 , "road");
+            $this->terrain->addTerrain(3033 ,4 , "road");
+            $this->terrain->addTerrain(3133 ,3 , "road");
+            $this->terrain->addTerrain(3233 ,4 , "road");
+
+
 
 
             // end terrain data ----------------------------------------
