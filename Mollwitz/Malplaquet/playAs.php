@@ -35,7 +35,9 @@
         text-shadow: 3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black
     }
     legend   {
-    color:black;
+        text-decoration: none;
+        color:#f66;
+        text-shadow: 3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black
     }
    fieldset{
         text-align: center;
@@ -51,7 +53,7 @@
 </style>
 <div class="backBox">
 <h2 style="text-align:center;font-size:30px;font-family:'Monsieur La Doulaise'"> Welcome to</h2>
-    <h1 style=""><span>The Battle of Malplaquet&nbsp;&nbsp;&nbsp;</span></h1>
+    <h1 style=""><span>The Battle of Malplaquet</span></h1>
 </div>
 <div style="clear:both"></div>
 <fieldset ><Legend>Play As </Legend>
