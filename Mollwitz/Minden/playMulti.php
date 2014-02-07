@@ -3,8 +3,8 @@
         body{
             background:#ccc;
             color:#333;
-            background: url("<?=base_url("js/GrossJaegersdorf.jpg")?>") #333 no-repeat;
-            background-position:center 0;
+            background: url("<?=base_url("js/Battle_of_Minden_1759.jpeg")?>") #333 no-repeat;
+            background-position: 25% 0;
             background-size:100%;
         }
         .wrapper{
@@ -51,30 +51,35 @@
             font-size: 50px;
             text-align: center;
         }
+        .Anglo{
+            color:#f00;
+        }
         .Prussian{
             color:rgb(255,253,127);
             color:rgb(12,0,162);
             border-color:rgb(255,253,127) !important;
         }
-        .Russian{
-            color:rgb(76,184,0);
-            border-color:rgb(76,184,0) !important;
+        .French{
+            color:rgb(61,110,255);;
+            border-color:rgb(61,110,255); !important;
         }
     </style>
 </head>
 <body>
 <div class="wrapper">
-    <div class="left Prussian big">Prussians</div>
-    <div class="right Russian big">Russians</div>
+    <?php global $force_name;$playerOne = $force_name[1];
+    $playerTwo = $force_name[2];?>
+    <div class="left Anglo big"><?= $playerOne;?></div>
+    <div class="right French big"><?= $playerTwo;?></div>
     <div class="clear"></div>
-    <div class="left big Prussian">
+    <div class="left big Anglo">
         YOU
     </div>
     <div class="center">&laquo;&laquo;vs&raquo;&raquo;</div>
     <div class="right">
         <ul>
             {users}
-            <li><a class="Russian" href="{path}/{wargame}/{me}/{key}">{key}</a></li>
+            <li><a class="French" href="{path}/{wargame}/{me}/{key}">{key}</a></li>
             {/users}
         </ul>
     </div>
@@ -83,12 +88,12 @@
     <div class="left">
         <ul>
             {others}
-            <li><a class="Prussian" href="{path}/{wargame}/{key}">{key}</a></li>
+            <li><a class="Anglo" href="{path}/{wargame}/{key}">{key}</a></li>
             {/others}
         </ul>
     </div>
     <div class="center">&laquo;&laquo;vs&raquo;&raquo;</div>
-    <div class="right big Russian">YOU</div>
+    <div class="right big French">YOU</div>
     <div class="clear"></div>
     <div>
         <a href="<?=site_url("wargame/play");?>">Back to lobby</a>

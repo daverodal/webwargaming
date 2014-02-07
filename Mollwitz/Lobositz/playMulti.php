@@ -3,8 +3,8 @@
         body{
             background:#ccc;
             color:#333;
-            background: url("<?=base_url("js/GrossJaegersdorf.jpg")?>") #333 no-repeat;
-            background-position:center 0;
+            background: url("<?=base_url("js/LobositzPlayAs1.jpg")?>") #333 no-repeat;
+            background-position: center 0;
             background-size:100%;
         }
         .wrapper{
@@ -65,7 +65,7 @@
 <body>
 <div class="wrapper">
     <div class="left Prussian big">Prussians</div>
-    <div class="right Russian big">Russians</div>
+    <div class="right Russian big">Austrian</div>
     <div class="clear"></div>
     <div class="left big Prussian">
         YOU
