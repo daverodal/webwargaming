@@ -52,53 +52,59 @@ class malplaquetVictoryCore extends victoryCore
 
     public function specialHexChange($args)
     {
-        $battle = Battle::getBattle();
-
-        list($mapHexName, $forceId) = $args;
-        if ($forceId == FRENCH_FORCE && in_array($mapHexName,$battle->angloSpecialHexes)) {
-            $this->victoryPoints[FRENCH_FORCE]  += 5;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>+5 French vp</span>";
-        }
-        if ($forceId == ANGLO_FORCE && in_array($mapHexName,$battle->angloSpecialHexes)) {
-            $this->victoryPoints[FRENCH_FORCE]  -= 5;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>-5 French vp</span>";
-        }
-        if ($forceId == ANGLO_FORCE && in_array($mapHexName,$battle->frenchSpecialHexes)) {
-            $this->victoryPoints[ANGLO_FORCE]  += 10;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='anglo'>+10 Anglo Allied vp</span>";
-        }
-        if ($forceId == FRENCH_FORCE && in_array($mapHexName,$battle->frenchSpecialHexes)) {
-            $this->victoryPoints[ANGLO_FORCE]  -= 10;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='anglo'>-10 Anglo Allied vp</span>";
-        }
     }
     protected function checkVictory($attackingId,$battle){
+        echo "Attack $attackingId ";
+        var_dump($this->gameOver);
         $gameRules = $battle->gameRules;
+        var_dump($battle->mapData->specialHexes);
         $turn = $gameRules->turn;
+        $frenchWin = $angloMalplaquet =  $angloCities = $angloWing = false;
+
         if(!$this->gameOver){
-            $frenchWin = $angloWing = false;
-            if(($this->victoryPoints[ANGLO_FORCE] > 50) && ($this->victoryPoints[ANGLO_FORCE] - ($this->victoryPoints[FRENCH_FORCE]) > 10)){
+            $specialHexes = $battle->mapData->specialHexes;
+            if($attackingId == ANGLO_FORCE){
+                echo "weeee ";
+                $malplaquet = $battle->malplaquet[0];
+                var_dump($malplaquet);
+                $otherCities = $battle->otherCities;
+                if($specialHexes->$malplaquet == ANGLO_FORCE){
+                    $angloMalplaquet = true;
+                    echo "Got Mal $malplaquet ";
+                    foreach($otherCities as $city){
+                        if($specialHexes->$city == ANGLO_FORCE){
+                            $angloCities = true;
+                        }
+                    }
+                }
+            }
+            if($angloCities && ($this->victoryPoints[ANGLO_FORCE] - ($this->victoryPoints[FRENCH_FORCE]) > 10)){
                 $angloWin = true;
             }
-            if(($this->victoryPoints[FRENCH_FORCE] > 50) && ($this->victoryPoints[FRENCH_FORCE] - $this->victoryPoints[ANGLO_FORCE] > 10)){
-                $frenchWin = true;
-            }
-            if($frenchWin && $angloWin){
-                $this->winner = 0;
-                $angloWin = $frenchWin = false;
-                $gameRules->flashMessages[] = "Tie Game";
-                $gameRules->flashMessages[] = "Game Over";
-                $this->gameOver = true;
-                return true;
-            }
+            if($turn == $gameRules->maxTurn+1){
+                echo "Turn $turn angloCities $angloCities mal $angloMalplaquet";
+                if(!$angloWin){
+                    if($angloCities === false && $angloMalplaquet === false){
+                        $frenchWin = true;
+                    }
+                }
+                if(!$frenchWin && !$angloWin){
+                    $this->winner = 0;
+                    $angloWin = $frenchWin = false;
+                    $gameRules->flashMessages[] = "Tie Game";
+                    $gameRules->flashMessages[] = "Game Over";
+                    $this->gameOver = true;
+                    return true;
+                }            }
+
 
             if($angloWin){
                 $this->winner = ANGLO_FORCE;
-                $gameRules->flashMessages[] = "Anglo Allied Win over 50 points";
+                $gameRules->flashMessages[] = "Allies Win";
             }
             if($frenchWin){
                 $this->winner = FRENCH_FORCE;
-                $msg = "French Win over 50 points";
+                $msg = "French Win Allies hold no cities";
                 $gameRules->flashMessages[] = $msg;
             }
             if($angloWin || $frenchWin){

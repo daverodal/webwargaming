@@ -4,10 +4,10 @@ set_include_path(__DIR__ . "/Malplaquet" . PATH_SEPARATOR . get_include_path());
 /* comment */
 require_once "constants.php";
 global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
-$force_name[1] = "French";
-$force_name[2] = "Anglo Allied";
 define("ANGLO_FORCE", 1);
 define("FRENCH_FORCE", 2);
+$force_name[FRENCH_FORCE] = "French";
+$force_name[ANGLO_FORCE] = "Anglo Allied";
 $phase_name = array();
 $phase_name[1] = "Anglo Allied Move";
 $phase_name[2] = "AngloAllied Combat";
@@ -64,8 +64,8 @@ class Malplaquet extends Battle
     public $display;
     public $victory;
     public $genTerrain;
-    public $angloSpecialHexes;
-    public $frenchSpecialHexes;
+    public $malplaquet;
+    public $otherCities;
 
 
     public $players;
@@ -123,8 +123,8 @@ class Malplaquet extends Battle
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;
         $data->game = $this->game;
-        $data->angloSpecialHexes = $this->angloSpecialHexes;
-        $data->frenchSpecialHexes = $this->frenchSpecialHexes;
+        $data->malplaquet = $this->malplaquet;
+        $data->otherCities = $this->otherCities;
         if ($this->genTerrain) {
             $data->terrain = $this->terrain;
         }
@@ -205,8 +205,8 @@ class Malplaquet extends Battle
         if ($data) {
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
-            $this->angloSpecialHexes = $data->angloSpecialHexes;
-            $this->frenchSpecialHexes = $data->frenchSpecialHexes;
+            $this->malplaquet = $data->malplaquet;
+            $this->otherCities = $data->otherCities;
             $this->game = $data->game;
             $this->genTerrain = false;
             $this->victory = new Victory("Mollwitz/Malplaquet/malplaquetVictoryCore.php", $data);
@@ -264,7 +264,7 @@ class Malplaquet extends Battle
             }
 
             // game data
-            $this->gameRules->setMaxTurn(14);
+            $this->gameRules->setMaxTurn(12);
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
             $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */
@@ -320,12 +320,16 @@ class Malplaquet extends Battle
             $specialHexB = [];
             $this->terrain->addTerrain(514 ,1 , "town");
             $this->terrain->addReinforceZone(514,'B');
+            $specialHexB[] = 514;
             $this->terrain->addTerrain(416 ,1 , "town");
             $this->terrain->addReinforceZone(416,'B');
+            $specialHexB[] = 416;
             $this->terrain->addTerrain(816 ,1 , "town");
             $this->terrain->addReinforceZone(816,'B');
+            $specialHexB[] = 816;
             $this->terrain->addTerrain(1615 ,1 , "town");
             $this->terrain->addReinforceZone(1615,'B');
+            $specialHexA[] = 1615;
             $this->terrain->addTerrain(1106 ,4 , "river");
             $this->terrain->addTerrain(1106 ,4 , "forest");
             $this->terrain->addTerrain(1105 ,2 , "river");
@@ -1327,15 +1331,16 @@ class Malplaquet extends Battle
             $this->terrain->addTerrain(2111 ,2 , "redoubt");
             $this->terrain->addTerrain(2211 ,4 , "redoubt");
 
-//            $this->angloSpecialHexes = $specialHexA;
-//            $this->frenchSpecialHexes = $specialHexB;
-//            foreach ($specialHexA as $specialHexId) {
-//                $specialHexes[$specialHexId] = ANGLO_FORCE;
-//            }
-//            foreach ($specialHexB as $specialHexId) {
-//                $specialHexes[$specialHexId] = FRENCH_FORCE;
-//            }
-//            $this->mapData->setSpecialHexes($specialHexes);
+            $this->malplaquet = $specialHexA;
+            $this->otherCities = $specialHexB;
+            $specialHexes = [];
+            foreach ($specialHexA as $specialHexId) {
+                $specialHexes[$specialHexId] = FRENCH_FORCE;
+            }
+            foreach ($specialHexB as $specialHexId) {
+                $specialHexes[$specialHexId] = FRENCH_FORCE;
+            }
+            $this->mapData->setSpecialHexes($specialHexes);
 
 
             // end terrain data ----------------------------------------

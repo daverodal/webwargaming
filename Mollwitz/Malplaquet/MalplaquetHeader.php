@@ -7,25 +7,26 @@
     }
     .playerOne {
         background-color: rgb(223, 88, 66);
-        border-color: rgb(223, 88, 66);
+        border-color: rgb(223, 88, 66) !important;
     }
 
     .playerTwo{
-        background-color: rgb(61,110,255) !important;
+        background: rgb(132, 181, 255);
+        border-color: rgb(132, 181, 255) !important;
     }
     .playerTwo .dropDown{
-        color:white;
-        border-color:white;
+        /*color:white;*/
+        /*border-color:white;*/
     }
     .playerTwo #GR{
         color:#333;
     }
     .playerTwo #hideShow, .playerTwo #showDeploy, .playerTwo #crtWrapper, .playerTwo #menuWrapper, .playerTwo #infoWrapper, .playerTwo #zoom{
-        color:white;
-        border-color:white;
+        /*color:white;*/
+        /*border-color:white;*/
     }
     .playerTwo #zoom span{
-        border-color:white;
+        /*border-color:white;*/
     }
     .unit.AngloAllied .counterWrapper{
         background:#f00;

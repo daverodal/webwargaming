@@ -626,13 +626,14 @@ x.register("moveRules", function(moveRules,data) {
         if(moveRules.moves){
             id = moveRules.movingUnitId;
             newId = "firstclone";
-            $("#"+id).clone(true).attr('id',newId).appendTo('#gameImages');
-            $("#"+newId+" .arrow").hide();
-            $("#"+newId).addClass("clone");
-            $("#"+newId).css({position:"Absolute"});
+            width = $("#"+id).width();
+            height = $("#"+id).height();
 
-            $("#"+newId+" section").css({backgroundColor:'transparent'});
-            $("#firstclone").hover(function(){
+            var MYCLONE = $("#"+id).clone(true).detach();
+            MYCLONE.find(".arrow").hide();
+            MYCLONE.addClass("clone");
+            MYCLONE.find('section').css({backgroundColor:'transparent'});
+            MYCLONE.hover(function(){
                     if(opacity != 1){
                         $(this).css("border-color","#fff");
                     }
@@ -659,10 +660,8 @@ x.register("moveRules", function(moveRules,data) {
                     }
 
                 });
-            width = $("#"+newId).width();
-            height = $("#"+newId).height();
 
-            var label = $("#"+newId+" div span").html();
+            var label = MYCLONE.find("div span").html();
             if(data.gameRules.phase == <?=RED_COMBAT_PHASE;?> || data.gameRules.phase == <?=BLUE_COMBAT_PHASE;?>){
                 if(data.gameRules.mode == <?=ADVANCING_MODE;?>){
                     var unit = moveRules.movingUnitId;
@@ -677,37 +676,47 @@ x.register("moveRules", function(moveRules,data) {
                         $("#"+unit+ " .arrow"+k).css({webkitTransform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
                         $("#"+unit+ " .arrow"+k).css({transform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
                     }
-//                    var theta = 0.;
-//                    theta = data.combatRules.resolvedCombats[data.combatRules.currentDefender].attackers[unit];
-//                    theta *= 15;
-//                    theta += 180;
-//                    $("#"+unit+ " .arrow").css({opacity: "1.0"});
-//                    $("#"+unit+ " .arrow").css({webkitTransform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
-//                    $("#"+unit+ " .arrow").css({transform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
                 }
                 opacity = 1.;
                 borderColor = "turquoise";
             }
-            $("#"+newId).css({opacity:opacity,
-                    zIndex:102,
-                    borderColor:borderColor,
-                    boxShadow:"none"}
+           MYCLONE.css({opacity:opacity,
+                zIndex:102,
+                borderColor:borderColor,
+                boxShadow:"none",
+                position:"absolute"}
             );
+            var diff = 0;
+            console.log(diff = new Date().getTime());
+            var counter = 0;
             for( i in moveRules.moves){
+                counter++;
                 newId = id+"Hex"+i;
 
-                $("#"+'firstclone').clone(true).attr('id',newId).appendTo('#gameImages');
-                $("#"+newId).attr("path",moveRules.moves[i].pathToHere);
-                $("#"+newId).css({left:moveRules.moves[i].pixX - width/2 +"px",top:moveRules.moves[i].pixY - height/2 +"px"});
+                var secondGenClone = MYCLONE.clone(true).attr(
+                    {
+                        id:newId,
+                        path:moveRules.moves[i].pathToHere
+                    }
+                );
+
                 var newLabel = label.replace(/((?:<span[^>]*>)?[-+ru](?:<\/span>)?).*/,"$1 "+moveRules.moves[i].pointsLeft);
-                $("#"+newId+" div span").html(newLabel).addClass('infoLen'+newLabel.length);
+                secondGenClone.find('div span').html(newLabel).addClass('infoLen'+newLabel.length);
                 if(moveRules.moves[i].isOccupied){
-                    $("#"+newId).addClass("occupied");
+                    secondGenClone.addClass("occupied");
 
 
                 }
+                /* left and top need to be set after appendTo() */
+
+                secondGenClone.appendTo('#gameImages').css({left:moveRules.moves[i].pixX - width/2 +"px",top:moveRules.moves[i].pixY - height/2 +"px"});
+//                $('#gameImages').append(secondGenClone).css({left:moveRules.moves[i].pixX - width/2 +"px",top:moveRules.moves[i].pixY - height/2 +"px"});
+//                    $("<div style='position:absolute' id='"+newId+"'>hi</div>").appendTo('#gameImages').css({left:moveRules.moves[i].pixX - width/2 +"px",top:moveRules.moves[i].pixY - height/2 +"px"});
                 /* apparently cloning attaches the mouse events */
             }
+            console.log(counter);
+            console.log(new Date().getTime() - diff);
+
             $("#firstclone").remove();
         }
 

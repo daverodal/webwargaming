@@ -120,7 +120,7 @@ class victoryCore
             $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='sovietVictoryPoints'>+$vp vp</span>";
         } else {
             $victorId = PRC_FORCE;
-            $this->victoryPoints[$victorId] += $vp;
+            $this->victoryPoints[$victorId] += $vp * 1.5;
             $hex = $unit->hexagon;
             $battle = Battle::getBattle();
             $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='prcVictoryPoints'>+$vp vp</span>";

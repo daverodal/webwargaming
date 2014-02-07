@@ -211,6 +211,7 @@ class MartianCivilWar extends Battle
             $this->force->addUnit("xx", RED_FORCE, 1000 + $i, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
 
         }
+        $this->force->addUnit("xx", RED_FORCE, 1005, "multiRecon.png", 2, 1, 9, true, STATUS_READY, "L", 1, 1, "loyalist", true, "inf");
 
         $loyalMechMove = 6;
         if(isset($scenario->loyalMechMove)){
@@ -431,6 +432,8 @@ class MartianCivilWar extends Battle
             $this->terrain->addTerrainFeature("newrichmond", "New Richmond", "m", 0, 0, 1, false);
             $this->terrain->addTerrainFeature("eastedge", "East Edge", "m", 0, 0, 0, false);
             $this->terrain->addTerrainFeature("westedge", "West Edge", "m", 0, 0, 0, false);
+            $this->terrain->addAltEntranceCost("rough", "mech", "blocked");
+
 
 
             $deployZones = array(103, 104, 106, 107, 201, 202, 203, 204, 205, 206, 209, 210, 305, 306, 307, 309, 310, 406, 407, 408, 409, 410);
