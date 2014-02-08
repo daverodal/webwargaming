@@ -43,14 +43,14 @@ class victoryCore{
 
     }
 
-    public function postReinforceZones($args){
-        $battle = battle::getBattle();
-        /* @var $terrain terrain */
-        $terrain = $battle->terrain;
-        $zones = $terrain->getReinforceZones("W");
-
-        return array($zones);
-    }
+//    public function postReinforceZones($args){
+//        $battle = battle::getBattle();
+//        /* @var $terrain terrain */
+//        $terrain = $battle->terrain;
+//        $zones = $terrain->getReinforceZones("W");
+//
+//        return array($zones);
+//    }
 
     public function reinforceUnit($args){
         /* @var $unit unit
