@@ -575,7 +575,7 @@ class GameRules {
                     if($this->attackingForceId != $this->phaseChanges[$i]->nextAttackerId){
                         $battle = Battle::getBattle();
                         $players = $battle->players;
-                        if(true || $players[1] != $players[2]){
+                        if($players[1] != $players[2]){
                             Battle::pokePlayer($players[$this->phaseChanges[$i]->nextAttackerId]);
                         }
                         $victory->playerTurnChange($this->phaseChanges[$i]->nextAttackerId);
