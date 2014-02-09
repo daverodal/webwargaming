@@ -55,13 +55,29 @@ class hohenfriedebergVictoryCore extends victoryCore
         $battle = Battle::getBattle();
 
         list($mapHexName, $forceId) = $args;
-        if ($forceId == PRUSSIAN_FORCE) {
-            $this->victoryPoints[PRUSSIAN_FORCE]  += 5;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+5 Prussian vp</span>";
+        if(in_array($mapHexName,$battle->specialHexA)){
+            if ($forceId == PRUSSIAN_FORCE) {
+                $this->victoryPoints[PRUSSIAN_FORCE]  += 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+5 Prussian vp</span>";
+            }
+            if ($forceId == AUSTRIAN_FORCE) {
+                $this->victoryPoints[PRUSSIAN_FORCE]  -= 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-5 Prussian vp</span>";
+            }
         }
-        if ($forceId == AUSTRIAN_FORCE) {
-            $this->victoryPoints[PRUSSIAN_FORCE]  -= 5;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-5 Prussian vp</span>";
+        if(in_array($mapHexName,$battle->specialHexB) || in_array($mapHexName,$battle->specialHexC)){
+            $vp = 5;
+            if(in_array($mapHexName,$battle->specialHexC)){
+                $vp = 10;
+            }
+            if ($forceId == AUSTRIAN_FORCE) {
+                $this->victoryPoints[AUSTRIAN_FORCE]  += $vp;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>+$vp Austrian vp</span>";
+            }
+            if ($forceId == PRUSSIAN_FORCE) {
+                $this->victoryPoints[AUSTRIAN_FORCE]  -= $vp;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>-$vp Austrian vp</span>";
+            }
         }
     }
     protected function checkVictory($attackingId,$battle){

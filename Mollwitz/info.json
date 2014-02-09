@@ -82,5 +82,15 @@
         "prussianDeploy":true
       }
     }
+  },
+  "Dubba1843": {
+    "name": "Dubba 1843",
+    "path": "Mollwitz",
+    "fileName": "Dubba1843.php",
+    "scenarios": {
+      "main": {
+        "description": "Standard Scenario"
+      }
+    }
   }
 }

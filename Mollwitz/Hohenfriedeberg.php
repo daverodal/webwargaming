@@ -122,6 +122,9 @@ class Hohenfriedeberg extends Battle
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;
         $data->game = $this->game;
+        $data->specialHexA = $this->specialHexA;
+        $data->specialHexB = $this->specialHexB;
+        $data->specialHexC = $this->specialHexC;
         if ($this->genTerrain) {
             $data->terrain = $this->terrain;
         }
@@ -252,6 +255,9 @@ class Hohenfriedeberg extends Battle
             $this->scenario = $data->scenario;
             $this->game = $data->game;
             $this->genTerrain = false;
+            $this->specialHexA = $data->specialHexA;
+            $this->specialHexB = $data->specialHexB;
+            $this->specialHexC = $data->specialHexC;
             $this->victory = new Victory("Mollwitz/Hohenfriedeberg/hohenfriedebergVictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
@@ -273,7 +279,7 @@ class Hohenfriedeberg extends Battle
             $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Hohenfriedeberg/hohenfriedebergVictoryCore.php");
 
-            $this->mapData->setData(24, 24, "js/Hohenfriedeberg3Small.png");
+            $this->mapData->setData(24, 24, "js/Hohenfriedeberg3AustrianObjectivesSmall.png");
 
             $this->display = new Display();
             $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
@@ -355,6 +361,8 @@ class Hohenfriedeberg extends Battle
                 }
             }
             $specialHexA = [];
+            $specialHexB = [];
+            $specialHexC = [];
             $this->terrain->addTerrain(801 ,1 , "forest");
             $this->terrain->addReinforceZone(801,'A');
             $this->terrain->addTerrain(801 ,2 , "forest");
@@ -453,12 +461,14 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addTerrain(2010 ,2 , "town");
             $this->terrain->addTerrain(2011 ,1 , "town");
             $this->terrain->addReinforceZone(2011,'B');
+            $specialHexB[] = 2011;
             $this->terrain->addTerrain(2011 ,3 , "town");
             $this->terrain->addTerrain(1912 ,1 , "town");
             $this->terrain->addReinforceZone(1912,'B');
             $this->terrain->addTerrain(1912 ,3 , "town");
             $this->terrain->addTerrain(1812 ,1 , "town");
             $this->terrain->addReinforceZone(1812,'B');
+            $specialHexB[] = 1812;
             $this->terrain->addTerrain(1913 ,4 , "town");
             $this->terrain->addTerrain(1913 ,4 , "river");
             $this->terrain->addTerrain(1913 ,1 , "town");
@@ -471,11 +481,13 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addTerrain(2112 ,3 , "town");
             $this->terrain->addTerrain(2112 ,1 , "town");
             $this->terrain->addReinforceZone(2112,'B');
+            $specialHexB[] = 2112;
             $this->terrain->addTerrain(2111 ,2 , "town");
             $this->terrain->addTerrain(2111 ,2 , "river");
             $this->terrain->addTerrain(2111 ,2 , "trail");
             $this->terrain->addTerrain(2111 ,1 , "town");
             $this->terrain->addReinforceZone(2111,'B');
+            $specialHexB[] = 2111;
             $this->terrain->addTerrain(2110 ,2 , "town");
             $this->terrain->addTerrain(2110 ,1 , "town");
             $this->terrain->addReinforceZone(2110,'B');
@@ -961,6 +973,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addTerrain(2417 ,4 , "road");
             $this->terrain->addTerrain(2417 ,1 , "road");
             $this->terrain->addReinforceZone(2417,'B');
+            $specialHexC[] = 2417;
             $this->terrain->addTerrain(1715 ,1 , "road");
             $this->terrain->addTerrain(1715 ,3 , "road");
             $this->terrain->addTerrain(1615 ,1 , "road");
@@ -1171,7 +1184,16 @@ class Hohenfriedeberg extends Battle
             foreach($specialHexA as $specialHexId){
                 $specialHexes[$specialHexId] = AUSTRIAN_FORCE;
             }
+            foreach($specialHexB as $specialHexId){
+                $specialHexes[$specialHexId] = PRUSSIAN_FORCE;
+            }
+            foreach($specialHexC as $specialHexId){
+                $specialHexes[$specialHexId] = PRUSSIAN_FORCE;
+            }
             $this->mapData->setSpecialHexes($specialHexes);
+            $this->specialHexA = $specialHexA;
+            $this->specialHexB = $specialHexB;
+            $this->specialHexC = $specialHexC;
 
 
             // end terrain data ----------------------------------------

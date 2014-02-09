@@ -405,7 +405,7 @@ class CombatRules
 
         $hexside = new Hexpart($hexsideX, $hexsideY);
 
-        if ($this->terrain->terrainIs($hexside, "river") === false) {
+        if ($this->terrain->terrainIs($hexside, "river") === false && $this->terrain->terrainIs($hexside, "wadi") === false) {
             return false;
         }
         return true;

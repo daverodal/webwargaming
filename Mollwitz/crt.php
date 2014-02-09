@@ -142,7 +142,7 @@ class CombatResultsTable
                 }
             }
 
-            if ($unit->class == "infantry") {
+            if ($unit->class == "infantry" || $unit->class == "sikhinf") {
                 $combinedArms[$battle->force->units[$attackerId]->class]++;
                 $combatLog .= "$unitStrength Infantry ";
                 if($scenario->jagersdorfCombat){
@@ -154,6 +154,10 @@ class CombatResultsTable
                         $unitStrength++;
                         $combatLog .= "+1 for attack into town or forest ";
                     }
+                }
+                if ($unit->nationality == "Beluchi" && ($isTown || $isForest) && !$acrossRiver) {
+                    $unitStrength++;
+                    $combatLog .= "+1 for attack into town or forest ";
                 }
                 if ($isSwamp || $attackerIsSwamp || $acrossRiver || $attackerIsSunkenRoad || $acrossRedoubt) {
                     $combatLog .= "attacker halved for terrain ";
@@ -176,8 +180,8 @@ class CombatResultsTable
                     $combinedArms[$battle->force->units[$attackerId]->class]++;
                 }
             }
-            if ($unit->class == "artillery") {
-                $combatLog .= "$unitStrength Artillery ";
+            if ($unit->class == "artillery" || $unit->class == "horseartillery") {
+                $combatLog .= "$unitStrength ".ucfirst($unit->class)." ";
                 if($isSwamp || $isRedoubt){
                     $unitStrength /= 2;
                     $combatLog .= "halved for attacking into swamp ";
@@ -209,6 +213,10 @@ class CombatResultsTable
                     $unitDefense += 1;
                     $combatLog .= "+1 for defending in town or forest ";
                 }
+            }
+            if ($unit->nationality == "Beluchi" && $class == "sikhinf" && ($isTown || $isForest)) {
+                $unitDefense++;
+                $combatLog .= "+1 for defending into town or forest ";
             }
 
             $defenseStrength += $unitDefense * (($isTown && $class != 'cavalry') || $isHill ? 2 : 1);

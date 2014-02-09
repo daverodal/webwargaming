@@ -40,6 +40,10 @@
         font-size:13px;
     }
 
+    .unit .unit-numbers .infoLen8{
+        font-size:12px;
+    }
+
     .unit img {
 
     }

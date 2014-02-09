@@ -39,7 +39,7 @@
                 <li>
                     2 <abbr title="Victory Point">VP</abbr> per artillery or cavalry strength point killed.
                 </li>
-            </ul
+            </ul>
                 Victory Points are display in the Victory: box at the top of the page.
         </li>
 

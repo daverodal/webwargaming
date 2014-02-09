@@ -48,8 +48,8 @@
             player turn. The Prussian Wins, regardless of VP's.
         </li>
         
-        <li>If the Austrian occupy or were the last to pass through any hexes of the two road hexes exiting the north of the map (marked with a tag that says Prussian) at the end of an Austrian
-            player turn. The Prussian Wins, regardless of VP's.
+        <li>If the Austrian occupy or were the last to pass through any hexes of the two road hexes exiting the north of the map (marked with a tag that says Prussian) at the end of an Prussian
+            player turn. The Austrian player wins, regardless of VP's.
         </li>
 
         <li>
