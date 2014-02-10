@@ -348,6 +348,7 @@ class Hohenfriedeberg extends Battle
             $this->terrain->addAltEntranceCost('forest', 'cavalry', 4);
             $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
             $this->terrain->addTerrainFeature("swamp", "swamp", "s", 9, 0, 1, true, false);
+            $this->terrain->addAltEntranceCost('swamp','artillery','blocked');
 
 
 
