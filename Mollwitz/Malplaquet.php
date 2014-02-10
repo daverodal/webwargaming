@@ -307,7 +307,7 @@ class Malplaquet extends Battle
             $this->terrain->addTerrainFeature("blocksnonroad", "blocksnonroad", "b", 1, 0, 0, false);
 
 
-            for ($col = 100; $col <= 2500; $col += 100) {
+            for ($col = 100; $col <= 2600; $col += 100) {
                 for ($row = 1; $row <= 18; $row++) {
                     $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
