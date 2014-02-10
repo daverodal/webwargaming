@@ -30,7 +30,7 @@
     <h4>The Game ends instantly at the end of any Player Turn when one or more of the following conditions applies. Mutual
         victories are a Draw</h4>
     <ol>
-        <li> At the end of any turn that one player has accumulated 60 Victory Points with a 10 point lead.
+        <li> At the end of any turn that the Prussian player has accumulated 60 Victory Points with a 10 point lead.
             <p>Victory Points are awarded when one player destroys another players unit.</P>
             <ul>
                 <li>
@@ -51,10 +51,20 @@
             will be awarded the 5 points again.
         </li>
 
-        <li>If at the end of any player turn both sides have somehow met their victory conditions above, the result is
-            a draw.
+        <li>If the Austrians occupy or were the last to pass through any hexes along the east edge of the map, with the label "Prussian",
+
+            they will be awarded 5 or 10 points, depending upon the hex, the value is on the map.
+            hexes with a 5 in them they will have 5 points per
+
+            These points are awarded when the Austrian player first enters the hex.
+            If the Prussian player retakes any of these hexes the Austrian lose the points gained.
+            If the Austrian player retakes the hex, they
+            will be awarded the points again.
         </li>
 
-        <li>Turn 12 concludes with none of the above conditions met. Draw</li>
+        <li>If the Prussian cannot accumulate the required victory points until after turn 12, it's considered a draw..
+        </li>
+
+        <li>If the Prussian player cannot gain the above victory by the end of turn 15. The Austrian player wins.</li>
     </ol>
 </div>
