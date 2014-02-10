@@ -27,8 +27,7 @@
     </ul>
 
     <h2>Victory Conditions</h2>
-    <h4>The Game ends instantly at the end of any Player Turn when one or more of the following conditions applies. Mutual
-        victories are a Draw</h4>
+    <h4>The Game ends instantly at the end of any Player Turn when one or more of the following conditions applies.</h4>
     <ol>
         <li> At the end of any turn that the Prussian player has accumulated 60 Victory Points with a 10 point lead.
             <p>Victory Points are awarded when one player destroys another players unit.</P>
@@ -54,7 +53,6 @@
         <li>If the Austrians occupy or were the last to pass through any hexes along the east edge of the map, with the label "Prussian",
 
             they will be awarded 5 or 10 points, depending upon the hex, the value is on the map.
-            hexes with a 5 in them they will have 5 points per
 
             These points are awarded when the Austrian player first enters the hex.
             If the Prussian player retakes any of these hexes the Austrian lose the points gained.
