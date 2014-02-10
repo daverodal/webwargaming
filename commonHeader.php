@@ -49,7 +49,8 @@ $(document).ready(function(){
 });
 function fixItAll(){
     fixHeader();
-    fixCrt();
+//    alert("WHY");
+//    fixCrt();
 }
 function fixHeader(){
     height = $("#crtWrapper h4").height();
@@ -311,7 +312,7 @@ function mapStop(event){
 
     $("#map").data('did-drag',true);
     event.stopPropagation();
-    fixCrt();
+//    fixCrt();
 }
 function mapClick(event) {
     var didDrag = $("#map").data('did-drag');
@@ -446,6 +447,7 @@ function initialize() {
     $("#floatMessage").draggable({stop:function(){
         $(this).attr('hasDragged','true');
     }});
+    $("#crt").draggable().css({cursor:"move"});
     $("#muteButton").click(function(){
        if(!mute){
            $("#muteButton").html("un-mute");
@@ -541,7 +543,7 @@ function initialize() {
     $("#crtWrapper .WrapperLabel .goLeft").click(function(){
 //    $("#crtWrapper").css("float","left");
         $("#crtWrapper").animate({left:0},300);
-        $("#crt").animate({left:"0px"},300);
+        $("#crt").animate({left:"0px",top:26},300);
 
         return false;
     });
@@ -551,7 +553,7 @@ function initialize() {
         crtWid = crtWid - wrapWid + 40;
         var moveLeft = $("body").css('width').replace(/px/,"");
         $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
-        $("#crt").animate({left:0-crtWid},300);
+        $("#crt").animate({left:0-crtWid, top:26},300);
         return false;
     });
     $(".close").click(function(){
