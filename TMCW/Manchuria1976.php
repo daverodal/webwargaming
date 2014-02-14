@@ -315,7 +315,7 @@ class Manchuria1976 extends Battle
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
             $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */
-            $this->force->setAttackingForceId($this->attackingForceId); /* so object oriented */
+            $this->force->setAttackingForceId($this->gameRules->attackingForceId); /* so object oriented */
 
 
 

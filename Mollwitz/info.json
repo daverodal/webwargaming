@@ -46,6 +46,16 @@
       }
     }
   },
+  "Burkersdorf": {
+    "name": "The Battle of Burkersdorf",
+    "path": "Mollwitz",
+    "fileName": "Burkersdorf.php",
+    "scenarios": {
+      "main": {
+        "description": "Standard Scenario"
+      }
+    }
+  },
   "Lobositz": {
     "name": "The Battle of Lobositz",
     "path": "Mollwitz",
