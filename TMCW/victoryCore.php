@@ -12,6 +12,7 @@ class victoryCore
     public $victoryPoints;
     private $movementCache;
     private $combatCache;
+    private $supplyLen = 8;
 
 
     function __construct($data)
@@ -132,6 +133,27 @@ class victoryCore
             }
         }
     }
+    public function preRecoverUnits($args){
+        /* @var unit $unit */
+        $unit = $args[0];
+
+        $b = Battle::getBattle();
+
+        if ($b->scenario->supply === true) {
+            $bias = array(5 => true, 6 => true);
+            $goal = $b->moveRules->calcRoadSupply(REBEL_FORCE, 401, $bias);
+            $goal = array_merge($goal, array(101, 102, 103, 104, 201, 301, 401, 501, 601, 701, 801, 901, 1001));
+            $this->rebelGoal = $goal;
+
+
+            $bias = array(2 => true, 3 => true);
+            $goal = $b->moveRules->calcRoadSupply(LOYALIST_FORCE, 3017, $bias);
+            $goal = array_merge($goal, array(3014, 3015, 3016, 3017, 3018, 3019, 3020, 2620, 2720, 2820, 2920));
+            $this->loyalistGoal = $goal;
+
+        }
+
+    }
 
     public function postRecoverUnit($args)
     {
@@ -145,15 +167,15 @@ class victoryCore
         }
         if ($b->scenario->supply === true) {
             if ($unit->forceId == REBEL_FORCE) {
-                $goal = array(101, 102, 103, 104, 201, 301, 401, 501, 601, 701, 801, 901, 1001);
                 $bias = array(5 => true, 6 => true);
+                $goal = $this->rebelGoal;
             } else {
-                $goal = array(3014, 3015, 3016, 3017, 3018, 3019, 3020, 2620, 2720, 2820, 2920);
                 $bias = array(2 => true, 3 => true);
+                $goal = $this->loyalistGoal;
             }
             if ($b->gameRules->mode == REPLACING_MODE) {
                 if ($unit->status == STATUS_CAN_UPGRADE) {
-                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias);
+                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias, $this->supplyLen);
                     if (!$unit->supplied) {
                         /* TODO: make this not cry  (call a method) */
                         $unit->status = STATUS_STOPPED;
@@ -163,7 +185,7 @@ class victoryCore
             }
             if ($b->gameRules->mode == MOVING_MODE) {
                 if ($unit->status == STATUS_READY || $unit->status == STATUS_UNAVAIL_THIS_PHASE) {
-                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias);
+                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias,$this->supplyLen);
                 } else {
                     return;
                 }
@@ -178,7 +200,8 @@ class victoryCore
             }
             if ($b->gameRules->mode == COMBAT_SETUP_MODE) {
                 if ($unit->status == STATUS_READY || $unit->status == STATUS_DEFENDING || $unit->status == STATUS_UNAVAIL_THIS_PHASE) {
-                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias);
+
+                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias, $this->supplyLen);
                 } else {
                     return;
                 }
@@ -292,7 +315,7 @@ class victoryCore
                 if (!$inCity) {
                     /* Cuneiform isolated? */
                     $cuneiform = 2515;
-                    if (!$battle->moveRules->calcSupplyHex($cuneiform, array(3014, 3015, 3016, 3017, 3018, 3019, 3020, 2620, 2720, 2820, 2920), array(2 => true, 3 => true), RED_FORCE)) {
+                    if (!$battle->moveRules->calcSupplyHex($cuneiform, array(3014, 3015, 3016, 3017, 3018, 3019, 3020, 2620, 2720, 2820, 2920), array(2 => true, 3 => true), RED_FORCE, $this->supplyLen)) {
                         $vp[REBEL_FORCE] += 5;
 
                         $battle->mapData->specialHexesVictory->$cuneiform = "<span class='rebelVictoryPoints'>+5 vp</span>";
