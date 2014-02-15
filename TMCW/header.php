@@ -45,6 +45,10 @@
         font-weight:bold;
 
     }
+    .unit .unit-numbers .infoLen45{
+        font-size:11px;
+        letter-spacing:-1px;
+    }
     .sympth div {
         color: black;
     }
