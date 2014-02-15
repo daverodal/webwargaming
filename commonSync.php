@@ -771,7 +771,7 @@ x.register("combatRules", function(combatRules,data) {
                     $("#crt").show({effect:"blind",direction:"up"});
                     chattyCrt = true;
                 }
-                fixCrt();
+//                fixCrt();
                 if(Object.keys(combatRules.combats[cD].attackers).length != 0){
                     combatCol = combatRules.combats[cD].index + 1;
                     if(combatCol >= 1){

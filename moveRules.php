@@ -496,6 +496,9 @@ class MoveRules
                 if ($this->terrain->terrainIsXY($gnuHex[0], $gnuHex[1], "offmap")) {
                     continue;
                 }
+                if ($this->terrain->terrainIsXY($gnuHex[0], $gnuHex[1], "blocked")) {
+                    continue;
+                }
                 $newMapHex = $this->mapData->getHex($newHexNum);
                 if ($newMapHex->isOccupied($defendingForceId)) {
                     continue;
