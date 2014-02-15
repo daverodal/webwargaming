@@ -211,7 +211,6 @@ class MartianCivilWar extends Battle
             $this->force->addUnit("xx", RED_FORCE, 1000 + $i, "multiInf.png", 2, 1, 4, true, STATUS_READY, "L", 1, 1, "loyalist");
 
         }
-        $this->force->addUnit("xx", RED_FORCE, 1005, "multiRecon.png", 2, 1, 9, true, STATUS_READY, "L", 1, 1, "loyalist", true, "inf");
 
         $loyalMechMove = 6;
         if(isset($scenario->loyalMechMove)){
