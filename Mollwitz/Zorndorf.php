@@ -1,10 +1,9 @@
 <?php
 set_include_path(__DIR__ . "/Zorndorf". PATH_SEPARATOR .  get_include_path());
+require_once"JagCore.php";
 
-require_once"Mollwitz.php";
 /* comment */
-require_once "constants.php";
-global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
+
 $force_name[1] = "Prussian";
 $force_name[2] = "Russian";
 define("PRUSSIAN_FORCE", BLUE_FORCE);
@@ -32,7 +31,7 @@ $oneHalfImageWidth = 16;
 $oneHalfImageHeight = 16;
 
 
-class Zorndorf extends Mollwitz
+class Zorndorf extends JagCore
 {
 
     /* @var Mapdata */
@@ -53,7 +52,7 @@ class Zorndorf extends Mollwitz
 
     public $players;
 
-    static function getHeader($name, $playerData)
+    static function getHeader($name, $playerData, $arg = false)
     {
         $playerData = array_shift($playerData);
         foreach ($playerData as $k => $v) {
@@ -62,16 +61,6 @@ class Zorndorf extends Mollwitz
         @include_once "commonHeader.php";
         @include_once "header.php";
         @include_once "ZorndorfHeader.php";
-    }
-
-    static function playAs($name, $wargame)
-    {
-        @include_once "playAs.php";
-    }
-
-    static function playMulti($name, $wargame)
-    {
-        @include_once "playMulti.php";
     }
 
     static function enterMulti()

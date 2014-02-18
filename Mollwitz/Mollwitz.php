@@ -1,7 +1,6 @@
 <?php
 /* comment */
-require_once "constants.php";
-global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
+require_once "JagCore.php";
 $force_name[1] = "Prussian";
 $force_name[2] = "Austrian";
 define("PRUSSIAN_FORCE", 1);
@@ -24,28 +23,12 @@ $phase_name[14] = "";
 $phase_name[15] = "Austrian deploy phase";
 
 
-require_once "combatRules.php";
-require_once "crt.php";
-require_once "force.php";
-require_once "gameRules.php";
-require_once "hexagon.php";
-require_once "hexpart.php";
-require_once "los.php";
-require_once "mapgrid.php";
-require_once "moveRules.php";
-require_once "prompt.php";
-require_once "display.php";
-require_once "terrain.php";
-require_once "victory.php";
-
-// battleforallenriver.js
-
 // counter image values
 $oneHalfImageWidth = 16;
 $oneHalfImageHeight = 16;
 
 
-class Mollwitz extends Battle
+class Mollwitz extends JagCore
 {
 
     /* @var Mapdata */
@@ -66,7 +49,7 @@ class Mollwitz extends Battle
 
     public $players;
 
-    static function getHeader($name, $playerData)
+    static function getHeader($name, $playerData, $arg = false)
     {
         $playerData = array_shift($playerData);
         foreach ($playerData as $k => $v) {
@@ -74,16 +57,6 @@ class Mollwitz extends Battle
         }
         @include_once "commonHeader.php";
         @include_once "header.php";
-    }
-
-    static function playAs($name, $wargame)
-    {
-        @include_once "playAs.php";
-    }
-
-    static function playMulti($name, $wargame)
-    {
-        @include_once "playMulti.php";
     }
 
     static function enterMulti()
@@ -96,31 +69,6 @@ class Mollwitz extends Battle
 
         global $force_name;
         @include_once "view.php";
-    }
-
-    public function resize($small, $player)
-    {
-        if ($small) {
-            $this->mapViewer[$player]->setData(57, 83, // originX, originY
-                27.5, 27.5, // top hexagon height, bottom hexagon height
-                16, 32
-            );
-            $this->playerData->${player}->mapWidth = "auto";
-            $this->playerData->${player}->mapHeight = "auto";
-            $this->playerData->${player}->unitSize = "32px";
-            $this->playerData->${player}->unitFontSize = "12px";
-            $this->playerData->${player}->unitMargin = "-21px";
-        } else {
-            $this->mapViewer[$player]->setData(57, 83, // originX, originY
-                27.5, 27.5, // top hexagon height, bottom hexagon height
-                16, 32
-            );
-            $this->playerData->${player}->mapWidth = "auto";
-            $this->playerData->${player}->mapHeight = "auto";
-            $this->playerData->${player}->unitSize = "42px";
-            $this->playerData->${player}->unitFontSize = "16px";
-            $this->playerData->${player}->unitMargin = "-23px";
-        }
     }
 
     function save()
@@ -145,52 +93,6 @@ class Mollwitz extends Battle
             $data->terrain = $this->terrain;
         }
         return $data;
-    }
-
-    function poke($event, $id, $x, $y, $user, $click)
-    {
-//        $start = microtime();
-//        echo "Start $start ";
-        $playerId = $this->gameRules->attackingForceId;
-        if ($this->players[$this->gameRules->attackingForceId] != $user) {
-            return false;
-        }
-
-        switch ($event) {
-            case SELECT_MAP_EVENT:
-                $mapGrid = new MapGrid($this->mapViewer[$playerId]);
-                $mapGrid = new MapGrid($this->mapViewer[$playerId]);
-                $mapGrid->setPixels($x, $y);
-
-                $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon(), $click);
-                break;
-
-            case SELECT_COUNTER_EVENT:
-                /* fall through */
-            case SELECT_SHIFT_COUNTER_EVENT:
-
-//                echo "this ";
-                $ret = $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id), $click);
-//                echo "aft ";
-//                $nnooww = microtime();
-//                echo $nnooww - $start;
-//                echo "End ";
-                return $ret;
-                break;
-
-
-            case SELECT_BUTTON_EVENT:
-                $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0, $click);
-                break;
-
-            case KEYPRESS_EVENT:
-                $this->gameRules->processEvent(KEYPRESS_EVENT, $id, null, $click);
-                break;
-
-
-        }
-//        echo "End ";
-        return true;
     }
 
     public function init(){

@@ -184,7 +184,7 @@ class CombatResultsTable
                 $combatLog .= "$unitStrength ".ucfirst($unit->class)." ";
                 if($isSwamp || $isRedoubt){
                     $unitStrength /= 2;
-                    $combatLog .= "halved for attacking into swamp ";
+                    $combatLog .= "halved for attacking into terrain ";
                 }
                 $combinedArms[$battle->force->units[$attackerId]->class]++;
             }
@@ -248,6 +248,13 @@ class CombatResultsTable
         $combats->attackStrength = $attackStrength;
         $combats->defenseStrength = $defenseStrength;
         $combats->terrainCombatEffect = $armsShift;
+
+        if($combats->pinCRT !== false){
+            $pinIndex = $combats->pinCRT;
+            if($combatIndex > $pinIndex){
+                $combatLog .= "<br>Pinned to {$this->combatResultsHeader[$pinIndex]} ";
+            }
+        }
         $combats->index = $combatIndex;
         $combats->useAlt = false;
         if ($defendersAllCav && !$attackersCav) {

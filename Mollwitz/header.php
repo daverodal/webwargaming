@@ -1651,6 +1651,16 @@ x.register("combatRules", function(combatRules, data){
                 }
 //                fixCrt();
                 if(Object.keys(combatRules.combats[cD].attackers).length != 0){
+                    if(combatRules.combats[cD].pinCRT !== false){
+                        combatCol = combatRules.combats[cD].pinCRT + 1;
+                        if(combatCol >= 1){
+                            $(".col" + combatCol).css('background-color', "rgba(255,0,255,.6)");
+                            if(combatRules.combats[cD].Die !== false){
+                                $(".row" + combatRules.combats[cD].Die + " .col" + combatCol).css('font-size', "110%");
+                                $(".row" + combatRules.combats[cD].Die + " .col" + combatCol).css('background', "#eee");
+                            }
+                        }
+                    }
                     combatCol = combatRules.combats[cD].index + 1;
                     if(combatCol >= 1){
                         $(".col" + combatCol).css('background-color', "rgba(255,255,1,.6)");
@@ -1743,8 +1753,13 @@ x.register("combatRules", function(combatRules, data){
                 toResolveLog = "Current Combat or Last Combat<br>";
                 title += "<strong style='margin-left:20px;font-size:150%'>" + combatRules.lastResolvedCombat.Die + " " + combatRules.lastResolvedCombat.combatResult + "</strong>";
                 combatCol = combatRules.lastResolvedCombat.index + 1;
-                combatRoll = combatRules.lastResolvedCombat.Die;
                 $(".col" + combatCol).css('background-color', "rgba(255,255,1,.6)");
+                var pin = combatRules.lastResolvedCombat.pinCRT + 1;
+                if(pin !== false && pin < combatCol){
+                    combatCol = pin;
+                    $(".col" + combatCol).css('background-color', "rgba(255, 0, 255, .6)");
+                }
+                combatRoll = combatRules.lastResolvedCombat.Die;
                 $(".row" + combatRoll + " .col" + combatCol).css('background-color', "cyan");
                 if(combatRules.lastResolvedCombat.useAlt){
                     $('.tableWrapper.main').hide();
@@ -1793,6 +1808,9 @@ x.register("combatRules", function(combatRules, data){
                     var def = combatRules.combatsToResolve[i].defenseStrength;
                     var ter = combatRules.combatsToResolve[i].terrainCombatEffect;
                     var combatCol = combatRules.combatsToResolve[i].index + 1;
+                    if(combatRules.combatsToResolve[i].pinCRT !== false){
+                        combatCol = combatRules.combatsToResolve[i].pinCRT;
+                    }
                     var odds = Math.floor(atk / def);
                     var oddsDisp = $(".col" + combatCol).html()
                     newLine = "<h5>odds = " + oddsDisp + "</h5><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + oddsDisp + "</div>";
@@ -1806,7 +1824,6 @@ x.register("combatRules", function(combatRules, data){
             var resolvedCombats = 0;
             toResolveLog += "<br>Resolved Combats <br>";
             for(i in combatRules.resolvedCombats){
-                debugger;
                 resolvedCombats++;
                 if(combatRules.resolvedCombats[i].index !== null){
                     atk = combatRules.resolvedCombats[i].attackStrength;

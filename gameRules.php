@@ -350,6 +350,9 @@ class GameRules {
                         $this->combatRules->setupCombat($id, $shift);
 
                         break;
+                    case COMBAT_PIN_EVENT:
+                        $this->combatRules->pinCombat($id);
+                        break;
 
                     case SELECT_BUTTON_EVENT:
                         $this->combatRules->undoDefendersWithoutAttackers();

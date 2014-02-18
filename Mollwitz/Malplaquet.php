@@ -1,9 +1,9 @@
 <?php
 set_include_path(__DIR__ . "/Malplaquet" . PATH_SEPARATOR . get_include_path());
+require_once "JagCore.php";
 
 /* comment */
-require_once "constants.php";
-global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
+
 define("ANGLO_FORCE", 1);
 define("FRENCH_FORCE", 2);
 $force_name[FRENCH_FORCE] = "French";
@@ -26,19 +26,6 @@ $phase_name[14] = "";
 $phase_name[15] = "French deploy phase";
 
 
-require_once "combatRules.php";
-require_once "crt.php";
-require_once "force.php";
-require_once "gameRules.php";
-require_once "hexagon.php";
-require_once "hexpart.php";
-require_once "los.php";
-require_once "mapgrid.php";
-require_once "moveRules.php";
-require_once "prompt.php";
-require_once "display.php";
-require_once "terrain.php";
-require_once "victory.php";
 
 // battleforallenriver.js
 
@@ -47,7 +34,7 @@ $oneHalfImageWidth = 16;
 $oneHalfImageHeight = 16;
 
 
-class Malplaquet extends Battle
+class Malplaquet extends JagCore
 {
 
     /* @var Mapdata */
@@ -70,7 +57,7 @@ class Malplaquet extends Battle
 
     public $players;
 
-    static function getHeader($name, $playerData)
+    static function getHeader($name, $playerData, $arg = false)
     {
         $playerData = array_shift($playerData);
         foreach ($playerData as $k => $v) {
@@ -80,16 +67,6 @@ class Malplaquet extends Battle
         @include_once "header.php";
         @include_once "MalplaquetHeader.php";
 
-    }
-
-    static function playAs($name, $wargame)
-    {
-        @include_once "playAs.php";
-    }
-
-    static function playMulti($name, $wargame)
-    {
-        @include_once "playMulti.php";
     }
 
     static function enterMulti()
@@ -131,43 +108,6 @@ class Malplaquet extends Battle
         return $data;
     }
 
-    function poke($event, $id, $x, $y, $user, $click)
-    {
-        $playerId = $this->gameRules->attackingForceId;
-        if ($this->players[$this->gameRules->attackingForceId] != $user) {
-            return false;
-        }
-
-        switch ($event) {
-            case SELECT_MAP_EVENT:
-                $mapGrid = new MapGrid($this->mapViewer[$playerId]);
-                $mapGrid = new MapGrid($this->mapViewer[$playerId]);
-                $mapGrid->setPixels($x, $y);
-
-                $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon(), $click);
-                break;
-
-            case SELECT_COUNTER_EVENT:
-                /* fall through */
-            case SELECT_SHIFT_COUNTER_EVENT:
-
-                $ret = $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id), $click);
-                return $ret;
-                break;
-
-
-            case SELECT_BUTTON_EVENT:
-                $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0, $click);
-                break;
-
-            case KEYPRESS_EVENT:
-                $this->gameRules->processEvent(KEYPRESS_EVENT, $id, null, $click);
-                break;
-
-
-        }
-        return true;
-    }
 
     public function init()
     {

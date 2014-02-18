@@ -175,6 +175,48 @@ function doitKeypress(key) {
     });
     $("#mychat").attr("value", "");
 }
+function doitCRT(id,event) {
+    var mychat = $("#mychat").attr("value");
+    playAudio();
+    $('body').css({cursor:"wait"});
+    $(this).css({cursor:"wait"});
+
+    $("#comlink").html('waiting');
+    $.ajax({url: "<?=site_url("wargame/poke");?>/",
+        type: "POST",
+        data:{id:id,event : event.shiftKey ? <?=COMBAT_PIN_EVENT;?> : <?=COMBAT_PIN_EVENT?>},
+        error:function(data,text,third){
+            try{
+                obj = jQuery.parseJSON(data.responseText);
+            }catch(e){
+//                alert(data);
+            }
+            if(obj.emsg){
+                alert(obj.emsg);
+            }
+            playAudioBuzz();
+            $('body').css({cursor:"auto"});
+            $(this).css({cursor:"auto"});
+            $("#comlink").html('Working');
+        },
+    success:function(data, textstatus) {
+        try{
+            var success = +$.parseJSON(data).success;
+        }catch(e){
+//            alert(data);
+        }
+        if(success){
+            playAudioLow();
+
+        }else{
+            playAudioBuzz();
+        }
+        $('body').css({cursor:"auto"});
+        $(this).css({cursor:"auto"});
+    }
+});
+$("#mychat").attr("value", "");
+}
 function doitUnit(id,event) {
     var mychat = $("#mychat").attr("value");
     playAudio();
@@ -201,26 +243,26 @@ function doitUnit(id,event) {
             $("#"+id+"").removeClass("pushed");
             $("#comlink").html('Working');
         },
-    success:function(data, textstatus) {
-        try{
-            var success = +$.parseJSON(data).success;
-        }catch(e){
+        success:function(data, textstatus) {
+            try{
+                var success = +$.parseJSON(data).success;
+            }catch(e){
 //            alert(data);
+            }
+            if(success){
+                playAudioLow();
+
+            }else{
+                playAudioBuzz();
+            }
+            $('body').css({cursor:"auto"});
+            $(this).css({cursor:"auto"});
+            $("#"+id+"").removeClass("pushed");
+
+
         }
-        if(success){
-            playAudioLow();
-
-        }else{
-            playAudioBuzz();
-        }
-        $('body').css({cursor:"auto"});
-        $(this).css({cursor:"auto"});
-        $("#"+id+"").removeClass("pushed");
-
-
-    }
-});
-$("#mychat").attr("value", "");
+    });
+    $("#mychat").attr("value", "");
 }
 function doitMap(x,y) {
     playAudio();
@@ -439,6 +481,11 @@ function initialize() {
     // setup events --------------------------------------------
 
     $(".unit").on('click',counterClick);
+    $("#crt #odds span").on('click',function(event){
+        var col = $(event.target).attr('class');
+        col = col.replace(/col/,'');
+        doitCRT(col,event);
+    })
     $("#gameImages").on("click",".specialHexes",mapClick);
 
     $("#nextPhaseButton").on('click',nextPhaseMouseDown);

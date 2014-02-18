@@ -18,6 +18,7 @@ Class Combat
     public $combatResult;
     public $thetas;
     public $useAlt = false;
+    public $pinCRT = false;
 
     public function __construct()
     {
@@ -83,6 +84,19 @@ class CombatRules
         $this->crt = new CombatResultsTable();
     }
 
+    function pinCombat($pinVal)
+    {
+        $pinVal--; /* make 1 based 0 based */
+        $cd = $this->currentDefender;
+        if($cd !== false){
+            if($this->combats->$cd->pinCRT === $pinVal){
+                $this->combats->$cd->pinCRT = false;
+            }else{
+                $this->combats->$cd->pinCRT = $pinVal;
+            }
+            $this->crt->setCombatIndex($cd);
+        }
+    }
 
     function setupCombat($id, $shift = false)
     {
@@ -340,6 +354,11 @@ class CombatRules
 //      $Die = 5;
 //        $index = $this->force->getUnitCombatIndex($id);
         $index = $this->combatsToResolve->$id->index;
+        if($this->combatsToResolve->$id->pinCRT !== false){
+            if($index > ($this->combatsToResolve->$id->pinCRT)){
+                $index = $this->combatsToResolve->$id->pinCRT;
+            }
+        }
         $combatResults = $this->crt->getCombatResults($Die, $index, $this->combatsToResolve->$id);
         $this->combatsToResolve->$id->Die = $Die + 1;
         $this->combatsToResolve->$id->combatResult = $results_name[$combatResults];
