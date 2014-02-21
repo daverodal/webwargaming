@@ -583,6 +583,7 @@ class Hohenfriedeberg extends JagCore
             $this->terrain->addReinforceZone(1104,'A');
             $this->terrain->addReinforceZone(105,'A');
             $this->terrain->addReinforceZone(205,'A');
+            $this->terrain->addTerrain(205 ,1 , "road");
             $this->terrain->addReinforceZone(705,'A');
             $this->terrain->addTerrain(705 ,1 , "road");
             $this->terrain->addReinforceZone(805,'A');
@@ -590,6 +591,7 @@ class Hohenfriedeberg extends JagCore
             $this->terrain->addReinforceZone(905,'A');
             $this->terrain->addReinforceZone(106,'A');
             $specialHexA[] = 106;
+            $this->terrain->addTerrain(106 ,1 , "road");
             $this->terrain->addReinforceZone(206,'A');
             $this->terrain->addReinforceZone(806,'A');
             $this->terrain->addReinforceZone(906,'A');
@@ -597,6 +599,7 @@ class Hohenfriedeberg extends JagCore
             $this->terrain->addReinforceZone(107,'A');
             $this->terrain->addReinforceZone(207,'A');
             $this->terrain->addReinforceZone(307,'A');
+            $this->terrain->addTerrain(307 ,1 , "road");
             $this->terrain->addReinforceZone(407,'A');
             $this->terrain->addReinforceZone(707,'A');
             $this->terrain->addReinforceZone(807,'A');
@@ -605,13 +608,18 @@ class Hohenfriedeberg extends JagCore
             $this->terrain->addTerrain(907 ,1 , "road");
             $this->terrain->addReinforceZone(108,'A');
             $specialHexA[] = 108;
+            $this->terrain->addTerrain(108 ,1 , "road");
             $this->terrain->addReinforceZone(208,'A');
+            $this->terrain->addTerrain(208 ,1 , "road");
             $this->terrain->addReinforceZone(308,'A');
+            $this->terrain->addTerrain(308 ,1 , "road");
             $this->terrain->addReinforceZone(408,'A');
             $this->terrain->addReinforceZone(508,'A');
             $this->terrain->addReinforceZone(109,'A');
             $this->terrain->addReinforceZone(209,'A');
+            $this->terrain->addTerrain(209 ,1 , "road");
             $this->terrain->addReinforceZone(309,'A');
+            $this->terrain->addTerrain(309 ,1 , "road");
             $this->terrain->addReinforceZone(409,'A');
             $this->terrain->addReinforceZone(509,'A');
             $this->terrain->addReinforceZone(609,'A');
@@ -1116,6 +1124,15 @@ class Hohenfriedeberg extends JagCore
             $this->terrain->addTerrain(915 ,4 , "road");
             $this->terrain->addTerrain(222 ,2 , "road");
             $this->terrain->addTerrain(1713 ,4 , "road");
+            $this->terrain->addTerrain(208 ,4 , "road");
+            $this->terrain->addTerrain(208 ,2 , "road");
+            $this->terrain->addTerrain(310 ,4 , "road");
+            $this->terrain->addTerrain(309 ,2 , "road");
+            $this->terrain->addTerrain(308 ,2 , "road");
+            $this->terrain->addTerrain(307 ,2 , "road");
+            $this->terrain->addTerrain(306 ,2 , "road");
+            $this->terrain->addTerrain(305 ,3 , "road");
+            $this->terrain->addTerrain(205 ,3 , "road");
 
             foreach($specialHexA as $specialHexId){
                 $specialHexes[$specialHexId] = AUSTRIAN_FORCE;
