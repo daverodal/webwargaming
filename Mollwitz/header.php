@@ -1754,10 +1754,13 @@ x.register("combatRules", function(combatRules, data){
                 title += "<strong style='margin-left:20px;font-size:150%'>" + combatRules.lastResolvedCombat.Die + " " + combatRules.lastResolvedCombat.combatResult + "</strong>";
                 combatCol = combatRules.lastResolvedCombat.index + 1;
                 $(".col" + combatCol).css('background-color', "rgba(255,255,1,.6)");
-                var pin = combatRules.lastResolvedCombat.pinCRT + 1;
-                if(pin !== false && pin < combatCol){
-                    combatCol = pin;
-                    $(".col" + combatCol).css('background-color', "rgba(255, 0, 255, .6)");
+                var pin = combatRules.lastResolvedCombat.pinCRT;
+                if(pin !== false){
+                    pin++;
+                    if(pin < combatCol){
+                        combatCol = pin;
+                        $(".col" + combatCol).css('background-color', "rgba(255, 0, 255, .6)");
+                    }
                 }
                 combatRoll = combatRules.lastResolvedCombat.Die;
                 $(".row" + combatRoll + " .col" + combatCol).css('background-color', "cyan");
