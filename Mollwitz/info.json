@@ -7,8 +7,8 @@
       "main": {
         "description": "Standard Scenario"
       },
-      "prussianClear": {
-        "description": "Prussians get +1 for att/def in clear, art is 3 str",
+      "prussianSuperman": {
+        "description": "Prussians Superman get +1 for att/def in clear, art is 3 str",
         "jagersdorfCombat":true,
         "artStr": true
       }
@@ -20,7 +20,10 @@
     "fileName": "Hohenfriedeberg.php",
     "scenarios": {
       "main": {
-        "description": "Standard Scenario",
+        "description": "Standard Scenario"
+      },
+      "prussianSuperman": {
+        "description": "Prussians Superman get +1 for att/def in clear, art is 3 str",
         "jagersdorfCombat":true
       }
     }
@@ -63,6 +66,9 @@
     "scenarios": {
       "main": {
         "description": "Standard Scenario",
+      },
+      "prussianSuperman": {
+        "description": "Prussians Superman get +1 for att/def in clear, art is 3 str",
         "jagersdorfCombat":true
       }
     }
