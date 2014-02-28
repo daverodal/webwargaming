@@ -323,6 +323,9 @@ class MartianCivilWar extends Battle
             $this->scenario = $scenario;
             $this->genTerrain = true;
             $this->victory = new Victory("TMCW");
+            if($scenario->supplyLen){
+                $this->victory->setSupplyLen($scenario->supplyLen);
+            }
             $this->display = new Display();
             $this->mapData->setData(30, 20, "js/MartianIV.png");
 

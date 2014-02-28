@@ -12,7 +12,7 @@ class victoryCore
     public $victoryPoints;
     private $movementCache;
     private $combatCache;
-    private $supplyLen = 8;
+    private $supplyLen = false;
 
 
     function __construct($data)
@@ -21,6 +21,7 @@ class victoryCore
             $this->victoryPoints = $data->victory->victoryPoints;
             $this->movementCache = $data->victory->movementCache;
             $this->combatCache = $data->victory->combatCache;
+            $this->supplyLen = $data->victory->supplyLen;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
@@ -28,12 +29,16 @@ class victoryCore
         }
     }
 
+    public function setSupplyLen($supplyLen){
+        $this->supplyLen = $supplyLen[0];
+    }
     public function save()
     {
         $ret = new stdClass();
         $ret->victoryPoints = $this->victoryPoints;
         $ret->movementCache = $this->movementCache;
         $ret->combatCache = $this->combatCache;
+        $ret->supplyLen = $this->supplyLen;
         return $ret;
     }
 

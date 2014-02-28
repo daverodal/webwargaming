@@ -4,25 +4,27 @@
     "path": "TMCW",
     "fileName": "MartianCivilWar.php",
     "scenarios": {
-      "Orig": {
+      "main": {
         "description": "original game, stop on enter zoc, no supply",
         "supply": false,
         "bigLoyal": false
       },
 
-    "Alex":{
+    "Supply":{
       "description": "Supply Rules,",
-      "supply":true
+      "supply":true,
+      "bigLoyal": false
     },
       "FastLoyal":{
         "description": "Supply Rules, loyalist move 8, more infantry to start",
         "supply":true,
         "loyalMechMove": 8,
-        "loyalExtraInf": true
+        "loyalExtraInf": true,
+        "supplyLen": 8
       }
     }
   },
-  "NotNomonhan": {
+  "Nomonhan": {
     "name": "The Nomonhan Incident",
     "path": "TMCW",
     "fileName": "Nomonhan.php",
