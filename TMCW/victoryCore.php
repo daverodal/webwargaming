@@ -106,7 +106,7 @@ class victoryCore
     public function gameOver(){
         $battle = Battle::getBattle();
 
-        if($this->victoryPoints->REBEL_FORCE > $this->victoryPoints->LOYALIST_FORCE){
+        if($this->victoryPoints[REBEL_FORCE] > $this->victoryPoints[LOYALIST_FORCE]){
             $battle->gameRules->flashMessages[] = "Rebel Player Wins";
         }else{
             $battle->gameRules->flashMessages[] = "Loyalist Player Wins";
