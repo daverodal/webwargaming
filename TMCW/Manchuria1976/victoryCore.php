@@ -177,10 +177,26 @@ class victoryCore
         }
     }
 
+    public function preRecoverUnits($args){
+        /* @var unit $unit */
+        $unit = $args[0];
+
+        $b = Battle::getBattle();
+
+        if ($b->scenario->supply === true) {
+            $bias = array(2 => true, 3 => true);
+            $goal = $b->moveRules->calcRoadSupply(SOVIET_FORCE, 3920, $bias);
+            $goal = array_merge($goal, array(3910, 3911, 3912, 3913, 3914, 3915, 3916, 3917, 3918, 3919));
+            $this->sovietGoal = $goal;
+
+        }
+
+    }
     public function postRecoverUnit($args)
     {
         /* @var unit $unit */
         $unit = $args[0];
+        $supplyLen = 12;
 
         $b = Battle::getBattle();
         $id = $unit->id;
@@ -203,7 +219,7 @@ class victoryCore
             }
             if ($b->gameRules->mode == REPLACING_MODE) {
                 if ($unit->status == STATUS_CAN_UPGRADE) {
-                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias);
+                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias, $supplyLen);
                     if (!$unit->supplied) {
                         /* TODO: make this not cry  (call a method) */
                         $unit->status = STATUS_STOPPED;
@@ -213,7 +229,7 @@ class victoryCore
             }
             if ($b->gameRules->mode == MOVING_MODE) {
                 if ($unit->status == STATUS_READY || $unit->status == STATUS_UNAVAIL_THIS_PHASE) {
-                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias);
+                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias, $supplyLen);
                 } else {
                     return;
                 }
@@ -228,7 +244,7 @@ class victoryCore
             }
             if ($b->gameRules->mode == COMBAT_SETUP_MODE) {
                 if ($unit->status == STATUS_READY || $unit->status == STATUS_DEFENDING || $unit->status == STATUS_UNAVAIL_THIS_PHASE) {
-                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias);
+                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias, $supplyLen);
                 } else {
                     return;
                 }
