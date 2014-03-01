@@ -35,7 +35,9 @@
                             <li>you are playing as  <?= $force_name[$player]; ?></li>
                             <li>
                                 in <span class="game-name">{gameName}-{arg}</span></li>
-                            <li> The file is called {wargame}</li>
+                            <li> The file is called {name}</li>
+                            <li>                            <?= site_url("wargame/changeWargame");?>/{wargame}<br> Share link
+                            </li>
                             <li>Game Designer: Lance Runolfsson</li>
 
                             <li class="closer"></li>

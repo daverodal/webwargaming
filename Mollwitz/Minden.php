@@ -254,6 +254,7 @@ class Minden extends JagCore
             $this->terrain->addTerrainFeature("swamp", "swamp", "s", 9, 0, 1, true, false);
             $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("blocksnonroad", "blocksnonroad", "b", 1, 0, 0, false);
+            $this->terrain->addAltEntranceCost('swamp','artillery','blocked');
 
 
             for ($col = 100; $col <= 2500; $col += 100) {

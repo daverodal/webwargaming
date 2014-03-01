@@ -245,6 +245,7 @@ class Malplaquet extends JagCore
             $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("redoubt", "redoubt", "d", 0, 2, 0, false);
             $this->terrain->addTerrainFeature("blocksnonroad", "blocksnonroad", "b", 1, 0, 0, false);
+            $this->terrain->addAltEntranceCost('swamp','artillery','blocked');
 
 
             for ($col = 100; $col <= 2600; $col += 100) {

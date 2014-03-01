@@ -258,6 +258,7 @@ class Lobositz extends JagCore
             $this->terrain->addTerrainFeature("sunkenroad", "sunkenroad", "k", 1, 0, 1, true, false);
             $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("blocksnonroad", "blocksnonroad", "b", 1, 0, 0, false);
+            $this->terrain->addAltEntranceCost('swamp','artillery','blocked');
 
 
             for ($col = 100; $col <= 2400; $col += 100) {

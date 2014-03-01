@@ -39,18 +39,6 @@ class malplaquetVictoryCore extends victoryCore
         }
     }
 
-    public function preStartMovingUnit($arg)
-    {
-        $unit = $arg[0];
-        $battle = Battle::getBattle();
-        $battle->moveRules->oneHex = true;
-//        if ($unit->class === 'artillery') {
-//            $battle->moveRules->oneHex = false;
-//        } else {
-//            $battle->moveRules->oneHex = true;
-//        }
-    }
-
     public function specialHexChange($args)
     {
     }

@@ -39,18 +39,7 @@ class burkersdorfVictoryCore extends victoryCore
         }
     }
 
-    public function preStartMovingUnit($arg)
-    {
-        $unit = $arg[0];
-        $battle = Battle::getBattle();
-        if ($unit->class === 'artillery') {
-            $battle->moveRules->oneHex = false;
-        } else {
-            $battle->moveRules->oneHex = true;
-        }
-    }
-
-    public function specialHexChange($args)
+     public function specialHexChange($args)
     {
     }
     protected function checkVictory($attackingId,$battle){

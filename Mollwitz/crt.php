@@ -123,7 +123,7 @@ class CombatResultsTable
             $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
 
             $attackerIsSwamp = $battle->terrain->terrainIs($hexpart, 'swamp');
-            $attackerIsSunkenRoad |= $battle->terrain->terrainIs($hexpart, 'sunkenroad');
+            $attackerIsSunkenRoad = $battle->terrain->terrainIs($hexpart, 'sunkenroad');
 
 
             $acrossRiver = false;

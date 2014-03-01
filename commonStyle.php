@@ -414,7 +414,7 @@ h4:hover{
 #infoWrapper, #menuWrapper{
     user-select:text;
     -webkit-touch-callout: none;
-    -webkit-user-select: none;
+    /*-webkit-user-select: none;*/
     /*float:left;*/
     position: absolute;
 }
