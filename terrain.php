@@ -121,6 +121,16 @@ class Terrain
             $feature->altEntranceCost->$altClass = $entranceCost;
         }
     }
+
+    public function addNatAltEntranceCost($terrain, $nationality,$altClass,$entranceCost){
+        $feature = $this->terrainFeatures->$terrain;
+        if($feature){
+            if(!$feature->altEntranceCost->$nationality){
+                $feature->altEntranceCost->$nationality = new stdClass();
+            }
+            $feature->altEntranceCost->$nationality->$altClass = $entranceCost;
+        }
+    }
     /* this method will die someday  sooner than later */
     public function setMaxHex(){
         return;
@@ -410,12 +420,12 @@ class Terrain
                 continue;
             }
             $feature = $this->terrainFeatures->$terrainFeature;
-
-            if($unit->class && $feature->altEntranceCost->{$unit->class}){
+            if($unit->nationality && $unit->class && $feature->altEntranceCost->{$unit->nationality}->{$unit->class}){
+                    $entranceCost += $feature->altEntranceCost->{$unit->nationality}->{$unit->class};
+            }else if($unit->class && $feature->altEntranceCost->{$unit->class}){
                 $entranceCost += $feature->altEntranceCost->{$unit->class};
             }else{
                 $entranceCost += $feature->entranceCost;
-
             }
         }
         return $entranceCost;
