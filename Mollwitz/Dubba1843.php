@@ -112,7 +112,7 @@ class Dubba1843 extends JagCore
         $artRange = 3;
 
         for ($i = 0; $i < 25; $i++) {
-            $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Beluchi", false, 'sikhinf');
+            $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Beluchi", false, 'infantry');
         }
         for ($i = 0; $i < 15; $i++) {
             $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Beluchi", false, 'cavalry');
@@ -242,7 +242,7 @@ class Dubba1843 extends JagCore
             $this->terrain->addTerrainFeature("hill", "hill", "h", 2, 0, 0, true, true);
             $this->terrain->addTerrainFeature("river", "river", "v", 0, 1, 0, false);
             $this->terrain->addAltEntranceCost('forest', 'cavalry', 4);
-            $this->terrain->addAltEntranceCost('forest', 'sikhinf', 1);
+            $this->terrain->addNatAltEntranceCost('forest','Beluchi', 'infantry', 1);
             $this->terrain->addAltEntranceCost('forest', 'horseartillery', 4);
             $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
             $this->terrain->addTerrainFeature("swamp", "swamp", "s", 9, 0, 1, true, false);

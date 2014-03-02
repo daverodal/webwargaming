@@ -142,7 +142,7 @@ class CombatResultsTable
                 }
             }
 
-            if ($unit->class == "infantry" || $unit->class == "sikhinf") {
+            if ($unit->class == "infantry") {
                 $combinedArms[$battle->force->units[$attackerId]->class]++;
                 $combatLog .= "$unitStrength Infantry ";
                 if($scenario->jagersdorfCombat){
@@ -214,7 +214,7 @@ class CombatResultsTable
                     $combatLog .= "+1 for defending in town or forest ";
                 }
             }
-            if ($unit->nationality == "Beluchi" && $class == "sikhinf" && ($isTown || $isForest)) {
+            if ($unit->nationality == "Beluchi" && $class == "infantry" && ($isTown || $isForest)) {
                 $unitDefense++;
                 $combatLog .= "+1 for defending into town or forest ";
             }
