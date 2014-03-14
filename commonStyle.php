@@ -889,4 +889,11 @@ fieldset{
     max-height:500px;
     overflow:auto;
 }
+#crtDetailsButton{
+    font-size:10px;
+    cursor: pointer;
+}
+#crtDetails{
+    display:none;
+}
 </style>

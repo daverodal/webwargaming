@@ -24,6 +24,21 @@
       }
     }
   },
+  "SiegeOfCuneiform": {
+    "name": "The Siege of Cueeiform",
+    "path": "TMCW",
+    "fileName": "MartianCivilWar.php",
+    "scenarios": {
+      "HardCuneiform":{
+        "description": "Rebel closes in on fortified Cuneiform.",
+        "supply":true,
+        "loyalMechMove": 8,
+        "loyalExtraInf": true,
+        "supplyLen": 8,
+        "hardCuneiform":true
+      }
+    }
+  },
   "Nomonhan": {
     "name": "The Nomonhan Incident",
     "path": "TMCW",

@@ -13,6 +13,8 @@ class NomonhanCombatResultsTable extends CombatResultsTable
 
     function setCombatIndex($defenderId)
     {
+        $combatLog = "";
+
         $battle = Battle::getBattle();
         $combatRules = $battle->combatRules;
         $terrain = $battle->terrain;
@@ -38,8 +40,12 @@ class NomonhanCombatResultsTable extends CombatResultsTable
         $defenseStrength = 0;
         $defMarsh = false;
         $defArt = false;
+        $combatLog .= "Defenders<br> ";
+
         foreach ($defenders as $defId => $defender) {
+            $unit = $battle->force->units[$defId];
             $unitStr = $force->getDefenderStrength($defId);
+            $combatLog .= $unitStr. " " .$unit->class." ";
             $unit = $force->units[$defId];
             $unitHex = $unit->hexagon;
             if($unit->class == "artillery"){
@@ -58,9 +64,14 @@ class NomonhanCombatResultsTable extends CombatResultsTable
         }
 
         $defHex = $unitHex;
+        $combatLog .= "<br>Attackers<br>";
+
         foreach ($combats->attackers as $id => $v) {
+
             $unit = $force->units[$id];
             $unitStr = $unit->strength;
+            $combatLog .= $unit->strength." ".$unit->class;
+
             if($unit->class != 'artillery' && $terrain->terrainIsHexSide($defHex->name,$unit->hexagon->name, "blocked")){
                 $unitStr = 0;
             }
@@ -92,6 +103,7 @@ class NomonhanCombatResultsTable extends CombatResultsTable
         $combats->defenseStrength = $defenseStrength;
         $combats->terrainCombatEffect = $terrainCombatEffect;
         $combats->index = $combatIndex;
+        $combats->combatLog = $combatLog;
 //    $this->force->storeCombatIndex($defenderId, $combatIndex);
     }
 

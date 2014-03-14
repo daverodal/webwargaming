@@ -6,6 +6,16 @@ var zoomed = false;
 var globalZoom = 1;
 
 $(document).ready(function(){
+    DR = {};
+    DR.crtDetails = false;
+
+    $("#crtDetailsButton").on('click',function(){
+        $('#crtDetails').toggle(function(){
+            DR.crtDetails = $(this).css('display') == 'block';
+        });
+        return false;
+    });
+
     $("#phaseClicks").on("click",".phaseClick",function(){
         x.timeTravel = true;
         if(x.current){

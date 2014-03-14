@@ -10,7 +10,7 @@
 
 class CombatResultsTable
 {
-    use divCombatShiftTerrain;
+    use divMCWCombatShiftTerrain;
 
 //    use crtTraits
     	public $combatIndexCount;

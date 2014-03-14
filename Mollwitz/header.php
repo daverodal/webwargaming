@@ -1584,15 +1584,9 @@
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
-    DR = {};
-    DR.crtDetails = false;
-
-    $("#crtDetailsButton").on('click',function(){
-        $('#crtDetails').toggle(function(){
-            DR.crtDetails = $(this).css('display') == 'block';
-        });
-        return false;
-    });
+    if(!DR){
+        DR = {};
+    }
     $("#altTable").on('click', function(){
         $(this).hide();
         $("#mainTable").show();

@@ -826,7 +826,7 @@ x.register("combatRules", function(combatRules,data) {
                         idxDisp = "No effect";
                     }
                     var ratio = $(".col"+combatCol).html() || "No Effect";
-                    newLine =  "<h5>odds = "+ oddsDisp +"</h5><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+ratio +"</div>";
+                    newLine =  "<h5>odds = "+ oddsDisp +"</h5><div id='crtDetails'>"+combatRules.combats[i].combatLog+"</div><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+ratio +"</div>";
                     if(cD !== false && cD == i){
                         activeCombat = combatIndex;
                         activeCombatLine = newLine;
@@ -856,6 +856,9 @@ x.register("combatRules", function(combatRules,data) {
             str += "";
             $("#crtOddsExp").html(activeCombatLine);
             $("#status").html(cdLine+str);
+            if(DR.crtDetails){
+                $("#crtDetails").toggle();
+            }
             $("#status").show();
 
         }else{
@@ -944,7 +947,9 @@ x.register("combatRules", function(combatRules,data) {
             if(!noCombats){
                 str += " Resolved Combats: "+resolvedCombats+"";
             }
+
             $("#status").html(lastCombat+str);
+
             $("#status").show();
 
         }

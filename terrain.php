@@ -441,10 +441,17 @@ class Terrain
 
     }
 
-    private function getTerrainCodeCost($terrainCode){
+    private function getTerrainCodeCost($terrainCode, $unit){
         $traverseCost = 0;
         foreach ($terrainCode as $code) {
-            $traverseCost += $this->terrainFeatures->$code->traverseCost;
+                $feature = $this->terrainFeatures->$code;
+            if($unit->nationality && $unit->class && $feature->altEntranceCost->{$unit->nationality}->{$unit->class}){
+                $traverseCost += $feature->altEntranceCost->{$unit->nationality}->{$unit->class};
+            }else if($unit->class && $feature->altEntranceCost->{$unit->class}){
+                $traverseCost += $feature->altEntranceCost->{$unit->class};
+            }else{
+                $traverseCost += $this->terrainFeatures->$code->traverseCost;
+            }
         }
         return $traverseCost;
 
@@ -452,7 +459,9 @@ class Terrain
 
     private function getTerrainCodeUnitCost($terrainCode, $unit){
         $feature = $this->terrainFeatures->$terrainCode;
-        if($unit->class && $feature->altEntranceCost->{$unit->class}){
+        if($unit->nationality && $unit->class && $feature->altEntranceCost->{$unit->nationality}->{$unit->class}){
+            $moveCost = $feature->altEntranceCost->{$unit->nationality}->{$unit->class};
+        }else if($unit->class && $feature->altEntranceCost->{$unit->class}){
             $moveCost = $feature->altEntranceCost->{$unit->class};
         }else{
             $moveCost = $feature->entranceCost;
@@ -509,7 +518,7 @@ class Terrain
 
             //  get entrance cost
             $moveCost = $this->getTerrainEntranceMoveCost($endHexagon, $unit);
-            $moveCost += $this->getTerrainCodeCost($terrainCode);
+            $moveCost += $this->getTerrainCodeCost($terrainCode, $unit);
         }
         return $moveCost;
     }
