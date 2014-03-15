@@ -339,7 +339,6 @@ class Lobositz extends JagCore
             $this->terrain->addTerrain(1418 ,4 , "river");
             $this->terrain->addTerrain(1418 ,3 , "river");
             $this->terrain->addTerrain(1419 ,4 , "river");
-            $this->terrain->addTerrain(1519 ,3 , "river");
             $this->terrain->addTerrain(1519 ,4 , "river");
             $this->terrain->addTerrain(1518 ,3 , "river");
             $this->terrain->addTerrain(1518 ,4 , "river");
@@ -840,6 +839,7 @@ class Lobositz extends JagCore
             $this->terrain->addTerrain(1102 ,2 , "road");
             $this->terrain->addReinforceZone(1102,'B');
             $this->terrain->addTerrain(1103 ,1 , "road");
+            $this->terrain->addReinforceZone(1103,'B');
             $this->terrain->addTerrain(1103 ,2 , "road");
             $this->terrain->addTerrain(1104 ,1 , "road");
             $this->terrain->addReinforceZone(1104,'B');
@@ -1196,6 +1196,7 @@ class Lobositz extends JagCore
             $this->terrain->addReinforceZone(2221,'A');
             $this->terrain->addReinforceZone(2321,'A');
             $this->terrain->addReinforceZone(2421,'A');
+            $this->terrain->addTerrain(1418 ,2 , "river");
 
 
 
