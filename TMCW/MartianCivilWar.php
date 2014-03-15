@@ -524,8 +524,9 @@ class MartianCivilWar extends Battle
             $this->terrain->addTerrainFeature("newrichmond", "New Richmond", "m", 0, 0, 1, false);
             $this->terrain->addTerrainFeature("eastedge", "East Edge", "m", 0, 0, 0, false);
             $this->terrain->addTerrainFeature("westedge", "West Edge", "m", 0, 0, 0, false);
-            $this->terrain->addTerrainFeature("forta", "forta", "f", 1, 0, 1, true);
-            $this->terrain->addTerrainFeature("fortb", "fortb", "f", 1, 0, 2, true);
+            /* handle fort's in crtTraits */
+            $this->terrain->addTerrainFeature("forta", "forta", "f", 1, 0, 0, true);
+            $this->terrain->addTerrainFeature("fortb", "fortb", "f", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("mine", "mine", "m", 0, 0, 0, false);
             $this->terrain->addNatAltEntranceCost("mine","rebel",'mech',2);
             $this->terrain->addNatAltEntranceCost("mine","rebel",'inf',1);

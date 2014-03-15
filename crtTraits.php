@@ -83,6 +83,7 @@ trait divMCWCombatShiftTerrain
         $combats = $battle->combatRules->combats->$defenderId;
         /* @var Force $force */
         $force = $battle->force;
+        $attackingForceId = $force->attackingForceId;
         $hexagon = $battle->force->units[$defenderId]->hexagon;
         $hexpart = new Hexpart();
         $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
@@ -98,7 +99,7 @@ trait divMCWCombatShiftTerrain
         $defenders = $combats->defenders;
         $attackStrength = 0;
 
-        $isHeavy = $isShock = $isMountain = $isMountainInf = $isTown = $isHill = $isForest = $isSwamp = $attackerIsSunkenRoad = $isRedoubt = false;
+        $isFortA = $isFortB = $isHeavy = $isShock = $isMountain = $isMountainInf = $isTown = $isHill = $isForest = $isSwamp = $attackerIsSunkenRoad = $isRedoubt = false;
 
         foreach ($defenders as $defId => $defender) {
             $unit = $battle->force->units[$defId];
@@ -106,8 +107,9 @@ trait divMCWCombatShiftTerrain
             $hexpart = new Hexpart();
             $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
             $isMountain |= $battle->terrain->terrainIs($hexpart, 'mountain');
-            $isFort = $battle->terrain->terrainIs($hexpart, 'fortb');
-            if($isFort && $unit->class == "heavy"){
+            $isFortA = $battle->terrain->terrainIs($hexpart, 'forta');
+            $isFortB = $battle->terrain->terrainIs($hexpart, 'fortb');
+            if($isFortB && $unit->class == "heavy"){
                 $isHeavy = true;
             }
 
@@ -157,6 +159,16 @@ trait divMCWCombatShiftTerrain
         if($isMountainInf && $isMountain){
             /* Mountain Inf helps combat agains Mountain hexes */
             $terrainCombatEffect--;
+        }
+        /* FortB trumps FortA in multi defender attacks */
+        if($attackingForceId == REBEL_FORCE){
+            if($isFortB){
+                $combatLog .= "Shift 2 left for rebel attacking info Fortified B";
+                $terrainCombatEffect += 2;
+            }else if($isFortA){
+                $combatLog .= "Shift 1 left for rebel attacking infoFortified A";
+                $terrainCombatEffect += 1;
+            }
         }
 
         $combatIndex -= $terrainCombatEffect;
