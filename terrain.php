@@ -412,21 +412,31 @@ class Terrain
 //        $hexpart = new Hexpart($hexagon->getX(), $hexagon->getY());
         list($endX, $endY) = Hexagon::getHexPartXY($hexagon);
 
-        $terrains = $this->getTerrainCodeXY($endX,$endY);
+        $terrains = $this->getTerrainCodeXY($endX, $endY);
 
         foreach ($terrains as $terrainFeature) {
             /* @var TerrainFeature $feature */
-            if($terrainFeature == "road" || $terrainFeature == "trail"){
+            if ($terrainFeature == "road" || $terrainFeature == "trail") {
                 continue;
             }
             $feature = $this->terrainFeatures->$terrainFeature;
-            if($unit->nationality && $unit->class && $feature->altEntranceCost->{$unit->nationality}->{$unit->class}){
-                    $entranceCost += $feature->altEntranceCost->{$unit->nationality}->{$unit->class};
-            }else if($unit->class && $feature->altEntranceCost->{$unit->class}){
-                $entranceCost += $feature->altEntranceCost->{$unit->class};
-            }else{
-                $entranceCost += $feature->entranceCost;
+            if ($unit->nationality && $unit->class && $feature->altEntranceCost->{$unit->nationality}->{$unit->class}) {
+                $cost = $feature->altEntranceCost->{$unit->nationality}->{$unit->class};
+                if ($cost === "blocked") {
+                    return "blocked";
+                }
+            } else if ($unit->class && $feature->altEntranceCost->{$unit->class}) {
+                $cost = $feature->altEntranceCost->{$unit->class};
+                if ($cost === "blocked") {
+                    return "blocked";
+                }
+            } else {
+                $cost = $feature->entranceCost;
+                if ($cost === "blocked") {
+                    return "blocked";
+                }
             }
+            $entranceCost += $cost;
         }
         return $entranceCost;
     }
@@ -446,12 +456,22 @@ class Terrain
         foreach ($terrainCode as $code) {
                 $feature = $this->terrainFeatures->$code;
             if($unit->nationality && $unit->class && $feature->altEntranceCost->{$unit->nationality}->{$unit->class}){
-                $traverseCost += $feature->altEntranceCost->{$unit->nationality}->{$unit->class};
+                $cost = $feature->altEntranceCost->{$unit->nationality}->{$unit->class};
+                if($cost === "blocked"){
+                    return "blocked";
+                }
             }else if($unit->class && $feature->altEntranceCost->{$unit->class}){
-                $traverseCost += $feature->altEntranceCost->{$unit->class};
+                $cost = $feature->altEntranceCost->{$unit->class};
+                if($cost === "blocked"){
+                    return "blocked";
+                }
             }else{
-                $traverseCost += $this->terrainFeatures->$code->traverseCost;
+                $cost = $this->terrainFeatures->$code->traverseCost;
+                if($cost === "blocked"){
+                    return "blocked";
+                }
             }
+            $traverseCost += $cost;
         }
         return $traverseCost;
 
@@ -518,8 +538,15 @@ class Terrain
 
             //  get entrance cost
             $moveCost = $this->getTerrainEntranceMoveCost($endHexagon, $unit);
-            $moveCost += $this->getTerrainCodeCost($terrainCode, $unit);
-        }
+             if($moveCost === "blocked"){
+                 return "blocked";
+             }
+            $cost = $this->getTerrainCodeCost($terrainCode, $unit);
+             if($cost === "blocked"){
+                 return "blocked";
+             }
+             $moveCost += $cost;
+         }
         return $moveCost;
     }
 
