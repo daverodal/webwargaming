@@ -179,12 +179,14 @@ class Lobositz extends JagCore
             $this->players = $data->players;
             $this->playerData = $data->playerData;
         } else {
+            $maxX = 24;
+            $maxY = 21;
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->game = $game;
             $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Lobositz/lobositzVictoryCore.php");
-            $this->mapData->setData(24, 22, "js/LobositzAlt1.jpg");
+            $this->mapData->setData($maxX, $maxY, "js/LobositzAlt1.jpg");
             $this->mapData->blocksZoc->blocked = true;
             $this->mapData->blocksZoc->blocksnonroad = true;
 
@@ -261,8 +263,8 @@ class Lobositz extends JagCore
             $this->terrain->addAltEntranceCost('swamp','artillery','blocked');
 
 
-            for ($col = 100; $col <= 2400; $col += 100) {
-                for ($row = 1; $row <= 19; $row++) {
+            for ($col = 100; $col <= $maxX * 100; $col += 100) {
+                for ($row = 1; $row <= $maxY; $row++) {
                     $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
