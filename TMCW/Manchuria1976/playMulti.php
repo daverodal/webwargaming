@@ -3,7 +3,7 @@
         body{
             background:#ccc;
             color:#333;
-            background: url("<?=base_url("js/ManchuriaType69Tank.jpg")?>") #333 no-repeat;
+            background: url("<?=base_url("js/ChineseType59Small.png")?>") #333 no-repeat;
             background-position: 10% 0;
             background-size:100%;
         }

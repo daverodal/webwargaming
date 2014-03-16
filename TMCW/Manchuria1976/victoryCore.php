@@ -12,6 +12,7 @@ class victoryCore
     public $victoryPoints;
     private $movementCache;
     private $combatCache;
+    public $sovietGoal;
 
 
     function __construct($data)
@@ -20,10 +21,12 @@ class victoryCore
             $this->victoryPoints = $data->victory->victoryPoints;
             $this->movementCache = $data->victory->movementCache;
             $this->combatCache = $data->victory->combatCache;
+            $this->sovietGoal = $data->victory->sovietGoal;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
             $this->combatCache = new stdClass();
+            $this->sovietGoal = [];
         }
     }
 
@@ -33,6 +36,7 @@ class victoryCore
         $ret->victoryPoints = $this->victoryPoints;
         $ret->movementCache = $this->movementCache;
         $ret->combatCache = $this->combatCache;
+        $ret->sovietGoal = $this->sovietGoal;
         return $ret;
     }
 
@@ -186,6 +190,8 @@ class victoryCore
         if ($b->scenario->supply === true) {
             $bias = array(2 => true, 3 => true);
             $goal = $b->moveRules->calcRoadSupply(SOVIET_FORCE, 3920, $bias);
+            $goal = array_merge($goal, $b->moveRules->calcRoadSupply(SOVIET_FORCE, 1932, $bias));
+            $goal = array_merge($goal, $b->moveRules->calcRoadSupply(SOVIET_FORCE, 3233, $bias));
             $goal = array_merge($goal, array(3910, 3911, 3912, 3913, 3914, 3915, 3916, 3917, 3918, 3919));
             $this->sovietGoal = $goal;
 
@@ -203,15 +209,12 @@ class victoryCore
         if ($unit->forceId != $b->gameRules->attackingForceId) {
 //            return;
         }
-        $goal = array();
+        $goal = $this->sovietGoal;
         if ($b->scenario->supply === true) {
             if ($unit->forceId == PRC_FORCE) {
                 return; /* in supply in china, should verify we ARE in china, but..... */
             }
             if ($unit->forceId == SOVIET_FORCE) {
-                for ($i = 1; $i <= 33; $i++) {
-                    $goal[] = 3900 + $i;
-                }
                 $bias = array(2 => true, 3 => true);
             } else {
                 $goal = array(101, 102, 103, 104, 201, 301, 401, 501, 601, 701, 801, 901, 1001);
