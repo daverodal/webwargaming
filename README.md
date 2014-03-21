@@ -1,6 +1,7 @@
 WebWargaming Markup
 ===================
 
+
 This is a clone of the Javascript code found at
 http://www.webwargaming.org/
 
