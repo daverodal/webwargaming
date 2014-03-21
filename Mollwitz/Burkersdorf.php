@@ -309,7 +309,6 @@ class Burkersdorf extends JagCore
             $this->terrain->addTerrain(3121 ,1 , "town");
             $this->terrain->addTerrain(3419 ,1 , "town");
             $this->terrain->addTerrain(3203 ,1 , "town");
-            $this->terrain->addReinforceZone(3203,'A');
             $this->terrain->addTerrain(2906 ,1 , "town");
             $this->terrain->addReinforceZone(2906,'A');
             $this->terrain->addTerrain(2710 ,1 , "town");
@@ -331,7 +330,6 @@ class Burkersdorf extends JagCore
             $this->terrain->addTerrain(106 ,1 , "forest");
             $this->terrain->addTerrain(106 ,2 , "forest");
             $this->terrain->addTerrain(107 ,1 , "forest");
-            $this->terrain->addReinforceZone(107,'A');
             $this->terrain->addTerrain(201 ,4 , "forest");
             $this->terrain->addTerrain(201 ,3 , "forest");
             $this->terrain->addTerrain(202 ,4 , "forest");
@@ -723,7 +721,6 @@ class Burkersdorf extends JagCore
             $this->terrain->addTerrain(3301 ,1 , "forest");
             $this->terrain->addTerrain(3301 ,2 , "forest");
             $this->terrain->addTerrain(3302 ,1 , "forest");
-            $this->terrain->addReinforceZone(3302,'A');
             $this->terrain->addTerrain(3401 ,4 , "forest");
             $this->terrain->addTerrain(3401 ,3 , "forest");
             $this->terrain->addTerrain(3402 ,4 , "forest");
@@ -815,6 +812,7 @@ class Burkersdorf extends JagCore
             $this->terrain->addTerrain(2417 ,4 , "forest");
             $this->terrain->addTerrain(2415 ,2 , "forest");
             $this->terrain->addTerrain(2416 ,1 , "forest");
+            $this->terrain->addReinforceZone(2416,'B');
             $this->terrain->addTerrain(2416 ,2 , "forest");
             $this->terrain->addTerrain(2417 ,1 , "forest");
             $this->terrain->addReinforceZone(2417,'B');
@@ -825,14 +823,19 @@ class Burkersdorf extends JagCore
             $this->terrain->addTerrain(2517 ,3 , "forest");
             $this->terrain->addTerrain(2518 ,4 , "forest");
             $this->terrain->addTerrain(2515 ,1 , "forest");
+            $this->terrain->addReinforceZone(2515,'B');
             $this->terrain->addTerrain(2515 ,2 , "forest");
             $this->terrain->addTerrain(2516 ,1 , "forest");
+            $this->terrain->addReinforceZone(2516,'B');
             $this->terrain->addTerrain(2516 ,2 , "forest");
             $this->terrain->addTerrain(2517 ,1 , "forest");
+            $this->terrain->addReinforceZone(2517,'B');
             $this->terrain->addTerrain(2517 ,2 , "forest");
             $this->terrain->addTerrain(2518 ,1 , "forest");
+            $this->terrain->addReinforceZone(2518,'B');
             $this->terrain->addTerrain(2518 ,2 , "forest");
             $this->terrain->addTerrain(2519 ,1 , "forest");
+            $this->terrain->addReinforceZone(2519,'B');
             $this->terrain->addTerrain(2616 ,4 , "forest");
             $this->terrain->addTerrain(2616 ,3 , "forest");
             $this->terrain->addTerrain(2617 ,4 , "forest");
@@ -899,6 +902,7 @@ class Burkersdorf extends JagCore
             $this->terrain->addReinforceZone(1218,'B');
             $this->terrain->addTerrain(1218 ,2 , "forest");
             $this->terrain->addTerrain(1219 ,1 , "forest");
+            $this->terrain->addReinforceZone(1219,'B');
             $this->terrain->addTerrain(1318 ,3 , "forest");
             $this->terrain->addTerrain(1319 ,4 , "forest");
             $this->terrain->addTerrain(1319 ,3 , "forest");
@@ -990,8 +994,10 @@ class Burkersdorf extends JagCore
             $this->terrain->addTerrain(3425 ,2 , "forest");
             $this->terrain->addTerrain(3426 ,1 , "forest");
             $this->terrain->addTerrain(723 ,1 , "forest");
+            $this->terrain->addReinforceZone(723,'B');
             $this->terrain->addTerrain(723 ,2 , "forest");
             $this->terrain->addTerrain(724 ,1 , "forest");
+            $this->terrain->addReinforceZone(724,'B');
             $this->terrain->addTerrain(823 ,4 , "forest");
             $this->terrain->addTerrain(823 ,3 , "forest");
             $this->terrain->addTerrain(823 ,1 , "forest");
@@ -1124,6 +1130,7 @@ class Burkersdorf extends JagCore
             $this->terrain->addTerrain(417 ,3 , "forest");
             $this->terrain->addTerrain(217 ,1 , "forest");
             $this->terrain->addTerrain(217 ,1 , "road");
+            $this->terrain->addReinforceZone(217,'A');
             $this->terrain->addTerrain(217 ,2 , "forest");
             $this->terrain->addTerrain(218 ,1 , "forest");
             $this->terrain->addReinforceZone(218,'A');
@@ -1247,13 +1254,10 @@ class Burkersdorf extends JagCore
             $this->terrain->addReinforceZone(2903,'A');
             $this->terrain->addTerrain(3002 ,3 , "road");
             $this->terrain->addTerrain(3002 ,1 , "road");
-            $this->terrain->addReinforceZone(3002,'A');
             $this->terrain->addTerrain(3102 ,3 , "road");
             $this->terrain->addTerrain(3102 ,1 , "road");
-            $this->terrain->addReinforceZone(3102,'A');
             $this->terrain->addTerrain(3101 ,2 , "road");
             $this->terrain->addTerrain(3101 ,1 , "road");
-            $this->terrain->addReinforceZone(3101,'A');
             $this->terrain->addTerrain(3201 ,1 , "road");
             $this->terrain->addTerrain(3201 ,2 , "road");
             $this->terrain->addTerrain(3202 ,1 , "road");
@@ -1370,11 +1374,15 @@ class Burkersdorf extends JagCore
             $this->terrain->addTerrain(914 ,3 , "road");
             $this->terrain->addTerrain(516 ,4 , "road");
             $this->terrain->addTerrain(415 ,1 , "road");
+            $this->terrain->addReinforceZone(415,'A');
             $this->terrain->addTerrain(415 ,3 , "road");
             $this->terrain->addTerrain(316 ,1 , "road");
+            $this->terrain->addReinforceZone(316,'A');
             $this->terrain->addTerrain(316 ,4 , "road");
             $this->terrain->addTerrain(215 ,1 , "road");
+            $this->terrain->addReinforceZone(215,'A');
             $this->terrain->addTerrain(116 ,1 , "road");
+            $this->terrain->addReinforceZone(116,'A');
             $this->terrain->addTerrain(215 ,3 , "road");
             $this->terrain->addTerrain(117 ,1 , "road");
             $this->terrain->addReinforceZone(117,'A');
@@ -1408,6 +1416,7 @@ class Burkersdorf extends JagCore
             $this->terrain->addReinforceZone(722,'B');
             $this->terrain->addTerrain(822 ,4 , "road");
             $this->terrain->addTerrain(822 ,1 , "road");
+            $this->terrain->addReinforceZone(822,'B');
             $this->terrain->addTerrain(923 ,4 , "road");
             $this->terrain->addTerrain(923 ,1 , "road");
             $this->terrain->addTerrain(1023 ,4 , "road");
@@ -1786,6 +1795,8 @@ class Burkersdorf extends JagCore
             $this->terrain->addReinforceZone(2620,'B');
             $this->terrain->addReinforceZone(2621,'B');
             $this->terrain->addReinforceZone(2923,'B');
+            $this->terrain->addReinforceZone(119,'A');
+            $this->terrain->addReinforceZone(118,'A');
             $this->terrain->addReinforceZone(115,'A');
             $this->terrain->addReinforceZone(114,'A');
             $this->terrain->addReinforceZone(411,'A');
@@ -1801,6 +1812,7 @@ class Burkersdorf extends JagCore
             $this->terrain->addReinforceZone(315,'A');
             $this->terrain->addReinforceZone(216,'A');
             $this->terrain->addReinforceZone(317,'A');
+            $this->terrain->addReinforceZone(318,'A');
             $this->terrain->addReinforceZone(510,'A');
             $this->terrain->addReinforceZone(609,'A');
             $this->terrain->addReinforceZone(610,'A');
@@ -1838,7 +1850,6 @@ class Burkersdorf extends JagCore
             $this->terrain->addReinforceZone(2802,'A');
             $this->terrain->addReinforceZone(2905,'A');
             $this->terrain->addReinforceZone(3004,'A');
-            $this->terrain->addReinforceZone(3103,'A');
             $this->terrain->addReinforceZone(3206,'A');
             $this->terrain->addReinforceZone(3305,'A');
             $this->terrain->addReinforceZone(3306,'A');
