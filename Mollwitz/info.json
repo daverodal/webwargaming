@@ -14,6 +14,16 @@
       }
     }
   },
+  "Hastenbeck": {
+    "name": "The Battle of Hastenbeck",
+    "path": "Mollwitz",
+    "fileName": "Hastenbeck.php",
+    "scenarios": {
+      "main": {
+        "description": "Standard Scenario"
+      }
+    }
+  },
   "Hohenfriedeberg": {
     "name": "The Battle of Hohenfriedeberg",
     "path": "Mollwitz",
