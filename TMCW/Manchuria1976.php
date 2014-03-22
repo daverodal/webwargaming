@@ -199,6 +199,7 @@ class Manchuria1976 extends Battle
         for($i = 2; $i <= 12;$i++){
             $this->force->addUnit("x", PRC_FORCE, "gameTurn$i", "multiGor.png", 1, 1, 1, true, STATUS_CAN_REINFORCE, "A", $i, 1, "prc", true, "gorilla");
             $this->force->addUnit("x", PRC_FORCE, "gameTurn$i", "multiGor.png", 1, 1, 1, true, STATUS_CAN_REINFORCE, "A", $i, 1, "prc", true, "gorilla");
+            $this->force->addUnit("x", PRC_FORCE, "gameTurn$i", "multiGor.png", 1, 1, 1, true, STATUS_CAN_REINFORCE, "A", $i, 1, "prc", true, "gorilla");
         }
 
 
