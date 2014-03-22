@@ -667,7 +667,6 @@ class Burkersdorf extends JagCore
             $this->terrain->addTerrain(2110 ,4 , "forest");
             $this->terrain->addTerrain(2009 ,1 , "forest");
             $this->terrain->addTerrain(2009 ,1 , "road");
-            $this->terrain->addTerrain(2009 ,1 , "redoubt");
             $this->terrain->addTerrain(2110 ,2 , "forest");
             $this->terrain->addTerrain(2110 ,2 , "road");
             $this->terrain->addTerrain(2110 ,2 , "redoubt");
@@ -2082,7 +2081,7 @@ class Burkersdorf extends JagCore
             $this->terrain->addTerrain(3616 ,2 , "river");
             $this->terrain->addTerrain(3717 ,4 , "river");
             $this->terrain->addTerrain(3716 ,2 , "river");
-
+            $this->terrain->addTerrain(2009 ,3 , "redoubt");
             $this->cities = $specialHexA;
             $specialHexes = [];
             foreach ($specialHexA as $specialHexId) {
