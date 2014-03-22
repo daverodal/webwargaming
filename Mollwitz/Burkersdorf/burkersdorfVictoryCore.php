@@ -41,8 +41,32 @@ class burkersdorfVictoryCore extends victoryCore
 
      public function specialHexChange($args)
     {
-    }
+        $battle = Battle::getBattle();
+
+        list($mapHexName, $forceId) = $args;
+        if(in_array($mapHexName,$battle->cities)){
+            if ($forceId == PRUSSIAN_FORCE) {
+                $this->victoryPoints[PRUSSIAN_FORCE]  += 10;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+10 Prussian vp</span>";
+            }
+            if ($forceId == AUSTRIAN_FORCE) {
+                $this->victoryPoints[PRUSSIAN_FORCE]  -= 10;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-10 Prussian vp</span>";
+            }
+        }
+        if(in_array($mapHexName,$battle->loc)){
+            $vp = 50;
+            if ($forceId == PRUSSIAN_FORCE) {
+                $this->victoryPoints[PRUSSIAN_FORCE]  += $vp;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+$vp Prussian vp</span>";
+            }
+            if ($forceId == AUSTRIAN_FORCE) {
+                $this->victoryPoints[PRUSSIAN_FORCE]  -= $vp;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-$vp Prussian vp</span>";
+            }
+        }    }
     protected function checkVictory($attackingId,$battle){
+        return false;
         echo "Attack $attackingId ";
         var_dump($this->gameOver);
         $gameRules = $battle->gameRules;
@@ -104,4 +128,30 @@ class burkersdorfVictoryCore extends victoryCore
         }
         return false;
     }
+
+    public function postRecoverUnits($args){
+        $b = Battle::getBattle();
+        if($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE) {
+            $b->gameRules->flashMessages[] = "Austrian Movement alowance 2 this turn.";
+        }
+
+    }
+
+    public function postRecoverUnit($args)
+    {
+        $unit = $args[0];
+        $b = Battle::getBattle();
+        $id = $unit->id;
+
+        parent::postRecoverUnit($args);
+        if($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE && $unit->status == STATUS_READY) {
+            $this->movementCache->$id = $unit->maxMove;
+            $unit->maxMove = 2;
+        }
+        if($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_COMBAT_PHASE && isset($this->movementCache->$id)) {
+            $unit->maxMove = $this->movementCache->$id;
+            unset($this->movementCache->$id);
+        }
+    }
+
 }
