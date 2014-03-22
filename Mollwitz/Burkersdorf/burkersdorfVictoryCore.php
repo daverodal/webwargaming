@@ -7,19 +7,23 @@
  * To change this template use File | Settings | File Templates.
  */
 include "victoryCore.php";
+
 class burkersdorfVictoryCore extends victoryCore
 {
+    public $prussianEnterVictory;
 
     function __construct($data)
     {
-        if($data) {
+        if ($data) {
             $this->movementCache = $data->victory->movementCache;
             $this->victoryPoints = $data->victory->victoryPoints;
             $this->gameOver = $data->victory->gameOver;
+            $this->prussianEnterVictory = $this->prussianEnterVictory;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
             $this->gameOver = false;
+            $this->prussianEnterVictory = false;
         }
     }
 
@@ -27,10 +31,10 @@ class burkersdorfVictoryCore extends victoryCore
     {
         $unit = $args[0];
         $mult = 1;
-        if($unit->class == "cavalry" || $unit->class == "artillery"){
+        if ($unit->class == "cavalry" || $unit->class == "artillery") {
             $mult = 2;
         }
-        if($unit->forceId == 1) {
+        if ($unit->forceId == 1) {
             $victorId = 2;
             $this->victoryPoints[$victorId] += $unit->strength * $mult;
         } else {
@@ -39,88 +43,74 @@ class burkersdorfVictoryCore extends victoryCore
         }
     }
 
-     public function specialHexChange($args)
+    public function specialHexChange($args)
     {
         $battle = Battle::getBattle();
 
         list($mapHexName, $forceId) = $args;
-        if(in_array($mapHexName,$battle->cities)){
+        if (in_array($mapHexName, $battle->cities)) {
             if ($forceId == PRUSSIAN_FORCE) {
-                $this->victoryPoints[PRUSSIAN_FORCE]  += 10;
+                $this->prussianEnterVictory = true;
+                $this->victoryPoints[PRUSSIAN_FORCE] += 10;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+10 Prussian vp</span>";
             }
             if ($forceId == AUSTRIAN_FORCE) {
-                $this->victoryPoints[PRUSSIAN_FORCE]  -= 10;
+                $this->victoryPoints[PRUSSIAN_FORCE] -= 10;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-10 Prussian vp</span>";
             }
         }
-        if(in_array($mapHexName,$battle->loc)){
+        if (in_array($mapHexName, $battle->loc)) {
             $vp = 50;
             if ($forceId == PRUSSIAN_FORCE) {
-                $this->victoryPoints[PRUSSIAN_FORCE]  += $vp;
+                $this->prussianEnterVictory = true;
+                $this->victoryPoints[PRUSSIAN_FORCE] += $vp;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+$vp Prussian vp</span>";
             }
             if ($forceId == AUSTRIAN_FORCE) {
-                $this->victoryPoints[PRUSSIAN_FORCE]  -= $vp;
+                $this->victoryPoints[PRUSSIAN_FORCE] -= $vp;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-$vp Prussian vp</span>";
             }
-        }    }
-    protected function checkVictory($attackingId,$battle){
-        return false;
-        echo "Attack $attackingId ";
-        var_dump($this->gameOver);
+        }
+    }
+
+    protected function checkVictory($attackingId, $battle)
+    {
         $gameRules = $battle->gameRules;
-        var_dump($battle->mapData->specialHexes);
         $turn = $gameRules->turn;
-        $frenchWin = $angloMalplaquet =  $angloCities = $angloWing = false;
+        if (!$this->gameOver) {
+            $prussianWin = $austrianWin = false;
+            if (($this->victoryPoints[AUSTRIAN_FORCE] > 60) && ($this->victoryPoints[AUSTRIAN_FORCE] - ($this->victoryPoints[PRUSSIAN_FORCE]) > 10)) {
+                $austrianWin = true;
+            }
+            if (($this->victoryPoints[PRUSSIAN_FORCE] > 60) && ($this->victoryPoints[PRUSSIAN_FORCE] - $this->victoryPoints[AUSTRIAN_FORCE] > 10)) {
+                $prussianWin = true;
+            }
 
-        if(!$this->gameOver){
-            $specialHexes = $battle->mapData->specialHexes;
-            if($attackingId == ANGLO_FORCE){
-                echo "weeee ";
-                $malplaquet = $battle->malplaquet[0];
-                var_dump($malplaquet);
-                $otherCities = $battle->otherCities;
-                if($specialHexes->$malplaquet == ANGLO_FORCE){
-                    $angloMalplaquet = true;
-                    echo "Got Mal $malplaquet ";
-                    foreach($otherCities as $city){
-                        if($specialHexes->$city == ANGLO_FORCE){
-                            $angloCities = true;
-                        }
-                    }
+            $cities = $battle->cities;
+            $loc = $battle->loc;
+            $cities = array_merge($cities, $loc);
+            $victoryHexes = 0;
+            foreach ($cities as $city) {
+                if ($battle->mapData->getSpecialHex($city) === PRUSSIAN_FORCE) {
+                    $victoryHexes++;
                 }
             }
-            if($angloCities && ($this->victoryPoints[ANGLO_FORCE] - ($this->victoryPoints[FRENCH_FORCE]) > 10)){
-                $angloWin = true;
+            if ($prussianWin && $victoryHexes < 2) {
+                $prussianWin = false;
             }
-            if($turn == $gameRules->maxTurn+1){
-                echo "Turn $turn angloCities $angloCities mal $angloMalplaquet";
-                if(!$angloWin){
-                    if($angloCities === false && $angloMalplaquet === false){
-                        $frenchWin = true;
-                    }
-                }
-                if(!$frenchWin && !$angloWin){
-                    $this->winner = 0;
-                    $angloWin = $frenchWin = false;
-                    $gameRules->flashMessages[] = "Tie Game";
-                    $gameRules->flashMessages[] = "Game Over";
-                    $this->gameOver = true;
-                    return true;
-                }            }
-
-
-            if($angloWin){
-                $this->winner = ANGLO_FORCE;
-                $gameRules->flashMessages[] = "Allies Win";
+            if ($prussianWin && $austrianWin) {
+                $this->winner = 0;
+                $gameRules->flashMessages[] = "Tie Game";
             }
-            if($frenchWin){
-                $this->winner = FRENCH_FORCE;
-                $msg = "French Win Allies hold no cities";
-                $gameRules->flashMessages[] = $msg;
+            if ($prussianWin) {
+                $this->winner = PRUSSIAN_FORCE;
+                $gameRules->flashMessages[] = "Prussian Win";
             }
-            if($angloWin || $frenchWin){
+            if ($austrianWin) {
+                $this->winner = AUSTRIAN_FORCE;
+                $gameRules->flashMessages[] = "Austrians Win";
+            }
+            if ($austrianWin || $prussianWin || $turn > 15) {
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
                 return true;
@@ -129,9 +119,10 @@ class burkersdorfVictoryCore extends victoryCore
         return false;
     }
 
-    public function postRecoverUnits($args){
+    public function postRecoverUnits($args)
+    {
         $b = Battle::getBattle();
-        if($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE) {
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE) {
             $b->gameRules->flashMessages[] = "Austrian Movement alowance 2 this turn.";
         }
 
@@ -144,11 +135,11 @@ class burkersdorfVictoryCore extends victoryCore
         $id = $unit->id;
 
         parent::postRecoverUnit($args);
-        if($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE && $unit->status == STATUS_READY) {
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE && $unit->status == STATUS_READY) {
             $this->movementCache->$id = $unit->maxMove;
             $unit->maxMove = 2;
         }
-        if($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_COMBAT_PHASE && isset($this->movementCache->$id)) {
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_COMBAT_PHASE && isset($this->movementCache->$id)) {
             $unit->maxMove = $this->movementCache->$id;
             unset($this->movementCache->$id);
         }
