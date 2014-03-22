@@ -74,9 +74,9 @@ class hohenfriedebergVictoryCore extends victoryCore
         $turn = $gameRules->turn;
         if(!$this->gameOver){
             $prussianWin = $austrianWin = false;
-//            if(($this->victoryPoints[AUSTRIAN_FORCE] > 60) && ($this->victoryPoints[AUSTRIAN_FORCE] - ($this->victoryPoints[PRUSSIAN_FORCE]) > 10)){
-//                $austrianWin = true;
-//            }
+            if(($this->victoryPoints[AUSTRIAN_FORCE] > 60) && ($this->victoryPoints[AUSTRIAN_FORCE] - ($this->victoryPoints[PRUSSIAN_FORCE]) > 10)){
+                $austrianWin = true;
+            }
             if(($this->victoryPoints[PRUSSIAN_FORCE] > 60) && ($this->victoryPoints[PRUSSIAN_FORCE] - $this->victoryPoints[AUSTRIAN_FORCE] > 10)){
                 $prussianWin = true;
             }
