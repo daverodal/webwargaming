@@ -130,6 +130,7 @@
                     Retired Units
                 </div>
             </div>
+            <div style="display:none;" id="undeadpile"></div>
             <div id="gameViewer">
                 <div id="gameContainer">
                     <div id="gameImages" class="ui-widget-content">

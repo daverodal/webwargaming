@@ -56,6 +56,13 @@ class victoryCore
 
     }
 
+    public function postEliminated($args){
+        list($unit) = $args;
+        if($unit->class === "gorilla"){
+            $unit->hexagon->parent = "undeadpile";
+        }
+    }
+
     public function postReinforceZones($args)
     {
         $battle = Battle::getBattle();

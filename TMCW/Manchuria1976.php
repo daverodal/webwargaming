@@ -19,8 +19,8 @@ $phase_name[7] = "Victory";
 $phase_name[8] = "<span class='sovietFace'>Soviet</span> Deploy Phase";
 $phase_name[9] = "<span class='sovietFace'>Soviet</span> Mech Movement Phase";
 $phase_name[10] = "<span class='sovietFace'>Soviet</span> Replacement Phase";
-$phase_name[11] = "<span class='prcFace'>Loyalist</span> Mech Movement Phase";
-$phase_name[12] = "<span class='prcFace'>Loyalist</span> Replacement Phase";
+$phase_name[11] = "<span class='prcFace'>PRC</span> Mech Movement Phase";
+$phase_name[12] = "<span class='prcFace'>PRC</span> Replacement Phase";
 $phase_name[13] = "";
 $phase_name[14] = "";
 

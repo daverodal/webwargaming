@@ -744,6 +744,8 @@ class Force
         $unit->hexagon = new Hexagon($col+$id%10);
 
         $unit->hexagon->parent = "deadpile";
+        $battle->victory->postEliminated($unit);
+
 //        $this->units[$id]->hexagon->setXY($this->eliminationTrayHexagonX + (2 * $this->deleteCount), $this->eliminationTrayHexagonY);
     }
 
@@ -1161,8 +1163,9 @@ class Force
                     }
                     if($phase == BLUE_REPLACEMENT_PHASE || $phase == RED_REPLACEMENT_PHASE){
                         $status = STATUS_STOPPED;
+                        /* TODO Hack Hack Hack better answer is not isReduced, but canReduce */
                         if($this->units[$id]->forceId == $this->attackingForceId &&
-                            $this->units[$id]->isReduced ){
+                            $this->units[$id]->isReduced && $this->units[$id]->class !== "gorilla" ){
                             $status = STATUS_CAN_UPGRADE;
                         }
                     }
