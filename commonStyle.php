@@ -411,21 +411,32 @@ h4:hover{
 #statusDiv{
 
 }
+body{
+    -webkit-user-select:none;
+    -moz-user-select:-moz-none;
+    -ms-user-select:none;
+    user-select:none;
+}
+#header{
+    -moz-user-select:-moz-none;
+}
 #infoWrapper, #menuWrapper{
-    user-select:text;
     -webkit-touch-callout: none;
     /*-webkit-user-select: none;*/
     /*float:left;*/
     position: absolute;
 }
 #TimeWrapper, #crtWrapper , #OBCWrapper,#TECWrapper,#VCWrapper,#jumpWrapper,#GRWrapper{
-    user-select:text;
+    user-select:none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     /*float:left;*/
     position: relative;
     display:inline-block;
 
+}
+#GRWrapper{
+    -webkit-user-select:all;
 }
 .dropDown , #hideShow, #showDeploy{
     border:1px solid #333;
