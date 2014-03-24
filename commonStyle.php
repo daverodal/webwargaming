@@ -412,31 +412,30 @@ h4:hover{
 
 }
 body{
+
+}
+#header, #content, #theDiv, #gameViewer{
     -webkit-user-select:none;
+    -moz-user-select:none;
     -moz-user-select:-moz-none;
     -ms-user-select:none;
     user-select:none;
 }
-#header{
-    -moz-user-select:-moz-none;
-}
 #infoWrapper, #menuWrapper{
     -webkit-touch-callout: none;
-    /*-webkit-user-select: none;*/
-    /*float:left;*/
     position: absolute;
 }
 #TimeWrapper, #crtWrapper , #OBCWrapper,#TECWrapper,#VCWrapper,#jumpWrapper,#GRWrapper{
-    user-select:none;
     -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    /*float:left;*/
     position: relative;
     display:inline-block;
 
 }
 #GRWrapper{
     -webkit-user-select:all;
+    -moz-user-select:-moz-all;
+    -ms-user-select:all;
+    user-select:all;
 }
 .dropDown , #hideShow, #showDeploy{
     border:1px solid #333;
@@ -459,9 +458,7 @@ body{
 #TimeWrapper .WrapperLabel, #crtWrapper .WrapperLabel, #OBCWrapper .WrapperLabel, #TECWrapper .WrapperLabel,#VCWrapper .WrapperLabel,#jumpWrapper .WrapperLabel,#menuWrapper .WrapperLabel,#infoWrapper .WrapperLabel, #GRWrapper .WrapperLabel{
     margin:0;
     border:none;
-    user-select:text;
     -webkit-touch-callout: none;
-    -webkit-user-select: none;
     cursor: pointer;
     /*width:3em;*/
 }
@@ -800,13 +797,10 @@ fieldset{
 }
 
 #content{
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    user-select:none;
+
 
 }
 #map {
-    -webkit-user-select:none;
     width:<?=$mapWidth;?>;/*really*/
     height:<?=$mapHeight;?>;
     height:<?=$mapHeight;?>;
@@ -866,7 +860,6 @@ fieldset{
 .unit .unit-numbers {
     text-align:center;
     color:black;
-    -webkit-user-select:none;
 }
 .unit .unitSize{
     font-size:10px;

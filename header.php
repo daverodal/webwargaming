@@ -59,9 +59,7 @@
     float:left;
 }
 #crtWrapper , #OBCWrapper{
-    user-select:none;
     -webkit-touch-callout: none;
-    -webkit-user-select: none;
     float:left;
     position: relative;
 
@@ -69,9 +67,7 @@
 #crtWrapper h4, #OBCWrapper h4{
     margin:0;
     border:none;
-    user-select:none;
     -webkit-touch-callout: none;
-    -webkit-user-select: none;
 
 }
 #OBC{
@@ -239,13 +235,8 @@ body{
     }
 
     #content{
-        -webkit-user-select:none;
-        -moz-user-select:none;
-        user-select:none;
-
     }
     #map {
-        -webkit-user-select:none;
     width:<?=$mapWidth;?>;/*really*/
     height:<?=$mapHeight;?>;
 
