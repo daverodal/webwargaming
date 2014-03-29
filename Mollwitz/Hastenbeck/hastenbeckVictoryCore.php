@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 include "victoryCore.php";
-class burkersdorfVictoryCore extends victoryCore
+class hastenbeckVictoryCore extends victoryCore
 {
 
     function __construct($data)
