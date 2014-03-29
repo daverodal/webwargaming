@@ -566,7 +566,7 @@ width:3em;
     margin:0;
     padding:0
 }
-#hideShow,#showDeploy{
+#hideShow,#showDeploy, #showHexNums{
     cursor:pointer;
     position: static;
     font-weight: bold;

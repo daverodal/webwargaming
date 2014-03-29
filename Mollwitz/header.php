@@ -1603,6 +1603,15 @@ $(document).ready(function(){
     $("#mainTable").hide();
     $(".tableWrapper.alt").hide();
     $(".tableWrapper.main").show();
+    $("#showHexNums").on('click', function(){
+        var src = $("#map").attr('src');
+        if(src.match(/HexNumbers/)){
+            src = src.replace(/HexNumbers/,"");
+        }else{
+            src = src.replace(/Small/,"HexNumbersSmall");
+        }
+        $("#map").attr('src',src);
+    });
 
 });
 x.register("combatRules", function(combatRules, data){

@@ -159,6 +159,9 @@
 
                 </div>
             </div>
+            <?php if($scenario->showHexNums){?>
+            <span class="dropDown" id="showHexNums"> show/hide hex numbers</span>
+            <?php } ?>
     </header>
     <div id="content">
         <div id="rightCol">

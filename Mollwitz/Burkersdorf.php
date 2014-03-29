@@ -181,8 +181,11 @@ class Burkersdorf extends JagCore
             $this->game = $game;
             $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Burkersdorf/burkersdorfVictoryCore.php");
-
-            $this->mapData->setData(37, 26, "js/BurkersdorfText3Small.png");
+            if($scenario->requiredDeploy){
+                $this->mapData->setData(37, 26, "js/BurkersdorfObligatoryDeploymentSmall.png");
+            }else{
+                $this->mapData->setData(37, 26, "js/BurkersdorfText3Small.png");
+            }
             $this->mapData->blocksZoc->blocked = true;
             $this->mapData->blocksZoc->blocksnonroad = true;
 

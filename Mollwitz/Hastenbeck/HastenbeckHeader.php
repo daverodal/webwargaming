@@ -7,7 +7,7 @@
     }
     .playerOne {
 
-        background: rgb(61,110,255);
+        background: rgb(132, 181, 255);
         border-color: rgb(61,110,255) !important;
     }
 

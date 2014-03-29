@@ -1,122 +1,127 @@
 {
-  "Mollwitz": {
-    "name": "The Battle of Mollwitz",
-    "path": "Mollwitz",
-    "fileName": "Mollwitz.php",
-    "scenarios": {
-      "main": {
-        "description": "Standard Scenario"
-      },
-      "prussianSuperman": {
-        "description": "Prussians Superman get +1 for att/def in clear, art is 3 str",
-        "jagersdorfCombat":true,
-        "artStr": true
-      }
+    "Mollwitz": {
+        "name": "The Battle of Mollwitz",
+        "path": "Mollwitz",
+        "fileName": "Mollwitz.php",
+        "scenarios": {
+            "main": {
+                "description": "Standard Scenario"
+            },
+            "prussianSuperman": {
+                "description": "Prussians Superman get +1 for att/def in clear, art is 3 str",
+                "jagersdorfCombat": true,
+                "artStr": true
+            }
+        }
+    },
+    "Hastenbeck": {
+        "name": "The Battle of Hastenbeck",
+        "path": "Mollwitz",
+        "fileName": "Hastenbeck.php",
+        "scenarios": {
+            "main": {
+                "description": "Standard Scenario"
+            }
+        }
+    },
+    "Hohenfriedeberg": {
+        "name": "The Battle of Hohenfriedeberg",
+        "path": "Mollwitz",
+        "fileName": "Hohenfriedeberg.php",
+        "scenarios": {
+            "main": {
+                "description": "Standard Scenario"
+            },
+            "prussianSuperman": {
+                "description": "Prussians Superman get +1 for att/def in clear, art is 3 str",
+                "jagersdorfCombat": true
+            }
+        }
+    },
+    "Minden": {
+        "name": "The Battle of Minden",
+        "path": "Mollwitz",
+        "fileName": "Minden.php",
+        "scenarios": {
+            "main": {
+                "description": "Standard Scenario"
+            }
+        }
+    },
+    "Malplaquet": {
+        "name": "The Battle of Malplaquet",
+        "path": "Mollwitz",
+        "fileName": "Malplaquet.php",
+        "scenarios": {
+            "main": {
+                "description": "Standard Scenario",
+                "angloCavBonus": true
+            }
+        }
+    },
+    "Burkersdorf": {
+        "name": "The Battle of Burkersdorf",
+        "path": "Mollwitz",
+        "fileName": "Burkersdorf.php",
+        "scenarios": {
+            "main": {
+                "description": "Standard Scenario"
+            },
+            "requiredDeploy": {
+                "description": "Prussians must deploy occupy certain hexes.",
+                "requiredDeploy": true,
+                "showHexNums":true
+            }
+        }
+    },
+    "Lobositz": {
+        "name": "The Battle of Lobositz",
+        "path": "Mollwitz",
+        "fileName": "Lobositz.php",
+        "scenarios": {
+            "main": {
+                "description": "Standard Scenario"
+            },
+            "prussianSuperman": {
+                "description": "Prussians Superman get +1 for att/def in clear, art is 3 str",
+                "jagersdorfCombat": true
+            }
+        }
+    },
+    "Zorndorf": {
+        "name": "The Battle of Zorndorf.",
+        "path": "Mollwitz",
+        "fileName": "Zorndorf.php",
+        "scenarios": {
+            "main": {
+                "description": "Standard Scenario"
+            }
+        }
+    },
+    "Jagersdorf": {
+        "name": "The Battle of Gross Jagersdorf",
+        "path": "Mollwitz",
+        "fileName": "Jagersdorf.php",
+        "scenarios": {
+            "main": {
+                "jagersdorfCombat": true,
+                "description": "Prussians are pre deployed"
+            },
+            "prussianDeploys": {
+                "description": "Prussians has setup mode ",
+                "jagersdorfCombat": true,
+                "prussianDeploy": true
+            }
+        }
+    },
+    "Dubba1843": {
+        "name": "Dubba 1843",
+        "path": "Mollwitz",
+        "fileName": "Dubba1843.php",
+        "scenarios": {
+            "main": {
+                "description": "Standard Scenario"
+            }
+        }
     }
-  },
-  "Hastenbeck": {
-    "name": "The Battle of Hastenbeck",
-    "path": "Mollwitz",
-    "fileName": "Hastenbeck.php",
-    "scenarios": {
-      "main": {
-        "description": "Standard Scenario"
-      }
-    }
-  },
-  "Hohenfriedeberg": {
-    "name": "The Battle of Hohenfriedeberg",
-    "path": "Mollwitz",
-    "fileName": "Hohenfriedeberg.php",
-    "scenarios": {
-      "main": {
-        "description": "Standard Scenario"
-      },
-      "prussianSuperman": {
-        "description": "Prussians Superman get +1 for att/def in clear, art is 3 str",
-        "jagersdorfCombat":true
-      }
-    }
-  },
-  "Minden": {
-    "name": "The Battle of Minden",
-    "path": "Mollwitz",
-    "fileName": "Minden.php",
-    "scenarios": {
-      "main": {
-        "description": "Standard Scenario"
-      }
-    }
-  },
-  "Malplaquet": {
-    "name": "The Battle of Malplaquet",
-    "path": "Mollwitz",
-    "fileName": "Malplaquet.php",
-    "scenarios": {
-      "main": {
-        "description": "Standard Scenario",
-        "angloCavBonus": true
-      }
-    }
-  },
-  "Burkersdorf": {
-    "name": "The Battle of Burkersdorf",
-    "path": "Mollwitz",
-    "fileName": "Burkersdorf.php",
-    "scenarios": {
-      "main": {
-        "description": "Standard Scenario"
-      }
-    }
-  },
-  "Lobositz": {
-    "name": "The Battle of Lobositz",
-    "path": "Mollwitz",
-    "fileName": "Lobositz.php",
-    "scenarios": {
-      "main": {
-        "description": "Standard Scenario"
-      },
-      "prussianSuperman": {
-        "description": "Prussians Superman get +1 for att/def in clear, art is 3 str",
-        "jagersdorfCombat":true
-      }
-    }
-  },
-  "Zorndorf": {
-    "name": "The Battle of Zorndorf.",
-    "path": "Mollwitz",
-    "fileName": "Zorndorf.php",
-    "scenarios": {
-      "main": {
-        "description": "Standard Scenario"
-      }
-    }
-  },
-  "Jagersdorf": {
-    "name": "The Battle of Gross Jagersdorf",
-    "path": "Mollwitz",
-    "fileName": "Jagersdorf.php",
-    "scenarios": {
-      "main": {
-        "jagersdorfCombat":true,
-        "description": "Prussians are pre deployed"
-      },
-      "prussianDeploys": {
-        "description": "Prussians has setup mode ",
-        "jagersdorfCombat":true,
-        "prussianDeploy":true
-      }
-    }
-  },
-  "Dubba1843": {
-    "name": "Dubba 1843",
-    "path": "Mollwitz",
-    "fileName": "Dubba1843.php",
-    "scenarios": {
-      "main": {
-        "description": "Standard Scenario"
-      }
-    }
-  }
 }

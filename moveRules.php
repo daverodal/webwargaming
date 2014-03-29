@@ -947,7 +947,7 @@ class MoveRules
             if ($this->force->getUnitReinforceZone($id) == $this->terrain->getReinforceZone($hexagon)) {
                 /* @var Unit $movingUnit */
                 $movingUnit = $this->force->units[$id];
-                if ($movingUnit->setStatus(STATUS_STOPPED) == true) {
+                if ($movingUnit->setStatus(STATUS_CAN_DEPLOY) == true) {
                     $this->force->updateMoveStatus($id, $hexagon, 0);
                     $this->anyUnitIsMoving = false;
                     $this->movingUnitId = NONE;
