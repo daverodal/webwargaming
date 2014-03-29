@@ -1128,6 +1128,11 @@ class Force
 
             switch ($this->units[$id]->status)
             {
+                case STATUS_CAN_DEPLOY:
+                    if($this->units[$id]->hexagon->parent == "deployBox"){
+                        continue;
+                    }
+
                 case STATUS_UNAVAIL_THIS_PHASE:
                 case STATUS_STOPPED:
                 case STATUS_DEFENDED:
@@ -1144,6 +1149,7 @@ class Force
                 case STATUS_NO_RESULT:
                 case STATUS_EXCHANGED:
                 case STATUS_CAN_ATTACK_LOSE:
+
 
 
 

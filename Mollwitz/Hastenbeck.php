@@ -113,25 +113,24 @@ class Hastenbeck extends JagCore
         $coinFlip = floor(2 * (rand() / getrandmax()));
 
         $frenchDeploy = $coinFlip == 1 ? "B": "C";
-        $frenchDeploy = "B";
 
         for ($i = 0; $i < 4; $i++) {
-            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FreInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'infantry');
+            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'infantry');
         }
         for ($i = 0; $i < 25; $i++) {
-            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FreInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'infantry');
+            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'infantry');
         }
         for ($i = 0; $i < 4; $i++) {
-            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FreCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
+            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
         }
         for ($i = 0; $i < 7; $i++) {
-            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FreCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
+            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
         }
         for ($i = 0; $i < 1; $i++) {
-            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FreCavBadge.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
+            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
         }
         for ($i = 0; $i < 6; $i++) {
-            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FreArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, $artRange, "French", false, 'artillery');
+            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, $artRange, "French", false, 'artillery');
         }
 
 
@@ -439,6 +438,7 @@ class Hastenbeck extends JagCore
             $this->terrain->addTerrain(2926 ,1 , "forest");
             $specialHexA[] = 2826;
             $this->terrain->addTerrain(2826 ,1 , "forest");
+            $this->terrain->addReinforceZone(2826,'B');
             $this->terrain->addReinforceZone(2726,'B');
             $this->terrain->addTerrain(2726 ,1 , "forest");
             $this->terrain->addReinforceZone(2626,'B');
@@ -457,6 +457,7 @@ class Hastenbeck extends JagCore
             $this->terrain->addTerrain(2426 ,1 , "forest");
             $specialHexA[] = 3126;
             $this->terrain->addTerrain(3126 ,1 , "forest");
+            $this->terrain->addReinforceZone(3126,'B');
             $this->terrain->addReinforceZone(2423,'B');
             $this->terrain->addReinforceZone(2324,'B');
             $this->terrain->addReinforceZone(2325,'B');
@@ -476,6 +477,7 @@ class Hastenbeck extends JagCore
             $this->terrain->addTerrain(1925 ,1 , "road");
             $specialHexA[] = 1926;
             $this->terrain->addTerrain(1926 ,1 , "road");
+            $this->terrain->addReinforceZone(1926,'B');
             $this->terrain->addReinforceZone(1826,'B');
             $this->terrain->addReinforceZone(1825,'B');
             $this->terrain->addReinforceZone(1824,'B');
@@ -766,6 +768,7 @@ class Hastenbeck extends JagCore
             $this->terrain->addTerrain(2009 ,3 , "forest");
             $specialHexB[] = 2416;
             $this->terrain->addTerrain(2416 ,1 , "redoubt");
+            $this->terrain->addReinforceZone(2416,'A');
             $this->terrain->addTerrain(320 ,1 , "town");
             $this->terrain->addTerrain(419 ,3 , "town");
             $this->terrain->addTerrain(419 ,1 , "town");

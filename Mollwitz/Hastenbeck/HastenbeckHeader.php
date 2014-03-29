@@ -3,7 +3,7 @@
         width:1800px !important;
     }
     .unit.French .counterWrapper{
-        background:rgb(159,159,159);
+        background:#fff
     }
     .playerOne {
 
