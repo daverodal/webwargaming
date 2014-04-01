@@ -20,7 +20,8 @@
         "fileName": "Hastenbeck.php",
         "scenarios": {
             "main": {
-                "description": "Standard Scenario"
+                "description": "Standard Scenario",
+                "showHexNums":true
             }
         }
     },

@@ -184,7 +184,7 @@ class Hastenbeck extends JagCore
             $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Hastenbeck/hastenbeckVictoryCore.php");
 
-            $this->mapData->setData($maxX, $maxY, "js/Hastenbeck1.jpg");
+            $this->mapData->setData($maxX, $maxY, "js/Hastenbeck1Small.png");
             $this->mapData->blocksZoc->blocked = true;
             $this->mapData->blocksZoc->blocksnonroad = true;
 
@@ -255,8 +255,14 @@ class Hastenbeck extends JagCore
             $this->terrain->addTerrainFeature("swamp", "swamp", "s", 9, 0, 1, true, false);
             $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("redoubt", "redoubt", "d", 0, 2, 0, false);
+            $this->terrain->addTerrainFeature("forta","forta","f",0,0,0,false);
             $this->terrain->addTerrainFeature("blocksnonroad", "blocksnonroad", "b", 1, 0, 0, false);
             $this->terrain->addAltEntranceCost('swamp','artillery','blocked');
+            $this->terrain->addNatAltEntranceCost('forta','French','artillery','blocked');
+            $this->terrain->addNatAltEntranceCost('forta','French','cavalry','blocked');
+            $this->terrain->addNatAltEntranceCost('forta','French','infantry','blocked');
+
+
 
 
 
@@ -273,12 +279,19 @@ class Hastenbeck extends JagCore
             $specialHexA = [];
             $specialHexB = [];
             $this->terrain->addTerrain(102 ,1 , "town");
+            $this->terrain->addTerrain(102 ,1 , "forta");
             $this->terrain->addTerrain(103 ,1 , "town");
+            $this->terrain->addTerrain(103 ,1 , "forta");
             $this->terrain->addTerrain(104 ,1 , "town");
+            $this->terrain->addTerrain(104 ,1 , "forta");
             $this->terrain->addTerrain(105 ,1 , "town");
+            $this->terrain->addTerrain(105 ,1 , "forta");
             $this->terrain->addTerrain(204 ,1 , "town");
+            $this->terrain->addTerrain(204 ,1 , "forta");
             $this->terrain->addTerrain(203 ,1 , "town");
+            $this->terrain->addTerrain(203 ,1 , "forta");
             $this->terrain->addTerrain(202 ,1 , "town");
+            $this->terrain->addTerrain(202 ,1 , "forta");
             $this->terrain->addTerrain(202 ,4 , "town");
             $this->terrain->addTerrain(202 ,3 , "town");
             $this->terrain->addTerrain(203 ,4 , "town");
@@ -1517,7 +1530,6 @@ class Hastenbeck extends JagCore
             $this->terrain->addTerrain(2416 ,2 , "redoubt");
             $this->terrain->addTerrain(2517 ,4 , "redoubt");
             $this->terrain->addTerrain(2416 ,3 , "redoubt");
-            $this->terrain->addTerrain(303 ,3 , "road");
             $this->terrain->addTerrain(303 ,1 , "road");
             $this->terrain->addTerrain(403 ,4 , "road");
             $this->terrain->addTerrain(403 ,1 , "road");
@@ -1812,7 +1824,6 @@ class Hastenbeck extends JagCore
             $this->terrain->addTerrain(206 ,1 , "road");
             $this->terrain->addTerrain(205 ,2 , "road");
             $this->terrain->addTerrain(205 ,1 , "road");
-            $this->terrain->addTerrain(205 ,4 , "road");
             $this->terrain->addTerrain(1914 ,2 , "road");
             $this->terrain->addTerrain(1914 ,1 , "sunkenroad");
             $this->terrain->addTerrain(1914 ,1 , "road");

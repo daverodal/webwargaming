@@ -359,7 +359,7 @@ class MoveRules
                     continue;
                 }
                 $moveAmount = $this->terrain->getTerrainMoveCost($hexNum, $newHexNum, $unit->forceMarch, $unit);
-                if ($moveAmount == "blocked") {
+                if ($moveAmount === "blocked") {
                     continue;
                 }
                 $moveAmount += $exitCost;
