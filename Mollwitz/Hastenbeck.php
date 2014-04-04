@@ -1530,6 +1530,7 @@ class Hastenbeck extends JagCore
             $this->terrain->addTerrain(2416 ,2 , "redoubt");
             $this->terrain->addTerrain(2517 ,4 , "redoubt");
             $this->terrain->addTerrain(2416 ,3 , "redoubt");
+            $this->terrain->addTerrain(303 ,3 , "forta");
             $this->terrain->addTerrain(303 ,1 , "road");
             $this->terrain->addTerrain(403 ,4 , "road");
             $this->terrain->addTerrain(403 ,1 , "road");
@@ -1824,6 +1825,7 @@ class Hastenbeck extends JagCore
             $this->terrain->addTerrain(206 ,1 , "road");
             $this->terrain->addTerrain(205 ,2 , "road");
             $this->terrain->addTerrain(205 ,1 , "road");
+            $this->terrain->addTerrain(205 ,4 , "forta");
             $this->terrain->addTerrain(1914 ,2 , "road");
             $this->terrain->addTerrain(1914 ,1 , "sunkenroad");
             $this->terrain->addTerrain(1914 ,1 , "road");
@@ -1996,6 +1998,16 @@ class Hastenbeck extends JagCore
             $this->terrain->addTerrain(2419 ,4 , "road");
             $this->terrain->addTerrain(2319 ,3 , "road");
             $this->terrain->addTerrain(2219 ,4 , "road");
+            $this->terrain->addTerrain(101 ,2 , "forta");
+            $this->terrain->addTerrain(201 ,3 , "forta");
+            $this->terrain->addTerrain(201 ,2 , "forta");
+            $this->terrain->addTerrain(302 ,3 , "forta");
+            $this->terrain->addTerrain(303 ,4 , "forta");
+            $this->terrain->addTerrain(304 ,4 , "forta");
+            $this->terrain->addTerrain(304 ,3 , "forta");
+            $this->terrain->addTerrain(305 ,4 , "forta");
+            $this->terrain->addTerrain(204 ,2 , "forta");
+            $this->terrain->addTerrain(105 ,2 , "forta");
             $this->cities = $specialHexA;
             $specialHexes = [];
             foreach ($specialHexA as $specialHexId) {
