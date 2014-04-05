@@ -301,21 +301,20 @@ class GameRules
                                 if (!$unit->unitHasNotMoved()) {
                                     return false;
                                 }
-                                if ($unit->forceMarch == true) {
+                                if ($unit->forceMarch === true) {
                                     $unit->forceMarch = false;
                                 } else {
                                     $unit->forceMarch = true;
                                 }
-                                return;
                             }
 
-                            if($c == 'x' || $c == 'X'){
-                                $unit = $this->force->getUnit($this->moveRules->movingUnitId);
-
-                                if ($unit->hexagon->parent == "gameImages") {
-                                    return $this->moveRules->exitUnit($unit->id);
-                                }
-                            }
+//                            if($c == 'x' || $c == 'X'){
+//                                $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+//
+//                                if ($unit->hexagon->parent == "gameImages") {
+//                                    return $this->moveRules->exitUnit($unit->id);
+//                                }
+//                            }
 
 
 //                            $this->force->units[$this->moveRules->movingUnitId]->forceMarch = $this->force->units[$this->moveRules->movingUnitId]->forceMarch^1;
