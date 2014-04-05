@@ -868,9 +868,12 @@ class MoveRules
             /* @var Unit $unit */
             $unit = $this->force->getUnit($id);
             if ($unit->setStatus(STATUS_DEPLOYING) == true) {
+                $battle = Battle::getBattle();
+                $victory = $battle->victory;
                 $movesLeft = 0;
                 $zoneName = $unit->reinforceZone;
                 $zones = $this->terrain->getReinforceZones($zoneName);
+                list($zones) = $battle->victory->postDeployZones($zones, $unit);
                 foreach ($zones as $zone) {
                     $startHex = $zone->hexagon->name;
                     if ($this->force->hexagonIsOccupied($zone->hexagon)) {

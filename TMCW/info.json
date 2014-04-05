@@ -39,6 +39,22 @@
       }
     }
   },
+    "Amph": {
+        "name": "Sur La Mer",
+        "path": "TMCW",
+        "fileName": "Amph.php",
+        "scenarios": {
+            "HardCuneiform":{
+                "description": "Rebel raid by the sea",
+                "supply":true,
+                "loyalMechMove": 8,
+                "loyalExtraInf": true,
+                "supplyLen": 8,
+                "hardCuneiform":true,
+                "showHexNums":true
+           }
+        }
+    },
   "Nomonhan": {
     "name": "The Nomonhan Incident",
     "path": "TMCW",

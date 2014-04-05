@@ -53,7 +53,15 @@ $(document).ready(function(){
         x.timeTravel = false;
         x.fetch(0);
     });
-
+    $("#showHexNums").on('click', function(){
+        var src = $("#map").attr('src');
+        if(src.match(/HexNumbers/)){
+            src = src.replace(/HexNumbers/,"");
+        }else{
+            src = src.replace(/Small/,"HexNumbersSmall");
+        }
+        $("#map").attr('src',src);
+    });
     fixHeader();
     $(window).resize(fixItAll);
 });

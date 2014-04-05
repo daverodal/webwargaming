@@ -8,13 +8,13 @@
  */
 ?>
 <style type="text/css">
-    ul li{
+    #GR ul li{
         list-style:none;
     }
-    ol li{
+    #GR ol li{
         list-style:inherit;
     }
-    li {
+    #GR li {
         margin: 10px 0;
     }
 </style>

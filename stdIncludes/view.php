@@ -117,7 +117,9 @@
             <?php include "timeTravel.php"; ?>
             <span id="hideShow">Retired Units</span>
             <span id="showDeploy">Deploy/Staging Box</span>
-
+            <?php if($scenario->showHexNums){?>
+                <span class="dropDown" id="showHexNums"> show/hide hex numbers</span>
+            <?php } ?>
     </header>
     <div id="content">
         <div id="rightCol">
