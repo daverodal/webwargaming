@@ -190,6 +190,7 @@ class Amph extends Battle
         $this->force->addUnit("lll", LOYALIST_FORCE, 1904, "multiGor.png", 3, 1, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
         $this->force->addUnit("lll", LOYALIST_FORCE, 1809, "multiGor.png", 3, 1, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
 
+        $this->force->addUnit("x", RED_FORCE, "gameTurn1", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 1, 1, "loyalist", true, 'shock');
         $this->force->addUnit("x", RED_FORCE, "gameTurn2", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 2, 1, "loyalist", true, 'shock');
         $this->force->addUnit("x", RED_FORCE, "gameTurn3", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 3, 1, "loyalist", true, 'shock');
         $this->force->addUnit("x", RED_FORCE, "gameTurn4", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 4, 1, "loyalist", true, 'shock');
