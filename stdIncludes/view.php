@@ -40,7 +40,7 @@
                         </ul>
                     </div>
                 </div>
-                <span  id="zoom">
+                <span id="zoom">
                     <span>2.0</span>
                     <span>1.5</span>
                     <span>1.3</span>
@@ -117,7 +117,8 @@
             <?php include "timeTravel.php"; ?>
             <span id="hideShow">Retired Units</span>
             <span id="showDeploy">Deploy/Staging Box</span>
-            <?php if($scenario->showHexNums){?>
+            <span class="dropDown" id="showExited">Exited Units<div class="clear"></div></span>
+            <?php if ($scenario->showHexNums) { ?>
                 <span class="dropDown" id="showHexNums"> show/hide hex numbers</span>
             <?php } ?>
     </header>
@@ -132,6 +133,12 @@
                 <div style="right:10px;font-size:50px;font-family:sans-serif;bottom:10px;position:absolute;color:#666;">
                     Retired Units
                 </div>
+            </div>
+            <div style="display:none;" id="exitWrapper">
+                <div style="margin-right:3px;" class="left">Exited Units</div>
+                <div id="exitBox">
+                </div>
+                <div style="clear:both;"></div>
             </div>
             <div style="display:none;" id="undeadpile"></div>
             <div id="gameViewer">

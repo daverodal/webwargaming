@@ -152,12 +152,20 @@ class Amph extends Battle
             case SELECT_COUNTER_EVENT:
                 /* fall through */
             case SELECT_SHIFT_COUNTER_EVENT:
-                return $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id), $click);
+            /* fall through */
+            case COMBAT_PIN_EVENT:
+
+            return $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id), $click);
 
                 break;
 
             case SELECT_BUTTON_EVENT:
                 $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0, $click);
+                break;
+
+            case KEYPRESS_EVENT:
+                $this->gameRules->processEvent(KEYPRESS_EVENT, $id, null, $click);
+                break;
 
         }
         return true;

@@ -715,15 +715,27 @@ class MoveRules
         $victory->preStopMovingUnit($movingUnit);
     }
 
-    function eexit($id)
+    function exitUnit($id)
     {
         /* @var Unit $unit */
         $unit = $this->force->units[$id];
         if ($unit->unitIsMoving() == true) {
             if ($unit->setStatus(STATUS_EXITED) == true) {
+                $battle = Battle::getBattle();
+                $victory = $battle->victory;
+                list($ret) = $victory->isExit($unit);
+                if($ret === $unit || $ret === false){
+                    return;
+                }
+                $hexagon = new Hexagon(0 + $id % 10);
+                $hexagon->parent = 'exitBox';
+                $this->force->updateMoveStatus($unit->id, $hexagon, 1);
                 $this->anyUnitIsMoving = false;
                 $this->movingUnitId = NONE;
+                $this->moves = new stdClass();
             }
+
+            return;
         }
     }
 

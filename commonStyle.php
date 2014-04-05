@@ -566,7 +566,7 @@ width:3em;
     margin:0;
     padding:0
 }
-#hideShow,#showDeploy, #showHexNums{
+#hideShow,#showDeploy, #showHexNums, #showExited{
     cursor:pointer;
     position: static;
     font-weight: bold;
@@ -825,7 +825,7 @@ fieldset{
     position:relative;
 
 }
-#deployWrapper{
+#deployWrapper, #exitWrapper{
     /*display:none;*/
     padding:4px 7px 4px 7px;
     text-align:left;

@@ -644,6 +644,12 @@ function initialize() {
 
         }
     });
+    $( "#showExited" ).click(function() {
+        up ^= 1;
+        $( "#exitWrapper" ).toggle({effect:"blind",direction:"up",complete:fixHeader});
+        fixHeader();
+        return;
+    });
     $( "#showDeploy" ).click(function() {
         up ^= 1;
         $( "#deployWrapper" ).toggle({effect:"blind",direction:"up",complete:fixHeader});

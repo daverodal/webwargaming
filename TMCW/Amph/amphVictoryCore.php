@@ -200,6 +200,14 @@ class amphVictoryCore extends victoryCore
 
     }
 
+    function isExit($args){
+        list($unit) = $args;
+        if($unit->forceId == BLUE_FORCE && in_array($unit->hexagon->name,$this->landingZones)){
+            return array(true);
+        }
+        return array(false);
+    }
+
 
     public function postRecoverUnit($args)
     {
