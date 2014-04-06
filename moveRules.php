@@ -720,13 +720,13 @@ class MoveRules
         /* @var Unit $unit */
         $unit = $this->force->units[$id];
         if ($unit->unitIsMoving() == true) {
+            $battle = Battle::getBattle();
+            $victory = $battle->victory;
+            list($ret) = $victory->isExit($unit);
+            if($ret === $unit || $ret === false){
+                return;
+            }
             if ($unit->setStatus(STATUS_EXITED) == true) {
-                $battle = Battle::getBattle();
-                $victory = $battle->victory;
-                list($ret) = $victory->isExit($unit);
-                if($ret === $unit || $ret === false){
-                    return;
-                }
                 $hexagon = new Hexagon(0 + $id % 10);
                 $hexagon->parent = 'exitBox';
                 $this->force->updateMoveStatus($unit->id, $hexagon, 1);

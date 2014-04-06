@@ -308,13 +308,15 @@ class GameRules
                                 }
                             }
 
-//                            if($c == 'x' || $c == 'X'){
-//                                $unit = $this->force->getUnit($this->moveRules->movingUnitId);
-//
-//                                if ($unit->hexagon->parent == "gameImages") {
-//                                    return $this->moveRules->exitUnit($unit->id);
-//                                }
-//                            }
+                            if($c == 'x' || $c == 'X'){
+                                $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+                                if ($unit->hexagon->parent == "gameImages") {
+                                    if($this->moveRules->exitUnit($unit->id)){
+                                        return;
+                                    }
+                                }
+                            }
 
 
 //                            $this->force->units[$this->moveRules->movingUnitId]->forceMarch = $this->force->units[$this->moveRules->movingUnitId]->forceMarch^1;

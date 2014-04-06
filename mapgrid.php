@@ -197,7 +197,6 @@ class MapData implements JsonSerializable{
             return;
         }
         $k = sprintf("%04d","0000".$hex);
-        echo "Removed $k ";
         unset($this->specialHexes->$k);
     }
 

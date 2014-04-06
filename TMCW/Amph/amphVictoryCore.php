@@ -149,9 +149,11 @@ class amphVictoryCore extends victoryCore
             /* first 4 units gaga */
             $supply = [];
             $battle->terrain->reinforceZones = [];
-            for($i = 16;$i <= 19;$i++){
-                $unit = $force->units[$i];
-                if($unit->hexagon->parent === "gameImages"){
+            $units = $force->units;
+            $num = count($units);
+            for($i = 0;$i <= $num;$i++){
+                $unit = $units[$i];
+                if($unit->forceId == BLUE_FORCE && $unit->hexagon->parent === "gameImages"){
                     $supply[$unit->hexagon->name] = BLUE_FORCE;
                     $this->landingZones[] = $unit->hexagon->name;
                 }
@@ -338,62 +340,6 @@ class amphVictoryCore extends victoryCore
         }
 
         /*only get special VPs' at end of first Movement Phase */
-        if ($specialHexes) {
-            $scenario = $battle->scenario;
-            if ($scenario->supply === true) {
-                $inCity = false;
-                $roadCut = false;
-                foreach ($specialHexes as $k => $v) {
-                    if ($v == REBEL_FORCE) {
-                        $points = 1;
-                        if ($k == 2414 || $k == 2415 || $k == 2515) {
-                            $inCity = true;
-                            $points = 5;
-                        } elseif ($k >= 2416) {
-                            /* Remember the first road Cut */
-                            if ($roadCut === false) {
-                                $roadCut = $k;
-                            }
-                            continue;
-                        }
-                        $vp[$v] += $points;
-                        $battle->mapData->specialHexesVictory->$k = "<span class='rebelVictoryPoints'>+$points vp</span>";
-                    } else {
-                        //                    $vp[$v] += .5;
-                    }
-                }
-                if ($roadCut !== false) {
-                    $vp[REBEL_FORCE] += 3;
-                    $battle->mapData->specialHexesVictory->$roadCut = "<span class='rebelVictoryPoints'>+3 vp</span>";
-                }
-                if (!$inCity) {
-                    /* Cuneiform isolated? */
-                    $cuneiform = 2515;
-                    if (!$battle->moveRules->calcSupplyHex($cuneiform, array(3014, 3015, 3016, 3017, 3018, 3019, 3020, 2620, 2720, 2820, 2920), array(2 => true, 3 => true), RED_FORCE, $this->supplyLen)) {
-                        $vp[REBEL_FORCE] += 5;
-
-                        $battle->mapData->specialHexesVictory->$cuneiform = "<span class='rebelVictoryPoints'>+5 vp</span>";
-
-                    }
-                }
-            } else {
-                foreach ($specialHexes as $k => $v) {
-                    if ($v == 1) {
-                        $points = 1;
-                        if ($k == 2414 || $k == 2415 || $k == 2515) {
-                            $points = 5;
-                        } elseif ($k >= 2416) {
-                            $points = 3;
-                        }
-                        $vp[$v] += $points;
-                        $battle = Battle::getBattle();
-                        $battle->mapData->specialHexesVictory->$k = "<span class='rebelVictoryPoints'>+$points vp</span>";
-                    } else {
-                        //                    $vp[$v] += .5;
-                    }
-                }
-            }
-        }
         $this->victoryPoints = $vp;
     }
 }
