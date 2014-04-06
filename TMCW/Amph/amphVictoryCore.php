@@ -191,23 +191,19 @@ class amphVictoryCore extends victoryCore
 
         $b = Battle::getBattle();
 
-        if ($b->scenario->supply === true) {
-            $goal = $this->landingZones;
-            $this->rebelGoal = $goal;
+        $goal = $this->landingZones;
+        $this->rebelGoal = $goal;
 
-            $goal = array_merge($goal, array(110,210,310,410,510,610,710,810,910,1010,1110,1210,1310,1410,1510,1610,1710,1810,1910,2010));
-            $this->loyalistGoal = $goal;
-
-        }
-
+        $goal = array_merge($goal, array(110,210,310,410,510,610,710,810,910,1010,1110,1210,1310,1410,1510,1610,1710,1810,1910,2010));
+        $this->loyalistGoal = $goal;
     }
 
     function isExit($args){
         list($unit) = $args;
         if($unit->forceId == BLUE_FORCE && in_array($unit->hexagon->name,$this->landingZones)){
-            return array(true);
+            return true;
         }
-        return array(false);
+        return false;
     }
 
 

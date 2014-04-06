@@ -30,6 +30,13 @@ class Victory{
         if($this->core && method_exists($this->core,$name)){
             return $this->core->$name($arguments);
         }
+        /*
+         * Pattern matching, if method called starts with is, return false on no matching method
+         * other return passed arguments array.
+         */
+        if(preg_match("/^is/",$name)){
+            return false;
+        }
         return $arguments;
 
     }

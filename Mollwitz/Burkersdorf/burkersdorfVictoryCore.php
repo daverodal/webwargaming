@@ -144,5 +144,4 @@ class burkersdorfVictoryCore extends victoryCore
             unset($this->movementCache->$id);
         }
     }
-
 }

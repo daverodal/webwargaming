@@ -722,8 +722,8 @@ class MoveRules
         if ($unit->unitIsMoving() == true) {
             $battle = Battle::getBattle();
             $victory = $battle->victory;
-            list($ret) = $victory->isExit($unit);
-            if($ret === $unit || $ret === false){
+            $ret = $victory->isExit($unit);
+            if($ret === false){
                 return;
             }
             if ($unit->setStatus(STATUS_EXITED) == true) {
