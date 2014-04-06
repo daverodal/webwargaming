@@ -34,6 +34,7 @@ $mode_name[2] = "";
 define("REBEL_FORCE", BLUE_FORCE);
 define("LOYALIST_FORCE", RED_FORCE);
 
+require_once "Battle.php";
 require_once "crtTraits.php";
 require_once "combatRules.php";
 require_once "crt.php";
@@ -56,7 +57,7 @@ $oneHalfImageWidth = 16;
 $oneHalfImageHeight = 16;
 
 
-class Amph extends Battle
+class Amph extends LandBattle
 {
     /* a comment */
 
@@ -78,7 +79,7 @@ class Amph extends Battle
 
     public $players;
 
-    static function getHeader($name, $playerData)
+    static function getHeader($name, $playerData, $arg = false)
     {
         global $force_name;
 
@@ -98,18 +99,6 @@ class Amph extends Battle
 
         @include_once "view.php";
     }
-
-    static function playAs($name, $wargame)
-    {
-
-        @include_once "playAs.php";
-    }
-
-    static function playMulti($name, $wargame)
-    {
-        @include_once "playMulti.php";
-    }
-
 
     function save()
     {

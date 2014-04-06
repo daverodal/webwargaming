@@ -194,6 +194,7 @@ class amphVictoryCore extends victoryCore
         $goal = $this->landingZones;
         $this->rebelGoal = $goal;
 
+        $goal = array();
         $goal = array_merge($goal, array(110,210,310,410,510,610,710,810,910,1010,1110,1210,1310,1410,1510,1610,1710,1810,1910,2010));
         $this->loyalistGoal = $goal;
     }

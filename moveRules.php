@@ -727,7 +727,8 @@ class MoveRules
                 return;
             }
             if ($unit->setStatus(STATUS_EXITED) == true) {
-                $hexagon = new Hexagon(0 + $id % 10);
+                /* TODO: awful. probably don't need to set $id for Hexagon name */
+                $hexagon = new Hexagon($id);
                 $hexagon->parent = 'exitBox';
                 $this->force->updateMoveStatus($unit->id, $hexagon, 1);
                 $this->anyUnitIsMoving = false;
