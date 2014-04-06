@@ -49,13 +49,6 @@ require_once "terrain.php";
 require_once "display.php";
 require_once "victory.php";
 
-// battlefforallencreek.js
-
-// counter image values
-$oneHalfImageWidth = 16;
-$oneHalfImageHeight = 16;
-
-
 class Manchuria1976 extends Battle
 {
     /* a comment */
@@ -108,31 +101,6 @@ class Manchuria1976 extends Battle
 
     static function playMulti($name, $wargame){
         @include_once "playMulti.php";
-    }
-
-    public function resize($small, $player)
-    {
-        if ($small) {
-            $this->mapViewer[$player]->setData(60, 76, // originX, originY
-                25, 25, // top hexagon height, bottom hexagon height
-                15, 30 // hexagon edge width, hexagon center width
-            );
-            $this->playerData->${player}->mapWidth = "auto";
-            $this->playerData->${player}->mapHeight = "auto";
-            $this->playerData->${player}->unitSize = "32px";
-            $this->playerData->${player}->unitFontSize = "12px";
-            $this->playerData->${player}->unitMargin = "-21px";
-        } else {
-            $this->mapViewer[$player]->setData(60, 76, // originX, originY
-                25, 25, // top hexagon height, bottom hexagon height
-                15, 30 // hexagon edge width, hexagon center width
-            );
-            $this->playerData->${player}->mapWidth = "auto";
-            $this->playerData->${player}->mapHeight = "auto";
-            $this->playerData->${player}->unitSize = "40px";
-            $this->playerData->${player}->unitFontSize = "16px";
-            $this->playerData->${player}->unitMargin = "-23px";
-        }
     }
 
     function save()
@@ -291,18 +259,6 @@ class Manchuria1976 extends Battle
             }
 
 
-            // mapData
-            /*            $this->mapData->setData(88,117, // originX, originY
-                            40, 40, // top hexagon height, bottom hexagon height
-                            24, 48, // hexagon edge width, hexagon center width
-                            1410, 1410 // max right hexagon, max bottom hexagon
-                        );*/
-//            $this->mapData->setData(66,87, // originX, originY
-//                30, 30, // top hexagon height, bottom hexagon height
-//                18, 36, // hexagon edge width, hexagon center width
-//                1410, 1410 // max right hexagon, max bottom hexagon
-//            );
-
             for($i = 0; $i < 3;$i++){
                 $this->mapViewer[$i]->setData(49.29999999999999 , 78.33199777230246, // originX, originY
                     26.11066592410082, 26.11066592410082, // top hexagon height, bottom hexagon height
@@ -332,16 +288,8 @@ class Manchuria1976 extends Battle
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MECH_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MECH_PHASE, BLUE_REPLACEMENT_PHASE, REPLACING_MODE, BLUE_FORCE, RED_FORCE, true);
 
-            // force data
-            //$this->force->setEliminationTrayXY(900);
-
-            // unit data -----------------------------------------------
-            //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
-          // end unit data -------------------------------------------
-
             // unit terrain data----------------------------------------
 
-            // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
             $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
             $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
@@ -2279,9 +2227,6 @@ class Manchuria1976 extends Battle
             $this->terrain->addTerrain(3033 ,4 , "road");
             $this->terrain->addTerrain(3133 ,3 , "road");
             $this->terrain->addTerrain(3233 ,4 , "road");
-
-
-
 
             // end terrain data ----------------------------------------
 
