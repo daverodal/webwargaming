@@ -233,7 +233,7 @@ class TankDual extends LandBattle
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
             $this->genTerrain = false;
-            $this->victory = new Victory("TMCW/Amph/amphVictoryCore.php", $data);
+            $this->victory = new Victory("TMCW/TankDual/tankDualVictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
