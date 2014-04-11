@@ -58,7 +58,7 @@
     "TankDual": {
         "name": "Tank Dual!!!",
         "path": "TMCW",
-        "fileName": "TankDUal.php",
+        "fileName": "TankDual.php",
         "scenarios": {
             "main":{
                 "description": "VERY VERY FRESH! USE AT OWN RISK!!!!!!",
