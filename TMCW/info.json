@@ -55,7 +55,21 @@
            }
         }
     },
-  "Nomonhan": {
+    "TankDual": {
+        "name": "Tank Dual!!!",
+        "path": "TMCW",
+        "fileName": "TankDUal.php",
+        "scenarios": {
+            "main":{
+                "description": "VERY VERY FRESH! USE AT OWN RISK!!!!!!",
+                "loyalMechMove": 8,
+                "loyalExtraInf": true,
+                "supplyLen": 8,
+                "hardCuneiform":true,
+                "showHexNums":true
+            }
+        }
+    },  "Nomonhan": {
     "name": "The Nomonhan Incident",
     "path": "TMCW",
     "fileName": "Nomonhan.php",
