@@ -179,9 +179,9 @@ class Amph extends LandBattle
         $this->force->addUnit("lll", LOYALIST_FORCE, 1904, "multiGor.png", 3, 1, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
         $this->force->addUnit("lll", LOYALIST_FORCE, 1809, "multiGor.png", 3, 1, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
 
-        $this->force->addUnit("x", RED_FORCE, "gameTurn1", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 1, 1, "loyalist", true, 'shock');
-        $this->force->addUnit("x", RED_FORCE, "gameTurn2", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 2, 1, "loyalist", true, 'shock');
-        $this->force->addUnit("x", RED_FORCE, "gameTurn3", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 3, 1, "loyalist", true, 'shock');
+        $this->force->addUnit("x", RED_FORCE, "gameTurn1", "multiInf.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "B", 1, 1, "loyalist", true, 'inf');
+        $this->force->addUnit("x", RED_FORCE, "gameTurn2", "multiInf.png", 4, 2, 5, false, STATUS_CAN_REINFORCE, "B", 2, 1, "loyalist", true, 'inf');
+        $this->force->addUnit("x", RED_FORCE, "gameTurn3", "multiPara.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "B", 3, 1, "loyalist", true, 'inf');
         $this->force->addUnit("x", RED_FORCE, "gameTurn4", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 4, 1, "loyalist", true, 'shock');
         $this->force->addUnit("x", RED_FORCE, "gameTurn4", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 4, 1, "loyalist", true, 'shock');
 
@@ -198,8 +198,8 @@ class Amph extends LandBattle
 
         $this->force->addUnit("lll", BLUE_FORCE, "gameTurn2", "multiInf.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 2, 1, "rebel", true, "inf");
         $this->force->addUnit("lll", BLUE_FORCE, "gameTurn2", "multiInf.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 2, 1, "rebel", true, "inf");
+        $this->force->addUnit("lll", BLUE_FORCE, "gameTurn2", "multiInf.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 2, 1, "rebel", true, "inf");
 
-        $this->force->addUnit("lll", BLUE_FORCE, "gameTurn3", "multiInf.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 3, 1, "rebel", true, "inf");
         $this->force->addUnit("lll", BLUE_FORCE, "gameTurn3", "multiInf.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 3, 1, "rebel", true, "inf");
         $this->force->addUnit("lll", BLUE_FORCE, "gameTurn3", "multiInf.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 3, 1, "rebel", true, "inf");
 
@@ -265,7 +265,7 @@ class Amph extends LandBattle
                 $this->victory->setSupplyLen($scenario->supplyLen);
             }
             $this->display = new Display();
-            $this->mapData->setData(20, 10, "js/amph2Small.png");
+            $this->mapData->setData(20, 10, "js/amphInlandSmall.png");
 
             $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
             $this->force = new Force();
