@@ -112,7 +112,7 @@ class Hastenbeck extends JagCore
         $artRange = 3;
         $coinFlip = floor(2 * (rand() / getrandmax()));
 
-        if($scenario->hastenbeck2){
+        if($this->scenario->hastenbeck2){
             $frenchDeploy = "C";
         }else{
             $frenchDeploy = $coinFlip == 1 ? "B": "C";
