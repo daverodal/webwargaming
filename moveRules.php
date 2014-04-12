@@ -960,8 +960,6 @@ class MoveRules
     function deploy($id, $hexagon)
     {
         if ($this->force->unitIsDeploying($id) == true) {
-            var_dump($this->force->getUnitReinforceZone($id));
-            var_dump($this->terrain->getReinforceZone($hexagon));
             if ($this->force->getUnitReinforceZone($id) == $this->terrain->getReinforceZone($hexagon)) {
                 /* @var Unit $movingUnit */
                 $movingUnit = $this->force->units[$id];
