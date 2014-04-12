@@ -22,6 +22,10 @@
             "main": {
                 "description": "Standard Scenario",
                 "showHexNums":true
+            },
+            "hastenbeck2": {
+                "description": "Hatenbeck2 ",
+                "hastenbeck2":true
             }
         }
     },

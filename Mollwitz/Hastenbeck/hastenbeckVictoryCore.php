@@ -43,48 +43,46 @@ class hastenbeckVictoryCore extends victoryCore
     {
     }
     protected function checkVictory($attackingId,$battle){
-        echo "Attack $attackingId ";
-        var_dump($this->gameOver);
         $gameRules = $battle->gameRules;
-        var_dump($battle->mapData->specialHexes);
         $turn = $gameRules->turn;
         $frenchWin = $angloMalplaquet =  $angloCities = $angloWing = false;
 
         if(!$this->gameOver){
             $specialHexes = $battle->mapData->specialHexes;
             if($attackingId == ANGLO_FORCE){
-                echo "weeee ";
-                $malplaquet = $battle->malplaquet[0];
-                var_dump($malplaquet);
-                $otherCities = $battle->otherCities;
-                if($specialHexes->$malplaquet == ANGLO_FORCE){
-                    $angloMalplaquet = true;
-                    echo "Got Mal $malplaquet ";
+                $otherCities = $battle->loc;
+                $frenchCities = 0;
+                if($specialHexes->$malplaquet == FRENCH_FORCE){
                     foreach($otherCities as $city){
-                        if($specialHexes->$city == ANGLO_FORCE){
-                            $angloCities = true;
+                        if($specialHexes->$city == FRENCH_FORCE){
+                            $frenchCities++;
                         }
                     }
                 }
             }
-            if($angloCities && ($this->victoryPoints[ANGLO_FORCE] - ($this->victoryPoints[FRENCH_FORCE]) > 10)){
+            if($this->victoryPoints[ANGLO_FORCE] >= 45){
                 $angloWin = true;
             }
+            if($frenchCities >= 3 && ($this->victoryPoints[FRENCH_FORCE] >= 60) && $turn <= 10){
+                $frenchWin = true;
+            }
             if($turn == $gameRules->maxTurn+1){
-                echo "Turn $turn angloCities $angloCities mal $angloMalplaquet";
-                if(!$angloWin){
-                    if($angloCities === false && $angloMalplaquet === false){
-                        $frenchWin = true;
-                    }
+                if($angloWin && !$frenchWin){
                 }
-                if(!$frenchWin && !$angloWin){
+                if($frenchWin && !$angloWin){
+                }
+                if($frenchWin && $angloWin){
                     $this->winner = 0;
                     $angloWin = $frenchWin = false;
                     $gameRules->flashMessages[] = "Tie Game";
                     $gameRules->flashMessages[] = "Game Over";
                     $this->gameOver = true;
                     return true;
-                }            }
+                }
+                if(!$angloWin && !$frenchWin){
+                    $angloWin = true;
+                }
+            }
 
 
             if($angloWin){
