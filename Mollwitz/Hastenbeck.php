@@ -189,7 +189,7 @@ class Hastenbeck extends JagCore
             $this->victory = new Victory("Mollwitz/Hastenbeck/hastenbeckVictoryCore.php");
 
             if($scenario->hastenbeck2){
-                $this->mapData->setData($maxX, $maxY, "js/Hastenbeck1Small.png");
+                $this->mapData->setData($maxX, $maxY, "js/Hastenbeck2Small.png");
             }else{
                 $this->mapData->setData($maxX, $maxY, "js/Hastenbeck1Small.png");
             }
