@@ -7,6 +7,11 @@
             "main": {
                 "description": "Standard Scenario"
             },
+            "extraArt":{
+                "description":"1 Extra Artillary for Austrians.",
+                "extraArt":true,
+                "artStr":true
+            },
             "prussianSuperman": {
                 "description": "Prussians Superman get +1 for att/def in clear, art is 3 str",
                 "jagersdorfCombat": true,

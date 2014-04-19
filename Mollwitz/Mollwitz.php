@@ -164,6 +164,9 @@ class Mollwitz extends JagCore
         $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "AusCavBadge.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Austrian", false, 'cavalry');
 
         $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "AusArtBadge.png", $artStr, $artStr, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Austrian", false, 'artillery');
+        if($this->scenario->extraArt){
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "AusArtBadge.png", $artStr, $artStr, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Austrian", false, 'artillery');
+        }
 
 
     }
