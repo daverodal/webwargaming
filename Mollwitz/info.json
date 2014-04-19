@@ -8,7 +8,7 @@
                 "description": "Standard Scenario"
             },
             "extraArt":{
-                "description":"1 Extra Artillary for Austrians.",
+                "description":"1 Extra Artillery for Austrians.",
                 "extraArt":true,
                 "artStr":true
             },
