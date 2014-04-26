@@ -24,6 +24,9 @@ $phase_name[12] = "<span class='loyalistFace'>Caprolians</span> Replacement Phas
 $phase_name[13] = "";
 $phase_name[14] = "";
 
+$mode_name[17] = "dude click";
+
+
 $mode_name[3] = "Combat Setup Phase";
 $mode_name[4] = "Combat Resolution Phase";
 $mode_name[19] = "";
@@ -300,6 +303,7 @@ class RetreatOne extends LandBattle
             $this->terrain->addTerrainFeature("roughtwo", "roughtwo", "g", 3, 0, 2, true);
             $this->terrain->addTerrainFeature("swamp", "swamp", "f", 3, 0, 1, true);
             $this->terrain->addTerrainFeature("river", "Martian River", "v", 0, 1, 1, true);
+            $this->terrain->addTerrainFeature("wadi", "wadi", "w", 0, 1, 1, false);
             $this->terrain->addAltEntranceCost("roughone", "mech", 6);
             $this->terrain->addAltEntranceCost("roughtwo", "mech", "blocked");
 

@@ -44,7 +44,7 @@
         "path": "TMCW",
         "fileName": "Amph.php",
         "scenarios": {
-            "HardCuneiform":{
+            "Main":{
                 "description": "Rebel raid by the sea",
                 "supply":true,
                 "loyalMechMove": 8,
@@ -60,7 +60,7 @@
         "path": "TMCW",
         "fileName": "RetreatOne.php",
         "scenarios": {
-            "HardCuneiform":{
+            "Main":{
                 "description": "Laconians vs Caprolians",
                 "supply":true,
                 "loyalMechMove": 8,
