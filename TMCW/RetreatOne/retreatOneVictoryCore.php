@@ -14,6 +14,8 @@ class retreatOneVictoryCore extends victoryCore
     private $movementCache;
     private $combatCache;
     private $supplyLen = false;
+    private $rebelGoal;
+    private $loyalistGoal;
 
 
     function __construct($data)
@@ -23,10 +25,14 @@ class retreatOneVictoryCore extends victoryCore
             $this->movementCache = $data->victory->movementCache;
             $this->combatCache = $data->victory->combatCache;
             $this->supplyLen = $data->victory->supplyLen;
+            $this->rebelGoal = $data->rebelGoal;
+            $this->loyalistGoal = $data->loyalistGoal;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
             $this->combatCache = new stdClass();
+            $this->rebelGoal = [];
+            $this->loyalistGoal = [];
         }
     }
 
@@ -40,6 +46,8 @@ class retreatOneVictoryCore extends victoryCore
         $ret->movementCache = $this->movementCache;
         $ret->combatCache = $this->combatCache;
         $ret->supplyLen = $this->supplyLen;
+        $ret->rebelGoal = $this->rebelGoal;
+        $ret->loyalistGoal = $this->loyalistGoal;
         return $ret;
     }
 
@@ -154,15 +162,17 @@ class retreatOneVictoryCore extends victoryCore
         $unit = $args[0];
 
         $b = Battle::getBattle();
+        /* @var Moverules $moveRules */
+        $moveRules = $b->moveRules;
 
         if ($b->scenario->supply === true) {
             $bias = array(5 => true, 6 => true);
-            $goal = $b->moveRules->calcRoadSupply(CAPROLIANS_FORCE, 107, $bias);
+            $goal = $moveRules->calcRoadSupply(CAPROLIANS_FORCE, 107, $bias);
             $this->rebelGoal = $goal;
 
 
             $bias = array(2 => true, 3 => true);
-            $goal = $b->moveRules->calcRoadSupply(LACONIANS_FORCE, 6002, $bias);
+            $goal = $moveRules->calcRoadSupply(LACONIANS_FORCE, 6002, $bias);
             $this->loyalistGoal = $goal;
 
         }
@@ -181,7 +191,7 @@ class retreatOneVictoryCore extends victoryCore
 //            return;
         }
         if ($b->scenario->supply === true) {
-            if ($unit->forceId == REBEL_FORCE) {
+            if ($unit->forceId == CAPROLIANS_FORCE) {
                 $bias = array(5 => true, 6 => true);
                 $goal = $this->rebelGoal;
             } else {

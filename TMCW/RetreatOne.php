@@ -172,10 +172,10 @@ class RetreatOne extends LandBattle
             $this->force->addUnit("xx", CAPROLIANS_FORCE, "deployBox", "multiMotInf.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "caprolians", true, 'mech');
         }
         for($i = 0;$i < 4;$i++){
-            $this->force->addUnit("xx", CAPROLIANS_FORCE, "deployBox", "multiMotArt.png", 3, 1, 6, false, STATUS_CAN_DEPLOY, "A", 1, 5, "caprolians", true, 'inf');
+            $this->force->addUnit("xx", CAPROLIANS_FORCE, "deployBox", "multiMotArt.png", 3, 1, 6, false, STATUS_CAN_DEPLOY, "A", 1, 5, "caprolians", true, 'mech');
         }
         for($i = 0;$i < 4;$i++){
-            $this->force->addUnit("xx", CAPROLIANS_FORCE, "deployBox", "multiArmor.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "caprolians", true, 'inf');
+            $this->force->addUnit("xx", CAPROLIANS_FORCE, "deployBox", "multiArmor.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "caprolians", true, 'mech');
         }
         for($i = 0;$i < 3;$i++){
             $this->force->addUnit("xx", CAPROLIANS_FORCE, "deployBox", "multiRecon.png", 2, 1, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "caprolians", true, 'mech');
@@ -1532,7 +1532,7 @@ class RetreatOne extends LandBattle
             $this->terrain->addTerrain(5316 ,2 , "secondaryroad");
             $this->terrain->addTerrain(5315 ,2 , "secondaryroad");
             $this->terrain->addTerrain(5314 ,2 , "secondaryroad");
-
+            $this->terrain->addTerrain(3505 ,3 , "road");
 
             // end terrain data ----------------------------------------
 
