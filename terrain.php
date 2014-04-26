@@ -416,7 +416,7 @@ class Terrain
 
         foreach ($terrains as $terrainFeature) {
             /* @var TerrainFeature $feature */
-            if ($terrainFeature == "road" || $terrainFeature == "trail") {
+            if ($terrainFeature == "road" || $terrainFeature == "trail" || $terrainFeature == "secondaryroad") {
                 continue;
             }
             $feature = $this->terrainFeatures->$terrainFeature;
@@ -510,10 +510,11 @@ class Terrain
 
         // if road, or trail,override terrain,  add fordCost where needed
         $terrainCode = $this->getTerrainCodeXY($hexsideX,$hexsideY);
-        if($railMove && ($terrainCode->road || $terrainCode->trail || $terrainCode->ford)){
+        if($railMove && ($terrainCode->road || $terrainCode->trail || $terrainCode->ford || $terrainCode->secondaryroad)){
             $roadCost = $this->getTerrainCodeUnitCost('road',$unit);
             $trailCost = $this->getTerrainCodeUnitCost('trail',$unit);
             $fordCost = $this->getTerrainCodeUnitCost('fordCost',$unit);
+            $secondaryroad = $this->getTerrainCodeUnitCost('secondaryroad',$unit);
             if($roadCost == 0){
                 $roadCost = .5;/* legacy crap */
             }
@@ -528,6 +529,9 @@ class Terrain
             $moveCost = $roadCost;
             if($terrainCode->trail){
                 $moveCost = $trailCost;
+            }
+            if($terrainCode->secondaryroad){
+                $moveCost = $secondaryroad;
             }
             if($terrainCode->ford){
                 $moveCost += $fordCost;

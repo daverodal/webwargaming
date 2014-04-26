@@ -55,6 +55,22 @@
            }
         }
     },
+    "RetreatOne": {
+        "name": "Retreat One",
+        "path": "TMCW",
+        "fileName": "RetreatOne.php",
+        "scenarios": {
+            "HardCuneiform":{
+                "description": "Laconians vs Caprolians",
+                "supply":true,
+                "loyalMechMove": 8,
+                "loyalExtraInf": true,
+                "supplyLen": 8,
+                "hardCuneiform":true,
+                "showHexNums":false
+            }
+        }
+    },
     "TankDual": {
         "name": "Tank Dual!!!",
         "path": "TMCW",

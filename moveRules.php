@@ -617,7 +617,8 @@ class MoveRules
                 if (!$gnuHex) {
                     continue;
                 }
-                if (!($this->terrain->terrainIsHexSide($hexNum, $newHexNum, "road") || $this->terrain->terrainIsHexSide($hexNum, $newHexNum, "trail"))) {
+                if (!($this->terrain->terrainIsHexSide($hexNum, $newHexNum, "road") || $this->terrain->terrainIsHexSide($hexNum, $newHexNum, "trail")
+                    || $this->terrain->terrainIsHexSide($hexNum, $newHexNum, "secondaryroad"))) {
                     continue;
                 }
 
