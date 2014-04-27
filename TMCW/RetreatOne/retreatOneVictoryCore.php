@@ -172,7 +172,7 @@ class retreatOneVictoryCore extends victoryCore
 
 
             $bias = array(2 => true, 3 => true);
-            $goal = $moveRules->calcRoadSupply(LACONIANS_FORCE, 6002, $bias);
+            $goal = $moveRules->calcRoadSupply(LACONIANS_FORCE, [6002, 6025], $bias);
             $this->loyalistGoal = $goal;
 
         }

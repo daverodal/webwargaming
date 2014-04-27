@@ -234,12 +234,19 @@ class MoveRules
 
         $this->moves = new stdClass();
         $this->moveQueue = array();
-        $hexPath = new HexPath();
-        $hexPath->name = $goal;
-        $hexPath->pathToHere = array();
-        $hexPath->firstHex = true;
-        $hexPath->isOccupied = true;
-        $this->moveQueue[] = $hexPath;
+        if(!is_array($goal)){
+            $goals = [$goal];
+        }else{
+            $goals = $goal;
+        }
+        foreach($goals as $aGoal){
+            $hexPath = new HexPath();
+            $hexPath->name = $aGoal;
+            $hexPath->pathToHere = array();
+            $hexPath->firstHex = true;
+            $hexPath->isOccupied = true;
+            $this->moveQueue[] = $hexPath;
+        }
         $ret = $this->bfsRoadTrace($goal, $bias, $attackingForceId);
         $moves = $this->moves;
         $goal = [];
