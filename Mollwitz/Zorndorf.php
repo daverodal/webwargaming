@@ -165,7 +165,7 @@ class Zorndorf extends JagCore
             for($i = 0;$i < 7;$i++){
                 $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", false, 'infantry');
             }
-            for($i = 0;$i < 4;$i++){
+            for($i = 0;$i < 5;$i++){
                 $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusArtBadge.png", 4, 4, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Russian", false, 'artillery');
             }
             for($i = 0;$i < 6;$i++){
