@@ -267,7 +267,7 @@ class RetreatOne extends LandBattle
                 );
             }
             // game data
-            $this->gameRules->setMaxTurn(7);
+            $this->gameRules->setMaxTurn(15);
 
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
@@ -278,15 +278,13 @@ class RetreatOne extends LandBattle
 
 
             $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_DEPLOY_PHASE, DEPLOY_MODE, BLUE_FORCE, RED_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, DEPLOY_MODE, BLUE_FORCE, RED_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, BLUE_MECH_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_MECH_PHASE, RED_REPLACEMENT_PHASE, REPLACING_MODE, RED_FORCE, BLUE_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_MECH_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MECH_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_MECH_PHASE, BLUE_REPLACEMENT_PHASE, REPLACING_MODE, BLUE_FORCE, RED_FORCE, true);
+            $this->gameRules->addPhaseChange(RED_MECH_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
             // unit terrain data----------------------------------------
 
             // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
@@ -346,6 +344,7 @@ class RetreatOne extends LandBattle
             $this->terrain->addTerrain(1106 ,1 , "roughone");
             $this->terrain->addTerrain(1107 ,1 , "roughone");
             $this->terrain->addTerrain(1111 ,1 , "town");
+            $this->terrain->addReinforceZone(1111,'A');
             $this->terrain->addTerrain(1004 ,1 , "town");
             $this->terrain->addReinforceZone(1004,'A');
             $this->terrain->addTerrain(1105 ,1 , "town");
@@ -448,7 +447,9 @@ class RetreatOne extends LandBattle
             $this->terrain->addTerrain(3416 ,1 , "roughone");
             $this->terrain->addTerrain(3415 ,1 , "roughone");
             $this->terrain->addTerrain(3417 ,1 , "roughone");
+            $this->terrain->addTerrain(3417 ,1 , "secondaryroad");
             $this->terrain->addTerrain(3317 ,1 , "roughone");
+            $this->terrain->addTerrain(3317 ,1 , "secondaryroad");
             $this->terrain->addTerrain(3318 ,1 , "roughone");
             $this->terrain->addTerrain(3217 ,1 , "roughone");
             $this->terrain->addTerrain(3118 ,1 , "roughone");
@@ -1009,8 +1010,8 @@ class RetreatOne extends LandBattle
             $this->terrain->addTerrain(4507 ,1 , "road");
             $this->terrain->addReinforceZone(4407,'A');
             $this->terrain->addTerrain(4407 ,1 , "road");
-            $this->terrain->addReinforceZone(4307,'A');
             $this->terrain->addTerrain(4307 ,1 , "town");
+            $this->terrain->addReinforceZone(4307,'A');
             $this->terrain->addReinforceZone(4207,'A');
             $this->terrain->addTerrain(4207 ,1 , "road");
             $this->terrain->addReinforceZone(4108,'A');
@@ -1148,7 +1149,9 @@ class RetreatOne extends LandBattle
             $this->terrain->addReinforceZone(5726,'B');
             $this->terrain->addTerrain(3404 ,1 , "town");
             $this->terrain->addTerrain(2128 ,1 , "town");
+            $this->terrain->addReinforceZone(2128,'A');
             $this->terrain->addTerrain(2511 ,1 , "town");
+            $this->terrain->addReinforceZone(2511,'A');
             $this->terrain->addTerrain(1210 ,1 , "road");
             $this->terrain->addTerrain(1310 ,3 , "road");
             $this->terrain->addTerrain(1310 ,1 , "road");
@@ -1274,6 +1277,7 @@ class RetreatOne extends LandBattle
             $this->terrain->addTerrain(4120 ,1 , "road");
             $this->terrain->addTerrain(4120 ,3 , "road");
             $this->terrain->addTerrain(4020 ,1 , "road");
+            $this->terrain->addReinforceZone(4020,'A');
             $this->terrain->addTerrain(4020 ,2 , "road");
             $this->terrain->addTerrain(4021 ,1 , "road");
             $this->terrain->addTerrain(4021 ,2 , "road");
@@ -1282,6 +1286,7 @@ class RetreatOne extends LandBattle
             $this->terrain->addTerrain(4023 ,1 , "road");
             $this->terrain->addTerrain(4023 ,2 , "road");
             $this->terrain->addTerrain(4024 ,1 , "road");
+            $this->terrain->addReinforceZone(4024,'A');
             $this->terrain->addTerrain(4024 ,3 , "road");
             $this->terrain->addTerrain(3925 ,1 , "road");
             $this->terrain->addTerrain(3925 ,3 , "road");
@@ -1537,7 +1542,39 @@ class RetreatOne extends LandBattle
             $this->terrain->addTerrain(5315 ,2 , "secondaryroad");
             $this->terrain->addTerrain(5314 ,2 , "secondaryroad");
             $this->terrain->addTerrain(3505 ,3 , "road");
-
+            $this->terrain->addReinforceZone(4509,'A');
+            $this->terrain->addReinforceZone(4409,'A');
+            $this->terrain->addTerrain(2711 ,4 , "secondaryroad");
+            $this->terrain->addTerrain(2711 ,1 , "secondaryroad");
+            $this->terrain->addTerrain(2811 ,4 , "secondaryroad");
+            $this->terrain->addTerrain(2811 ,1 , "secondaryroad");
+            $this->terrain->addTerrain(2912 ,4 , "secondaryroad");
+            $this->terrain->addTerrain(2912 ,1 , "secondaryroad");
+            $this->terrain->addTerrain(3012 ,4 , "secondaryroad");
+            $this->terrain->addTerrain(3012 ,1 , "secondaryroad");
+            $this->terrain->addTerrain(3113 ,4 , "secondaryroad");
+            $this->terrain->addTerrain(3113 ,1 , "secondaryroad");
+            $this->terrain->addTerrain(3113 ,2 , "secondaryroad");
+            $this->terrain->addTerrain(3114 ,1 , "secondaryroad");
+            $this->terrain->addTerrain(3114 ,2 , "secondaryroad");
+            $this->terrain->addTerrain(3115 ,1 , "secondaryroad");
+            $this->terrain->addTerrain(3115 ,2 , "secondaryroad");
+            $this->terrain->addTerrain(3116 ,1 , "secondaryroad");
+            $this->terrain->addTerrain(3216 ,4 , "secondaryroad");
+            $this->terrain->addTerrain(3216 ,1 , "secondaryroad");
+            $this->terrain->addTerrain(3317 ,4 , "secondaryroad");
+            $this->terrain->addTerrain(3417 ,4 , "secondaryroad");
+            $this->terrain->addTerrain(3518 ,4 , "secondaryroad");
+            $this->terrain->addTerrain(3518 ,1 , "secondaryroad");
+            $this->terrain->addTerrain(3618 ,4 , "secondaryroad");
+            $this->terrain->addTerrain(3618 ,1 , "secondaryroad");
+            $this->terrain->addTerrain(3719 ,4 , "secondaryroad");
+            $this->terrain->addTerrain(3719 ,1 , "secondaryroad");
+            $this->terrain->addTerrain(3819 ,4 , "secondaryroad");
+            $this->terrain->addTerrain(3819 ,1 , "secondaryroad");
+            $this->terrain->addTerrain(3920 ,4 , "secondaryroad");
+            $this->terrain->addTerrain(3920 ,1 , "secondaryroad");
+            $this->terrain->addTerrain(4020 ,4 , "secondaryroad");
             // end terrain data ----------------------------------------
 
         }

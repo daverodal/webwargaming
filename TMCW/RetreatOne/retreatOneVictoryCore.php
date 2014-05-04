@@ -83,8 +83,8 @@ class retreatOneVictoryCore extends victoryCore
         } else {
             $vp = $unit->minStrength;
         }
-        if ($unit->forceId == 1) {
-            $victorId = 2;
+        if ($unit->forceId == CAPROLIANS_FORCE) {
+            $victorId = LACONIANS_FORCE;
             $this->victoryPoints[$victorId] += $vp;
             $hex = $unit->hexagon;
             $battle = Battle::getBattle();
@@ -157,6 +157,23 @@ class retreatOneVictoryCore extends victoryCore
             }
         }
     }
+
+    function isExit($args){
+        list($unit) = $args;
+        if($unit->forceId == CAPROLIANS_FORCE && in_array($unit->hexagon->name,[107,116,230])){
+            if ($unit->forceId == CAPROLIANS_FORCE) {
+                $vp = $unit->strength;
+                $victorId = CAPROLIANS_FORCE;
+                $this->victoryPoints[$victorId] += $vp;
+                $hex = $unit->hexagon;
+                $battle = Battle::getBattle();
+                $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='loyalistVictoryPoints'>+$vp vp</span>";
+            }
+            return true;
+        }
+        return false;
+    }
+
     public function preRecoverUnits($args){
         /* @var unit $unit */
         $unit = $args[0];
@@ -167,12 +184,12 @@ class retreatOneVictoryCore extends victoryCore
 
         if ($b->scenario->supply === true) {
             $bias = array(5 => true, 6 => true);
-            $goal = $moveRules->calcRoadSupply(CAPROLIANS_FORCE, 107, $bias);
+            $goal = $moveRules->calcRoadSupply(CAPROLIANS_FORCE, [107, 116, 230], $bias);
             $this->rebelGoal = $goal;
 
 
             $bias = array(2 => true, 3 => true);
-            $goal = $moveRules->calcRoadSupply(LACONIANS_FORCE, [6002, 6025], $bias);
+            $goal = $moveRules->calcRoadSupply(LACONIANS_FORCE, [6002, 6012, 6025], $bias);
             $this->loyalistGoal = $goal;
 
         }
