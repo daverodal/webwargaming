@@ -23,8 +23,9 @@ $phase_name[11] = "<span class='loyalistFace'>Caprolians</span> Mech Movement Ph
 $phase_name[12] = "<span class='loyalistFace'>Caprolians</span> Replacement Phase";
 $phase_name[13] = "";
 $phase_name[14] = "";
+$phase_name[15] = "<span class='loyalistFace'>Caprolians</span> Deploy Phase";
 
-$mode_name[17] = "dude click";
+$mode_name[17] = "";
 
 
 $mode_name[3] = "Combat Setup Phase";
