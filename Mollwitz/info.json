@@ -105,6 +105,10 @@
         "scenarios": {
             "main": {
                 "description": "Standard Scenario"
+            },
+            "bigRussian": {
+                "description": "Bigger Russian Units",
+                "bigRussian": true
             }
         }
     },
