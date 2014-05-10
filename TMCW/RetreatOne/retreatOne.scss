@@ -1,0 +1,68 @@
+$caprolians: #e8e22c;
+$lanconians:  #dd2f00;
+
+.caprolians {
+  background-color: $caprolians;
+}
+
+.laconians {
+  background-color: $lanconians
+}
+
+
+.unit .counter {
+  margin-top: -2px;
+}
+
+.unit .unit-numbers {
+  margin-top: -19px;
+}
+
+.unit .unit-numbers .infoLen5 {
+  letter-spacing: -1px;
+}
+
+#OBC {
+  background: white;
+  width: 514px;
+}
+
+#crt {
+  width: 308px;
+}
+
+
+#TEC {
+
+  left: -230px;
+}
+
+#infoWrapper .WrapperLabel {
+  width: auto;
+}
+
+
+#TECWrapper li {
+  list-style-type: none;
+  padding: 5px 20px 5px 0px;
+}
+
+#TECWrapper img, #TECWrapper div {
+}
+
+
+.game-name {
+  word-break: break-all;
+  font-family: 'Nosifer';
+}
+
+#gameTurn6 {
+}
+
+#gameTurn6 .unit {
+  float: left;
+}
+
+.unit .unit-numbers .infoLen8 {
+  letter-spacing: -1px;
+}

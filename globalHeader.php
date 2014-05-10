@@ -1,7 +1,6 @@
 <?php global $force_name;?>
 <link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 <style type="text/css">
-<?php include_once("commonStyle.css");?>
 #map {
     width:<?=$mapWidth;?>;/*really*/
     height:<?=$mapHeight;?>;

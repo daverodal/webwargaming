@@ -80,8 +80,7 @@ class Manchuria1976 extends Battle
         foreach ($playerData as $k => $v) {
             $$k = $v;
         }
-        @include_once "commonHeader.php";
-        @include_once "header.php";
+        @include_once "globalHeader.php";
         @include_once "Manchuria1976Header.php";
     }
 

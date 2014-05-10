@@ -1,0 +1,79 @@
+$blueUnit:rgb(132,181,255);
+$darkBlueUnit: rgb(99,136,192);
+$redUnit:rgb(239,115,74);
+$darkRedUnit:rgb(179,86,55);
+$armyGreen: rgb(148,189,74);
+$gold:rgb(247,239,142);
+$lightYellow:rgb(255,239,156);
+$gray: rgb(181,181,156);
+$kaki: rgb(222,198,132);
+$lightGreen: rgb(181,206,115);
+$lightBlue:rgb(196,216,228);
+$lightGray:rgb(216,218,214);
+$brightGreen:rgb(123,222,82);
+$flesh:rgb(239,198,156);
+$brightRed: rgb(223,88,66);
+$oliveDrab:rgb(115,156,115);
+$dark:#000;
+$light:white;
+$love:peace;
+.love{
+  color:$love;
+}
+.light{
+  backgroundColor:$light;
+}
+.dark{
+  background-color: $dark;
+}
+.blueUnit{
+  background-color:$blueUnit;
+}
+.darkBlueUnit{
+  background-color: $darkBlueUnit;
+}
+.redUnit{
+  background-color:$redUnit;
+}
+.darkRedUnit{
+  background-color:$darkRedUnit;
+}
+.armyGreen{
+  background-color: $armyGreen;
+}
+.gold{
+  background-color:$gold;
+}
+.lightYellow{
+    background-color: $lightYellow;
+}
+.gray{
+  background-color: $gray;
+}
+
+.oliveDrab{
+  background-color: $oliveDrab;
+}
+.kaki{
+  background-color:$kaki;
+}
+.lightGreen{
+  background-color:$lightGreen;
+}
+
+.lightBlue{
+  background-color: $lightBlue;
+}
+.lightGray{
+  background-color: $lightGray;
+}
+
+.brightGreen{
+  background-color: $brightGreen;
+}
+.flesh{
+  background-color: $flesh;
+}
+.brightRed{
+  background-color: $brightRed;
+}

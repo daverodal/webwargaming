@@ -88,7 +88,6 @@ class TankDual extends LandBattle
             $$k = $v;
         }
         @include_once "commonHeader.php";
-        @include_once "header.php";
         @include_once "tankDualHeader.php";
     }
 
