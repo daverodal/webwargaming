@@ -294,18 +294,6 @@ class Amph extends LandBattle
             }
 
 
-            // mapData
-            /*            $this->mapData->setData(88,117, // originX, originY
-                            40, 40, // top hexagon height, bottom hexagon height
-                            24, 48, // hexagon edge width, hexagon center width
-                            1410, 1410 // max right hexagon, max bottom hexagon
-                        );*/
-//            $this->mapData->setData(66,87, // originX, originY
-//                30, 30, // top hexagon height, bottom hexagon height
-//                18, 36, // hexagon edge width, hexagon center width
-//                1410, 1410 // max right hexagon, max bottom hexagon
-//            );
-
             for($player = 0;$player < 3;$player++){
                 $this->mapViewer[$player]->setData(64 , 82.5, // originX, originY
                     27.5, 27.5, // top hexagon height, bottom hexagon height
@@ -325,10 +313,6 @@ class Amph extends LandBattle
 
             // force data
             //$this->force->setEliminationTrayXY(900);
-
-            // unit data -----------------------------------------------
-            //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
-            // end unit data -------------------------------------------
 
             // unit terrain data----------------------------------------
 

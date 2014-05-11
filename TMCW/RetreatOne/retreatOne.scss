@@ -18,9 +18,6 @@ $lanconians:  #dd2f00;
   margin-top: -19px;
 }
 
-.unit .unit-numbers .infoLen5 {
-  letter-spacing: -1px;
-}
 
 #OBC {
   background: white;
@@ -42,15 +39,6 @@ $lanconians:  #dd2f00;
 }
 
 
-#TECWrapper li {
-  list-style-type: none;
-  padding: 5px 20px 5px 0px;
-}
-
-#TECWrapper img, #TECWrapper div {
-}
-
-
 .game-name {
   word-break: break-all;
   font-family: 'Nosifer';
@@ -61,8 +49,4 @@ $lanconians:  #dd2f00;
 
 #gameTurn6 .unit {
   float: left;
-}
-
-.unit .unit-numbers .infoLen8 {
-  letter-spacing: -1px;
 }

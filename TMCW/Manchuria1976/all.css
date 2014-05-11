@@ -706,6 +706,16 @@ fieldset {
 .rebel div {
   color: black; }
 
+.sympth div {
+  color: black; }
+
+.game-name {
+  word-break: break-all;
+  font-family: 'Nosifer'; }
+
+.reduced {
+  color: white; }
+
 .unit .counter {
   width: 32px;
   margin-top: -2px; }
@@ -719,14 +729,14 @@ fieldset {
   font-size: 11px;
   letter-spacing: -1px; }
 
+.unit .unit-numbers .infoLen5 {
+  letter-spacing: -1px; }
+
 .unit .unit-numbers .infoLen7 {
-  font-size: 12px; }
+  font-size: 13px; }
 
-.sympth div {
-  color: black; }
-
-.reduced {
-  color: white; }
+.unit .unit-numbers .infoLen8 {
+  letter-spacing: -1px; }
 
 /* dropdown styles */
 #OBC {
@@ -804,10 +814,6 @@ fieldset {
 #GR {
   width: 600px; }
 
-.game-name {
-  word-break: break-all;
-  font-family: 'Nosifer'; }
-
 .specialHexesVP .prcVictoryPoints {
   text-shadow: 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 10px gold, 0px 0px 10px gold, 0px 0px 10px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 10px gold, 0px 0px 10px gold, 0px 0px 10px gold; }
 
@@ -855,84 +861,6 @@ fieldset {
 
 .reduced {
   color: white; }
-
-/* dropdown styles */
-#OBC {
-  background: white;
-  width: 514px; }
-
-#crt {
-  width: 308px; }
-
-#tecImage {
-  width: 500px; }
-
-#TEC {
-  width: 520px; }
-
-#TECWrapper .closer {
-  height: 0px;
-  padding: 0px; }
-
-#TECWrapper .colOne.riverHex {
-  background-image: url("<?=base_url()?>js/river.png");
-  background-position: 0px -26px; }
-
-#TECWrapper .colOne.bridgeHex {
-  background-image: url("<?=base_url()?>js/riverRoad.png");
-  background-position: 0px -26px; }
-
-#TECWrapper .colOne.blankHex {
-  background-image: url("<?=base_url()?>js/blank.png"); }
-
-#TECWrapper .colOne.forestHex {
-  background-image: url("<?=base_url()?>js/forest 2.png"); }
-
-#TECWrapper .colOne.mountainHex {
-  background-image: url("<?=base_url()?>js/mountain.png"); }
-
-#TECWrapper .colOne.roadHex {
-  background-image: url("<?=base_url()?>js/road.png");
-  background-position: 0px -26px; }
-
-#TECWrapper .colOne.trailHex {
-  background-image: url("<?=base_url()?>js/trail.png");
-  background-position: 0px -26px;
-  background-size: 516px;
-  /* TODO why this different from others */ }
-
-#TECWrapper .colOne {
-  background-size: 400px;
-  width: 220px;
-  height: 56px;
-  margin-left: 20px; }
-
-#TECWrapper .colTwo {
-  width: 170px;
-  padding-right: 10px; }
-
-#TECWrapper .colThree {
-  width: 136px; }
-
-#TECWrapper .colOne span {
-  margin-top: 12px;
-  margin-left: 80px;
-  display: inline-block; }
-
-#TECWrapper .colTwo, #TECWrapper .colThree {
-  margin-top: 12px; }
-
-#TECWrapper .colOne,
-#TECWrapper .colTwo,
-#TECWrapper .colThree {
-  float: left; }
-
-#TECWrapper li {
-  list-style-type: none;
-  padding: 5px 20px 5px 0px; }
-
-#GR {
-  width: 600px; }
 
 .game-name {
   word-break: break-all;

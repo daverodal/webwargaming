@@ -706,6 +706,16 @@ fieldset {
 .rebel div {
   color: black; }
 
+.sympth div {
+  color: black; }
+
+.game-name {
+  word-break: break-all;
+  font-family: 'Nosifer'; }
+
+.reduced {
+  color: white; }
+
 .unit .counter {
   width: 32px;
   margin-top: -2px; }
@@ -719,14 +729,14 @@ fieldset {
   font-size: 11px;
   letter-spacing: -1px; }
 
+.unit .unit-numbers .infoLen5 {
+  letter-spacing: -1px; }
+
 .unit .unit-numbers .infoLen7 {
-  font-size: 12px; }
+  font-size: 13px; }
 
-.sympth div {
-  color: black; }
-
-.reduced {
-  color: white; }
+.unit .unit-numbers .infoLen8 {
+  letter-spacing: -1px; }
 
 /* dropdown styles */
 #OBC {
@@ -804,10 +814,6 @@ fieldset {
 #GR {
   width: 600px; }
 
-.game-name {
-  word-break: break-all;
-  font-family: 'Nosifer'; }
-
 .specialHexesVP .prcVictoryPoints {
   text-shadow: 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 10px gold, 0px 0px 10px gold, 0px 0px 10px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 10px gold, 0px 0px 10px gold, 0px 0px 10px gold; }
 
@@ -829,9 +835,6 @@ fieldset {
 .unit .unit-numbers {
   margin-top: -19px; }
 
-.unit .unit-numbers .infoLen5 {
-  letter-spacing: -1px; }
-
 #OBC {
   background: white;
   width: 514px; }
@@ -845,16 +848,9 @@ fieldset {
 #infoWrapper .WrapperLabel {
   width: auto; }
 
-#TECWrapper li {
-  list-style-type: none;
-  padding: 5px 20px 5px 0px; }
-
 .game-name {
   word-break: break-all;
   font-family: 'Nosifer'; }
 
 #gameTurn6 .unit {
   float: left; }
-
-.unit .unit-numbers .infoLen8 {
-  letter-spacing: -1px; }
