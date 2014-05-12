@@ -1,11 +1,19 @@
+@import "amphColors";
+.playerOne{
+  background:$rebelColor;
+  border-color:$rebelColor !important;
+}
+.playerTwo{
+  background:$loyalistColor;
+  border-color:$loyalistColor !important;
+}
 .loyalist {
-  background-color:#aaa;
+  background-color:$loyalistColor;
 }
 
 .rebel, .sympth {
-  background-color: #5c5;
+  background-color: $rebelColor;
 }
-
 
 .unit .counter {
   margin-top: 1px;
@@ -14,7 +22,6 @@
 .unit .unit-numbers {
   margin-top: -23px;
 }
-
 
 #map {
 }

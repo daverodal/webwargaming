@@ -86,7 +86,7 @@ class MartianCivilWar extends Battle
             $$k = $v;
         }
         @include_once "globalHeader.php";
-        @include_once "header.php";
+        @include_once "tmcwHeader.php";
     }
 
     static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false)
