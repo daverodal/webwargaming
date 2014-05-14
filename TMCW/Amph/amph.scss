@@ -1,19 +1,7 @@
 @import "amphColors";
-.playerOne{
-  background:$rebelColor;
-  border-color:$rebelColor !important;
-}
-.playerTwo{
-  background:$loyalistColor;
-  border-color:$loyalistColor !important;
-}
-.loyalist {
-  background-color:$loyalistColor;
-}
 
-.rebel, .sympth {
-  background-color: $rebelColor;
-}
+@include player(rebel, One, $rebelColor);
+@include player(loyalist,Two,$loyalistColor);
 
 .unit .counter {
   margin-top: 1px;
@@ -26,29 +14,12 @@
 #map {
 }
 
-#OBC {
-  background: white;
-  width: 514px;
-}
-
 #crt {
   width: 308px;
 }
 
-.rebel div {
-  color: black;
-}
-
-.sympth div {
-  color: black;
-}
-
 .reduced {
   color: white;
-}
-
-#clock {
-  margin-left: 0;
 }
 
 #infoWrapper .WrapperLabel {

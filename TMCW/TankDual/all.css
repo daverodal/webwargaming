@@ -441,10 +441,6 @@ body {
   background: #eee;
   color: #333; }
 
-#clock {
-  margin-left: 5em;
-  /*width:100px;*/ }
-
 #status {
   /*height:70px;*/
   /*overflow-y:scroll;*/
@@ -680,28 +676,25 @@ fieldset {
   display: none; }
 
 /* Unit Styles */
-.loyalist {
-  background-color: #84b5ff; }
-
-.loyalistFace {
-  color: #84b5ff; }
-
 .playerOne {
   background: #df5842;
   border-color: #df5842 !important; }
+
+.rebelFace, .playerOneFace {
+  color: #df5842; }
+
+.rebel {
+  background-color: #df5842; }
 
 .playerTwo {
   background: #84b5ff;
   border-color: #84b5ff !important; }
 
-.rebelFace {
-  color: #ef734a; }
+.loyalistFace, .playerTwoFace {
+  color: #84b5ff; }
 
-.soviet, .rebel, .sympth {
-  background-color: #df5842; }
-
-.prc {
-  background-color: gold; }
+.loyalist {
+  background-color: #84b5ff; }
 
 .rebel div {
   color: black; }
@@ -733,7 +726,8 @@ fieldset {
   letter-spacing: -1px; }
 
 .unit .unit-numbers .infoLen7 {
-  font-size: 13px; }
+  font-size: 13px;
+  letter-spacing: -1px; }
 
 .unit .unit-numbers .infoLen8 {
   letter-spacing: -1px; }

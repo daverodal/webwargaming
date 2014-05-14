@@ -1,14 +1,8 @@
 $caprolians: #e8e22c;
-$lanconians:  #dd2f00;
+$laconians: #dd4f2b;
 
-.caprolians {
-  background-color: $caprolians;
-}
-
-.laconians {
-  background-color: $lanconians
-}
-
+@include player(laconians, One, $laconians);
+@include player(caprolians, Two, $caprolians, #c8c21c);
 
 .unit .counter {
   margin-top: -2px;
@@ -16,12 +10,6 @@ $lanconians:  #dd2f00;
 
 .unit .unit-numbers {
   margin-top: -19px;
-}
-
-
-#OBC {
-  background: white;
-  width: 514px;
 }
 
 #crt {

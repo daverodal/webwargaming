@@ -441,10 +441,6 @@ body {
   background: #eee;
   color: #333; }
 
-#clock {
-  margin-left: 5em;
-  /*width:100px;*/ }
-
 #status {
   /*height:70px;*/
   /*overflow-y:scroll;*/
@@ -680,28 +676,25 @@ fieldset {
   display: none; }
 
 /* Unit Styles */
-.loyalist {
-  background-color: #84b5ff; }
-
-.loyalistFace {
-  color: #84b5ff; }
-
 .playerOne {
   background: #df5842;
   border-color: #df5842 !important; }
+
+.rebelFace, .playerOneFace {
+  color: #df5842; }
+
+.rebel {
+  background-color: #df5842; }
 
 .playerTwo {
   background: #84b5ff;
   border-color: #84b5ff !important; }
 
-.rebelFace {
-  color: #ef734a; }
+.loyalistFace, .playerTwoFace {
+  color: #84b5ff; }
 
-.soviet, .rebel, .sympth {
-  background-color: #df5842; }
-
-.prc {
-  background-color: gold; }
+.loyalist {
+  background-color: #84b5ff; }
 
 .rebel div {
   color: black; }
@@ -733,7 +726,8 @@ fieldset {
   letter-spacing: -1px; }
 
 .unit .unit-numbers .infoLen7 {
-  font-size: 13px; }
+  font-size: 13px;
+  letter-spacing: -1px; }
 
 .unit .unit-numbers .infoLen8 {
   letter-spacing: -1px; }
@@ -823,21 +817,31 @@ fieldset {
 .specialHexesVP .loyalistVictoryPoints {
   text-shadow: 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff; }
 
-.caprolians {
-  background-color: #e8e22c; }
+.playerOne {
+  background: #dd4f2b;
+  border-color: #dd4f2b !important; }
+
+.laconiansFace, .playerOneFace {
+  color: #dd4f2b; }
 
 .laconians {
-  background-color: #dd2f00; }
+  background-color: #dd4f2b; }
+
+.playerTwo {
+  background: #e8e22c;
+  border-color: #e8e22c !important; }
+
+.caproliansFace, .playerTwoFace {
+  color: #c8c21c; }
+
+.caprolians {
+  background-color: #e8e22c; }
 
 .unit .counter {
   margin-top: -2px; }
 
 .unit .unit-numbers {
   margin-top: -19px; }
-
-#OBC {
-  background: white;
-  width: 514px; }
 
 #crt {
   width: 308px; }

@@ -9,21 +9,21 @@ $force_name[1] = "Laconians";
 $force_name[2] = "Caprolians";
 
 $phase_name = array();
-$phase_name[1] = "<span class='rebelFace'>Laconians</span> Movement Phase";
-$phase_name[2] = "<span class='rebelFace'>Laconians</span>";
+$phase_name[1] = "<span class='laconiansFace'>Laconians</span> Movement Phase";
+$phase_name[2] = "<span class='laconiansFace'>Laconians</span>";
 $phase_name[3] = "Blue Fire Combat";
-$phase_name[4] = "<span class='loyalistFace'>Caprolians</span> Movement Phase";
-$phase_name[5] = "<span class='loyalistFace'>Caprolians</span>";
+$phase_name[4] = "<span class='caproliansFace'>Caprolians</span> Movement Phase";
+$phase_name[5] = "<span class='caproliansFace'>Caprolians</span>";
 $phase_name[6] = "Red Fire Combat";
 $phase_name[7] = "Victory";
-$phase_name[8] = "<span class='rebelFace'>Laconians</span> Deploy Phase";
-$phase_name[9] = "<span class='rebelFace'>Laconians</span> Mech Movement Phase";
-$phase_name[10] = "<span class='rebelFace'>Laconians</span> Replacement Phase";
-$phase_name[11] = "<span class='loyalistFace'>Caprolians</span> Mech Movement Phase";
-$phase_name[12] = "<span class='loyalistFace'>Caprolians</span> Replacement Phase";
+$phase_name[8] = "<span class='laconiansFace'>Laconians</span> Deploy Phase";
+$phase_name[9] = "<span class='laconiansFace'>Laconians</span> Mech Movement Phase";
+$phase_name[10] = "<span class='laconiansFace'>Laconians</span> Replacement Phase";
+$phase_name[11] = "<span class='caproliansFace'>Caprolians</span> Mech Movement Phase";
+$phase_name[12] = "<span class='caproliansFace'>Caprolians</span> Replacement Phase";
 $phase_name[13] = "";
 $phase_name[14] = "";
-$phase_name[15] = "<span class='loyalistFace'>Caprolians</span> Deploy Phase";
+$phase_name[15] = "<span class='caprolianFace'>Caprolians</span> Deploy Phase";
 
 $mode_name[17] = "";
 

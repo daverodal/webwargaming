@@ -160,7 +160,6 @@ h4:hover{
   float:none !important;
 }
 @import "commonUnits";
-
 #phaseDiv,#statusDiv,#chatsDiv,#crtWrapper,#victoryDiv{
   display:inline;
   vertical-align: top;
@@ -397,10 +396,6 @@ body{
   color:#333;
 }
 
-#clock{
-  margin-left:5em;
-  /*width:100px;*/
-}
 #status{
   /*height:70px;*/
   /*overflow-y:scroll;*/
