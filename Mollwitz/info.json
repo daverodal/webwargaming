@@ -125,6 +125,12 @@
                 "description": "Prussians has setup mode ",
                 "jagersdorfCombat": true,
                 "prussianDeploy": true
+            },
+            "extraArt": {
+                "description": "Extra Artillery, Prussians has setup mode ",
+                "jagersdorfCombat": true,
+                "prussianDeploy": true,
+                "extraArt": true
             }
         }
     },
