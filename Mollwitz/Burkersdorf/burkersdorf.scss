@@ -1,0 +1,53 @@
+$austrian: rgb(223, 88, 66);
+$prussian: rgb(255, 253, 127);
+#map{
+  width:auto !important;
+}
+
+.playerOne {
+  background-color: $austrian;
+  border-color: $austrian !important;
+}
+
+.playerTwo{
+  background: $prussian;
+  border-color: $prussian !important;
+}
+.prussian {
+  background: $prussian;
+  border-color: $prussian !important;
+}
+
+.austrian {
+  background-color: $austrian;
+  border-color: $austrian;
+}
+
+
+
+.playerTwo .dropDown{
+  /*color:white;*/
+  /*border-color:white;*/
+}
+.playerTwo #GR{
+  color:#333;
+}
+.playerTwo #hideShow, .playerTwo #showDeploy, .playerTwo #crtWrapper, .playerTwo #menuWrapper, .playerTwo #infoWrapper, .playerTwo #zoom{
+  /*color:white;*/
+  /*border-color:white;*/
+}
+.playerTwo #zoom span{
+  /*border-color:white;*/
+}
+
+.austrian.specialHexes{
+  color:white;
+}
+
+
+
+.austrian.specialHexes{
+  color:white;
+}
+
+

@@ -57,7 +57,7 @@ class Hohenfriedeberg extends JagCore
         foreach ($playerData as $k => $v) {
             $$k = $v;
         }
-        @include_once "commonHeader.php";
+        @include_once "globalHeader.php";
         @include_once "header.php";
         @include_once "HohenfriedebergHeader.php";
 
