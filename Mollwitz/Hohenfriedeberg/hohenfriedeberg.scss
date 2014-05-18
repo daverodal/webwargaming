@@ -1,16 +1,14 @@
 #map{
   width:1200px !important;
 }
+@include player(Prussian, One, $prussianColor,  $prussianWrapperColor, $prussianWrapperColor);
+@include player(Austrian, Two, $austrianColor,  $austrianWrapperColor);
 
-.prussian {
-  background: rgb(255, 253, 127);
-  border-color: rgb(255, 253, 127) !important;
-}
-
-.austrian {
-  background-color: rgb(223, 88, 66);
-  border-color: rgb(223, 88, 66);
-}
 .austrian.specialHexes{
+  background-color:$austrianColor;
   color:white;
+}
+.prussian.specialHexes{
+  background-color: $prussianColor;
+  color:black;
 }

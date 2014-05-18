@@ -114,6 +114,12 @@ class MapHex {
 
         $this->dirty = true;
     }
+    public function setZoc($forceId, $id){
+        $this->zocs[$forceId]->$id = $id;
+    }
+    public function unsetZoc($forceId, $id){
+        unset($this->zocs[$forceId]->$id);
+    }
     public function isZoc($forceId){
         return count((array)$this->zocs[$forceId]);
     }

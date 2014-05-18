@@ -1,14 +1,12 @@
 body {
 }
 
+@include player(Prussian, One, $prussianColor, $prussianWrapperColor, $prussianWrapperColor);
+@include player(Russian, Two, $russianColor, $russianWrapperColor);
 #map {
   width: 1023px !important;
   left: 0px;
   top: 00px;
-}
-
-.blueUnit, .Russian {
-  background-color: white;
 }
 
 img.counter {
@@ -31,30 +29,6 @@ img.counter {
 .PrussianlVP {
   color: rgb(239, 115, 74);
   background: transparent;
-}
-
-.russian {
-  background-color: gold;
-}
-
-.armyGreen, .russian {
-  background-color: rgb(148, 189, 74);
-}
-
-.Prussian {
-  background-color: white;
-}
-
-.lightYellow, .Prussian {
-  background-color: white;
-}
-
-.flesh {
-  background-color: rgb(239, 198, 156);
-}
-
-.brightRed {
-  background-color: rgb(223, 88, 66);
 }
 
 p.forceMarch {
@@ -96,15 +70,6 @@ p.forceMarch {
   color: black;
 }
 
-.playerOne {
-  background: rgb(255, 253, 127);
-  border-color: rgb(255, 253, 127) !important;
-}
-
-.playerTwo {
-  background: rgb(76, 184, 0);
-  border-color: rgb(76, 184, 0) !important;
-}
 
 #clock {
   margin-left: 0;

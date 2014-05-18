@@ -1,19 +1,9 @@
 #map{
   width:1900px !important;
 }
-.playerTwo {
-  background: rgb(76, 184, 0);
-  border-color: rgb(76, 184, 0) !important;
-}
-.unit.Austrian .counterWrapper{
-  background:white;
-}
-.unit.Russian .counterWrapper{
-  background:rgb(0, 156, 29);
-}
-.unit.Prussian .counterWrapper{
-  background:rgb(1,23,222);
-}
+@include player(Prussian, One, $prussianColor, $prussianWrapperColor, $prussianWrapperColor);
+@include player(Russian, Two, $russianColor, $russianWrapperColor);
+
 #TEC{
   width:430px;
 }

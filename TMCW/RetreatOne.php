@@ -199,6 +199,12 @@ class RetreatOne extends LandBattle
         for($i = 0;$i < 4;$i++){
             $this->force->addUnit("xx", LACONIANS_FORCE, "deployBox", "multiRecon.png", 2, 1, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "laconians", true, "mech");
         }
+        $mapData = $this->mapData;
+        /* @var MapHex $mapHex */
+        $mapHex = $mapData->getHex(3807);
+        $mapHex->setZoc(LACONIANS_FORCE, 'air1');
+        $mapHex = $mapData->getHex(3306);
+        $mapHex->setZoc(LACONIANS_FORCE, 'air2');
     }
 
     function __construct($data = null, $arg = false, $scenario = false, $game = false)

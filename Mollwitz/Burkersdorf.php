@@ -111,9 +111,19 @@ class Burkersdorf extends JagCore
 
         $artRange = 3;
 
-        for ($i = 0; $i < 31; $i++) {
-            $this->force->addUnit("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'infantry');
+        if($this->scenario->bigAustrian){
+            for ($i = 0; $i < 6; $i++) {
+                $this->force->addUnit("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'infantry');
+            }
+            for ($i = 0; $i < 25; $i++) {
+                $this->force->addUnit("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'infantry');
+            }
+        }else{
+            for ($i = 0; $i < 31; $i++) {
+                $this->force->addUnit("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'infantry');
+            }
         }
+
         for ($i = 0; $i < 5; $i++) {
             $this->force->addUnit("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'cavalry');
         }

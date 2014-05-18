@@ -8,21 +8,21 @@ $force_name[2] = "Russian";
 define("PRUSSIAN_FORCE",1);
 define("RUSSIAN_FORCE",2);
 $phase_name = array();
-$phase_name[1] = "Prussian Move";
-$phase_name[2] = "Prussian Combat";
+$phase_name[1] = "<span class='playerOneFace'>Prussian</span> Move";
+$phase_name[2] = "<span class='playerOneFace'>Prussian</span> Combat";
 $phase_name[3] = "Blue Fire Combat";
-$phase_name[4] = "Russian Move";
-$phase_name[5] = "Russian Combat";
+$phase_name[4] = "<span class='playerTwoFace'>Russian</span> Move";
+$phase_name[5] = "<span class='playerTwoFace'>Russian</span> Combat";
 $phase_name[6] = "Red Fire Combat";
 $phase_name[7] = "Victory";
-$phase_name[8] = "Prussian Deploy";
-$phase_name[9] = "Prussian Mech";
-$phase_name[10] = "Prussian Replacement";
-$phase_name[11] = "Russian Mech";
-$phase_name[12] = "Russian Replacement";
+$phase_name[8] = "<span class='playerOneFace'>Prussian</span> Deploy";
+$phase_name[9] = "<span class='playerOneFace'>Prussian</span> Mech";
+$phase_name[10] = "<span class='playerOneFace'>Prussian</span> Replacement";
+$phase_name[11] = "<span class='playerTwoFace'>Russian</span> Mech";
+$phase_name[12] = "<span class='playerTwoFace'>Russian</span> Replacement";
 $phase_name[13] = "";
 $phase_name[14] = "";
-$phase_name[15] = "Russian deploy phase";
+$phase_name[15] = "<span class='playerTwoFace'>Russian</span> deploy phase";
 
 
 // counter image values

@@ -77,6 +77,10 @@
             "main": {
                 "description": "Standard Scenario"
             },
+            "bigAustrian": {
+                "description": "Stronger Austrian Force, 6 3-3s are 4-3s",
+                "bigAustrian": true
+            },
             "requiredDeploy": {
                 "description": "Prussians must deploy occupy certain hexes.",
                 "requiredDeploy": true,
