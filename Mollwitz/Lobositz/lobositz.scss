@@ -2,8 +2,8 @@
   width:1200px !important;
 }
 
-@include player(Austrian, One, $austrianColor,  $austrianWrapperColor);
-@include player(Prussian, Two, $prussianColor,  $prussianWrapperColor, $prussianWrapperColor);
+@include player(Austrian, Two, $austrianColor,  $austrianWrapperColor);
+@include player(Prussian, One, $prussianColor,  $prussianWrapperColor, $prussianWrapperColor);
 
 .austrian.specialHexes{
   background-color: $austrianColor;

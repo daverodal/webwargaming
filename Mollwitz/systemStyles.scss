@@ -1,5 +1,6 @@
 body {
 }
+
 @mixin player($nationality, $player, $color,$counterColor: $color ,$faceColor: $color ){
   .player#{$player}{
     background:$color;
@@ -21,6 +22,9 @@ $prussianWrapperColor: #0117de;
 
 $angloAlliedColor: #df5842;
 $angloAlliedWrapperColor: #f00;
+
+$britishColor: $angloAlliedColor;
+$britishWrapperColor: $angloAlliedWrapperColor;
 
 $frenchColor: #84b5ff;
 $frenchWrapperColor: white;
@@ -96,6 +100,10 @@ p.forceMarch {
 }
 p.forceMarch{
   color:black;
+}
+
+.Prussian p.forceMarch {
+  color:white;
 }
 
 #OBC {
@@ -177,6 +185,7 @@ p.forceMarch{
 }
 .specialHexes.russian{
   color:white;
+  background-color:$russianColor;
 }
 #CombatLog{
   width:300px;
@@ -250,13 +259,13 @@ p.forceMarch{
 
 .specialHexesVP .austrian,.specialHexesVP .anglo{
   background:transparent;
-  @include victoryPoints(rgb(223,88,66));
+  @include victoryPoints($austrianColor);
  }
 
 .specialHexesVP .prussian{
   color:black;
   background:transparent;
-  @include victoryPoints(yellow);
+  @include victoryPoints($prussianColor);
 
 
 }
@@ -264,10 +273,16 @@ p.forceMarch{
 .specialHexesVP .russian{
   color:white;
   background:transparent;
-  @include victoryPoints(rgb(148, 189, 74));
+  @include victoryPoints($russianColor);
 }
 .specialHexesVP .french{
   color:white;
   background:transparent;
-  @include victoryPoints(rgb(61,110,255));
+  @include victoryPoints($frenchColor);
+}
+
+.specialHexesVP .beluchi{
+  color:white;
+  background:transparent;
+  @include victoryPoints($beluchiWrapperColor);
 }
