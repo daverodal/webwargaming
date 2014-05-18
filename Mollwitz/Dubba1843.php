@@ -41,6 +41,7 @@ class Dubba1843 extends JagCore
     public $force;
     /* @var Terrain */
     public $terrain;
+    /* @var MoveRules */
     public $moveRules;
     public $combatRules;
     public $gameRules;
@@ -187,6 +188,7 @@ class Dubba1843 extends JagCore
             $this->moveRules->enterZoc = "stop";
             $this->moveRules->exitZoc = "stop";
             $this->moveRules->noZocZoc = true;
+            $this->moveRules->zocBlocksRetreat = true;
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);

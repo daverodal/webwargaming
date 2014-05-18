@@ -53,6 +53,19 @@ class dubba1843VictoryCore extends victoryCore
             $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-15 Beluchis  vp</span>";
         }
     }
+    public function playerTurnChange($arg){
+        global $force_name;
+        /* @var Dubba1843 $battle */
+        $battle = Battle::getBattle();
+        list($nextForceId) = $arg;
+        if($nextForceId == BELUCHI_FORCE){
+            $battle->moveRules->zocBlocksRetreat = false;
+        }else{
+            $battle->moveRules->zocBlocksRetreat = true;
+        }
+        return parent::playerTurnChange($arg);
+    }
+
     protected function checkVictory($attackingId,$battle){
         echo "Attack $attackingId ";
         var_dump($this->gameOver);

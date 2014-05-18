@@ -32,6 +32,7 @@ class MoveRules
     public $noZocZoc = false;
     public $noZocZocOneHex = true;
     public $oneHex = true;
+    public $zocBlocksRetreat = true;
 
     function save()
     {
@@ -1098,7 +1099,7 @@ class MoveRules
             $isBlocked = true;
         }
 
-        if (($this->force->hexagonIsZOC($id, $hexagon) == true)) {
+        if ($this->zocBlocksRetreat === true && ($this->force->hexagonIsZOC($id, $hexagon) == true)) {
             $isBlocked = true;
         }
         // make sure hexagon is not occupied
