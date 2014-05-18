@@ -1,110 +1,117 @@
 {
-  "MartianCivilWar": {
-    "name": "The Martian Civil War",
-    "path": "TMCW",
-    "fileName": "MartianCivilWar.php",
-    "scenarios": {
-      "main": {
-        "description": "original game, stop on enter zoc, no supply",
-        "supply": false,
-        "bigLoyal": false
-      },
-
-    "Supply":{
-      "description": "Supply Rules,",
-      "supply":true,
-      "bigLoyal": false
-    },
-      "FastLoyal":{
-        "description": "Supply Rules, loyalist move 8, more infantry to start",
-        "supply":true,
-        "loyalMechMove": 8,
-        "loyalExtraInf": true,
-        "supplyLen": 8
-      }
-    }
-  },
-  "SiegeOfCuneiform": {
-    "name": "The Siege of Cueeiform",
-    "path": "TMCW",
-    "fileName": "MartianCivilWar.php",
-    "scenarios": {
-      "HardCuneiform":{
-        "description": "Rebel closes in on fortified Cuneiform.",
-        "supply":true,
-        "loyalMechMove": 8,
-        "loyalExtraInf": true,
-        "supplyLen": 8,
-        "hardCuneiform":true
-      }
-    }
-  },
-    "Amph": {
-        "name": "Sur La Mer",
+    "MartianCivilWar": {
+        "name": "The Martian Civil War",
         "path": "TMCW",
-        "fileName": "Amph.php",
+        "genre": "20'th Century Games",
+        "fileName": "MartianCivilWar.php",
         "scenarios": {
-            "Main":{
-                "description": "Rebel raid by the sea",
-                "supply":true,
+            "main": {
+                "description": "original game, stop on enter zoc, no supply",
+                "supply": false,
+                "bigLoyal": false
+            },
+
+            "Supply": {
+                "description": "Supply Rules,",
+                "supply": true,
+                "bigLoyal": false
+            },
+            "FastLoyal": {
+                "description": "Supply Rules, loyalist move 8, more infantry to start",
+                "supply": true,
+                "loyalMechMove": 8,
+                "loyalExtraInf": true,
+                "supplyLen": 8
+            }
+        }
+    },
+    "SiegeOfCuneiform": {
+        "name": "The Siege of Cueeiform",
+        "path": "TMCW",
+        "genre": "20'th Century Games",
+        "fileName": "MartianCivilWar.php",
+        "scenarios": {
+            "HardCuneiform": {
+                "description": "Rebel closes in on fortified Cuneiform.",
+                "supply": true,
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
                 "supplyLen": 8,
-                "hardCuneiform":true,
-                "showHexNums":true
-           }
+                "hardCuneiform": true
+            }
+        }
+    },
+    "Amph": {
+        "name": "Sur La Mer",
+        "path": "TMCW",
+        "genre": "20'th Century Games",
+        "fileName": "Amph.php",
+        "scenarios": {
+            "Main": {
+                "description": "Rebel raid by the sea",
+                "supply": true,
+                "loyalMechMove": 8,
+                "loyalExtraInf": true,
+                "supplyLen": 8,
+                "hardCuneiform": true,
+                "showHexNums": true
+            }
         }
     },
     "RetreatOne": {
         "name": "Retreat One",
         "path": "TMCW",
+        "genre": "20'th Century Games",
         "fileName": "RetreatOne.php",
         "scenarios": {
-            "Main":{
+            "Main": {
                 "description": "Laconians vs Caprolians",
-                "supply":true,
+                "supply": true,
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
                 "supplyLen": 8,
-                "hardCuneiform":true,
-                "showHexNums":false
+                "hardCuneiform": true,
+                "showHexNums": false
             }
         }
     },
     "TankDual": {
         "name": "Tank Dual!!!",
         "path": "TMCW",
+        "genre": "20'th Century Games",
         "fileName": "TankDual.php",
         "scenarios": {
-            "main":{
+            "main": {
                 "description": "VERY VERY FRESH! USE AT OWN RISK!!!!!!",
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
                 "supplyLen": 8,
-                "hardCuneiform":true,
-                "showHexNums":true
+                "hardCuneiform": true,
+                "showHexNums": true
             }
         }
-    },  "Nomonhan": {
-    "name": "The Nomonhan Incident",
-    "path": "TMCW",
-    "fileName": "Nomonhan.php",
-    "scenarios": {
-      "standard": {
-        "description": "Standard scenario. Japan vs Soviet Union",
-        "supply": true
-      }
+    },
+    "Nomonhan": {
+        "name": "The Nomonhan Incident",
+        "path": "TMCW",
+        "fileName": "Nomonhan.php",
+        "scenarios": {
+            "standard": {
+                "description": "Standard scenario. Japan vs Soviet Union",
+                "supply": true
+            }
+        }
+    },
+    "Manchuria1976": {
+        "name": "Manchuria 1976",
+        "path": "TMCW",
+        "genre": "20'th Century Games",
+        "fileName": "Manchuria1976.php",
+        "scenarios": {
+            "standard": {
+                "description": "Standard scenario. Peoples Republic of China vs Soviet Union",
+                "supply": true
+            }
+        }
     }
-  },
-  "Manchuria1976": {
-    "name": "Manchuria 1976",
-    "path": "TMCW",
-    "fileName": "Manchuria1976.php",
-    "scenarios": {
-      "standard": {
-        "description": "Standard scenario. Peoples Republic of China vs Soviet Union",
-        "supply": true
-      }
-    }
-  }
 }
