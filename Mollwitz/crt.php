@@ -177,7 +177,11 @@ class CombatResultsTable
                         $unitStrength++;
                         $combatLog .= "+1 for attack into clear ";
                     }
-                    $combinedArms[$battle->force->units[$attackerId]->class]++;
+                    if($unit->nationality != "Beluchi" && $unit->nationality != "Sikh"){
+                        $combinedArms[$battle->force->units[$attackerId]->class]++;
+                    }else{
+                        $combatLog .= "no combined arms bonus for ".$unit->nationality." cavalry";
+                    }
                 }
             }
             if ($unit->class == "artillery" || $unit->class == "horseartillery") {
