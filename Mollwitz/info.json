@@ -154,11 +154,13 @@
         "fileName": "Dubba1843.php",
         "scenarios": {
             "main": {
-                "description": "Standard Scenario"
+                "description": "Standard Scenario",
+                "doubleArt":true
             },
             "bigBrits":{
                 "description": "British have two steps",
-                "toughBritish": true
+                "toughBritish": true,
+                "doubleArt":true
             }
         }
     },
@@ -170,7 +172,8 @@
         "scenarios": {
             "main": {
                 "description": "Day One",
-                "dayOne": true
+                "dayOne": true,
+                "doubleArt":true
             }
         }
     },
@@ -182,7 +185,8 @@
         "scenarios": {
             "main": {
                 "description": "Day Two",
-                "dayTwo": true
+                "dayTwo": true,
+                "doubleArt":true
             }
         }
     }

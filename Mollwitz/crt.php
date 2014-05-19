@@ -201,10 +201,25 @@ class CombatResultsTable
         $defendersAllCav = true;
         $combatLog .= " = $attackStrength<br>Defenders<br>";
         foreach ($defenders as $defId => $defender) {
+
             $unit = $battle->force->units[$defId];
             $class = $unit->class;
             $unitDefense = $battle->force->getDefenderStrength($defId);
-            $combatLog .= "$unitDefense ".$unit->class." ";;
+            $combatLog .= "$unitDefense ".$unit->class." ";
+            $notClearHex = false;
+            if($scenario->doubleArt){
+                $hexagon = $unit->hexagon;
+                $hexpart = new Hexpart();
+                $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
+                $notClearHex |= $battle->terrain->terrainIs($hexpart, 'town');
+                $notClearHex |= $battle->terrain->terrainIs($hexpart, 'hill');
+                $notClearHex |= $battle->terrain->terrainIs($hexpart, 'forest');
+                $notClearHex |= $battle->terrain->terrainIs($hexpart, 'swamp');
+                if($unit->class == 'artillery' && !$notClearHex){
+                    $unitDefense *= 2;
+                    $combatLog .= "doubled for defending in clear";
+                }
+            }
             if ($unit->class != 'cavalry') {
                 $defendersAllCav = false;
             }
