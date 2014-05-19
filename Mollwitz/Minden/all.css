@@ -731,12 +731,13 @@ p.range {
   font-size: 15px;
   top: -15px;
   right: 5px;
-  display: block; }
+  display: block;
+  color: black; }
 
 p.forceMarch {
   color: black; }
 
-.Prussian p.forceMarch {
+.Russian p.forceMarch, .Russian p.range, .Prussian p.forceMarch, .Prussian p.range {
   color: white; }
 
 #OBC {

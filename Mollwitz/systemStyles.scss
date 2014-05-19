@@ -101,13 +101,16 @@ p.range{
   top:-15px;
   right:5px;
   display:block;
+  color:black;
 }
 p.forceMarch{
   color:black;
 }
 
-.Prussian p.forceMarch {
-  color:white;
+.Russian, .Prussian {
+  p.forceMarch, p.range{
+    color:white;
+  }
 }
 
 #OBC {
