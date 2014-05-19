@@ -28,8 +28,10 @@ x.register("force", function(force,data) {
         }
         if(units[i].forceMarch){
             $("#"+i+" .forceMarch").show();
+            $("#"+i+" .range").hide();
         }else{
             $("#"+i+" .forceMarch").hide();
+            $("#"+i+" .range").show();
         }
         if(force.requiredDefenses[i] === true){
 
@@ -74,10 +76,12 @@ x.register("force", function(force,data) {
             case <?=STATUS_MOVING?>:
                 if(units[i].forceMarch){
                     $("#"+i+" .forceMarch").show();
+                    $("#"+i+" .range").hide();
 
                     color = "f00 #666 #666 #f00";
                 }else{
                     $("#"+i+" .forceMarch").hide();
+                    $("#"+i+" .range").show();
 
                     color = "#ccc #666 #666 #ccc";
 
@@ -579,7 +583,7 @@ x.register("mapUnits", function(mapUnits) {
         }
         var symb = mapUnits[i].supplied !== false ? " - " : " <span class='reduced'>u</span> ";
         var html = reduceDisp + str + symb + move + "</span>"
-        $("#"+i+" div").html(html);
+        $("#"+i+" .unit-numbers").html(html);
         var len  = $("#"+i+" div").text().length;
         $("#"+i+" div span ").addClass("infoLen"+len);
         $("#"+i).attr("src",img);

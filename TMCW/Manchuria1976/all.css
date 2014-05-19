@@ -603,7 +603,8 @@ fieldset {
   /*display:none;*/ }
 
 #deployBox {
-  position: relative; }
+  position: relative;
+  font-family: serif; }
 
 #deployWrapper, #exitWrapper {
   /*display:none;*/

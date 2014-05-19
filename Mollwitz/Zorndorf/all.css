@@ -603,7 +603,8 @@ fieldset {
   /*display:none;*/ }
 
 #deployBox {
-  position: relative; }
+  position: relative;
+  font-family: serif; }
 
 #deployWrapper, #exitWrapper {
   /*display:none;*/
@@ -718,13 +719,19 @@ fieldset {
   font-weight: bold;
   font-family: serif; }
 
-p.forceMarch {
+p.forceMarch, p.range {
   position: absolute;
   top: -19px;
   right: 2px;
   display: none;
   color: white;
   text-transform: lowercase; }
+
+p.range {
+  font-size: 15px;
+  top: -15px;
+  right: 5px;
+  display: block; }
 
 p.forceMarch {
   color: black; }

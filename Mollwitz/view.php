@@ -184,6 +184,7 @@
                         {units}
                         <div class="unit {class}" id="{id}" alt="0">
                             <nav class="counterWrapper"><img src="<?php echo base_url(); ?>js/{image}" class="counter"></nav>
+                            <p class="range">{range}</p>
                             <p class="forceMarch">M</p>
                             <section></section>
 

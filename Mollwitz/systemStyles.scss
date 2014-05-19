@@ -36,8 +36,6 @@ $russianWrapperColor: #009c1d;
 $beluchiColor: #c68100;
 $beluchiWrapperColor: #865900;
 
-
-
 #map{
   width:1000px !important;
 }
@@ -90,13 +88,19 @@ $beluchiWrapperColor: #865900;
   font-weight: bold;
   font-family: serif;
 }
-p.forceMarch {
+p.forceMarch, p.range {
   position: absolute;
   top: -19px;
   right: 2px;
   display: none;
   color: white;
   text-transform: lowercase;
+}
+p.range{
+  font-size:15px;
+  top:-15px;
+  right:5px;
+  display:block;
 }
 p.forceMarch{
   color:black;

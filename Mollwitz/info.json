@@ -155,6 +155,34 @@
         "scenarios": {
             "main": {
                 "description": "Standard Scenario"
+            },
+            "bigBrits":{
+                "description": "British have two steps",
+                "toughBritish": true
+            }
+        }
+    },
+    "Ferozesha": {
+        "name": "Ferozesha Day One",
+        "path": "Mollwitz",
+        "genre": "19'th Century Battles",
+        "fileName": "Ferozesha.php",
+        "scenarios": {
+            "main": {
+                "description": "Day One",
+                "dayOne": true
+            }
+        }
+    },
+    "FerozeshaDayTwo": {
+        "name": "Ferozesha Day Two",
+        "path": "Mollwitz",
+        "genre": "19'th Century Battles",
+        "fileName": "FerozeshaDayTwo.php",
+        "scenarios": {
+            "main": {
+                "description": "Day Two",
+                "dayTwo": true
             }
         }
     }
