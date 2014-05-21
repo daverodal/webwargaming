@@ -5,7 +5,7 @@
   width:800px;
 }
 @include player(British, One, $angloAlliedColor, $angloAlliedWrapperColor);
-@include player(Beluchi, Two, $beluchiColor, $beluchiWrapperColor, $beluchiWrapperColor);
+@include player(Sikh, Two, $beluchiColor, $beluchiWrapperColor, $beluchiWrapperColor);
 
 .unit.Native .counterWrapper {
   background-color: $angloAlliedColor;

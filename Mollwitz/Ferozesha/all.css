@@ -853,10 +853,10 @@ p.forceMarch {
   background: #c68100;
   border-color: #c68100 !important; }
 
-.BeluchiFace, .playerTwoFace {
+.SikhFace, .playerTwoFace {
   color: #865900; }
 
-.Beluchi .counterWrapper {
+.Sikh .counterWrapper {
   background-color: #865900; }
 
 .unit.Native .counterWrapper {
