@@ -45,13 +45,13 @@ class ferozeshaVictoryCore extends indiaVictoryCore
         $battle = Battle::getBattle();
 
         list($mapHexName, $forceId) = $args;
-        if ($forceId == BELUCHI_FORCE) {
-            $this->victoryPoints[BELUCHI_FORCE]  += 15;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='beluchi'>+15 Beluchis  vp</span>";
+        if ($forceId == SIKH_FORCE) {
+            $this->victoryPoints[SIKH_FORCE]  += 15;
+            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='beluchi'>+15 Sikh  vp</span>";
         }
         if ($forceId == BRITISH_FORCE) {
-            $this->victoryPoints[BELUCHI_FORCE]  -= 15;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-15 Beluchis  vp</span>";
+            $this->victoryPoints[SIKH_FORCE]  -= 15;
+            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-15 Sikh  vp</span>";
         }
     }
 
@@ -62,7 +62,7 @@ class ferozeshaVictoryCore extends indiaVictoryCore
         $gameRules = $battle->gameRules;
         var_dump($battle->mapData->specialHexes);
         $turn = $gameRules->turn;
-        $beluchiWin =  $britishWin = false;
+        $sikhWin =  $britishWin = false;
 
         if(!$this->gameOver){
             $specialHexes = $battle->mapData->specialHexes;
@@ -82,16 +82,16 @@ class ferozeshaVictoryCore extends indiaVictoryCore
             if(($this->victoryPoints[BRITISH_FORCE] >= 45)){
                 $britishWin = true;
             }
-            if(($this->victoryPoints[BELUCHI_FORCE] >= 40)){
-                $beluchiWin = true;
+            if(($this->victoryPoints[SIKH_FORCE] >= 40)){
+                $sikhWin = true;
             }
             if($turn == $gameRules->maxTurn+1){
                 if(!$britishWin){
-                        $beluchiWin = true;
+                        $sikhWin = true;
                 }
-                if($beluchiWin && $britishWin){
+                if($sikhWin && $britishWin){
                     $this->winner = 0;
-                    $britishWin = $beluchiWin = false;
+                    $britishWin = $sikhWin = false;
                     $gameRules->flashMessages[] = "Tie Game";
                     $gameRules->flashMessages[] = "Game Over";
                     $this->gameOver = true;
@@ -104,12 +104,12 @@ class ferozeshaVictoryCore extends indiaVictoryCore
                 $this->winner = BRITISH_FORCE;
                 $gameRules->flashMessages[] = "British Win";
             }
-            if($beluchiWin){
-                $this->winner = BELUCHI_FORCE;
-                $msg = "Beluchi Win";
+            if($sikhWin){
+                $this->winner = SIKH_FORCE;
+                $msg = "Sikh Win";
                 $gameRules->flashMessages[] = $msg;
             }
-            if($britishWin || $beluchiWin){
+            if($britishWin || $sikhWin){
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
                 return true;

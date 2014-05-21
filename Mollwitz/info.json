@@ -31,7 +31,7 @@
                 "showHexNums":true
             },
             "hastenbeck2": {
-                "description": "Hatenbeck2 ",
+                "description": "Hastenbeck2 ",
                 "hastenbeck2":true
             }
         }
@@ -129,6 +129,9 @@
         "path": "Mollwitz",
         "genre": "18'th Century Battles",
         "fileName": "Jagersdorf.php",
+        "params":{
+            "jagersdorfCombat": true
+        },
         "scenarios": {
             "main": {
                 "jagersdorfCombat": true,
@@ -136,12 +139,11 @@
             },
             "prussianDeploys": {
                 "description": "Prussians has setup mode ",
-                "jagersdorfCombat": true,
+
                 "prussianDeploy": true
             },
             "extraArt": {
                 "description": "Extra Artillery, Prussians has setup mode ",
-                "jagersdorfCombat": true,
                 "prussianDeploy": true,
                 "extraArt": true
             }
@@ -152,15 +154,12 @@
         "path": "Mollwitz",
         "genre": "19'th Century Battles",
         "fileName": "Dubba1843.php",
+        "params":{
+            "doubleArt": true
+        },
         "scenarios": {
             "main": {
-                "description": "Standard Scenario",
-                "doubleArt":true
-            },
-            "bigBrits":{
-                "description": "British have two steps",
-                "toughBritish": true,
-                "doubleArt":true
+                "description": "Standard Scenario"
             }
         }
     },
@@ -169,11 +168,13 @@
         "path": "Mollwitz",
         "genre": "19'th Century Battles",
         "fileName": "Ferozesha.php",
+        "params":{
+            "doubleArt": true
+        },
         "scenarios": {
             "main": {
                 "description": "Day One",
-                "dayOne": true,
-                "doubleArt":true
+                "dayOne": true
             }
         }
     },
@@ -182,11 +183,13 @@
         "path": "Mollwitz",
         "genre": "19'th Century Battles",
         "fileName": "FerozeshaDayTwo.php",
+        "params":{
+            "doubleArt": true
+        },
         "scenarios": {
             "main": {
                 "description": "Day Two",
-                "dayTwo": true,
-                "doubleArt":true
+                "dayTwo": true
             }
         }
     }

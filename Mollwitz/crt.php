@@ -76,7 +76,7 @@ class CombatResultsTable
     {
 
         $combatLog = "";
-        /* @var Jagersdorf $battle */
+        /* @var JagCore $battle */
         $battle = Battle::getBattle();
         $scenario = $battle->scenario;
         $combats = $battle->combatRules->combats->$defenderId;
@@ -190,7 +190,11 @@ class CombatResultsTable
                     $unitStrength /= 2;
                     $combatLog .= "halved for attacking into terrain ";
                 }
-                $combinedArms[$battle->force->units[$attackerId]->class]++;
+                if($unit->nationality != "Beluchi"){
+                    $combinedArms[$battle->force->units[$attackerId]->class]++;
+                }else{
+                    $combatLog .= "no combined arms bonus for Beluchi";
+                }
             }
             $combatLog .= "<br>";
             $attackStrength += $unitStrength;
@@ -206,8 +210,10 @@ class CombatResultsTable
             $class = $unit->class;
             $unitDefense = $battle->force->getDefenderStrength($defId);
             $combatLog .= "$unitDefense ".$unit->class." ";
-            $notClearHex = false;
+            /* set to true to disable for not scenario->doubleArt */
+            $clearHex = false;
             if($scenario->doubleArt){
+                $notClearHex = false;
                 $hexagon = $unit->hexagon;
                 $hexpart = new Hexpart();
                 $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
@@ -215,8 +221,8 @@ class CombatResultsTable
                 $notClearHex |= $battle->terrain->terrainIs($hexpart, 'hill');
                 $notClearHex |= $battle->terrain->terrainIs($hexpart, 'forest');
                 $notClearHex |= $battle->terrain->terrainIs($hexpart, 'swamp');
-                if($unit->class == 'artillery' && !$notClearHex){
-                    $unitDefense *= 2;
+                $clearHex = !$notClearHex;
+                if($unit->class == 'artillery' && $clearHex){
                     $combatLog .= "doubled for defending in clear";
                 }
             }
@@ -238,7 +244,7 @@ class CombatResultsTable
                 $combatLog .= "+1 for defending into town or forest ";
             }
 
-            $defenseStrength += $unitDefense * (($isTown && $class != 'cavalry') || $isHill ? 2 : 1);
+            $defenseStrength += $unitDefense * (($isTown && $class !== 'cavalry') || ($class === 'artillery' && $clearHex) || $isHill ? 2 : 1);
             $combatLog .= "<br>";
         }
 

@@ -2,18 +2,18 @@
 set_include_path(__DIR__ . "/Ferozesha" . PATH_SEPARATOR . get_include_path());
 require_once "JagCore.php";
 /* comment */
-define("BELUCHI_FORCE", 1);
+define("SIKH_FORCE", 1);
 define("BRITISH_FORCE", 2);
 require_once "Ferozesha.php";
 
-$force_name[BELUCHI_FORCE] = "Beluchi";
+$force_name[SIKH_FORCE] = "Sikh";
 $force_name[BRITISH_FORCE] = "British";
 $phase_name = array();
 $phase_name[1] = "<span class='playerTwoFace'>British</span> Move";
 $phase_name[2] = "<span class='playerTwoFace'>British</span> Combat";
 $phase_name[3] = "";
-$phase_name[4] = "<span class='playerOneFace'>Beluchi</span> Move";
-$phase_name[5] = "<span class='playerOneFace'>Beluchi</span> Combat";
+$phase_name[4] = "<span class='playerOneFace'>Sikh</span> Move";
+$phase_name[5] = "<span class='playerOneFace'>Sikh</span> Combat";
 $phase_name[6] = "";
 $phase_name[7] = "Victory";
 $phase_name[8] = "<span class='playerTwoFace'>British</span> Deploy";
@@ -23,9 +23,9 @@ $phase_name[11] = "";
 $phase_name[12] = "";
 $phase_name[13] = "";
 $phase_name[14] = "";
-$phase_name[15] = "<span class='playerOneFace'>Beluchi</span> deploy phase";
+$phase_name[15] = "<span class='playerOneFace'>Sikh</span> deploy phase";
 
-//var_dump(BELUCHI_FORCE);
+//var_dump(SIKH_FORCE);
 //var_dump(BRITISH_FORCE);
 //var_dump($force_name);die();
 // counter image values
@@ -43,18 +43,18 @@ class FerozeshaDayTwo extends Ferozesha
 
 
         if(!$this->scenario->dayTwo){
-            /* Beluchi */
+            /* Sikh */
             for ($i = 0; $i < 21; $i++) {
-                $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Beluchi", false, 'infantry');
+                $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Sikh", false, 'infantry');
             }
             for ($i = 0; $i < 10; $i++) {
-                $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Beluchi", false, 'cavalry');
+                $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Sikh", false, 'cavalry');
             }
             for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhArtBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "B", 1, 3, "Beluchi", false, 'artillery');
+                $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhArtBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "B", 1, 3, "Sikh", false, 'artillery');
             }
             for ($i = 0; $i < 2; $i++) {
-                $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhArtBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 3, "Beluchi", false, 'artillery');
+                $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhArtBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 3, "Sikh", false, 'artillery');
             }
 
             /* British */
@@ -77,18 +77,18 @@ class FerozeshaDayTwo extends Ferozesha
                 $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritHorArtBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 3, "British", false, 'horseartillery');
             }
         }else{
-            /* Beluchi */
+            /* Sikh */
             for ($i = 0; $i < 16; $i++) {
-                $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Beluchi", false, 'infantry');
+                $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Sikh", false, 'infantry');
             }
             for ($i = 0; $i < 9; $i++) {
-                $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Beluchi", false, 'cavalry');
+                $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Sikh", false, 'cavalry');
             }
             for ($i = 0; $i < 3; $i++) {
-                $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhArtBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "B", 1, 2, "Beluchi", false, 'artillery');
+                $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhArtBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "B", 1, 2, "Sikh", false, 'artillery');
             }
             for ($i = 0; $i < 1; $i++) {
-                $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhArtBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 3, "Beluchi", false, 'artillery');
+                $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhArtBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 3, "Sikh", false, 'artillery');
             }
 
 
@@ -223,7 +223,7 @@ class FerozeshaDayTwo extends Ferozesha
             $this->terrain->addTerrainFeature("hill", "hill", "h", 2, 0, 0, true, true);
             $this->terrain->addTerrainFeature("river", "river", "v", 0, 1, 0, false);
             $this->terrain->addAltEntranceCost('forest', 'cavalry', 4);
-            $this->terrain->addNatAltEntranceCost('forest','Beluchi', 'infantry', 1);
+            $this->terrain->addNatAltEntranceCost('forest','Sikh', 'infantry', 1);
             $this->terrain->addAltEntranceCost('forest', 'horseartillery', 4);
             $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
             $this->terrain->addTerrainFeature("swamp", "swamp", "s", 9, 0, 1, true, false);
@@ -252,7 +252,7 @@ class FerozeshaDayTwo extends Ferozesha
                 $specialHexes[$specialHexId] = BRITISH_FORCE;
             }
             foreach ($specialHexB as $specialHexId) {
-                $specialHexes[$specialHexId] = BELUCHI_FORCE;
+                $specialHexes[$specialHexId] = SIKH_FORCE;
             }
             $this->mapData->setSpecialHexes($specialHexes);
 
