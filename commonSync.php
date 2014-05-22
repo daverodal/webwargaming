@@ -322,7 +322,8 @@ x.register("gameRules", function(gameRules,data) {
         $("#display").html("").hide();
     }
     var status = "";
-    turn = gameRules.turn;
+    var turn = gameRules.turn;
+    var maxTurn = gameRules.maxTurn
     if("gameTurn"+turn != $("#turnCounter").parent().attr("id")){
         $("#gameTurn"+turn).prepend($("#turnCounter"));
     }
@@ -349,7 +350,7 @@ x.register("gameRules", function(gameRules,data) {
 //        $(".row1,.row3,.row5").css("background-color","rgb(132,181,255)");
     }
 
-    var html = "<span id='turn'>Turn "+turn+"</span> ";
+    var html = "<span id='turn'>Turn "+turn+" of "+maxTurn+"</span> ";
     html += "<span id='phase'>"+gameRules.phase_name[gameRules.phase];
     if(gameRules.mode_name[gameRules.mode]){
         html += " "+gameRules.mode_name[gameRules.mode];
