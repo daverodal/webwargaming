@@ -829,14 +829,14 @@ fieldset {
   background-color: #55cc55; }
 
 .playerTwo {
-  background: #fff858;
-  border-color: #fff858 !important; }
+  background: #e5de52;
+  border-color: #e5de52 !important; }
 
 .loyalistFace, .playerTwoFace {
-  color: #fff858; }
+  color: #e5de52; }
 
 .loyalist {
-  background-color: #fff858; }
+  background-color: #e5de52; }
 
 .unit .counter {
   margin-top: 1px; }

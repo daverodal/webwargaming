@@ -1,8 +1,9 @@
 <div>
 
-    <h2>Setting Up</h2>
+    <li>    <span class="lessBig">Setting Up</span>
 
-    <ul>
+
+    <ol>
         <li>The Anglo Allied player sets up first. The Anglo Allied units are red and white.</li>
         <li>They may deploy any or all their units on or north of the hexes with an A on them.
             <p>Clicking on a unit will
@@ -23,13 +24,14 @@
             movement phase. (it will cost their entire movement allowance though).
             </P>
         </li>
+    </ol>
 
-    </ul>
+    </li>
 
-    <h2>Victory Conditions</h2>
+    <li>    <span class="lessBig">Victory Conditions</span>
     <h4>The Game ends instantly at the end of any Player Turn when one or more of the following conditions applies. Mutual
         victories are a Draw</h4>
-    <ol>
+<ol>
         <li> At the end of any turn that one player has accumulated 50 Victory Points with a 10 point lead.
             <p>Victory Points are awarded when one player destroys another players unit.</P>
             <ul>
@@ -60,4 +62,5 @@
 
         <li>If turn 14 concludes with none of the above conditions met. The game is a draw.</li>
     </ol>
+    </li>
 </div>

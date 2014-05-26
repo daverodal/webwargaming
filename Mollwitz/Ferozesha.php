@@ -4,8 +4,8 @@ require_once "JagCore.php";
 /* comment */
 define("BRITISH_FORCE", 1);
 define("SIKH_FORCE", 2);
-$force_name[SIKH_FORCE] = "Sikh";
 $force_name[BRITISH_FORCE] = "British";
+$force_name[SIKH_FORCE] = "Sikh";
 $phase_name = array();
 $phase_name[1] = "<span class='playerOneFace'>British</span> Move";
 $phase_name[2] = "<span class='playerOneFace'>British</span> Combat";
@@ -73,8 +73,8 @@ class Ferozesha extends JagCore
 
     static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false, $game = false)
     {
-
-        global $force_name;
+        $deployTwo = $playerOne = "British";
+        $deployOne = $playerTwo = "Sikh";
         @include_once "view.php";
     }
 
@@ -992,10 +992,6 @@ class Ferozesha extends JagCore
                 $specialHexes[$specialHexId] = SIKH_FORCE;
             }
             $this->mapData->setSpecialHexes($specialHexes);
-
-            $this->terrain->addReinforceZone(113,'A');
-            $this->terrain->addReinforceZone(501,'B');
-
 
             // end terrain data ----------------------------------------
 

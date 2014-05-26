@@ -5,8 +5,8 @@ require_once "JagCore.php";
 /* comment */
 define("FRENCH_FORCE", 1);
 define("ALLIED_FORCE", 2);
-$force_name[ALLIED_FORCE] = "Allied";
 $force_name[FRENCH_FORCE] = "French";
+$force_name[ALLIED_FORCE] = "Allied";
 $phase_name = array();
 $phase_name[1] = "French Move";
 $phase_name[2] = "French Combat";
@@ -74,7 +74,8 @@ class Hastenbeck extends JagCore
     static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false, $game = false)
     {
 
-        global $force_name;
+        $deployTwo = $playerOne = "French";
+        $deployOne = $playerTwo = "Allied";
         @include_once "view.php";
     }
 

@@ -73,8 +73,8 @@ class Burkersdorf extends JagCore
 
     static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false, $game = false)
     {
-
-        global $force_name;
+        $deployOne = $playerOne = "Austrian";
+        $deployTwo = $playerTwo = "Prussian";
         @include_once "view.php";
     }
 

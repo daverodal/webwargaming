@@ -67,8 +67,6 @@
 </head>
 <body>
 <div class="wrapper">
-    <?php global $force_name;$playerOne = $force_name[1];
-    $playerTwo = $force_name[2];?>
     <div class="left Anglo big"><?= $playerOne;?></div>
     <div class="right French big"><?= $playerTwo;?></div>
     <div class="clear"></div>

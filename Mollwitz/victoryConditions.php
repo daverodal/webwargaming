@@ -2,7 +2,7 @@
 
     <h2>Setting Up</h2>
 
-    <ul>
+    <ol style="counter-reset:item 10;">
         <li>The Austrian player sets up first. The Austrian units are red and white.</li>
         <li>They may deploy any or all their units on or north of the hexes with an A on them.
             <p>Clicking on a unit will
@@ -24,7 +24,7 @@
             </P>
         </li>
 
-    </ul>
+    </ol>
 
     <h2>Victory Conditions</h2>
     <h4>The Game ends instantly at the end of any Player Turn when one or more of the following conditions applies. Mutual

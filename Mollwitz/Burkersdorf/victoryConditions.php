@@ -11,9 +11,6 @@
         font-size: 15px;
     }
 </style>
-<?php global $force_name;
-$playerOne = $force_name[1];
-$playerTwo = $force_name[2];?>
 <div id="exclusiveRules">
 
     <h1>Setting Up</h2>
@@ -47,7 +44,7 @@ $playerTwo = $force_name[2];?>
             </p>
         </li>
         <li>When the <?= $playeTwo ?> player is done deploying they should hit the "next phase" button, it will then
-            be <?= $playeOne ?>'s movement phase
+            be <?= $playerOne ?>'s movement phase
         </li>
     </ul>
     <h2><?= $playerOne ?> Movement Phase</h2>
@@ -60,13 +57,18 @@ $playerTwo = $force_name[2];?>
 
     <h1>Victory Conditions</h1>
     <ol>
-        <li>If at the end of any turn, a player has at least 70 victory points and at least a 10 point lead,
-            they will win the game. (see Prussian exceptions below).
+        <li> Some Hexes are marked in Red numbers for victory points only the Prussian receives points for these hexes.
+            And only while they are actually occupied by a Prussian unit at the end of an Austrian turn
         </li>
-        <li>In addition to the above, the Prussian player is required to occupy or have been the last to pass through two
-            of the cities on the map labeled "Austrian". Or a city and the LOC hex at the south edge, also labeled "Austrian"
+        <li> The Prussian has won the game at the end of any Austrian turn that the Prussian has 50 victory points
+            including at least two victory towns or the LOC hex.
         </li>
-        <li>If both players achieve. Victory at the end of the same turn, the game is a tie</li>
+        <li> The Austrian Player wins at the end of any Austrian turn that he has 35 victory points.</li>
+        <li> The Austrian Player wins if the Prussian has occupied no victory hexes by the end of the last turn of the
+            game.
+        </li>
+        <li> All other cases are a draw.</li>
+
     </ol>
     <h2>Victory points are awarded on the following basis.</h2>
     <ol>

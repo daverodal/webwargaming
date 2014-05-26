@@ -12,7 +12,22 @@ body {
   .#{$nationality} .counterWrapper{
     background-color: $counterColor;
   }
+  }
 
+@mixin badge($nationality, $shortName){
+  .#{$nationality}.infantry .counterWrapper .counter{
+    background-image:url('../../js/#{$shortName}InfBadge.png');
+    background-size:14px;
+  }
+  .#{$nationality}.cavalry .counterWrapper .counter{
+    background-image:url('../../js/#{$shortName}CavBadge.png');
+    background-size:14px;
+  }
+
+  .#{$nationality}.artillery .counterWrapper .counter{
+    background-image:url('../../js/#{$shortName}ArtBadge.png');
+    background-size:14px;
+  }
 }
 $austrianColor: #df5842;
 $austrianWrapperColor: white;
@@ -45,12 +60,32 @@ $beluchiWrapperColor: #865900;
   border-width: 3px;
 }
 
-.unit .counterWrapper img.counter {
+.unit .counterWrapper div.counter {
   width: 14px;
   height:14px;
   display:block;
   border-right:1px solid black;
 
+}
+@include badge(Sikh, Sikh);
+@include badge(Beluchi, Sikh);
+@include badge(British, Brit);
+
+.British.horseartillery .counterWrapper .counter{
+  background-image:url('../../js/BritHorArtBadge.png');
+  background-size:14px;
+}
+@include badge(Native, Native);
+@include badge(Austrian, Aus);
+@include badge(Prussian, Pru);
+@include badge(Russian, Rus);
+@include badge(French, French);
+@include badge(AngloAllied, Ang);
+@include badge(Anglo, Ang);
+@include badge(Allied, Ang);
+
+.indent{
+  margin-left:20px;
 }
 .unit .counterWrapper{
   border:solid black 1px;
@@ -292,4 +327,9 @@ p.forceMarch{
   color:white;
   background:transparent;
   @include victoryPoints($beluchiWrapperColor);
+}
+.ruleComment{
+  font-style:italic;
+  margin-left:10px;
+  color:#999;
 }

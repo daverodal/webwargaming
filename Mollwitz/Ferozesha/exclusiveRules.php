@@ -16,22 +16,44 @@
         <div class="close">X</div>
         <div id="gameRules">
             <H1>
-                <?=$name?>
+                <?= $name ?>
             </H1>
-            <h2 class="exclusive"> EXCLUSIVE RULES
-            </h2>
-            <ul>
-                <li><h3>Deploy Phase</h3></li>
-                <li>
-                    The Sikh player deploys first. The British player deploys Second
-                </li>
-                <li><h3>First Player</h3></li>
-                <li>
-                    The British player moves first. The Sikh player moves second. After the Sikh player completes their turn, the game turn is incremented.
-                </li>            </ul>
-            <?php include "victoryConditions.php"?>
+
+            <h2 class="exclusive"> EXCLUSIVE RULES </h2>
+            <div class="indent">
+            <h3>Units</h3>
+                <div class="indent">
+                <p> British units have horse artillery.</p>
+                    <div class="unit British horseartillery"
+                         style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204);   position: relative;"
+                         alt="0">
+                        <nav class="counterWrapper">
+                            <div class="counter">
+                        </nav>
+                        <p class="range">3</p>
+
+                        <p class="forceMarch">M</p>
+                        <section></section>
+
+
+                        <div class="unit-numbers">3 - 5</div>
+
+                    </div>
+                    <p class="ruleComment">It moves faster than regular artillery but is the same
+                        otherwise. Note the range may be shorter than regular artillery.</p>
+                </div>
+                <h3>Deploy Phase</h3>
+                
+                    <p class="indent">The Sikh player deploys first. The British player deploys Second</p>
+                
+                <h3>First Player</h3>
+                
+                    <p class="indent">The British player moves first. The Sikh player moves second. After the Sikh player completes their
+                    turn, the game turn is incremented.</p>
+            </div>
+            <?php include "victoryConditions.php" ?>
             <div id="credits">
-                <h2><cite><?=$name?></cite></h2>
+                <h2><cite><?= $name ?></cite></h2>
                 <h4>Design Credits</h4>
 
                 <h4>Game Design:</h4>

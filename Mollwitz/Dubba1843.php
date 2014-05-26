@@ -5,8 +5,8 @@ require_once "JagCore.php";
 /* comment */
 define("BRITISH_FORCE", 1);
 define("BELUCHI_FORCE", 2);
-$force_name[BELUCHI_FORCE] = "Beluchi";
 $force_name[BRITISH_FORCE] = "British";
+$force_name[BELUCHI_FORCE] = "Beluchi";
 $phase_name = array();
 $phase_name[1] = "British Move";
 $phase_name[2] = "British Combat";
@@ -74,8 +74,8 @@ class Dubba1843 extends JagCore
 
     static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false, $game = false)
     {
-
-        global $force_name;
+        $deployTwo = $playerOne = "British";
+        $deployOne = $playerTwo = "Beluchi";
         @include_once "view.php";
     }
 

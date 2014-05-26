@@ -65,8 +65,8 @@ class Jagersdorf extends JagCore {
     }
 
     static function getView($name, $mapUrl,$player = 0, $arg = false, $scenario = false, $game = false){
-
-        global $force_name;
+        $deployTwo = $playerOne = "Prussian";
+        $deployOne = $playerTwo = "Russian";
         @include_once "view.php";
     }
 

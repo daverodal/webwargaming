@@ -683,11 +683,150 @@ fieldset {
   border: solid black;
   border-width: 3px; }
 
-.unit .counterWrapper img.counter {
+.unit .counterWrapper div.counter {
   width: 14px;
   height: 14px;
   display: block;
   border-right: 1px solid black; }
+
+.Sikh.infantry .counterWrapper .counter {
+  background-image: url("../../js/SikhInfBadge.png");
+  background-size: 14px; }
+
+.Sikh.cavalry .counterWrapper .counter {
+  background-image: url("../../js/SikhCavBadge.png");
+  background-size: 14px; }
+
+.Sikh.artillery .counterWrapper .counter {
+  background-image: url("../../js/SikhArtBadge.png");
+  background-size: 14px; }
+
+.Beluchi.infantry .counterWrapper .counter {
+  background-image: url("../../js/SikhInfBadge.png");
+  background-size: 14px; }
+
+.Beluchi.cavalry .counterWrapper .counter {
+  background-image: url("../../js/SikhCavBadge.png");
+  background-size: 14px; }
+
+.Beluchi.artillery .counterWrapper .counter {
+  background-image: url("../../js/SikhArtBadge.png");
+  background-size: 14px; }
+
+.British.infantry .counterWrapper .counter {
+  background-image: url("../../js/BritInfBadge.png");
+  background-size: 14px; }
+
+.British.cavalry .counterWrapper .counter {
+  background-image: url("../../js/BritCavBadge.png");
+  background-size: 14px; }
+
+.British.artillery .counterWrapper .counter {
+  background-image: url("../../js/BritArtBadge.png");
+  background-size: 14px; }
+
+.British.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/BritHorArtBadge.png");
+  background-size: 14px; }
+
+.Native.infantry .counterWrapper .counter {
+  background-image: url("../../js/NativeInfBadge.png");
+  background-size: 14px; }
+
+.Native.cavalry .counterWrapper .counter {
+  background-image: url("../../js/NativeCavBadge.png");
+  background-size: 14px; }
+
+.Native.artillery .counterWrapper .counter {
+  background-image: url("../../js/NativeArtBadge.png");
+  background-size: 14px; }
+
+.Austrian.infantry .counterWrapper .counter {
+  background-image: url("../../js/AusInfBadge.png");
+  background-size: 14px; }
+
+.Austrian.cavalry .counterWrapper .counter {
+  background-image: url("../../js/AusCavBadge.png");
+  background-size: 14px; }
+
+.Austrian.artillery .counterWrapper .counter {
+  background-image: url("../../js/AusArtBadge.png");
+  background-size: 14px; }
+
+.Prussian.infantry .counterWrapper .counter {
+  background-image: url("../../js/PruInfBadge.png");
+  background-size: 14px; }
+
+.Prussian.cavalry .counterWrapper .counter {
+  background-image: url("../../js/PruCavBadge.png");
+  background-size: 14px; }
+
+.Prussian.artillery .counterWrapper .counter {
+  background-image: url("../../js/PruArtBadge.png");
+  background-size: 14px; }
+
+.Russian.infantry .counterWrapper .counter {
+  background-image: url("../../js/RusInfBadge.png");
+  background-size: 14px; }
+
+.Russian.cavalry .counterWrapper .counter {
+  background-image: url("../../js/RusCavBadge.png");
+  background-size: 14px; }
+
+.Russian.artillery .counterWrapper .counter {
+  background-image: url("../../js/RusArtBadge.png");
+  background-size: 14px; }
+
+.French.infantry .counterWrapper .counter {
+  background-image: url("../../js/FrenchInfBadge.png");
+  background-size: 14px; }
+
+.French.cavalry .counterWrapper .counter {
+  background-image: url("../../js/FrenchCavBadge.png");
+  background-size: 14px; }
+
+.French.artillery .counterWrapper .counter {
+  background-image: url("../../js/FrenchArtBadge.png");
+  background-size: 14px; }
+
+.AngloAllied.infantry .counterWrapper .counter {
+  background-image: url("../../js/AngInfBadge.png");
+  background-size: 14px; }
+
+.AngloAllied.cavalry .counterWrapper .counter {
+  background-image: url("../../js/AngCavBadge.png");
+  background-size: 14px; }
+
+.AngloAllied.artillery .counterWrapper .counter {
+  background-image: url("../../js/AngArtBadge.png");
+  background-size: 14px; }
+
+.Anglo.infantry .counterWrapper .counter {
+  background-image: url("../../js/AngInfBadge.png");
+  background-size: 14px; }
+
+.Anglo.cavalry .counterWrapper .counter {
+  background-image: url("../../js/AngCavBadge.png");
+  background-size: 14px; }
+
+.Anglo.artillery .counterWrapper .counter {
+  background-image: url("../../js/AngArtBadge.png");
+  background-size: 14px; }
+
+.Allied.infantry .counterWrapper .counter {
+  background-image: url("../../js/AngInfBadge.png");
+  background-size: 14px; }
+
+.Allied.cavalry .counterWrapper .counter {
+  background-image: url("../../js/AngCavBadge.png");
+  background-size: 14px; }
+
+.Allied.artillery .counterWrapper .counter {
+  background-image: url("../../js/AngArtBadge.png");
+  background-size: 14px; }
+
+.indent {
+  margin-left: 20px; }
 
 .unit .counterWrapper {
   border: solid black 1px;
@@ -832,6 +971,11 @@ p.forceMarch {
   color: white;
   background: transparent;
   text-shadow: 0px 0px 1px #865900, 0px 0px 1px #865900, 0px 0px 1px #865900, 0px 0px 2px #865900, 0px 0px 2px #865900, 0px 0px 2px #865900, 0px 0px 3px #865900, 0px 0px 3px #865900, 0px 0px 3px #865900, 0px 0px 4px #865900, 0px 0px 4px #865900, 0px 0px 4px #865900, 0px 0px 5px #865900, 0px 0px 5px #865900, 0px 0px 5px #865900, 0px 0px 6px #865900, 0px 0px 6px #865900, 0px 0px 6px #865900, 0px 0px 7px #865900, 0px 0px 7px #865900, 0px 0px 7px #865900, 0px 0px 8px #865900, 0px 0px 8px #865900, 0px 0px 8px #865900, 0px 0px 9px #865900, 0px 0px 9px #865900, 0px 0px 9px #865900, 0px 0px 10px #865900, 0px 0px 10px #865900, 0px 0px 10px #865900, 0px 0px 1px #865900, 0px 0px 1px #865900, 0px 0px 1px #865900, 0px 0px 2px #865900, 0px 0px 2px #865900, 0px 0px 2px #865900, 0px 0px 3px #865900, 0px 0px 3px #865900, 0px 0px 3px #865900, 0px 0px 4px #865900, 0px 0px 4px #865900, 0px 0px 4px #865900, 0px 0px 5px #865900, 0px 0px 5px #865900, 0px 0px 5px #865900, 0px 0px 6px #865900, 0px 0px 6px #865900, 0px 0px 6px #865900, 0px 0px 7px #865900, 0px 0px 7px #865900, 0px 0px 7px #865900, 0px 0px 8px #865900, 0px 0px 8px #865900, 0px 0px 8px #865900, 0px 0px 9px #865900, 0px 0px 9px #865900, 0px 0px 9px #865900, 0px 0px 10px #865900, 0px 0px 10px #865900, 0px 0px 10px #865900; }
+
+.ruleComment {
+  font-style: italic;
+  margin-left: 10px;
+  color: #999; }
 
 #map {
   width: auto !important; }

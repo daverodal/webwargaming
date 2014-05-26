@@ -6,8 +6,8 @@ require_once "JagCore.php";
 
 define("ANGLO_FORCE", 1);
 define("FRENCH_FORCE", 2);
+$force_name[ANGLO_FORCE] = "AngloAllied";
 $force_name[FRENCH_FORCE] = "French";
-$force_name[ANGLO_FORCE] = "Anglo Allied";
 $phase_name = array();
 $phase_name[1] = "Anglo Allied Move";
 $phase_name[2] = "AngloAllied Combat";
@@ -76,8 +76,8 @@ class Malplaquet extends JagCore
 
     static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false, $game = false)
     {
-
-        global $force_name;
+        $deployTwo = $playerOne = "AngloAllied";
+        $deployOne = $playerTwo = "French";
         @include_once "view.php";
     }
 

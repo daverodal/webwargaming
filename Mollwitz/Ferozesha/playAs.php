@@ -53,7 +53,7 @@
 </style>
 <div class="backBox">
 <h2 style="text-align:center;font-size:30px;font-family:'Monsieur La Doulaise'"> Welcome to</h2>
-    <h1 style=""><span>Dubba 1843</span></h1>
+    <h1 style=""><span>Ferozesha Day One</span></h1>
 </div>
 <div style="clear:both"></div>
 <fieldset ><Legend>Play As </Legend>

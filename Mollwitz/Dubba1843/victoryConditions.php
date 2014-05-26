@@ -6,45 +6,26 @@ $playerTwo = $force_name[2];?>
     <h2>Setting Up</h2>
 
     <ul>
-        <li>The <?=$playerTwo?> player sets up first. The <?=$playerTwo?> units are blue and grey.</li>
-        <li>They may deploy any or all their units on or south of the hexes with an F on them.
-            <p>Clicking on a unit will
-        display all possible placements of the unit. The <?=$playerTwo?> player may deploy all, some or none of their units.</p>
-            <p></p>
-            Units not deployed may be placed later during a subsequent
-        movement phase. (it will cost their entire movement allowance though).
-        </P></li>
-        <li>When the <?=$playerTwo?> player is done deploying they should hit the "next phase" button</li>
-
-        <li>The <?=$playerOne?> Player sets up next. The <?=$playerOne?> units are red and yellow. </li>
-        <li> They may deploy any or all their units on or north of the hexes with an A on them.<p>
-
-                Again, clicking on a unit will
-                display all possible placements of the unit. The <?=$playerOne?> may deploy all, some or none of their units.</p>
-            <p></p>
-            Units not deployed may be placed later during a subsequent
-            movement phase. (it will cost their entire movement allowance though).
-            </P>
-        </li>
-
+        <li>The <?= $playerTwo ?> player sets up first. The <?= $playerOne ?> play sets up second.</li>
+        <li> The <?= $playerOne ?> player moves.</li>
+    </ul>
+    <h2>Combat Variations </h2>
+    <ul>
+        <li> All artillery is double defense in clear</li>
+        <li> Beluchi artillery is only ranged 2</li>
+        <li> Beluchi Infantry +1 combat point in Jungle/Scrub</li>
+        <li> British Infantry and Cavalry MAY retreat in to Beluchi Infantry ZOC.</li>
+        <li> Beluchi do not get combined arms bonus.</li>
     </ul>
 
     <h2>Victory Conditions</h2>
     <ol>
-        <li> At the end of any <?=$playerTwo?> player turn, that the <?=$playerOne?>'s occupy or were the last to pass through
-            Malplaquet and at least one other city. and have a 10 point lead in victory points, the <?=$playerOne?>'s win.
-            <p>
-                Victory points are awared as follows:
-                For each infantry strength eliminated, one victory point.
-                For each cavalry or artillery strength point eliminated, two victory points.
-            </p>
-            </li>
-        <li>
-            If the <?=$playerTwo?> player can avoid the above victory until the end of turn 12, and hold all the cities, the <?=$playerTwo?> wins.
-            </li>
-        <li>
-            Any other outcome, a draw.
-            </li>
-
+        <li> British win at 45 points</li>
+        <li> All Beluchi losses are scored a face value</li>
+        <li> Beluchi's win if they score 40 points or British don't win by turn 12.</li>
+        <li> Beluchi's get 15 points as long as they occupy the road hex exiting the west edge of the map</li>
+        <li> All Royal units are scored at double value including Inf.</li>
+        <li>All Native units are scored at face value.</li>
+        <li> Beluchi victory point hexes in Black</li>
     </ol>
 </div>

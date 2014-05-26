@@ -182,8 +182,10 @@
                              style="position: relative;visibility: visible;z-index: 0;">
                         <?php $id = 0; ?>
                         {units}
-                        <div class="unit {class}" id="{id}" alt="0">
-                            <nav class="counterWrapper"><img src="<?php echo base_url(); ?>js/{image}" class="counter"></nav>
+                        <div class="unit {class} {type}" id="{id}" alt="0">
+                            <nav class="counterWrapper">
+                                <div class="counter"></div>
+                            </nav>
                             <p class="range">{range}</p>
                             <p class="forceMarch">M</p>
                             <section></section>

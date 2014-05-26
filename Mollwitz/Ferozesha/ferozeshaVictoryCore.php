@@ -57,8 +57,6 @@ class ferozeshaVictoryCore extends indiaVictoryCore
 
 
     protected function checkVictory($attackingId,$battle){
-        echo "Attack $attackingId ";
-        var_dump($this->gameOver);
         $gameRules = $battle->gameRules;
         var_dump($battle->mapData->specialHexes);
         $turn = $gameRules->turn;

@@ -49,6 +49,37 @@
     #GR {
         left: -200px;
     }
+
+    OL {
+        counter-reset: item;
+        padding-left: 10px;
+    }
+
+    LI {
+        display: block;
+    }
+
+    LI:before {
+        content: "[" counters(item, ".") "] ";
+        counter-increment: item;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .big {
+        font-size: 19px;
+        font-weight: bold;
+
+    }
+
+    .lessBig {
+        font-size: 18px;
+    }
+
+    .topNumbers > LI:before {
+        content: "[" counters(item, ".") ".0] ";
+        font-size: 19px;
+    }
 </style>
 <div class="dropDown" id="GRWrapper">
 <h4 class="WrapperLabel" title="Game Rules">Common Rules</h4>
@@ -57,8 +88,6 @@
 <div class="close">X</div>
 <div id="gameRules">
 <H1>
-    <?php $playerOne = $force_name[1];
-    $playerTwo = $force_name[2];?>
     <?= $name ?>
 </H1>
 
@@ -77,327 +106,613 @@
     E.G. I tell you what a ZOC does but not what it is. All number rounding is down for all calculations. No stacking.
     No Supply.
 </header>
-<h2>Turn Order</h2>
+<ol class="topNumbers">
+<li><span class="big">Units</span>
+    <ol>
+        <li>
+            <?= "$playerOne" ?> infantry units look like this. You can tell by the symbol in the upper left corner.
+            <div class="unit <?= $playerOne ?> infantry"
+                 style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204);   position: relative;"
+                 alt="0">
+                <nav class="counterWrapper">
+                    <div class="counter">
+                </nav>
+                <p class="range"></p>
 
-<p>The game is divided in to phases as you complete each phase click 'Next Phase' on the top bar to proceed to the next
-    phase. </p>
+                <p class="forceMarch">M</p>
+                <section></section>
+
+
+                <div class="unit-numbers">5 - 4</div>
+
+            </div>
+            <p class='ruleComment'>The left number is the combat strength. Right right number is the Movement
+                allowance.</p>
+        </li>
+        <li>
+            <?= $playerOne ?> cavalry units look like this.
+            <div class="unit <?= $playerOne ?> cavalry"
+                 style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204);   position: relative;"
+                 alt="0">
+                <nav class="counterWrapper">
+                    <div class="counter">
+                </nav>
+                <p class="range"></p>
+
+                <p class="forceMarch">M</p>
+                <section></section>
+
+
+                <div class="unit-numbers">4 - 5</div>
+
+            </div>
+            <p class='ruleComment'>Note they tend to move faster than infantry units, and are sometimes weaker than
+                infantry
+                units.</p>
+        </li>
+        <li>
+            <?= $playerOne ?> artillery units look like this. Note the number in the upper right corner. That's the
+            units
+            range.
+            <div class="unit <?= $playerOne ?> artillery"
+                 style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204);   position: relative;"
+                 alt="0">
+                <nav class="counterWrapper">
+                    <div class="counter">
+                </nav>
+                <p class="range">3</p>
+
+                <p class="forceMarch">M</p>
+                <section></section>
+
+
+                <div class="unit-numbers">3 - 3</div>
+
+            </div>
+            <p class='ruleComment'>Artillery units can fire at non adjacent units.</p>
+        </li>
+        <li>
+            <?= $playerTwo ?> infantry, cavalry and artillery look similar.
+            <div>
+                <div class="unit <?= $playerTwo ?> infantry"
+                     style="float:left;margin-left:10px; border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204);   position: relative;"
+                     alt="0">
+                    <nav class="counterWrapper">
+                        <div class="counter">
+                    </nav>
+                    <p class="range"></p>
+
+                    <p class="forceMarch">M</p>
+                    <section></section>
+
+
+                    <div class="unit-numbers">5 - 4</div>
+
+                </div>
+                <div class="unit <?= $playerTwo ?> cavalry"
+                     style="float:left;margin-left:10px; border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204);   position: relative;"
+                     alt="0">
+                    <nav class="counterWrapper">
+                        <div class="counter">
+                    </nav>
+                    <p class="range"></p>
+
+                    <p class="forceMarch">M</p>
+                    <section></section>
+
+
+                    <div class="unit-numbers">5 - 5</div>
+
+                </div>
+                <div class="unit <?= $playerTwo ?> artillery"
+                     style="float:left;margin-left:10px; border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204);   position: relative;"
+                     alt="0">
+                    <nav class="counterWrapper">
+                        <div class="counter">
+                    </nav>
+                    <p class="range">3</p>
+
+                    <p class="forceMarch">M</p>
+                    <section></section>
+
+
+                    <div class="unit-numbers">3 - 3</div>
+
+                </div>
+            </div>
+            <div style="clear:both"></div>
+        </li>
+    </ol>
+</li>
+<li><span class="big">Sequence of play.</span>
+
+    <p>Each game turn is composed of two player turns. The <?= $playerOne ?> is the first player, and
+        the <?= $playerTwo ?> is the second.
+    </p>
+
+    <p>Each player turn is divided into a movement phase and a combat phase.</p>
+
+    <p> Before the first game turn, each player deploys their unis during the deploy phase.</p>
+    <ol>
+        <li><span class="lessBig">Deploy Phase</span>
+
+            <p>On the first turn of the game both sides must deploy their units.</p>
+
+            <p class="ruleComment">The <?= $deployOne ?> player deploys first, then the <?= $deployTwo ?> player.</p>
+
+        </li>
+        <li><span class="lessBig"><?= $playerOne ?> Player Turn</span>
+            <ol>
+                <li><span class="lessBig">Movement Phase</span>
+
+                    <p class="ruleComment">The <?= $playerOne ?> may move as many or as few units as they desire.
+                        If they have reinforcements available
+                        they may enter the map now.</p>
+
+
+                </li>
+
+                <li><span class="lessBig"><?= $playerOne ?> Player Combat Phase</span>
+
+                    <p class="ruleComment">The <?= $playerOne ?> may initiate as many or as few attacks as they wish.
+                        Combat is broken up into two
+                        phases, Combat setup and Combat Resolution.</p>
+
+
+                </li>
+            </ol>
+        </li>
+        <li><span class="lessBig"><?= $playerTwo ?> Player Turn</span>
+            <ol>
+                <li><span class="lessBig">Movement Phase</span>
+
+                    <p class="ruleComment">The <?= $playerTwo ?> may move as many or as few units as they desire.
+                        If they have reinforcements available
+                        they may enter the map now.</p>
+
+
+                </li>
+
+                <li><span class="lessBig"><?= $playerTwo ?> Player Combat Phase</span>
+
+                    <p class="ruleComment">The <?= $playerTwo ?> may initiate as many or as few attacks as they wish.
+                        Combat is broken up into two
+                        phases, Combat setup and Combat Resolution.</p>
+
+
+                </li>
+            </ol>
+        </li>
+        <li><span class="lessBig">Turn End</span>
+
+            <p>
+                Game turn is incremented. If the game has ended. Victory should be announced.
+            </p></li>
+    </ol>
+
+</li>
+<li><span class="big">Deploy Units</span>
+
+    <ol>
+        <li>The units you need to deploy will appear in the top bar.</li>
+        <li>When you click on a unit a ghost of it will appear on the map. Click on one of the ghosts and the
+            unit
+            will be placed on the map.
+        </li>
+        <li> If you misplace a unit on the
+            map
+            you can click on it again, and click on the correct spot to place it.
+        </li>
+        <li>You are not required to
+            deploy all of your units you can decline to place some of the units to balance the game.
+        </li>
+        <li>
+            You may view/hide the deploy box by hitting the button 'deploy/staging'
+        </li>
+    </ol>
+</li>
+<li><span class="big">Stacking</span>
+
+    <p>No more than one unit may occupy the same hex at any given, however friendly units may move through each
+        other.</p>
+</li>
+<li><span class="big">Movement</span>
+
+    <p>The Second Number on the counter is Movement Points <abbr title="Movement Points">(MP)</abbr>.</p>
+
+    <p>Units expend different amounts of <abbr title="Movement Points">MP</abbr> for different terrains</p>
+    <ol>
+        <li>Units pay different amounts of Movement Points or <abbr title="Movement Points">MP</abbr> to enter different
+            hexes.
+            different units will pay different amounts of MPs to enter the same hex. Please see the Terrain Effects
+            Chart or
+            <abbr title="Terrain Effects Chart">TEC</abbr> for the effects of terrain on movement.
+        </li>
+
+        <li>Creek, All units expend additional movement points to cross a Creek hex side, except when using road
+            movement
+            and
+            crossing on a bridge.
+        </li>
+
+        <li>Road Movement. Units pay only &frac12; movement point when moving along contiguous road hexes regardless of
+            other terrain in the hex. In order to use road movement, a unit must be in force march mode.
+            <p><em>Forced March Mode: before a units moves, but while selected, hit the 'm' key, an "m" will appear
+                    on the unit. This means the units is in "forced march" mode and can take advantage of the roads.
+                    Pressing the "m" key again before moving the unit
+                    will take them out of "force march" mode. Once a unit has moved one hex they may not change their
+                    "forced march" status.</em></p>
+
+            <p>Units are not obliged to use the road movement bonus however if they do they may not attack in that
+                turn.</p>
+
+        </li>
+
+        <li>Zones of Control. When a unit enters a Hostile <abbr title="Zone Of Control">ZOC</abbr> it must stop and
+            move no
+            further that turn. When a unit exits a hostile zone of control it must stop and move no further that turn. A
+            unit may never move directly from one hostile ZOC to another hostile ZOC.
+        </li>
+        <li>Regardless of movement points required, a unit may always move at least one hex per turn,
+            provided they are not moving directly from one zoc to another.
+        </li>
+        <li>Click on one of your units. Ghosts will appear where it can legally move.</li>
+        <li>Click on a ghost to move the unit to that location.</li>
+        <li>If it has remaining movement that will be indicated by Ghosts.</li>
+        <li>If you are satisfied with your move click on it again and the ghosts will disappear.</li>
+        <li>Road Movement:
+
+            <p class="ruleComment"> Your units may move faster along roads, but you must put them into road
+                Move mode to get the
+                benefit.
+            </p>
+            <ol>
+
+                <li class="indent">Click on a unit but do not move it. Now press
+                    'M'. You will now see that your unit can move further along roads.
+                </li>
+                <li class="indent">This is also the Only way to use bridges.
+                    Units that road move may not attack in the following combat phase.
+                </li>
+                <li>Once a unit has been moved even one hex, it cannot change into or out of road movement
+                    mode.
+                </li>
+            </ol>
+        </li>
+    </ol>
+</li>
+<li><span class="lessBig">Combat (Attacks)</span>
 <ol>
-    <li><h3>On the first turn of the game you will be instructed to deploy units.</h3>
-    <h4><?=$playerTwo?> deploys first, then <?=$playerOne?></h4>
-        <p>The units you need to deploy will appear in the top bar. When you click on a unit a ghost of it will appear
-            on the map. Click on one of the ghosts and the unit will be placed on the map. (you are not required to
-            deploy all of your units you can decline to place some of the units to balance the game.</p></li>
-    <li><h3><?= $playerOne ?> Movement Phase</h3>
+<li>
+    <span class="lessBig">Combat Setup Phase</span>
+    <ol>
+        <li>
+            When you start your attack phase all of your units that are eligible to attack
+            will be highlighted. Darker units are not eligible to attack.
+        </li>
+        <li>
+            Click on a hostile unit you want to attack. The defending unit will have a yellow
+            border.
+        </li>
+        <li>
+            Then click on one of your adjacent units or an artillery unit within range.
 
-        <p>
-            Click on one of your units. Ghosts will appear where it can legally move. Click on a ghost to move the unit
-            to that location. If it has remaining movement that will be indicated by Ghosts. If you are satisfied with
-            your move click on it again and the ghosts will disappear.
-            Road Movement: Your units may move faster along roads but you must put them into road Move mode to get the
-            benefit. Click on a unit before you move it. Now press
-            <M> you will now see that your unit can move further along roads. This is also the Only way to use bridges.
-                Units that road move may not attack in the following combat phase.
-        </p>
-    </li>
+            <p>If the attack was valid a red arrow will appear. At the same time the combat
+                results
+                table
+                will appear showing you the possible results.</p>
 
-    <li><h3><?= $playerOne ?> Attack Phase</h3>
+            <p>You may click on the word 'details' to get more info about the attack. </p>
+        </li>
+        <li>
+            Clicking on additional eligible attacker will cause the CRT to change and additional
+            red
+            arrows
+            to appear.
+        </li>
+        <li>
+            If you click on a unit that's already allocated to the current attack, clicking
+            again will
+            remove
+            it from this attack.
+        </li>
+        <li>
+            If you click on a different defender. That unit will get a yellow border, if there
+            were any
+            units allocated to attack the previous defender, it's border will be orange. If not,
+            it will
+            have
+            a grey border.
+        </li>
+        <li>
+            If you have multiple defenders being attacked. Clicking on an attacker that is
+            allocated to
+            another attack will re-allocate it the attach the current defender.
+        </li>
+        <li>
+            Once you have setup all your attacks. Click 'Next Phase' to move to combat
+            resolution phase.
+        </li>
+        <li>
+            See Combat below for more details.
+        </li>
+    </ol>
+</li>
+<li>
+    <span class="lessBig">Combat Resolution Phase</span>
+    <ol>
+        <li>
+            Click on a hostile unit you targeted in attack planning. The combat result
+            will appear, both in the CRT and in a popup box with info. Drag the box if you don't
+            like
+            the
+            placement.
+        </li>
+        <li>
+            If the defenders border is purple. The unit must be retreated.
+            Follow the instructions in the popup box.
+        </li>
+        <li>
+            If the attackers need to retreat, they will have purple borders.
+            Follow the instructions in the popup box.
+        </li>
+        <li>
+            If there was an exchange, the attackers will have red borders, you must click on the
+            unit
+            you intend to sacrifice.
+            Follow the instructions in the popup box.
+        </li>
+        <li>
+            Finally if any attackers have black borders, they are eligible for advance after
+            combat.
+            Click on any of the black bordered units and then click on their original position
+            or the
+            vacated defenders hex.
+        </li>
+        <li>
+            When all combats have been resolved. Click on Next Phase.
+        </li>
+    </ol>
+</li>
+<li><p>The first number on a unit is it's combat factor.</p>
+    <ol>
+        <li>A single unit may only participate in single attack in the friendly attack phase.</li>
+        <li>Attacks may always be made at lower than odds than those gained by calculation.</li>
+        <li>All attacks are voluntary. Except that all hostile units adjacent to an attacking unit must them selves be
+            attacked even if only by artillery bombardment.
+        </li>
+        <li>All combat is between adjacent units except that artillery may attack units up to two hexes away
+            (Bombardment).
+            Including into but not over town, hill or woods. Artillery units may not participate in bombardment attacks
+            if
+            they adjacent to an enemy unit,
+            they must attack an adjacent unit if they attack at all.
+        </li>
+    </ol>
+</li>
+<li><span class="lessBig">Multi Hex Multi Unit Combat</span>
 
-        <p>
-            A] Attack planning Phase: When you start your attack phase all of your units that are eligible to attack
-            will be highlighted. Click on a hostile unit you want to attack then click on one of your adjacent
-            highlighted units. A red arrow will appear indicating that your unit is now committed to an attack. At the
-            same time the combat results table will appear showing you the possible results. You can add more units to
-            the attack by clicking on them. You can also have your unit attack more than one hostile unit by pressing
-            <Shift> and clicking on your unit again then clicking on the new target. You may not make attacks at less
-                than 1-4 odds.
-                Artillery: Designate artillery attacks the same way but you may attack a hostile unit up to 3 hexes away
-                (or 2 if reduced visibility) if your artillery is not adjacent to a hostile unit. And you have a clear
-                line of sight.
+    <p>A single unit may attack any or all hostile units that it is adjacent to so long as the odds are not worse than
+        1-4.
+        All attacks against a group of contiguous defenders may be grouped together and resolved as a single attack so
+        long
+        as all attackers are within range of all defenders. The terrain applied to the combat situation is the most
+        favorable to the defender.</p>
 
-                B] Combat Resolution Phase: Click on a hostile unit you targeted in attack planning. The combat result
-                will appear. If the hostile unit needs to be retreated click on it and move it one space. See Retreats
-                bellow. If your unit is allowed to advance click on it and move it in to the hex vacated by the hostile
-                unit, or if you do not want to advance click on your unit again. Move on to the next combat. Once
-                complete click on next phase to move to your opponent’s turn
-        </p>
-    </li>
+    <p>In order to attack more than one unit, click on a defender (it should get a yellow border),
+        then click on the second defender you with to attack while holding down the shift key (you should see two units
+        with
+        a yellow border).
+        you may click on eligible attackers and arrows should appear point at both defenders.
+    </p>
 
-    <li>
-        <h3><?= $playerTwo ?> Movement Phase </h3>
-        <ul>
-            <?php if($name == "Jagersdorf"){?>
-                <li class="exclusive">
-                    No <?= $playerTwo ?> unit may expend more than 2 MP on turn 1 only
+    <p>
+</li>
+<li>
+    <h4>Retreats</h4> Whenever obligated by combat result, the attacking player
+    retreats the units (attacking or defending) obeying the following requirements. Units may not retreat off board, or
+    into
+    enemy zones of control,
+    If a unit cannot find an empty it may retreat over friendly hexes until it finds an empty hex. Units that cannot
+    retreat are eliminated.
+    </p>
+</li>
+<li>
+    <h4>Retreat Before Combat</h4> To simmulate retreat before combat, when only non cavalry units are attacking only
+    cavalry units
+    the cavalry can do a "retreat before combat" this is reflected in the 'cavalry combat results table', which has all
+    DR's
+    where EX's or DE's would be.
+    You may click on the crt where it says "see cavalry table" or "see normal table" to toggle between them.
+</li>
+<li>
+    <h4>Advance after combat</h4> If a defending hex is left vacant any adjacent attacker that participated in the
+    attack my
+    be moved into that hex. This must be done before the next attack is resolved. Artillery units may NOT advance after
+    combat.
+</li>
+<li>
+    <h2>Combat Results</h2>
+
+    <h4>Combat Results Table (CRT) (No Attack at less than 1-4 is allowed)</h4>
+
+    <table>
+        <tr>
+            <td>Die
+            <td>1-4<br>1-3</td>
+
+            <td>1-2</td>
+
+            <td>1-1</td>
+
+            <td>1.5-1</td>
+
+            <td>2-1</td>
+
+            <td>3-1</td>
+
+            <td>4-1</td>
+
+            <td>5-1</td>
+
+            <td>6-1 or more</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>A-E</td>
+            <td>A-E</td>
+            <td>A-E</td>
+            <td>A-R</td>
+            <td>A-R</td>
+            <td>D-R</td>
+            <td>D-R</td>
+            <td>D-R</td>
+            <td>D-R</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>A-E</td>
+            <td>A-E</td>
+            <td>A-R</td>
+            <td>A-R</td>
+            <td>A-R</td>
+            <td>D-R</td>
+            <td>D-R</td>
+            <td>D-R</td>
+            <td>D-R</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>A-E</td>
+            <td>A-E</td>
+            <td>A-R</td>
+            <td>A-R</td>
+            <td>D-R</td>
+            <td>EX</td>
+            <td>D-R</td>
+            <td>D-E</td>
+            <td>D-E</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>A-E</td>
+            <td>A-R</td>
+            <td>A-R</td>
+            <td>D-R</td>
+            <td>D-R</td>
+            <td>EX</td>
+            <td>D-E</td>
+            <td>D-E</td>
+            <td>D-E</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>A-E</td>
+            <td>A-R</td>
+            <td>A-R</td>
+            <td>D-R</td>
+            <td>EX</td>
+            <td>D-E</td>
+            <td>D-E</td>
+            <td>D-E</td>
+            <td>D-E</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>A-R</td>
+            <td>A-R</td>
+            <td>D-R</td>
+            <td>EX</td>
+            <td>EX</td>
+            <td>D-E</td>
+            <td>D-E</td>
+            <td>D-E</td>
+            <td>D-E</td>
+        </tr>
+    </table>
+</li>
+
+
+<li>
+    <h4>Terrain Effects on Combat</h4>
+    <ol>
+        <?php if ($scenario->jagersdorfCombat) { ?>
+            <?php if ($name == "Jagersdorf") { ?>
+                <li class="exclusive"><?= $playerTwo ?> Infantry units are +1 to their combat factor when
+                    Attacking
+                    into or Defending in woods or
+                    towns, unless they are attacking across a creek or bridge.
                 </li>
             <?php } ?>
-        </ul>
-        <p>see <?= $playerOne ?> Movement above.</p></li>
+            <li class="exclusive"><?= $playerOne ?> Infantry units are +1 to their combat factor when Attacking
+                into
+                or Defending
+                in clear, unless they are attacking across a creek or bridge.
+            </li>
+        <?php } ?>
 
-    <li><h3><?= $playerTwo ?> Attack phase</h3>
+        <?php if ($scenario->angloCavBonus) { ?>
 
-        <p>see <?= $playerOne ?> Attack above.</p></li>
+            <li class="exclusive">Anglo Allied Cavalry units are +1 to their combat factor when Attacking into
+                clear, unless they are attacking across a creek or bridge or redoubt.
+            </li>
+        <?php } ?>
 
-    <li><h3>Turn End</h3></li>
+        <li>All Cavalry units combat factors are divided by 2 when attacking into hexes or across hex sides
+            other
+            than clear.
+        </li>
+
+        <li>All Infantry and artillery have their combat factors doubled when defending in a town</li>
+
+        <li>All Units have their combat factors doubled when defending on a hill</li>
+
+        <li>All Units except artillery have their combat factors divided by 2 when attacking across creek or
+            bridge
+            hex sides.
+        </li>
+    </ol>
+</li>
+<li><h4>Combined Arms Bonus</h4>
+    <ol>
+        <li>Any attack starting at 1-1 odds or better against clear terrain hex, that includes attacking units
+            from
+            two different branches of service is receives 1 favorable column shift.
+        </li>
+        <li>Any attack against a clear terrain hex that includes attacking units from all three different
+            branches
+            of service receives 2 favorable column shifts.
+        </li>
+        <li>Any attack against a non clear terrain hex that includes both Infantry and artillery enjoys a 1
+            column
+            favorable odds shift.
+        </li>
+    </ol>
+</li>
+
+<li><h4>Combat Result Explanation</h4>
+    <ol>
+        <li>A-E all attacking units eliminated</li>
+
+        <li>A-R All attacking units must retreat 1 hex (See Retreats page 2)</li>
+
+        <li>D-R All defending units must retreat 1 hex (See Retreats page 2)</li>
+
+        <li>EX all defending units are eliminated. Attacking units of the attackers choice = to or greater than
+            eliminated defenders by unmodified combat strength are also eliminated.
+        </li>
+
+        <li>DE all defending units are eliminated,</li>
+    </ol>
+</li>
 </ol>
-<h2>Stacking</h2>
+</li>
 
-<p>No more than one unit may occupy the same hex at any given, however friendly units may move through each other.</p>
 
-<h2>Movement</h2>
-
-<p>The Second Number on the counter is Movement Points <abbr title="Movement Points">(MP)</abbr>.</p>
-
-<p>Units expend different amounts of <abbr title="Movement Points">MP</abbr> for different terrains</p>
-<ul>
-    <li>Units pay different amounts of Movement Points or <abbr title="Movement Points">MP</abbr> to enter different
-        hexes.
-        different units will pay different amounts of MPs to enter the same hex. Please see the Terrain Effects Chart or
-        <abbr title="Terrain Effects Chart">TEC</abbr> for the effects of terrain on movement.
-    </li>
-
-    <li>Creek, All units expend additional movement points to cross a Creek hex side, except when using road movement
-        and
-        crossing on a bridge.
-    </li>
-
-    <li>Road Movement. Units pay only &frac12; movement point when moving along contiguous road hexes regardless of
-        other terrain in the hex. In order to use road movement, a unit must be in force march mode.
-        <p><em>Forced March Mode: before a units moves, but while selected, hit the 'm' key, an "m" will appear
-                on the unit. This means the units is in "forced march" mode and can take advantage of the roads.
-                Pressing the "m" key again before moving the unit
-                will take them out of "force march" mode. Once a unit has moved one hex they may not change their
-                "forced march" status.</em></p>
-
-        <p>Units are not obliged to use the road movement bonus however if they do they may not attack in that turn.</p>
-
-    </li>
-
-    <li>Zones of Control. When a unit enters a Hostile <abbr title="Zone Of Control">ZOC</abbr> it must stop and move no
-        further that turn. When a unit exits a hostile zone of control it must stop and move no further that turn. A
-        unit may never move directly from one hostile ZOC to another hostile ZOC.
-    </li>
-    <li>Regardless of movement points required, a unit may always move at least one hex per turn,
-        provided they are not moving directly from one zoc to another.
-    </li>
-</ul>
-<h2>Combat (Attacks)</h2>
-
-<p>The first number on a unit is it's combat factor.</p>
-<ul>
-    <li>A single unit may only participate in single attack in the friendly attack phase.</li>
-    <li>Attacks may always be made at lower than odds than those gained by calculation.</li>
-    <li>All attacks are voluntary. Except that all hostile units adjacent to an attacking unit must them selves be
-        attacked even if only by artillery bombardment.
-    </li>
-    <li>All combat is between adjacent units except that artillery may attack units up to two hexes away (Bombardment).
-        Including into but not over town, hill or woods. Artillery units may not participate in bombardment attacks if
-        they adjacent to an enemy unit,
-        they must attack an adjacent unit if they attack at all.
-    </li>
-</ul>
-<h4>Multi Hex Multi Unit Combat</h4>
-
-<p>A single unit may attack any or all hostile units that it is adjacent to so long as the odds are not worse than 1-4.
-    All attacks against a group of contiguous defenders may be grouped together and resolved as a single attack so long
-    as all attackers are within range of all defenders. The terrain applied to the combat situation is the most
-    favorable to the defender.</p>
-
-<p>In order to attack more than one unit, click on a defender (it should get a yellow border),
-    then click on the second defender you with to attack while holding down the shift key (you should see two units with
-    a yellow border).
-    you may click on eligible attackers and arrows should appear point at both defenders.
-</p>
-
-<p>
-<h4>Retreats</h4> Whenever obligated by combat result, the attacking player
-retreats the units (attacking or defending) obeying the following requirements. Units may not retreat off board, or into
-enemy zones of control,
-If a unit cannot find an empty it may retreat over friendly hexes until it finds an empty hex. Units that cannot
-retreat are eliminated.
-</p>
-<h4>Retreat Before Combat</h4> To simmulate retreat before combat, when only non cavalry units are attacking only
-cavalry units
-the cavalry can do a "retreat before combat" this is reflected in the 'cavalry combat results table', which has all DR's
-where EX's or DE's would be.
-You may click on the crt where it says "see cavalry table" or "see normal table" to toggle between them.
-
-<h4>Advance after combat</h4> If a defending hex is left vacant any adjacent attacker that participated in the attack my
-be moved into that hex. This must be done before the next attack is resolved. Artillery units may NOT advance after
-combat.
-
-<h2>Combat Results</h2>
-
-<h4>Combat Results Table (CRT) (No Attack at less than 1-4 is allowed)</h4>
-
-<table>
-    <tr>
-        <td>Die
-        <td>1-4<br>1-3</td>
-
-        <td>1-2</td>
-
-        <td>1-1</td>
-
-        <td>1.5-1</td>
-
-        <td>2-1</td>
-
-        <td>3-1</td>
-
-        <td>4-1</td>
-
-        <td>5-1</td>
-
-        <td>6-1 or more</td>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>A-E</td>
-        <td>A-E</td>
-        <td>A-E</td>
-        <td>A-R</td>
-        <td>A-R</td>
-        <td>D-R</td>
-        <td>D-R</td>
-        <td>D-R</td>
-        <td>D-R</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>A-E</td>
-        <td>A-E</td>
-        <td>A-R</td>
-        <td>A-R</td>
-        <td>A-R</td>
-        <td>D-R</td>
-        <td>D-R</td>
-        <td>D-R</td>
-        <td>D-R</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>A-E</td>
-        <td>A-E</td>
-        <td>A-R</td>
-        <td>A-R</td>
-        <td>D-R</td>
-        <td>EX</td>
-        <td>D-R</td>
-        <td>D-E</td>
-        <td>D-E</td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td>A-E</td>
-        <td>A-R</td>
-        <td>A-R</td>
-        <td>D-R</td>
-        <td>D-R</td>
-        <td>EX</td>
-        <td>D-E</td>
-        <td>D-E</td>
-        <td>D-E</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>A-E</td>
-        <td>A-R</td>
-        <td>A-R</td>
-        <td>D-R</td>
-        <td>EX</td>
-        <td>D-E</td>
-        <td>D-E</td>
-        <td>D-E</td>
-        <td>D-E</td>
-    </tr>
-    <tr>
-        <td>6</td>
-        <td>A-R</td>
-        <td>A-R</td>
-        <td>D-R</td>
-        <td>EX</td>
-        <td>EX</td>
-        <td>D-E</td>
-        <td>D-E</td>
-        <td>D-E</td>
-        <td>D-E</td>
-    </tr>
-</table>
-<ul>
-
-    <li>
-        <h4>Terrain Effects on Combat</h4>
-        <ul>
-            <?php if ($scenario->jagersdorfCombat) { ?>
-                <?php if ($name == "Jagersdorf") { ?>
-                    <li class="exclusive"><?= $playerTwo ?> Infantry units are +1 to their combat factor when Attacking
-                        into or Defending in woods or
-                        towns, unless they are attacking across a creek or bridge.
-                    </li>
-                <?php } ?>
-                <li class="exclusive"><?= $playerOne ?> Infantry units are +1 to their combat factor when Attacking into
-                    or Defending
-                    in clear, unless they are attacking across a creek or bridge.
-                </li>
-            <?php } ?>
-
-            <?php if($scenario->angloCavBonus){?>
-
-                        <li class="exclusive" >Anglo Allied Cavalry units are +1 to their combat factor when Attacking into
-                            clear, unless they are attacking across a creek or bridge or redoubt.
-                        </li>
-            <?php } ?>
-
-            <li>All Cavalry units combat factors are divided by 2 when attacking into hexes or across hex sides other
-                than clear.
-            </li>
-
-            <li>All Infantry and artillery have their combat factors doubled when defending in a town</li>
-
-            <li>All Units have their combat factors doubled when defending on a hill</li>
-
-            <li>All Units except artillery have their combat factors divided by 2 when attacking across creek or bridge
-                hex sides.
-            </li>
-        </ul>
-    </li>
-    <li>
-        <h4>Combined Arms Bonus</h4>
-        <ul>
-            <li>Any attack starting at 1-1 odds or better against clear terrain hex, that includes attacking units from
-                two different branches of service is receives 1 favorable column shift.
-            </li>
-            <li>Any attack against a clear terrain hex that includes attacking units from all three different branches
-                of service receives 2 favorable column shifts.
-            </li>
-            <li>Any attack against a non clear terrain hex that includes both Infantry and artillery enjoys a 1 column
-                favorable odds shift.
-            </li>
-        </ul>
-    </li>
-
-    <li>
-        <h4>Combat Result Explanation</h4>
-        <ul>
-            <li>A-E all attacking units eliminated</li>
-
-            <li>A-R All attacking units must retreat 1 hex (See Retreats page 2)</li>
-
-            <li>D-R All defending units must retreat 1 hex (See Retreats page 2)</li>
-
-            <li>EX all defending units are eliminated. Attacking units of the attackers choice = to or greater than
-                eliminated defenders by unmodified combat strength are also eliminated.
-            </li>
-
-            <li>DE all defending units are eliminated,</li>
-    </li>
-</ul>
-
-</ul>
 <div class="exclusive">
     <?php include "victoryConditions.php" ?>
 </div>
-
+</ol>
 <div id="credits">
     <h2><cite><?= $name ?></cite></h2>
     <h4>Design Credits</h4>
