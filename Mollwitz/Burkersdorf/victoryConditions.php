@@ -60,10 +60,10 @@
         <li> Some Hexes are marked in Red numbers for victory points only the Prussian receives points for these hexes.
             And only while they are actually occupied by a Prussian unit at the end of an Austrian turn
         </li>
-        <li> The Prussian has won the game at the end of any Austrian turn that the Prussian has 50 victory points
+        <li> The Prussian has won the game at the end of any Austrian turn that the Prussian has 70 victory points
             including at least two victory towns or the LOC hex.
         </li>
-        <li> The Austrian Player wins at the end of any Austrian turn that he has 35 victory points.</li>
+        <li> The Austrian Player wins at the end of any Austrian turn that he has 70 victory points.</li>
         <li> The Austrian Player wins if the Prussian has occupied no victory hexes by the end of the last turn of the
             game.
         </li>

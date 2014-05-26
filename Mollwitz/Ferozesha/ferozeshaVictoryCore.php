@@ -77,7 +77,7 @@ class ferozeshaVictoryCore extends indiaVictoryCore
 //                    }
 //                }
             }
-            if(($this->victoryPoints[BRITISH_FORCE] >= 45)){
+            if(($this->victoryPoints[BRITISH_FORCE] >= 40 && ($this->victoryPoints[BRITISH_FORCE] - ($this->victoryPoints[SIKH_FORCE]) >= 15))){
                 $britishWin = true;
             }
             if(($this->victoryPoints[SIKH_FORCE] >= 40)){

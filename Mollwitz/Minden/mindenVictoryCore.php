@@ -66,10 +66,10 @@ class mindenVictoryCore extends victoryCore
         $turn = $gameRules->turn;
         if(!$this->gameOver){
             $frenchWin = $angloWing = false;
-            if(($this->victoryPoints[ANGLO_FORCE] > 50) && ($this->victoryPoints[ANGLO_FORCE] - ($this->victoryPoints[FRENCH_FORCE]) > 10)){
+            if(($this->victoryPoints[ANGLO_FORCE] >= 50) && ($this->victoryPoints[ANGLO_FORCE] - ($this->victoryPoints[FRENCH_FORCE]) >= 10)){
                 $angloWin = true;
             }
-            if(($this->victoryPoints[FRENCH_FORCE] > 50) && ($this->victoryPoints[FRENCH_FORCE] - $this->victoryPoints[ANGLO_FORCE] > 10)){
+            if(($this->victoryPoints[FRENCH_FORCE] >= 50) && ($this->victoryPoints[FRENCH_FORCE] - $this->victoryPoints[ANGLO_FORCE] >= 10)){
                 $frenchWin = true;
             }
             if($frenchWin && $angloWin){
@@ -83,11 +83,11 @@ class mindenVictoryCore extends victoryCore
 
             if($angloWin){
                 $this->winner = ANGLO_FORCE;
-                $gameRules->flashMessages[] = "Anglo Allied Win over 50 points";
+                $gameRules->flashMessages[] = "Anglo Allied Win 50 points or more";
             }
             if($frenchWin){
                 $this->winner = FRENCH_FORCE;
-                $msg = "French Win over 50 points";
+                $msg = "French Win 50 points or more";
                 $gameRules->flashMessages[] = $msg;
             }
             if($angloWin || $frenchWin){
