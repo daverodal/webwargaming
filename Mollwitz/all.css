@@ -825,6 +825,9 @@ fieldset {
   background-image: url("../../js/AngArtBadge.png");
   background-size: 14px; }
 
+#header #GR a {
+  color: black; }
+
 .indent {
   margin-left: 20px; }
 
@@ -976,6 +979,9 @@ p.forceMarch {
   font-style: italic;
   margin-left: 10px;
   color: #999; }
+
+#GR ol.ExclusiveRules {
+  counter-reset: item 6; }
 
 .playerOne {
   background: #fffd7f;

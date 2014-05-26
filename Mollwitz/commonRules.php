@@ -74,8 +74,12 @@
 
     .lessBig {
         font-size: 18px;
+        font-weight:bold;
     }
 
+    #GR OL.topNumbers {
+        counter-reset:item -1;
+    }
     #GR .topNumbers > LI:before {
         content: "[" counters(item, ".") ".0] ";
         font-size: 19px;
@@ -99,7 +103,6 @@
     between this and other games.</p>
 
 <p>Exclusive rules contained in here will be in green</p>
-
 <h3> Quick Start Guide #3</h3>
 <header>
     The assumption is made that the reader is extensively familiar with Hex and counter games. Boiler Plate is omitted.
@@ -107,7 +110,21 @@
     No Supply.
 </header>
 <ol class="topNumbers">
-<li><span class="big">Units</span>
+<li><span class="big">Contents</span>
+<ol>
+    <li><a href="#units">Units.</a></li>
+<li><a href="#sop">Sequence of play.</a></li>
+<li><a href="#deploy">Deploy.</a></li>
+<li><a href="#stacking">Stacking.</a></li>
+<li><a href="#movement">Moving.</a></li>
+<li><a href="#combat">Combat.</a></li>
+<li><a href="#victoryConditions">Victory.</a></li>
+</ol>
+    </li>
+
+</li>
+<li><a name="units"></a><span class="big">Units</span>
+
     <ol>
         <li>
             <?= "$playerOne" ?> infantry units look like this. You can tell by the symbol in the upper left corner.
@@ -224,7 +241,9 @@
         </li>
     </ol>
 </li>
-<li><span class="big">Sequence of play.</span>
+<li><a name="sop"></a><span class="big">Sequence of play.</span>
+
+
 
     <p>Each game turn is composed of two player turns. The <?= $playerOne ?> is the first player, and
         the <?= $playerTwo ?> is the second.
@@ -291,7 +310,9 @@
     </ol>
 
 </li>
-<li><span class="big">Deploy Units</span>
+<li><a name="deploy"></a><span class="big">Deploy Units</span>
+
+
 
     <ol>
         <li>The units you need to deploy will appear in the top bar.</li>
@@ -311,12 +332,16 @@
         </li>
     </ol>
 </li>
-<li><span class="big">Stacking</span>
+<li><a name="stacking"></a><span class="big">Stacking</span>
+
+
 
     <p>No more than one unit may occupy the same hex at any given, however friendly units may move through each
         other.</p>
 </li>
-<li><span class="big">Movement</span>
+<li><a name="movement"></a><span class="big">Movement</span>
+
+
 
     <p>The Second Number on the counter is Movement Points <abbr title="Movement Points">(MP)</abbr>.</p>
 
@@ -381,7 +406,9 @@
         </li>
     </ol>
 </li>
-<li><span class="lessBig">Combat (Attacks)</span>
+<li><a name="combat"></a><span class="lessBig">Combat (Attacks)</span>
+
+
 <ol>
 <li>
     <span class="lessBig">Combat Setup Phase</span>
@@ -708,6 +735,7 @@
 </ol>
 </li>
 
+<a name="victoryConditions"></a>
 
 <div class="exclusive">
     <?php include "victoryConditions.php" ?>

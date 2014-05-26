@@ -825,6 +825,9 @@ fieldset {
   background-image: url("../../js/AngArtBadge.png");
   background-size: 14px; }
 
+#header #GR a {
+  color: black; }
+
 .indent {
   margin-left: 20px; }
 
@@ -977,6 +980,9 @@ p.forceMarch {
   margin-left: 10px;
   color: #999; }
 
+#GR ol.ExclusiveRules {
+  counter-reset: item 6; }
+
 #map {
   width: 1200px !important; }
 
@@ -1007,3 +1013,6 @@ p.forceMarch {
 .french.specialHexes {
   background-color: #84b5ff;
   color: white; }
+
+#GR h1.victory {
+  font-size: 30px; }

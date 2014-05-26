@@ -84,6 +84,9 @@ $beluchiWrapperColor: #865900;
 @include badge(Anglo, Ang);
 @include badge(Allied, Ang);
 
+#header #GR a{
+  color:black;
+}
 .indent{
   margin-left:20px;
 }
@@ -332,4 +335,7 @@ p.forceMarch{
   font-style:italic;
   margin-left:10px;
   color:#999;
+}
+#GR ol.ExclusiveRules{
+  counter-reset: item 6;
 }

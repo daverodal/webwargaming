@@ -34,7 +34,9 @@
 
 
             </ul>
+            <ol class="ExclusiveRules">
             <?php include "victoryConditions.php"?>
+            </ol>
             <div id="credits">
                 <h2><cite><?=$name?></cite></h2>
                 <h4>Design Credits</h4>
