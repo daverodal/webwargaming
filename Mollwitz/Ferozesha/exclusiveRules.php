@@ -8,6 +8,10 @@
  */
 ?>
 <style type="text/css">
+
+        #GR ol.ExclusiveRules{
+            counter-reset: item 6;
+       }
 </style>
 <div class="dropDown" id="GRWrapper">
     <h4 class="WrapperLabel" title="Game Rules">Exclusive Rules</h4>
@@ -51,7 +55,9 @@
                     <p class="indent">The British player moves first. The Sikh player moves second. After the Sikh player completes their
                     turn, the game turn is incremented.</p>
             </div>
-            <?php include "victoryConditions.php" ?>
+            <ol class="ExclusiveRules topNumbers">
+                <?php include "victoryConditions.php" ?>
+            </ol>
             <div id="credits">
                 <h2><cite><?= $name ?></cite></h2>
                 <h4>Design Credits</h4>

@@ -50,16 +50,16 @@
         left: -200px;
     }
 
-    OL {
+    #GR OL {
         counter-reset: item;
         padding-left: 10px;
     }
 
-    LI {
+    #GR LI {
         display: block;
     }
 
-    LI:before {
+    #GR LI:before {
         content: "[" counters(item, ".") "] ";
         counter-increment: item;
         font-size: 15px;
@@ -76,7 +76,7 @@
         font-size: 18px;
     }
 
-    .topNumbers > LI:before {
+    #GR .topNumbers > LI:before {
         content: "[" counters(item, ".") ".0] ";
         font-size: 19px;
     }
