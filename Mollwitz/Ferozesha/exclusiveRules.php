@@ -48,11 +48,11 @@
                 </div>
                 <h3>Deploy Phase</h3>
                 
-                    <p class="indent">The Sikh player deploys first. The British player deploys Second</p>
+                    <p class="indent">The <?= $deployOne?> player deploys first. The <?= $deployTwo?> player deploys Second</p>
                 
                 <h3>First Player</h3>
                 
-                    <p class="indent">The British player moves first. The Sikh player moves second. After the Sikh player completes their
+                    <p class="indent">The <?= $playerOne?> player moves first. The  <?= $playerTwo?>  player moves second. After the <?= $playerTwo?> player completes their
                     turn, the game turn is incremented.</p>
             </div>
             <ol class="ExclusiveRules topNumbers">

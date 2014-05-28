@@ -43,15 +43,16 @@ class ferozeshaVictoryCore extends indiaVictoryCore
     public function specialHexChange($args)
     {
         $battle = Battle::getBattle();
-
-        list($mapHexName, $forceId) = $args;
-        if ($forceId == SIKH_FORCE) {
-            $this->victoryPoints[SIKH_FORCE]  += 15;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='beluchi'>+15 Sikh  vp</span>";
-        }
-        if ($forceId == BRITISH_FORCE) {
-            $this->victoryPoints[SIKH_FORCE]  -= 15;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-15 Sikh  vp</span>";
+        if($battle->scenario->dayTwo){
+            list($mapHexName, $forceId) = $args;
+            if ($forceId == SIKH_FORCE) {
+                $this->victoryPoints[SIKH_FORCE]  += 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='beluchi'>+5 Sikh  vp</span>";
+            }
+            if ($forceId == BRITISH_FORCE) {
+                $this->victoryPoints[SIKH_FORCE]  -= 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-5 Sikh  vp</span>";
+            }
         }
     }
 
@@ -64,19 +65,6 @@ class ferozeshaVictoryCore extends indiaVictoryCore
 
         if(!$this->gameOver){
             $specialHexes = $battle->mapData->specialHexes;
-            if($attackingId == BRITISH_FORCE){
-//                $roadHex = $battle->roadHex[0];
-//                $otherCities = $battle->otherCities;
-//                if($specialHexes->$malplaquet == BRITISH_FORCE){
-//                    $angloMalplaquet = true;
-//                    echo "Got Mal $malplaquet ";
-//                    foreach($otherCities as $city){
-//                        if($specialHexes->$city == BRITISH_FORCE){
-//                            $angloCities = true;
-//                        }
-//                    }
-//                }
-            }
             if(($this->victoryPoints[BRITISH_FORCE] >= 40 && ($this->victoryPoints[BRITISH_FORCE] - ($this->victoryPoints[SIKH_FORCE]) >= 15))){
                 $britishWin = true;
             }

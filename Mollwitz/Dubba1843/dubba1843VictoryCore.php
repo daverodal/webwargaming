@@ -66,19 +66,6 @@ class dubba1843VictoryCore extends indiaVictoryCore
 
         if(!$this->gameOver){
             $specialHexes = $battle->mapData->specialHexes;
-            if($attackingId == BRITISH_FORCE){
-//                $roadHex = $battle->roadHex[0];
-//                $otherCities = $battle->otherCities;
-//                if($specialHexes->$malplaquet == BRITISH_FORCE){
-//                    $angloMalplaquet = true;
-//                    echo "Got Mal $malplaquet ";
-//                    foreach($otherCities as $city){
-//                        if($specialHexes->$city == BRITISH_FORCE){
-//                            $angloCities = true;
-//                        }
-//                    }
-//                }
-            }
             if(($this->victoryPoints[BRITISH_FORCE] >= 45)){
                 $britishWin = true;
             }

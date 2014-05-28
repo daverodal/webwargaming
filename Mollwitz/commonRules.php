@@ -312,7 +312,7 @@
 </li>
 <li><a name="deploy"></a><span class="big">Deploy Units</span>
 
-
+    <p class="ruleComment">The <?= $deployOne ?> player deploys first, then the <?= $deployTwo ?> player.</p>
 
     <ol>
         <li>The units you need to deploy will appear in the top bar.</li>
@@ -326,6 +326,9 @@
         </li>
         <li>You are not required to
             deploy all of your units you can decline to place some of the units to balance the game.
+        </li>
+        <li>
+            You may not deploy any units after the initial phase.
         </li>
         <li>
             You may view/hide the deploy box by hitting the button 'deploy/staging'
