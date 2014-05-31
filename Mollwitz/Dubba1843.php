@@ -126,22 +126,22 @@ class Dubba1843 extends JagCore
         if($this->scenario->toughBritish){
 
             for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 6, 3, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "British", false, 'infantry');
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 7, 7, 4, true, STATUS_CAN_DEPLOY, "A", 1, 1, "British", false, 'infantry');
             }
             for ($i = 0; $i < 5; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "NativeInfBadge.png", 5, 3, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "Native", false, 'infantry');
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "NativeInfBadge.png", 6, 6, 4, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Native", false, 'infantry');
             }
             for ($i = 0; $i < 1; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritCavBadge.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "British", false, 'cavalry');
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritCavBadge.png", 7, 7, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "British", false, 'cavalry');
             }
             for ($i = 0; $i < 3; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "NativeCavBadge.png", 5, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "Native", false, 'cavalry');
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "NativeCavBadge.png", 6, 6, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Native", false, 'cavalry');
             }
             for ($i = 0; $i < 2; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritArtBadge.png", 2, 1, 3, false, STATUS_CAN_DEPLOY, "A", 1, $artRange, "British", false, 'artillery');
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritArtBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "British", false, 'artillery');
             }
             for ($i = 0; $i < 1; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritHorArtBadge.png", 3, 2, 5, false, STATUS_CAN_DEPLOY, "A", 1, $artRange, "British", false, 'horseartillery');
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritHorArtBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "British", false, 'horseartillery');
             }
         }else{
             for ($i = 0; $i < 4; $i++) {
