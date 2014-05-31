@@ -8,12 +8,13 @@
  */
 include "victoryCore.php";
 include "indiaVictoryCore.php";
+
 class ferozeshaVictoryCore extends indiaVictoryCore
 {
 
     function __construct($data)
     {
-        if($data) {
+        if ($data) {
             $this->movementCache = $data->victory->movementCache;
             $this->victoryPoints = $data->victory->victoryPoints;
             $this->gameOver = $data->victory->gameOver;
@@ -28,10 +29,10 @@ class ferozeshaVictoryCore extends indiaVictoryCore
     {
         $unit = $args[0];
         $mult = 1;
-        if($unit->nationality == "British"){
+        if ($unit->nationality == "British") {
             $mult = 2;
         }
-        if($unit->forceId == 1) {
+        if ($unit->forceId == 1) {
             $victorId = 2;
             $this->victoryPoints[$victorId] += $unit->strength * $mult;
         } else {
@@ -43,39 +44,69 @@ class ferozeshaVictoryCore extends indiaVictoryCore
     public function specialHexChange($args)
     {
         $battle = Battle::getBattle();
-        if($battle->scenario->dayTwo){
+        if ($battle->scenario->dayTwo) {
             list($mapHexName, $forceId) = $args;
+
             if ($forceId == SIKH_FORCE) {
-                $this->victoryPoints[SIKH_FORCE]  += 5;
+                $this->victoryPoints[SIKH_FORCE] += 5;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='beluchi'>+5 Sikh  vp</span>";
             }
             if ($forceId == BRITISH_FORCE) {
-                $this->victoryPoints[SIKH_FORCE]  -= 5;
+                $this->victoryPoints[SIKH_FORCE] -= 5;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-5 Sikh  vp</span>";
+            }
+        } else {
+
+            list($mapHexName, $forceId) = $args;
+            if ($mapHexName == $battle->moodkee) {
+                if ($forceId == SIKH_FORCE) {
+                    $this->victoryPoints[SIKH_FORCE] += 20;
+                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='beluchi'>+5 Sikh  vp</span>";
+                }
+                if ($forceId == BRITISH_FORCE) {
+                    $this->victoryPoints[SIKH_FORCE] -= 20;
+                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-5 Sikh  vp</span>";
+                }
+
+            } else {
+                if ($forceId == BRITISH_FORCE) {
+                    $this->victoryPoints[BRITISH_FORCE] += 5;
+                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>+5 British  vp</span>";
+                }
+                if ($forceId == SIKH_FORCE) {
+                    $this->victoryPoints[BRITISH_FORCE] -= 5;
+                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='beluchi'>-5 British  vp</span>";
+                }
             }
         }
     }
 
 
-    protected function checkVictory($attackingId,$battle){
+    protected function checkVictory($attackingId, $battle)
+    {
         $gameRules = $battle->gameRules;
+        $scenario = $battle->scenario;
         var_dump($battle->mapData->specialHexes);
         $turn = $gameRules->turn;
-        $sikhWin =  $britishWin = false;
+        $sikhWin = $britishWin = false;
 
-        if(!$this->gameOver){
+        if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
-            if(($this->victoryPoints[BRITISH_FORCE] >= 40 && ($this->victoryPoints[BRITISH_FORCE] - ($this->victoryPoints[SIKH_FORCE]) >= 15))){
+            $britVic = 40;
+            if($scenario->dayTwo !== true){
+                $britVic = 50;
+            }
+            if (($this->victoryPoints[BRITISH_FORCE] >= $britVic && ($this->victoryPoints[BRITISH_FORCE] - ($this->victoryPoints[SIKH_FORCE]) >= 15))) {
                 $britishWin = true;
             }
-            if(($this->victoryPoints[SIKH_FORCE] >= 40)){
+            if (($this->victoryPoints[SIKH_FORCE] >= 40)) {
                 $sikhWin = true;
             }
-            if($turn == $gameRules->maxTurn+1){
-                if(!$britishWin){
-                        $sikhWin = true;
+            if ($turn == $gameRules->maxTurn + 1) {
+                if (!$britishWin) {
+                    $sikhWin = true;
                 }
-                if($sikhWin && $britishWin){
+                if ($sikhWin && $britishWin) {
                     $this->winner = 0;
                     $britishWin = $sikhWin = false;
                     $gameRules->flashMessages[] = "Tie Game";
@@ -86,16 +117,16 @@ class ferozeshaVictoryCore extends indiaVictoryCore
             }
 
 
-            if($britishWin){
+            if ($britishWin) {
                 $this->winner = BRITISH_FORCE;
                 $gameRules->flashMessages[] = "British Win";
             }
-            if($sikhWin){
+            if ($sikhWin) {
                 $this->winner = SIKH_FORCE;
                 $msg = "Sikh Win";
                 $gameRules->flashMessages[] = $msg;
             }
-            if($britishWin || $sikhWin){
+            if ($britishWin || $sikhWin) {
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
                 return true;

@@ -155,7 +155,7 @@ class CombatResultsTable
                         $combatLog .= "+1 for attack into town or forest ";
                     }
                 }
-                if ($unit->nationality == "Beluchi" && ($isTown || $isForest) && !$acrossRiver) {
+                if (($unit->nationality == "Beluchi" || $unit->nationality == "Sikh") && ($isTown || $isForest) && !$acrossRiver) {
                     $unitStrength++;
                     $combatLog .= "+1 for attack into town or forest ";
                 }
@@ -239,7 +239,7 @@ class CombatResultsTable
                     $combatLog .= "+1 for defending in town or forest ";
                 }
             }
-            if ($unit->nationality == "Beluchi" && $class == "infantry" && ($isTown || $isForest)) {
+            if (($unit->nationality == "Beluchi" || $unit->nationality == "Sikh") && $class == "infantry" && ($isTown || $isForest)) {
                 $unitDefense++;
                 $combatLog .= "+1 for defending into town or forest ";
             }

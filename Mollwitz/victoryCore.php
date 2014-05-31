@@ -56,11 +56,11 @@ class victoryCore
         $turn = $gameRules->turn;
         if(!$this->gameOver){
             $prussianWin = $austrianWin = false;
-            if($this->victoryPoints[AUSTRIAN_FORCE] > 35){
+            if($this->victoryPoints[AUSTRIAN_FORCE] >= 35){
                 $austrianWin = true;
                 $reason = "Win on kills";
             }
-            if($this->victoryPoints[PRUSSIAN_FORCE] > 35){
+            if($this->victoryPoints[PRUSSIAN_FORCE] >= 35){
                 $prussianWin = true;
                 $reason = "Win on kills";
             }
