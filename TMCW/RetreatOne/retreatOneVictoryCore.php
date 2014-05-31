@@ -16,6 +16,7 @@ class retreatOneVictoryCore extends victoryCore
     private $supplyLen = false;
     private $rebelGoal;
     private $loyalistGoal;
+    private $gameOver = false;
 
 
     function __construct($data)
@@ -25,8 +26,9 @@ class retreatOneVictoryCore extends victoryCore
             $this->movementCache = $data->victory->movementCache;
             $this->combatCache = $data->victory->combatCache;
             $this->supplyLen = $data->victory->supplyLen;
-            $this->rebelGoal = $data->rebelGoal;
-            $this->loyalistGoal = $data->loyalistGoal;
+            $this->rebelGoal = $data->victory->rebelGoal;
+            $this->loyalistGoal = $data->victory->loyalistGoal;
+            $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
@@ -48,6 +50,7 @@ class retreatOneVictoryCore extends victoryCore
         $ret->supplyLen = $this->supplyLen;
         $ret->rebelGoal = $this->rebelGoal;
         $ret->loyalistGoal = $this->loyalistGoal;
+        $ret->gameOver = $this->gameOver;
         return $ret;
     }
 
@@ -120,6 +123,7 @@ class retreatOneVictoryCore extends victoryCore
         }else{
             $battle->gameRules->flashMessages[] = "Loyalist Player Wins";
         }
+        $this->gameOver = true;
         return true;
     }
     public function phaseChange()

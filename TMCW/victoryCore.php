@@ -13,7 +13,7 @@ class victoryCore
     private $movementCache;
     private $combatCache;
     private $supplyLen = false;
-
+    private $gameOver = false;
 
     function __construct($data)
     {
@@ -22,6 +22,7 @@ class victoryCore
             $this->movementCache = $data->victory->movementCache;
             $this->combatCache = $data->victory->combatCache;
             $this->supplyLen = $data->victory->supplyLen;
+            $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
@@ -111,6 +112,7 @@ class victoryCore
         }else{
             $battle->gameRules->flashMessages[] = "Loyalist Player Wins";
         }
+        $this->gameOver = true;
         return true;
     }
     public function phaseChange()

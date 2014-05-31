@@ -30,6 +30,7 @@ class victoryCore
         $ret = new stdClass();
         $ret->victoryPoints = $this->victoryPoints;
         $ret->movementCache = $this->movementCache;
+        $ret->gameOver = $this->gameOver;
         return $ret;
     }
 

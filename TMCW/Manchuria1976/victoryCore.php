@@ -13,6 +13,7 @@ class victoryCore
     private $movementCache;
     private $combatCache;
     public $sovietGoal;
+    private $gameOver = false;
 
 
     function __construct($data)
@@ -22,6 +23,7 @@ class victoryCore
             $this->movementCache = $data->victory->movementCache;
             $this->combatCache = $data->victory->combatCache;
             $this->sovietGoal = $data->victory->sovietGoal;
+            $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();

@@ -17,9 +17,11 @@ class victoryCore
         if($data) {
             $this->movementCache = $data->victory->movementCache;
             $this->victoryPoints = $data->victory->victoryPoints;
+            $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
+            $this->gameOver = false;
         }
     }
 
@@ -28,6 +30,7 @@ class victoryCore
         $ret = new stdClass();
         $ret->victoryPoints = $this->victoryPoints;
         $ret->movementCache = $this->movementCache;
+        $ret->gameOver = $this->gameOver;
         return $ret;
     }
 
@@ -82,6 +85,7 @@ class victoryCore
             $name = "<span class='loyalistFace'>Blue Wins </span>";
         }
         $battle->gameRules->flashMessages[] = $name;
+        $this->gameOver = true;
     }
     public function postRecoverUnit($args)
     {

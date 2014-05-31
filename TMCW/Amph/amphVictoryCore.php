@@ -15,6 +15,7 @@ class amphVictoryCore extends victoryCore
     private $combatCache;
     private $supplyLen = false;
     private $landingZones;
+    public $gameOver = false;
 
 
     function __construct($data)
@@ -25,6 +26,7 @@ class amphVictoryCore extends victoryCore
             $this->combatCache = $data->victory->combatCache;
             $this->supplyLen = $data->victory->supplyLen;
             $this->landingZones = $data->victory->landingZones;
+            $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
@@ -44,6 +46,7 @@ class amphVictoryCore extends victoryCore
         $ret->combatCache = $this->combatCache;
         $ret->supplyLen = $this->supplyLen;
         $ret->landingZones = $this->landingZones;
+        $ret->gameOver = $this->gameOver;
         return $ret;
     }
 
@@ -132,6 +135,7 @@ class amphVictoryCore extends victoryCore
         }else{
             $battle->gameRules->flashMessages[] = "Loyalist Player Wins";
         }
+        $this->gameOver = true;
         return true;
     }
     public function phaseChange()
