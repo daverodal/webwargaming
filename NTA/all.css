@@ -750,3 +750,6 @@ fieldset {
   position: absolute;
   right: 18px;
   text-decoration: underline; }
+
+#clock {
+  margin-left: 6em; }
