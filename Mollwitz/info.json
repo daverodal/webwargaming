@@ -155,7 +155,8 @@
         "genre": "19'th Century Battles",
         "fileName": "Dubba1843.php",
         "params":{
-            "doubleArt": true
+            "doubleArt": true,
+            "toughBritish":true
         },
         "scenarios": {
             "main": {
