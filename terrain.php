@@ -456,12 +456,12 @@ class Terrain
         foreach ($terrainCode as $code) {
                 $feature = $this->terrainFeatures->$code;
             if($unit->nationality && $unit->class && $feature->altEntranceCost->{$unit->nationality}->{$unit->class}){
-                $cost = $feature->altEntranceCost->{$unit->nationality}->{$unit->class};
+                $cost = $feature->altTraverseCost->{$unit->nationality}->{$unit->class};
                 if($cost === "blocked"){
                     return "blocked";
                 }
             }else if($unit->class && $feature->altEntranceCost->{$unit->class}){
-                $cost = $feature->altEntranceCost->{$unit->class};
+                $cost = $feature->altTraverseCost->{$unit->class};
                 if($cost === "blocked"){
                     return "blocked";
                 }
