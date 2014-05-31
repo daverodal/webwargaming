@@ -77,6 +77,7 @@ class victoryCore
             if($austrianWin && $prussianWin){
                 $this->winner = 0;
                 $austrianWin = $prussianWin = false;
+                $this->gameOver = true;
                 $gameRules->flashMessages[] = "Tie Game";
             }
             if($austrianWin){
@@ -90,6 +91,11 @@ class victoryCore
             if($austrianWin || $prussianWin){
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
+                return true;
+            }
+            if($turn > $gameRules->maxTurn){
+                $this->gameOver = true;
+                $gameRules->flashMessages[] = "Tie Game";
                 return true;
             }
         }
