@@ -54,6 +54,14 @@ class Burkersdorf extends JagCore
 
     public $players;
 
+    static function playMulti($name, $wargame, $arg = false)
+    {
+        $deployOne = $playerOne = "Austrian";
+        $deployTwo = $playerTwo = "Prussian";
+
+        @include_once "playMulti.php";
+    }
+
     static function getHeader($name, $playerData, $arg = false)
     {
         $playerData = array_shift($playerData);

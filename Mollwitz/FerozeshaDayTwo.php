@@ -50,6 +50,13 @@ class FerozeshaDayTwo extends JagCore
         @include_once "enterMulti.php";
     }
 
+    static function playMulti($name, $wargame, $arg = false)
+    {
+        $deployTwo = $playerOne = "Sikh";
+        $deployOne = $playerTwo = "British";
+        @include_once "playMulti.php";
+    }
+
     static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false, $game = false)
     {
         $deployTwo = $playerOne = "Sikh";
@@ -97,7 +104,7 @@ class FerozeshaDayTwo extends JagCore
             $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Sikh", false, 'cavalry');
         }
         for ($i = 0; $i < 3; $i++) {
-            $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhArtBadge.png", 2, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 2, "Sikh", false, 'artillery');
+            $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhArtBadge.png", 2, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 3, "Sikh", false, 'artillery');
         }
         for ($i = 0; $i < 1; $i++) {
             $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhArtBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "A", 1, 3, "Sikh", false, 'artillery');

@@ -41,17 +41,11 @@
         .clear{
             clear:both;
         }
-        .rebel{
-            color:red;
-        }
-        .loyalist{
-            color:blue;
-        }
         .big{
             font-size: 50px;
             text-align: center;
         }
-        .Anglo{
+        .British{
             color:#f00;
         }
         .Prussian{
@@ -67,17 +61,17 @@
 <div class="wrapper">
     <?php global $force_name;$playerOne = $force_name[1];
     $playerTwo = $force_name[2];?>
-    <div class="left Anglo big"><?= $playerOne;?></div>
-    <div class="right Sikh big"><?= $playerTwo;?></div>
+    <div class="left <?= $playerOne;?> big"><?= $playerOne;?></div>
+    <div class="right <?= $playerTwo;?> big"><?= $playerTwo;?></div>
     <div class="clear"></div>
-    <div class="left big Anglo">
+    <div class="left big <?= $playerOne;?>">
         YOU
     </div>
     <div class="center">&laquo;&laquo;vs&raquo;&raquo;</div>
     <div class="right">
         <ul>
             {users}
-            <li><a class="Sikh" href="{path}/{wargame}/{me}/{key}">{key}</a></li>
+            <li><a class="<?= $playerTwo;?>" href="{path}/{wargame}/{me}/{key}">{key}</a></li>
             {/users}
         </ul>
     </div>
@@ -86,12 +80,12 @@
     <div class="left">
         <ul>
             {others}
-            <li><a class="British" href="{path}/{wargame}/{key}">{key}</a></li>
+            <li><a class="<?= $playerOne;?>" href="{path}/{wargame}/{key}">{key}</a></li>
             {/others}
         </ul>
     </div>
     <div class="center">&laquo;&laquo;vs&raquo;&raquo;</div>
-    <div class="right big Sikh">YOU</div>
+    <div class="right big <?= $playerTwo;?>">YOU</div>
     <div class="clear"></div>
     <div>
         <a href="<?=site_url("wargame/play");?>">Back to lobby</a>
