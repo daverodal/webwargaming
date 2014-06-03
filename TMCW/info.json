@@ -4,6 +4,7 @@
         "path": "TMCW",
         "genre": "20'th Century Games",
         "fileName": "MartianCivilWar.php",
+        "description":"This is a short description",
         "scenarios": {
             "main": {
                 "description": "original game, stop on enter zoc, no supply",
@@ -95,6 +96,7 @@
         "name": "The Nomonhan Incident",
         "path": "TMCW",
         "fileName": "Nomonhan.php",
+        "genre": "20'th Century Games",
         "scenarios": {
             "standard": {
                 "description": "Standard scenario. Japan vs Soviet Union",

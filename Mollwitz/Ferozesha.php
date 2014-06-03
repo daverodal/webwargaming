@@ -122,10 +122,12 @@ class Ferozesha extends JagCore
             for ($i = 0; $i < 4; $i++) {
                 $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhArtBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 3, "Sikh", false, 'artillery');
             }
-            for ($i = 0; $i < 2; $i++) {
+            for ($i = 0; $i < 1; $i++) {
                 $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhArtBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "A", 1, 3, "Sikh", false, 'artillery');
             }
-
+            for ($i = 0; $i < 1; $i++) {
+                $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhArtBadge.png", 4, 4, 2, true, STATUS_CAN_DEPLOY, "A", 1, 5, "Sikh", false, 'artillery');
+            }
             /* British */
             for ($i = 0; $i < 6; $i++) {
                 $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 7, 7, 4, true, STATUS_CAN_DEPLOY, "B", 1, 1, "British", false, 'infantry');

@@ -2,7 +2,7 @@
     "Mollwitz": {
         "name": "The Battle of Mollwitz",
         "path": "Mollwitz",
-        "genre": "18'th Century Battles",
+        "genre": "18'th Century Europe",
         "fileName": "Mollwitz.php",
         "scenarios": {
             "main": {
@@ -23,7 +23,7 @@
     "Hastenbeck": {
         "name": "The Battle of Hastenbeck",
         "path": "Mollwitz",
-        "genre": "18'th Century Battles",
+        "genre": "18'th Century Europe",
         "fileName": "Hastenbeck.php",
         "scenarios": {
             "main": {
@@ -39,7 +39,7 @@
     "Hohenfriedeberg": {
         "name": "The Battle of Hohenfriedeberg",
         "path": "Mollwitz",
-        "genre": "18'th Century Battles",
+        "genre": "18'th Century Europe",
         "fileName": "Hohenfriedeberg.php",
         "scenarios": {
             "main": {
@@ -54,7 +54,7 @@
     "Minden": {
         "name": "The Battle of Minden",
         "path": "Mollwitz",
-        "genre": "18'th Century Battles",
+        "genre": "18'th Century Europe",
         "fileName": "Minden.php",
         "scenarios": {
             "main": {
@@ -65,7 +65,7 @@
     "Malplaquet": {
         "name": "The Battle of Malplaquet",
         "path": "Mollwitz",
-        "genre": "18'th Century Battles",
+        "genre": "18'th Century Europe",
         "fileName": "Malplaquet.php",
         "scenarios": {
             "main": {
@@ -77,7 +77,7 @@
     "Burkersdorf": {
         "name": "The Battle of Burkersdorf",
         "path": "Mollwitz",
-        "genre": "18'th Century Battles",
+        "genre": "18'th Century Europe",
         "fileName": "Burkersdorf.php",
         "scenarios": {
             "main": {
@@ -97,7 +97,7 @@
     "Lobositz": {
         "name": "The Battle of Lobositz",
         "path": "Mollwitz",
-        "genre": "18'th Century Battles",
+        "genre": "18'th Century Europe",
         "fileName": "Lobositz.php",
         "scenarios": {
             "main": {
@@ -112,7 +112,7 @@
     "Zorndorf": {
         "name": "The Battle of Zorndorf.",
         "path": "Mollwitz",
-        "genre": "18'th Century Battles",
+        "genre": "18'th Century Europe",
         "fileName": "Zorndorf.php",
         "scenarios": {
             "main": {
@@ -127,7 +127,7 @@
     "Jagersdorf": {
         "name": "The Battle of Gross Jagersdorf",
         "path": "Mollwitz",
-        "genre": "18'th Century Battles",
+        "genre": "18'th Century Europe",
         "fileName": "Jagersdorf.php",
         "params":{
             "jagersdorfCombat": true
@@ -152,7 +152,7 @@
     "Dubba1843": {
         "name": "Dubba 1843",
         "path": "Mollwitz",
-        "genre": "19'th Century Battles",
+        "genre": "19'th Century India",
         "fileName": "Dubba1843.php",
         "params":{
             "doubleArt": true,
@@ -167,7 +167,7 @@
     "Ferozesha": {
         "name": "Ferozesha Day One",
         "path": "Mollwitz",
-        "genre": "19'th Century Battles",
+        "genre": "19'th Century India",
         "fileName": "Ferozesha.php",
         "params":{
             "doubleArt": true
@@ -182,7 +182,7 @@
     "FerozeshaDayTwo": {
         "name": "Ferozesha Day Two",
         "path": "Mollwitz",
-        "genre": "19'th Century Battles",
+        "genre": "19'th Century India",
         "fileName": "FerozeshaDayTwo.php",
         "params":{
             "doubleArt": true
