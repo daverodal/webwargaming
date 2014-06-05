@@ -79,6 +79,8 @@
         "path": "Mollwitz",
         "genre": "18'th Century Europe",
         "fileName": "Burkersdorf.php",
+        "longDesc":"<h3>Historical Context</h3>The Battle of Burkersdorf was a battle fought on July 21, 1762 during the Seven Years' War. A Prussian army of 40,000 men fought an Austrian army of around 30,000 men. See More on <a target='blank' href='http://en.wikipedia.org/wiki/Battle_of_Burkersdorf'>wikipedia</a>",
+        "playerNotes":"<h3>Player Notes</h3>The Prussians are the aggressors here. They have a considerable army with lots of artillery. Attacking from the far eastern portion of the screen is often successful. Largely because there are no roads to that part of the map for the Austrians to shift reinforcements to.<p>The 'Stronger Austrian Force' scenario provides more play balance to the game.</p>",
         "scenarios": {
             "main": {
                 "description": "Standard Scenario"
