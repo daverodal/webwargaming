@@ -21,17 +21,8 @@
             <h2 class="exclusive"> EXCLUSIVE RULES
             </h2>
             <ul>
-                <?php if($scenario->angloCavBonus){?>
-                <li>
-                    <span class="lessBig">Terrain Effects on Combat</span>
-
-                        <p >Anglo Allied Cavalry units are +1 to their combat factor when Attacking into
-                            clear, unless they are attacking across a creek or bridge or redoubt.
-                        </p>
-                </li>
-                <?php } ?>
-
-
+                <span class="exclusive lessBig">Terrain Effects on Combat</span>
+            <?php @include "combatTerrainEffects.php"; ?>
             </ul>
             <ol class="ExclusiveRules">
                 <?php include "victoryConditions.php"?>
