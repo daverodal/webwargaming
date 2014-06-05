@@ -414,6 +414,36 @@
 
 
 <ol>
+<li><span class="lessBig">Combat Rules</span>
+    <p class="ruleComment">The first number on a unit is it's combat factor.</p>
+    <ol>
+        <li>A single unit may only participate in single attack in the friendly attack phase.</li>
+        <li>Units may attack more than one unit. See multi unit combat below.</li>
+        <li>Combat odds are determined by adding the attack strength of all attacking units and dividing it by the
+        defense strength of all defending units.</li>
+        <li>Attacks may always be made at lower than odds than those gained by calculation.</li>
+        <li>All attacks are voluntary. Except that all hostile units adjacent to an attacking unit must them selves be
+            attacked even if only by artillery bombardment.
+        </li>
+        <li>All combat is between adjacent units except that artillery may attack units within their range, (Bombardment).</li>
+        <li><span class="lessBig">Bombardment</span>
+            <p>The number in the upper right corner of an artillery unit is it's range.</p>
+            <p class="ruleComment">Bombardment occurs between artillery units and non adjacent enemy units. Artillery units that attack adjacent enemy units
+            are not considered bombarding.</p>
+            <ol>
+                <li>Bombardment occurs when an artillery unit attacks an enemy unit that is non adjacent.</li>
+                <li>Bombarding units do not suffer the ill effects of combat and ignore all exchanges, attacker retreats or attacker eliminated results.</li>
+                <li>Bombarding units may add their strength to other adjacent attacking units. If there are ill effects of the attack (EX, AR or AE) only the adjacent units
+                are affected.</li>
+                <li>Bombarding units may NOT attack more than one unit unless they are attacking with other adjacent, non bombarding units. See multi unit combat below. </li>
+                <li>Artillery units that are adjacent to an enemy unit may NOT bombard a distant enemy unit. If they attack at all, they must attack one of the adjacent units.</li>
+                <li>Artillery units that are adjacent to enemy units DO suffer ill effects of combat, just as normal units do.</li>
+                <li>Bombarding units may not shoot over woods, hills or towns. They may attack into and out of these hexes but not through them.</li>
+
+            </ol>
+        </li>
+    </ol>
+</li>
 <li>
     <span class="lessBig">Combat Setup Phase</span>
     <ol>
@@ -460,6 +490,11 @@
             allocated to
             another attack will re-allocate it the attach the current defender.
         </li>
+        <li>If you wish to lower the odd of an attack, select the combat, ensure the defender has yellow borders and click on the odds
+        in the crt you wish to lower the odds to. A purple column on the lowered odds should appear. Clicking again on the odds will remove the
+            lowered odds. Example if the odds were 2:1, you can click on 1:1  a purple column will appear over 1:1. During combat resolution the lowered odds will be used
+        to resolve combat.
+        <p class="ruleComment">People often lower the odds to avoid exchanges, often when a high valued unit is attack a lower valued unit.</p></li>
         <li>
             Once you have setup all your attacks. Click 'Next Phase' to move to combat
             resolution phase.
@@ -505,22 +540,7 @@
         </li>
     </ol>
 </li>
-<li><p>The first number on a unit is it's combat factor.</p>
-    <ol>
-        <li>A single unit may only participate in single attack in the friendly attack phase.</li>
-        <li>Attacks may always be made at lower than odds than those gained by calculation.</li>
-        <li>All attacks are voluntary. Except that all hostile units adjacent to an attacking unit must them selves be
-            attacked even if only by artillery bombardment.
-        </li>
-        <li>All combat is between adjacent units except that artillery may attack units up to two hexes away
-            (Bombardment).
-            Including into but not over town, hill or woods. Artillery units may not participate in bombardment attacks
-            if
-            they adjacent to an enemy unit,
-            they must attack an adjacent unit if they attack at all.
-        </li>
-    </ol>
-</li>
+
 <li><span class="lessBig">Multi Hex Multi Unit Combat</span>
 
     <p>A single unit may attack any or all hostile units that it is adjacent to so long as the odds are not worse than
@@ -540,7 +560,7 @@
     <p>
 </li>
 <li>
-    <h4>Retreats</h4> Whenever obligated by combat result, the attacking player
+    <span class="lessBig">Retreats</span> Whenever obligated by combat result, the attacking player
     retreats the units (attacking or defending) obeying the following requirements. Units may not retreat off board, or
     into
     enemy zones of control,
@@ -549,7 +569,7 @@
     </p>
 </li>
 <li>
-    <h4>Retreat Before Combat</h4> To simmulate retreat before combat, when only non cavalry units are attacking only
+    <span class="lessBig">Retreat Before Combat</span> To simmulate retreat before combat, when only non cavalry units are attacking only
     cavalry units
     the cavalry can do a "retreat before combat" this is reflected in the 'cavalry combat results table', which has all
     DR's
@@ -557,13 +577,13 @@
     You may click on the crt where it says "see cavalry table" or "see normal table" to toggle between them.
 </li>
 <li>
-    <h4>Advance after combat</h4> If a defending hex is left vacant any adjacent attacker that participated in the
+    <span class="lessBig">Advance after combat</span> If a defending hex is left vacant any adjacent attacker that participated in the
     attack my
     be moved into that hex. This must be done before the next attack is resolved. Artillery units may NOT advance after
     combat.
 </li>
 <li>
-    <h2>Combat Results</h2>
+    <span class="lessBig">Combat Results</span>
 
     <h4>Combat Results Table (CRT) (No Attack at less than 1-4 is allowed)</h4>
 
@@ -695,10 +715,11 @@
             bridge
             hex sides.
         </li>
+        <li>See the Terrain Effects Chart, the TEC button, for more info.</li>
         <?php @include "combatTerrainEffects.php";?>
     </ol>
 </li>
-<li><h4>Combined Arms Bonus</h4>
+<li><span class="lessBig">Combined Arms Bonus</span>
     <ol>
         <li>Any attack starting at 1-1 odds or better against clear terrain hex, that includes attacking units
             from
@@ -715,7 +736,7 @@
     </ol>
 </li>
 
-<li><h4>Combat Result Explanation</h4>
+<li><span class="lessBig">Combat Result Explanation</span>
     <ol>
         <li>A-E all attacking units eliminated</li>
 
