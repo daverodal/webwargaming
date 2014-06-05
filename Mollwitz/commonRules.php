@@ -345,6 +345,7 @@
 <li><a name="movement"></a><span class="big">Movement</span>
 
 
+    <p class="ruleComment">The <?= $playerOne ?> player moves first, the <?= $playerTwo ?> moves second.</p>
 
     <p>The Second Number on the counter is Movement Points <abbr title="Movement Points">(MP)</abbr>.</p>
 
@@ -738,7 +739,7 @@
 </ol>
 </li>
 
-<a name="victoryConditions"></a>
+    <a name="victoryConditions"></a>
 
 <div class="exclusive">
     <?php include "victoryConditions.php" ?>

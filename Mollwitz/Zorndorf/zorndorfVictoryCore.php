@@ -59,10 +59,10 @@ class zorndorfVictoryCore extends victoryCore
         $turn = $gameRules->turn;
         if(!$this->gameOver){
             $prussianWin = $russianWin = false;
-            if(($this->victoryPoints[RUSSIAN_FORCE] > 62) && ($this->victoryPoints[RUSSIAN_FORCE] - ($this->victoryPoints[PRUSSIAN_FORCE]) > 10)){
+            if(($this->victoryPoints[RUSSIAN_FORCE] >= 62) && ($this->victoryPoints[RUSSIAN_FORCE] - ($this->victoryPoints[PRUSSIAN_FORCE]) >= 10)){
                 $russianWin = true;
             }
-            if(($this->victoryPoints[PRUSSIAN_FORCE] > 62) && ($this->victoryPoints[PRUSSIAN_FORCE] - $this->victoryPoints[RUSSIAN_FORCE] > 10)){
+            if(($this->victoryPoints[PRUSSIAN_FORCE] >= 62) && ($this->victoryPoints[PRUSSIAN_FORCE] - $this->victoryPoints[RUSSIAN_FORCE] >= 10)){
                 $prussianWin = true;
             }
             if($russianWin && $prussianWin){

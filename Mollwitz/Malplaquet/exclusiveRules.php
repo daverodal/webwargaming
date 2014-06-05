@@ -23,18 +23,19 @@
             <ul>
                 <?php if($scenario->angloCavBonus){?>
                 <li>
-                    <h4>Terrain Effects on Combat</h4>
-                    <ul>
-                        <li >Anglo Allied Cavalry units are +1 to their combat factor when Attacking into
+                    <span class="lessBig">Terrain Effects on Combat</span>
+
+                        <p >Anglo Allied Cavalry units are +1 to their combat factor when Attacking into
                             clear, unless they are attacking across a creek or bridge or redoubt.
-                        </li>
-                    </ul>
+                        </p>
                 </li>
                 <?php } ?>
 
 
             </ul>
-            <?php include "victoryConditions.php"?>
+            <ol class="ExclusiveRules">
+                <?php include "victoryConditions.php"?>
+            </ol>
             <div id="credits">
                 <h2><cite><?=$name?></cite></h2>
                 <h4>Design Credits</h4>

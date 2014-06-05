@@ -20,6 +20,15 @@
             </H1>
             <h2 class="exclusive"> EXCLUSIVE RULES
             </h2>
+            <h2>Special Rules</h2>
+            <h2><?= $playerOne ?> Movement Phase</h2>
+            <ul>
+                <li>On the first movement phase all of Austrian units have a movement allowance of two. This is for
+                    the Austrian's first movement phase only.
+                </li>
+
+            </ul>
+
             <ul>
                 <?php if($scenario->angloCavBonus){?>
                 <li>
@@ -34,7 +43,9 @@
 
 
             </ul>
-            <?php include "victoryConditions.php"?>
+            <ol class="ExclusiveRules">
+                <?php include "victoryConditions.php"?>
+            </ol>
             <div id="credits">
                 <h2><cite><?=$name?></cite></h2>
                 <h4>Design Credits</h4>

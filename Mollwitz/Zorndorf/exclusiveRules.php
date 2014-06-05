@@ -21,6 +21,14 @@
             <h2 class="exclusive"> EXCLUSIVE RULES
             </h2>
             <ul>
+                <li>
+                    During the Prussian Deploy Phase, there is a 50/50 chance they will be allowed to deploy in the P1
+                    Hexes, or the P2 hexes.
+                    This will not be obvious until the Prussian player tries to deploy their first unit.
+                    A surprise to both players.
+                    <p>This reflects the fact that the prussians were performing a flanking
+                    maneuver and there was a chance that russians would notice before the battle started.</p>
+                </li>
                 <?php if($scenario->jagersdorfCombat){?>
                 <li>
                     <h4>Terrain Effects on Combat</h4>
@@ -34,7 +42,9 @@
 
 
             </ul>
-            <?php include "victoryConditions.php"?>
+            <ol class="ExclusiveRules">
+                <?php include "victoryConditions.php"?>
+            </ol>
             <div id="credits">
                 <h2><cite><?=$name?></cite></h2>
                 <h4>Design Credits</h4>

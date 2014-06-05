@@ -1,45 +1,18 @@
-<div>
 
-    <h2>Setting Up</h2>
+    <li class="exclusive">
 
-    <ul>
-        <li>The Austrian player sets up first. The Austrian units are red and white.</li>
-        <li>They may deploy any or all their units on or north of the hexes with an A on them.
-            <p>Clicking on a unit will
-        display all possible placements of the unit. The Austrians may deploy all, some or none of their units.</p>
-            <p></p>
-            Units not deployed may be placed later during a subsequent
-        movement phase. (it will cost their entire movement allowance though).
-        </P></li>
-        <li>When the Austrian play is done deploying they should hit the "next phase" button</li>
-
-        <li>The Prussian Player sets up after the Austrian player is finished setting up. The Prussian units are blue and yellow. </li>
-        <li> They may deploy any or all their units on or south of the hexes with an P on them.<p>
-
-                Again, clicking on a unit will
-                display all possible placements of the unit. The Prussians may deploy all, some or none of their units.</p>
-            <p></p>
-            Units not deployed may be placed later during a subsequent
-            movement phase. (it will cost their entire movement allowance though).
-            </P>
-        </li>
-
-    </ul>
-
-    <h2>Victory Conditions</h2>
+        <span class="lessBig">Victory Conditions</span>
     <h4>The Game ends instantly at the end of any Player Turn when one or more of the following conditions applies.</h4>
     <ol>
         <li> At the end of any turn that the Prussian player has accumulated 60 Victory Points with a 10 point lead.
-            <p>Victory Points are awarded when one player destroys another players unit.</P>
-            <ul>
+            <p class="ruleComment">Victory Points are awarded when one player destroys another players unit.</P>
                 <li>
                     1 <abbr title="Victory Point">VP</abbr> per infantry strength point killed.
                 </li>
                 <li>
                     2 <abbr title="Victory Point">VP</abbr> per artillery or cavalry strength point killed.
                 </li>
-            </ul>
-                Victory Points are display in the Victory: box at the top of the page.
+                <p class="ruleComment">Victory Points are display in the Victory: box at the top of the page.</p>
         </li>
 
 
@@ -65,4 +38,4 @@
 
         <li>If the Prussian player cannot gain the above victory by the end of turn 15. The Austrian player wins.</li>
     </ol>
-</div>
+</li>

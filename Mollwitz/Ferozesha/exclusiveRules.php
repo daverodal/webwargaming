@@ -9,9 +9,9 @@
 ?>
 <style type="text/css">
 
-        #GR ol.ExclusiveRules{
-            counter-reset: item 6;
-       }
+        /*#GR ol.ExclusiveRules{*/
+            /*counter-reset: item 6;*/
+       /*}*/
 </style>
 <div class="dropDown" id="GRWrapper">
     <h4 class="WrapperLabel" title="Game Rules">Exclusive Rules</h4>
