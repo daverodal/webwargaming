@@ -8,7 +8,7 @@
 @include player(Sikh, Two, $beluchiColor, $beluchiWrapperColor, $beluchiWrapperColor);
 
 .unit.Native .counterWrapper {
-  background-color: $angloAlliedColor;
+  background-color: $angloAlliedWrapperColor;
 }
 .beluchi.specialHexes{
   background-color: $beluchiWrapperColor;
