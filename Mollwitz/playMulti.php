@@ -41,12 +41,6 @@
         .clear{
             clear:both;
         }
-        .rebel{
-            color:red;
-        }
-        .loyalist{
-            color:blue;
-        }
         .big{
             font-size: 50px;
             text-align: center;
@@ -56,16 +50,15 @@
             color:rgb(12,0,162);
             border-color:rgb(255,253,127) !important;
         }
-        .Russian{
-            color:rgb(76,184,0);
-            border-color:rgb(76,184,0) !important;
+        .Austrian{
+            color:#f00;
         }
     </style>
 </head>
 <body>
 <div class="wrapper">
     <div class="left Prussian big">Prussians</div>
-    <div class="right Russian big">Austrian</div>
+    <div class="right Austrian big">Austrian</div>
     <div class="clear"></div>
     <div class="left big Prussian">
         YOU
@@ -74,7 +67,7 @@
     <div class="right">
         <ul>
             {users}
-            <li><a class="Russian" href="{path}/{wargame}/{me}/{key}">{key}</a></li>
+            <li><a class="Austrian" href="{path}/{wargame}/{me}/{key}">{key}</a></li>
             {/users}
         </ul>
     </div>
@@ -88,7 +81,7 @@
         </ul>
     </div>
     <div class="center">&laquo;&laquo;vs&raquo;&raquo;</div>
-    <div class="right big Russian">YOU</div>
+    <div class="right big Austrian">YOU</div>
     <div class="clear"></div>
     <div>
         <a href="<?=site_url("wargame/play");?>">Back to lobby</a>
