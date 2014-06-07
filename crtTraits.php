@@ -109,7 +109,7 @@ trait divMCWCombatShiftTerrain
             $isMountain |= $battle->terrain->terrainIs($hexpart, 'mountain');
             $isFortA = $battle->terrain->terrainIs($hexpart, 'forta');
             $isFortB = $battle->terrain->terrainIs($hexpart, 'fortb');
-            if($isFortB && $unit->class == "heavy"){
+            if(($isFortB || $isFortA) && $unit->class == "heavy"){
                 $isHeavy = true;
             }
 
