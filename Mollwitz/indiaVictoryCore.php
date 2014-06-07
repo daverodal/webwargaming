@@ -11,8 +11,9 @@ class indiaVictoryCore extends victoryCore
 
         /* @var Dubba1843 $battle */
         $battle = Battle::getBattle();
+        $zocBlocksRetreat = $battle->scenario->zocBlocksRetreat;
         list($nextForceId) = $arg;
-        if($nextForceId == BRITISH_FORCE){
+        if($nextForceId == BRITISH_FORCE ||  $zocBlocksRetreat ){
             $battle->moveRules->zocBlocksRetreat = true;
         }else{
             $battle->moveRules->zocBlocksRetreat = false;

@@ -172,7 +172,8 @@
         "genre": "19'th Century India",
         "fileName": "Ferozesha.php",
         "params":{
-            "doubleArt": true
+            "doubleArt": true,
+            "zocBlocksRetreat":true
         },
         "scenarios": {
             "main": {
@@ -187,7 +188,8 @@
         "genre": "19'th Century India",
         "fileName": "FerozeshaDayTwo.php",
         "params":{
-            "doubleArt": true
+            "doubleArt": true,
+            "zocBlocksRetreat":true
         },
         "scenarios": {
             "main": {
