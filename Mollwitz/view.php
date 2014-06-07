@@ -141,7 +141,7 @@
             <h4 class="WrapperLabel" title="Jump Map">Jump</h4>
         </div>
 
-        <?php include_once "obc.php"; ?>
+        <?php //include_once "obc.php"; ?>
 
         <?php include_once "tec.php"; ?>
         <?php include "timeTravel.php"; ?>
