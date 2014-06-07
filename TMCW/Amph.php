@@ -170,24 +170,24 @@ class Amph extends LandBattle
 
         $this->force->addUnit("lll", LOYALIST_FORCE, 305, "multiGor.png", 3, 1, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
         $this->force->addUnit("lll", LOYALIST_FORCE, 803, "multiGor.png", 3, 1, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, 907, "multiPara.png", 8, 4, 5, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
+        $this->force->addUnit("lll", LOYALIST_FORCE, 907, "multiPara.png", 8, 4, 5, false, STATUS_READY, "B", 1, 1, "loyalGuards", true, 'inf');
         $this->force->addUnit("lll", LOYALIST_FORCE, 1205, "multiGor.png", 3, 1, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
         $this->force->addUnit("lll", LOYALIST_FORCE, 1405, "multiGor.png", 3, 1, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
 
         $this->force->addUnit("lll", LOYALIST_FORCE, 1705, "multiGor.png", 3, 1, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
         $this->force->addUnit("lll", LOYALIST_FORCE, 1904, "multiGor.png", 3, 1, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
         $this->force->addUnit("lll", LOYALIST_FORCE, 1809, "multiGor.png", 3, 1, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
+        $this->force->addUnit("x", LOYALIST_FORCE, 1810, "multiInf.png", 6, 3, 5, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
 
-        $this->force->addUnit("x", RED_FORCE, "gameTurn1", "multiInf.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "B", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("x", RED_FORCE, "gameTurn2", "multiInf.png", 4, 2, 5, false, STATUS_CAN_REINFORCE, "B", 2, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("x", RED_FORCE, "gameTurn3", "multiPara.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "B", 3, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("x", RED_FORCE, "gameTurn4", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 4, 1, "loyalist", true, 'shock');
-        $this->force->addUnit("x", RED_FORCE, "gameTurn4", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 4, 1, "loyalist", true, 'shock');
+        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn2", "multiInf.png", 4, 2, 5, false, STATUS_CAN_REINFORCE, "B", 2, 1, "loyalist", true, 'inf');
+        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn3", "multiPara.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "B", 3, 1, "loyalGuards", true, 'inf');
+        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn4", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 4, 1, "loyalGuards", true, 'shock');
+        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn4", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 4, 1, "loyalGuards", true, 'shock');
 
-        $this->force->addUnit("x", RED_FORCE, "gameTurn5", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "B", 5, 1, "loyalist", true, 'mech');
-        $this->force->addUnit("x", RED_FORCE, "gameTurn5", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "B", 5, 1, "loyalist", true, 'mech');
-        $this->force->addUnit("x", RED_FORCE, "gameTurn5", "multiHeavy.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "B", 5, 1, "loyalist", true, 'heavy');
-        $this->force->addUnit("x", RED_FORCE, "gameTurn5", "multiHeavy.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "B", 5, 1, "loyalist", true, 'heavy');
+        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn5", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "B", 5, 1, "loyalGuards", true, 'mech');
+        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn5", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "B", 5, 1, "loyalGuards", true, 'mech');
+        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn5", "multiHeavy.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "B", 5, 1, "loyalGuards", true, 'heavy');
+        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn5", "multiHeavy.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "B", 5, 1, "loyalGuards", true, 'heavy');
 
 
         $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "inf");
@@ -305,8 +305,8 @@ class Amph extends LandBattle
             $this->gameRules->setInitialPhaseMode(BLUE_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, RED_REPLACEMENT_PHASE, REPLACING_MODE, RED_FORCE, BLUE_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
+//            $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MECH_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MECH_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
@@ -342,6 +342,8 @@ class Amph extends LandBattle
 
                 }
             }
+
+            $this->mapData->setSpecialHexes(array(1807 => LOYALIST_FORCE));
 
 
             /*

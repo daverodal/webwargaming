@@ -59,6 +59,8 @@ class FerozeshaDayTwo extends JagCore
 
     static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false, $game = false)
     {
+        global $force_name;
+        $youAre = $force_name[$player];
         $deployTwo = $playerOne = "Sikh";
         $deployOne = $playerTwo = "British";
         @include_once "view.php";

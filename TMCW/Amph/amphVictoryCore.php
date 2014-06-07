@@ -15,6 +15,7 @@ class amphVictoryCore extends victoryCore
     private $combatCache;
     private $supplyLen = false;
     private $landingZones;
+    private $scienceCenterDestroyed = false;
     public $gameOver = false;
 
 
@@ -26,6 +27,7 @@ class amphVictoryCore extends victoryCore
             $this->combatCache = $data->victory->combatCache;
             $this->supplyLen = $data->victory->supplyLen;
             $this->landingZones = $data->victory->landingZones;
+            $this->scienceCenterDestroyed = $data->victory->scienceCenterDestroyed;
             $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = array(0, 0, 0);
@@ -56,7 +58,12 @@ class amphVictoryCore extends victoryCore
 
         list($mapHexName, $forceId) = $args;
 
-        if($forceId == RED_FORCE){
+        if($mapHexName == 1807 && $forceId == REBEL_FORCE){
+            $this->scienceCenterDestroyed;
+            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>Marine Science Facility Destroyed</span>";
+            $battle->gameRules->flashMessages[] = "Rebel units may now withdraw from beachheads";
+        }
+        if($forceId == LOYALIST_FORCE){
             $newLandings = [];
             foreach($this->landingZones as $landingZone){
                 if($landingZone == $mapHexName){
