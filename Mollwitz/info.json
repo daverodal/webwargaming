@@ -166,6 +166,21 @@
             }
         }
     },
+    "Meanee1843": {
+        "name": "Meanee 1843",
+        "path": "Mollwitz",
+        "genre": "19'th Century India",
+        "fileName": "Meanee1843.php",
+        "params":{
+            "doubleArt": true,
+        },
+        "scenarios": {
+            "main": {
+                "description": "Day One",
+                "dayOne": true
+            }
+        }
+    },
     "Ferozesha": {
         "name": "Ferozesha Day One",
         "path": "Mollwitz",
