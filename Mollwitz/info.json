@@ -172,7 +172,7 @@
         "genre": "19'th Century India",
         "fileName": "Meanee1843.php",
         "params":{
-            "doubleArt": true,
+            "doubleArt": true
         },
         "scenarios": {
             "main": {
