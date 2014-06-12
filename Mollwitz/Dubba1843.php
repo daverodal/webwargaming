@@ -197,7 +197,7 @@ class Dubba1843 extends JagCore
             $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Dubba1843/dubba1843VictoryCore.php");
 
-            $this->mapData->setData(28, 19, "js/Dubba1843Small.png");
+            $this->mapData->setData(28, 19, "js/Dubba1843NoLOCSmall.png");
             $this->mapData->blocksZoc->blocked = true;
             $this->mapData->blocksZoc->blocksnonroad = true;
 
@@ -496,7 +496,6 @@ class Dubba1843 extends JagCore
             $this->terrain->addReinforceZone(1915,'B');
             $this->terrain->addTerrain(116 ,1 , "road");
             $this->terrain->addReinforceZone(116,'A');
-            $specialHexA[] = 116;
             $this->terrain->addTerrain(215 ,3 , "road");
             $this->terrain->addTerrain(215 ,1 , "road");
             $this->terrain->addReinforceZone(215,'A');
