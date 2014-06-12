@@ -178,7 +178,7 @@ class Meanee1843 extends JagCore
             $this->victory = new Victory("Mollwitz/Meanee1843/meanee1843VictoryCore.php");
 
 
-            $this->mapData->setData(28, 19, "js/Meanee1843Small.png");
+            $this->mapData->setData(28, 19, "js/Meanee1843NoLOCSmall.png");
             $this->mapData->blocksZoc->blocked = true;
             $this->mapData->blocksZoc->blocksnonroad = true;
 
@@ -294,20 +294,28 @@ class Meanee1843 extends JagCore
             $this->terrain->addTerrain(1608 ,1 , "road");
             $this->terrain->addReinforceZone(1609,'A');
             $this->terrain->addTerrain(1609 ,1 , "forest");
+            $this->terrain->addTerrain(1609 ,1 , "forta");
             $this->terrain->addReinforceZone(1610,'A');
             $this->terrain->addTerrain(1610 ,1 , "forest");
+            $this->terrain->addTerrain(1610 ,1 , "forta");
             $this->terrain->addReinforceZone(1511,'A');
             $this->terrain->addTerrain(1511 ,1 , "forest");
+            $this->terrain->addTerrain(1511 ,1 , "forta");
             $this->terrain->addReinforceZone(1512,'A');
             $this->terrain->addTerrain(1512 ,1 , "forest");
+            $this->terrain->addTerrain(1512 ,1 , "forta");
             $this->terrain->addReinforceZone(1412,'A');
             $this->terrain->addTerrain(1412 ,1 , "forest");
+            $this->terrain->addTerrain(1412 ,1 , "forta");
             $this->terrain->addReinforceZone(1413,'A');
             $this->terrain->addTerrain(1413 ,1 , "forest");
+            $this->terrain->addTerrain(1413 ,1 , "forta");
             $this->terrain->addReinforceZone(1314,'A');
             $this->terrain->addTerrain(1314 ,1 , "forest");
+            $this->terrain->addTerrain(1314 ,1 , "forta");
             $this->terrain->addReinforceZone(1315,'A');
             $this->terrain->addTerrain(1315 ,1 , "forest");
+            $this->terrain->addTerrain(1315 ,1 , "forta");
             $this->terrain->addReinforceZone(1414,'A');
             $this->terrain->addTerrain(1414 ,1 , "forest");
             $this->terrain->addReinforceZone(1515,'A');
@@ -342,6 +350,7 @@ class Meanee1843 extends JagCore
             $this->terrain->addTerrain(1710 ,1 , "forest");
             $this->terrain->addReinforceZone(1709,'A');
             $this->terrain->addTerrain(1709 ,1 , "forest");
+            $this->terrain->addTerrain(1709 ,1 , "forta");
             $this->terrain->addReinforceZone(1708,'A');
             $this->terrain->addTerrain(1708 ,1 , "road");
             $this->terrain->addReinforceZone(1707,'A');
@@ -353,6 +362,7 @@ class Meanee1843 extends JagCore
             $this->terrain->addTerrain(1808 ,1 , "road");
             $this->terrain->addReinforceZone(1809,'A');
             $this->terrain->addTerrain(1809 ,1 , "forest");
+            $this->terrain->addTerrain(1809 ,1 , "forta");
             $this->terrain->addReinforceZone(1810,'A');
             $this->terrain->addTerrain(1810 ,1 , "forest");
             $this->terrain->addReinforceZone(1811,'A');
@@ -420,7 +430,6 @@ class Meanee1843 extends JagCore
             $this->terrain->addReinforceZone(113,'B');
             $this->terrain->addReinforceZone(112,'B');
             $this->terrain->addTerrain(112 ,1 , "town");
-            $specialHexA[] = 112;
             $this->terrain->addReinforceZone(211,'B');
             $this->terrain->addReinforceZone(312,'B');
             $this->terrain->addTerrain(312 ,1 , "road");
@@ -481,7 +490,6 @@ class Meanee1843 extends JagCore
             $this->terrain->addTerrain(2710 ,1 , "road");
             $this->terrain->addTerrain(2810 ,4 , "road");
             $this->terrain->addTerrain(2810 ,1 , "road");
-            $specialHexB[] = 2810;
             $this->terrain->addTerrain(1708 ,3 , "road");
             $this->terrain->addTerrain(1608 ,3 , "road");
             $this->terrain->addTerrain(1509 ,1 , "road");
@@ -871,7 +879,26 @@ class Meanee1843 extends JagCore
             $this->terrain->addTerrain(2018 ,3 , "river");
             $this->terrain->addTerrain(2018 ,4 , "river");
             $this->terrain->addTerrain(2017 ,3 , "river");
-
+            $this->terrain->addTerrain(1315 ,4 , "forta");
+            $this->terrain->addTerrain(1314 ,3 , "forta");
+            $this->terrain->addTerrain(1314 ,4 , "forta");
+            $this->terrain->addTerrain(1313 ,2 , "forta");
+            $this->terrain->addTerrain(1413 ,4 , "forta");
+            $this->terrain->addTerrain(1412 ,3 , "forta");
+            $this->terrain->addTerrain(1412 ,4 , "forta");
+            $this->terrain->addTerrain(1411 ,2 , "forta");
+            $this->terrain->addTerrain(1512 ,4 , "forta");
+            $this->terrain->addTerrain(1511 ,3 , "forta");
+            $this->terrain->addTerrain(1511 ,4 , "forta");
+            $this->terrain->addTerrain(1510 ,2 , "forta");
+            $this->terrain->addTerrain(1610 ,4 , "forta");
+            $this->terrain->addTerrain(1609 ,3 , "forta");
+            $this->terrain->addTerrain(1609 ,4 , "forta");
+            $this->terrain->addTerrain(1608 ,2 , "forta");
+            $this->terrain->addTerrain(1709 ,4 , "forta");
+            $this->terrain->addTerrain(1708 ,2 , "forta");
+            $this->terrain->addTerrain(1808 ,3 , "forta");
+            $this->terrain->addTerrain(1808 ,2 , "forta");
 
             $this->moodkee = $specialHexB[0];
             $specialHexes = [];
