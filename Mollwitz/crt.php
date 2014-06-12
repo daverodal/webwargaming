@@ -212,6 +212,7 @@ class CombatResultsTable
             $combatLog .= "$unitDefense ".$unit->class." ";
             /* set to true to disable for not scenario->doubleArt */
             $clearHex = false;
+            $artInClear = false;
             if($scenario->doubleArt){
                 $notClearHex = false;
                 $hexagon = $unit->hexagon;
@@ -222,8 +223,9 @@ class CombatResultsTable
                 $notClearHex |= $battle->terrain->terrainIs($hexpart, 'forest');
                 $notClearHex |= $battle->terrain->terrainIs($hexpart, 'swamp');
                 $clearHex = !$notClearHex;
-                if($unit->class == 'artillery' && $clearHex){
+                if(($unit->class == 'artillery' || $unit->class == 'horseartillery') && $clearHex){
                     $combatLog .= "doubled for defending in clear";
+                    $artInClear = true;
                 }
             }
             if ($unit->class != 'cavalry') {
@@ -244,7 +246,7 @@ class CombatResultsTable
                 $combatLog .= "+1 for defending into town or forest ";
             }
 
-            $defenseStrength += $unitDefense * (($isTown && $class !== 'cavalry') || ($class === 'artillery' && $clearHex) || $isHill ? 2 : 1);
+            $defenseStrength += $unitDefense * (($isTown && $class !== 'cavalry') || ($artInClear) || $isHill ? 2 : 1);
             $combatLog .= "<br>";
         }
 
