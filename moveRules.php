@@ -1034,8 +1034,12 @@ class MoveRules
 
     function startRetreating($id)
     {
+        $battle = Battle::getBattle();
+        $victory = $battle->victory;
+
         /* @var Unit $movingUnit */
         $movingUnit = $this->force->getUnit($id);
+        $victory->preStartMovingUnit($movingUnit);
         if ($movingUnit->setStatus(STATUS_RETREATING) == true) {
             if ($this->retreatIsBlocked($id) == true) {
 
@@ -1050,6 +1054,7 @@ class MoveRules
                 $this->movingUnitId = $id;
             }
         }
+        $victory->postStartMovingUnit($movingUnit);
     }
 
     function retreatIsBlocked($id)
