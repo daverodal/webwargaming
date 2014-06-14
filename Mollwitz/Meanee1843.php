@@ -319,7 +319,9 @@ class Meanee1843 extends JagCore
             $this->terrain->addReinforceZone(1414,'A');
             $this->terrain->addTerrain(1414 ,1 , "forest");
             $this->terrain->addReinforceZone(1515,'A');
+            $this->terrain->addTerrain(1515 ,1 , "forest");
             $this->terrain->addReinforceZone(1514,'A');
+            $this->terrain->addTerrain(1514 ,1 , "forest");
             $this->terrain->addReinforceZone(1513,'A');
             $this->terrain->addTerrain(1513 ,1 , "forest");
             $this->terrain->addReinforceZone(1615,'A');
