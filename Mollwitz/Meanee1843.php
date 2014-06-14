@@ -253,7 +253,7 @@ class Meanee1843 extends JagCore
             $this->terrain->addTerrainFeature("hill", "hill", "h", 2, 0, 0, true, true);
             $this->terrain->addTerrainFeature("river", "river", "v", 0, 1, 0, false);
             $this->terrain->addAltEntranceCost('forest', 'cavalry', 4);
-            $this->terrain->addNatAltEntranceCost('forest','Sikh', 'infantry', 1);
+            $this->terrain->addNatAltEntranceCost('forest','Beluchi', 'infantry', 1);
             $this->terrain->addAltEntranceCost('forest', 'horseartillery', 4);
             $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
             $this->terrain->addTerrainFeature("swamp", "swamp", "s", 9, 0, 1, true, false);
