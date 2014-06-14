@@ -190,8 +190,12 @@ class CombatResultsTable
                     $unitStrength /= 2;
                     $combatLog .= "halved for attacking into terrain ";
                 }
+                $class = $unit->class;
+                if($class == 'horseartillery'){
+                    $class = 'artillery';
+                }
                 if($unit->nationality != "Beluchi"){
-                    $combinedArms[$battle->force->units[$attackerId]->class]++;
+                    $combinedArms[$class]++;
                 }else{
                     $combatLog .= "no combined arms bonus for Beluchi";
                 }
