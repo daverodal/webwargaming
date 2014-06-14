@@ -101,7 +101,6 @@ class CombatResultsTable
             $isHill |= $battle->terrain->terrainIs($hexpart, 'hill');
             $isForest |= $battle->terrain->terrainIs($hexpart, 'forest');
             $isSwamp |= $battle->terrain->terrainIs($hexpart, 'swamp');
-            $isRedoubt |= $battle->terrain->terrainIs($hexpart, 'redoubt');
         }
         $isClear = true;
         if ($isTown || $isForest || $isHill || $isSwamp) {
@@ -134,11 +133,15 @@ class CombatResultsTable
             }
 
             $acrossRedoubt = false;
-            if($isRedoubt){
-                foreach ($defenders as $defId => $defender) {
-                    if ($battle->combatRules->thisAttackAcrossType($defId, $attackerId, "redoubt")) {
-                        $acrossRedoubt = true;
-                    }
+            foreach ($defenders as $defId => $defender) {
+                $isRedoubt = false;
+                $hexagon = $battle->force->units[$defId]->hexagon;
+                $hexpart = new Hexpart();
+                $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
+                $isRedoubt |= $battle->terrain->terrainIs($hexpart, 'redoubt');
+
+                if ($isRedoubt && $battle->combatRules->thisAttackAcrossType($defId, $attackerId, "redoubt")) {
+                    $acrossRedoubt = true;
                 }
             }
 
