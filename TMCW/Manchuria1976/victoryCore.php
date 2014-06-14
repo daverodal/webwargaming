@@ -71,14 +71,6 @@ class victoryCore
 
         list($zones, $unit) = $args;
         if ($unit->nationality == "prc") {
-//            $units = $battle->force->units;
-//            foreach($units as $unit){
-//                echo "Ho ";
-//                var_dump($unit->hexagon->parent);
-//                if($unit->hexagon->parent === "deadpile"){
-//                    echo "Dead ".$unit->id;
-//                }
-//            }
             $battle = Battle::getBattle();
             $mapData = $battle->mapData;
 
@@ -109,7 +101,6 @@ class victoryCore
             }
         }
         return array($zones);
-
     }
 
     public function reduceUnit($args)

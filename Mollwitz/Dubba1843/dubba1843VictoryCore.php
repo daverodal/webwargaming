@@ -57,10 +57,8 @@ class dubba1843VictoryCore extends indiaVictoryCore
 
 
     protected function checkVictory($attackingId,$battle){
-        echo "Attack $attackingId ";
-        var_dump($this->gameOver);
+
         $gameRules = $battle->gameRules;
-        var_dump($battle->mapData->specialHexes);
         $turn = $gameRules->turn;
         $beluchiWin =  $britishWin = false;
 
@@ -76,16 +74,15 @@ class dubba1843VictoryCore extends indiaVictoryCore
                 if(!$britishWin){
                         $beluchiWin = true;
                 }
-                if($beluchiWin && $britishWin){
-                    $this->winner = 0;
-                    $britishWin = $beluchiWin = false;
-                    $gameRules->flashMessages[] = "Tie Game";
-                    $gameRules->flashMessages[] = "Game Over";
-                    $this->gameOver = true;
-                    return true;
-                }
             }
-
+            if($beluchiWin && $britishWin){
+                $this->winner = 0;
+                $britishWin = $beluchiWin = false;
+                $gameRules->flashMessages[] = "Tie Game";
+                $gameRules->flashMessages[] = "Game Over";
+                $this->gameOver = true;
+                return true;
+            }
 
             if($britishWin){
                 $this->winner = BRITISH_FORCE;

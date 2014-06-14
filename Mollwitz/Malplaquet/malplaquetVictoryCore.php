@@ -43,10 +43,7 @@ class malplaquetVictoryCore extends victoryCore
     {
     }
     protected function checkVictory($attackingId,$battle){
-        echo "Attack $attackingId ";
-        var_dump($this->gameOver);
         $gameRules = $battle->gameRules;
-        var_dump($battle->mapData->specialHexes);
         $turn = $gameRules->turn;
         $frenchWin = $angloMalplaquet =  $angloCities = $angloWing = false;
 
@@ -54,9 +51,7 @@ class malplaquetVictoryCore extends victoryCore
             /* @var MapData $mapData */
             $mapData = $battle->mapData;
             if($attackingId == ANGLO_FORCE){
-                echo "weeee ";
                 $malplaquet = $battle->malplaquet[0];
-                var_dump($malplaquet);
                 $otherCities = $battle->otherCities;
                 if($mapData->getSpecialHex($malplaquet) === ANGLO_FORCE){
                     $angloMalplaquet = true;
@@ -72,7 +67,6 @@ class malplaquetVictoryCore extends victoryCore
                 $angloWin = true;
             }
             if($turn == $gameRules->maxTurn+1){
-                echo "Turn $turn angloCities $angloCities mal $angloMalplaquet";
                 if(!$angloWin){
                     if($angloCities === false && $angloMalplaquet === false){
                         $frenchWin = true;

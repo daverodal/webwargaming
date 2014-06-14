@@ -86,7 +86,6 @@ class ferozeshaVictoryCore extends indiaVictoryCore
     {
         $gameRules = $battle->gameRules;
         $scenario = $battle->scenario;
-        var_dump($battle->mapData->specialHexes);
         $turn = $gameRules->turn;
         $sikhWin = $britishWin = false;
 
