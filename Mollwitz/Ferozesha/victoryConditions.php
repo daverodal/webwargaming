@@ -9,7 +9,6 @@
         <li>There are points values on some hexes Red for British, black for Sikh</li>
         <li>All artillery is double defense in clear</li>
         <li>Sikh Infantry +1 combat point in Jungle/Scrub and Town</li>
-        <li>British Infantry and Cavalry MAY retreat in to Sikh ZOC (should this be infantry only someday?)</li>
         <li>Sikhs do not get combined arms bonus with cavalry.</li>
     </ol>
 </li>
