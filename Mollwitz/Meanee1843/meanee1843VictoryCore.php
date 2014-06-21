@@ -44,41 +44,6 @@ class meanee1843VictoryCore extends indiaVictoryCore
     public function specialHexChange($args)
     {
         $battle = Battle::getBattle();
-        if ($battle->scenario->dayTwo) {
-            list($mapHexName, $forceId) = $args;
-
-            if ($forceId == SIKH_FORCE) {
-                $this->victoryPoints[SIKH_FORCE] += 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='beluchi'>+5 Sikh  vp</span>";
-            }
-            if ($forceId == BRITISH_FORCE) {
-                $this->victoryPoints[SIKH_FORCE] -= 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-5 Sikh  vp</span>";
-            }
-        } else {
-
-            list($mapHexName, $forceId) = $args;
-            if ($mapHexName == $battle->moodkee) {
-                if ($forceId == SIKH_FORCE) {
-                    $this->victoryPoints[SIKH_FORCE] += 20;
-                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='beluchi'>+5 Sikh  vp</span>";
-                }
-                if ($forceId == BRITISH_FORCE) {
-                    $this->victoryPoints[SIKH_FORCE] -= 20;
-                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-5 Sikh  vp</span>";
-                }
-
-            } else {
-                if ($forceId == BRITISH_FORCE) {
-                    $this->victoryPoints[BRITISH_FORCE] += 5;
-                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>+5 British  vp</span>";
-                }
-                if ($forceId == SIKH_FORCE) {
-                    $this->victoryPoints[BRITISH_FORCE] -= 5;
-                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='beluchi'>-5 British  vp</span>";
-                }
-            }
-        }
     }
 
 

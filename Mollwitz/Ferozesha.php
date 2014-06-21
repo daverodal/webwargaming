@@ -182,11 +182,8 @@ class Ferozesha extends JagCore
             $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Ferozesha/ferozeshaVictoryCore.php");
 
-            if($scenario->dayTwo){
-                $this->mapData->setData(33, 21, "js/Ferozesha2Small.png");
-            }else{
-                $this->mapData->setData(33, 21, "js/Ferozesha1BiggerSmall.png");
-            }
+
+            $this->mapData->setData(33, 25, "js/Ferozesha1BiggerSmall.png");
             $this->mapData->blocksZoc->blocked = true;
             $this->mapData->blocksZoc->blocksnonroad = true;
 
@@ -273,7 +270,7 @@ class Ferozesha extends JagCore
 
 
             for ($col = 100; $col <= 3300; $col += 100) {
-                for ($row = 1; $row <= 21; $row++) {
+                for ($row = 1; $row <= 25; $row++) {
                     $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
                     $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
