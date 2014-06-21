@@ -961,6 +961,7 @@ class Ferozesha extends JagCore
 
             // end terrain data ----------------------------------------
 
+            // Added this comment
         }
     }
 }
