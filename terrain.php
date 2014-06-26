@@ -65,6 +65,9 @@ class Town
 
 class Terrain
 {
+    public $mapUrl = false;
+    public $maxCol = false;
+    public $maxRow = false;
     public $maxTerrainX;
     public $maxTerrainY;
     public $terrainArray;
@@ -133,7 +136,6 @@ class Terrain
     }
     /* this method will die someday  sooner than later */
     public function setMaxHex(){
-        return;
         $mapData = MapData::getInstance();
 
 
