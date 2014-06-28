@@ -20,24 +20,24 @@ require_once "victory.php";
 
 
 class JagCore extends LandBattle{
-//
-//    function terrainInit($terrainName){
-//
-//        $CI =& get_instance();
-//        $terrainDoc = $CI->couchsag->get($terrainName);
-//        $terrainInfo = $terrainDoc->terrain;
-//
-//        $oldMapUrl = $this->mapData->mapUrl;
-//        if(!$oldMapUrl){
-//            $maxCol = $terrainInfo->maxCol;
-//            $maxRow = $terrainInfo->maxRow;
-//            $mapUrl = $terrainInfo->mapUrl;
-//            $this->mapData->setData($maxCol, $maxRow, $mapUrl);
-//
-//            Hexagon::setMinMax();
-//            $this->terrain->setMaxHex();
-//        }
-//        $this->genTerrain = false;
-//        return;
-//    }
+
+    function terrainInit($terrainName){
+
+        $CI =& get_instance();
+        $terrainDoc = $CI->couchsag->get($terrainName);
+        $terrainInfo = $terrainDoc->terrain;
+
+        $oldMapUrl = $this->mapData->mapUrl;
+        if(!$oldMapUrl){
+            $maxCol = $terrainInfo->maxCol;
+            $maxRow = $terrainInfo->maxRow;
+            $mapUrl = $terrainInfo->mapUrl;
+            $this->mapData->setData($maxCol, $maxRow, $mapUrl);
+
+            Hexagon::setMinMax();
+            $this->terrain->setMaxHex();
+        }
+        $this->genTerrain = false;
+        return;
+    }
 }
