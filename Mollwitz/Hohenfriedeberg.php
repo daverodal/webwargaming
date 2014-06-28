@@ -200,7 +200,7 @@ class Hohenfriedeberg extends JagCore
             $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Hohenfriedeberg/hohenfriedebergVictoryCore.php");
 
-            $this->mapData->setData(24, 24, "js/Hohenfriedeberg3AustrianObjectivesSmall.png");
+            $this->mapData->setData(24, 24, "js/HohenfriedebergRevised6_19_14Small.png");
 
             $this->display = new Display();
             $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
@@ -520,7 +520,6 @@ class Hohenfriedeberg extends JagCore
             $this->terrain->addTerrain(323 ,1 , "swamp");
             $this->terrain->addTerrain(124 ,1 , "swamp");
             $this->terrain->addTerrain(124 ,1 , "road");
-            $specialHexA[] = 124;
             $this->terrain->addTerrain(223 ,1 , "swamp");
             $this->terrain->addTerrain(223 ,1 , "road");
             $this->terrain->addTerrain(324 ,1 , "swamp");
@@ -539,7 +538,6 @@ class Hohenfriedeberg extends JagCore
             $this->terrain->addReinforceZone(1201,'A');
             $this->terrain->addReinforceZone(102,'A');
             $this->terrain->addTerrain(102 ,1 , "road");
-            $specialHexA[] = 102;
             $this->terrain->addReinforceZone(202,'A');
             $this->terrain->addTerrain(202 ,1 , "road");
             $this->terrain->addReinforceZone(302,'A');
@@ -560,7 +558,6 @@ class Hohenfriedeberg extends JagCore
             $this->terrain->addReinforceZone(1003,'A');
             $this->terrain->addReinforceZone(1203,'A');
             $this->terrain->addReinforceZone(104,'A');
-            $specialHexA[] = 104;
             $this->terrain->addReinforceZone(304,'A');
             $this->terrain->addReinforceZone(704,'A');
             $this->terrain->addReinforceZone(804,'A');
@@ -593,8 +590,8 @@ class Hohenfriedeberg extends JagCore
             $this->terrain->addReinforceZone(907,'A');
             $this->terrain->addTerrain(907 ,1 , "road");
             $this->terrain->addReinforceZone(108,'A');
-            $specialHexA[] = 108;
             $this->terrain->addTerrain(108 ,1 , "road");
+            $specialHexA[] = 108;
             $this->terrain->addReinforceZone(208,'A');
             $this->terrain->addTerrain(208 ,1 , "road");
             $this->terrain->addReinforceZone(308,'A');
