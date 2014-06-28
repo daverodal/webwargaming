@@ -116,16 +116,16 @@ class Hohenfriedeberg extends JagCore
         for($i = 0;$i < 12;$i++){
             $this->force->addUnit("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Prussian", false, 'infantry');
         }
-        //for($i = 0;$i < 4;$i++){
-          //      $this->force->addUnit("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Prussian", false, 'cavalry');
-        //}
+        for($i = 0;$i < 4;$i++){
+                $this->force->addUnit("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Prussian", false, 'cavalry');
+        }
         for($i = 0;$i < 4;$i++){
             $this->force->addUnit("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Prussian", false, 'cavalry');
         }
-        for($i = 0;$i < 4;$i++){
+        for($i = 0;$i < 2;$i++){
             $this->force->addUnit("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruCavBadge.png", 4, 4, 6, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Prussian", false, 'cavalry');
         }
-        for($i = 0;$i < 4;$i++){
+        for($i = 0;$i < 2;$i++){
             $this->force->addUnit("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruArtBadge.png", 4, 4, 2, true, STATUS_CAN_DEPLOY, "B", 1, $artRange, "Prussian", false, 'artillery');
         }
         for($i = 0;$i < 4;$i++){
@@ -137,11 +137,15 @@ class Hohenfriedeberg extends JagCore
             $nThreeThrees = 10;
             $nFourTwos = 2;
             $nTwoTwos = 3;
+            $nFourFives = 2;
+            $nFiveFives = 2;
         }else{
             $nFourThrees = 3;
             $nThreeThrees = 3;
             $nFourTwos = 0;
             $nTwoTwos = 5;
+            $nForeFives = 4;
+            $nFiveFives = 0;
         }
 
 
