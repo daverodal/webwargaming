@@ -137,7 +137,6 @@ class Hastenbeck extends JagCore
         }else{
             $frenchDeploy = $coinFlip == 1 ? "B": "C";
         }
-        $frenchDeploy = "C";
 
         for ($i = 0; $i < 4; $i++) {
             $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'infantry');
