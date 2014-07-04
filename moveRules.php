@@ -864,7 +864,7 @@ class MoveRules
             if ($unit->setStatus(STATUS_REINFORCING) == true) {
                 $movesLeft = $unit->maxMove;
                 $zoneName = $unit->reinforceZone;
-                $zones = $this->terrain->getReinforceZones($zoneName);
+                $zones = $this->terrain->getReinforceZonesByName($zoneName);
                 list($zones) = $battle->victory->postReinforceZones($zones, $unit);
                 foreach ($zones as $zone) {
                     if ($this->force->hexagonIsOccupied($zone->hexagon)) {
@@ -894,7 +894,7 @@ class MoveRules
                 $victory = $battle->victory;
                 $movesLeft = 0;
                 $zoneName = $unit->reinforceZone;
-                $zones = $this->terrain->getReinforceZones($zoneName);
+                $zones = $this->terrain->getReinforceZonesByName($zoneName);
                 list($zones) = $battle->victory->postDeployZones($zones, $unit);
                 foreach ($zones as $zone) {
                     $startHex = $zone->hexagon->name;
@@ -921,7 +921,7 @@ class MoveRules
         $unit = $this->force->getUnit($id);
         if ($unit->setStatus(STATUS_CAN_REPLACE) == true) {
             $movesLeft = 0;
-            $zones = $this->terrain->getReinforceZones($this->force->getUnitReinforceZone($id));
+            $zones = $this->terrain->getReinforceZonesByName($this->force->getUnitReinforceZone($id));
             list($zones) = $battle->victory->postReinforceZones($zones, $unit);
             foreach ($zones as $zone) {
                 if ($this->force->hexagonIsOccupied($zone->hexagon)) {
@@ -952,7 +952,7 @@ class MoveRules
     {
 
         if ($this->force->unitIsReinforcing($id) == true) {
-            if ($this->force->getUnitReinforceZone($id) == $this->terrain->getReinforceZone($hexagon)) {
+            if (in_array($this->force->getUnitReinforceZone($id) , $this->terrain->getReinforceZoneList($hexagon))) {
                 /* @var Unit $movingUnit */
                 $movingUnit = $this->force->getUnit($id);
                 if ($movingUnit->setStatus(STATUS_MOVING) == true) {
@@ -969,7 +969,7 @@ class MoveRules
     function deploy($id, $hexagon)
     {
         if ($this->force->unitIsDeploying($id) == true) {
-            if ($this->force->getUnitReinforceZone($id) == $this->terrain->getReinforceZone($hexagon)) {
+            if (in_array($this->force->getUnitReinforceZone($id), $this->terrain->getReinforceZoneList($hexagon))) {
                 /* @var Unit $movingUnit */
                 $movingUnit = $this->force->units[$id];
                 if ($movingUnit->setStatus(STATUS_CAN_DEPLOY) == true) {

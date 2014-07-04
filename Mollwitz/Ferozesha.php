@@ -1,6 +1,6 @@
 <?php
 set_include_path(__DIR__ . "/Ferozesha" . PATH_SEPARATOR . get_include_path());
-require_once "JagCore.php";
+require_once "IndiaCore.php";
 /* comment */
 define("BRITISH_FORCE", 1);
 define("SIKH_FORCE", 2);
@@ -30,8 +30,10 @@ $oneHalfImageWidth = 16;
 $oneHalfImageHeight = 16;
 
 
-class Ferozesha extends JagCore
+class Ferozesha extends IndiaCore
 {
+
+    public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>1, 'SpecialHexC'=>1];
 
     /* @var Mapdata */
     public $mapData;
@@ -150,131 +152,127 @@ class Ferozesha extends JagCore
 
     }
 
-    function terrainGen($hexDocId){
-        $CI =& get_instance();
-        echo "getting $hexDocId ";
-        $terrainDoc = $CI->couchsag->get($hexDocId);
-        $terrainArr = json_decode($terrainDoc->hexStr->hexEncodedStr);
-        $mapId = $terrainDoc->hexStr->map;
-        $mapDoc = $CI->couchsag->get($mapId);
-        echo "Got MapDoc ";
-        $map = $mapDoc->map;
-        $this->terrain->mapUrl = $mapUrl = $map->mapUrl;
-        $this->terrain->maxCol = $maxCol = $map->numX;
-        $this->terrain->maxRow = $maxRow = $map->numY;
-        $this->mapData->setData($maxCol, $maxRow, $mapUrl);
+//    function terrainGen($hexDocId){
+//        $CI =& get_instance();
+//        $terrainDoc = $CI->couchsag->get($hexDocId);
+//        $terrainArr = json_decode($terrainDoc->hexStr->hexEncodedStr);
+//        $mapId = $terrainDoc->hexStr->map;
+//        $mapDoc = $CI->couchsag->get($mapId);
+//        $map = $mapDoc->map;
+//        $this->terrain->mapUrl = $mapUrl = $map->mapUrl;
+//        $this->terrain->maxCol = $maxCol = $map->numX;
+//        $this->terrain->maxRow = $maxRow = $map->numY;
+//        $this->mapData->setData($maxCol, $maxRow, $mapUrl);
+//
+//        Hexagon::setMinMax();
+//        $this->terrain->setMaxHex();
 
-        Hexagon::setMinMax();
-        $this->terrain->setMaxHex();
-
-        echo "$mapUrl $maxCol $maxRow ";
-        // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
-        $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
-        $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
-        $this->terrain->addTerrainFeature("road", "road", "r", .75, 0, 0, false);
-        $this->terrain->addTerrainFeature("town", "town", "t", 1, 0, 0, true, true);
-        $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true, true);
-        $this->terrain->addTerrainFeature("hill", "hill", "h", 2, 0, 0, true, true);
-        $this->terrain->addTerrainFeature("river", "river", "v", 0, 1, 0, false);
-        $this->terrain->addAltEntranceCost('forest', 'cavalry', 4);
-        $this->terrain->addNatAltEntranceCost('forest','Sikh', 'infantry', 1);
-        $this->terrain->addAltEntranceCost('forest', 'horseartillery', 4);
-        $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
-        $this->terrain->addTerrainFeature("swamp", "swamp", "s", 9, 0, 1, true, false);
-        $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
-        $this->terrain->addTerrainFeature("redoubt", "redoubt", "d", 0, 2, 0, false);
-        $this->terrain->addTerrainFeature("blocksnonroad", "blocksnonroad", "b", 1, 0, 0, false);
-        $this->terrain->addTerrainFeature("wadi", "wadi", "v", 0, 2, 0, false);
-        $this->terrain->addAltEntranceCost('swamp','artillery','blocked');
+//        // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
+//        $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
+//        $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
+//        $this->terrain->addTerrainFeature("road", "road", "r", .75, 0, 0, false);
+//        $this->terrain->addTerrainFeature("town", "town", "t", 1, 0, 0, true, true);
+//        $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true, true);
+//        $this->terrain->addTerrainFeature("hill", "hill", "h", 2, 0, 0, true, true);
+//        $this->terrain->addTerrainFeature("river", "river", "v", 0, 1, 0, false);
+//        $this->terrain->addAltEntranceCost('forest', 'cavalry', 4);
+//        $this->terrain->addNatAltEntranceCost('forest','Sikh', 'infantry', 1);
+//        $this->terrain->addAltEntranceCost('forest', 'horseartillery', 4);
+//        $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
+//        $this->terrain->addTerrainFeature("swamp", "swamp", "s", 9, 0, 1, true, false);
+//        $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
+//        $this->terrain->addTerrainFeature("redoubt", "redoubt", "d", 0, 2, 0, false);
+//        $this->terrain->addTerrainFeature("blocksnonroad", "blocksnonroad", "b", 1, 0, 0, false);
+//        $this->terrain->addTerrainFeature("wadi", "wadi", "v", 0, 2, 0, false);
+//        $this->terrain->addAltEntranceCost('swamp','artillery','blocked');
 
 
 
-        for ($col = 100; $col <= $maxCol * 100; $col += 100) {
-            for ($row = 1; $row <= $maxRow; $row++) {
-                $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
-                $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
-                $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
-                $this->terrain->addTerrain($row + $col, HEXAGON_CENTER, "clear");
+//        for ($col = 100; $col <= $maxCol * 100; $col += 100) {
+//            for ($row = 1; $row <= $maxRow; $row++) {
+//                $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
+//                $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
+//                $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
+//                $this->terrain->addTerrain($row + $col, HEXAGON_CENTER, "clear");
+//
+//            }
+//        }
+//        foreach($terrainArr as $terrain){
+//            foreach($terrain->type as $terrainType){
+//                $name = $terrainType->name;
+//                $matches = [];
+//                if(preg_match("/^ReinforceZone(.*)$/", $name,$matches)){
+//                    $this->terrain->addReinforceZone($terrain->number, $matches[1]);
+//                }else{
+//                    $this->terrain->addTerrain($terrain->number, $terrain->hexpartType, $name);
+//                }
+//            }
+//        }
+//    }
 
-            }
-        }
-        foreach($terrainArr as $terrain){
-            foreach($terrain->type as $terrainType){
-                $name = $terrainType->name;
-                echo $terrain->number." $name <br>";
-                $matches = [];
-                if(preg_match("/^ReinforceZone(.*)$/", $name,$matches)){
-                    $this->terrain->addReinforceZone($terrain->number, $matches[1]);
-                }else{
-                    $this->terrain->addTerrain($terrain->number, $terrain->hexpartType, $name);
-                }
-            }
-        }
-    }
-
-    function terrainInit($terrainName){
-
-        $CI =& get_instance();
-        $terrainDoc = $CI->couchsag->get($terrainName);
-        $terrainInfo = $terrainDoc->terrain;
-
-        $oldMapUrl = $this->mapData->mapUrl;
-        if(!$oldMapUrl){
-            $maxCol = $terrainInfo->maxCol;
-            $maxRow = $terrainInfo->maxRow;
-            $mapUrl = $terrainInfo->mapUrl;
-            $this->mapData->setData($maxCol, $maxRow, $mapUrl);
-
-            Hexagon::setMinMax();
-            $this->terrain->setMaxHex();
-        }
-        $this->genTerrain = false;
-        return;
-        // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
-        $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
-        $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
-        $this->terrain->addTerrainFeature("road", "road", "r", .75, 0, 0, false);
-        $this->terrain->addTerrainFeature("town", "town", "t", 1, 0, 0, true, true);
-        $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true, true);
-        $this->terrain->addTerrainFeature("hill", "hill", "h", 2, 0, 0, true, true);
-        $this->terrain->addTerrainFeature("river", "river", "v", 0, 1, 0, false);
-        $this->terrain->addAltEntranceCost('forest', 'cavalry', 4);
-        $this->terrain->addNatAltEntranceCost('forest','Sikh', 'infantry', 1);
-        $this->terrain->addAltEntranceCost('forest', 'horseartillery', 4);
-        $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
-        $this->terrain->addTerrainFeature("swamp", "swamp", "s", 9, 0, 1, true, false);
-        $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
-        $this->terrain->addTerrainFeature("redoubt", "redoubt", "d", 0, 2, 0, false);
-        $this->terrain->addTerrainFeature("blocksnonroad", "blocksnonroad", "b", 1, 0, 0, false);
-        $this->terrain->addTerrainFeature("wadi", "wadi", "v", 0, 2, 0, false);
-        $this->terrain->addAltEntranceCost('swamp','artillery','blocked');
-
-
-        for ($col = 100; $col <= 3300; $col += 100) {
-            for ($row = 1; $row <= 25; $row++) {
-                $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
-                $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
-                $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
-                $this->terrain->addTerrain($row + $col, HEXAGON_CENTER, "clear");
-
-            }
-        }
-        foreach($terrainArr as $terrain){
-            foreach($terrain->type as $terrainType){
-                $name = $terrainType->name;
-                $matches = [];
-                if(preg_match("/^ReinforceZone(.*)$/", $name,$matches)){
-                    $this->terrain->addReinforceZone($terrain->number, $matches[1]);
-                }else{
-                    $this->terrain->addTerrain($terrain->number, $terrain->hexpartType, $name);
-                }
-            }
-        }
-                $this->terrain->addReinforceZone(1609,'A');
-        $this->terrain->addReinforceZone(123,'B');
-
-        $specialHexA = [];
-        $specialHexB = [];
+//    function terrainInit($terrainName){
+//
+//        $CI =& get_instance();
+//        $terrainDoc = $CI->couchsag->get($terrainName);
+//        $terrainInfo = $terrainDoc->terrain;
+//
+//        $oldMapUrl = $this->mapData->mapUrl;
+//        if(!$oldMapUrl){
+//            $maxCol = $terrainInfo->maxCol;
+//            $maxRow = $terrainInfo->maxRow;
+//            $mapUrl = $terrainInfo->mapUrl;
+//            $this->mapData->setData($maxCol, $maxRow, $mapUrl);
+//
+//            Hexagon::setMinMax();
+//            $this->terrain->setMaxHex();
+//        }
+//        $this->genTerrain = false;
+//        return;
+//        // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
+//        $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
+//        $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
+//        $this->terrain->addTerrainFeature("road", "road", "r", .75, 0, 0, false);
+//        $this->terrain->addTerrainFeature("town", "town", "t", 1, 0, 0, true, true);
+//        $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true, true);
+//        $this->terrain->addTerrainFeature("hill", "hill", "h", 2, 0, 0, true, true);
+//        $this->terrain->addTerrainFeature("river", "river", "v", 0, 1, 0, false);
+//        $this->terrain->addAltEntranceCost('forest', 'cavalry', 4);
+//        $this->terrain->addNatAltEntranceCost('forest','Sikh', 'infantry', 1);
+//        $this->terrain->addAltEntranceCost('forest', 'horseartillery', 4);
+//        $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
+//        $this->terrain->addTerrainFeature("swamp", "swamp", "s", 9, 0, 1, true, false);
+//        $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
+//        $this->terrain->addTerrainFeature("redoubt", "redoubt", "d", 0, 2, 0, false);
+//        $this->terrain->addTerrainFeature("blocksnonroad", "blocksnonroad", "b", 1, 0, 0, false);
+//        $this->terrain->addTerrainFeature("wadi", "wadi", "v", 0, 2, 0, false);
+//        $this->terrain->addAltEntranceCost('swamp','artillery','blocked');
+//
+//
+//        for ($col = 100; $col <= 3300; $col += 100) {
+//            for ($row = 1; $row <= 25; $row++) {
+//                $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
+//                $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
+//                $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
+//                $this->terrain->addTerrain($row + $col, HEXAGON_CENTER, "clear");
+//
+//            }
+//        }
+//        foreach($terrainArr as $terrain){
+//            foreach($terrain->type as $terrainType){
+//                $name = $terrainType->name;
+//                $matches = [];
+//                if(preg_match("/^ReinforceZone(.*)$/", $name,$matches)){
+//                    $this->terrain->addReinforceZone($terrain->number, $matches[1]);
+//                }else{
+//                    $this->terrain->addTerrain($terrain->number, $terrain->hexpartType, $name);
+//                }
+//            }
+//        }
+//                $this->terrain->addReinforceZone(1609,'A');
+//        $this->terrain->addReinforceZone(123,'B');
+//
+//        $specialHexA = [];
+//        $specialHexB = [];
 //        $this->terrain->addTerrain(1609 ,1 , "town");
 //        $this->terrain->addReinforceZone(1609,'A');
 //        $this->terrain->addTerrain(1608 ,1 , "town");
@@ -940,18 +938,18 @@ class Ferozesha extends JagCore
 //        $this->terrain->addTerrain(2518 ,3 , "road");
 
 
-
-        $this->moodkee = $specialHexB[0];
-        $specialHexes = [];
-        foreach ($specialHexA as $specialHexId) {
-            $specialHexes[$specialHexId] = SIKH_FORCE;
-        }
-        foreach ($specialHexB as $specialHexId) {
-            $specialHexes[$specialHexId] = BRITISH_FORCE;
-        }
-        $this->mapData->setSpecialHexes($specialHexes);
-
-    }
+//
+//        $this->moodkee = $specialHexB[0];
+//        $specialHexes = [];
+//        foreach ($specialHexA as $specialHexId) {
+//            $specialHexes[$specialHexId] = SIKH_FORCE;
+//        }
+//        foreach ($specialHexB as $specialHexId) {
+//            $specialHexes[$specialHexId] = BRITISH_FORCE;
+//        }
+//        $this->mapData->setSpecialHexes($specialHexes);
+//
+//    }
 
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
@@ -1002,20 +1000,20 @@ class Ferozesha extends JagCore
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-            $this->players = array("", "", "");
-            $this->playerData = new stdClass();
-            for ($player = 0; $player <= 2; $player++) {
-                $this->playerData->${player} = new stdClass();
-                $this->playerData->${player}->mapWidth = "auto";
-                $this->playerData->${player}->mapHeight = "auto";
-                $this->playerData->${player}->unitSize = "32px";
-                $this->playerData->${player}->unitFontSize = "12px";
-                $this->playerData->${player}->unitMargin = "-21px";
-                $this->mapViewer[$player]->setData(51.10000000000001 , 81.96930446819712, // originX, originY
-                    27.323101489399043, 27.323101489399043, // top hexagon height, bottom hexagon height
-                    15.775, 31.55// hexagon edge width, hexagon center width
-                );
-            }
+//            $this->players = array("", "", "");
+//            $this->playerData = new stdClass();
+//            for ($player = 0; $player <= 2; $player++) {
+//                $this->playerData->${player} = new stdClass();
+//                $this->playerData->${player}->mapWidth = "auto";
+//                $this->playerData->${player}->mapHeight = "auto";
+//                $this->playerData->${player}->unitSize = "32px";
+//                $this->playerData->${player}->unitFontSize = "12px";
+//                $this->playerData->${player}->unitMargin = "-21px";
+//                $this->mapViewer[$player]->setData(51.10000000000001 , 81.96930446819712, // originX, originY
+//                    27.323101489399043, 27.323101489399043, // top hexagon height, bottom hexagon height
+//                    15.775, 31.55// hexagon edge width, hexagon center width
+//                );
+//            }
 
             // game data
             if($scenario->dayTwo){

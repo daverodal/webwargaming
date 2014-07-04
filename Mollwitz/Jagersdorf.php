@@ -72,6 +72,16 @@ class Jagersdorf extends JagCore {
         @include_once "view.php";
     }
 
+    function terrainInit($terrainName){
+        /* map data not implemented yet */
+        return;
+    }
+    function terrainGen($hexDocId){
+        parent::terrainGen($hexDocId);
+        $this->terrain->addAltEntranceCost('forest','artillery',3);
+        $this->terrain->addAltEntranceCost('forest','cavalry',3);
+    }
+
     function save()
     {
         $data = new stdClass();

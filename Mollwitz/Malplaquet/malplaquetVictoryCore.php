@@ -55,7 +55,6 @@ class malplaquetVictoryCore extends victoryCore
                 $otherCities = $battle->otherCities;
                 if($mapData->getSpecialHex($malplaquet) === ANGLO_FORCE){
                     $angloMalplaquet = true;
-                    echo "Got Mal $malplaquet ";
                     foreach($otherCities as $city){
                         if($mapData->getSpecialHex($city) === ANGLO_FORCE){
                             $angloCities = true;

@@ -75,6 +75,7 @@ class Terrain
     public $terrainFeatures;
     public $reinforceZones;
     public $allAreAttackingAcrossRiverCombatEffect;
+    public $specialHexes;
 
     function __construct($data = null)
     {
@@ -108,6 +109,7 @@ class Terrain
             list($x, $y) = Hexagon::getHexPartXY($hexName);
             $this->maxTerrainY = $y + 4;/* add 4 for bottom and even/odd columns */
             $this->maxTerrainX = $x;
+            $this->specialHexes = new stdClass();
 
 //            for ($x = 0; $x <= $this->maxTerrainX; $x++) {
 //                for ($y = 0; $y <= $this->maxTerrainY; $y++) {
@@ -116,6 +118,10 @@ class Terrain
 //
 //            }
         }
+    }
+
+    public function addSpecialHex($specialHex, $value){
+        $this->specialHexes->$specialHex = $value;
     }
 
     public function addAltEntranceCost($terrain,$altClass,$entranceCost){
@@ -641,13 +647,13 @@ class Terrain
     /*
      * public moveRules
      */
-    function getReinforceZone($hexagon)
+    function getReinforceZoneList($hexagon)
     {
-        $zoneName = "";
+        $zoneName = [];
         for ($i = 0; $i < count($this->reinforceZones); $i++) {
             //alert("" + i + " " + $this->reinforceZones[$i]->hexagon->getName() + " : " + hexagon->getName());
             if ($this->reinforceZones[$i]->hexagon->equals($hexagon) == true) {
-                $zoneName = $this->reinforceZones[$i]->name;
+                $zoneName[] = $this->reinforceZones[$i]->name;
             }
         }
 
@@ -657,7 +663,7 @@ class Terrain
     /*
   * public moveRules
   */
-    function getReinforceZones($name)
+    function getReinforceZonesByName($name)
     {
         $zones = array();
         for ($i = 0; $i < count($this->reinforceZones); $i++) {

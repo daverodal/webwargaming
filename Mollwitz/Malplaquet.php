@@ -37,6 +37,8 @@ $oneHalfImageHeight = 16;
 class Malplaquet extends JagCore
 {
 
+    public $specialHexesMap = ['SpecialHexA'=>FRENCH_FORCE, 'SpecialHexB'=>FRENCH_FORCE, 'SpecialHexC'=>FRENCH_FORCE];
+
     /* @var Mapdata */
     public $mapData;
     public $mapViewer;
@@ -83,63 +85,10 @@ class Malplaquet extends JagCore
         @include_once "view.php";
     }
 
-    function terrainGen($hexDocId){
-        $CI =& get_instance();
-        echo "getting $hexDocId ";
-        $terrainDoc = $CI->couchsag->get($hexDocId);
-        $terrainArr = json_decode($terrainDoc->hexStr->hexEncodedStr);
-        $mapId = $terrainDoc->hexStr->map;
-        $mapDoc = $CI->couchsag->get($mapId);
-        echo "Got MapDoc ";
-        $map = $mapDoc->map;
-        $this->terrain->mapUrl = $mapUrl = $map->mapUrl;
-        $this->terrain->maxCol = $maxCol = $map->numX;
-        $this->terrain->maxRow = $maxRow = $map->numY;
-        $this->mapData->setData($maxCol, $maxRow, $mapUrl);
-
-        Hexagon::setMinMax();
-        $this->terrain->setMaxHex();
-
-        echo "$mapUrl $maxCol $maxRow ";
-        // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
-        $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
-        $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
-        $this->terrain->addTerrainFeature("road", "road", "r", .5, 0, 0, false);
-        $this->terrain->addTerrainFeature("town", "town", "t", 1, 0, 0, true, true);
-        $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true, true);
-        $this->terrain->addTerrainFeature("hill", "hill", "h", 2, 0, 0, true, true);
-        $this->terrain->addTerrainFeature("river", "river", "v", 0, 1, 0, false);
-        $this->terrain->addAltEntranceCost('forest', 'cavalry', 4);
-        $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
-        $this->terrain->addTerrainFeature("swamp", "swamp", "s", 9, 0, 1, true, false);
-        $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
-        $this->terrain->addTerrainFeature("redoubt", "redoubt", "d", 0, 2, 0, false);
-        $this->terrain->addTerrainFeature("blocksnonroad", "blocksnonroad", "b", 1, 0, 0, false);
-        $this->terrain->addAltEntranceCost('swamp','artillery','blocked');
-
-
-
-        for ($col = 100; $col <= $maxCol * 100; $col += 100) {
-            for ($row = 1; $row <= $maxRow; $row++) {
-                $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
-                $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
-                $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
-                $this->terrain->addTerrain($row + $col, HEXAGON_CENTER, "clear");
-
-            }
-        }
-        foreach($terrainArr as $terrain){
-            foreach($terrain->type as $terrainType){
-                $name = $terrainType->name;
-                echo $terrain->number." $name <br>";
-                $matches = [];
-                if(preg_match("/^ReinforceZone(.*)$/", $name,$matches)){
-                    $this->terrain->addReinforceZone($terrain->number, $matches[1]);
-                }else{
-                    $this->terrain->addTerrain($terrain->number, $terrain->hexpartType, $name);
-                }
-            }
-        }
+    public function terrainInit($terrainName){
+        parent::terrainInit($terrainName);
+        $this->malplaquet = $this->specialHexA;
+        $this->otherCities = $this->specialHexB;
     }
 
     function save()
@@ -248,20 +197,20 @@ class Malplaquet extends JagCore
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-            $this->players = array("", "", "");
-            $this->playerData = new stdClass();
-            for ($player = 0; $player <= 2; $player++) {
-                $this->playerData->${player} = new stdClass();
-                $this->playerData->${player}->mapWidth = "auto";
-                $this->playerData->${player}->mapHeight = "auto";
-                $this->playerData->${player}->unitSize = "32px";
-                $this->playerData->${player}->unitFontSize = "12px";
-                $this->playerData->${player}->unitMargin = "-21px";
-                $this->mapViewer[$player]->setData(48.70000000000001 , 77.55257490889649, // originX, originY
-                    25.850858302965495, 25.850858302965495, // top hexagon height, bottom hexagon height
-                    14.925, 29.85// hexagon edge width, hexagon center width
-                );
-            }
+//            $this->players = array("", "", "");
+//            $this->playerData = new stdClass();
+//            for ($player = 0; $player <= 2; $player++) {
+//                $this->playerData->${player} = new stdClass();
+//                $this->playerData->${player}->mapWidth = "auto";
+//                $this->playerData->${player}->mapHeight = "auto";
+//                $this->playerData->${player}->unitSize = "32px";
+//                $this->playerData->${player}->unitFontSize = "12px";
+//                $this->playerData->${player}->unitMargin = "-21px";
+//                $this->mapViewer[$player]->setData(48.70000000000001 , 77.55257490889649, // originX, originY
+//                    25.850858302965495, 25.850858302965495, // top hexagon height, bottom hexagon height
+//                    14.925, 29.85// hexagon edge width, hexagon center width
+//                );
+//            }
 
             // game data
             $this->gameRules->setMaxTurn(12);
@@ -1331,17 +1280,17 @@ class Malplaquet extends JagCore
 //            $this->terrain->addTerrain(2112 ,4 , "redoubt");
 //            $this->terrain->addTerrain(2111 ,2 , "redoubt");
 //            $this->terrain->addTerrain(2211 ,4 , "redoubt");
-
-            $this->malplaquet = $specialHexA;
-            $this->otherCities = $specialHexB;
-            $specialHexes = [];
-            foreach ($specialHexA as $specialHexId) {
-                $specialHexes[$specialHexId] = FRENCH_FORCE;
-            }
-            foreach ($specialHexB as $specialHexId) {
-                $specialHexes[$specialHexId] = FRENCH_FORCE;
-            }
-            $this->mapData->setSpecialHexes($specialHexes);
+//
+//            $this->malplaquet = $specialHexA;
+//            $this->otherCities = $specialHexB;
+//            $specialHexes = [];
+//            foreach ($specialHexA as $specialHexId) {
+//                $specialHexes[$specialHexId] = FRENCH_FORCE;
+//            }
+//            foreach ($specialHexB as $specialHexId) {
+//                $specialHexes[$specialHexId] = FRENCH_FORCE;
+//            }
+//            $this->mapData->setSpecialHexes($specialHexes);
 
 
             // end terrain data ----------------------------------------
