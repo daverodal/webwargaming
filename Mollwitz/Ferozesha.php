@@ -83,6 +83,10 @@ class Ferozesha extends IndiaCore
         @include_once "view.php";
     }
 
+    public function terrainInit($terrainName){
+        parent::terrainInit($terrainName);
+        $this->moodkee = $this->specialHexB[0];
+    }
 
     function save()
     {
