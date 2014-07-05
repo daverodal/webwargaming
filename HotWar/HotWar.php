@@ -107,30 +107,6 @@ class HotWar extends Battle
     }
 
 
-    public function resize($small, $player)
-    {
-        if ($small) {
-            $this->mapViewer[$player]->setData(60, 76, // originX, originY
-                25, 25, // top hexagon height, bottom hexagon height
-                15, 30 // hexagon edge width, hexagon center width
-            );
-            $this->playerData->${player}->mapWidth = "auto";
-            $this->playerData->${player}->mapHeight = "auto";
-            $this->playerData->${player}->unitSize = "52px";
-            $this->playerData->${player}->unitFontSize = "12px";
-            $this->playerData->${player}->unitMargin = "-21px";
-        } else {
-            $this->mapViewer[$player]->setData(60, 76, // originX, originY
-                25, 25, // top hexagon height, bottom hexagon height
-                15, 30 // hexagon edge width, hexagon center width
-            );
-            $this->playerData->${player}->mapWidth = "auto";
-            $this->playerData->${player}->mapHeight = "auto";
-            $this->playerData->${player}->unitSize = "40px";
-            $this->playerData->${player}->unitFontSize = "16px";
-            $this->playerData->${player}->unitMargin = "-23px";
-        }
-    }
 
     function save()
     {

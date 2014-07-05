@@ -144,7 +144,7 @@
             <div id="gameViewer">
                 <div id="gameContainer">
                     <div id="gameImages" class="ui-widget-content">
-                        <img id="map" alt="map" src="<?php echo base_url() . $mapUrl; ?>">
+                        <img id="map" alt="map" src="<?php preg_match("/http/",$mapUrl) ?   $pre = '': $pre = base_url();echo "$pre$mapUrl";?>">
                         <?php $id = 0; ?>
                         {units}
                         <div class="unit {nationality}" id="{id}" alt="0">

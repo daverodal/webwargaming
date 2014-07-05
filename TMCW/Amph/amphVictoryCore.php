@@ -6,7 +6,7 @@
  * Time: 7:06 PM
  * To change this template use File | Settings | File Templates.
  */
-include "victoryCore.php";
+include_once "victoryCore.php";
 
 class amphVictoryCore extends victoryCore
 {
@@ -82,6 +82,7 @@ class amphVictoryCore extends victoryCore
     public function postReinforceZones($args)
     {
         list($zones, $unit) = $args;
+        var_dump($zones);die();
 
         if($unit->forceId == BLUE_FORCE){
             $zones = [];

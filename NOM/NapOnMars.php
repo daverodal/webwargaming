@@ -81,29 +81,7 @@ class NapOnMars extends Battle {
 
         @include_once "view.php";
     }
-    public function resize($small,$player){
-        if($small){
-            $this->mapViewer[$player]->setData(57,83, // originX, originY
-                27.5, 27.5, // top hexagon height, bottom hexagon height
-                16, 32
-            );
-            $this->playerData->${player}->mapWidth = "auto";
-            $this->playerData->${player}->mapHeight = "auto";
-            $this->playerData->${player}->unitSize = "32px";
-            $this->playerData->${player}->unitFontSize = "12px";
-            $this->playerData->${player}->unitMargin = "-21px";
-        }else{
-            $this->mapViewer[$player]->setData(57,83, // originX, originY
-                27.5, 27.5, // top hexagon height, bottom hexagon height
-                16, 32
-            );
-            $this->playerData->${player}->mapWidth = "auto";
-            $this->playerData->${player}->mapHeight = "auto";
-            $this->playerData->${player}->unitSize = "42px";
-            $this->playerData->${player}->unitFontSize = "16px";
-            $this->playerData->${player}->unitMargin = "-23px";
-        }
-    }
+
     function save()
     {
         $data = new stdClass();

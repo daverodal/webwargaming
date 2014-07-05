@@ -316,6 +316,7 @@ x.register("users", function(users) {
     }
 });
 x.register("gameRules", function(gameRules,data) {
+    debugger;
     if(gameRules.display.currentMessage){
         $("#display").html(gameRules.display.currentMessage+"<button onclick='doitNext()'>Next</button>").show();
     }else{

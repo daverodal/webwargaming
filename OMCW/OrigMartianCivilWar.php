@@ -66,29 +66,6 @@ class OrigMartianCivilWar extends Battle {
         @include_once "playMulti.php";
     }
 
-    public function resize($small,$player){
-        if($small){
-            $this->mapViewer[$player]->setData(44,60, // originX, originY
-                20, 20, // top hexagon height, bottom hexagon height
-                12, 24 // hexagon edge width, hexagon center width
-            );
-            $this->playerData->${player}->mapWidth = "744px";
-            $this->playerData->${player}->mapHeight = "425px";
-            $this->playerData->${player}->unitSize = "32px";
-            $this->playerData->${player}->unitFontSize = "12px";
-            $this->playerData->${player}->unitMargin = "-21px";
-        }else{
-            $this->mapViewer[$player]->setData(57,84, // originX, originY
-                28, 28, // top hexagon height, bottom hexagon height
-                16, 32 // hexagon edge width, hexagon center width
-            );
-            $this->playerData->${player}->mapWidth = "996px";
-            $this->playerData->${player}->mapHeight = "593px";
-            $this->playerData->${player}->unitSize = "42px";
-            $this->playerData->${player}->unitFontSize = "16px";
-            $this->playerData->${player}->unitMargin = "-23px";
-        }
-    }
     function save()
     {
         $data = new stdClass();
