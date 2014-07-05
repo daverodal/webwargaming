@@ -82,7 +82,6 @@ class amphVictoryCore extends victoryCore
     public function postReinforceZones($args)
     {
         list($zones, $unit) = $args;
-        var_dump($zones);die();
 
         if($unit->forceId == BLUE_FORCE){
             $zones = [];
