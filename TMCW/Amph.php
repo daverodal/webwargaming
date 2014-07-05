@@ -176,10 +176,10 @@ class Amph extends ModernLandBattle
         $this->force->addUnit("x", LOYALIST_FORCE, 1810, "multiInf.png", 6, 3, 5, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
 
         $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn2", "multiInf.png", 4, 2, 5, false, STATUS_CAN_REINFORCE, "B", 2, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "gameTurn2", "multiGor.png", 5, 2, 4, false, STATUS_READY, "D", 2, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "gameTurn2", "multiGor.png", 5, 2, 4, false, STATUS_READY, "D", 2, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "gameTurn2", "multiGor.png", 5, 2, 4, false, STATUS_READY, "E", 2, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "gameTurn2", "multiGor.png", 5, 2, 4, false, STATUS_READY, "E", 2, 1, "loyalist", true, 'inf');
+        $this->force->addUnit("lll", LOYALIST_FORCE, "gameTurn2", "multiGor.png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "D", 2, 1, "loyalist", true, 'inf');
+        $this->force->addUnit("lll", LOYALIST_FORCE, "gameTurn2", "multiGor.png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "D", 2, 1, "loyalist", true, 'inf');
+        $this->force->addUnit("lll", LOYALIST_FORCE, "gameTurn2", "multiGor.png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "E", 2, 1, "loyalist", true, 'inf');
+        $this->force->addUnit("lll", LOYALIST_FORCE, "gameTurn2", "multiGor.png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "E", 2, 1, "loyalist", true, 'inf');
         $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn3", "multiPara.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "B", 3, 1, "loyalGuards", true, 'inf');
         $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn3", "multiPara.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "D", 3, 1, "loyalGuards", true, 'inf');
         $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn4", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 4, 1, "loyalGuards", true, 'shock');
