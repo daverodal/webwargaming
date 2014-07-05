@@ -75,6 +75,11 @@
             "main": {
                 "description": "Standard Scenario",
                 "angloCavBonus": true
+            },
+            "bigBritish": {
+                "description": "Big British +3 5-3's",
+                "angloCavBonus": true,
+                "bigBritish":true
             }
         }
     },

@@ -137,7 +137,11 @@ class Malplaquet extends JagCore
         for ($i = 0; $i < 8; $i++) {
             $this->force->addUnit("infantry-1", ANGLO_FORCE, "deployBox", "AngInfBadge.png", 8, 8, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'infantry');
         }
-        for ($i = 0; $i < 4; $i++) {
+        $nFiveThrees = 4;
+        if($this->scenario->bigBritish){
+            $nFiveThrees = 7;
+        }
+        for ($i = 0; $i < $nFiveThrees; $i++) {
             $this->force->addUnit("infantry-1", ANGLO_FORCE, "deployBox", "AngInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'infantry');
         }
         for ($i = 0; $i < 12; $i++) {
