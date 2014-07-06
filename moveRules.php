@@ -288,6 +288,34 @@ class MoveRules
 
     }
 
+    function calcRetreat($id)
+    {
+        echo "CalcRet $id";
+        global $numWalks;
+        global $numBangs;
+        $numWalks = 0;
+        $numBangs = 0;
+        $startHex = $this->force->units[$id]->hexagon;
+        $movesLeft = $this->force->units[$id]->retreatCountRequired;
+        $this->moves = new stdClass();
+        $this->moveQueue = array();
+        $hexPath = new HexPath();
+        $hexPath->name = $startHex->name;
+        $hexPath->pointsLeft = $movesLeft;
+        $hexPath->pathToHere = array();
+        $hexPath->firstHex = true;
+        $hexPath->isOccupied = true;
+        $this->moveQueue[] = $hexPath;
+        $this->bfsRetreat();
+        $moves = $this->moves;
+        foreach($moves as $key => $val){
+            if($moves->$key->pointsLeft){
+                unset($moves->$key);
+            }
+        }
+
+    }
+
     function bfsMoves()
     {
         $hist = array();
@@ -418,6 +446,107 @@ class MoveRules
 
         }
         return;
+    }
+
+    function bfsRetreat()
+    {
+
+        $unit = $this->force->units[$this->movingUnitId];
+
+        /* Reverse attack and defender for retreats (retreating units are moving) */
+        $defendingForceId = $this->force->attackingForceId;
+        $attackingForceId = $this->force->defendingForceId;
+
+
+        $cnt = 0;
+        while (count($this->moveQueue) > 0) {
+
+
+            $cnt++;
+            $hexPath = array_shift($this->moveQueue);
+            $hexNum = $hexPath->name;
+            $movePoints = $hexPath->pointsLeft;
+
+            if (!$hexNum) {
+                continue;
+            }
+
+            if (!isset($this->moves->$hexNum)) {
+                /* first time here */
+                $this->moves->$hexNum = $hexPath;
+
+            } else {
+                /* invalid hex */
+                if ($this->moves->$hexNum->isValid === false) {
+                    continue;
+                }
+                /* been here, done that */
+                continue;
+            }
+            /* @var MapHex $mapHex */
+            $mapHex = $this->mapData->getHex($hexNum);
+
+            if ($mapHex->isOccupied($attackingForceId)) {
+                $this->moves->$hexNum->isOccupied = true;
+            }
+            if ($mapHex->isOccupied($defendingForceId)) {
+                $this->moves->$hexNum->isValid = false;
+                continue;
+            }
+            $this->moves->$hexNum->pointsLeft = $movePoints;
+            $this->moves->$hexNum->pathToHere = $hexPath->pathToHere;
+
+            if ($this->moves->$hexNum->isZoc == NULL) {
+                $this->moves->$hexNum->isZoc = $this->force->mapHexIsZOC($mapHex, $defendingForceId);
+            }
+            if ((!$hexPath->firstHex) && $this->moves->$hexNum->isZoc) {
+                continue;
+            }
+            $path = $hexPath->pathToHere;
+            $path[] = $hexNum;
+
+            for ($i = 1; $i <= 6; $i++) {
+                $newHexNum = $mapHex->neighbors[$i - 1];
+                $gnuHex = Hexagon::getHexPartXY($newHexNum);
+                if (!$gnuHex) {
+                    continue;
+                }
+                if ($this->terrain->terrainIsHexSide($hexNum, $newHexNum, "blocked")) {
+                    continue;
+                }
+
+                if ($this->terrain->terrainIsXY($gnuHex[0], $gnuHex[1], "offmap")) {
+                    continue;
+                }
+                if ($this->terrain->terrainIsXY($gnuHex[0], $gnuHex[1], "blocked")) {
+                    continue;
+                }
+                $newMapHex = $this->mapData->getHex($newHexNum);
+                if ($newMapHex->isOccupied($defendingForceId)) {
+                    continue;
+                }
+                /*
+                 * TODO order is important in if statement check if doing zoc zoc move first then if just one hex move.
+                 * Then check if oneHex and firstHex
+                 */
+                if($movePoints - 1 < 0){
+                    continue;
+                }
+                $head = false;
+
+                if (isset($this->moves->$newHexNum)) {
+                    if($this->moves->$newHexNum->pointsLeft > ($movePoints - 1) ){
+                        continue;
+                    }
+                }
+                $newPath = new HexPath();
+                $newPath->name = $newHexNum;
+                $newPath->pathToHere = $path;
+                $newPath->pointsLeft = $movePoints - 1;
+                $this->moveQueue[] = $newPath;
+            }
+        }
+        return false;
     }
 
     function bfsCommunication($goal, $bias, $attackingForceId = false, $maxHex = false)
@@ -1031,6 +1160,51 @@ class MoveRules
             }
         }
     }
+
+// retreat rules
+
+// gameRules has cleared retreat list
+
+//    function retreatUnit($eventType, $id, $hexagon)
+//    {
+//        // id will be map if map event
+//        if ($eventType == SELECT_MAP_EVENT) {
+//            if ($this->anyUnitIsMoving == true) {
+//                $retreatingUnit = $this->force->units[$id];
+//                if (true || $retreatingUnit->unitIsretreating() == true) {
+//                    $newHex = $hexagon;
+//                    $newHexName = $newHex->name;
+//
+//                    if ($this->moves->{$newHexName}) {
+//                        $this->path = $this->moves->$newHexName->pathToHere;
+//
+//                        foreach ($this->path as $retreatHex) {
+//                            $this->retreat($id, new Hexagon($retreatHex));
+//
+//                        }
+////                        $retreatsLeft = $this->moves->$newHex->pointsLeft;
+//                        $this->moves = new stdClass();
+//
+//                        $this->retreat($id, $newHex);
+//                        $this->path = array();
+//                        $dirty = true;
+//                    }
+//                }
+//                $this->retreat($this->movingUnitId, $hexagon);
+//            }
+//        } else {
+//            // id will be retreating unit id if counter event
+//            if ($this->anyUnitIsMoving == false) {
+//                if ($this->force->unitCanRetreat($id) == true) {
+//                    $this->startRetreating($id);
+//                    $this->calcRetreat($id);
+//                }
+//            } else {
+//                $this->retreat($this->movingUnitId, $hexagon);
+//            }
+//        }
+//    }
+
 
     function startRetreating($id)
     {
