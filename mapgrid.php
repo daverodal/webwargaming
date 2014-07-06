@@ -158,11 +158,13 @@ class MapData implements JsonSerializable
     public $mapUrl;
     public $vp;
     public $blocksZoc;
+    public $breadcrumbs;
 
     private function __construct()
     {
         $this->vp = array(0, 0, 0);
         $this->blocksZoc = new stdClass();
+        $this->breadcrumbs = new stdClass();
     }
 
     function jsonSerialize()
@@ -183,6 +185,23 @@ class MapData implements JsonSerializable
         }
         return $this;
     }
+
+    public function breadcrumb($id,$turn, $phase, $mode, $fromHex, $toHex){
+
+        var_dump($fromHex);
+        $index = $turn.'t'.$phase.'p'.$mode.'m'.$id;
+        var_dump($index);
+        echo $index;
+        if(!isset($this->breadcrumbs->$index)){
+            $this->breadcrumbs->$index = [];
+        }
+        $crumbs = $this->breadcrumbs->$index;
+        $crumb = new stdClass();
+        $crumb->fromHex = $fromHex;
+        $crumb->toHex = $toHex;
+        $crumbs[] = $crumb;
+        $this->breadcrumbs->$index = $crumbs;;
+}
 
     public static function getInstance()
     {

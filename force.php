@@ -299,9 +299,12 @@ class unit implements JsonSerializable
     {
 
         $battle = Battle::getBattle();
+        $gameRules = $battle->gameRules;
         $mapData = $battle->mapData;
 //        $mapData = MapData::getInstance();
         /* @var MapHex $mapHex */
+        $fromHex = $this->hexagon->getName();
+        $toHex = $hexagon->getName();
         $mapHex = $mapData->getHex($this->hexagon->getName());
         if($mapHex){
             $mapHex->unsetUnit($this->forceId,$this->id);
@@ -309,6 +312,7 @@ class unit implements JsonSerializable
 
         $this->hexagon = $hexagon;
         $this->dirty = true;
+        $mapData->breadcrumb($this->id,$gameRules->turn, $gameRules->phase, $gameRules->mode, $fromHex, $toHex);
         $mapHex = $mapData->getHex($this->hexagon->getName());
         if($mapHex){
             $mapHex->setUnit($this->forceId,$this->id);
