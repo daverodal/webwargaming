@@ -506,6 +506,14 @@ function playAudioBuzz(){
 function initialize() {
 
     // setup events --------------------------------------------
+    $("#map").load(function(){
+        var width = $("#gameImages #map").width();
+        var height = $("#gameImages #map").height();
+        $('svg').width(width);
+        $('svg').height(height);
+        $('svg').attr('viewBox', "0 0 "+width+" "+height);
+    });
+
 
     $(".unit").on('click',counterClick);
     $("#crt #odds span").on('click',function(event){

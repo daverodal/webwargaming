@@ -676,6 +676,9 @@ fieldset {
 #crtDetails {
   display: none; }
 
+svg {
+  display: none; }
+
 .blueUnit, .blue, .playerTwo {
   background-color: #84b5ff;
   border-color: #84b5ff; }

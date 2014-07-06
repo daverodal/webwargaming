@@ -1,5 +1,39 @@
 <script>
 x = new Sync("<?=site_url("wargame/fetch/");?>");
+x.register("sentBreadcrumbs", function(breadcrumbs,data) {
+    return;
+
+    $('svg > path').remove();
+    $('svg circle').remove();
+    var lastUnit = '';
+    var lastMoves = '';
+    for(var unitId in breadcrumbs){
+        for(var moves in breadcrumbs[unitId]){
+            var path = "";
+            if(breadcrumbs[unitId][moves-0+1]){
+                path += "<path stroke-width='15' fill='none' stroke='#84b5ff'";
+            }else{
+                path += "<path marker-end='url(#head)' stroke-width='15' fill='none' stroke='#84b5ff'";
+            }
+            var d = 'M'+breadcrumbs[unitId][moves].fromX+','+breadcrumbs[unitId][moves].fromY;
+            d += ' L'+breadcrumbs[unitId][moves].toX+','+breadcrumbs[unitId][moves].toY;
+            path += ' d="'+d + '"/>';
+            var circle = '<circle fill="#84b5ff" cx="'+breadcrumbs[unitId][moves].toX+'" cy="'+breadcrumbs[unitId][moves].toY+'" r="7"/>';
+            $('svg').append(path);
+            $('svg').append(circle);
+            lastMoves = moves;
+        }
+//        if(breadcrumbs[unitId][lastMoves]){
+//            var path = "<path marker-end='url(#head)'  stroke-width='15' fill='none' stroke='#df5842'";
+//            var d = 'M'+breadcrumbs[unitId][lastMoves].fromX+','+breadcrumbs[unitId][lastMoves].fromY;
+//            d += ' L'+breadcrumbs[unitId][lastMoves].toX+','+breadcrumbs[unitId][lastMoves].toY;
+//            path += ' d="'+d + '"/>';
+//            $('svg').append(path);
+//        }
+
+    }
+    $("svg").html($('svg').html());
+});
 x.register("force", function(force,data) {
 //        if(this.animate !== false){
 //            self.clearInterval(this.animate);
@@ -316,7 +350,6 @@ x.register("users", function(users) {
     }
 });
 x.register("gameRules", function(gameRules,data) {
-    debugger;
     if(gameRules.display.currentMessage){
         $("#display").html(gameRules.display.currentMessage+"<button onclick='doitNext()'>Next</button>").show();
     }else{

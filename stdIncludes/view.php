@@ -144,7 +144,7 @@
             <div id="gameViewer">
                 <div id="gameContainer">
                     <div id="gameImages" class="ui-widget-content">
-                        <svg style="opacity:.6;width:500px;height:500px;position:absolute;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+                        <svg style="opacity:.6;position:absolute;" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <marker id='head' orient="auto"
                                         markerWidth='2' markerHeight='4'
@@ -153,27 +153,6 @@
                                     <path d='M0,0 V4 L2,2 Z' fill="#df5842"/>
                                 </marker>
                             </defs>
-                            <path
-                                id='arrow-line'
-                                marker-end='url(#head)'
-                                stroke-width='15'
-                                fill='none' stroke='#df5842'
-                                d='M29,29 L210,125 250,150 L250,400'
-                                />
-                            <path
-                                id='arrow-line'
-                                marker-end='url(#head)'
-                                stroke-width='15'
-                                fill='none' stroke='#df5842'
-                                d='M29,29 L435,250'
-                                />
-                            <path
-                                id='arrow-line'
-                                marker-end='url(#head)'
-                                stroke-width='15'
-                                fill='none' stroke='#df5842'
-                                d='M390,25 L390,250'
-                                />
                         </svg>
                         <img id="map" alt="map" src="<?php preg_match("/http/",$mapUrl) ?   $pre = '': $pre = base_url();echo "$pre$mapUrl";?>">
                         <?php $id = 0; ?>

@@ -508,6 +508,9 @@ function initialize() {
 
     // setup events --------------------------------------------
 
+    $('svg').width($("#gameImages #map").width());
+    $('svg').height($("#gameImages #map").height());
+
     $(".unit").on('click',counterClick);
     $("#crt #odds span").on('click',function(event){
         var col = $(event.target).attr('class');

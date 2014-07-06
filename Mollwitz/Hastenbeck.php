@@ -85,8 +85,6 @@ class Hastenbeck extends JagCore
     }
 
     function terrainGen($hexDocId){
-        var_dump($this->scenario);
-        var_dump($this->terrainName);
         $this->terrainName = "terrain-".get_class($this);
         if($this->scenario->hastenbeck2){
             echo "New Name ";

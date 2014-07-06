@@ -676,6 +676,9 @@ fieldset {
 #crtDetails {
   display: none; }
 
+svg {
+  display: none; }
+
 #map {
   width: 1000px !important; }
 

@@ -676,6 +676,9 @@ fieldset {
 #crtDetails {
   display: none; }
 
+svg {
+  display: none; }
+
 /* Unit Styles */
 .playerOne {
   background: #df5842;
