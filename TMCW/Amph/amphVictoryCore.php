@@ -15,6 +15,7 @@ class amphVictoryCore extends victoryCore
     private $combatCache;
     private $supplyLen = false;
     private $landingZones;
+    private $airdropZones;
     private $scienceCenterDestroyed = false;
     public $gameOver = false;
 
@@ -27,6 +28,7 @@ class amphVictoryCore extends victoryCore
             $this->combatCache = $data->victory->combatCache;
             $this->supplyLen = $data->victory->supplyLen;
             $this->landingZones = $data->victory->landingZones;
+            $this->airdropZones = $data->victory->airdropZones;
             $this->scienceCenterDestroyed = $data->victory->scienceCenterDestroyed;
             $this->gameOver = $data->victory->gameOver;
         } else {
@@ -34,12 +36,15 @@ class amphVictoryCore extends victoryCore
             $this->movementCache = new stdClass();
             $this->combatCache = new stdClass();
             $this->landingZones = [];
+            $this->airdropZones = [];
         }
     }
 
-    public function setSupplyLen($supplyLen){
+    public function setSupplyLen($supplyLen)
+    {
         $this->supplyLen = $supplyLen[0];
     }
+
     public function save()
     {
         $ret = new stdClass();
@@ -48,6 +53,7 @@ class amphVictoryCore extends victoryCore
         $ret->combatCache = $this->combatCache;
         $ret->supplyLen = $this->supplyLen;
         $ret->landingZones = $this->landingZones;
+        $ret->airdropZones = $this->airdropZones;
         $ret->gameOver = $this->gameOver;
         return $ret;
     }
@@ -58,21 +64,31 @@ class amphVictoryCore extends victoryCore
 
         list($mapHexName, $forceId) = $args;
 
-        if($mapHexName == 1807 && $forceId == REBEL_FORCE){
+        if ($mapHexName == 1807 && $forceId == REBEL_FORCE) {
             $this->scienceCenterDestroyed;
             $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>Marine Science Facility Destroyed</span>";
             $battle->gameRules->flashMessages[] = "Rebel units may now withdraw from beachheads";
         }
-        if($forceId == LOYALIST_FORCE){
+        if ($forceId == LOYALIST_FORCE) {
             $newLandings = [];
-            foreach($this->landingZones as $landingZone){
-                if($landingZone == $mapHexName){
+            foreach ($this->landingZones as $landingZone) {
+                if ($landingZone == $mapHexName) {
+                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>Beachhead Destroyed</span>";
                     continue;
                 }
                 $newLandings[] = $landingZone;
             }
             $this->landingZones = $newLandings;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>Beachhead Destroyed</span>";
+
+            $newAirdrops = [];
+            foreach ($this->airdropZones as $airdropZone) {
+                if ($airdropZone == $mapHexName) {
+                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>Airdrop zone Destroyed</span>";
+                    continue;
+                }
+                $newAirdrops[] = $airdropZone;
+            }
+            $this->airdropZones = $newAirdrops;
 
             $battle->mapData->removeSpecialHex($mapHexName);
         }
@@ -82,11 +98,18 @@ class amphVictoryCore extends victoryCore
     public function postReinforceZones($args)
     {
         list($zones, $unit) = $args;
-
-        if($unit->forceId == BLUE_FORCE){
+        if ($unit->forceId == BLUE_FORCE) {
+            $zone = $unit->reinforceZone;
             $zones = [];
-            foreach($this->landingZones as $landingZone){
-                $zones[] = new ReinforceZone($landingZone,"A");
+            if ($zone == "A") {
+                foreach ($this->landingZones as $landingZone) {
+                    $zones[] = new ReinforceZone($landingZone, "A");
+                }
+            }
+            if ($zone == "C") {
+                foreach ($this->airdropZones as $airdropZone) {
+                    $zones[] = new ReinforceZone($airdropZone, "C");
+                }
             }
         }
 
@@ -134,17 +157,19 @@ class amphVictoryCore extends victoryCore
         }
     }
 
-    public function gameOver(){
+    public function gameOver()
+    {
         $battle = Battle::getBattle();
 
-        if($this->victoryPoints[REBEL_FORCE] > $this->victoryPoints[LOYALIST_FORCE]){
+        if ($this->victoryPoints[REBEL_FORCE] > $this->victoryPoints[LOYALIST_FORCE]) {
             $battle->gameRules->flashMessages[] = "Rebel Player Wins";
-        }else{
+        } else {
             $battle->gameRules->flashMessages[] = "Loyalist Player Wins";
         }
         $this->gameOver = true;
         return true;
     }
+
     public function phaseChange()
     {
 
@@ -156,17 +181,23 @@ class amphVictoryCore extends victoryCore
         $turn = $gameRules->turn;
         $force = $battle->force;
 
-        if($turn == 1 && $gameRules->phase == BLUE_MOVE_PHASE){
+        if ($turn == 1 && $gameRules->phase == BLUE_MOVE_PHASE) {
             /* first 4 units gaga */
             $supply = [];
             $battle->terrain->reinforceZones = [];
             $units = $force->units;
             $num = count($units);
-            for($i = 0;$i <= $num;$i++){
+            for ($i = 0; $i <= $num; $i++) {
                 $unit = $units[$i];
-                if($unit->forceId == BLUE_FORCE && $unit->hexagon->parent === "gameImages"){
+                if ($unit->forceId == BLUE_FORCE && $unit->hexagon->parent === "gameImages") {
                     $supply[$unit->hexagon->name] = BLUE_FORCE;
-                    $this->landingZones[] = $unit->hexagon->name;
+                    echo "Unit $unit->class ";
+                    if ($unit->class === "para") {
+                        echo "wow a para ";
+                        $this->airdropZones[] = $unit->hexagon->name;
+                    } else {
+                        $this->landingZones[] = $unit->hexagon->name;
+                    }
                 }
             }
             $battle->mapData->setSpecialHexes($supply);
@@ -178,7 +209,7 @@ class amphVictoryCore extends victoryCore
 
             /* Restore all un-supplied strengths */
             $force = $battle->force;
-            foreach($this->combatCache as $id => $strength){
+            foreach ($this->combatCache as $id => $strength) {
                 $unit = $force->getUnit($id);
                 $unit->strength = $strength;
                 unset($this->combatCache->$id);
@@ -196,23 +227,26 @@ class amphVictoryCore extends victoryCore
             }
         }
     }
-    public function preRecoverUnits($args){
+
+    public function preRecoverUnits($args)
+    {
         /* @var unit $unit */
         $unit = $args[0];
 
         $b = Battle::getBattle();
 
-        $goal = $this->landingZones;
+        $goal = array_merge($this->landingZones, $this->airdropZones);
         $this->rebelGoal = $goal;
 
         $goal = array();
-        $goal = array_merge($goal, array(110,210,310,410,510,610,710,810,910,1010,1110,1210,1310,1410,1510,1610,1710,1810,1910,2010));
+        $goal = array_merge($goal, array(110, 210, 310, 410, 510, 610, 710, 810, 910, 1010, 1110, 1210, 1310, 1410, 1510, 1610, 1710, 1810, 1910, 2010));
         $this->loyalistGoal = $goal;
     }
 
-    function isExit($args){
+    function isExit($args)
+    {
         list($unit) = $args;
-        if($unit->forceId == BLUE_FORCE && in_array($unit->hexagon->name,$this->landingZones)){
+        if ($unit->forceId == BLUE_FORCE && in_array($unit->hexagon->name, $this->landingZones)) {
             return true;
         }
         return false;
@@ -231,10 +265,10 @@ class amphVictoryCore extends victoryCore
         }
         if ($b->scenario->supply === true) {
             if ($unit->forceId == REBEL_FORCE) {
-                $bias = array(5 => true, 6 => true, 1=>true);
+                $bias = array(5 => true, 6 => true, 1 => true);
                 $goal = $this->rebelGoal;
             } else {
-                $bias = array(2 => true, 3 => true, 4=>true);
+                $bias = array(2 => true, 3 => true, 4 => true);
                 $goal = $this->loyalistGoal;
             }
             if ($b->gameRules->mode == REPLACING_MODE) {
@@ -249,7 +283,7 @@ class amphVictoryCore extends victoryCore
             }
             if ($b->gameRules->mode == MOVING_MODE) {
                 if ($unit->status == STATUS_READY || $unit->status == STATUS_UNAVAIL_THIS_PHASE) {
-                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias,$this->supplyLen);
+                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias, $this->supplyLen);
                 } else {
                     return;
                 }
