@@ -14,6 +14,7 @@
                     <div class="close">X</div>
                     <ul>
                         <li><a id="muteButton">mute</a></li>
+                        <li><a id="arrowButton">show arrows</a></li>
                         <li><a href="<?= site_url("wargame/leaveGame"); ?>">Go To Lobby</a></li>
                         <li><a href="<?= site_url("users/logout"); ?>">logout</a></li>
                         <!--                        <li><a href="-->
@@ -178,6 +179,18 @@
         <div id="gameViewer">
             <div id="gameContainer">
                 <div id="gameImages" class="ui-widget-content">
+                    <div id="svgWrapper">
+                        <svg style="opacity:.6;position:absolute;" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <marker id='head' orient="auto"
+                                        markerWidth='2' markerHeight='4'
+                                        refX='0.1' refY='2'>
+                                    <!-- triangle pointing right (+x) -->
+                                    <path d='M0,0 V4 L2,2 Z' fill="#df5842"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
                     <img id="map" alt="map" src="<?php preg_match("/http/",$mapUrl) ?   $pre = '': $pre = base_url();echo "$pre$mapUrl";?>"
                          style="position: relative;visibility: visible;z-index: 0;">
                     <?php $id = 0; ?>

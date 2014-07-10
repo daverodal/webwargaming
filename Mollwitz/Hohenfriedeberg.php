@@ -32,6 +32,7 @@ $oneHalfImageHeight = 16;
 
 class Hohenfriedeberg extends JagCore
 {
+    public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>1, 'SpecialHexC'=>1];
 
     /* @var Mapdata */
     public $mapData;

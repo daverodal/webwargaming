@@ -1,7 +1,8 @@
 <script>
 x = new Sync("<?=site_url("wargame/fetch/");?>");
 x.register("sentBreadcrumbs", function(breadcrumbs,data) {
-    return;
+    debugger;
+//    return;
 
     $('svg > path').remove();
     $('svg circle').remove();
@@ -11,14 +12,15 @@ x.register("sentBreadcrumbs", function(breadcrumbs,data) {
         for(var moves in breadcrumbs[unitId]){
             var path = "";
             if(breadcrumbs[unitId][moves-0+1]){
-                path += "<path stroke-width='15' fill='none' stroke='#84b5ff'";
+//                path += "<path stroke-width='15' fill='none' stroke='#84b5ff'";
+                path += "<path stroke-width='15' fill='none' stroke='orange'";
             }else{
-                path += "<path marker-end='url(#head)' stroke-width='15' fill='none' stroke='#84b5ff'";
+                path += "<path marker-end='url(#head)' stroke-width='15' fill='none' stroke='orange'";
             }
             var d = 'M'+breadcrumbs[unitId][moves].fromX+','+breadcrumbs[unitId][moves].fromY;
             d += ' L'+breadcrumbs[unitId][moves].toX+','+breadcrumbs[unitId][moves].toY;
             path += ' d="'+d + '"/>';
-            var circle = '<circle fill="#84b5ff" cx="'+breadcrumbs[unitId][moves].toX+'" cy="'+breadcrumbs[unitId][moves].toY+'" r="7"/>';
+            var circle = '<circle fill="orange" cx="'+breadcrumbs[unitId][moves].toX+'" cy="'+breadcrumbs[unitId][moves].toY+'" r="7"/>';
             $('svg').append(path);
             $('svg').append(circle);
             lastMoves = moves;
@@ -32,7 +34,10 @@ x.register("sentBreadcrumbs", function(breadcrumbs,data) {
 //        }
 
     }
-    $("svg").html($('svg').html());
+    var svgHtml = $('#svgWrapper').html();
+    debugger;
+    $('#svgWrapper').html(svgHtml);
+//    $("svg").html($('svg').html());
 });
 x.register("force", function(force,data) {
 //        if(this.animate !== false){

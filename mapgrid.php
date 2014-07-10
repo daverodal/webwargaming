@@ -189,6 +189,9 @@ class MapData implements JsonSerializable
     public function breadcrumb($id,$turn, $phase, $mode, $fromHex, $toHex){
 
         $index = $turn.'t'.$phase.'p'.$mode.'m'.$id;
+        if(!isset($this->breadcrumbs)){
+            $this->breadcrumbs = new stdClass();
+        }
         if(!isset($this->breadcrumbs->$index)){
             $this->breadcrumbs->$index = [];
         }
@@ -197,7 +200,7 @@ class MapData implements JsonSerializable
         $crumb->fromHex = $fromHex;
         $crumb->toHex = $toHex;
         $crumbs[] = $crumb;
-        $this->breadcrumbs->$index = $crumbs;;
+        $this->breadcrumbs->$index = $crumbs;
 }
 
     public static function getInstance()

@@ -63,7 +63,7 @@ h4:hover {
   /*background-color: #858585 !important;*/
   background-color: rgba(0, 0, 0, 0.5) !important; }
 
-#muteButton {
+#muteButton, #arrowButton {
   cursor: pointer;
   text-decoration: underline; }
 
@@ -677,6 +677,7 @@ fieldset {
   display: none; }
 
 svg {
+  z-index: 1;
   display: none; }
 
 .blueUnit, .blue, .playerTwo {

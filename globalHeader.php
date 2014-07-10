@@ -11,12 +11,13 @@
 }
 </style>
 <script>
+var DR = {};
 var zoomed = false;
 var globalZoom = 1;
 
 $(document).ready(function(){
-    DR = {};
     DR.crtDetails = false;
+    DR.showArrows = false;
 
     $("#crtDetailsButton").on('click',function(){
         $('#crtDetails').toggle(function(){
@@ -540,6 +541,17 @@ function initialize() {
            unMuteMe();
            playAudio();
        }
+    });
+    $("#arrowButton").click(function(){
+        if(!DR.showArrows){
+            $("#arrowButton").html("hide arrows");
+            DR.showArrows = true;
+            $('svg').show();
+        }else{
+            $("#arrowButton").html("show arrows");
+            DR.showArrows = false;
+            $('svg').hide();
+        }
     });
     // end setup events ----------------------------------------
 
