@@ -105,6 +105,19 @@
             }
         }
     },
+    "Moodkey1845": {
+        "name": "Moodkey 1845",
+        "path": "Mollwitz",
+        "genre": "19'th Century India",
+        "fileName": "Moodkey1845.php",
+        "longDesc":"Mood",
+        "playerNotes":"Key",
+        "scenarios": {
+            "main": {
+                "description": "Standard Scenario"
+            }
+        }
+    },
     "Lobositz": {
         "name": "The Battle of Lobositz",
         "path": "Mollwitz",
