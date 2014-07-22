@@ -33,6 +33,7 @@ $oneHalfImageHeight = 16;
 
 class Burkersdorf extends JagCore
 {
+    public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>1, 'SpecialHexC'=>2];
 
     /* @var Mapdata */
     public $mapData;

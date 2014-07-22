@@ -33,6 +33,7 @@ $oneHalfImageHeight = 16;
 
 class Zorndorf extends JagCore
 {
+    public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>2, 'SpecialHexC'=>2];
 
     /* @var Mapdata */
     public $mapData;

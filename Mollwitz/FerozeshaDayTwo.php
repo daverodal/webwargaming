@@ -31,6 +31,7 @@ $oneHalfImageHeight = 16;
 
 class FerozeshaDayTwo extends IndiaCore
 {
+    public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>2, 'SpecialHexC'=>2];
 
     public
     static function getHeader($name, $playerData, $arg = false)
