@@ -101,7 +101,7 @@ class MartianCivilWar extends ModernLandBattle
     function terrainGen($hexDocId){
         $this->terrainName = "terrain-".get_class($this);
         if($this->scenario->hardCuneiform){
-            $this->terrainName = "terrain-siegeofcuneiform";
+            $this->terrainName = "terrain-SiegeOfCuneiform";
         }
         parent::terrainGen($hexDocId);
     }
@@ -386,6 +386,9 @@ class MartianCivilWar extends ModernLandBattle
             $this->scenario = $scenario;
             $this->genTerrain = true;
             $this->terrainName = "terrain-MartianCivilWar";
+            if($this->scenario->hardCuneiform){
+                $this->terrainName = "terrain-SiegeOfCuneiform";
+            }
             $this->victory = new Victory("TMCW");
             if ($scenario->supplyLen) {
                 $this->victory->setSupplyLen($scenario->supplyLen);
