@@ -142,10 +142,10 @@ class Hohenfriedeberg extends JagCore
             $nFiveFives = 2;
         }else{
             $nFourThrees = 3;
-            $nThreeThrees = 3;
+            $nThreeThrees = 14;
             $nFourTwos = 0;
             $nTwoTwos = 5;
-            $nForeFives = 4;
+            $nFourFives = 4;
             $nFiveFives = 0;
         }
 
