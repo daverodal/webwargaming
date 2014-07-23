@@ -1,5 +1,5 @@
 <?php
-set_include_path(__DIR__ . "/Moodkey1845" . PATH_SEPARATOR . get_include_path());
+set_include_path(__DIR__ . "/Moodkee1845" . PATH_SEPARATOR . get_include_path());
 require_once "IndiaCore.php";
 /* comment */
 define("BRITISH_FORCE", 1);
@@ -29,7 +29,7 @@ $oneHalfImageWidth = 16;
 $oneHalfImageHeight = 16;
 
 
-class Moodkey1845 extends IndiaCore
+class Moodkee1845 extends IndiaCore
 {
     public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>2, 'SpecialHexC'=>0];
 
@@ -42,7 +42,7 @@ class Moodkey1845 extends IndiaCore
         }
         @include_once "globalHeader.php";
         @include_once "header.php";
-        @include_once "Moodkey1845Header.php";
+        @include_once "Moodkee1845Header.php";
 
     }
 
@@ -98,6 +98,7 @@ class Moodkey1845 extends IndiaCore
     public function init()
     {
 
+        echo "init ";
 
         $artRange = 3;
 
@@ -149,7 +150,7 @@ class Moodkey1845 extends IndiaCore
             $this->genTerrain = false;
             $this->specialHexA = $data->specialHexA;
             $this->specialHexB = $data->specialHexB;
-            $this->victory = new Victory("Mollwitz/Moodkey1845/moodkey1845VictoryCore.php", $data);
+            $this->victory = new Victory("Mollwitz/Moodkee1845/moodkee1845VictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
@@ -168,7 +169,7 @@ class Moodkey1845 extends IndiaCore
             $this->scenario = $scenario;
             $this->game = $game;
             $this->genTerrain = true;
-            $this->victory = new Victory("Mollwitz/Moodkey1845/moodkey1845VictoryCore.php");
+            $this->victory = new Victory("Mollwitz/Moodkee1845/moodkee1845VictoryCore.php");
 
             $this->mapData->blocksZoc->blocked = true;
             $this->mapData->blocksZoc->blocksnonroad = true;
@@ -211,6 +212,5 @@ class Moodkey1845 extends IndiaCore
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
 
         }
-
     }
 }
