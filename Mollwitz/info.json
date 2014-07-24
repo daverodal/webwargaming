@@ -118,7 +118,19 @@
             }
         }
     },
-    "Lobositz": {
+    "Goojerat1849": {
+        "name": "Goojerat 1849",
+        "path": "Mollwitz",
+        "genre": "19'th Century India",
+        "fileName": "Goojerat1849.php",
+        "longDesc":"Goojerat",
+        "playerNotes":"goojerat",
+        "scenarios": {
+            "main": {
+                "description": "Standard Scenario"
+            }
+        }
+    },    "Lobositz": {
         "name": "The Battle of Lobositz",
         "path": "Mollwitz",
         "genre": "18'th Century Europe",

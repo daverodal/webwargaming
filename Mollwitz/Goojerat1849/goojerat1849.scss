@@ -1,0 +1,25 @@
+#map{
+  width: auto !important;
+}
+#tecImage{
+  width:800px;
+}
+@include player(British, One, $angloAlliedColor, $angloAlliedWrapperColor);
+@include player(Sikh, Two, $beluchiColor, $beluchiWrapperColor, $beluchiWrapperColor);
+
+.unit.Native .counterWrapper {
+  background-color: $angloAlliedColor;
+}
+.beluchi.specialHexes{
+  background-color: $beluchiWrapperColor;
+}
+.british.specialHexes{
+  background-color: $angloAlliedColor;
+}
+
+.beluchi.specialHexes, .british.specialHexes{
+  color:white;
+}
+p.forceMarch,  p.range {
+  color:white;
+}
