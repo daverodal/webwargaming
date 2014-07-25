@@ -49,23 +49,11 @@ class goojerat1849VictoryCore extends indiaVictoryCore
         if(in_array($mapHexName,$battle->specialHexA)){
             if ($forceId == SIKH_FORCE) {
                 $this->victoryPoints[SIKH_FORCE]  += 20;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+20 Sikh vp</span>";
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='sikh'>+20 Sikh vp</span>";
             }
             if ($forceId == BRITISH_FORCE) {
                 $this->victoryPoints[SIKH_FORCE]  -= 20;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-20 Sikh vp</span>";
-            }
-        }
-        if(in_array($mapHexName,$battle->specialHexB)){
-            $vp = 10;
-
-            if ($forceId == BRITISH_FORCE) {
-                $this->victoryPoints[BRITISH_FORCE]  += $vp;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>+$vp British vp</span>";
-            }
-            if ($forceId == SIKH_FORCE) {
-                $this->victoryPoints[BRITISH_FORCE]  -= $vp;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>-$vp British vp</span>";
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-20 Sikh vp</span>";
             }
         }
     }
@@ -79,11 +67,11 @@ class goojerat1849VictoryCore extends indiaVictoryCore
 
         if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
-            $britVic = 45;
+            $britVic = 50;
             if (($this->victoryPoints[BRITISH_FORCE] >= $britVic && ($this->victoryPoints[BRITISH_FORCE] - ($this->victoryPoints[SIKH_FORCE]) >= 15))) {
                 $britishWin = true;
             }
-            if (($this->victoryPoints[SIKH_FORCE] >= 30)) {
+            if (($this->victoryPoints[SIKH_FORCE] >= 50)) {
                 $sikhWin = true;
             }
             if ($turn == $gameRules->maxTurn + 1) {
