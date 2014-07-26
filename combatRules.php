@@ -208,11 +208,23 @@ class CombatRules
                         }
                         if($range > 1){
                             $hexParts = $los->getlosList();
-                            array_shift($hexParts);
-                            array_pop($hexParts);
+                            $src = array_shift($hexParts);
+                            $target = array_pop($hexParts);
+                            $srcElevated = $targetElevated = false;
+
+                            if($this->terrain->terrainIs($src,"elevation")){
+                                $srcElevated = true;
+                            }
+                            if($this->terrain->terrainIs($target,"elevation")){
+                                $targetElevated = true;
+                            }
                             // remove first and last hexPart
                             foreach($hexParts as $hexPart){
                                 if($this->terrain->terrainIs($hexPart,"blocksRanged")){
+                                    $good = false;
+                                    break;
+                                }
+                                if($this->terrain->terrainIs($hexPart,"elevation") && (!$srcElevated || !$targetElevated)){
                                     $good = false;
                                     break;
                                 }
