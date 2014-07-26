@@ -212,7 +212,7 @@ class CombatResultsTable
             }
             if ($unit->class == "artillery" || $unit->class == "horseartillery") {
                 $combatLog .= "$unitStrength ".ucfirst($unit->class)." ";
-                if($isSwamp || $isRedoubt || $attackUpHill){
+                if($isSwamp || $acrossRedoubt || $attackUpHill){
                     $unitStrength /= 2;
                     if(!$terrainReason){
                         $terrainReason = " terrain ";
