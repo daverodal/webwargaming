@@ -231,7 +231,8 @@
         "longDesc":"Mood",
         "playerNotes":"Key",
         "params":{
-            "doubleArt": true
+            "doubleArt": true,
+            "zocBlocksRetreat":true
         },
         "scenarios": {
             "main": {
@@ -245,7 +246,8 @@
         "genre": "19'th Century India",
         "fileName": "Goojerat1849.php",
         "params":{
-            "doubleArt": true
+            "doubleArt": true,
+            "zocBlocksRetreat":true
         },
         "scenarios": {
             "main": {
@@ -259,7 +261,8 @@
         "genre": "19'th Century India",
         "fileName": "Aliwal1845.php",
         "params":{
-            "doubleArt": true
+            "doubleArt": true,
+            "zocBlocksRetreat":true
         },
         "scenarios": {
             "main": {
