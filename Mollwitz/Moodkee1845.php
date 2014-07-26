@@ -8,21 +8,22 @@ define("SIKH_FORCE", 2);
 $force_name[SIKH_FORCE] = "Sikh";
 $force_name[BRITISH_FORCE] = "British";
 $phase_name = array();
-$phase_name[1] = "<span class='playerTwoFace'>Sikh</span> Move";
-$phase_name[2] = "<span class='playerTwoFace'>Sikh</span> Combat";
+$phase_name[1] = "<span class='playerOneFace'>{$force_name[1]}</span> Move";
+$phase_name[2] = "<span class='playerOneFace'>{$force_name[1]}</span> Combat";
 $phase_name[3] = "";
-$phase_name[4] = "<span class='playerOneFace'>British</span> Move";
-$phase_name[5] = "<span class='playerOneFace'>British</span> Combat";
+$phase_name[4] = "<span class='playerTwoFace'>{$force_name[2]}</span> Move";
+$phase_name[5] = "<span class='playerTwoFace'>{$force_name[2]}</span> Combat";
 $phase_name[6] = "";
 $phase_name[7] = "Victory";
-$phase_name[8] = "<span class='playerTwoFace'>Sikh</span> Deploy";
+$phase_name[8] = "<span class='playerOneFace'>{$force_name[1]}</span> Deploy";
 $phase_name[9] = "";
 $phase_name[10] = "";
 $phase_name[11] = "";
 $phase_name[12] = "";
 $phase_name[13] = "";
 $phase_name[14] = "";
-$phase_name[15] = "<span class='playerOneFace'>British</span> deploy phase";
+$phase_name[15] = "<span class='playerTwoFace'>{$force_name[2]}</span> deploy phase";
+
 
 
 $oneHalfImageWidth = 16;
