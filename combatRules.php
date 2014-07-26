@@ -88,10 +88,10 @@ class CombatRules
     {
         $pinVal--; /* make 1 based 0 based */
         $cd = $this->currentDefender;
-        if($cd !== false){
-            if($this->combats->$cd->pinCRT === $pinVal){
+        if ($cd !== false) {
+            if ($this->combats->$cd->pinCRT === $pinVal) {
                 $this->combats->$cd->pinCRT = false;
-            }else{
+            } else {
                 $this->combats->$cd->pinCRT = $pinVal;
             }
             $this->crt->setCombatIndex($cd);
@@ -131,7 +131,7 @@ class CombatRules
                                 foreach ($combats->attackers as $attackerId => $attacker) {
                                     $this->force->undoAttackerSetup($attackerId);
                                     unset($this->attackers->$attackerId);
-                                    $victory     ->postUnsetAttacker($this->units[$attackerId]);
+                                    $victory->postUnsetAttacker($this->units[$attackerId]);
                                 }
                                 foreach ($combats->defenders as $defenderId => $defender) {
                                     $this->force->setStatus($defenderId, STATUS_READY);
@@ -206,40 +206,40 @@ class CombatRules
                             $good = false;
                             break;
                         }
-                        if($range > 1){
+                        if ($range > 1) {
                             $hexParts = $los->getlosList();
                             $src = array_shift($hexParts);
                             $target = array_pop($hexParts);
                             $srcElevated = $targetElevated = false;
 
-                            if($this->terrain->terrainIs($src,"elevation")){
+                            if ($this->terrain->terrainIs($src, "elevation")) {
                                 $srcElevated = true;
                             }
-                            if($this->terrain->terrainIs($target,"elevation")){
+                            if ($this->terrain->terrainIs($target, "elevation")) {
                                 $targetElevated = true;
                             }
                             // remove first and last hexPart
-                            foreach($hexParts as $hexPart){
-                                if($this->terrain->terrainIs($hexPart,"blocksRanged")){
+                            foreach ($hexParts as $hexPart) {
+                                if ($this->terrain->terrainIs($hexPart, "blocksRanged")) {
                                     $good = false;
                                     break;
                                 }
-                                if($this->terrain->terrainIs($hexPart,"elevation") && (!$srcElevated || !$targetElevated)){
+                                if ($this->terrain->terrainIs($hexPart, "elevation") && (!$srcElevated || !$targetElevated)) {
                                     $good = false;
                                     break;
                                 }
                             }
-                            if($good === false){
+                            if ($good === false) {
                                 break;
                             }
                             $mapHex = $mapData->getHex($this->force->getUnitHexagon($id)->name);
-                            if( $this->force->mapHexIsZOC($mapHex)){
+                            if ($this->force->mapHexIsZOC($mapHex)) {
                                 $good = false;
                                 break;
                             }
                         }
-                        if($range == 1){
-                            if($this->terrain->terrainIsHexSide($this->force->getUnitHexagon($id)->name,$this->force->getUnitHexagon($defenderId)->name,"blocked")){
+                        if ($range == 1) {
+                            if ($this->terrain->terrainIsHexSide($this->force->getUnitHexagon($id)->name, $this->force->getUnitHexagon($defenderId)->name, "blocked")) {
                                 $good = false;
                             }
                         }
@@ -311,15 +311,15 @@ class CombatRules
     {
         $defenders = $this->combats->$defenderId->defenders;
         $bestDefenderTerrainEffect = 0;
-        foreach($defenders as $defId => $def){
+        foreach ($defenders as $defId => $def) {
             $terrainCombatEffect = $this->terrain->getDefenderTerrainCombatEffect($this->force->getCombatHexagon($defId), $this->force->attackingForceId);
             if ($this->allAreAttackingAcrossRiver($defId)) {
                 $riverCombatEffect = $this->terrain->getAllAreAttackingAcrossRiverCombatEffect();
-                if($riverCombatEffect > $terrainCombatEffect){
+                if ($riverCombatEffect > $terrainCombatEffect) {
                     $terrainCombatEffect = $riverCombatEffect;
                 }
             }
-            if($terrainCombatEffect > $bestDefenderTerrainEffect){
+            if ($terrainCombatEffect > $bestDefenderTerrainEffect) {
                 $bestDefenderTerrainEffect = $terrainCombatEffect;
             }
         }
@@ -366,8 +366,8 @@ class CombatRules
 //      $Die = 5;
 //        $index = $this->force->getUnitCombatIndex($id);
         $index = $this->combatsToResolve->$id->index;
-        if($this->combatsToResolve->$id->pinCRT !== false){
-            if($index > ($this->combatsToResolve->$id->pinCRT)){
+        if ($this->combatsToResolve->$id->pinCRT !== false) {
+            if ($index > ($this->combatsToResolve->$id->pinCRT)) {
                 $index = $this->combatsToResolve->$id->pinCRT;
             }
         }
@@ -436,10 +436,13 @@ class CombatRules
 
         $hexside = new Hexpart($hexsideX, $hexsideY);
 
-        if ($this->terrain->terrainIs($hexside, "river") === false && $this->terrain->terrainIs($hexside, "wadi") === false) {
-            return false;
+        if ($this->terrain->terrainIs($hexside, "river") === true) {
+            return true;
         }
-        return true;
+        if ($this->terrain->terrainIs($hexside, "wadi") === true) {
+            return true;
+        }
+        return false;
     }
 
     function thisAttackAcrossType($defenderId, $attackerId, $type)
@@ -465,7 +468,6 @@ class CombatRules
     }
 
 
-
     function getCombatOddsList($combatIndex)
     {
         return $this->crt->getCombatOddsList($combatIndex);
@@ -479,7 +481,7 @@ class CombatRules
             $victory = $battle->victory;
             foreach ($this->combats as $defenderId => $combat) {
                 if (count((array)$combat->attackers) == 0) {
-                    foreach($combat->defenders as $defId => $def){
+                    foreach ($combat->defenders as $defId => $def) {
                         $this->force->setStatus($defId, STATUS_READY);
                         $victory->postUnsetDefender($this->force->units[$defId]);
                     }
@@ -494,7 +496,7 @@ class CombatRules
                             $victory->postUnsetAttacker($this->force->units[$attackerId]);
                         }
                     }
-                    foreach($combat->defenders as $defId => $def){
+                    foreach ($combat->defenders as $defId => $def) {
                         $this->force->setStatus($defId, STATUS_READY);
                         $victory->postUnsetDefender($this->force->units[$defId]);
                     }
@@ -505,7 +507,8 @@ class CombatRules
         }
     }
 
-    function combatResolutionMode(){
+    function combatResolutionMode()
+    {
         $this->combatsToResolve = $this->combats;
         unset($this->combats);
     }
