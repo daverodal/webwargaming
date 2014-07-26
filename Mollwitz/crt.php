@@ -90,7 +90,7 @@ class CombatResultsTable
         }
 
         $defenders = $combats->defenders;
-        $isTown = $isHill = $isForest = $isSwamp = $attackerIsSunkenRoad = $isRedoubt = false;
+        $isTown = $isHill = $isForest = $isSwamp = $attackerIsSunkenRoad = $isRedoubt = $isElevated = false;
 
 
         foreach ($defenders as $defId => $defender) {
@@ -101,6 +101,7 @@ class CombatResultsTable
             $isHill |= $battle->terrain->terrainIs($hexpart, 'hill');
             $isForest |= $battle->terrain->terrainIs($hexpart, 'forest');
             $isSwamp |= $battle->terrain->terrainIs($hexpart, 'swamp');
+            $isElevated |= $battle->terrain->terrainIs($hexpart, 'elevation');
         }
         $isClear = true;
         if ($isTown || $isForest || $isHill || $isSwamp) {
@@ -114,6 +115,7 @@ class CombatResultsTable
 
         $combatLog .= "Attackers<br>";
         foreach ($attackers as $attackerId => $attacker) {
+            $terrainReason = "";
             $unit = $battle->force->units[$attackerId];
             $unitStrength = $unit->strength;
 
@@ -124,10 +126,24 @@ class CombatResultsTable
             $attackerIsSwamp = $battle->terrain->terrainIs($hexpart, 'swamp');
             $attackerIsSunkenRoad = $battle->terrain->terrainIs($hexpart, 'sunkenroad');
 
+            if($attackerIsSwamp){
+                $terrainReason .= "attacker is in swamp ";
+            }
+            if($attackerIsSunkenRoad){
+                $terrainReason .= "attacker is in sunken road ";
+            }
+
+            $attackerIsElevated = $battle->terrain->terrainIs($hexpart, 'elevation');
+            $attackUpHill = false;
+            if($isElevated && !$attackerIsElevated){
+                $terrainReason .= "attack uphill ";
+                $attackUpHill = true;
+            }
 
             $acrossRiver = false;
             foreach ($defenders as $defId => $defender) {
                 if ($battle->combatRules->thisAttackAcrossRiver($defId, $attackerId)) {
+                    $terrainReason .= "attack across river";
                     $acrossRiver = true;
                 }
             }
@@ -142,6 +158,7 @@ class CombatResultsTable
 
                 if ($isRedoubt && $battle->combatRules->thisAttackAcrossType($defId, $attackerId, "redoubt")) {
                     $acrossRedoubt = true;
+                    $terrainReason .= "attack across redoubt ";
                 }
             }
 
@@ -162,8 +179,11 @@ class CombatResultsTable
                     $unitStrength++;
                     $combatLog .= "+1 for attack into town or forest ";
                 }
-                if ($isSwamp || $attackerIsSwamp || $acrossRiver || $attackerIsSunkenRoad || $acrossRedoubt) {
-                    $combatLog .= "attacker halved for terrain ";
+                if ($isSwamp || $attackerIsSwamp || $acrossRiver || $attackerIsSunkenRoad || $acrossRedoubt || $attackUpHill) {
+                    if(!$terrainReason){
+                        $terrainReason = " terrain ";
+                    }
+                    $combatLog .= "attacker halved for $terrainReason ";
                     $unitStrength /= 2;
                 }
             }
@@ -172,8 +192,11 @@ class CombatResultsTable
                 $combatLog .= "$unitStrength Cavalry ";
                 $attackersCav = true;
 
-                if ($attackerIsSwamp || $acrossRiver || !$isClear || $attackerIsSunkenRoad || $acrossRedoubt) {
-                    $combatLog .= " halved for terrain, loses combined arms bonus ";
+                if ($attackerIsSwamp || $acrossRiver || !$isClear || $attackerIsSunkenRoad || $acrossRedoubt || $attackUpHill) {
+                    if(!$terrainReason){
+                        $terrainReason = " terrain ";
+                    }
+                    $combatLog .= " halved for $terrainReason, loses combined arms bonus ";
                     $unitStrength /= 2;
                 }else{
                     if($scenario->angloCavBonus && $unit->nationality == "AngloAllied"){
@@ -189,9 +212,12 @@ class CombatResultsTable
             }
             if ($unit->class == "artillery" || $unit->class == "horseartillery") {
                 $combatLog .= "$unitStrength ".ucfirst($unit->class)." ";
-                if($isSwamp || $isRedoubt){
+                if($isSwamp || $isRedoubt || $attackUpHill){
                     $unitStrength /= 2;
-                    $combatLog .= "halved for attacking into terrain ";
+                    if(!$terrainReason){
+                        $terrainReason = " terrain ";
+                    }
+                    $combatLog .= "attacker halved for $terrainReason ";
                 }
                 $class = $unit->class;
                 if($class == 'horseartillery'){

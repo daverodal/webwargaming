@@ -105,32 +105,8 @@
             }
         }
     },
-    "Moodkee1845": {
-        "name": "Moodkee 1845",
-        "path": "Mollwitz",
-        "genre": "19'th Century India",
-        "fileName": "Moodkee1845.php",
-        "longDesc":"Mood",
-        "playerNotes":"Key",
-        "scenarios": {
-            "main": {
-                "description": "Standard Scenario"
-            }
-        }
-    },
-    "Goojerat1849": {
-        "name": "Goojerat 1849",
-        "path": "Mollwitz",
-        "genre": "19'th Century India",
-        "fileName": "Goojerat1849.php",
-        "longDesc":"Goojerat",
-        "playerNotes":"goojerat",
-        "scenarios": {
-            "main": {
-                "description": "Standard Scenario"
-            }
-        }
-    },    "Lobositz": {
+
+    "Lobositz": {
         "name": "The Battle of Lobositz",
         "path": "Mollwitz",
         "genre": "18'th Century Europe",
@@ -244,6 +220,50 @@
             "main": {
                 "description": "Day Two",
                 "dayTwo": true
+            }
+        }
+    },
+    "Moodkee1845": {
+        "name": "Moodkee 1845",
+        "path": "Mollwitz",
+        "genre": "19'th Century India",
+        "fileName": "Moodkee1845.php",
+        "longDesc":"Mood",
+        "playerNotes":"Key",
+        "params":{
+            "doubleArt": true
+        },
+        "scenarios": {
+            "main": {
+                "description": "Standard Scenario"
+            }
+        }
+    },
+    "Goojerat1849": {
+        "name": "Goojerat 1849",
+        "path": "Mollwitz",
+        "genre": "19'th Century India",
+        "fileName": "Goojerat1849.php",
+        "params":{
+            "doubleArt": true
+        },
+        "scenarios": {
+            "main": {
+                "description": "Standard Scenario"
+            }
+        }
+    },
+    "Aliwal1845": {
+        "name": "Aliwal 1845",
+        "path": "Mollwitz",
+        "genre": "19'th Century India",
+        "fileName": "Aliwal1845.php",
+        "params":{
+            "doubleArt": true
+        },
+        "scenarios": {
+            "main": {
+                "description": "Standard Scenario"
             }
         }
     }
