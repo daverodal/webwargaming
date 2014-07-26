@@ -3,7 +3,7 @@
         body{
             background:#ccc;
             color:#333;
-            background: url("<?=base_url("js/British_Indian_Empire_1909_Imperial_Gazetteer_of_India.png")?>") #333 no-repeat;
+            background: url("<?=base_url("js/Bataille_d'Aliwal_1.jpg")?>") #333 no-repeat;
             background-position: 25% 0;
             background-size:100%;
         }
@@ -54,7 +54,16 @@
             border-color:rgb(255,253,127) !important;
         }
         .Sikh {
-            color: #865900; }
+            color: #865900;
+        }
+        .attribution{
+            padding: 10px 0;
+            background: rgba(255,255,255,.6);
+        }
+        .attribution a{
+            color:red;
+            text-shadow: 1px 1px 1px black;
+        }
     </style>
 </head>
 <body>
@@ -90,4 +99,7 @@
     <div>
         <a href="<?=site_url("wargame/play");?>">Back to lobby</a>
     </div>
+</div>
+<div class="attribution">
+    See page for author [Public domain], <a target="blank" href="http://commons.wikimedia.org/wiki/File%3ABataille_d&#039;Aliwal_1.jpg">via Wikimedia Commons</a>
 </div>
