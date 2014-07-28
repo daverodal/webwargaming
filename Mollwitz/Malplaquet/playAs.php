@@ -5,6 +5,7 @@
 <link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
 <style>
+    <?php include "playAs.css";?>
     body{
         background:#000;
         background:url("<?=base_url("js/Battle_of_Malplaquet,_1709.jpg")?>") #333 no-repeat;
@@ -60,4 +61,7 @@
     <a  class="link" href="<?=site_url("wargame/enterHotseat");?>/<?=$wargame?>/">Play Hotseat</a><br>
     <a  class="link" href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>/">Play Multi</a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a><br>
+    <div class="attribution">
+        By Claude Du Bosc, after Louis Laguerre ([1]) [Public domain], <a target="blank" href="http://commons.wikimedia.org/wiki/File%3ABattle_of_Malplaquet%2C_1709.jpg">via Wikimedia Commons</a>
+    </div>
 </fieldset>

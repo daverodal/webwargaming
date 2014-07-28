@@ -5,11 +5,12 @@
 <link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
 <style>
+    <?php include "playAs.css";?>
     body{
         background:#000;
-        background:url("<?=base_url("js/Frederick_at_Burkersdorf.jpg")?>") #333 no-repeat;
-        background-position:center 10%;
-        background-size:100%;
+        background:url("<?=base_url("js/Antoine_Pesne_-_Frederick_the_Great_as_Crown_Prince_-_WGA17377.jpg")?>") #333 no-repeat;
+        background-position:center 0;
+        background-size:50%;
 
     }
     h2{
@@ -60,4 +61,7 @@
     <a  class="link" href="<?=site_url("wargame/enterHotseat");?>/<?=$wargame?>/">Play Hotseat</a><br>
     <a  class="link" href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>/">Play Multi</a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a><br>
+    <div class="attribution">
+        Antoine Pesne [Public domain], <a target='blank' href="http://commons.wikimedia.org/wiki/File%3AAntoine_Pesne_-_Frederick_the_Great_as_Crown_Prince_-_WGA17377.jpg">via Wikimedia Commons</a>
+    </div>
 </fieldset>

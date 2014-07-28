@@ -1,5 +1,6 @@
 <head>
     <style type="text/css">
+        <?php include "playAs.css";?>
         body{
             background:#ccc;
             color:#333;
@@ -87,3 +88,6 @@
         <a href="<?=site_url("wargame/play");?>">Back to lobby</a>
     </div>
 </div>
+<footer class="attribution">
+    By Anonymous plate [Public domain], <a target='blank' href="http://commons.wikimedia.org/wiki/File%3APrussian_Army_during_battle_of_Mollwitz_1741.jpg">via Wikimedia Commons</a>
+</footer>

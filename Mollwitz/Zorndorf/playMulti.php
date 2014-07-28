@@ -1,5 +1,7 @@
 <head>
+    <meta charset="UTF-8" />
     <style type="text/css">
+        <?php include "playAs.css";?>
         body{
             background:#ccc;
             color:#333;
@@ -94,3 +96,6 @@
         <a href="<?=site_url("wargame/play");?>">Back to lobby</a>
     </div>
 </div>
+<footer class="attribution">
+    By Carl Röchling (1855-1920) (inc) [Public domain], <a target='blank' href="http://commons.wikimedia.org/wiki/File%3ABataille_de_Zorndorf.jpg">via Wikimedia Commons</a>
+</footer>

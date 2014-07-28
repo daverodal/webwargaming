@@ -1,3 +1,6 @@
+<head>
+    <meta charset="UTF-8" />
+</head>
 <body>
 <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Petit+Formal+Script' rel='stylesheet' type='text/css'>
@@ -5,9 +8,10 @@
 <link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
 <style>
+    <?php include "playAs.css";?>
     body{
         background:#000;
-        background:url("<?=base_url("js/Bataille_de_Zorndorf.jpg")?>") #333 no-repeat;
+        background:url("<?=base_url("js/Schlacht-zorndorf.jpg")?>") #333 no-repeat;
         background-position:center 10%;
         background-size:100%;
 
@@ -58,4 +62,6 @@
     <a  class="link" href="<?=site_url("wargame/enterHotseat");?>/<?=$wargame?>/">Play Hotseat</a><br>
     <a  class="link" href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>/">Play Multi</a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a><br>
+    <div class="attribution">
+        Emil Hünten [Public domain], <a target='blank' href="http://commons.wikimedia.org/wiki/File%3ASchlacht-zorndorf.jpg">via Wikimedia Commons</a>    </div>
 </fieldset>

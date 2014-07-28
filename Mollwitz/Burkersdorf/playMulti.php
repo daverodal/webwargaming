@@ -1,11 +1,12 @@
 <head>
     <style type="text/css">
+        <?php include "playAs.css";?>
         body{
             background:#ccc;
             color:#333;
-            background: url("<?=base_url("js/The_Battle_of_Malplaquet_1709.png")?>") #333 no-repeat;
-            background-position: 25% 0;
-            background-size:100%;
+            background: url("<?=base_url("js/Antoine_Pesne_-_Frederick_the_Great_as_Crown_Prince_-_WGA17377.jpg")?>") #333 no-repeat;
+            background-position: center 0;
+            background-size:50%;
         }
         .wrapper{
             background:rgba(255,255,255,.8);
@@ -97,3 +98,6 @@
         <a href="<?=site_url("wargame/play");?>">Back to lobby</a>
     </div>
 </div>
+<footer class="attribution">
+    Antoine Pesne [Public domain], <a target='blank' href="http://commons.wikimedia.org/wiki/File%3AAntoine_Pesne_-_Frederick_the_Great_as_Crown_Prince_-_WGA17377.jpg">via Wikimedia Commons</a>
+</footer>

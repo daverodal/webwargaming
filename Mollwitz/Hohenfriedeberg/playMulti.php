@@ -1,5 +1,6 @@
 <head>
     <style type="text/css">
+        <?php include "playAs.css";?>
         body{
             background:#ccc;
             color:#333;
@@ -94,3 +95,6 @@
         <a href="<?=site_url("wargame/play");?>">Back to lobby</a>
     </div>
 </div>
+<footer class="attribution">
+    Adolph Menzel [Public domain], <a target='blank' href="http://commons.wikimedia.org/wiki/File%3ACharge_of_the_Bayreuth_Dragoons_at_the_Battle_of_Hohenfriedberg.jpg">via Wikimedia Commons</a>
+</footer>

@@ -1,56 +1,60 @@
-<body>
-<link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Petit+Formal+Script' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Monsieur+La+Doulaise' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
-<style>
-    body{
-        background:#000;
-        background:url("<?=base_url("js/Hastenbeck-Rioult.jpg")?>") #333 no-repeat;
-        background-position:center 10%;
-        background-size:100%;
+<head>
+    <meta charset="UTF-8">
+    <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Petit+Formal+Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Monsieur+La+Doulaise' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
+    <style>
+        <?php include "playAs.css";?>
+        body{
+            background:#000;
+            background:url("<?=base_url("js/Hastenbeck-Rioult.jpg")?>") #333 no-repeat;
+            background-position:center 0;
+            background-size:100%;
 
-    }
-    h2{
-        color:#f66;
-        text-shadow: 0 0 3px black,0 0 3px black,0 0 3px black,0 0 3px black,0 0 3px black,0 0 3px black,
-        0 0 3px black,0 0 3px black;
-    }
-    h1{
-        text-align:center;
-        font-size:90px;
-        font-family:'Pinyon Scrip';
-        color:#f66;
-        margin-top:0px;
-        text-shadow: 0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,
-        0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,
-        0 0 5px black,0 0 5px black,0 0 5px black, 0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,
-        0 0 5px black,0 0 5px black,0 0 5px black;
-    }
-    .link{
-        font-size:40px;
-        text-decoration: none;
-        color:#f66;
-        text-shadow: 3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black
-    }
-    legend   {
-        text-decoration: none;
-        color:#f66;
-        text-shadow: 3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black
-    }
-   fieldset{
-        text-align: center;
-       width:30%;
-       margin:0px;
-       position:absolute;
-       top:300px;
-       left:50%;
-       margin-left:-15%;
-       background-color: rgba(255,255,255,.4);
-   }
+        }
+        h2{
+            color:#f66;
+            text-shadow: 0 0 3px black,0 0 3px black,0 0 3px black,0 0 3px black,0 0 3px black,0 0 3px black,
+            0 0 3px black,0 0 3px black;
+        }
+        h1{
+            text-align:center;
+            font-size:90px;
+            font-family:'Pinyon Scrip';
+            color:#f66;
+            margin-top:0px;
+            text-shadow: 0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,
+            0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,
+            0 0 5px black,0 0 5px black,0 0 5px black, 0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,
+            0 0 5px black,0 0 5px black,0 0 5px black;
+        }
+        .link{
+            font-size:40px;
+            text-decoration: none;
+            color:#f66;
+            text-shadow: 3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black
+        }
+        legend   {
+            text-decoration: none;
+            color:#f66;
+            text-shadow: 3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black
+        }
+        fieldset{
+            text-align: center;
+            width:30%;
+            margin:0px;
+            position:absolute;
+            top:300px;
+            left:50%;
+            margin-left:-15%;
+            background-color: rgba(255,255,255,.4);
+        }
 
-</style>
+    </style>
+</head><body>
+
 <div class="backBox">
 <h2 style="text-align:center;font-size:30px;font-family:'Monsieur La Doulaise'"> Welcome to</h2>
     <h1 style=""><span>The Battle of Hastenbeck</span></h1>
@@ -60,4 +64,7 @@
     <a  class="link" href="<?=site_url("wargame/enterHotseat");?>/<?=$wargame?>/">Play Hotseat</a><br>
     <a  class="link" href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>/">Play Multi</a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a><br>
-</fieldset>
+    <div class="attribution">
+        Louis-Édouard Rioult [Public domain], <a  target='blank' href="http://commons.wikimedia.org/wiki/File%3AHastenbeck-Rioult.jpg">via Wikimedia Commons</a></fieldset>
+    </div>
+</body>

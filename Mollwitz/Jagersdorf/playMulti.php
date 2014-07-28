@@ -1,5 +1,6 @@
 <head>
     <style type="text/css">
+        <?php include "playAs.css";?>
         body{
             background:#ccc;
             color:#333;
@@ -94,3 +95,6 @@
         <a href="<?=site_url("wargame/play");?>">Back to lobby</a>
     </div>
 </div>
+<footer class="attribution">
+    By Wladimirkusnezow at ru.wikipedia [Public domain], <a target="blank" href="http://commons.wikimedia.org/wiki/File%3AGrossJaegersdorf.jpg">from Wikimedia Commons</a>
+</footer>

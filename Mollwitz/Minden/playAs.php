@@ -5,6 +5,7 @@
 <link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
 <style>
+    <?php include "playAs.css";?>
     body{
         background:#000;
         background:url("<?=base_url("js/Battle_of_Minden_1759.jpeg")?>") #333 no-repeat;
@@ -12,42 +13,6 @@
         background-size:100%;
 
     }
-    h2{
-        color:#f66;
-        text-shadow: 0 0 3px black,0 0 3px black,0 0 3px black,0 0 3px black,0 0 3px black,0 0 3px black,
-        0 0 3px black,0 0 3px black;
-    }
-    h1{
-        text-align:center;
-        font-size:90px;
-        font-family:'Pinyon Scrip';
-        color:#f66;
-        margin-top:0px;
-        text-shadow: 0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,
-        0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,
-        0 0 5px black,0 0 5px black,0 0 5px black, 0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,
-        0 0 5px black,0 0 5px black,0 0 5px black;
-    }
-    .link{
-        font-size:40px;
-        text-decoration: none;
-        color:#f66;
-        text-shadow: 3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black
-    }
-    legend   {
-    color:black;
-    }
-   fieldset{
-        text-align: center;
-       width:30%;
-       margin:0px;
-       position:absolute;
-       top:300px;
-       left:50%;
-       margin-left:-15%;
-       background-color: rgba(255,255,255,.4);
-   }
-
 </style>
 <div class="backBox">
 <h2 style="text-align:center;font-size:30px;font-family:'Monsieur La Doulaise'"> Welcome to</h2>
@@ -58,4 +23,7 @@
     <a  class="link" href="<?=site_url("wargame/enterHotseat");?>/<?=$wargame?>/">Play Hotseat</a><br>
     <a  class="link" href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>/">Play Multi</a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a><br>
+    <div class="attribution">
+        Richard Caton Woodville [Public domain], <a target='blank' href="http://commons.wikimedia.org/wiki/File%3ACaton-Woodville_Battle_of_Minden_1759.jpeg">via Wikimedia Commons</a>
+    </div>
 </fieldset>
