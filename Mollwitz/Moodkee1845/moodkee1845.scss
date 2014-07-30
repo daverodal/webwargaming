@@ -10,14 +10,14 @@
 .unit.Native .counterWrapper {
   background-color: $angloAlliedColor;
 }
-.beluchi.specialHexes{
+.sikh.specialHexes, .beluchi.specialHexes{
   background-color: $beluchiWrapperColor;
 }
 .british.specialHexes{
   background-color: $angloAlliedColor;
 }
 
-.beluchi.specialHexes, .british.specialHexes{
+.sikh.specialHexes, .beluchi.specialHexes, .british.specialHexes{
   color:white;
 }
 p.forceMarch,  p.range {

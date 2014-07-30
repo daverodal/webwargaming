@@ -1029,7 +1029,7 @@ p.forceMarch {
 .british.specialHexes {
   background-color: #df5842; }
 
-.beluchi.specialHexes, .british.specialHexes {
+.sikh.specialHexes, .beluchi.specialHexes, .british.specialHexes {
   color: white; }
 
 p.forceMarch, p.range {
