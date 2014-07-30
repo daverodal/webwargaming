@@ -1020,13 +1020,13 @@ p.forceMarch {
 .unit.Native .counterWrapper {
   background-color: red; }
 
-.beluchi.specialHexes {
+.sikh.specialHexes {
   background-color: #865900; }
 
 .british.specialHexes {
   background-color: #df5842; }
 
-.beluchi.specialHexes, .british.specialHexes {
+.sikh.specialHexes, .british.specialHexes {
   color: white; }
 
 p.forceMarch, p.range {
