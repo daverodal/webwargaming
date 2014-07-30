@@ -1,5 +1,9 @@
+<head>
+    <meta charset="UTF-8">
+</head>
 <body>
 <style>
+    <?php include "playAs.css";?>
     body{
         background:url("<?=base_url("js/KhalkhinGolTank.jpg")?>") #333 no-repeat;
         background-size:100%;
@@ -67,4 +71,7 @@
     <a class="link"  href="<?=site_url("wargame/enterHotseat");?>/<?=$wargame?>">Play Hotseat</a><br>
     <a class="link"  href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>">Play Multi Player </a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a>
+    <div class="attribution">
+        By Dōmei Tsushin (Contemporary Military Historian) [Public domain], <a target='blank' href="http://commons.wikimedia.org/wiki/File%3ABattle_of_Khalkhin_Gol-Japanese_Type_89_Chi-Ro_midium_tank.jpg">via Wikimedia Commons</a>
+    </div>
 </fieldset>
