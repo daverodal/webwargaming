@@ -66,7 +66,7 @@ class Nomonhan extends MartianCivilWar
 
     public $players;
 
-    static function getHeader($name, $playerData)
+    static function getHeader($name, $playerData, $arg = false)
     {
         global $force_name;
 
