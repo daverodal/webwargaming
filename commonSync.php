@@ -1,7 +1,6 @@
 <script>
 x = new Sync("<?=site_url("wargame/fetch/");?>");
 x.register("sentBreadcrumbs", function(breadcrumbs,data) {
-    debugger;
 //    return;
 
     $('svg > path').remove();
@@ -35,7 +34,6 @@ x.register("sentBreadcrumbs", function(breadcrumbs,data) {
 
     }
     var svgHtml = $('#svgWrapper').html();
-    debugger;
     $('#svgWrapper').html(svgHtml);
 //    $("svg").html($('svg').html());
 });

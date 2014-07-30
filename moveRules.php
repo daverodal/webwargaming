@@ -294,24 +294,51 @@ class MoveRules
         global $numBangs;
         $numWalks = 0;
         $numBangs = 0;
+        $done = false;
         $startHex = $this->force->units[$id]->hexagon;
         $movesLeft = $this->force->units[$id]->retreatCountRequired;
-        $this->moves = new stdClass();
-        $this->moveQueue = array();
-        $hexPath = new HexPath();
-        $hexPath->name = $startHex->name;
-        $hexPath->pointsLeft = $movesLeft;
-        $hexPath->pathToHere = array();
-        $hexPath->firstHex = true;
-        $hexPath->isOccupied = true;
-        $this->moveQueue[] = $hexPath;
-        $this->bfsRetreat();
-        $moves = $this->moves;
-        foreach($moves as $key => $val){
-            if($moves->$key->pointsLeft){
-                unset($moves->$key);
+        do{
+            $this->moves = new stdClass();
+            $this->moveQueue = array();
+            $hexPath = new HexPath();
+            $hexPath->name = $startHex->name;
+            $hexPath->pointsLeft = $movesLeft;
+            $hexPath->pathToHere = array();
+            $hexPath->firstHex = true;
+            $hexPath->isOccupied = true;
+            $this->moveQueue[] = $hexPath;
+            $this->bfsRetreat();
+            $moves = $this->moves;
+            $validCount = 0;
+            foreach($moves as $key => $val){
+                if($moves->$key->pointsLeft){
+                    unset($moves->$key);
+                    continue;
+                }
+                if($moves->$key->isOccupied === false){
+                    $validCount++;
+                }
             }
-        }
+            /* no possible moves */
+            if(count((array)$this->moves) === 0){
+                $this->force->addToRetreatHexagonList($id, $startHex);
+                $this->stopMove($this->force->units[$id]);
+                $this->force->eliminateUnit($id);
+                $done = true;
+            }
+            if($validCount > 0){
+                $done = true;
+            }else{
+                $movesLeft++;
+                if($movesLeft > 12){
+                    $this->force->addToRetreatHexagonList($id, $startHex);
+                    $this->stopMove($this->force->units[$id]);
+                    $this->force->eliminateUnit($id);
+                    $done = true;
+                }
+            }
+        }while($done === false);
+
 
     }
 
@@ -452,9 +479,16 @@ class MoveRules
 
         $unit = $this->force->units[$this->movingUnitId];
 
-        /* Reverse attack and defender for retreats (retreating units are moving) */
-        $defendingForceId = $this->force->attackingForceId;
-        $attackingForceId = $this->force->defendingForceId;
+        if($unit->forceId == $this->force->attackingForceId){
+            /* attacker retreating leave sides normal */
+            $attackingForceId = $this->force->attackingForceId;
+            $defendingForceId = $this->force->defendingForceId;
+        }else{
+            /* Reverse attack and defender for defender retreats (retreating units are moving) */
+            /* Reverse attack and defender for defender retreats (retreating units are moving) */
+            $defendingForceId = $this->force->attackingForceId;
+            $attackingForceId = $this->force->defendingForceId;
+        }
 
 
         $cnt = 0;
@@ -506,6 +540,12 @@ class MoveRules
 
             for ($i = 1; $i <= 6; $i++) {
                 $newHexNum = $mapHex->neighbors[$i - 1];
+                $newMapHex = $this->mapData->getHex($newHexNum);
+
+                if ($this->force->mapHexIsZOC($newMapHex, $defendingForceId)){
+                    continue;
+                }
+
                 $gnuHex = Hexagon::getHexPartXY($newHexNum);
                 if (!$gnuHex) {
                     continue;
