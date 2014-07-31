@@ -1193,7 +1193,9 @@ class MoveRules
             if ($this->anyUnitIsMoving == false) {
                 if ($this->force->unitCanRetreat($id) == true) {
                     $this->startRetreating($id);
-                    $this->calcRetreat($id);
+                    if($this->anyUnitIsMoving){
+                        $this->calcRetreat($id);
+                    }
                 }
             } else {
                 $matches = [];
