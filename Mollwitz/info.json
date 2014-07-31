@@ -105,7 +105,17 @@
             }
         }
     },
-
+    "Kolin1757": {
+        "name": "The Battle of Kolin 1757",
+        "path": "Mollwitz",
+        "genre": "18'th Century Europe",
+        "fileName": "Kolin1757.php",
+        "scenarios": {
+            "main": {
+                "description": "Standard Scenario"
+            }
+        }
+    },
     "Lobositz": {
         "name": "The Battle of Lobositz",
         "path": "Mollwitz",

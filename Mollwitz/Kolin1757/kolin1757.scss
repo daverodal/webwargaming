@@ -1,0 +1,12 @@
+#map{
+  width: 2300px !important;
+}
+#tecImage{
+  width:800px;
+}
+@include player(Prussian, One, $prussianColor, $prussianWrapperColor, $prussianWrapperColor);
+@include player(Austrian, Two, $austrianColor, $austrianWrapperColor);
+
+p.forceMarch,  p.range {
+  color:white;
+}
