@@ -100,7 +100,6 @@ class ModernLandBattle extends LandBattle
         $this->terrain->addTerrainFeature("mine", "mine", "m", 0, 0, 0, false);
         $this->terrain->addNatAltEntranceCost("mine", "rebel", 'mech', 2);
         $this->terrain->addNatAltEntranceCost("mine", "rebel", 'inf', 1);
-        $this->terrain->addAltEntranceCost("mountain", 'mountain', 2);
 
         $CI =& get_instance();
         $CI->load->model('rest/rest_model');

@@ -477,6 +477,7 @@ class MoveRules
     function bfsRetreat()
     {
 
+        $id = $this->movingUnitId;
         $unit = $this->force->units[$this->movingUnitId];
 
         if($unit->forceId == $this->force->attackingForceId){
@@ -540,30 +541,33 @@ class MoveRules
 
             for ($i = 1; $i <= 6; $i++) {
                 $newHexNum = $mapHex->neighbors[$i - 1];
-                $newMapHex = $this->mapData->getHex($newHexNum);
-
-                if ($this->force->mapHexIsZOC($newMapHex, $defendingForceId)){
+                if($this->hexagonBlocksRetreat($id, new Hexagon($newHexNum))){
                     continue;
                 }
-
-                $gnuHex = Hexagon::getHexPartXY($newHexNum);
-                if (!$gnuHex) {
-                    continue;
-                }
-                if ($this->terrain->terrainIsHexSide($hexNum, $newHexNum, "blocked")) {
-                    continue;
-                }
-
-                if ($this->terrain->terrainIsXY($gnuHex[0], $gnuHex[1], "offmap")) {
-                    continue;
-                }
-                if ($this->terrain->terrainIsXY($gnuHex[0], $gnuHex[1], "blocked")) {
-                    continue;
-                }
-                $newMapHex = $this->mapData->getHex($newHexNum);
-                if ($newMapHex->isOccupied($defendingForceId)) {
-                    continue;
-                }
+//                $newMapHex = $this->mapData->getHex($newHexNum);
+//
+//                if ($this->force->mapHexIsZOC($newMapHex, $defendingForceId)){
+//                    continue;
+//                }
+//
+//                $gnuHex = Hexagon::getHexPartXY($newHexNum);
+//                if (!$gnuHex) {
+//                    continue;
+//                }
+//                if ($this->terrain->terrainIsHexSide($hexNum, $newHexNum, "blocked")) {
+//                    continue;
+//                }
+//
+//                if ($this->terrain->terrainIsXY($gnuHex[0], $gnuHex[1], "offmap")) {
+//                    continue;
+//                }
+//                if ($this->terrain->terrainIsXY($gnuHex[0], $gnuHex[1], "blocked")) {
+//                    continue;
+//                }
+//                $newMapHex = $this->mapData->getHex($newHexNum);
+//                if ($newMapHex->isOccupied($defendingForceId)) {
+//                    continue;
+//                }
                 /*
                  * TODO order is important in if statement check if doing zoc zoc move first then if just one hex move.
                  * Then check if oneHex and firstHex
@@ -1202,7 +1206,7 @@ class MoveRules
                 $move = preg_match("/\d+Hex(\d+)/",$id,$matches);
                 if($move === 1){
                     $finalHex = $matches[1];
-                    $moves = $this->moves->$matches[1];
+                    $moves = $this->moves->$finalHex;
                     foreach ($moves->pathToHere as $move){
                         $this->retreat($this->movingUnitId, new Hexagon($move));
                     }
@@ -1267,24 +1271,15 @@ class MoveRules
         $movingUnit = $this->force->getUnit($id);
         $victory->preStartMovingUnit($movingUnit);
         if ($movingUnit->setStatus(STATUS_RETREATING) == true) {
-            if ($this->retreatIsBlocked($id) == true) {
-
-                $hexagon = $movingUnit->getUnitHexagon();
-
-                $this->force->addToRetreatHexagonList($id, $hexagon);
-
-                $this->stopMove($movingUnit);
-                $this->force->eliminateUnit($id);
-            } else {
-                $this->anyUnitIsMoving = true;
-                $this->movingUnitId = $id;
-            }
+            $this->anyUnitIsMoving = true;
+            $this->movingUnitId = $id;
         }
         $victory->postStartMovingUnit($movingUnit);
     }
 
     function retreatIsBlocked($id)
     {
+        throw new Exception("bad bad call ");
         $isBlocked = true;
 
         $adjacentHexagonXadjustment = array(0, 2, 2, 0, -2, -2);
@@ -1301,7 +1296,7 @@ class MoveRules
             $adjacentHexagonY = $hexagonY + $adjacentHexagonYadjustment[$eachHexagon];
             $adjacentHexagon = new Hexagon($adjacentHexagonX, $adjacentHexagonY);
 
-            if ($this->hexagonIsBlocked($id, $adjacentHexagon) == false) {
+            if ($this->hexagonBlocksRetreat($id, $adjacentHexagon) == false) {
                 $isBlocked = false;
                 break;
             }
@@ -1311,7 +1306,7 @@ class MoveRules
         return $isBlocked;
     }
 
-    function hexagonIsBlocked($id, $hexagon)
+    function hexagonBlocksRetreat($id, Hexagon $hexagon)
     {
         $isBlocked = false;
 
@@ -1320,9 +1315,15 @@ class MoveRules
             /* off map hexes have no name */
         }
 
+
         // make sure hexagon is not ZOC
         $startHex = $this->force->units[$id]->hexagon;
         $unit = $this->force->units[$id];
+        $mapHex = $this->mapData->getHex($hexagon->name);
+
+        if ($this->zocBlocksRetreat === true && $this->force->mapHexIsZOC($mapHex, $this->force->enemy($unit->forceId))){
+            $isBlocked = true;
+        }
         if ($this->terrain->terrainIsHexSide($startHex->name, $hexagon->name, "blocked")) {
             $isBlocked = true;
         }
@@ -1330,9 +1331,9 @@ class MoveRules
             $isBlocked = true;
         }
 
-        if ($this->zocBlocksRetreat === true && ($this->force->hexagonIsZOC($id, $hexagon) == true)) {
-            $isBlocked = true;
-        }
+//        if ($this->zocBlocksRetreat === true && ($this->force->hexagonIsZOC($id, $hexagon) == true)) {
+//            $isBlocked = true;
+//        }
         // make sure hexagon is not occupied
         if ($this->force->hexagonIsOccupiedEnemy($hexagon, $id) == true) {
             $isBlocked = true;
@@ -1349,20 +1350,10 @@ class MoveRules
     {
         /* @var  Unit $movingUnit */
         $movingUnit = $this->force->units[$id];
-        if ($this->retreatIsBlocked($id)) {
 
-            $hexagon = $movingUnit->getUnitHexagon();
-
-            $this->force->addToRetreatHexagonList($id, $hexagon);
-
-            $this->stopMove($movingUnit);
-            $this->force->eliminateUnit($id);
-        }
         if ($this->rangeIsOneHexagon($movingUnit->getUnitHexagon()->name, $hexagon)
-            && $this->hexagonIsBlocked($id, $hexagon) === false
-            && $this->terrain->isExit($hexagon) === false
+            && $this->hexagonBlocksRetreat($id, $hexagon) === false
         ) {
-
             $this->force->addToRetreatHexagonList($id, $movingUnit->getUnitHexagon());
             // set move amount to 0
             $occupied = $this->force->hexagonIsOccupied($hexagon);
@@ -1377,11 +1368,6 @@ class MoveRules
                     $this->movingUnitId = NONE;
                 }
             }
-        }
-        // if forced to retreat offmap, unit is eliminated
-        if ($this->terrain->isExit($hexagon) == true) {
-            $this->stopMove($movingUnit);
-            $this->force->eliminateUnit($id);
         }
     }
 

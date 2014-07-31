@@ -159,7 +159,7 @@ x.register("force", function(force,data) {
                 color = "yellow";
                 if(data.gameRules.mode == <?=RETREATING_MODE?>){
 
-                    status = "Now click on a hex adjacent to the yellow unit. ";
+                    status = "Now click on a green unit. The yellow unit will retreat there. ";
                 }
                 break;
             case <?=STATUS_CAN_ADVANCE?>:
@@ -180,7 +180,7 @@ x.register("force", function(force,data) {
                 color = "cyan";
                 break;
             case <?=STATUS_CAN_EXCHANGE?>:
-                if($("#flashMessage header").html() != <?=ADVANCING_MODE?>){
+                if(data.gameRules.mode == <?=EXCHANGING_MODE?>){
                     var result = data.combatRules.lastResolvedCombat.combatResult;
 //                    $("#floatMessage header").html(result+' Exchanging Mode');
                     status = "Click on one of the red units to reduce it."
