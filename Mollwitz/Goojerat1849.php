@@ -32,7 +32,7 @@ $oneHalfImageHeight = 16;
 
 class Goojerat1849 extends IndiaCore
 {
-    public $specialHexesMap = ['SpecialHexA' => 1, 'SpecialHexB' => 2, 'SpecialHexC' => 0];
+    public $specialHexesMap = ['SpecialHexA' => 1, 'SpecialHexB' => 2, 'SpecialHexC' => 2];
 
     public
     static function getHeader($name, $playerData, $arg = false)
@@ -90,6 +90,7 @@ class Goojerat1849 extends IndiaCore
         $data->roadHex = $this->roadHex;
         $data->specialHexA = $this->specialHexA;
         $data->specialHexB = $this->specialHexB;
+        $data->specialHexC = $this->specialHexC;
         if ($this->genTerrain) {
             $data->terrain = $this->terrain;
         }
