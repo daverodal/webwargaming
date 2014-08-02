@@ -67,7 +67,7 @@
         <div id="bottomHeader" style="clear:both;">
             <div id="crtWrapper">
                 <h4 class="WrapperLabel" title='Combat Results Table'>
-                    <span class="goLeft">&laquo;</span>Crt<span class="goRight">&raquo;</span></h4>
+                    <span class="goLeft">&laquo;</span>CRT<span class="goRight">&raquo;</span></h4>
 
                 <div id="crt">
                     <div class="close">X</div>

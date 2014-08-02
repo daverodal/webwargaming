@@ -54,7 +54,7 @@
         <?php global $results_name; ?>
         <div id="bottomHeader" style="clear:both;">
             <div id="crtWrapper">
-                <h4 class="WrapperLabel" title='Combat Results Table'><span class="goLeft">&laquo;</span>Crt<span
+                <h4 class="WrapperLabel" title='Combat Results Table'><span class="goLeft">&laquo;</span>CRT<span
                         class="goRight">&raquo;</span></h4>
 
                 <div id="crt">

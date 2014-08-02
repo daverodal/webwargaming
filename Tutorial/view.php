@@ -50,7 +50,7 @@
 <div id="bottomHeader" style="clear:both;">
 <button id="nextPhaseButton">Next Phase</button>
 <div id="crtWrapper">
-    <h4 class="WrapperLabel" title='Combat Results Table'><span class="goLeft">&laquo;</span>Crt<span class="goRight">&raquo;</span></h4>
+    <h4 class="WrapperLabel" title='Combat Results Table'><span class="goLeft">&laquo;</span>CRT<span class="goRight">&raquo;</span></h4>
 </div>
 
 

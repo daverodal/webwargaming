@@ -27,7 +27,7 @@
         <?php global $results_name;?>
 
         <div id="crtWrapper">
-            <h4>View Crt</h4>
+            <h4>View CRT</h4>
             <div id="crt">
                 <h3>Combat Odds</h3>
 
