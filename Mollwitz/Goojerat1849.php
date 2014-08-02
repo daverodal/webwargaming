@@ -189,6 +189,7 @@ class Goojerat1849 extends IndiaCore
             $this->genTerrain = false;
             $this->specialHexA = $data->specialHexA;
             $this->specialHexB = $data->specialHexB;
+            $this->specialHexC = $data->specialHexC;
             $this->victory = new Victory("Mollwitz/Goojerat1849/goojerat1849VictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
