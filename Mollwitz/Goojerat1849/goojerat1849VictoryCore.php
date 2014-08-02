@@ -58,7 +58,7 @@ class goojerat1849VictoryCore extends indiaVictoryCore
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-20 Sikh vp</span>";
             }
         }
-        if($scenario->altScenario && in_array($mapHexName,$battle->specialHexB)){
+        if(in_array($mapHexName,$battle->specialHexB)){
             if ($forceId == SIKH_FORCE) {
                 $this->victoryPoints[BRITISH_FORCE]  += 15;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>+15 British vp</span>";
