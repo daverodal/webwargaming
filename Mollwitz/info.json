@@ -262,8 +262,15 @@
         "scenarios": {
             "main": {
                 "description": "Standard Scenario"
-            }
-        }
+            },
+            "altScenario": {
+                "description": "Sikh need 45 instead of 50 to win.",
+                "altScenario": true
+            },
+            "moodkeeVariant": {
+                "description": "Same OOB as moodkee, Alt Scenarios rules too",
+                "altScenario": true
+            }        }
     },
     "Aliwal1845": {
         "name": "Aliwal 1845",

@@ -45,6 +45,8 @@ class goojerat1849VictoryCore extends indiaVictoryCore
     {
         $battle = Battle::getBattle();
 
+        $scenario = $battle->scenario;
+
         list($mapHexName, $forceId) = $args;
         if(in_array($mapHexName,$battle->specialHexA)){
             if ($forceId == SIKH_FORCE) {
@@ -56,6 +58,17 @@ class goojerat1849VictoryCore extends indiaVictoryCore
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-20 Sikh vp</span>";
             }
         }
+        if($scenario->altScenario && in_array($mapHexName,$battle->specialHexB)){
+            if ($forceId == SIKH_FORCE) {
+                $this->victoryPoints[BRITISH_FORCE]  += 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>+5 British vp</span>";
+            }
+            if ($forceId == SIKH_FORCE) {
+                $this->victoryPoints[BRITISH_FORCE]  -= 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-5 British vp</span>";
+            }
+        }
+
     }
 
     protected function checkVictory($attackingId, $battle)
@@ -68,10 +81,15 @@ class goojerat1849VictoryCore extends indiaVictoryCore
         if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
             $britVic = 50;
+            if($scenario->altScenario){
+                $sikhVic = 45;
+            }else{
+                $sikhVic = 50;
+            }
             if (($this->victoryPoints[BRITISH_FORCE] >= $britVic && ($this->victoryPoints[BRITISH_FORCE] - ($this->victoryPoints[SIKH_FORCE]) >= 15))) {
                 $britishWin = true;
             }
-            if (($this->victoryPoints[SIKH_FORCE] >= 50)) {
+            if (($this->victoryPoints[SIKH_FORCE] >= $sikhVic)) {
                 $sikhWin = true;
             }
             if ($turn == $gameRules->maxTurn + 1) {
