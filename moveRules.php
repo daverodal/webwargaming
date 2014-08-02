@@ -322,7 +322,8 @@ class MoveRules
             /* no possible moves */
             if(count((array)$this->moves) === 0){
                 $this->force->addToRetreatHexagonList($id, $startHex);
-                $this->stopMove($this->force->units[$id]);
+                $this->movingUnitId = NONE;
+                $this->anyUnitIsMoving = false;
                 $this->force->eliminateUnit($id);
                 $done = true;
             }
