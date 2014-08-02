@@ -269,7 +269,8 @@
             },
             "moodkeeVariant": {
                 "description": "Same OOB as moodkee, Alt Scenarios rules too",
-                "altScenario": true
+                "altScenario": true,
+                "theMoodkeeOOB":true
             }        }
     },
     "Aliwal1845": {
