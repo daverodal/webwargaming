@@ -315,6 +315,14 @@ p.forceMarch{
 
 }
 
+.specialHexesVP .british{
+  color:black;
+  background:transparent;
+  @include victoryPoints($britishColor);
+
+
+}
+
 .specialHexesVP .russian{
   color:white;
   background:transparent;

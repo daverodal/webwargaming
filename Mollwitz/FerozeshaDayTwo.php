@@ -147,7 +147,7 @@ class FerozeshaDayTwo extends IndiaCore
             $this->roadHex = $data->roadHex;
             $this->game = $data->game;
             $this->genTerrain = false;
-            $this->victory = new Victory("Mollwitz/Ferozesha/ferozeshaVictoryCore.php", $data);
+            $this->victory = new Victory("Mollwitz/Ferozesha/ferozesha2VictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
@@ -166,7 +166,7 @@ class FerozeshaDayTwo extends IndiaCore
             $this->scenario = $scenario;
             $this->game = $game;
             $this->genTerrain = true;
-            $this->victory = new Victory("Mollwitz/Ferozesha/ferozeshaVictoryCore.php");
+            $this->victory = new Victory("Mollwitz/Ferozesha/ferozesha2VictoryCore.php");
 
 //            if($scenario->dayTwo){
 //                $this->mapData->setData(33, 21, "js/Ferozesha2Small.png");

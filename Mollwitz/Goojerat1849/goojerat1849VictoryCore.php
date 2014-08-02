@@ -65,7 +65,7 @@ class goojerat1849VictoryCore extends indiaVictoryCore
             }
             if ($forceId == SIKH_FORCE) {
                 $this->victoryPoints[BRITISH_FORCE]  -= 15;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-15 British vp</span>";
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='sikh'>-15 British vp</span>";
             }
         }
         if($scenario->altScenario && in_array($mapHexName,$battle->specialHexC)){
@@ -75,7 +75,7 @@ class goojerat1849VictoryCore extends indiaVictoryCore
             }
             if ($forceId == SIKH_FORCE) {
                 $this->victoryPoints[BRITISH_FORCE]  -= 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-5 British vp</span>";
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='sikh'>-5 British vp</span>";
             }
         }    }
 

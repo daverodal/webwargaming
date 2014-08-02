@@ -9,7 +9,7 @@
 include "victoryCore.php";
 include "indiaVictoryCore.php";
 
-class ferozeshaVictoryCore extends indiaVictoryCore
+class ferozesha2VictoryCore extends indiaVictoryCore
 {
 
     function __construct($data)
@@ -87,25 +87,25 @@ class ferozeshaVictoryCore extends indiaVictoryCore
         $gameRules = $battle->gameRules;
         $scenario = $battle->scenario;
         $turn = $gameRules->turn;
-        $sikhWin = $britishWin = false;
+        $britishWin = $sikhWin = false;
 
         if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
-            $britVic = 40;
-            $lead = 15;
-            if (($this->victoryPoints[BRITISH_FORCE] >= $britVic && ($this->victoryPoints[BRITISH_FORCE] - ($this->victoryPoints[SIKH_FORCE]) >= $lead))) {
-                $britishWin = true;
-            }
-            if (($this->victoryPoints[SIKH_FORCE] >= 35)) {
+            $sikhVic = 35;
+            $britLead = 10;
+            if ($this->victoryPoints[SIKH_FORCE] >= $sikhVic ) {
                 $sikhWin = true;
             }
+            if (($this->victoryPoints[BRITISH_FORCE] >= 40) && (($this->victoryPoints[BRITISH_FORCE] - $this->victoryPoints[SIKH_FORCE]) >= $britLead)) {
+                $britishWin = true;
+            }
             if ($turn == $gameRules->maxTurn + 1) {
-                if (!$britishWin) {
-                    $sikhWin = true;
+                if (!$sikhWin) {
+                    $britishWin = true;
                 }
-                if ($sikhWin && $britishWin) {
+                if ($britishWin && $sikhWin) {
                     $this->winner = 0;
-                    $britishWin = $sikhWin = false;
+                    $sikhWin = $britishWin = false;
                     $gameRules->flashMessages[] = "Tie Game";
                     $gameRules->flashMessages[] = "Game Over";
                     $this->gameOver = true;
@@ -113,17 +113,16 @@ class ferozeshaVictoryCore extends indiaVictoryCore
                 }
             }
 
-
-            if ($britishWin) {
-                $this->winner = BRITISH_FORCE;
-                $gameRules->flashMessages[] = "British Win";
-            }
             if ($sikhWin) {
                 $this->winner = SIKH_FORCE;
-                $msg = "Sikh Win";
+                $gameRules->flashMessages[] = "Sikh Win";
+            }
+            if ($britishWin) {
+                $this->winner = BRITISH_FORCE;
+                $msg = "British Win";
                 $gameRules->flashMessages[] = $msg;
             }
-            if ($britishWin || $sikhWin) {
+            if ($sikhWin || $britishWin) {
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
                 return true;
