@@ -324,6 +324,7 @@ class MoveRules
                 $this->force->addToRetreatHexagonList($id, $startHex);
                 $this->movingUnitId = NONE;
                 $this->anyUnitIsMoving = false;
+                $this->moves = new stdClass();
                 $this->force->eliminateUnit($id);
                 $done = true;
             }
