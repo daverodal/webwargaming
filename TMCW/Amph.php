@@ -164,7 +164,7 @@ class Amph extends ModernLandBattle
 
         $this->force->addUnit("lll", LOYALIST_FORCE, 305, "multiGor.png", 5, 2, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
         $this->force->addUnit("lll", LOYALIST_FORCE, 803, "multiGor.png", 5, 2, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("x", LOYALIST_FORCE, 907, "multiHeavy.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "B", 5, 1, "loyalGuards", true, 'heavy');
+        $this->force->addUnit("x", LOYALIST_FORCE, 907, "multiHeavy.png", 10, 5, 5, false, STATUS_READY, "B", 5, 1, "loyalGuards", true, 'heavy');
         $this->force->addUnit("lll", LOYALIST_FORCE, 1205, "multiGor.png", 5, 2, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
         $this->force->addUnit("lll", LOYALIST_FORCE, 1405, "multiGor.png", 5, 2, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
 

@@ -319,7 +319,7 @@ class MoveRules
                     $validCount++;
                 }
             }
-            /* no possible moves */
+            /* no possible retreats */
             if(count((array)$this->moves) === 0){
                 $this->force->addToRetreatHexagonList($id, $startHex);
                 $this->movingUnitId = NONE;
@@ -332,9 +332,12 @@ class MoveRules
                 $done = true;
             }else{
                 $movesLeft++;
+                /* fail safe for strange things */
                 if($movesLeft > 12){
                     $this->force->addToRetreatHexagonList($id, $startHex);
-                    $this->stopMove($this->force->units[$id]);
+                    $this->movingUnitId = NONE;
+                    $this->anyUnitIsMoving = false;
+                    $this->moves = new stdClass();
                     $this->force->eliminateUnit($id);
                     $done = true;
                 }
@@ -1120,6 +1123,7 @@ class MoveRules
 
         $this->anyUnitIsMoving = false;
         $this->movingUnitId = false;
+        $this->moves = new stdClass();
     }
 
     function reinforce($id, Hexagon $hexagon)
@@ -1368,6 +1372,7 @@ class MoveRules
                 if ($movingUnit->setStatus(STATUS_STOPPED) == true) {
                     $this->anyUnitIsMoving = false;
                     $this->movingUnitId = NONE;
+                    $this->moves = new stdClass();
                 }
             }
         }
