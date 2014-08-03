@@ -305,9 +305,9 @@ x.register("force", function(force,data) {
 //        $("#"+i).css({borderColor: color});
         $("#"+i).css({borderColor: color,borderStyle:style});
         if(shadow){
-            $("#"+i+" section").addClass("shadowy");
+            $("#"+i+" .shadow_mask").addClass("shadowy");
         }else{
-            $("#"+i+" section").removeClass("shadowy");
+            $("#"+i+" .shadow_mask").removeClass("shadowy");
         }
         $("#"+i).css({boxShadow: boxShadow});
 
@@ -674,7 +674,7 @@ x.register("moveRules", function(moveRules,data) {
             var MYCLONE = $("#"+id).clone(true).detach();
             MYCLONE.find(".arrow").hide();
             MYCLONE.addClass("clone");
-            MYCLONE.find('section').css({backgroundColor:'transparent'});
+            MYCLONE.find('.shadow_mask').css({backgroundColor:'transparent'});
             MYCLONE.hover(function(){
                     if(opacity != 1){
                         $(this).css("border-color","#fff");

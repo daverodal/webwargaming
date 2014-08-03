@@ -39,12 +39,14 @@
   background-color: rgb(223, 88, 66);
   border-color: rgb(223, 88, 66);
 }
+.unit .counterWrapper{
+  height:16px;
+}
 .unit .counter{
   width:32px;
-  margin-top:-2px;
+  margin-top:0px;
 }
 .unit .unit-numbers{
-  margin-top:-23px;
   font-size:12px;
   font-weight:bold;
 

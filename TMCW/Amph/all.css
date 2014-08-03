@@ -57,7 +57,7 @@ h4:hover {
   padding: 0 2px 0 2px;
   font-style: italic; }
 
-.unit.pushed section {
+.unit.pushed .shadow_mask {
   /*color:#f3172d !important;*/
   /*color:mediumpurple !important;*/
   /*background-color: #858585 !important;*/
@@ -382,7 +382,7 @@ h4:hover {
 #OBC .unit {
   margin-top: 10px; }
 
-#OBC .unit section {
+#OBC .unit .shadow_mask {
   /*background-color:rgba(0,0,0,.3);*/ }
 
 #Time {
@@ -629,7 +629,7 @@ fieldset {
   width: 32px;
   height: 32px; }
 
-.unit section {
+.unit .shadow_mask {
   top: 0px;
   left: 0px;
   height: 100%;
@@ -642,8 +642,7 @@ fieldset {
   color: black; }
 
 .unit .unitSize {
-  font-size: 10px;
-  line-height: 5px;
+  font-size: 9px;
   text-align: center;
   color: black; }
 
@@ -714,12 +713,20 @@ svg {
 .reduced {
   color: white; }
 
+.unit .unitSize {
+  height: 10px;
+  font-size: 9px;
+  text-align: center;
+  color: black; }
+
+.unit .counterWrapper {
+  height: 10px; }
+
 .unit .counter {
   width: 32px;
-  margin-top: -2px; }
+  margin-top: -4px; }
 
 .unit .unit-numbers {
-  margin-top: -23px;
   font-size: 12px;
   font-weight: bold; }
 
@@ -851,12 +858,6 @@ svg {
 
 .loyalGuards {
   background-color: #aaaaaa; }
-
-.unit .counter {
-  margin-top: 1px; }
-
-.unit .unit-numbers {
-  margin-top: -23px; }
 
 #crt {
   width: 308px; }

@@ -4,14 +4,6 @@
 @include player(loyalist,Two,$loyalistColor);
 @include player(loyalGuards,Three,$loyalistGuardColor);
 
-.unit .counter {
-  margin-top: 1px;
-}
-
-.unit .unit-numbers {
-  margin-top: -23px;
-}
-
 #map {
 }
 

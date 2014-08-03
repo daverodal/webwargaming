@@ -57,7 +57,7 @@ h4:hover {
   padding: 0 2px 0 2px;
   font-style: italic; }
 
-.unit.pushed section {
+.unit.pushed .shadow_mask {
   /*color:#f3172d !important;*/
   /*color:mediumpurple !important;*/
   /*background-color: #858585 !important;*/
@@ -382,7 +382,7 @@ h4:hover {
 #OBC .unit {
   margin-top: 10px; }
 
-#OBC .unit section {
+#OBC .unit .shadow_mask {
   /*background-color:rgba(0,0,0,.3);*/ }
 
 #Time {
@@ -632,13 +632,14 @@ fieldset {
   width: 32px;
   height: 32px; }
 
-.unit section {
+.unit .shadow_mask {
   top: 0px;
   left: 0px;
   height: 100%;
   width: 100%;
   position: absolute;
-  background: transparent; }
+  background: transparent;
+}
 
 .unit .unit-numbers {
   text-align: center;

@@ -142,7 +142,7 @@
                         <?php $id = 0; ?>
                         {units}
                         <div class="unit {class}" id="{id}" alt="0">
-                            <section></section>
+                            <div class="shadow_mask"></div>
                             <img class="arrow" src="<?php echo base_url(); ?>js/short-red-arrow-md.png" class="counter">
                             <img src="<?php echo base_url(); ?>js/{image}" class="counter">
 

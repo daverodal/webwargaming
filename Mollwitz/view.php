@@ -196,17 +196,13 @@
                     <?php $id = 0; ?>
                     {units}
                     <div class="unit {class} {type}" id="{id}" alt="0">
-                        <nav class="counterWrapper">
+                        <div class="shadow_mask"></div>
+                        <div class="counterWrapper">
                             <div class="counter"></div>
-                        </nav>
+                        </div>
                         <p class="range">{range}</p>
-
                         <p class="forceMarch">M</p>
-                        <section></section>
-
                         <img class="arrow" src="<?php echo base_url(); ?>js/short-red-arrow-md.png" class="counter">
-
-
                         <div class="unit-numbers">5 - 4</div>
 
                     </div>

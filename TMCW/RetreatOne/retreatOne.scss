@@ -4,12 +4,9 @@ $laconians: #dd4f2b;
 @include player(laconians, One, $laconians);
 @include player(caprolians, Two, $caprolians, #c8c21c);
 
-.unit .counter {
-  margin-top: -2px;
-}
 
-.unit .unit-numbers {
-  margin-top: -19px;
+.unit .counter {
+  margin-top: -5px;
 }
 
 #crt {
@@ -30,11 +27,4 @@ $laconians: #dd4f2b;
 .game-name {
   word-break: break-all;
   font-family: 'Nosifer';
-}
-
-#gameTurn6 {
-}
-
-#gameTurn6 .unit {
-  float: left;
 }

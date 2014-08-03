@@ -161,11 +161,12 @@
                         <?php $id = 0; ?>
                         {units}
                         <div class="unit {nationality}" id="{id}" alt="0">
-                            <nav class="unitSize">{unitSize}</nav>
-                            <section></section>
+                            <div class="shadow_mask"></div>
+                            <div class="unitSize">{unitSize}</div>
                             <img class="arrow" src="<?php echo base_url(); ?>js/short-red-arrow-md.png" class="counter">
-                            <img src="<?php echo base_url(); ?>js/{image}" class="counter">
-
+                            <div class="counterWrapper">
+                                <img src="<?php echo base_url(); ?>js/{image}" class="counter">
+                            </div>
                             <div class="unit-numbers">5 - 4</div>
                         </div>
                         {/units}
