@@ -9,7 +9,7 @@
 include "victoryCore.php";
 include "indiaVictoryCore.php";
 
-class kolin1757VictoryCore extends indiaVictoryCore
+class kolin1757VictoryCore extends victoryCore
 {
 
     function __construct($data)
