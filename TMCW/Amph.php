@@ -107,6 +107,7 @@ class Amph extends ModernLandBattle
         $data->players = $this->players;
         $data->playerData = $this->playerData;
         $data->display = $this->display;
+        $data->specialHexA = $this->specialHexA;
         $data->victory = $this->victory->save();
         $data->terrainName = "terrain-" . get_class($this);
         $data->genTerrain = $this->genTerrain;
@@ -253,6 +254,7 @@ class Amph extends ModernLandBattle
         $this->mapData = MapData::getInstance();
         if ($data) {
             $this->arg = $data->arg;
+            $this->specialHexA = $data->specialHexA;
             $this->scenario = $data->scenario;
             $this->genTerrain = false;
             $this->victory = new Victory("TMCW/Amph/amphVictoryCore.php", $data);

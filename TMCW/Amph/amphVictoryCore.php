@@ -129,11 +129,11 @@ class amphVictoryCore extends victoryCore
             $vp = $unit->minStrength;
         }
         if ($unit->forceId == 1) {
-            $victorId = 2;
-            $this->victoryPoints[$victorId] += $vp;
-            $hex = $unit->hexagon;
-            $battle = Battle::getBattle();
-            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='loyalistVictoryPoints'>+$vp vp</span>";
+//            $victorId = 2;
+//            $this->victoryPoints[$victorId] += $vp;
+//            $hex = $unit->hexagon;
+//            $battle = Battle::getBattle();
+//            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='loyalistVictoryPoints'>+$vp vp</span>";
         } else {
 //            $victorId = 1;
 //            $hex  = $unit->hexagon;
@@ -160,11 +160,11 @@ class amphVictoryCore extends victoryCore
     public function gameOver()
     {
         $battle = Battle::getBattle();
-
-        if ($this->victoryPoints[REBEL_FORCE] > $this->victoryPoints[LOYALIST_FORCE]) {
-            $battle->gameRules->flashMessages[] = "Rebel Player Wins";
-        } else {
+        $city = $battle->specialHexA[0];
+        if ($battle->mapData->getSpecialHex($city) === LOYALIST_FORCE) {
             $battle->gameRules->flashMessages[] = "Loyalist Player Wins";
+        }else{
+            $battle->gameRules->flashMessages[] = "Rebel Player Wins";
         }
         $this->gameOver = true;
         return true;
