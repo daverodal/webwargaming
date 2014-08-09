@@ -33,13 +33,6 @@ require_once "ModernLandBattle.php";
 define("REBEL_FORCE", BLUE_FORCE);
 define("LOYALIST_FORCE", RED_FORCE);
 
-// battlefforallencreek.js
-
-// counter image values
-$oneHalfImageWidth = 16;
-$oneHalfImageHeight = 16;
-
-
 class MartianCivilWar extends ModernLandBattle
 {
     /* a comment */

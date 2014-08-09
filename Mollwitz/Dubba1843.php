@@ -25,13 +25,6 @@ $phase_name[14] = "";
 $phase_name[15] = "<span class='playerTwoFace'>{$force_name[2]}</span> deploy phase";
 
 
-
-
-// counter image values
-$oneHalfImageWidth = 16;
-$oneHalfImageHeight = 16;
-
-
 class Dubba1843 extends IndiaCore
 {
 

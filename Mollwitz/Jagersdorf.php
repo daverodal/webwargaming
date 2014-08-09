@@ -25,12 +25,6 @@ $phase_name[14] = "";
 $phase_name[15] = "<span class='playerTwoFace'>Russian</span> deploy phase";
 
 
-// counter image values
-$oneHalfImageWidth = 16;
-$oneHalfImageHeight = 16;
-
-
-
 class Jagersdorf extends JagCore {
 
     /* @var Mapdata */

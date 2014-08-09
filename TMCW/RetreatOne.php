@@ -41,12 +41,6 @@ define("CAPROLIANS_FORCE", RED_FORCE);
 require_once "ModernLandBattle.php";
 
 
-// battlefforallencreek.js
-
-// counter image values
-$oneHalfImageWidth = 16;
-$oneHalfImageHeight = 16;
-
 
 class RetreatOne extends ModernLandBattle
 {

@@ -37,13 +37,6 @@ define("LOYALIST_FORCE", RED_FORCE);
 require_once "ModernLandBattle.php";
 
 
-// battlefforallencreek.js
-
-// counter image values
-$oneHalfImageWidth = 16;
-$oneHalfImageHeight = 16;
-
-
 class Amph extends ModernLandBattle
 {
     /* a comment */
@@ -117,51 +110,10 @@ class Amph extends ModernLandBattle
         return $data;
     }
 
-    function poke($event, $id, $x, $y, $user, $click)
-    {
-
-        $playerId = $this->gameRules->attackingForceId;
-        if ($this->players[$this->gameRules->attackingForceId] != $user) {
-            return false;
-        }
-
-        switch ($event) {
-            case SELECT_MAP_EVENT:
-                $mapGrid = new MapGrid($this->mapViewer[$playerId]);
-                $mapGrid->setPixels($x, $y);
-                return $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon(), $click);
-                break;
-
-            case SELECT_COUNTER_EVENT:
-                /* fall through */
-            case SELECT_SHIFT_COUNTER_EVENT:
-            /* fall through */
-            case COMBAT_PIN_EVENT:
-
-            return $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id), $click);
-
-                break;
-
-            case SELECT_BUTTON_EVENT:
-                $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0, $click);
-                break;
-
-            case KEYPRESS_EVENT:
-                $this->gameRules->processEvent(KEYPRESS_EVENT, $id, null, $click);
-                break;
-
-        }
-        return true;
-    }
-
     public function init()
     {
 
         $scenario = $this->scenario;
-        if(!$scenario->hardCuneiform){
-            $this->oldInit();
-            return;
-        }
 
         $this->force->addUnit("lll", LOYALIST_FORCE, 305, "multiGor.png", 5, 2, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
         $this->force->addUnit("lll", LOYALIST_FORCE, 803, "multiGor.png", 5, 2, 4, false, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
@@ -215,36 +167,6 @@ class Amph extends ModernLandBattle
 
         $this->force->addUnit("lll", BLUE_FORCE, "gameTurn5", "multiArmor.png", 12, 6, 8, false, STATUS_CAN_REINFORCE, "A", 5, 1, "rebel", true, "mech");
         $this->force->addUnit("lll", BLUE_FORCE, "gameTurn5", "multiMech.png", 10, 5, 8, false, STATUS_CAN_REINFORCE, "A", 5, 1, "rebel", true, "mech");
-//
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiMech.png", 4, 2, 8, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "sympth", true, "inf");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "sympth", true, "inf");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "sympth", true, "inf");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "sympth", true, "inf");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiMountain.png", 3, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "sympth", true, "mountain");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiMountain.png", 3, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "sympth", true, "mountain");
-//
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "sympth", true, "inf");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "sympth", true, "inf");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "sympth", true, "inf");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "sympth", true, "inf");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "sympth", true, "inf");
-//        $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "sympth", true, "inf");
-
-
     }
 
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
@@ -280,8 +202,6 @@ class Amph extends ModernLandBattle
                 $this->victory->setSupplyLen($scenario->supplyLen);
             }
             $this->display = new Display();
-//            $this->mapData->setData(20, 10, "js/amphInlandSmall.png");
-//
             $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
@@ -298,287 +218,16 @@ class Amph extends ModernLandBattle
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-//            $this->players = array("", "", "");
-//            $this->playerData = new stdClass();
-//            for ($player = 0; $player <= 2; $player++) {
-//                $this->playerData->${player} = new stdClass();
-//                $this->playerData->${player}->mapWidth = "auto";
-//                $this->playerData->${player}->mapHeight = "auto";
-//                $this->playerData->${player}->unitSize = "32px";
-//                $this->playerData->${player}->unitFontSize = "12px";
-//                $this->playerData->${player}->unitMargin = "-21px";
-//            }
-//
 
-//            for($player = 0;$player < 3;$player++){
-//                $this->mapViewer[$player]->setData(64 , 82.5, // originX, originY
-//                    27.5, 27.5, // top hexagon height, bottom hexagon height
-//                    16, 32// hexagon edge width, hexagon center width
-//                );
-//            }
             // game data
             $this->gameRules->setMaxTurn(7);
             $this->gameRules->setInitialPhaseMode(BLUE_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
-//            $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MECH_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MECH_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
-
-            // force data
-            //$this->force->setEliminationTrayXY(900);
-
-            // unit terrain data----------------------------------------
-
-//            // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
-//            $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
-//            $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
-//            $this->terrain->addTerrainFeature("clear", "clear", "c", 1, 0, 0, true);
-//            $this->terrain->addTerrainFeature("road", "road", "r", 1., 0, 0, false);
-//            $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
-//            $this->terrain->addTerrainFeature("fortified", "fortified", "h", 1, 0, 1, true);
-//            $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 0, false);
-//            $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
-//            $this->terrain->addTerrainFeature("roughone", "roughone", "g", 3, 0, 2, true);
-//            $this->terrain->addTerrainFeature("swamp", "swamp", "f", 3, 0, 1, true);
-//            $this->terrain->addTerrainFeature("river", "Martian River", "v", 0, 1, 1, true);
-            /* handle fort's in crtTraits */
-
-            /*
-             * First put clear everywhere, hexes and hex sides
-             */
-//            for ($col = 100; $col <= 2000; $col += 100) {
-//                for ($row = 1; $row <= 10; $row++) {
-//                    $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
-//                    $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
-//                    $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
-//                    $this->terrain->addTerrain($row + $col, HEXAGON_CENTER, "clear");
-//
-//                }
-//            }
-//
-//            $this->mapData->setSpecialHexes(array(1807 => LOYALIST_FORCE));
-
-
-            /*
-             * Next put terrain like rough and forest because they are exclusive and will cancel what else is there.
-             */
-//            $this->terrain->addTerrain(1504 ,1 , "swamp");
-//            $this->terrain->addTerrain(1504 ,1 , "road");
-//            $this->terrain->addTerrain(1604 ,1 , "swamp");
-//            $this->terrain->addTerrain(1604 ,1 , "road");
-//            $this->terrain->addTerrain(1704 ,1 , "swamp");
-//            $this->terrain->addTerrain(109 ,1 , "swamp");
-//            $this->terrain->addTerrain(209 ,1 , "swamp");
-//            $this->terrain->addTerrain(210 ,1 , "swamp");
-//            $this->terrain->addTerrain(103 ,1 , "forest");
-//            $this->terrain->addTerrain(104 ,1 , "forest");
-//            $this->terrain->addTerrain(203 ,1 , "forest");
-//            $this->terrain->addTerrain(204 ,1 , "forest");
-//            $this->terrain->addTerrain(304 ,1 , "forest");
-//            $this->terrain->addTerrain(404 ,1 , "forest");
-//            $this->terrain->addTerrain(403 ,1 , "forest");
-//            $this->terrain->addTerrain(504 ,1 , "forest");
-//            $this->terrain->addTerrain(506 ,1 , "forest");
-//            $this->terrain->addTerrain(605 ,1 , "forest");
-//            $this->terrain->addTerrain(705 ,1 , "forest");
-//            $this->terrain->addTerrain(805 ,1 , "forest");
-//            $this->terrain->addTerrain(606 ,1 , "forest");
-//            $this->terrain->addTerrain(707 ,1 , "forest");
-//            $this->terrain->addTerrain(807 ,1 , "forest");
-//            $this->terrain->addTerrain(708 ,1 , "forest");
-//            $this->terrain->addTerrain(808 ,1 , "forest");
-//            $this->terrain->addTerrain(909 ,1 , "forest");
-//            $this->terrain->addTerrain(909 ,1 , "road");
-//            $this->terrain->addTerrain(1008 ,1 , "forest");
-//            $this->terrain->addTerrain(1009 ,1 , "forest");
-//            $this->terrain->addTerrain(910 ,1 , "forest");
-//            $this->terrain->addTerrain(910 ,1 , "road");
-//            $this->terrain->addReinforceZone(910,'B');
-//            $this->terrain->addTerrain(1010 ,1 , "forest");
-//            $this->terrain->addTerrain(1010 ,1 , "road");
-//            $this->terrain->addReinforceZone(1010,'B');
-//            $this->terrain->addTerrain(1110 ,1 , "forest");
-//            $this->terrain->addReinforceZone(1110,'B');
-//            $this->terrain->addTerrain(1109 ,1 , "forest");
-//            $this->terrain->addTerrain(1207 ,1 , "forest");
-//            $this->terrain->addTerrain(1307 ,1 , "forest");
-//            $this->terrain->addTerrain(1308 ,1 , "forest");
-//            $this->terrain->addTerrain(1309 ,1 , "forest");
-//            $this->terrain->addTerrain(1310 ,1 , "forest");
-//            $this->terrain->addTerrain(1410 ,1 , "forest");
-//            $this->terrain->addTerrain(1409 ,1 , "forest");
-//            $this->terrain->addTerrain(1408 ,1 , "forest");
-//            $this->terrain->addTerrain(1407 ,1 , "forest");
-//            $this->terrain->addTerrain(1509 ,1 , "forest");
-//            $this->terrain->addTerrain(1510 ,1 , "forest");
-//            $this->terrain->addTerrain(1610 ,1 , "forest");
-//            $this->terrain->addReinforceZone(1610,'B');
-//            $this->terrain->addTerrain(1609 ,1 , "forest");
-//            $this->terrain->addTerrain(706 ,1 , "roughone");
-//            $this->terrain->addTerrain(806 ,1 , "roughone");
-//            $this->terrain->addTerrain(1006 ,1 , "roughone");
-//            $this->terrain->addTerrain(1007 ,1 , "roughone");
-//            $this->terrain->addTerrain(1203 ,4 , "river");
-//            $this->terrain->addTerrain(1203 ,4 , "road");
-//            $this->terrain->addTerrain(1203 ,3 , "river");
-//            $this->terrain->addTerrain(1204 ,4 , "river");
-//            $this->terrain->addTerrain(1204 ,3 , "river");
-//            $this->terrain->addTerrain(1205 ,4 , "river");
-//            $this->terrain->addTerrain(1205 ,3 , "river");
-//            $this->terrain->addTerrain(1206 ,4 , "river");
-//            $this->terrain->addTerrain(1206 ,3 , "river");
-//            $this->terrain->addTerrain(1207 ,4 , "river");
-//            $this->terrain->addTerrain(1207 ,3 , "river");
-//            $this->terrain->addTerrain(1207 ,2 , "river");
-//            $this->terrain->addTerrain(1308 ,3 , "river");
-//            $this->terrain->addTerrain(1309 ,4 , "river");
-//            $this->terrain->addTerrain(1309 ,3 , "river");
-//            $this->terrain->addTerrain(1310 ,4 , "river");
-//            $this->terrain->addTerrain(1310 ,3 , "river");
-//            $this->terrain->addTerrain(101 ,1 , "road");
-//            $this->terrain->addReinforceZone(101,'A');
-//            $this->terrain->addTerrain(101 ,2 , "road");
-//            $this->terrain->addTerrain(102 ,1 , "road");
-//            $this->terrain->addReinforceZone(102,'A');
-//            $this->terrain->addTerrain(202 ,4 , "road");
-//            $this->terrain->addTerrain(202 ,1 , "road");
-//            $this->terrain->addReinforceZone(202,'A');
-//            $this->terrain->addTerrain(303 ,4 , "road");
-//            $this->terrain->addTerrain(303 ,1 , "road");
-//            $this->terrain->addReinforceZone(303,'A');
-//            $this->terrain->addTerrain(402 ,3 , "road");
-//            $this->terrain->addTerrain(402 ,1 , "road");
-//            $this->terrain->addReinforceZone(402,'A');
-//            $this->terrain->addTerrain(503 ,4 , "road");
-//            $this->terrain->addTerrain(503 ,1 , "road");
-//            $this->terrain->addReinforceZone(503,'A');
-//            $this->terrain->addTerrain(603 ,4 , "road");
-//            $this->terrain->addTerrain(603 ,1 , "road");
-//            $this->terrain->addTerrain(704 ,4 , "road");
-//            $this->terrain->addTerrain(704 ,1 , "road");
-//            $this->terrain->addTerrain(803 ,3 , "road");
-//            $this->terrain->addTerrain(803 ,1 , "road");
-//            $this->terrain->addTerrain(904 ,4 , "road");
-//            $this->terrain->addTerrain(904 ,1 , "road");
-//            $this->terrain->addTerrain(904 ,2 , "road");
-//            $this->terrain->addTerrain(905 ,1 , "road");
-//            $this->terrain->addTerrain(905 ,2 , "road");
-//            $this->terrain->addTerrain(906 ,1 , "road");
-//            $this->terrain->addTerrain(906 ,2 , "road");
-//            $this->terrain->addTerrain(907 ,1 , "road");
-//            $this->terrain->addTerrain(907 ,2 , "road");
-//            $this->terrain->addTerrain(908 ,1 , "road");
-//            $this->terrain->addTerrain(908 ,2 , "road");
-//            $this->terrain->addTerrain(909 ,2 , "road");
-//            $this->terrain->addTerrain(1010 ,4 , "road");
-//            $this->terrain->addTerrain(1111 ,4 , "road");
-//            $this->terrain->addTerrain(903 ,3 , "road");
-//            $this->terrain->addTerrain(903 ,1 , "road");
-//            $this->terrain->addReinforceZone(903,'A');
-//            $this->terrain->addTerrain(1003 ,4 , "road");
-//            $this->terrain->addTerrain(1003 ,1 , "road");
-//            $this->terrain->addReinforceZone(1003,'A');
-//            $this->terrain->addTerrain(1103 ,3 , "road");
-//            $this->terrain->addTerrain(1103 ,1 , "road");
-//            $this->terrain->addReinforceZone(1103,'A');
-//            $this->terrain->addTerrain(1203 ,1 , "road");
-//            $this->terrain->addReinforceZone(1203,'A');
-//            $this->terrain->addTerrain(1303 ,3 , "road");
-//            $this->terrain->addTerrain(1303 ,1 , "road");
-//            $this->terrain->addReinforceZone(1303,'A');
-//            $this->terrain->addTerrain(1403 ,4 , "road");
-//            $this->terrain->addTerrain(1403 ,1 , "road");
-//            $this->terrain->addReinforceZone(1403,'A');
-//            $this->terrain->addTerrain(1504 ,4 , "road");
-//            $this->terrain->addTerrain(1604 ,4 , "road");
-//            $this->terrain->addTerrain(1705 ,4 , "road");
-//            $this->terrain->addTerrain(1705 ,1 , "road");
-//            $this->terrain->addTerrain(1805 ,4 , "road");
-//            $this->terrain->addTerrain(1805 ,1 , "road");
-//            $this->terrain->addTerrain(1805 ,2 , "road");
-//            $this->terrain->addTerrain(1806 ,1 , "road");
-//            $this->terrain->addTerrain(1806 ,2 , "road");
-//            $this->terrain->addTerrain(1807 ,1 , "road");
-//            $this->terrain->addTerrain(1807 ,2 , "road");
-//            $this->terrain->addTerrain(1808 ,1 , "road");
-//            $this->terrain->addTerrain(1808 ,2 , "road");
-//            $this->terrain->addTerrain(1809 ,1 , "road");
-//            $this->terrain->addTerrain(1809 ,2 , "road");
-//            $this->terrain->addTerrain(1810 ,1 , "road");
-//            $this->terrain->addReinforceZone(1810,'B');
-//            $this->terrain->addTerrain(1810 ,2 , "road");
-//            $this->terrain->addTerrain(1905 ,3 , "road");
-//            $this->terrain->addTerrain(1905 ,1 , "road");
-//            $this->terrain->addTerrain(2004 ,3 , "road");
-//            $this->terrain->addTerrain(2004 ,1 , "road");
-//            $this->terrain->addTerrain(2003 ,2 , "road");
-//            $this->terrain->addTerrain(2003 ,1 , "road");
-//            $this->terrain->addReinforceZone(2003,'A');
-//            $this->terrain->addTerrain(2104 ,4 , "road");
-//            $this->terrain->addTerrain(2003 ,4 , "road");
-//            $this->terrain->addTerrain(1903 ,1 , "road");
-//            $this->terrain->addReinforceZone(1903,'A');
-//            $this->terrain->addTerrain(1903 ,3 , "road");
-//            $this->terrain->addTerrain(1803 ,1 , "road");
-//            $this->terrain->addReinforceZone(1803,'A');
-//            $this->terrain->addTerrain(1803 ,4 , "road");
-//            $this->terrain->addTerrain(1703 ,1 , "road");
-//            $this->terrain->addReinforceZone(1703,'A');
-//            $this->terrain->addTerrain(1703 ,3 , "road");
-//            $this->terrain->addTerrain(1603 ,1 , "road");
-//            $this->terrain->addReinforceZone(1603,'A');
-//            $this->terrain->addTerrain(1603 ,4 , "road");
-//            $this->terrain->addTerrain(1503 ,1 , "road");
-//            $this->terrain->addReinforceZone(1503,'A');
-//            $this->terrain->addTerrain(1503 ,3 , "road");
-//            $this->terrain->addTerrain(201 ,1 , "blocked");
-//            $this->terrain->addTerrain(301 ,1 , "blocked");
-//            $this->terrain->addTerrain(302 ,1 , "blocked");
-//            $this->terrain->addTerrain(401 ,1 , "blocked");
-//            $this->terrain->addTerrain(502 ,1 , "blocked");
-//            $this->terrain->addTerrain(501 ,1 , "blocked");
-//            $this->terrain->addTerrain(601 ,1 , "blocked");
-//            $this->terrain->addTerrain(701 ,1 , "blocked");
-//            $this->terrain->addTerrain(702 ,1 , "blocked");
-//            $this->terrain->addTerrain(801 ,1 , "blocked");
-//            $this->terrain->addTerrain(901 ,1 , "blocked");
-//            $this->terrain->addTerrain(902 ,1 , "blocked");
-//            $this->terrain->addTerrain(1001 ,1 , "blocked");
-//            $this->terrain->addTerrain(1002 ,1 , "blocked");
-//            $this->terrain->addTerrain(1101 ,1 , "blocked");
-//            $this->terrain->addTerrain(1102 ,1 , "blocked");
-//            $this->terrain->addTerrain(1201 ,1 , "blocked");
-//            $this->terrain->addTerrain(1202 ,1 , "blocked");
-//            $this->terrain->addTerrain(1301 ,1 , "blocked");
-//            $this->terrain->addTerrain(1302 ,1 , "blocked");
-//            $this->terrain->addTerrain(1401 ,1 , "blocked");
-//            $this->terrain->addTerrain(1402 ,1 , "blocked");
-//            $this->terrain->addTerrain(1501 ,1 , "blocked");
-//            $this->terrain->addTerrain(1502 ,1 , "blocked");
-//            $this->terrain->addTerrain(1601 ,1 , "blocked");
-//            $this->terrain->addTerrain(1602 ,1 , "blocked");
-//            $this->terrain->addTerrain(1701 ,1 , "blocked");
-//            $this->terrain->addTerrain(1702 ,1 , "blocked");
-//            $this->terrain->addTerrain(1801 ,1 , "blocked");
-//            $this->terrain->addTerrain(1802 ,1 , "blocked");
-//            $this->terrain->addTerrain(1901 ,1 , "blocked");
-//            $this->terrain->addTerrain(1902 ,1 , "blocked");
-//            $this->terrain->addTerrain(2001 ,1 , "blocked");
-//            $this->terrain->addTerrain(2002 ,1 , "blocked");
-//            $this->terrain->addReinforceZone(602,'A');
-//            $this->terrain->addReinforceZone(703,'A');
-//            $this->terrain->addReinforceZone(802,'A');
-//            $this->terrain->addReinforceZone(810,'B');
-//            $this->terrain->addReinforceZone(1210,'B');
-//            $this->terrain->addReinforceZone(1710,'B');
-//            $this->terrain->addReinforceZone(1910,'B');
-//            $this->terrain->addReinforceZone(2010,'B');
-
-            // end terrain data ----------------------------------------
-
         }
     }
 }

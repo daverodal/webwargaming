@@ -26,9 +26,6 @@ $phase_name[15] = "<span class='playerTwoFace'>{$force_name[2]}</span> deploy ph
 
 
 
-$oneHalfImageWidth = 16;
-$oneHalfImageHeight = 16;
-
 
 class FerozeshaDayTwo extends IndiaCore
 {

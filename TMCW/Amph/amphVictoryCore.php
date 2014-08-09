@@ -64,11 +64,11 @@ class amphVictoryCore extends victoryCore
 
         list($mapHexName, $forceId) = $args;
 
-        if ($mapHexName == 1807 && $forceId == REBEL_FORCE) {
-            $this->scienceCenterDestroyed;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>Marine Science Facility Destroyed</span>";
-            $battle->gameRules->flashMessages[] = "Rebel units may now withdraw from beachheads";
-        }
+//        if ($mapHexName == 1807 && $forceId == REBEL_FORCE) {
+//            $this->scienceCenterDestroyed;
+//            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>Marine Science Facility Destroyed</span>";
+//            $battle->gameRules->flashMessages[] = "Rebel units may now withdraw from beachheads";
+//        }
         if ($forceId == LOYALIST_FORCE) {
             $newLandings = [];
             foreach ($this->landingZones as $landingZone) {
@@ -191,9 +191,7 @@ class amphVictoryCore extends victoryCore
                 $unit = $units[$i];
                 if ($unit->forceId == BLUE_FORCE && $unit->hexagon->parent === "gameImages") {
                     $supply[$unit->hexagon->name] = BLUE_FORCE;
-                    echo "Unit $unit->class ";
                     if ($unit->class === "para") {
-                        echo "wow a para ";
                         $this->airdropZones[] = $unit->hexagon->name;
                     } else {
                         $this->landingZones[] = $unit->hexagon->name;
@@ -212,7 +210,6 @@ class amphVictoryCore extends victoryCore
             foreach ($this->combatCache as $id => $strength) {
                 $unit = $force->getUnit($id);
                 $unit->removeAdjustment('supply');
-//                $unit->strength = $strength;
                 unset($this->combatCache->$id);
             }
         }
@@ -307,10 +304,8 @@ class amphVictoryCore extends victoryCore
                 if ($unit->forceId == $b->gameRules->attackingForceId && !$unit->supplied && !isset($this->combatCache->$id)) {
                     $this->combatCache->$id = true;
                     $unit->addAdjustment('supply','floorHalf');
-//                    $unit->strength = floor($unit->strength / 2);
                 }
                 if ($unit->supplied && isset($this->combatCache->$id)) {
-//                    $unit->strength = $this->combatCache->$id;
                     $unit->removeAdjustment('supply');
                     unset($this->combatCache->$id);
                 }

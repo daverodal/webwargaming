@@ -26,14 +26,6 @@ $phase_name[14] = "";
 $phase_name[15] = "French deploy phase";
 
 
-
-// battleforallenriver.js
-
-// counter image values
-$oneHalfImageWidth = 16;
-$oneHalfImageHeight = 16;
-
-
 class Malplaquet extends JagCore
 {
 

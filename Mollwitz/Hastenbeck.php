@@ -25,12 +25,6 @@ $phase_name[14] = "";
 $phase_name[15] = "Allied deploy phase";
 
 
-
-// counter image values
-$oneHalfImageWidth = 16;
-$oneHalfImageHeight = 16;
-
-
 class Hastenbeck extends JagCore
 {
 

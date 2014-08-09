@@ -26,11 +26,6 @@ $phase_name[14] = "";
 $phase_name[15] = "Austrian deploy phase";
 
 
-// counter image values
-$oneHalfImageWidth = 16;
-$oneHalfImageHeight = 16;
-
-
 class Lobositz extends JagCore
 {
 

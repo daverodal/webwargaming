@@ -27,11 +27,6 @@ $phase_name[15] = "Anglo Allied deploy phase";
 
 
 
-// counter image values
-$oneHalfImageWidth = 16;
-$oneHalfImageHeight = 16;
-
-
 class Minden extends JagCore
 {
     public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>1, 'SpecialHexC'=>1];

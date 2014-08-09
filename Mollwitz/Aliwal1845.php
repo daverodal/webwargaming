@@ -25,10 +25,6 @@ $phase_name[14] = "";
 $phase_name[15] = "<span class='playerTwoFace'>{$force_name[2]}</span> deploy phase";
 
 
-$oneHalfImageWidth = 16;
-$oneHalfImageHeight = 16;
-
-
 class Aliwal1845 extends IndiaCore
 {
     public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>2, 'SpecialHexC'=>0];

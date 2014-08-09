@@ -50,12 +50,6 @@ require_once "terrain.php";
 require_once "display.php";
 require_once "victory.php";
 
-// battlefforallencreek.js
-
-// counter image values
-$oneHalfImageWidth = 16;
-$oneHalfImageHeight = 16;
-
 
 class TankDual extends LandBattle
 {

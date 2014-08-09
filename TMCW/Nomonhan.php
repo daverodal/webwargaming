@@ -36,13 +36,6 @@ $mode_name[2] = "";
 define("JAPANESE_FORCE", BLUE_FORCE);
 define("SOVIET_FORCE", RED_FORCE);
 
-// battlefforallencreek.js
-
-// counter image values
-$oneHalfImageWidth = 16;
-$oneHalfImageHeight = 16;
-
-
 class Nomonhan extends MartianCivilWar
 {
     /* a comment */

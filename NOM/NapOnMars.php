@@ -35,12 +35,6 @@ require_once "display.php";
 require_once "terrain.php";
 require_once "victory.php";
 
-// battleforallencreek.js
-
-// counter image values
-$oneHalfImageWidth = 16;
-$oneHalfImageHeight = 16;
-
 
 
 class NapOnMars extends Battle {

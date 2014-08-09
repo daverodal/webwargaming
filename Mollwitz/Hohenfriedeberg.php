@@ -25,11 +25,6 @@ $phase_name[14] = "";
 $phase_name[15] = "Austrian deploy phase";
 
 
-// counter image values
-$oneHalfImageWidth = 16;
-$oneHalfImageHeight = 16;
-
-
 class Hohenfriedeberg extends JagCore
 {
     public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>1, 'SpecialHexC'=>1];
