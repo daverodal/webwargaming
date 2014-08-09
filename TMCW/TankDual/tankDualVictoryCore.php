@@ -154,7 +154,8 @@ class tankDualVictoryCore extends victoryCore
             $force = $battle->force;
             foreach($this->combatCache as $id => $strength){
                 $unit = $force->getUnit($id);
-                $unit->strength = $strength;
+                $unit->removeAdjustment('supply');
+//                $unit->strength = $strength;
                 unset($this->combatCache->$id);
             }
         }
@@ -244,8 +245,9 @@ class tankDualVictoryCore extends victoryCore
                     return;
                 }
                 if ($unit->forceId == $b->gameRules->attackingForceId && !$unit->supplied && !isset($this->combatCache->$id)) {
-                    $this->combatCache->$id = $unit->strength;
-                    $unit->strength = floor($unit->strength / 2);
+                    $this->combatCache->$id = true;
+//                    $unit->strength = floor($unit->strength / 2);
+                    $unit->addAdjustment('supply','floorHalf');
                 }
                 if ($unit->supplied && isset($this->combatCache->$id)) {
                     $unit->strength = $this->combatCache->$id;

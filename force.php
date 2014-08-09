@@ -41,7 +41,7 @@ class unit implements JsonSerializable
     /* @var Hexagon */
     public $hexagon;
     public $image;
-    public $strength;
+//    public $strength;
     public $maxStrength;
     public $minStrength;
     public $isReduced;
@@ -62,19 +62,22 @@ class unit implements JsonSerializable
     public $forceMarch = false;
     public $class;
     public $supplied = true;
+    public $exchangeAmount;
     public $dirty;
+    public $adjustments;
 
     public function jsonSerialize(){
         if(is_object($this->hexagon)){
-        if($this->hexagon->name){
-            $this->hexagon = $this->hexagon->getName();
+            if($this->hexagon->name){
+                $this->hexagon = $this->hexagon->getName();
 
-        }else{
-            $this->hexagon = $this->hexagon->parent;
-        }
+            }else{
+                $this->hexagon = $this->hexagon->parent;
+            }
         }
         return $this;
     }
+
     function unitHasMoveAmountAvailable($moveAmount)
     {
         if ($this->moveAmountUsed + $moveAmount <= $this->maxMove) {
@@ -85,6 +88,36 @@ class unit implements JsonSerializable
             $canMove = false;
         }
         return $canMove;
+    }
+
+    public function __get($name){
+        if($name !== "strength"){
+            throw new Exception("Bad __get for unit $name ");
+        }
+        if($this->isReduced){
+            $strength =  $this->minStrength;
+        }else{
+            $strength = $this->maxStrength;
+        }
+        foreach($this->adjustments as $adjustment){
+            switch($adjustment){
+                case 'floorHalf':
+                    $strength = floor($strength/2);
+                    break;
+                case 'half':
+                    $strength = $strength/2;
+                    break;
+            }
+        }
+        return $strength;
+    }
+
+    function addAdjustment($name, $adjustment){
+        $this->adjustments->$name = $adjustment;
+    }
+
+    function removeAdjustment($name){
+        unset($this->adjustments->$name);
     }
 
     function unitHasNotMoved()
@@ -141,7 +174,7 @@ class unit implements JsonSerializable
                         $amtLost = $this->minStrength;
                     }else{
                         $battle->victory->reduceUnit($this);
-                        $this->strength = $this->minStrength;
+//                        $this->strength = $this->minStrength;
                         $this->isReduced = true;
                         $amtLost = $this->maxStrength - $this->minStrength;
                     }
@@ -348,7 +381,7 @@ class unit implements JsonSerializable
             $mapHex->setUnit($this->forceId,$this->id);
         }
         $this->image = $unitImage;
-        $this->strength = $isReduced ? $unitMinStrength : $unitMaxStrength;
+//        $this->strength = $isReduced ? $unitMinStrength : $unitMaxStrength;
         $this->maxMove = $unitMaxMove;
         $this->maxStrength = $unitMaxStrength;
         $this->minStrength = $unitMinStrength;
@@ -380,6 +413,8 @@ class unit implements JsonSerializable
                 $this->$k = $v;
             }
             $this->dirty = false;
+        }else{
+            $this->adjustments = new stdClass();
         }
     }
 }
@@ -540,7 +575,7 @@ class Force
                             $battle->victory->reduceUnit($this->units[$defenderId]);
                             $this->units[$defenderId]->status = STATUS_CAN_RETREAT;
                             $this->units[$defenderId]->isReduced = true;
-                            $this->units[$defenderId]->strength = $this->units[$defenderId]->minStrength;
+//                            $this->units[$defenderId]->strength = $this->units[$defenderId]->minStrength;
                             $this->units[$defenderId]->retreatCountRequired = $distance;
                             $this->exchangeAmount = $this->units[$defenderId]->maxStrength - $this->units[$defenderId]->minStrength;
                         }
@@ -582,7 +617,7 @@ class Force
                         }else{
                             $battle->victory->reduceUnit($this->units[$defenderId]);
                             $this->units[$defenderId]->isReduced = true;
-                            $this->units[$defenderId]->strength = $this->units[$defenderId]->minStrength;
+//                            $this->units[$defenderId]->strength = $this->units[$defenderId]->minStrength;
                             $this->units[$defenderId]->status = STATUS_CAN_RETREAT;
                             $this->units[$defenderId]->retreatCountRequired = $distance;
                         }
@@ -609,7 +644,7 @@ class Force
                         }else{
                             $battle->victory->reduceUnit($this->units[$defenderId]);
                             $this->units[$defenderId]->isReduced = true;
-                            $this->units[$defenderId]->strength = $this->units[$defenderId]->minStrength;
+//                            $this->units[$defenderId]->strength = $this->units[$defenderId]->minStrength;
                             $this->units[$defenderId]->status = STATUS_DEFENDED;
                             $this->units[$defenderId]->retreatCountRequired = 0;
                         }
@@ -739,7 +774,7 @@ class Force
         $unit->status = STATUS_ELIMINATED;
         $unit->isReduced = true;
         $unit->supplied = true;
-        $unit->strength = $this->units[$id]->minStrength;
+//        $unit->strength = $this->units[$id]->minStrength;
         $col = 0;
 //        if($unit->forceId == 2){
 //
@@ -1713,7 +1748,7 @@ class Force
 
     function replace($id){
         if($this->units[$id]->isReduced && $this->units[$id]->status != STATUS_REPLACED){
-            $this->units[$id]->strength = $this->units[$id]->maxStrength;
+//            $this->units[$id]->strength = $this->units[$id]->maxStrength;
             $this->units[$id]->isReduced = false;
             $this->units[$id]->status = STATUS_REPLACED;
             return  true;

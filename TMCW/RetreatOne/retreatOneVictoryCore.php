@@ -145,7 +145,8 @@ class retreatOneVictoryCore extends victoryCore
             $force = $battle->force;
             foreach($this->combatCache as $id => $strength){
                 $unit = $force->getUnit($id);
-                $unit->strength = $strength;
+                $unit->removeAdjustment('supply');
+//                $unit->strength = $strength;
                 unset($this->combatCache->$id);
             }
         }
@@ -252,11 +253,13 @@ class retreatOneVictoryCore extends victoryCore
                     return;
                 }
                 if ($unit->forceId == $b->gameRules->attackingForceId && !$unit->supplied && !isset($this->combatCache->$id)) {
-                    $this->combatCache->$id = $unit->strength;
-                    $unit->strength = floor($unit->strength / 2);
+                    $this->combatCache->$id = true;
+                    $unit->addAdjustment('supply','floorHalf');
+//                    $unit->strength = floor($unit->strength / 2);
                 }
                 if ($unit->supplied && isset($this->combatCache->$id)) {
-                    $unit->strength = $this->combatCache->$id;
+                    $unit->removeAdjustment('supply');
+//                    $unit->strength = $this->combatCache->$id;
                     unset($this->combatCache->$id);
                 }
                 if ($unit->supplied && isset($this->movementCache->$id)) {

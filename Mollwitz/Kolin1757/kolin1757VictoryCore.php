@@ -46,14 +46,24 @@ class kolin1757VictoryCore extends victoryCore
         $battle = Battle::getBattle();
 
         list($mapHexName, $forceId) = $args;
-        if(in_array($mapHexName,$battle->specialHexA)){
-            if ($forceId == SIKH_FORCE) {
-                $this->victoryPoints[SIKH_FORCE]  += 20;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='sikh'>+20 Sikh vp</span>";
+        if (in_array($mapHexName, $battle->specialHexA)) {
+            if ($forceId == AUSTRIAN_FORCE) {
+                $this->victoryPoints[SIKH_FORCE] += 10;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>+10 Austrian vp</span>";
             }
-            if ($forceId == BRITISH_FORCE) {
-                $this->victoryPoints[SIKH_FORCE]  -= 20;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-20 Sikh vp</span>";
+            if ($forceId == PRUSSIAN_FORCE) {
+                $this->victoryPoints[SIKH_FORCE] -= 10;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>-10 Prussian vp</span>";
+            }
+        }
+        if (in_array($mapHexName, $battle->specialHexB)) {
+            if ($forceId == PRUSSIAN_FORCE) {
+                $this->victoryPoints[SIKH_FORCE] += 20;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+20 Prussian vp</span>";
+            }
+            if ($forceId == AUSTRIAN_FORCE) {
+                $this->victoryPoints[SIKH_FORCE] -= 20;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-20 Austrian vp</span>";
             }
         }
     }
@@ -63,42 +73,44 @@ class kolin1757VictoryCore extends victoryCore
         $gameRules = $battle->gameRules;
         $scenario = $battle->scenario;
         $turn = $gameRules->turn;
-        $sikhWin = $britishWin = false;
+        $prussianScore = $austrianWin = $prussianWin = $draw = false;
 
         if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
-            $britVic = 40;
-            if (($this->victoryPoints[BRITISH_FORCE] >= $britVic && ($this->victoryPoints[BRITISH_FORCE] - ($this->victoryPoints[SIKH_FORCE]) >= 15))) {
-                $britishWin = true;
+            $winScore = 60;
+            if (($this->victoryPoints[PRUSSIAN_FORCE] >= $winScore && ($this->victoryPoints[PRUSSIAN_FORCE] - ($this->victoryPoints[AUSTRIAN_FORCE]) >= 10))) {
+                if ($turn < 9) {
+                    $prussianWin = true;
+                }
+                if ($turn < 12) {
+                    $draw = true;
+                }
+                $prussianScore = true;
             }
-            if (($this->victoryPoints[SIKH_FORCE] >= 40)) {
-                $sikhWin = true;
+            if ($this->victoryPoints[AUSTRIAN_FORCE] >= $winScore && ($this->victoryPoints[AUSTRIAN_FORCE] - ($this->victoryPoints[PRUSSIAN_FORCE]))) {
+                if ($turn < 13) {
+                    $austrianWin = true;
+                }
             }
             if ($turn == $gameRules->maxTurn + 1) {
-                if (!$britishWin) {
-                    $sikhWin = true;
+                if (!$prussianScore) {
+                    $austrianWin = true;
                 }
-                if ($sikhWin && $britishWin) {
-                    $this->winner = 0;
-                    $britishWin = $sikhWin = false;
-                    $gameRules->flashMessages[] = "Tie Game";
-                    $gameRules->flashMessages[] = "Game Over";
-                    $this->gameOver = true;
-                    return true;
-                }
+                $gameRules->flashMessages[] = "Game Over";
+                $this->gameOver = true;
+                return true;
             }
 
-
-            if ($britishWin) {
-                $this->winner = BRITISH_FORCE;
-                $gameRules->flashMessages[] = "British Win";
+            if ($prussianWin) {
+                $this->winner = PRUSSIAN_FORCE;
+                $gameRules->flashMessages[] = "Prussian Win";
             }
-            if ($sikhWin) {
-                $this->winner = SIKH_FORCE;
-                $msg = "Sikh Win";
+            if ($austrianWin) {
+                $this->winner = AUSTRIAN_FORCE;
+                $msg = "Austrian Win";
                 $gameRules->flashMessages[] = $msg;
             }
-            if ($britishWin || $sikhWin) {
+            if ($prussianWin || $austrianWin) {
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
                 return true;
