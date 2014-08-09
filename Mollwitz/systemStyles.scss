@@ -352,3 +352,11 @@ p.forceMarch{
   float:left;
   margin-right:15px;
 }
+.austrian.specialHexes{
+  background-color:$austrianColor;
+  color:white;
+}
+.prussian.specialHexes{
+  background-color: $prussianColor;
+  color:black;
+}

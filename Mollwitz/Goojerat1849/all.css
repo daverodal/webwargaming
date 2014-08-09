@@ -995,6 +995,14 @@ p.forceMarch {
   float: left;
   margin-right: 15px; }
 
+.austrian.specialHexes {
+  background-color: #df5842;
+  color: white; }
+
+.prussian.specialHexes {
+  background-color: #fffd7f;
+  color: black; }
+
 #map {
   width: auto !important; }
 
