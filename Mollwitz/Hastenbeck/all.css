@@ -635,7 +635,8 @@ fieldset {
   height: 100%;
   width: 100%;
   position: absolute;
-  background: transparent; }
+  background: transparent;
+  z-index: 1; }
 
 .unit .unit-numbers {
   text-align: center;
