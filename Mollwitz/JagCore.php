@@ -120,6 +120,7 @@ class JagCore extends LandBattle{
         $this->terrain->addAltEntranceCost('swamp','artillery','blocked');
         $this->terrain->addTerrainFeature("sunkenroad", "sunkenroad", "k", 1, 0, 1, true, false);
         $this->terrain->addTerrainFeature("slope","slope", "s", 0, 1, 0, false);
+        $this->terrain->addTerrainFeature("elevation","elevation", "e", 0, 0, 0, false);
 
 
         for ($col = 100; $col <= $maxCol * 100; $col += 100) {
