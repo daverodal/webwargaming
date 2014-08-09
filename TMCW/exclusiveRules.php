@@ -29,20 +29,6 @@
             </H1>
             <h2 class="exclusive"> EXCLUSIVE RULES
             </h2>
-            <ul>
-                <?php if($scenario->jagersdorfCombat){?>
-                <li>
-                    <h4>Terrain Effects on Combat</h4>
-                    <ul>
-                        <li >Prussian Infantry units are +1 to their combat factor when Attacking into
-                            or Defending in clear, unless they are attacking across a creek or bridge.
-                        </li>
-                    </ul>
-                </li>
-                <?php } ?>
-
-
-            </ul>
             <?php include "victoryConditions.php"?>
             <div id="credits">
                 <h2><cite><?=$name?></cite></h2>

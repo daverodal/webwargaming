@@ -65,9 +65,10 @@
             <?= $playerOne ?> units are this color.
             <div class="unit rebel" alt="0" src="<?= base_url(); ?>js/short-red-arrow-md.png"
                  style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204);   position: relative;">
-                <section></section>
                 <div class="unitSize">xx</div>
-                <img src="<?= base_url(); ?>js/multiArmor.png" class="counter">
+                <div class="counterWrapper">
+                    <img src="<?= base_url(); ?>js/multiArmor.png" class="counter">
+                </div>
 
                 <div class="unit-numbers">6 - 8</div>
             </div>
@@ -75,40 +76,41 @@
             <?= $playerTwo ?> units are this color.
             <div class="unit <?= strtolower($playerTwo) ?>" alt="0" src="<?= base_url(); ?>js/short-red-arrow-md.png"
                  style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204); position: relative;">
-                <section></section>
                 <div class="unitSize">xx</div>
-                <img class="arrow" src="<?= base_url(); ?>js/short-red-arrow-md.png" style="opacity: 0;">
-                <img src="<?= base_url(); ?>js/multiMech.png" class="counter">
-
+                <div class="counterWrapper">
+                    <img src="<?= base_url(); ?>js/multiMech.png" class="counter">
+                </div>
                 <div class="unit-numbers">9 - 6</div>
-
             </div>
 
             <p> The symbol above the numbers represents the unit type.</p>
             This is Armor (tanks).
             <div class="unit <?= strtolower($playerOne) ?>" alt="0" src="<?= base_url(); ?>js/short-red-arrow-md.png"
                  style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204);  position: relative;">
-                <section></section>
+
                 <div class="unitSize">xx</div>
-                <img src="<?= base_url(); ?>js/multiArmor.png" class="counter">
+                <div class="counterWrapper">
+                    <img src="<?= base_url(); ?>js/multiArmor.png" class="counter">
+                </div>
 
                 <div class="unit-numbers">6 - 8</div>
             </div>
             <p></p>This is Mechinized Infantry (soldiers in half tracks, with small arms).
             <div class="unit <?= strtolower($playerOne) ?>" alt="0" src="<?= base_url(); ?>js/short-red-arrow-md.png"
                  style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204);  position: relative;">
-                <section></section>
                 <div class="unitSize">xx</div>
-                <img src="<?= base_url(); ?>js/multiMech.png" class="counter">
-
+                <div class="counterWrapper">
+                    <img src="<?= base_url(); ?>js/multiMech.png" class="counter">
+                </div>
                 <div class="unit-numbers">4 - 8</div>
             </div>
             <p></p>This is Infantry. (soldiers on foot, with small arms).
             <div class="unit <?= strtolower($playerOne) ?>" alt="0" src="<?= base_url(); ?>js/short-red-arrow-md.png"
                  style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204); position: relative;">
-                <section></section>
                 <div class="unitSize">xx</div>
-                <img src="<?= base_url(); ?>js/multiInf.png" class="counter">
+                <div class="counterWrapper">
+                    <img src="<?= base_url(); ?>js/multiInf.png" class="counter">
+                </div>
 
                 <div class="unit-numbers">2 - 8</div>
             </div>
@@ -116,9 +118,10 @@
             The number on the left is the combat strength. The number on the right is the movement allowance
             <div class="unit <?= strtolower($playerTwo) ?>" alt="0" src="<?= base_url(); ?>js/short-red-arrow-md.png"
                  style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204); position: relative;">
-                <section></section>
                 <div class="unitSize">xx</div>
-                <img src="<?= base_url(); ?>js/multiMech.png" class="counter">
+                <div class="counterWrapper">
+                    <img src="<?= base_url(); ?>js/multiMech.png" class="counter">
+                </div>
 
                 <div class="unit-numbers">9 - 6</div>
             </div>
@@ -129,18 +132,19 @@
             <div class="clear"></div>
             <div class="unit <?= strtolower($playerOne) ?>" alt="0" src="<?= base_url(); ?>js/short-red-arrow-md.png"
                  style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204); float:left;  position: relative;">
-                <section></section>
                 <div class="unitSize">xx</div>
-                <img src="<?= base_url(); ?>js/multiArmor.png" class="counter">
+                <div class="counterWrapper">
+                    <img src="<?= base_url(); ?>js/multiArmor.png" class="counter">
+                </div>
 
                 <div class="unit-numbers"><span class="reduced">3 - 8</span></div>
             </div>
             <div class="unit <?= strtolower($playerTwo) ?>" alt="0" src="<?= base_url(); ?>js/short-red-arrow-md.png"
                  style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204); float:left; position: relative;">
-                <section></section>
                 <div class="unitSize">xx</div>
-                <img class="arrow" src="<?= base_url(); ?>js/short-red-arrow-md.png" style="opacity: 0;">
-                <img src="<?= base_url(); ?>js/multiMech.png" class="counter">
+                <div class="counterWrapper">
+                    <img src="<?= base_url(); ?>js/multiMech.png" class="counter">
+                </div>
 
                 <div class="unit-numbers"><span class="reduced">4 - 6</span></div>
 
