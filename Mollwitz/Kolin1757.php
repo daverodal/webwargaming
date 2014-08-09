@@ -50,8 +50,8 @@ class Kolin1757 extends JagCore
 
     static function playMulti($name, $wargame, $arg = false)
     {
-        $deployTwo = $playerOne = "Austrian";
-        $deployOne = $playerTwo = "Prussian";
+        $deployTwo = $playerOne = "Prussian";
+        $deployOne = $playerTwo = "Austrian";
         @include_once "playMulti.php";
     }
 
@@ -59,8 +59,8 @@ class Kolin1757 extends JagCore
     {
         global $force_name;
         $youAre = $force_name[$player];
-        $deployTwo = $playerOne = "Austrian";
-        $deployOne = $playerTwo = "Prussian";
+        $deployTwo = $playerOne = "Prussian";
+        $deployOne = $playerTwo = "Austrian";
         @include_once "view.php";
     }
 
