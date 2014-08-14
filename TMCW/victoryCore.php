@@ -6,13 +6,17 @@
  * Time: 7:06 PM
  * To change this template use File | Settings | File Templates.
  */
+include "supplyRulesTraits.php";
+
 class victoryCore
 {
     public $victoryPoints;
-    private $movementCache;
-    private $combatCache;
-    private $supplyLen = false;
-    private $gameOver = false;
+    protected $movementCache;
+    protected $combatCache;
+    protected $supplyLen = false;
+    public $gameOver = false;
+
+    use modernSupplyRules;
 
     function __construct($data)
     {
@@ -131,12 +135,7 @@ class victoryCore
 
             /* Restore all un-supplied strengths */
             $force = $battle->force;
-            foreach($this->combatCache as $id => $strength){
-                $unit = $force->getUnit($id);
-//                $unit->strength = $strength;
-                $unit->removeAdjustment('supply');
-                unset($this->combatCache->$id);
-            }
+            $this->restoreAllCombatEffects($force);
         }
         if ($gameRules->phase == BLUE_REPLACEMENT_PHASE || $gameRules->phase == RED_REPLACEMENT_PHASE) {
             $gameRules->flashMessages[] = "@show deadpile";
@@ -190,53 +189,7 @@ class victoryCore
                 $bias = array(2 => true, 3 => true);
                 $goal = $this->loyalistGoal;
             }
-            if ($b->gameRules->mode == REPLACING_MODE) {
-                if ($unit->status == STATUS_CAN_UPGRADE) {
-                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias, $this->supplyLen);
-                    if (!$unit->supplied) {
-                        /* TODO: make this not cry  (call a method) */
-                        $unit->status = STATUS_STOPPED;
-                    }
-                }
-                return;
-            }
-            if ($b->gameRules->mode == MOVING_MODE) {
-                if ($unit->status == STATUS_READY || $unit->status == STATUS_UNAVAIL_THIS_PHASE) {
-                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias,$this->supplyLen);
-                } else {
-                    return;
-                }
-                if (!$unit->supplied && !isset($this->movementCache->$id)) {
-                    $this->movementCache->$id = $unit->maxMove;
-                    $unit->maxMove = floor($unit->maxMove / 2);
-                }
-                if ($unit->supplied && isset($this->movementCache->$id)) {
-                    $unit->maxMove = $this->movementCache->$id;
-                    unset($this->movementCache->$id);
-                }
-            }
-            if ($b->gameRules->mode == COMBAT_SETUP_MODE) {
-                if ($unit->status == STATUS_READY || $unit->status == STATUS_DEFENDING || $unit->status == STATUS_UNAVAIL_THIS_PHASE) {
-
-                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias, $this->supplyLen);
-                } else {
-                    return;
-                }
-                if ($unit->forceId == $b->gameRules->attackingForceId && !$unit->supplied && !isset($this->combatCache->$id)) {
-                    $this->combatCache->$id = true;
-                    $unit->addAdjustment('supply','floorHalf');
-//                    $unit->strength = floor($unit->strength / 2);
-                }
-                if ($unit->supplied && isset($this->combatCache->$id)) {
-                    $unit->removeAdjustment('supply');
-//                    $unit->strength = $this->combatCache->$id;
-                    unset($this->combatCache->$id);
-                }
-                if ($unit->supplied && isset($this->movementCache->$id)) {
-                    $unit->maxMove = $this->movementCache->$id;
-                    unset($this->movementCache->$id);
-                }
-            }
+            $this->unitSupplyEffects($unit, $goal, $bias, $this->supplyLen);
         }
     }
 
