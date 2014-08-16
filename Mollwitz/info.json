@@ -112,7 +112,11 @@
         "fileName": "Kolin1757.php",
         "scenarios": {
             "main": {
-                "description": "Standard Scenario"
+                "description": "Standard Scenario."
+            },
+            "fredBringsMore": {
+                "description": "Frederick the Great brings more troops to be even greater.",
+                "fredBringsMore": true
             }
         }
     },
