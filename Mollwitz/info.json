@@ -285,6 +285,10 @@
         "scenarios": {
             "main": {
                 "description": "Standard Scenario"
+            },
+            "weakSikh":{
+                "description": "Weaker Sikh, and all 3-3's instead of 4-3's",
+                "weakSikh": true
             }
         }
     }
