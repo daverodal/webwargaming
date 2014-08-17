@@ -87,6 +87,7 @@ x.register("combatRules", function(combatRules, data){
             var str = "";
             cdLine = "";
             var combatIndex = 0;
+            $('.unit').removeAttr('title')
             for(i in combatRules.combats){
                 if(combatRules.combats[i].index !== null){
 
@@ -119,6 +120,8 @@ x.register("combatRules", function(combatRules, data){
                     var idx = combatRules.combats[i].index + 1;
                     var odds = Math.floor(atk / def);
                     var oddsDisp = $(".col" + combatCol).html()
+
+                    $("#"+i).attr('title',oddsDisp);
 
                     newLine = "<h5>odds = " + oddsDisp + " </h5><div id='crtDetails'>"+combatRules.combats[i].combatLog+"</div><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + $(".col" + combatCol).html() + "</div>";
                     if(cD !== false && cD == i){
@@ -162,6 +165,7 @@ x.register("combatRules", function(combatRules, data){
 
         var lastCombat = "";
         if(combatRules.combatsToResolve){
+            $('.unit').removeAttr('title');
             if(combatRules.lastResolvedCombat){
                 toResolveLog = "Current Combat or Last Combat<br>";
                 title += "<strong style='margin-left:20px;font-size:150%'>" + combatRules.lastResolvedCombat.Die + " " + combatRules.lastResolvedCombat.combatResult + "</strong>";
@@ -217,6 +221,24 @@ x.register("combatRules", function(combatRules, data){
             for(i in combatRules.combatsToResolve){
                 combatsToResolve++;
                 if(combatRules.combatsToResolve[i].index !== null){
+                    attackers = combatRules.combatsToResolve[i].attackers;
+                    defenders = combatRules.combatsToResolve[i].defenders;
+                    thetas = combatRules.combatsToResolve[i].thetas;
+
+                    var theta = 0;
+                    for(var j in attackers){
+                        var numDef = Object.keys(defenders).length;
+                        for(k in defenders){
+                            $("#"+j+ " .arrow").clone().addClass('arrowClone').addClass('arrow'+k).insertAfter("#"+j+ " .arrow").removeClass('arrow');
+                            theta = thetas[j][k];
+                            theta *= 15;
+                            theta += 180;
+                            $("#"+j+ " .arrow"+k).css({opacity: "1.0"});
+                            $("#"+j+ " .arrow"+k).css({webkitTransform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
+                            $("#"+j+ " .arrow"+k).css({transform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
+                        }
+                    }
+
                     var atk = combatRules.combatsToResolve[i].attackStrength;
                     var atkDisp = atk;
                     ;
@@ -228,7 +250,8 @@ x.register("combatRules", function(combatRules, data){
                         combatCol = combatRules.combatsToResolve[i].pinCRT;
                     }
                     var odds = Math.floor(atk / def);
-                    var oddsDisp = $(".col" + combatCol).html()
+                    var oddsDisp = $(".col" + combatCol).html();
+                    $("#"+i).attr('title',oddsDisp);
                     newLine = "<h5>odds = " + oddsDisp + "</h5><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + oddsDisp + "</div>";
                     toResolveLog += newLine;
                 }
@@ -255,23 +278,6 @@ x.register("combatRules", function(combatRules, data){
                     if(combatRules.resolvedCombats[i].Die){
                         var x = $("#" + cD).css('left').replace(/px/, "");
                         var mapWidth = $("body").css('width').replace(/px/, "");
-                        /* STATUS_ELIMINATED */
-                        if(data.force.units[cD].status != 22){
-//                            if(x < mapWidth/2){
-//                                var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
-//                                var crtWid = $("#crt").css('width').replace(/px/,"");
-//                                var moveLeft = $("body").css('width').replace(/px/,"");
-//                                crtWid = crtWid - wrapWid + 40;
-//                                $("#crt").animate({left:0 - crtWid},300);
-//                                $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
-//                            }else{
-//                                $("#crt").animate({left:crtWid},300);
-//                                $("#crtWrapper").animate({left:0},300);
-//
-//                            }
-                        }
-
-
                     }
                     var oddsDisp = $(".col" + combatCol).html()
 
