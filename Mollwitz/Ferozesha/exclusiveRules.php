@@ -95,7 +95,7 @@
                     turn, the game turn is incremented.</p>
             </div>
             <ol class="ExclusiveRules topNumbers">
-                <?php include "victoryConditions.php" ?>
+                <?php if($scenario->dayOne){ include "victoryConditions.php";}else{ include "victoryConditions2.php";} ?>
             </ol>
             <div id="credits">
                 <h2><cite><?= $name ?></cite></h2>
