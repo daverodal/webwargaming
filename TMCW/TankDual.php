@@ -1,8 +1,8 @@
 <?php
 set_include_path(__DIR__ . "/TankDual" . PATH_SEPARATOR . get_include_path());
 
-define("REBEL_FORCE", BLUE_FORCE);
-define("LOYALIST_FORCE", RED_FORCE);
+define("REBEL_FORCE", 1);
+define("LOYALIST_FORCE", 2);
 
 global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
 $force_name = array();

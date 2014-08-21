@@ -11,12 +11,12 @@
 class retreatOneVictoryCore extends victoryCore
 {
     public $victoryPoints;
-    private $movementCache;
-    private $combatCache;
-    private $supplyLen = false;
-    private $rebelGoal;
-    private $loyalistGoal;
-    private $gameOver = false;
+    public $movementCache;
+    public $combatCache;
+    public $supplyLen = false;
+    public $rebelGoal;
+    public $loyalistGoal;
+    public $gameOver = false;
 
 
     function __construct($data)

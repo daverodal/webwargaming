@@ -1,6 +1,6 @@
 <?php
-define("REBEL_FORCE", BLUE_FORCE);
-define("LOYALIST_FORCE", RED_FORCE);
+define("REBEL_FORCE", 1);
+define("LOYALIST_FORCE", 2);
 
 global $force_name;
 $force_name = array();

@@ -1,25 +1,28 @@
 <?php
 set_include_path(__DIR__ . "/Nomonhan". PATH_SEPARATOR .  get_include_path());
 
-define("JAPANESE_FORCE", BLUE_FORCE);
-define("SOVIET_FORCE", RED_FORCE);
+define("JAPANESE_FORCE", 1);
+define("SOVIET_FORCE", 2);
 global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
 $force_name = array();
 $force_name[0] = "Neutral Observer";
 $force_name[1] = "Japanese";
 $force_name[2] = "Soviet";
 
+require_once "constants.php";
+
+$phase_name[16] = "<span class='playerOneFace'>Japanese</span> surprise movement phase";
+
 require_once "MartianCivilWar.php";
+/* TODO: gag, we should NOT subclass MartianCivilWar */
+$force_name[0] = "Neutral Observer";
+$force_name[1] = "Japanese";
+$force_name[2] = "Soviet";
+
 require_once "nomonhanCrt.php";
 
-$mode_name[3] = "Combat Setup Phase";
-$mode_name[4] = "Combat Resolution Phase";
-$mode_name[19] = "";
 
-$mode_name[1] = "";
-$mode_name[2] = "";
-
-
+/* TODO: do NOT subclass MCW */
 class Nomonhan extends MartianCivilWar
 {
     /* a comment */

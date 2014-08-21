@@ -69,7 +69,7 @@ $phase_name[6] = "";
 $phase_name[7] = "Victory";
 $phase_name[8] = "<span class='playerOneFace'>{$force_name[1]}</span> Deploy";
 $phase_name[9] = "<span class='playerOneFace'>{$force_name[1]}</span> Mech";
-$phase_name[10] = "<span class='playerOneFace'>{$force_name[1]}</span> Deploy";
+$phase_name[10] = "<span class='playerOneFace'>{$force_name[1]}</span> Replacement";
 $phase_name[11] = "<span class='playerTwoFace'>{$force_name[2]}</span> Mech";
 $phase_name[12] = "<span class='playerTwoFace'>{$force_name[2]}</span> Replacement";
 $phase_name[13] = "";

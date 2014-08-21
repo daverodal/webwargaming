@@ -1,38 +1,17 @@
 <?php
 set_include_path(__DIR__ . "/Manchuria1976". PATH_SEPARATOR .  get_include_path());
 
-require_once "constants.php";
+define("SOVIET_FORCE",1);
+define("PRC_FORCE",2);
+
 global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
 $force_name = array();
 $force_name[0] = "Neutral Observer";
 $force_name[1] = "Soviet";
 $force_name[2] = "PRC";
 
-$phase_name = array();
-$phase_name[1] = "<span class='sovietFace'>Soviet</span> Movement Phase";
-$phase_name[2] = "<span class='sovietFace'>Soviet</span>";
-$phase_name[3] = "Blue Fire Combat";
-$phase_name[4] = "<span class='prcFace'>PRC</span> Movement Phase";
-$phase_name[5] = "<span class='prcFace'>PRC</span>";
-$phase_name[6] = "Red Fire Combat";
-$phase_name[7] = "Victory";
-$phase_name[8] = "<span class='sovietFace'>Soviet</span> Deploy Phase";
-$phase_name[9] = "<span class='sovietFace'>Soviet</span> Mech Movement Phase";
-$phase_name[10] = "<span class='sovietFace'>Soviet</span> Replacement Phase";
-$phase_name[11] = "<span class='prcFace'>PRC</span> Mech Movement Phase";
-$phase_name[12] = "<span class='prcFace'>PRC</span> Replacement Phase";
-$phase_name[13] = "";
-$phase_name[14] = "";
+require_once "constants.php";
 
-$mode_name[3] = "Combat Setup Phase";
-$mode_name[4] = "Combat Resolution Phase";
-$mode_name[19] = "";
-
-$mode_name[1] = "";
-$mode_name[2] = "";
-
-define("SOVIET_FORCE",BLUE_FORCE);
-define("PRC_FORCE",RED_FORCE);
 require_once "ModernLandBattle.php";
 
 

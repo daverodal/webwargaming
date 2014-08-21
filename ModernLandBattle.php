@@ -14,7 +14,7 @@ require_once "prompt.php";
 require_once "terrain.php";
 require_once "display.php";
 require_once "victory.php";
-include "victoryCore.php";
+require_once "victoryCore.php";
 
 class ModernLandBattle extends LandBattle
 {

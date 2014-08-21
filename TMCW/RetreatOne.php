@@ -1,8 +1,8 @@
 <?php
 set_include_path(__DIR__ . "/RetreatOne" . PATH_SEPARATOR . get_include_path());
 
-define("LACONIANS_FORCE", BLUE_FORCE);
-define("CAPROLIANS_FORCE", RED_FORCE);
+define("LACONIANS_FORCE", 1);
+define("CAPROLIANS_FORCE", 2);
 
 global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
 $force_name = array();
@@ -185,10 +185,10 @@ class RetreatOne extends ModernLandBattle
         }
         $mapData = $this->mapData;
         /* @var MapHex $mapHex */
-        $mapHex = $mapData->getHex(3807);
-        $mapHex->setZoc(LACONIANS_FORCE, 'air1');
-        $mapHex = $mapData->getHex(3306);
-        $mapHex->setZoc(LACONIANS_FORCE, 'air2');
+//        $mapHex = $mapData->getHex(3807);
+//        $mapHex->setZoc(LACONIANS_FORCE, 'air1');
+//        $mapHex = $mapData->getHex(3306);
+//        $mapHex->setZoc(LACONIANS_FORCE, 'air2');
     }
 
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
