@@ -1,30 +1,15 @@
 <?php
 set_include_path(__DIR__ . "/Zorndorf". PATH_SEPARATOR .  get_include_path());
-require_once"JagCore.php";
 
-/* comment */
-
-$force_name[1] = "Prussian";
-$force_name[2] = "Russian";
 define("PRUSSIAN_FORCE", BLUE_FORCE);
 define("RUSSIAN_FORCE", RED_FORCE);
-$phase_name = array();
-$phase_name[1] = "Prussian Move";
-$phase_name[2] = "Prussian Combat";
-$phase_name[3] = "Blue Fire Combat";
-$phase_name[4] = "Russian Move";
-$phase_name[5] = "Russian Combat";
-$phase_name[6] = "Red Fire Combat";
-$phase_name[7] = "Victory";
-$phase_name[8] = "Prussian Deploy";
-$phase_name[9] = "Prussian Mech";
-$phase_name[10] = "Prussian Replacement";
-$phase_name[11] = "Russian Mech";
-$phase_name[12] = "Russian Replacement";
-$phase_name[13] = "";
-$phase_name[14] = "";
-$phase_name[15] = "Russian deploy phase";
 
+global $force_name;
+$force_name = array();
+$force_name[1] = "Prussian";
+$force_name[2] = "Russian";
+
+require_once"JagCore.php";
 
 class Zorndorf extends JagCore
 {

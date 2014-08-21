@@ -1,29 +1,14 @@
 <?php
 set_include_path(__DIR__ . "/Hastenbeck" . PATH_SEPARATOR . get_include_path());
-require_once "JagCore.php";
 
-/* comment */
 define("FRENCH_FORCE", 1);
-define("ALLIED_FORCE", 2);
+ define("ALLIED_FORCE", 2);
+
+global $force_name;
 $force_name[FRENCH_FORCE] = "French";
 $force_name[ALLIED_FORCE] = "Allied";
-$phase_name = array();
-$phase_name[1] = "French Move";
-$phase_name[2] = "French Combat";
-$phase_name[3] = "Blue Fire Combat";
-$phase_name[4] = "Allied Move";
-$phase_name[5] = "Allied Combat";
-$phase_name[6] = "Red Fire Combat";
-$phase_name[7] = "Victory";
-$phase_name[8] = "French Deploy";
-$phase_name[9] = "French Mech";
-$phase_name[10] = "Allied Replacement";
-$phase_name[11] = "Russian Mech";
-$phase_name[12] = "Russian Replacement";
-$phase_name[13] = "";
-$phase_name[14] = "";
-$phase_name[15] = "Allied deploy phase";
 
+require_once "JagCore.php";
 
 class Hastenbeck extends JagCore
 {

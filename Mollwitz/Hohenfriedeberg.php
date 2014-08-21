@@ -1,29 +1,13 @@
 <?php
 set_include_path(__DIR__ . "/Hohenfriedeberg". PATH_SEPARATOR .  get_include_path());
-require_once "JagCore.php";
 
-/* comment */
-$force_name[1] = "Prussian";
-$force_name[2] = "Austrian";
 define("PRUSSIAN_FORCE", 1);
 define("AUSTRIAN_FORCE", 2);
-$phase_name = array();
-$phase_name[1] = "Prussian Move";
-$phase_name[2] = "Prussian Combat";
-$phase_name[3] = "Blue Fire Combat";
-$phase_name[4] = "Austrian Move";
-$phase_name[5] = "Austrian Combat";
-$phase_name[6] = "Red Fire Combat";
-$phase_name[7] = "Victory";
-$phase_name[8] = "Prussian Deploy";
-$phase_name[9] = "Prussian Mech";
-$phase_name[10] = "Prussian Replacement";
-$phase_name[11] = "Russian Mech";
-$phase_name[12] = "Russian Replacement";
-$phase_name[13] = "";
-$phase_name[14] = "";
-$phase_name[15] = "Austrian deploy phase";
 
+global $force_name;
+$force_name[1] = "Prussian";
+$force_name[2] = "Austrian";
+require_once "JagCore.php";
 
 class Hohenfriedeberg extends JagCore
 {

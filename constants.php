@@ -13,12 +13,15 @@ global $force_name,$phase_name,$mode_name, $event_name, $status_name, $results_n
 define("NO_FORCE",0);
 define("BLUE_FORCE",1);
 define("RED_FORCE",2);
+global $force_name;
 
-$force_name = array();
-$force_name[0] = "Neutral Observer";
-$force_name[1] = "Rebel";
-$force_name[2] = "Loyalist";
+if(!isset($force_name)){
+    $force_name = array();
+    $force_name[0] = "Neutral Observer";
+    $force_name[1] = "Rebel";
+    $force_name[2] = "Loyalist";
 
+}
 // game phases
 define("BLUE_MOVE_PHASE",1);
 define("BLUE_COMBAT_PHASE",2);
@@ -54,6 +57,26 @@ $phase_name[12] = "Loyalist Replacement";
 $phase_name[13] = "";
 $phase_name[14] = "";
 $phase_name[15] = "red deploy phase";
+
+
+$phase_name = array();
+$phase_name[1] = "<span class='playerOneFace'>{$force_name[1]}</span> Move";
+$phase_name[2] = "<span class='playerOneFace'>{$force_name[1]}</span> Combat";
+$phase_name[3] = "";
+$phase_name[4] = "<span class='playerTwoFace'>{$force_name[2]}</span> Move";
+$phase_name[5] = "<span class='playerTwoFace'>{$force_name[2]}</span> Combat";
+$phase_name[6] = "";
+$phase_name[7] = "Victory";
+$phase_name[8] = "<span class='playerOneFace'>{$force_name[1]}</span> Deploy";
+$phase_name[9] = "<span class='playerOneFace'>{$force_name[1]}</span> Mech";
+$phase_name[10] = "<span class='playerOneFace'>{$force_name[1]}</span> Deploy";
+$phase_name[11] = "<span class='playerTwoFace'>{$force_name[2]}</span> Mech";
+$phase_name[12] = "<span class='playerTwoFace'>{$force_name[2]}</span> Replacement";
+$phase_name[13] = "";
+$phase_name[14] = "";
+$phase_name[15] = "<span class='playerTwoFace'>{$force_name[2]}</span> Deploy";
+
+
 
 // game modes
 define("SELECT_TO_MOVE_MODE",1);

@@ -1,29 +1,16 @@
 <?php
 set_include_path(__DIR__ . "/RetreatOne" . PATH_SEPARATOR . get_include_path());
 
-require_once "constants.php";
+define("LACONIANS_FORCE", BLUE_FORCE);
+define("CAPROLIANS_FORCE", RED_FORCE);
+
 global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
 $force_name = array();
 $force_name[0] = "Neutral Observer";
 $force_name[1] = "Laconians";
 $force_name[2] = "Caprolians";
 
-$phase_name = array();
-$phase_name[1] = "<span class='laconiansFace'>Laconians</span> Movement Phase";
-$phase_name[2] = "<span class='laconiansFace'>Laconians</span>";
-$phase_name[3] = "Blue Fire Combat";
-$phase_name[4] = "<span class='caproliansFace'>Caprolians</span> Movement Phase";
-$phase_name[5] = "<span class='caproliansFace'>Caprolians</span>";
-$phase_name[6] = "Red Fire Combat";
-$phase_name[7] = "Victory";
-$phase_name[8] = "<span class='laconiansFace'>Laconians</span> Deploy Phase";
-$phase_name[9] = "<span class='laconiansFace'>Laconians</span> Mech Movement Phase";
-$phase_name[10] = "<span class='laconiansFace'>Laconians</span> Replacement Phase";
-$phase_name[11] = "<span class='caproliansFace'>Caprolians</span> Mech Movement Phase";
-$phase_name[12] = "<span class='caproliansFace'>Caprolians</span> Replacement Phase";
-$phase_name[13] = "";
-$phase_name[14] = "";
-$phase_name[15] = "<span class='caprolianFace'>Caprolians</span> Deploy Phase";
+require_once "constants.php";
 
 $mode_name[17] = "";
 
@@ -34,9 +21,6 @@ $mode_name[19] = "";
 
 $mode_name[1] = "";
 $mode_name[2] = "";
-
-define("LACONIANS_FORCE", BLUE_FORCE);
-define("CAPROLIANS_FORCE", RED_FORCE);
 
 require_once "ModernLandBattle.php";
 

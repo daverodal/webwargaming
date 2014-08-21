@@ -1,25 +1,15 @@
 <?php
 
-require_once "constants.php";
-global $force_name,$phase_name,$mode_name, $event_name, $status_name, $results_name,$combatRatio_name;
+define("AUSTRIAN_FORCE", 1);
+define("FRENCH_FORCE", 2);
+
+global $force_name;
+$force_name = array();
 $force_name[1] = "Austrian";
 $force_name[2] = "French";
-$phase_name = array();
-$phase_name[1] = "Austrian Move";
-$phase_name[2] = "Austrian Combat";
-$phase_name[3] = "Blue Fire Combat";
-$phase_name[4] = "French Move";
-$phase_name[5] = "French Combat";
-$phase_name[6] = "Red Fire Combat";
-$phase_name[7] = "Victory";
-$phase_name[8] = "Austrian Deploy";
-$phase_name[9] = "Austrian Mech";
-$phase_name[10] = "Austrian Replacement";
-$phase_name[11] = "French Mech";
-$phase_name[12] = "French Replacement";
-$phase_name[13] = "";
-$phase_name[14] = "";
 
+require_once "constants.php";
+global $phase_name,$mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
 require_once "crtTraits.php";
 require_once "combatRules.php";
 require_once "crt.php";

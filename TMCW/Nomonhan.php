@@ -1,30 +1,16 @@
 <?php
 set_include_path(__DIR__ . "/Nomonhan". PATH_SEPARATOR .  get_include_path());
-require_once "MartianCivilWar.php";
-require_once "nomonhanCrt.php";
+
+define("JAPANESE_FORCE", BLUE_FORCE);
+define("SOVIET_FORCE", RED_FORCE);
 global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
 $force_name = array();
 $force_name[0] = "Neutral Observer";
 $force_name[1] = "Japanese";
 $force_name[2] = "Soviet";
 
-$phase_name = array();
-$phase_name[1] = "<span class='rebelFace'>Japanese</span> Movement Phase";
-$phase_name[2] = "<span class='rebelFace'>Japanese</span>";
-$phase_name[3] = "Blue Fire Combat";
-$phase_name[4] = "<span class='loyalistFace'>Soviet</span> Movement Phase";
-$phase_name[5] = "<span class='loyalistFace'>Soviet</span>";
-$phase_name[6] = "Red Fire Combat";
-$phase_name[7] = "Victory";
-$phase_name[8] = "<span class='rebelFace'>Japanese</span> Deploy Phase";
-$phase_name[9] = "<span class='rebelFace'>Japanese</span> Mech Movement Phase";
-$phase_name[10] = "<span class='rebelFace'>Japanese</span> Replacement Phase";
-$phase_name[11] = "<span class='loyalistFace'>Soviet</span> Mech Movement Phase";
-$phase_name[12] = "<span class='loyalistFace'>Soviet</span> Replacement Phase";
-$phase_name[13] = "";
-$phase_name[14] = "";
-$phase_name[15] = "Soviet deploy phase";
-$phase_name[16] = "Japanese surprise movement phase";
+require_once "MartianCivilWar.php";
+require_once "nomonhanCrt.php";
 
 $mode_name[3] = "Combat Setup Phase";
 $mode_name[4] = "Combat Resolution Phase";
@@ -33,8 +19,6 @@ $mode_name[19] = "";
 $mode_name[1] = "";
 $mode_name[2] = "";
 
-define("JAPANESE_FORCE", BLUE_FORCE);
-define("SOVIET_FORCE", RED_FORCE);
 
 class Nomonhan extends MartianCivilWar
 {
