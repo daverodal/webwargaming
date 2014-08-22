@@ -1045,6 +1045,9 @@ p.forceMarch {
 .sikh.specialHexes, .beluchi.specialHexes, .british.specialHexes {
   color: white; }
 
+.sikh p.forceMarch, .sikh p.range {
+  color: black; }
+
 p.forceMarch, p.range {
   color: white; }
 

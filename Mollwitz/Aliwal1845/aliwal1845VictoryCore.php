@@ -46,14 +46,14 @@ class aliwal1845VictoryCore extends indiaVictoryCore
         $battle = Battle::getBattle();
 
         list($mapHexName, $forceId) = $args;
-        if(in_array($mapHexName,$battle->specialHexA)){
-            if ($forceId == SIKH_FORCE) {
-                $this->victoryPoints[SIKH_FORCE]  += 20;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='sikh'>+20 Sikh vp</span>";
-            }
+        if(in_array($mapHexName,$battle->specialHexB)){
             if ($forceId == BRITISH_FORCE) {
-                $this->victoryPoints[SIKH_FORCE]  -= 20;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-20 Sikh vp</span>";
+                $this->victoryPoints[BRITISH_FORCE]  += 10;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='sikh'>+10 British vp</span>";
+            }
+            if ($forceId == SIKH_FORCE) {
+                $this->victoryPoints[BRITISH_FORCE]  -= 10;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-10 British vp</span>";
             }
         }
     }
