@@ -828,7 +828,7 @@ x.register("combatRules", function(combatRules,data) {
             var str = "";
             cdLine = "";
             var combatIndex = 0;
-            $('.unit').removeAttr('title')
+            $('.unit').removeAttr('title');
 
             for(i in combatRules.combats){
                 if(combatRules.combats[i].index !== null){
@@ -886,17 +886,6 @@ x.register("combatRules", function(combatRules,data) {
             str += "There are "+combatIndex+" Combats";
             if(cD !== false){
                 attackers = combatRules.combats[cD].attackers;
-//                    var theta = 0;
-//                    for(var i in attackers){
-//                                      theta = attackers[i];
-//                        theta *= 15;
-//                        theta += 180;
-//                        $("#"+i+ " .arrow").css({display: "block"});
-//                        $("#"+i+ " .arrow").css({opacity: "1.0"});
-//                        $("#"+i+ " .arrow").css({webkitTransform: 'scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
-//
-//
-//                    }
             }
             str += "";
             $("#crtOddsExp").html(activeCombatLine);
@@ -920,7 +909,6 @@ x.register("combatRules", function(combatRules,data) {
                 combatRoll = combatRules.lastResolvedCombat.Die;
                 $(".col"+combatCol).css('background-color',"rgba(255,255,1,.6)");
                 $(".row"+combatRoll+" .col"+combatCol).css('background-color',"cyan");
-//                    $(".row"+combatRoll+" .col"+combatCol).css('color',"white");
             }
             str += "";
             var noCombats = false;

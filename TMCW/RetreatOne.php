@@ -222,7 +222,6 @@ class RetreatOne extends ModernLandBattle
                 $this->victory->setSupplyLen($scenario->supplyLen);
             }
             $this->display = new Display();
-//            $this->mapData->setData(60, 30, "js/Retreat1Small.png");
 
             $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
             $this->force = new Force();
@@ -240,23 +239,7 @@ class RetreatOne extends ModernLandBattle
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-//            $this->players = array("", "", "");
-//            $this->playerData = new stdClass();
-//            for ($player = 0; $player <= 2; $player++) {
-//                $this->playerData->${player} = new stdClass();
-//                $this->playerData->${player}->mapWidth = "auto";
-//                $this->playerData->${player}->mapHeight = "auto";
-//                $this->playerData->${player}->unitSize = "32px";
-//                $this->playerData->${player}->unitFontSize = "12px";
-//                $this->playerData->${player}->unitMargin = "-21px";
-//            }
-//
-//            for($player = 0;$player < 3;$player++){
-//                $this->mapViewer[$player]->setData(52.72 , 85.37278430506997, // originX, originY
-//                    28.457594768356657, 28.457594768356657, // top hexagon height, bottom hexagon height
-//                    16.43, 32.86// hexagon edge width, hexagon center width
-//                );
-//            }
+
             // game data
             $this->gameRules->setMaxTurn(15);
 
@@ -276,50 +259,7 @@ class RetreatOne extends ModernLandBattle
             $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MECH_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MECH_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
-            // unit terrain data----------------------------------------
 
-//            // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
-//            $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
-//            $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
-//            $this->terrain->addTerrainFeature("clear", "clear", "c", 1, 0, 0, true);
-//            $this->terrain->addTerrainFeature("road", "road", "r", .5, 0, 0, false);
-//            $this->terrain->addTerrainFeature("secondaryroad", "secondaryroad", "r", .75, 0, 0, false);
-//            $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
-//            $this->terrain->addTerrainFeature("fortified", "fortified", "h", 1, 0, 1, true);
-//            $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 0, false);
-//            $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
-//            $this->terrain->addTerrainFeature("roughone", "roughone", "g", 2, 0, 2, true);
-//            $this->terrain->addTerrainFeature("roughtwo", "roughtwo", "g", 3, 0, 2, true);
-//            $this->terrain->addTerrainFeature("swamp", "swamp", "f", 3, 0, 1, true);
-//            $this->terrain->addTerrainFeature("river", "Martian River", "v", 0, 1, 1, true);
-//            $this->terrain->addTerrainFeature("wadi", "wadi", "w", 0, 1, 1, false);
-//            $this->terrain->addAltEntranceCost("roughone", "mech", 6);
-//            $this->terrain->addAltEntranceCost("roughtwo", "mech", "blocked");
-
-            /* handle fort's in crtTraits */
-
-            /*
-             * First put clear everywhere, hexes and hex sides
-             */
-            // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
-//            $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
-//            $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
-//            $this->terrain->addTerrainFeature("clear", "clear", "c", 1, 0, 0, true);
-//            $this->terrain->addTerrainFeature("road", "road", "r", .5, 0, 0, false);
-//            $this->terrain->addTerrainFeature("secondaryroad", "secondaryroad", "r", .75, 0, 0, false);
-//            $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
-//            $this->terrain->addTerrainFeature("fortified", "fortified", "h", 1, 0, 1, true);
-//            $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 0, false);
-//            $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
-//            $this->terrain->addTerrainFeature("roughone", "roughone", "g", 2, 0, 2, true);
-//            $this->terrain->addTerrainFeature("roughtwo", "roughtwo", "g", 3, 0, 2, true);
-//            $this->terrain->addTerrainFeature("swamp", "swamp", "f", 3, 0, 1, true);
-//            $this->terrain->addTerrainFeature("river", "Martian River", "v", 0, 1, 1, true);
-//            $this->terrain->addTerrainFeature("wadi", "wadi", "w", 0, 1, 1, false);
-//            $this->terrain->addAltEntranceCost("roughone", "mech", 6);
-//            $this->terrain->addAltEntranceCost("roughtwo", "mech", "blocked");
-
-            // end terrain data ----------------------------------------
 
         }
     }

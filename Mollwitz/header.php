@@ -119,9 +119,10 @@ x.register("combatRules", function(combatRules, data){
                     var ter = combatRules.combats[i].terrainCombatEffect;
                     var idx = combatRules.combats[i].index + 1;
                     var odds = Math.floor(atk / def);
-                    var oddsDisp = $(".col" + combatCol).html()
-
-                    $("#"+i).attr('title',oddsDisp);
+                    var oddsDisp = $(".col" + combatCol).html();
+                    var currentCombatCol = combatRules.combats[i].index + 1;
+                    var currentOddsDisp = $(".col" + currentCombatCol).html();
+                    $("#"+i).attr('title',currentOddsDisp);
 
                     newLine = "<h5>odds = " + oddsDisp + " </h5><div id='crtDetails'>"+combatRules.combats[i].combatLog+"</div><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + $(".col" + combatCol).html() + "</div>";
                     if(cD !== false && cD == i){
