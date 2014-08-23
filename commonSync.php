@@ -953,7 +953,8 @@ x.register("combatRules", function(combatRules,data) {
                     var idx = combatRules.combatsToResolve[i].index+ 1;
                     var odds = Math.floor(atk/def);
                     var oddsDisp = odds + " : 1";
-                    $("#"+i).attr('title',oddsDisp).prepend('<div class="unitOdds">'+oddsDisp+'</div>');
+                    var ratio = $(".col"+idx).html() || "No Effect";
+                    $("#"+i).attr('title',oddsDisp).prepend('<div class="unitOdds">'+ratio+'</div>');
                     newLine =  "<h5>odds = "+ oddsDisp +"</h5><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+idxDisp+"</div>";
                 }
 
