@@ -829,6 +829,7 @@ x.register("combatRules", function(combatRules,data) {
             cdLine = "";
             var combatIndex = 0;
             $('.unit').removeAttr('title');
+            $('.unit .unitOdds').remove();
 
             for(i in combatRules.combats){
                 if(combatRules.combats[i].index !== null){
@@ -865,7 +866,7 @@ x.register("combatRules", function(combatRules,data) {
                     if(odds < 1){
                         oddsDisp = "No effect";
                     }
-                    $("#"+i).attr('title',oddsDisp);
+                    $("#"+i).attr('title',oddsDisp).prepend('<div class="unitOdds">'+oddsDisp+'</div>');
                     var idxDisp = idx + " : 1";
                     if(idx < 1){
                         idxDisp = "No effect";
@@ -903,6 +904,7 @@ x.register("combatRules", function(combatRules,data) {
         var lastCombat = "";
         if(combatRules.combatsToResolve){
             $('.unit').removeAttr('title');
+            $('.unit .unitOdds').remove();
             if(combatRules.lastResolvedCombat){
                 title += "<strong style='margin-left:20px;font-size:150%'>"+combatRules.lastResolvedCombat.Die+" "+combatRules.lastResolvedCombat.combatResult+"</strong>";
                 combatCol = combatRules.lastResolvedCombat.index + 1;
@@ -951,7 +953,7 @@ x.register("combatRules", function(combatRules,data) {
                     var idx = combatRules.combatsToResolve[i].index+ 1;
                     var odds = Math.floor(atk/def);
                     var oddsDisp = odds + " : 1";
-                    $("#"+i).attr('title',oddsDisp);
+                    $("#"+i).attr('title',oddsDisp).prepend('<div class="unitOdds">'+oddsDisp+'</div>');
                     newLine =  "<h5>odds = "+ oddsDisp +"</h5><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+idxDisp+"</div>";
                 }
 

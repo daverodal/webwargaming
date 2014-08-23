@@ -87,7 +87,8 @@ x.register("combatRules", function(combatRules, data){
             var str = "";
             cdLine = "";
             var combatIndex = 0;
-            $('.unit').removeAttr('title')
+            $('.unit').removeAttr('title');
+            $('.unit .unitOdds').remove();
             for(i in combatRules.combats){
                 if(combatRules.combats[i].index !== null){
 
@@ -122,7 +123,7 @@ x.register("combatRules", function(combatRules, data){
                     var oddsDisp = $(".col" + combatCol).html();
                     var currentCombatCol = combatRules.combats[i].index + 1;
                     var currentOddsDisp = $(".col" + currentCombatCol).html();
-                    $("#"+i).attr('title',currentOddsDisp);
+                    $("#"+i).attr('title',currentOddsDisp).prepend('<div class="unitOdds">'+currentOddsDisp+'</div>');;
 
                     newLine = "<h5>odds = " + oddsDisp + " </h5><div id='crtDetails'>"+combatRules.combats[i].combatLog+"</div><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + $(".col" + combatCol).html() + "</div>";
                     if(cD !== false && cD == i){
@@ -167,6 +168,7 @@ x.register("combatRules", function(combatRules, data){
         var lastCombat = "";
         if(combatRules.combatsToResolve){
             $('.unit').removeAttr('title');
+            $('.unit .unitOdds').remove();
             if(combatRules.lastResolvedCombat){
                 toResolveLog = "Current Combat or Last Combat<br>";
                 title += "<strong style='margin-left:20px;font-size:150%'>" + combatRules.lastResolvedCombat.Die + " " + combatRules.lastResolvedCombat.combatResult + "</strong>";
@@ -252,7 +254,7 @@ x.register("combatRules", function(combatRules, data){
                     }
                     var odds = Math.floor(atk / def);
                     var oddsDisp = $(".col" + combatCol).html();
-                    $("#"+i).attr('title',oddsDisp);
+                    $("#"+i).attr('title',oddsDisp).prepend('<div class="unitOdds">'+oddsDisp+'</div>');;
                     newLine = "<h5>odds = " + oddsDisp + "</h5><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + oddsDisp + "</div>";
                     toResolveLog += newLine;
                 }
