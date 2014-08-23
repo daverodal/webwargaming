@@ -870,7 +870,7 @@ x.register("combatRules", function(combatRules,data) {
                     if(idx < 1){
                         idxDisp = "No effect";
                     }
-                    var ratio = $(".col"+combatCol).html() || "No Effect";
+                    var ratio = $(".col"+idx).html() || "No Effect";
                     $("#"+i).attr('title',ratio).prepend('<div class="unitOdds">'+ratio+'</div>');
                     newLine =  "<h5>odds = "+ oddsDisp +"</h5><div id='crtDetails'>"+combatRules.combats[i].combatLog+"</div><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+ratio +"</div>";
                     if(cD !== false && cD == i){
