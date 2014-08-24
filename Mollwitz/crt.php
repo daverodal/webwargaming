@@ -295,7 +295,7 @@ class CombatResultsTable
 
             $defMultiplier = 1;
             if(($isTown && $class !== 'cavalry') || $artInClear || $isHill){
-                $defender = 1.5;
+                $defMultiplier = 1.5;
                 if($artInClear && $scenario->doubleArt){
                     $defMultiplier = 2;
                 }
