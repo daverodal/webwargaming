@@ -45,7 +45,7 @@ h4:hover {
 #floatMessage header {
   font-size: 35px; }
 
-#altTable, #mainTable {
+#altTable, #mainTable, #detTable {
   position: absolute;
   right: 18px;
   cursor: pointer; }
@@ -1019,6 +1019,17 @@ p.forceMarch {
 .prussian.specialHexes {
   background-color: #fffd7f;
   color: black; }
+
+.unitOdds.altColor {
+  background: #00ec00; }
+  .unitOdds.altColor:hover {
+    background: transparent; }
+.unitOdds.determinedColor {
+  background: red;
+  color: white; }
+  .unitOdds.determinedColor:hover {
+    background: transparent;
+    color: transparent; }
 
 .playerOne {
   background: #fffd7f;

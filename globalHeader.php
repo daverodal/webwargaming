@@ -161,7 +161,7 @@ function doitKeypress(key) {
     playAudio();
     $('body').css({cursor:"wait"});
     $(this).css({cursor:"wait"});
-    $("#"+id+"").addClass("pushed");
+//    $("#"+id+"").addClass("pushed");
 
     $("#comlink").html('waiting');
     $.ajax({url: "<?=site_url("wargame/poke");?>/",
@@ -196,7 +196,7 @@ function doitKeypress(key) {
             }
             $('body').css({cursor:"auto"});
             $(this).css({cursor:"auto"});
-            $("#"+id+"").removeClass("pushed");
+//            $("#"+id+"").removeClass("pushed");
 
 
         }

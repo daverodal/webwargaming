@@ -33,6 +33,14 @@ class CombatResultsTable
             array(AE, AR, NE, DR, DR, EX, DE, DE, DE, DE),
             array(AR, AR, DR, DR, EX, DE, DE, DE, DE, DE),
         );
+        $this->combatResultsTableDetermined = array(
+            array(AE, AE, AE, AR, AR, AR, DR, DR, DR, EX),
+            array(AE, AE, AR, AR, AR, DR, DR, DR, EX, DE),
+            array(AE, AE, AR, AR, DR, DR, EX, EX, DE, DE),
+            array(AE, AE, NE, NE, DR, EX, EX, DE, DE, DE),
+            array(AE, AR, NE, DR, EX, EX, DE, DE, DE, DE),
+            array(AR, AR, DR, EX, EX, DE, DE, DE, DE, DE),
+        );
         $this->combatResultsTableCav = array(
             array(AE, AE, AE, AR, AR, AR, DR, DR, DR, DR),
             array(AE, AE, AR, AR, AR, DR, DR, DR, DR, DR),
@@ -63,6 +71,9 @@ class CombatResultsTable
         if ($combat->useAlt) {
             return $this->combatResultsTableCav[$Die][$index];
         } else {
+            if($combat->useDetermined){
+                return $this->combatResultsTableDetermined[$Die][$index];
+            }
             return $this->combatResultsTable[$Die][$index];
         }
     }
@@ -246,21 +257,24 @@ class CombatResultsTable
             /* set to true to disable for not scenario->doubleArt */
             $clearHex = false;
             $artInClear = false;
-            if($scenario->doubleArt){
-                $notClearHex = false;
-                $hexagon = $unit->hexagon;
-                $hexpart = new Hexpart();
-                $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
-                $notClearHex |= $battle->terrain->terrainIs($hexpart, 'town');
-                $notClearHex |= $battle->terrain->terrainIs($hexpart, 'hill');
-                $notClearHex |= $battle->terrain->terrainIs($hexpart, 'forest');
-                $notClearHex |= $battle->terrain->terrainIs($hexpart, 'swamp');
-                $clearHex = !$notClearHex;
-                if(($unit->class == 'artillery' || $unit->class == 'horseartillery') && $clearHex){
+            $notClearHex = false;
+            $hexagon = $unit->hexagon;
+            $hexpart = new Hexpart();
+            $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
+            $notClearHex |= $battle->terrain->terrainIs($hexpart, 'town');
+            $notClearHex |= $battle->terrain->terrainIs($hexpart, 'hill');
+            $notClearHex |= $battle->terrain->terrainIs($hexpart, 'forest');
+            $notClearHex |= $battle->terrain->terrainIs($hexpart, 'swamp');
+            $clearHex = !$notClearHex;
+            if(($unit->class == 'artillery' || $unit->class == 'horseartillery') && $clearHex){
+                if($scenario->doubleArt){
                     $combatLog .= "doubled for defending in clear";
-                    $artInClear = true;
+                }else{
+                    $combatLog .= "1.5x for defending in clear";
                 }
+                $artInClear = true;
             }
+
             if ($unit->class != 'cavalry') {
                 $defendersAllCav = false;
             }
@@ -279,7 +293,17 @@ class CombatResultsTable
                 $combatLog .= "+1 for defending into town or forest ";
             }
 
-            $defenseStrength += $unitDefense * (($isTown && $class !== 'cavalry') || ($artInClear) || $isHill ? 2 : 1);
+            $defMultiplier = 1;
+            if(($isTown && $class !== 'cavalry') || $artInClear || $isHill){
+                $defender = 1.5;
+                if($artInClear && $scenario->doubleArt){
+                    $defMultiplier = 2;
+                }
+                if(($isTown && $class !== 'cavalry') || $isHill){
+                    $defMultiplier = 2;
+                }
+            }
+            $defenseStrength += $unitDefense * $defMultiplier;
             $combatLog .= "<br>";
         }
 
@@ -319,6 +343,7 @@ class CombatResultsTable
         $combats->useAlt = false;
         if ($defendersAllCav && !$attackersCav) {
             $combats->useAlt = true;
+            $combats->useDetermined = false;
             $combatLog .= "using cavalry table ";
         }
         $combats->combatLog = $combatLog;
@@ -342,14 +367,6 @@ class CombatResultsTable
     {
         return;
         $odds = array();
-
-        //    var Die;
-        //    var combatIndex;
-        //    var combatResultIndex;
-        //    var numerator;
-        //    var denominator;
-        //    var percent;
-        //    var intPercent;
 
         for ($combatIndex = 0; $combatIndex < $this->combatIndexCount; $combatIndex++) {
 

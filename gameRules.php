@@ -359,6 +359,13 @@ class GameRules
                 $shift = false;
                 switch ($event) {
 
+                    case KEYPRESS_EVENT:
+                        $c = chr($id);
+                        if ($c == 'd' || $c == 'D') {
+                            $this->combatRules->useDetermined();
+                        }
+                        break;
+
                     /** @noinspection PhpMissingBreakStatementInspection */
                     case SELECT_SHIFT_COUNTER_EVENT:
                         $shift = true;

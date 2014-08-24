@@ -18,6 +18,8 @@ Class Combat
     public $combatResult;
     public $thetas;
     public $useAlt = false;
+    public $useDetermined = false;
+    public $isBombardment = false;
     public $pinCRT = false;
 
     public function __construct()
@@ -261,6 +263,8 @@ class CombatRules
                                     unset($this->combats->$oldCd->attackers->$id);
                                     unset($this->combats->$oldCd->thetas->$id);
                                     $this->crt->setCombatIndex($oldCd);
+                                    $this->checkBombardment($oldCd);
+
                                 }
                                 $this->attackers->$id = $cd;
                                 $this->combats->$cd->attackers->$id = $bearing;
@@ -276,11 +280,44 @@ class CombatRules
                         $victory->postSetAttacker($this->force->units[$id]);
                     }
                 }
+                $this->checkBombardment();
             }
         }
         $this->cleanUpAttacklessDefenders();
     }
 
+    function checkBombardment($cd = false)
+    {
+        if($cd === false){
+            $cd = $this->currentDefender;
+        }
+        $attackers = $this->combats->{$cd}->attackers;
+        $defenders = $this->combats->{$cd}->defenders;
+        foreach ($defenders as $defenderId => $defender) {
+            foreach ($this->combats->{$cd}->attackers as $attackerId => $attacker) {
+                $los = new Los();
+
+                $los->setOrigin($this->force->getUnitHexagon($attackerId));
+                $los->setEndPoint($this->force->getUnitHexagon($defenderId));
+                $range = $los->getRange();
+                if ($range == 1) {
+                    $this->combats->{$cd}->isBombardment = false;
+                    return;
+                }
+            }
+        }
+        $this->combats->{$cd}->isBombardment = true;
+        $this->combats->{$cd}->useDetermined = false;
+    }
+
+    function useDetermined(){
+        $cd = $this->currentDefender;
+        if($cd !== false){
+            if($this->combats->$cd->useAlt === false && $this->combats->$cd->isBombardment === false){
+                $this->combats->$cd->useDetermined = $this->combats->$cd->useDetermined ? false : true;
+            }
+        }
+    }
     function cleanUpAttacklessDefenders()
     {
         $battle = Battle::getBattle();
@@ -363,7 +400,7 @@ class CombatRules
         //  Math->floor gives lower integer, which is now 0,1,2,3,4,5
 
         $Die = floor($this->crt->dieSideCount * (rand() / getrandmax()));
-//      $Die = 5;
+//        $Die = 5;
 //        $index = $this->force->getUnitCombatIndex($id);
         $index = $this->combatsToResolve->$id->index;
         if ($this->combatsToResolve->$id->pinCRT !== false) {

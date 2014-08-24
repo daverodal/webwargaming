@@ -360,3 +360,19 @@ p.forceMarch{
   background-color: $prussianColor;
   color:black;
 }
+.unitOdds{
+  &.altColor{
+    background: #00ec00;
+    &:hover{
+      background:transparent;
+    }
+  }
+  &.determinedColor{
+    background: red;
+    color:white;
+    &:hover{
+      background:transparent;
+      color:transparent;
+    }
+  }
+}
