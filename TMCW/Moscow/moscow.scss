@@ -1,0 +1,42 @@
+@import "moscowColors";
+
+@include player(rebel, One, $rebelColor);
+@include player(loyalist,Two,$loyalistColor);
+@include player(loyalGuards,Three,$loyalistGuardColor);
+
+#map {
+  width:1400px;
+}
+
+#crt {
+  width: 308px;
+}
+
+.reduced {
+  color: white;
+}
+
+#infoWrapper .WrapperLabel {
+  width: auto;
+}
+
+.game-name {
+  word-break: break-all;
+  font-family: 'Nosifer';
+}
+
+#gameTurn6 {
+}
+
+#gameTurn6 .unit {
+  float: left;
+}
+
+.specialHexesVP .rebelVictoryPoints {
+  @include victoryPoints(orange)
+}
+
+.specialHexesVP .loyalistVictoryPoints {
+ @include victoryPoints(#666);
+}
+

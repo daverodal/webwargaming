@@ -59,6 +59,22 @@
             }
         }
     },
+    "Moscow": {
+        "name": "Moscow...",
+        "path": "TMCW",
+        "genre": "20'th Century Games",
+        "fileName": "Moscow.php",
+        "scenarios": {
+            "Main": {
+                "description": "The Battle for Moscow",
+                "supply": true,
+                "loyalMechMove": 8,
+                "loyalExtraInf": true,
+                "supplyLen": 8,
+                "showHexNums": true
+            }
+        }
+    },
     "RetreatOne": {
         "name": "Retreat One",
         "path": "TMCW",
