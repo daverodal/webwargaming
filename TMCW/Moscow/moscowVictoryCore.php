@@ -14,9 +14,9 @@ class moscowVictoryCore extends victoryCore
     protected $movementCache;
     protected $combatCache;
     protected $supplyLen = false;
-    private $landingZones;
-    private $airdropZones;
-    private $scienceCenterDestroyed = false;
+    public $sovietGoal;
+    public $germanGoal;
+
     public $gameOver = false;
 
 
@@ -27,16 +27,14 @@ class moscowVictoryCore extends victoryCore
             $this->movementCache = $data->victory->movementCache;
             $this->combatCache = $data->victory->combatCache;
             $this->supplyLen = $data->victory->supplyLen;
-            $this->landingZones = $data->victory->landingZones;
-            $this->airdropZones = $data->victory->airdropZones;
-            $this->scienceCenterDestroyed = $data->victory->scienceCenterDestroyed;
+            $this->germanGoal = $data->victory->germanGoal;
+            $this->sovietGoal = $data->victory->sovietGoal;
             $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
             $this->combatCache = new stdClass();
-            $this->landingZones = [];
-            $this->airdropZones = [];
+            $this->germanGoal = $this->sovietGoal = [];
         }
     }
 
@@ -52,8 +50,8 @@ class moscowVictoryCore extends victoryCore
         $ret->movementCache = $this->movementCache;
         $ret->combatCache = $this->combatCache;
         $ret->supplyLen = $this->supplyLen;
-        $ret->landingZones = $this->landingZones;
-        $ret->airdropZones = $this->airdropZones;
+        $ret->germanGoal = $this->germanGoal;
+        $ret->sovietGoal = $this->sovietGoal;
         $ret->gameOver = $this->gameOver;
         return $ret;
     }
@@ -64,33 +62,7 @@ class moscowVictoryCore extends victoryCore
 
         list($mapHexName, $forceId) = $args;
 
-//        if ($mapHexName == 1807 && $forceId == REBEL_FORCE) {
-//            $this->scienceCenterDestroyed;
-//            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>Marine Science Facility Destroyed</span>";
-//            $battle->gameRules->flashMessages[] = "Rebel units may now withdraw from beachheads";
-//        }
         if ($forceId == LOYALIST_FORCE) {
-            $newLandings = [];
-            foreach ($this->landingZones as $landingZone) {
-                if ($landingZone == $mapHexName) {
-                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>Beachhead Destroyed</span>";
-                    continue;
-                }
-                $newLandings[] = $landingZone;
-            }
-            $this->landingZones = $newLandings;
-
-            $newAirdrops = [];
-            foreach ($this->airdropZones as $airdropZone) {
-                if ($airdropZone == $mapHexName) {
-                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>Airdrop zone Destroyed</span>";
-                    continue;
-                }
-                $newAirdrops[] = $airdropZone;
-            }
-            $this->airdropZones = $newAirdrops;
-
-            $battle->mapData->removeSpecialHex($mapHexName);
         }
 
     }
@@ -98,22 +70,17 @@ class moscowVictoryCore extends victoryCore
     public function postReinforceZones($args)
     {
         list($zones, $unit) = $args;
-        if ($unit->forceId == BLUE_FORCE) {
-            $zone = $unit->reinforceZone;
-            $zones = [];
-            if ($zone == "A") {
-                foreach ($this->landingZones as $landingZone) {
-                    $zones[] = new ReinforceZone($landingZone, "A");
-                }
-            }
-            if ($zone == "C") {
-                foreach ($this->airdropZones as $airdropZone) {
-                    $zones[] = new ReinforceZone($airdropZone, "C");
-                }
-            }
-        }
 
-        return array($zones);
+        if($unit->forceId == GERMAN_FORCE){
+            $zones = $this->germanGoal;
+        }else{
+            $zones = $this->sovietGoal;
+        }
+        $reinforceZones = [];
+        foreach($zones as $zone){
+            $reinforceZones[] = new ReinforceZone($zone, $zone);
+        }
+        return array($reinforceZones);
     }
 
     public function reduceUnit($args)
@@ -191,14 +158,8 @@ class moscowVictoryCore extends victoryCore
                 $unit = $units[$i];
                 if ($unit->forceId == BLUE_FORCE && $unit->hexagon->parent === "gameImages") {
                     $supply[$unit->hexagon->name] = BLUE_FORCE;
-                    if ($unit->class === "para") {
-                        $this->airdropZones[] = $unit->hexagon->name;
-                    } else {
-                        $this->landingZones[] = $unit->hexagon->name;
-                    }
                 }
             }
-            $battle->mapData->setSpecialHexes($supply);
         }
         if ($gameRules->phase == RED_COMBAT_PHASE || $gameRules->phase == BLUE_COMBAT_PHASE) {
             $gameRules->flashMessages[] = "@hide deployWrapper";
@@ -227,22 +188,24 @@ class moscowVictoryCore extends victoryCore
         /* @var unit $unit */
         $unit = $args[0];
 
-        $b = Battle::getBattle();
+        $germanGoal = $sovietGoal = [];
 
-        $goal = array_merge($this->landingZones, $this->airdropZones);
-        $this->rebelGoal = $goal;
+        /* German goal is west Edge */
+        for($i = 1; $i <= 17;$i++){
+            $germanGoal[] = 100 + $i;
+        }
+        $this->germanGoal = $germanGoal;
 
-        $goal = array();
-        $goal = array_merge($goal, array(110, 210, 310, 410, 510, 610, 710, 810, 910, 1010, 1110, 1210, 1310, 1410, 1510, 1610, 1710, 1810, 1910, 2010));
-        $this->loyalistGoal = $goal;
+        /* Soviet goal is west Edge */
+        for($i = 1; $i <= 17;$i++){
+            $sovietGoal[] = 2700 + $i;
+        }
+        $this->sovietGoal = $sovietGoal;
+
     }
 
     function isExit($args)
     {
-        list($unit) = $args;
-        if ($unit->forceId == BLUE_FORCE && in_array($unit->hexagon->name, $this->landingZones)) {
-            return true;
-        }
         return false;
     }
 
@@ -258,14 +221,29 @@ class moscowVictoryCore extends victoryCore
 //            return;
         }
         if ($b->scenario->supply === true) {
-            if ($unit->forceId == REBEL_FORCE) {
+            if ($unit->forceId == GERMAN_FORCE) {
                 $bias = array(5 => true, 6 => true, 1 => true);
-                $goal = $this->rebelGoal;
+                $goal = $this->germanGoal;
             } else {
                 $bias = array(2 => true, 3 => true, 4 => true);
-                $goal = $this->loyalistGoal;
+                $goal = $this->sovietGoal;
             }
             $this->unitSupplyEffects($unit, $goal, $bias, $this->supplyLen);
+
+            if($b->gameRules->turn >= 4 && $b->gameRules->turn <= 6){
+
+                if($b->gameRules->phase == BLUE_REPLACEMENT_PHASE) {
+                    $this->movementCache->$id = $unit->maxMove;
+                    $unit->maxMove = 1;
+                    $unit->addAdjustment('mud','floorHalf');
+                }
+            }
+            if($b->gameRules->turn == 7){
+                if($b->gameRules->phase == BLUE_REPLACEMENT_PHASE) {
+                    $unit->maxMove = $this->movementCache->$id;
+                    $unit->removeAdjustment('mud');
+                }
+            }
         }
     }
 
@@ -322,12 +300,12 @@ class moscowVictoryCore extends victoryCore
         if ($gameRules->phase == BLUE_MECH_PHASE || $gameRules->phase == RED_MECH_PHASE) {
             $gameRules->flashMessages[] = "@hide crt";
         }
-        if ($attackingId == REBEL_FORCE) {
-            $gameRules->flashMessages[] = "Rebel Player Turn";
+        if ($attackingId == GERMAN_FORCE) {
+            $gameRules->flashMessages[] = "German Player Turn";
             $gameRules->replacementsAvail = 1;
         }
-        if ($attackingId == LOYALIST_FORCE) {
-            $gameRules->flashMessages[] = "Loyalist Player Turn";
+        if ($attackingId == SOVIET_FORCE) {
+            $gameRules->flashMessages[] = "Soviet Player Turn";
             $gameRules->replacementsAvail = 10;
         }
 

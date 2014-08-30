@@ -63,6 +63,8 @@ class Moscow extends ModernLandBattle
     {
         parent::terrainGen($hexDocId);
         $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 1, false);
+        $this->terrain->addTerrainFeature("road", "road", "r", 1, 0, 0, false);
+        $this->terrain->addNatAltEntranceCost('road','soviet','inf',.3);
     }
     function save()
     {
@@ -93,58 +95,55 @@ class Moscow extends ModernLandBattle
 
         $scenario = $this->scenario;
 
-        $this->force->addUnit("lll", SOVIET_FORCE, 305, "multiGor.png", 5, 2, 4, false, STATUS_READY, "B", 1, 1, "soviet", true, 'inf');
-        $this->force->addUnit("lll", SOVIET_FORCE, 803, "multiGor.png", 5, 2, 4, false, STATUS_READY, "B", 1, 1, "soviet", true, 'inf');
-        $this->force->addUnit("x", SOVIET_FORCE, 907, "multiHeavy.png", 10, 5, 5, false, STATUS_READY, "B", 5, 1, "loyalGuards", true, 'heavy');
-        $this->force->addUnit("lll", SOVIET_FORCE, 1205, "multiGor.png", 5, 2, 4, false, STATUS_READY, "B", 1, 1, "soviet", true, 'inf');
-        $this->force->addUnit("lll", SOVIET_FORCE, 1405, "multiGor.png", 5, 2, 4, false, STATUS_READY, "B", 1, 1, "soviet", true, 'inf');
+        for($i = 0; $i < 20;$i++){
+            $this->force->addUnit("xxx", SOVIET_FORCE, "deployBox", "multiInf.png", 8, 4, 4, true, STATUS_CAN_DEPLOY, "B", 1, 1, "soviet", true, 'inf');
+        }
 
-        $this->force->addUnit("lll", SOVIET_FORCE, 1705, "multiGor.png", 5, 2, 4, false, STATUS_READY, "B", 1, 1, "soviet", true, 'inf');
-        $this->force->addUnit("lll", SOVIET_FORCE, 1904, "multiGor.png", 5, 2, 4, false, STATUS_READY, "B", 1, 1, "soviet", true, 'inf');
-        $this->force->addUnit("lll", SOVIET_FORCE, 1809, "multiGor.png", 5, 2, 4, false, STATUS_READY, "B", 1, 1, "soviet", true, 'inf');
-        $this->force->addUnit("lll", SOVIET_FORCE, 1004, "multiGor.png", 5, 2, 4, false, STATUS_READY, "B", 1, 1, "soviet", true, 'inf');
-        $this->force->addUnit("lll", SOVIET_FORCE, 604, "multiGor.png", 5, 2, 4, false, STATUS_READY, "B", 1, 1, "soviet", true, 'inf');
-        $this->force->addUnit("x", SOVIET_FORCE, 1810, "multiInf.png", 6, 3, 5, false, STATUS_READY, "B", 1, 1, "soviet", true, 'inf');
+        for($i = 0; $i < 4;$i++){
+            $this->force->addUnit("xxx", SOVIET_FORCE, "deadpile", "multiInf.png", 8, 4, 4, true, STATUS_CAN_REPLACE, "B", 1, 1, "soviet", true, 'inf');
+        }
 
-        $this->force->addUnit("x", SOVIET_FORCE, "gameTurn2", "multiInf.png", 4, 2, 5, false, STATUS_CAN_REINFORCE, "B", 2, 1, "soviet", true, 'inf');
-        $this->force->addUnit("lll", SOVIET_FORCE, "gameTurn2", "multiGor.png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "D", 2, 1, "soviet", true, 'inf');
-        $this->force->addUnit("lll", SOVIET_FORCE, "gameTurn2", "multiGor.png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "D", 2, 1, "soviet", true, 'inf');
-        $this->force->addUnit("lll", SOVIET_FORCE, "gameTurn2", "multiGor.png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "E", 2, 1, "soviet", true, 'inf');
-        $this->force->addUnit("lll", SOVIET_FORCE, "gameTurn2", "multiGor.png", 5, 2, 4, false, STATUS_CAN_REINFORCE, "E", 2, 1, "soviet", true, 'inf');
-        $this->force->addUnit("x", SOVIET_FORCE, "gameTurn3", "multiPara.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "B", 3, 1, "soviet", true, 'inf');
-        $this->force->addUnit("x", SOVIET_FORCE, "gameTurn3", "multiPara.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "D", 3, 1, "soviet", true, 'inf');
-        $this->force->addUnit("x", SOVIET_FORCE, "gameTurn4", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 4, 1, "soviet", true, 'shock');
-        $this->force->addUnit("x", SOVIET_FORCE, "gameTurn4", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 4, 1, "soviet", true, 'shock');
-        $this->force->addUnit("x", SOVIET_FORCE, "gameTurn4", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "E", 4, 1, "soviet", true, 'shock');
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 12, 6, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 12, 6, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 12, 6, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 12, 6, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
 
-        $this->force->addUnit("x", SOVIET_FORCE, "gameTurn5", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "B", 5, 1, "soviet", true, 'mech');
-        $this->force->addUnit("x", SOVIET_FORCE, "gameTurn5", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "B", 5, 1, "soviet", true, 'mech');
-        $this->force->addUnit("x", SOVIET_FORCE, "gameTurn5", "multiHeavy.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "B", 5, 1, "soviet", true, 'heavy');
-        $this->force->addUnit("x", SOVIET_FORCE, "gameTurn5", "multiHeavy.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "B", 5, 1, "soviet", true, 'heavy');
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 11, 5, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 10, 5, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
 
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 9, 4, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 9, 4, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 9, 4, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
 
-        $this->force->addUnit("lll", GERMAN_FORCE, "deployBox", "multiInf.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
-        $this->force->addUnit("lll", GERMAN_FORCE, "deployBox", "multiInf.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
-        $this->force->addUnit("lll", GERMAN_FORCE, "deployBox", "multiInf.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
-        $this->force->addUnit("lll", GERMAN_FORCE, "deployBox", "multiInf.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
 
-        $this->force->addUnit("lll", GERMAN_FORCE, "deployBox", "multiPara.png", 8, 4, 5, false, STATUS_CAN_DEPLOY, "C", 1, 1, "german", true, "para");
-        $this->force->addUnit("lll", GERMAN_FORCE, "deployBox", "multiPara.png", 8, 4, 5, false, STATUS_CAN_DEPLOY, "C", 1, 1, "german", true, "para");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 8, 4, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 8, 4, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 8, 4, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
 
-        $this->force->addUnit("lll", GERMAN_FORCE, "gameTurn2", "multiPara.png", 8, 4, 5, false, STATUS_CAN_REINFORCE, "C", 2, 1, "german", true, "para");
-        $this->force->addUnit("lll", GERMAN_FORCE, "gameTurn2", "multiInf.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 2, 1, "german", true, "inf");
-        $this->force->addUnit("lll", GERMAN_FORCE, "gameTurn2", "multiInf.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 2, 1, "german", true, "inf");
-        $this->force->addUnit("lll", GERMAN_FORCE, "gameTurn2", "multiInf.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 2, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 7, 3, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 7, 3, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 7, 3, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 7, 3, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 7, 3, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
 
-        $this->force->addUnit("lll", GERMAN_FORCE, "gameTurn3", "multiInf.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 3, 1, "german", true, "inf");
-        $this->force->addUnit("lll", GERMAN_FORCE, "gameTurn3", "multiInf.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 3, 1, "german", true, "inf");
-        $this->force->addUnit("lll", GERMAN_FORCE, "gameTurn3", "multiInf.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 3, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 6, 3, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
 
-        $this->force->addUnit("lll", GERMAN_FORCE, "gameTurn4", "multiMech.png", 10, 5, 8, false, STATUS_CAN_REINFORCE, "A", 4, 1, "german", true, "mech");
-        $this->force->addUnit("lll", GERMAN_FORCE, "gameTurn4", "multiInf.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 4, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 5, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 5, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 5, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
 
-        $this->force->addUnit("lll", GERMAN_FORCE, "gameTurn5", "multiArmor.png", 12, 6, 8, false, STATUS_CAN_REINFORCE, "A", 5, 1, "german", true, "mech");
-        $this->force->addUnit("lll", GERMAN_FORCE, "gameTurn5", "multiMech.png", 10, 5, 8, false, STATUS_CAN_REINFORCE, "A", 5, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
     }
 
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
@@ -198,14 +197,25 @@ class Moscow extends ModernLandBattle
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
 
             // game data
-            $this->gameRules->setMaxTurn(7);
-            $this->gameRules->setInitialPhaseMode(BLUE_DEPLOY_PHASE, DEPLOY_MODE);
+            $this->gameRules->setMaxTurn(11);
+            $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
+
+            $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
+            $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */
+            $this->force->setAttackingForceId($this->gameRules->attackingForceId); /* so object oriented */
+
+            $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_DEPLOY_PHASE, DEPLOY_MODE, GERMAN_FORCE, SOVIET_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, GERMAN_FORCE, SOVIET_FORCE, false);
+
+            $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, GERMAN_FORCE, SOVIET_FORCE, false);
+
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, GERMAN_FORCE, SOVIET_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, RED_MOVE_PHASE, MOVING_MODE, SOVIET_FORCE, GERMAN_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, BLUE_MECH_PHASE, MOVING_MODE, GERMAN_FORCE, SOVIET_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_MECH_PHASE, RED_REPLACEMENT_PHASE, REPLACING_MODE, SOVIET_FORCE, GERMAN_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_MOVE_PHASE, MOVING_MODE, SOVIET_FORCE, GERMAN_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, SOVIET_FORCE, GERMAN_FORCE, false);
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MECH_PHASE, MOVING_MODE, SOVIET_FORCE, GERMAN_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_MECH_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, GERMAN_FORCE, SOVIET_FORCE, true);
+            $this->gameRules->addPhaseChange(RED_MECH_PHASE, BLUE_REPLACEMENT_PHASE, REPLACING_MODE, GERMAN_FORCE, SOVIET_FORCE, true);
         }
     }
 }

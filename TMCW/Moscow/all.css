@@ -847,24 +847,24 @@ svg {
   text-shadow: 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff; }
 
 .playerOne {
-  background: #55cc55;
-  border-color: #55cc55 !important; }
+  background: #9ee0ff;
+  border-color: #9ee0ff !important; }
 
-.rebelFace, .playerOneFace {
-  color: #55cc55; }
+.germanFace, .playerOneFace {
+  color: #9ee0ff; }
 
-.rebel {
-  background-color: #55cc55; }
+.german {
+  background-color: #9ee0ff; }
 
 .playerTwo {
-  background: #e5de52;
-  border-color: #e5de52 !important; }
+  background: #ba9f34;
+  border-color: #ba9f34 !important; }
 
-.loyalistFace, .playerTwoFace {
-  color: #e5de52; }
+.sovietFace, .playerTwoFace {
+  color: #ba9f34; }
 
-.loyalist {
-  background-color: #e5de52; }
+.soviet {
+  background-color: #ba9f34; }
 
 .playerThree {
   background: #aaaaaa;

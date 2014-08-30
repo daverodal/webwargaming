@@ -1,7 +1,7 @@
 @import "moscowColors";
 
-@include player(rebel, One, $rebelColor);
-@include player(loyalist,Two,$loyalistColor);
+@include player(german, One, $germanColor);
+@include player(soviet,Two,$sovietColor);
 @include player(loyalGuards,Three,$loyalistGuardColor);
 
 #map {
