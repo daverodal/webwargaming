@@ -168,6 +168,7 @@ class Moskow extends ModernLandBattle
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
+            $this->combatRules->crt->aggressorId = GERMAN_FORCE;
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
@@ -197,6 +198,7 @@ class Moskow extends ModernLandBattle
                 $this->moveRules->noZocZocOneHex = false;
             }
             $this->combatRules = new CombatRules($this->force, $this->terrain);
+            $this->combatRules->crt->aggressorId = GERMAN_FORCE;
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
 

@@ -22,6 +22,7 @@ class CombatResultsTable
     	public $combatResultsTable;
         public $combatResultsHeader;
     	public $combatOddsTable;
+        public $aggressorId = false;
     	//     combatIndexeCount is 6; maxCombatIndex = 5
 	//     index is 0 to 5;  dieSidesCount = 6
     

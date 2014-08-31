@@ -44,7 +44,7 @@ class OrigMartianCivilWar extends Battle {
         foreach($playerData as $k => $v){
             $$k = $v;
         }
-        @include_once "commonHeader.php";
+        @include_once "globalHeader.php";
         @include_once "header.php";
     }
     static function getView($name, $mapUrl, $player = 0, $player = 0, $arg = false, $argTwo = false)

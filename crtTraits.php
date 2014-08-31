@@ -162,20 +162,17 @@ trait divMCWCombatShiftTerrain
         }
         /* FortB trumps FortA in multi defender attacks */
         /* TODO: FORCED ID SHOULD NOT BE HERE!!! */
-        if($attackingForceId == 1){
+        if(isset($this->aggressorId) && $attackingForceId === $this->aggressorId){
+            global $force_name;
+            $player = $force_name[$attackingForceId];
             if($isFortB){
-                $combatLog .= "Shift 2 left for german attacking into Fortified B";
-                $terrainCombatEffect = 2;
+                $combatLog .= "<br>Shift 2 left for $player attacking into Fortified B";
+                $terrainCombatEffect += 2;
             }else if($isFortA){
-                $combatLog .= "Shift 1 left for german attacking into Fortified A";
-                $terrainCombatEffect = 1;
+                $combatLog .= "<br>Shift 1 left for $player attacking into Fortified A";
+                $terrainCombatEffect += 1;
             }
         }else{
-            if($isFortB){
-                $terrainCombatEffect -= 2;
-            }else if($isFortA){
-                $terrainCombatEffect -= 1;
-            }
         }
 
         $combatIndex -= $terrainCombatEffect;
