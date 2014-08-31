@@ -161,13 +161,20 @@ trait divMCWCombatShiftTerrain
             $terrainCombatEffect--;
         }
         /* FortB trumps FortA in multi defender attacks */
-        if($attackingForceId == REBEL_FORCE){
+        /* TODO: FORCED ID SHOULD NOT BE HERE!!! */
+        if($attackingForceId == 1){
             if($isFortB){
-                $combatLog .= "Shift 2 left for rebel attacking info Fortified B";
-                $terrainCombatEffect += 2;
+                $combatLog .= "Shift 2 left for german attacking into Fortified B";
+                $terrainCombatEffect = 2;
             }else if($isFortA){
-                $combatLog .= "Shift 1 left for rebel attacking infoFortified A";
-                $terrainCombatEffect += 1;
+                $combatLog .= "Shift 1 left for german attacking into Fortified A";
+                $terrainCombatEffect = 1;
+            }
+        }else{
+            if($isFortB){
+                $terrainCombatEffect -= 2;
+            }else if($isFortA){
+                $terrainCombatEffect -= 1;
             }
         }
 

@@ -1,4 +1,4 @@
-@import "moscowColors";
+@import "moskowColors";
 .wrapper{
   background:rgba(255,255,255,.8);
   border-radius:15px;
@@ -39,10 +39,10 @@ div{
   text-align: center;
 }
 
-.loyalist {
-  color:$loyalistColor;
+.soviet {
+  color:$sovietColor;
 }
 
-.rebel, .sympth {
-  color: $rebelColor;
+.german {
+  color: $germanColor;
 }

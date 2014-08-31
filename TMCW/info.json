@@ -59,14 +59,14 @@
             }
         }
     },
-    "Moscow": {
-        "name": "Moscow...",
+    "Moskow": {
+        "name": "Moskow...",
         "path": "TMCW",
         "genre": "20'th Century Games",
-        "fileName": "Moscow.php",
+        "fileName": "Moskow.php",
         "scenarios": {
             "Main": {
-                "description": "The Battle for Moscow",
+                "description": "The Battle for Moskow",
                 "supply": true,
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,

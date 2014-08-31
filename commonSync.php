@@ -622,7 +622,7 @@ x.register("mapUnits", function(mapUnits) {
         var symb = mapUnits[i].supplied !== false ? " - " : " <span class='reduced'>u</span> ";
         var html = reduceDisp + str + symb + move + "</span>"
         $("#"+i+" .unit-numbers").html(html);
-        var len  = $("#"+i+" div").text().length;
+        var len  = $("#"+i+" .unit-numbers").text().length;
         $("#"+i+" div span ").addClass("infoLen"+len);
         $("#"+i).attr("src",img);
     }

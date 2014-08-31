@@ -1,5 +1,5 @@
 <?php
-set_include_path(__DIR__ . "/Moscow" . PATH_SEPARATOR . get_include_path());
+set_include_path(__DIR__ . "/Moskow" . PATH_SEPARATOR . get_include_path());
 
 define("GERMAN_FORCE", 1);
 define("SOVIET_FORCE", 2);
@@ -15,11 +15,11 @@ require_once "constants.php";
 require_once "ModernLandBattle.php";
 
 
-class Moscow extends ModernLandBattle
+class Moskow extends ModernLandBattle
 {
     /* a comment */
 
-    public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>2, 'SpecialHexC'=>1];
+    public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>2, 'SpecialHexC'=>1];
 
     /* @var MapData $mapData */
     public $mapData;
@@ -48,7 +48,7 @@ class Moscow extends ModernLandBattle
             $$k = $v;
         }
         @include_once "globalHeader.php";
-        @include_once "moscowHeader.php";
+        @include_once "moskowHeader.php";
     }
 
     static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false)
@@ -65,6 +65,8 @@ class Moscow extends ModernLandBattle
         $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 1, false);
         $this->terrain->addTerrainFeature("road", "road", "r", 1, 0, 0, false);
         $this->terrain->addNatAltEntranceCost('road','soviet','inf',.3);
+        $this->terrain->addNatAltEntranceCost('road','soviet','mudinf',1./12.);
+
     }
     function save()
     {
@@ -81,6 +83,7 @@ class Moscow extends ModernLandBattle
         $data->playerData = $this->playerData;
         $data->display = $this->display;
         $data->specialHexA = $this->specialHexA;
+        $data->specialHexB = $this->specialHexB;
         $data->victory = $this->victory->save();
         $data->terrainName = "terrain-" . get_class($this);
         $data->genTerrain = $this->genTerrain;
@@ -100,7 +103,7 @@ class Moscow extends ModernLandBattle
         }
 
         for($i = 0; $i < 4;$i++){
-            $this->force->addUnit("xxx", SOVIET_FORCE, "deadpile", "multiInf.png", 8, 4, 4, true, STATUS_CAN_REPLACE, "B", 1, 1, "soviet", true, 'inf');
+            $this->force->addUnit("xxx", SOVIET_FORCE, "deadpile", "multiInf.png", 8, 4, 4, true, STATUS_ELIMINATED, "B", 1, 1, "soviet", true, 'inf');
         }
 
         $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 12, 6, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
@@ -154,9 +157,10 @@ class Moscow extends ModernLandBattle
         if ($data) {
             $this->arg = $data->arg;
             $this->specialHexA = $data->specialHexA;
+            $this->specialHexB = $data->specialHexB;
             $this->scenario = $data->scenario;
             $this->genTerrain = false;
-            $this->victory = new Victory("TMCW/Moscow/moscowVictoryCore.php", $data);
+            $this->victory = new Victory("TMCW/Moskow/moskowVictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
@@ -174,7 +178,7 @@ class Moscow extends ModernLandBattle
             $this->scenario = $scenario;
             $this->genTerrain = true;
 
-            $this->victory = new Victory("TMCW/Moscow/moscowVictoryCore.php");
+            $this->victory = new Victory("TMCW/Moskow/moskowVictoryCore.php");
             if ($scenario->supplyLen) {
                 $this->victory->setSupplyLen($scenario->supplyLen);
             }

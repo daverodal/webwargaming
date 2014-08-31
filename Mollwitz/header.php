@@ -67,7 +67,6 @@ x.register("combatRules", function(combatRules, data){
                     }
                 }else{
                     if(combatRules.combats[cD].useDetermined){
-                        debugger;
                         $('.tableWrapper.main').hide();
                         $('.tableWrapper.alt').hide();
                         $('.tableWrapper.determined').show();
@@ -220,7 +219,6 @@ x.register("combatRules", function(combatRules, data){
                     $('#altTable').hide();
 
                 }else{
-                    debugger;
                     if(combatRules.lastResolvedCombat.useDetermined){
                         $('.tableWrapper.determined').show();
                         $('.tableWrapper.main').hide();

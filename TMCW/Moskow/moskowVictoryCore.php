@@ -8,7 +8,7 @@
  */
 include_once "victoryCore.php";
 
-class moscowVictoryCore extends victoryCore
+class moskowVictoryCore extends victoryCore
 {
     public $victoryPoints;
     protected $movementCache;
@@ -71,6 +71,7 @@ class moscowVictoryCore extends victoryCore
     {
         list($zones, $unit) = $args;
 
+        $forceId = $unit->forceId;
         if($unit->forceId == GERMAN_FORCE){
             $zones = $this->germanGoal;
         }else{
@@ -79,6 +80,14 @@ class moscowVictoryCore extends victoryCore
         $reinforceZones = [];
         foreach($zones as $zone){
             $reinforceZones[] = new ReinforceZone($zone, $zone);
+        }
+        $battle = Battle::getBattle();
+
+        $specialHexes = $battle->mapData->specialHexes;
+        foreach($specialHexes as $hexNum => $specialHex){
+            if($specialHex == $forceId){
+                $reinforceZones[] = new ReinforceZone($hexNum, $hexNum);
+            }
         }
         return array($reinforceZones);
     }
@@ -232,16 +241,24 @@ class moscowVictoryCore extends victoryCore
 
             if($b->gameRules->turn >= 4 && $b->gameRules->turn <= 6){
 
-                if($b->gameRules->phase == BLUE_REPLACEMENT_PHASE) {
+                if(!isset($this->movementCache->$id)) {
                     $this->movementCache->$id = $unit->maxMove;
                     $unit->maxMove = 1;
+                    if($unit->forceId == SOVIET_FORCE){
+                        $unit->class = 'mudinf';
+                    }
+                }
+                if($unit->forceId == $b->gameRules->attackingForceId){
                     $unit->addAdjustment('mud','floorHalf');
+                }else{
+                    $unit->removeAdjustment('mud');
                 }
             }
             if($b->gameRules->turn == 7){
-                if($b->gameRules->phase == BLUE_REPLACEMENT_PHASE) {
+                if(isset($this->movementCache->$id)) {
                     $unit->maxMove = $this->movementCache->$id;
                     $unit->removeAdjustment('mud');
+                    $unit->class = 'inf';
                 }
             }
         }
@@ -303,10 +320,13 @@ class moscowVictoryCore extends victoryCore
         if ($attackingId == GERMAN_FORCE) {
             $gameRules->flashMessages[] = "German Player Turn";
             $gameRules->replacementsAvail = 1;
+            if($gameRules->turn == 4){
+                $gameRules->flashMessages[] = "Mud In Effect ";
+            }
         }
         if ($attackingId == SOVIET_FORCE) {
             $gameRules->flashMessages[] = "Soviet Player Turn";
-            $gameRules->replacementsAvail = 10;
+            $gameRules->replacementsAvail = 8;
         }
 
         /*only get special VPs' at end of first Movement Phase */
