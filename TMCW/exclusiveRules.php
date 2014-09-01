@@ -29,7 +29,7 @@
             </H1>
             <h2 class="exclusive"> EXCLUSIVE RULES
             </h2>
-            <?php include "victoryConditions.php"?>
+            <?php include "victoryConditions.php" ?>
             <div id="credits">
                 <h2><cite><?=$name?></cite></h2>
                 <h4>Design Credits</h4>

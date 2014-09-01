@@ -1,5 +1,5 @@
 <?php
-set_include_path(__DIR__ . "/TankDual" . PATH_SEPARATOR . get_include_path());
+//set_include_path(__DIR__ . "/TankDual" . PATH_SEPARATOR . get_include_path());
 
 define("REBEL_FORCE", 1);
 define("LOYALIST_FORCE", 2);
@@ -20,24 +20,10 @@ $mode_name[1] = "";
 $mode_name[2] = "";
 
 
-require_once "Battle.php";
-require_once "crtTraits.php";
-require_once "combatRules.php";
-require_once "crt.php";
-require_once "force.php";
-require_once "gameRules.php";
-require_once "hexagon.php";
-require_once "hexpart.php";
-require_once "los.php";
-require_once "mapgrid.php";
-require_once "moveRules.php";
-require_once "prompt.php";
-require_once "terrain.php";
-require_once "display.php";
-require_once "victory.php";
+require_once "ModernLandBattle.php";
 
 
-class TankDual extends LandBattle
+class TankDual extends ModernLandBattle
 {
     /* a comment */
 

@@ -1,5 +1,4 @@
 <?php
-set_include_path(__DIR__ . "/Moskow" . PATH_SEPARATOR . get_include_path());
 
 define("GERMAN_FORCE", 1);
 define("SOVIET_FORCE", 2);

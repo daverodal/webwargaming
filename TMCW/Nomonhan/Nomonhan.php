@@ -1,6 +1,5 @@
 <?php
-set_include_path(__DIR__ . "/Nomonhan". PATH_SEPARATOR .  get_include_path());
-
+//set_include_path(__DIR__ . "/Nomonhan". PATH_SEPARATOR .  get_include_path());
 define("JAPANESE_FORCE", 1);
 define("SOVIET_FORCE", 2);
 global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
@@ -10,20 +9,18 @@ $force_name[1] = "Japanese";
 $force_name[2] = "Soviet";
 
 require_once "constants.php";
-
 $phase_name[16] = "<span class='playerOneFace'>Japanese</span> surprise movement phase";
 
-require_once "MartianCivilWar.php";
+require_once "ModernLandBattle.php";
 /* TODO: gag, we should NOT subclass MartianCivilWar */
 $force_name[0] = "Neutral Observer";
 $force_name[1] = "Japanese";
 $force_name[2] = "Soviet";
-
 require_once "nomonhanCrt.php";
 
 
 /* TODO: do NOT subclass MCW */
-class Nomonhan extends MartianCivilWar
+class Nomonhan extends ModernLandBattle
 {
     /* a comment */
 
@@ -182,6 +179,7 @@ class Nomonhan extends MartianCivilWar
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->genTerrain = true;
+
             $this->victory = new Victory("TMCW/Nomonhan");
             $this->display = new Display();
             $this->mapData->setData(40, 25, "js/Nomonhan3Small.png");

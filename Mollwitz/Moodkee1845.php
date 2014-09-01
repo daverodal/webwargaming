@@ -79,8 +79,6 @@ class Moodkee1845 extends IndiaCore
     public function init()
     {
 
-        echo "init ";
-
         $artRange = 3;
 
 

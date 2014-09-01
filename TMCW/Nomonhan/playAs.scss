@@ -1,4 +1,4 @@
-@import "textShadow";
+@import "../textShadow";
 h1{
   color:#f66;
   @include textShadow(white);
@@ -11,8 +11,10 @@ h2{
   @include textShadow(white);
 }
 .rebel{
+  font-size:40px;
 }
 .loyalist{
+  font-size:40px;
   color:blue;
 
 }

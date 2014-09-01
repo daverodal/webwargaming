@@ -341,7 +341,7 @@ class MartianCivilWar extends ModernLandBattle
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
             $this->genTerrain = false;
-            $this->victory = new Victory("TMCW", $data);
+            $this->victory = new Victory("TMCW/MartianCivilWar", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
@@ -364,7 +364,7 @@ class MartianCivilWar extends ModernLandBattle
             if($this->scenario->hardCuneiform){
                 $this->terrainName = "terrain-SiegeOfCuneiform";
             }
-            $this->victory = new Victory("TMCW");
+            $this->victory = new Victory("TMCW/MartianCivilWar");
             if ($scenario->supplyLen) {
                 $this->victory->setSupplyLen($scenario->supplyLen);
             }

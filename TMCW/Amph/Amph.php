@@ -1,5 +1,5 @@
 <?php
-set_include_path(__DIR__ . "/Amph" . PATH_SEPARATOR . get_include_path());
+//set_include_path(dirname(__DIR__) . "/Amph" . PATH_SEPARATOR . get_include_path());
 
 define("REBEL_FORCE", 1);
 define("LOYALIST_FORCE", 2);
@@ -11,9 +11,7 @@ $force_name[1] = "Rebel";
 $force_name[2] = "Loyalist";
 
 require_once "constants.php";
-
 require_once "ModernLandBattle.php";
-
 
 class Amph extends ModernLandBattle
 {

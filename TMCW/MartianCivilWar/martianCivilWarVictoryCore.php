@@ -6,16 +6,17 @@
  * Time: 7:06 PM
  * To change this template use File | Settings | File Templates.
  */
-include_once "victoryCore.php";
+include "supplyRulesTraits.php";
 
-class tankDualVictoryCore extends victoryCore
+class victoryCore
 {
     public $victoryPoints;
-    private $movementCache;
-    private $combatCache;
-    private $supplyLen = false;
-    private $landingZones;
+    protected $movementCache;
+    protected $combatCache;
+    protected $supplyLen = false;
+    public $gameOver = false;
 
+    use modernSupplyRules;
 
     function __construct($data)
     {
@@ -24,12 +25,11 @@ class tankDualVictoryCore extends victoryCore
             $this->movementCache = $data->victory->movementCache;
             $this->combatCache = $data->victory->combatCache;
             $this->supplyLen = $data->victory->supplyLen;
-            $this->landingZones = $data->victory->landingZones;
+            $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
             $this->combatCache = new stdClass();
-            $this->landingZones = [];
         }
     }
 
@@ -43,7 +43,6 @@ class tankDualVictoryCore extends victoryCore
         $ret->movementCache = $this->movementCache;
         $ret->combatCache = $this->combatCache;
         $ret->supplyLen = $this->supplyLen;
-        $ret->landingZones = $this->landingZones;
         return $ret;
     }
 
@@ -52,19 +51,9 @@ class tankDualVictoryCore extends victoryCore
         $battle = Battle::getBattle();
 
         list($mapHexName, $forceId) = $args;
-
-        if($forceId == RED_FORCE){
-            $newLandings = [];
-            foreach($this->landingZones as $landingZone){
-                if($landingZone == $mapHexName){
-                    continue;
-                }
-                $newLandings[] = $landingZone;
-            }
-            $this->landingZones = $newLandings;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>Beachhead Destroyed</span>";
-
-            $battle->mapData->removeSpecialHex($mapHexName);
+        if ($forceId == 1) {
+            $this->victoryPoints[$forceId]++;
+            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>+1 vp</span>";
         }
 
     }
@@ -73,13 +62,7 @@ class tankDualVictoryCore extends victoryCore
     {
         list($zones, $unit) = $args;
 
-        if($unit->forceId == BLUE_FORCE){
-            $zones = [];
-            foreach($this->landingZones as $landingZone){
-                $zones[] = new ReinforceZone($landingZone,"A");
-            }
-        }
-
+        $zones[] = new ReinforceZone(2414, 2414);
         return array($zones);
     }
 
@@ -132,6 +115,7 @@ class tankDualVictoryCore extends victoryCore
         }else{
             $battle->gameRules->flashMessages[] = "Loyalist Player Wins";
         }
+        $this->gameOver = true;
         return true;
     }
     public function phaseChange()
@@ -143,7 +127,6 @@ class tankDualVictoryCore extends victoryCore
         $gameRules = $battle->gameRules;
         $forceId = $gameRules->attackingForceId;
         $turn = $gameRules->turn;
-        $force = $battle->force;
 
         if ($gameRules->phase == RED_COMBAT_PHASE || $gameRules->phase == BLUE_COMBAT_PHASE) {
             $gameRules->flashMessages[] = "@hide deployWrapper";
@@ -152,12 +135,7 @@ class tankDualVictoryCore extends victoryCore
 
             /* Restore all un-supplied strengths */
             $force = $battle->force;
-            foreach($this->combatCache as $id => $strength){
-                $unit = $force->getUnit($id);
-                $unit->removeAdjustment('supply');
-//                $unit->strength = $strength;
-                unset($this->combatCache->$id);
-            }
+            $this->restoreAllCombatEffects($force);
         }
         if ($gameRules->phase == BLUE_REPLACEMENT_PHASE || $gameRules->phase == RED_REPLACEMENT_PHASE) {
             $gameRules->flashMessages[] = "@show deadpile";
@@ -177,22 +155,21 @@ class tankDualVictoryCore extends victoryCore
 
         $b = Battle::getBattle();
 
-        $goal = $this->landingZones;
-        $this->rebelGoal = $goal;
+        if ($b->scenario->supply === true) {
+            $bias = array(5 => true, 6 => true);
+            $goal = $b->moveRules->calcRoadSupply(REBEL_FORCE, 401, $bias);
+            $goal = array_merge($goal, array(101, 102, 103, 104, 201, 301, 401, 501, 601, 701, 801, 901, 1001));
+            $this->rebelGoal = $goal;
 
-        $goal = array();
-        $goal = array_merge($goal, array(110,210,310,410,510,610,710,810,910,1010,1110,1210,1310,1410,1510,1610,1710,1810,1910,2010));
-        $this->loyalistGoal = $goal;
-    }
 
-    function isExit($args){
-        list($unit) = $args;
-        if($unit->forceId == BLUE_FORCE && in_array($unit->hexagon->name,$this->landingZones)){
-            return true;
+            $bias = array(2 => true, 3 => true);
+            $goal = $b->moveRules->calcRoadSupply(LOYALIST_FORCE, 3017, $bias);
+            $goal = array_merge($goal, array(3014, 3015, 3016, 3017, 3018, 3019, 3020, 2620, 2720, 2820, 2920));
+            $this->loyalistGoal = $goal;
+
         }
-        return false;
-    }
 
+    }
 
     public function postRecoverUnit($args)
     {
@@ -206,58 +183,13 @@ class tankDualVictoryCore extends victoryCore
         }
         if ($b->scenario->supply === true) {
             if ($unit->forceId == REBEL_FORCE) {
-                $bias = array(5 => true, 6 => true, 1=>true);
+                $bias = array(5 => true, 6 => true);
                 $goal = $this->rebelGoal;
             } else {
-                $bias = array(2 => true, 3 => true, 4=>true);
+                $bias = array(2 => true, 3 => true);
                 $goal = $this->loyalistGoal;
             }
-            if ($b->gameRules->mode == REPLACING_MODE) {
-                if ($unit->status == STATUS_CAN_UPGRADE) {
-                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias, $this->supplyLen);
-                    if (!$unit->supplied) {
-                        /* TODO: make this not cry  (call a method) */
-                        $unit->status = STATUS_STOPPED;
-                    }
-                }
-                return;
-            }
-            if ($b->gameRules->mode == MOVING_MODE) {
-                if ($unit->status == STATUS_READY || $unit->status == STATUS_UNAVAIL_THIS_PHASE) {
-                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias,$this->supplyLen);
-                } else {
-                    return;
-                }
-                if (!$unit->supplied && !isset($this->movementCache->$id)) {
-                    $this->movementCache->$id = $unit->maxMove;
-                    $unit->maxMove = floor($unit->maxMove / 2);
-                }
-                if ($unit->supplied && isset($this->movementCache->$id)) {
-                    $unit->maxMove = $this->movementCache->$id;
-                    unset($this->movementCache->$id);
-                }
-            }
-            if ($b->gameRules->mode == COMBAT_SETUP_MODE) {
-                if ($unit->status == STATUS_READY || $unit->status == STATUS_DEFENDING || $unit->status == STATUS_UNAVAIL_THIS_PHASE) {
-
-                    $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias, $this->supplyLen);
-                } else {
-                    return;
-                }
-                if ($unit->forceId == $b->gameRules->attackingForceId && !$unit->supplied && !isset($this->combatCache->$id)) {
-                    $this->combatCache->$id = true;
-//                    $unit->strength = floor($unit->strength / 2);
-                    $unit->addAdjustment('supply','floorHalf');
-                }
-                if ($unit->supplied && isset($this->combatCache->$id)) {
-                    $unit->strength = $this->combatCache->$id;
-                    unset($this->combatCache->$id);
-                }
-                if ($unit->supplied && isset($this->movementCache->$id)) {
-                    $unit->maxMove = $this->movementCache->$id;
-                    unset($this->movementCache->$id);
-                }
-            }
+            $this->unitSupplyEffects($unit, $goal, $bias, $this->supplyLen);
         }
     }
 
@@ -292,7 +224,7 @@ class tankDualVictoryCore extends victoryCore
             if ($unit->class != 'mech') {
                 $battle->moveRules->enterZoc = "stop";
                 $battle->moveRules->exitZoc = 0;
-                $battle->moveRules->noZocZoc = false;
+                $battle->moveRules->noZocZoc = true;
             } else {
                 $battle->moveRules->enterZoc = 2;
                 $battle->moveRules->exitZoc = 1;
@@ -324,6 +256,62 @@ class tankDualVictoryCore extends victoryCore
         }
 
         /*only get special VPs' at end of first Movement Phase */
+        if ($specialHexes) {
+            $scenario = $battle->scenario;
+            if ($scenario->supply === true) {
+                $inCity = false;
+                $roadCut = false;
+                foreach ($specialHexes as $k => $v) {
+                    if ($v == REBEL_FORCE) {
+                        $points = 1;
+                        if ($k == 2414 || $k == 2415 || $k == 2515) {
+                            $inCity = true;
+                            $points = 5;
+                        } elseif ($k >= 2416) {
+                            /* Remember the first road Cut */
+                            if ($roadCut === false) {
+                                $roadCut = $k;
+                            }
+                            continue;
+                        }
+                        $vp[$v] += $points;
+                        $battle->mapData->specialHexesVictory->$k = "<span class='rebelVictoryPoints'>+$points vp</span>";
+                    } else {
+                        //                    $vp[$v] += .5;
+                    }
+                }
+                if ($roadCut !== false) {
+                    $vp[REBEL_FORCE] += 3;
+                    $battle->mapData->specialHexesVictory->$roadCut = "<span class='rebelVictoryPoints'>+3 vp</span>";
+                }
+                if (!$inCity) {
+                    /* Cuneiform isolated? */
+                    $cuneiform = 2515;
+                    if (!$battle->moveRules->calcSupplyHex($cuneiform, array(3014, 3015, 3016, 3017, 3018, 3019, 3020, 2620, 2720, 2820, 2920), array(2 => true, 3 => true), RED_FORCE, $this->supplyLen)) {
+                        $vp[REBEL_FORCE] += 5;
+
+                        $battle->mapData->specialHexesVictory->$cuneiform = "<span class='rebelVictoryPoints'>+5 vp</span>";
+
+                    }
+                }
+            } else {
+                foreach ($specialHexes as $k => $v) {
+                    if ($v == 1) {
+                        $points = 1;
+                        if ($k == 2414 || $k == 2415 || $k == 2515) {
+                            $points = 5;
+                        } elseif ($k >= 2416) {
+                            $points = 3;
+                        }
+                        $vp[$v] += $points;
+                        $battle = Battle::getBattle();
+                        $battle->mapData->specialHexesVictory->$k = "<span class='rebelVictoryPoints'>+$points vp</span>";
+                    } else {
+                        //                    $vp[$v] += .5;
+                    }
+                }
+            }
+        }
         $this->victoryPoints = $vp;
     }
 }

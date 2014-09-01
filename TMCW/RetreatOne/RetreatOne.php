@@ -1,5 +1,5 @@
 <?php
-set_include_path(__DIR__ . "/RetreatOne" . PATH_SEPARATOR . get_include_path());
+//set_include_path(__DIR__ . "/RetreatOne" . PATH_SEPARATOR . get_include_path());
 
 define("LACONIANS_FORCE", 1);
 define("CAPROLIANS_FORCE", 2);

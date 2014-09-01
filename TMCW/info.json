@@ -3,7 +3,7 @@
         "name": "The Martian Civil War",
         "path": "TMCW",
         "genre": "20'th Century Games",
-        "fileName": "MartianCivilWar.php",
+        "fileName": "MartianCivilWar/MartianCivilWar.php",
         "description":"This is a short description",
         "scenarios": {
             "main": {
@@ -30,7 +30,7 @@
         "name": "The Siege of Cueeiform",
         "path": "TMCW",
         "genre": "20'th Century Games",
-        "fileName": "MartianCivilWar.php",
+        "fileName": "MartianCivilWar/MartianCivilWar.php",
         "scenarios": {
             "HardCuneiform": {
                 "description": "Rebel closes in on fortified Cuneiform.",
@@ -46,7 +46,7 @@
         "name": "Sur La Mer",
         "path": "TMCW",
         "genre": "20'th Century Games",
-        "fileName": "Amph.php",
+        "fileName": "Amph/Amph.php",
         "scenarios": {
             "Main": {
                 "description": "Rebel raid by the sea",
@@ -63,7 +63,7 @@
         "name": "Moskow...",
         "path": "TMCW",
         "genre": "20'th Century Games",
-        "fileName": "Moskow.php",
+        "fileName": "Moskow/Moskow.php",
         "scenarios": {
             "Main": {
                 "description": "The Battle for Moskow",
@@ -79,7 +79,7 @@
         "name": "Retreat One",
         "path": "TMCW",
         "genre": "20'th Century Games",
-        "fileName": "RetreatOne.php",
+        "fileName": "RetreatOne/RetreatOne.php",
         "scenarios": {
             "Main": {
                 "description": "Laconians vs Caprolians",
@@ -96,7 +96,7 @@
         "name": "Tank Dual!!!",
         "path": "TMCW",
         "genre": "20'th Century Games",
-        "fileName": "TankDual.php",
+        "fileName": "TankDual/TankDual.php",
         "scenarios": {
             "main": {
                 "description": "VERY VERY FRESH! USE AT OWN RISK!!!!!!",
@@ -111,7 +111,7 @@
     "Nomonhan": {
         "name": "The Nomonhan Incident",
         "path": "TMCW",
-        "fileName": "Nomonhan.php",
+        "fileName": "Nomonhan/Nomonhan.php",
         "genre": "20'th Century Games",
         "scenarios": {
             "standard": {
@@ -124,7 +124,7 @@
         "name": "Manchuria 1976",
         "path": "TMCW",
         "genre": "20'th Century Games",
-        "fileName": "Manchuria1976.php",
+        "fileName": "Manchuria1976/Manchuria1976.php",
         "scenarios": {
             "standard": {
                 "description": "Standard scenario. Peoples Republic of China vs Soviet Union",
