@@ -69,7 +69,6 @@ trait divCombatShiftTerrain
         $combats->terrainCombatEffect = $terrainCombatEffect;
         $combats->index = $combatIndex;
         $combats->combatLog = $combatLog;
-//    $this->force->storeCombatIndex($defenderId, $combatIndex);
     }
 }
 
@@ -162,7 +161,9 @@ trait divMCWCombatShiftTerrain
         }
         /* FortB trumps FortA in multi defender attacks */
         /* TODO: FORCED ID SHOULD NOT BE HERE!!! */
-        if(isset($this->aggressorId) && $attackingForceId === $this->aggressorId){
+        if(isset($this->aggressorId) && $attackingForceId !== $this->aggressorId){
+
+        }else{
             global $force_name;
             $player = $force_name[$attackingForceId];
             if($isFortB){
@@ -172,7 +173,6 @@ trait divMCWCombatShiftTerrain
                 $combatLog .= "<br>Shift 1 left for $player attacking into Fortified A";
                 $terrainCombatEffect += 1;
             }
-        }else{
         }
 
         $combatIndex -= $terrainCombatEffect;
@@ -185,6 +185,5 @@ trait divMCWCombatShiftTerrain
         $combats->terrainCombatEffect = $terrainCombatEffect;
         $combats->index = $combatIndex;
         $combats->combatLog = $combatLog;
-//    $this->force->storeCombatIndex($defenderId, $combatIndex);
     }
 }
