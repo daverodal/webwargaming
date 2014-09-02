@@ -1,5 +1,6 @@
 <body>
 <style>
+    <?php @include "playAs.css";?>
     body{
         background:url("<?=base_url("js/ChineseType59Small.png")?>") #333 no-repeat;
         background-position:center 0;
@@ -62,4 +63,7 @@
     <a class="link"  href="<?=site_url("wargame/enterHotseat");?>/<?=$wargame?>">Play Hotseat</a><br>
     <a class="link"  href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>">Play Multi Player </a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a>
+    <div class="attribution">
+        By Staff Sgt. D. Myles Cullen (USAF) [Public domain], <a target='blank' href="http://commons.wikimedia.org/wiki/File%3AChinese_MBTs_070324-F-0193C-040.JPEG">via Wikimedia Commons</a>
+    </div>
 </fieldset>

@@ -16,4 +16,7 @@
     <a class="link"  href="<?=site_url("wargame/enterHotseat");?>/<?=$wargame?>">Play Hotseat</a><br>
     <a class="link"  href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>">Play Multi Player </a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a>
+    <div class="attribution">
+        By Official U.S. Navy Page from United States of America MC2 Tamara Vaughn/U.S. Navy (Sailors conduct amphibious assault training.) [Public domain], <a target='blank' href="http://commons.wikimedia.org/wiki/File%3ASailors_conduct_amphibious_assault_training._(9137290248).jpg">via Wikimedia Commons</a>
+    </div>
 </fieldset>

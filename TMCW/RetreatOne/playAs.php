@@ -1,5 +1,6 @@
 <body>
 <style>
+    <?php @include "playAs.css";?>
     body{
         background:url("<?=base_url("js/MoyaleEastAfrica1941.jpg")?>") #333 no-repeat;
         background-size:100%;
@@ -67,4 +68,7 @@
     <a class="link"  href="<?=site_url("wargame/enterHotseat");?>/<?=$wargame?>">Play Hotseat</a><br>
     <a class="link"  href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>">Play Multi Player </a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a>
+    <div class="attribution">
+        By Not stated in source [Public domain], <a target="blank" href="http://commons.wikimedia.org/wiki/File%3AMoyaleEastAfrica1941.JPG">via Wikimedia Commons</a>
+    </div>
 </fieldset>
