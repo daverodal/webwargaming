@@ -1,4 +1,5 @@
 @import "../textShadow";
+@import "../commonPlay";
 h1{
   color:#f66;
   @include textShadow(white);

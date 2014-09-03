@@ -43,3 +43,6 @@
         <a href="<?=site_url("wargame/play");?>">Back to lobby</a>
     </div>
 </div>
+<footer class="attribution">
+    By Mate 1st Class Brien Aho, U.S. Navy (http://www.navy.mil; exact Source) [Public domain], <a target="blank" href="http://commons.wikimedia.org/wiki/File%3AAmphibious_Assault_Vehicle_(AAV).jpg">via Wikimedia Commons</a>
+</footer>

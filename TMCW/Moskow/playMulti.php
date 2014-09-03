@@ -4,7 +4,7 @@
         body{
             background:#ccc;
             color:#333;
-            background: url("<?=base_url("js/1280px-Amphibious_Assault_Vehicle_(AAV).jpg")?>") #333 no-repeat;
+            background: url("<?=base_url("js/Battle_of_Moscow.jpg")?>") #333 no-repeat;
             background-position: 10% 0;
             background-size:100%;
         }
@@ -43,3 +43,6 @@
         <a href="<?=site_url("wargame/play");?>">Back to lobby</a>
     </div>
 </div>
+<footer class="attribution">
+    By United States Information Agency [Public domain], <a target="blank" href="http://commons.wikimedia.org/wiki/File%3ABattle_of_Moscow.jpg">via Wikimedia Commons</a>
+</footer>

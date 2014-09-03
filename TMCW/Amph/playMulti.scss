@@ -1,4 +1,6 @@
 @import "amphColors";
+@import "../commonPlay";
+
 .wrapper{
   background:rgba(255,255,255,.8);
   border-radius:15px;
@@ -45,4 +47,19 @@ div{
 
 .rebel, .sympth {
   color: $rebelColor;
+}
+.attribution{
+  background: rgba(255,255,255,.6);
+}
+.attribution a{
+  color:red;
+  text-shadow: 1px 1px 1px black;
+}
+footer.attribution{
+  text-align: center;
+  background:rgba(255,255,255,.8);
+  border-radius:15px;
+  padding:20px;
+  margin:20px;
+  border:3px solid gray;
 }
