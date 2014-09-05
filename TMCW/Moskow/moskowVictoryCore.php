@@ -258,7 +258,9 @@ class moskowVictoryCore extends victoryCore
                 if(isset($this->movementCache->$id)) {
                     $unit->maxMove = $this->movementCache->$id;
                     $unit->removeAdjustment('mud');
-                    $unit->class = 'inf';
+                    if($unit->class === 'mudinf'){
+                        $unit->class = 'inf';
+                    }
                 }
             }
         }
