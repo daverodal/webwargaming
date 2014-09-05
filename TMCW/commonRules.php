@@ -63,7 +63,7 @@
 
             <p>The units are in two colors.</p>
             <?= $playerOne ?> units are this color.
-            <div class="unit rebel" alt="0" src="<?= base_url(); ?>js/short-red-arrow-md.png"
+            <div class="unit <?= strtolower($playerOne) ?>" alt="0" src="<?= base_url(); ?>js/short-red-arrow-md.png"
                  style="border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204);   position: relative;">
                 <div class="unitSize">xx</div>
                 <div class="counterWrapper">

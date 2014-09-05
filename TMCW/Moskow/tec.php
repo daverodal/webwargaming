@@ -19,11 +19,19 @@
                 <div class="clear"></div>
             </li>
             <li>
-                <div class="colOne mountainHex">
-                    <span>City (red hex)</span>
+                <div class="colOne forestHex">
+                    <span>Defensive Positions (gray)</span>
                 </div>
                 <div class="colTwo">No Effect</div>
-                <div class="colThree">Shift one</div>
+                <div class="colThree">Shift one for soviet defenders</div>
+                <div class="clear"></div>
+            </li>
+            <li>
+                <div class="colOne mountainHex">
+                    <span>City (red hexes)</span>
+                </div>
+                <div class="colTwo">No Effect</div>
+                <div class="colThree">Shift One</div>
                 <div class="clear"></div>
             </li>
             <li>
@@ -38,23 +46,7 @@
                 <div class="colOne roadHex">
                     <span>Road Hexside</span>
                 </div>
-                <div class="colTwo">1/2 Movement Point if across road hex side</div>
-                <div class="colThree">No Effect</div>
-                <div class="clear"></div>
-            </li>
-            <li>
-                <div class="colOne bridgeHex">
-                    <span>Bridge Hexside</span>
-                </div>
-                <div class="colTwo">Ignore terrain</div>
-                <div class="colThree">Shift one if all attacks across river/bridge</div>
-                <div class="clear"></div>
-            </li>
-            <li>
-                <div class="colOne trailHex">
-                    <span>Trail Hexside</span>
-                </div>
-                <div class="colTwo">1 Movement Point if across tail hex side</div>
+                <div class="colTwo">1 Movement Point if across road hex side for german. 1/3 point for soviet units.</div>
                 <div class="colThree">No Effect</div>
                 <div class="clear"></div>
             </li>
