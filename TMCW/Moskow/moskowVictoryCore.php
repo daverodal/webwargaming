@@ -127,8 +127,8 @@ class moskowVictoryCore extends victoryCore
         foreach ($theUnits as $id => $unit) {
 
             if ($unit->status == STATUS_CAN_REINFORCE && $unit->reinforceTurn <= $battle->gameRules->turn && $unit->hexagon->parent != "deployBox") {
-//                $theUnits[$id]->status = STATUS_ELIMINATED;
-                $theUnits[$id]->hexagon->parent = "deployBox";
+                $theUnits[$id]->status = STATUS_ELIMINATED;
+                $theUnits[$id]->hexagon->parent = "deadpile";
             }
         }
     }
