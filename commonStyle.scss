@@ -1,3 +1,5 @@
+$darkBlack: #333;
+$stdFont:16px;
 body{
   min-width:675px;
 }
@@ -393,7 +395,7 @@ body{
 }
 body{
   background:#eee;
-  color:#333;
+  color:$darkBlack;
 }
 
 #status{

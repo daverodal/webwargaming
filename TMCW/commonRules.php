@@ -153,7 +153,7 @@
             <div class="clear">&nbsp;</div>
             <h2>Game Play</h2>
 
-            <p>The game is made up of 7 Game turns, each Game turn consists of two player turns, Each player turn has
+            <p>The game is made up of <span class="gameLength">7</span> Game turns, each Game turn consists of two player turns, Each player turn has
                 several phases. These are described below in the sequence of play.</p>
             <h4>Sequence of Play.</h4>
             <ul>
@@ -207,7 +207,7 @@
                     </ol>
                 </li>
             </ul>
-            <p>At the end of 7 game turns the game is over and victory is determined.</p>
+            <p>At the end of <span class="gameLength">7</span> game turns the game is over and victory is determined.</p>
 
             <h2>Movement</h2>
 
