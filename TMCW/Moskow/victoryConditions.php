@@ -12,7 +12,7 @@
     <h4>The Game lasts 7 turns. Victory is determined at the end of the game.</h4>
     <ul>
         <li style="margin-bottom:20px">
-            The player that holds "Chateau sur Mer" at the ned of the game wins.
+            The player that holds Moskow at the ned of the game wins.
         </li>
     </ul>
 </div>
