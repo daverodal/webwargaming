@@ -31,7 +31,7 @@ class moskowVictoryCore extends victoryCore
             $this->sovietGoal = $data->victory->sovietGoal;
             $this->gameOver = $data->victory->gameOver;
         } else {
-            $this->victoryPoints = array(0, 0, 0);
+            $this->victoryPoints = "The Soviets hold Moskow";
             $this->movementCache = new stdClass();
             $this->combatCache = new stdClass();
             $this->germanGoal = $this->sovietGoal = [];
@@ -59,12 +59,17 @@ class moskowVictoryCore extends victoryCore
     public function specialHexChange($args)
     {
         $battle = Battle::getBattle();
-
         list($mapHexName, $forceId) = $args;
 
-        if ($forceId == LOYALIST_FORCE) {
-        }
+        if(in_array($mapHexName, $battle->specialHexC)){
 
+            if ($forceId == SOVIET_FORCE) {
+                $this->victoryPoints = "The Soviets hold Moskow";
+            }
+            if ($forceId == GERMAN_FORCE) {
+                $this->victoryPoints = "The Germans hold Moskow";
+            }
+        }
     }
 
     public function postReinforceZones($args)
@@ -136,11 +141,11 @@ class moskowVictoryCore extends victoryCore
     public function gameOver()
     {
         $battle = Battle::getBattle();
-        $city = $battle->specialHexA[0];
-        if ($battle->mapData->getSpecialHex($city) === LOYALIST_FORCE) {
-            $battle->gameRules->flashMessages[] = "Loyalist Player Wins";
+        $moskow = $battle->specialHexC[0];
+        if ($battle->mapData->getSpecialHex($moskow) === SOVIET_FORCE) {
+            $battle->gameRules->flashMessages[] = "Soviet Player Wins";
         }else{
-            $battle->gameRules->flashMessages[] = "Rebel Player Wins";
+            $battle->gameRules->flashMessages[] = "German Player Wins";
         }
         $this->gameOver = true;
         return true;
@@ -320,10 +325,12 @@ class moskowVictoryCore extends victoryCore
             $gameRules->flashMessages[] = "@hide crt";
         }
         if ($attackingId == GERMAN_FORCE) {
-            $gameRules->flashMessages[] = "German Player Turn";
-            $gameRules->replacementsAvail = 1;
-            if($gameRules->turn == 4){
-                $gameRules->flashMessages[] = "Mud In Effect ";
+            if($gameRules->turn <= $gameRules->maxTurn){
+                $gameRules->flashMessages[] = "German Player Turn";
+                $gameRules->replacementsAvail = 1;
+                if($gameRules->turn == 4){
+                    $gameRules->flashMessages[] = "Mud In Effect ";
+                }
             }
         }
         if ($attackingId == SOVIET_FORCE) {

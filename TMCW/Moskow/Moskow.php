@@ -18,7 +18,7 @@ class Moskow extends ModernLandBattle
 {
     /* a comment */
 
-    public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>2, 'SpecialHexC'=>1];
+    public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>2, 'SpecialHexC'=>2];
 
     /* @var MapData $mapData */
     public $mapData;
@@ -83,6 +83,7 @@ class Moskow extends ModernLandBattle
         $data->display = $this->display;
         $data->specialHexA = $this->specialHexA;
         $data->specialHexB = $this->specialHexB;
+        $data->specialHexC = $this->specialHexC;
         $data->victory = $this->victory->save();
         $data->terrainName = "terrain-" . get_class($this);
         $data->genTerrain = $this->genTerrain;
@@ -160,6 +161,7 @@ class Moskow extends ModernLandBattle
             $this->arg = $data->arg;
             $this->specialHexA = $data->specialHexA;
             $this->specialHexB = $data->specialHexB;
+            $this->specialHexC = $data->specialHexC;
             $this->scenario = $data->scenario;
             $this->genTerrain = false;
             $this->victory = new Victory("TMCW/Moskow/moskowVictoryCore.php", $data);
