@@ -75,6 +75,22 @@
             }
         }
     },
+    "Kiev": {
+        "name": "Kiev...",
+        "path": "TMCW",
+        "genre": "20'th Century Games",
+        "fileName": "Kiev/Kiev.php",
+        "scenarios": {
+            "Main": {
+                "description": "The Battle of Kiev",
+                "supply": true,
+                "loyalMechMove": 8,
+                "loyalExtraInf": true,
+                "supplyLen": false,
+                "showHexNums": true
+            }
+        }
+    },
     "RetreatOne": {
         "name": "Retreat One",
         "path": "TMCW",

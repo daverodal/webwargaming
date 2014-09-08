@@ -1,0 +1,54 @@
+@import "kievColors";
+
+@include player(german, One, $germanColor);
+@include player(soviet,Two,$sovietColor);
+@include player(loyalGuards,Three,$loyalistGuardColor);
+
+#map {
+//  width:1400px;
+}
+
+#crt {
+  width: 308px;
+}
+
+.reduced {
+  color: white;
+}
+
+#infoWrapper .WrapperLabel {
+  width: auto;
+}
+
+.game-name {
+  word-break: break-all;
+  font-family: 'Nosifer';
+}
+
+#gameTurn6 {
+}
+
+#gameTurn6 .unit {
+  float: left;
+}
+
+.specialHexesVP .rebelVictoryPoints {
+  @include victoryPoints(orange)
+}
+
+.specialHexesVP .loyalistVictoryPoints {
+ @include victoryPoints(#666);
+}
+
+/* RULES OVERRIDES */
+
+.gameLength{
+  color:transparent;
+  font-size:0px;
+  &::before{
+    content:"11";
+    color:rgb(51,51,51);
+    color:$darkBlack;
+    font-size:$stdFont;
+  }
+}
