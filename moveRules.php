@@ -538,7 +538,7 @@ class MoveRules
             if ($this->moves->$hexNum->isZoc == NULL) {
                 $this->moves->$hexNum->isZoc = $this->force->mapHexIsZOC($mapHex, $defendingForceId);
             }
-            if ((!$hexPath->firstHex) && $this->moves->$hexNum->isZoc) {
+            if ($this->moves->$hexNum->isZoc) {
                 continue;
             }
             $path = $hexPath->pathToHere;
