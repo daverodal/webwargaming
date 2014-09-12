@@ -48,21 +48,21 @@ class kolin1757VictoryCore extends victoryCore
         list($mapHexName, $forceId) = $args;
         if (in_array($mapHexName, $battle->specialHexA)) {
             if ($forceId == AUSTRIAN_FORCE) {
-                $this->victoryPoints[SIKH_FORCE] += 10;
+                $this->victoryPoints[AUSTRIAN_FORCE] += 10;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>+10 Austrian vp</span>";
             }
             if ($forceId == PRUSSIAN_FORCE) {
-                $this->victoryPoints[SIKH_FORCE] -= 10;
+                $this->victoryPoints[AUSTRIAN_FORCE] -= 10;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>-10 Prussian vp</span>";
             }
         }
         if (in_array($mapHexName, $battle->specialHexB)) {
             if ($forceId == PRUSSIAN_FORCE) {
-                $this->victoryPoints[SIKH_FORCE] += 20;
+                $this->victoryPoints[PRUSSIAN_FORCE] += 20;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+20 Prussian vp</span>";
             }
             if ($forceId == AUSTRIAN_FORCE) {
-                $this->victoryPoints[SIKH_FORCE] -= 20;
+                $this->victoryPoints[PRUSSIAN_FORCE] -= 20;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-20 Austrian vp</span>";
             }
         }
