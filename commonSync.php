@@ -613,6 +613,9 @@ x.register("mapUnits", function(mapUnits) {
             img = img.replace(/([0-9])reduced\.png/,"$1.png");
         }
         var  move = mapUnits[i].maxMove - mapUnits[i].moveAmountUsed;
+        move = move.toFixed(2);
+        move = move.replace(/\.00$/,'');
+        move = move.replace(/(\.[1-9])0$/,'$1');
         var str = mapUnits[i].strength;
         var reduced = mapUnits[i].isReduced;
         var reduceDisp = "<span>";
