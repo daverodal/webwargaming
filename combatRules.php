@@ -91,7 +91,7 @@ class CombatRules
         $pinVal--; /* make 1 based 0 based */
         $cd = $this->currentDefender;
         if ($cd !== false) {
-            if ($this->combats->$cd->pinCRT === $pinVal) {
+            if ($pinVal >= $this->combats->$cd->index || $this->combats->$cd->pinCRT === $pinVal) {
                 $this->combats->$cd->pinCRT = false;
             } else {
                 $this->combats->$cd->pinCRT = $pinVal;

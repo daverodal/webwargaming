@@ -337,6 +337,8 @@ class CombatResultsTable
             $pinIndex = $combats->pinCRT;
             if($combatIndex > $pinIndex){
                 $combatLog .= "<br>Pinned to {$this->combatResultsHeader[$pinIndex]} ";
+            }else{
+                $combats->pinCRT = false;
             }
         }
         $combats->index = $combatIndex;

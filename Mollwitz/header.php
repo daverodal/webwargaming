@@ -150,6 +150,10 @@ x.register("combatRules", function(combatRules, data){
                     var odds = Math.floor(atk / def);
                     var oddsDisp = $(".col" + combatCol).html();
                     var currentCombatCol = combatRules.combats[i].index + 1;
+                    if(combatRules.combats[i].pinCRT !== false){
+                        currentCombatCol = combatRules.combats[i].pinCRT + 1;
+                        useAltColor = " pinnedColor";
+                    }
                     var currentOddsDisp = $(".col" + currentCombatCol).html();
                     $("#"+i).attr('title',currentOddsDisp).prepend('<div class="unitOdds'+useAltColor+'">'+currentOddsDisp+'</div>');;
 

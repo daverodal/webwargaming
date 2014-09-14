@@ -1030,6 +1030,12 @@ p.forceMarch {
   .unitOdds.determinedColor:hover {
     background: transparent;
     color: transparent; }
+.unitOdds.pinnedColor {
+  background: #ff00ff;
+  color: white; }
+  .unitOdds.pinnedColor:hover {
+    background: transparent;
+    color: transparent; }
 
 #map {
   width: auto !important; }

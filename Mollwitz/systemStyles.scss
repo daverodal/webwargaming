@@ -375,4 +375,12 @@ p.forceMarch{
       color:transparent;
     }
   }
+  &.pinnedColor{
+    background: #ff00ff;
+    color:white;
+    &:hover{
+      background:transparent;
+      color:transparent;
+    }
+  }
 }
