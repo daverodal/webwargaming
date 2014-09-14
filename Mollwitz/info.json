@@ -117,6 +117,10 @@
             "fredBringsMore": {
                 "description": "Frederick the Great brings more troops to be even greater.",
                 "fredBringsMore": true
+            },
+            "fredBringsABitMore": {
+                "description": "Frederick the Great brings just a few more troops, justa  few.",
+                "fredBringsALittleMore": true
             }
         }
     },
