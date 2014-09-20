@@ -344,6 +344,11 @@ body{
   background:white;
   width:600px;
   cursor:move;
+  background:rgba(255,255,255,.9);
+  border-radius: 10px;
+  border:2px solid black;
+  box-shadow: 10px 10px 10px rgba(30,30,30,.85);
+  padding:0 5px;
 }
 #TEC{
   background:white;
