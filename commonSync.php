@@ -334,15 +334,61 @@ x.register("chats", function(chats) {
         $("#chats").prepend(str);
     }
 });
-x.register("phaseClicks",function(clicks){
+x.register("phaseClicks",function(clicks, data){
     var str = "";
-    for(var i in clicks){
-        str += "<a class='phaseClick' data-click='"+clicks[i]+"'>"+clicks[i]+"</a> " ;
+    var phaseClickNames = data.gameRules.phaseClickNames
+    if(x.timeTravel){
+        clicks = DR.clicks;
+        phaseClickNames = DR.phaseClickNames;
+    }else{
+        DR.phaseClickNames = phaseClickNames;
+        DR.clicks = clicks;
+        DR.maxClick = data.click;
+    }
+    var maxClick = DR.maxClick;
+
+    var i;
+    num = clicks.length;
+    var ticker;
+    ticker = clicks[0];
+    var q = 0;
+    for(i = 0;i < num;i++){
+        str += '<div class="newPhase"><a class="phaseClick" data-click="'+ticker+'">';
+        if(data.gameRules.phaseClickNames){
+            str += phaseClickNames[q++];
+            str += '</a><br><div class="newTick tickShim"></div>'   ;
+
+        }
+        if(i+1 < num){
+            while(ticker < clicks[i+1]){
+                str += '<div class="newTick" data-click="'+ticker+'"><a class="phaseClick" data-click="'+ticker+'">'+ticker+'</a></div>';
+                ticker++;
+            }
+        }else{
+            while(ticker <= maxClick){
+                str += '<div class="newTick" data-click="'+ticker+'"><a class="phaseClick" data-click="'+ticker+'">'+ticker+'</a></div>';
+                ticker++;
+            }
+            if(x.timeTravel){
+                str += '<div class="newTick"><a class="phaseClick realtime" >realtime</a></div>';
+            }
+        }
+        str += '</div>';
+
     }
     $("#phaseClicks").html(str);
+    var click = data.click;
+    if(x.timeTravel){
+        $(".newTick[data-click='"+click+"']").addClass('activeTick');
+    }
 });
 x.register("click",function(click){
-    $("#clickCnt").html(click);
+    if(x.timeTravel){
+        $("#clickCnt").html('time travel ' + click);
+    }else{
+        $("#clickCnt").html('realtime '+ click);
+    }
+    DR.currentClick = click;
 });
 x.register("users", function(users) {
     var str;

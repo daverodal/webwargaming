@@ -58,6 +58,7 @@ class GameRules
     public $currentReplacement;
     public $turnChange;
     public $phaseClicks;
+    public $phaseClickNames;
 
     function save()
     {
@@ -119,8 +120,10 @@ class GameRules
 
     function setInitialPhaseMode($phase, $mode)
     {
+        global $phase_name;
         $this->phase = $phase;
         $this->mode = $mode;
+        $this->phaseClickNames[] = $phase_name[$phase];
 
     }
     function addPhaseChange($currentPhase, $nextPhase, $nextMode, $nextAttackerId, $nextDefenderId, $phaseWillIncrementTurn)
@@ -386,6 +389,8 @@ class GameRules
                                 $this->mode = COMBAT_RESOLUTION_MODE;
                                 $this->force->clearRequiredCombats();
                                 $this->force->recoverUnits($this->phase, $this->moveRules, $this->mode);
+                                $this->phaseClicks[] = $click + 1;
+                                $this->phaseClickNames[] = "Combat Resolution ";
                             } else {
                                 $this->flashMessages[] = "Required Combats Remain";
                             }
@@ -581,6 +586,7 @@ class GameRules
 
     function selectNextPhase($click)
     {
+        global $phase_name;
         if ($this->moveRules->anyUnitIsMoving) {
             $this->moveRules->stopMove($this->force->units[$this->moveRules->movingUnitId]);
         }
@@ -594,6 +600,7 @@ class GameRules
                     $this->mode = $this->phaseChanges[$i]->nextMode;
                     $this->replacementsAvail = false;
                     $this->phaseClicks[] = $click + 1;
+                    $this->phaseClickNames[] = $phase_name[$this->phase];
                     if ($this->phaseChanges[$i]->phaseWillIncrementTurn == true) {
                         $this->incrementTurn();
                     }

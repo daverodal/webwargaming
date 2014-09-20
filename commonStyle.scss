@@ -342,7 +342,8 @@ body{
 }
 #Time{
   background:white;
-  width:200px;
+  width:600px;
+  cursor:move;
 }
 #TEC{
   background:white;
@@ -368,7 +369,7 @@ body{
   width:308px;
 }
 #clickCnt{
-  float:left;
+  display:inline-block;
   padding:3px;
 }
 #crtWrapper h4 .goLeft,#crtWrapper h4 .goRight{
@@ -665,4 +666,43 @@ svg{
     color:transparent;
     border-color: transparent;
   }
+}
+
+#phaseClicks{
+  cursor:pointer;
+  .newPhase{
+    min-width:10px;
+    height:40px;
+    border-left: 1px solid red;
+    display:inline-block;
+    margin-bottom:10px;
+  }
+  .newTick{
+    text-align:center;
+    margin-top:10px;
+    width:15px;
+    height:10px;
+    border-left: 1px solid black;
+    display:inline-block;
+    font-size:10px;
+    &.tickShim{
+      width:0px;
+    }
+    &:hover{
+      background:#999;
+      color:#fff;
+    }
+    &.activeTick{
+      background-color:#666;
+      a{
+        background-color:#666;
+        color:white;
+      }
+    }
+
+  }
+}
+
+#timeMachine,#timeSurge{
+  font-size:22px;
 }

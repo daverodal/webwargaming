@@ -32,6 +32,7 @@ $(document).ready(function(){
             x.current.abort();
         }
         var click = $(this).attr('data-click');
+        DR.currentClick = click;
         x.fetch(click);
     });
     $("#timeMachine").click(function(){
@@ -39,12 +40,12 @@ $(document).ready(function(){
         if(x.current){
             x.current.abort();
         }
-        var click = $("#clickCnt").html();
+        var click = DR.currentClick;
         click--;
         x.fetch(click);
     });
     $("#timeSurge").click(function(){
-        var click = $("#clickCnt").html();
+        var click = DR.currentClick;
         click++;
         x.fetch(click);
     });
@@ -54,10 +55,14 @@ $(document).ready(function(){
         if(x.current){
             x.current.abort();
         }
-        var click = $("#clickCnt").html();
+        var click = DR.currentClick;
         x.fetch(click);
         $("#TimeWrapper .WrapperLabel").click();
     });
+    $("#phaseClicks").on("click",".realtime",function(){
+        x.timeTravel = false;
+        x.fetch(0);
+    })
     $("#timeLive").click(function(){
         $("#TimeWrapper .WrapperLabel").click();
         x.timeTravel = false;
@@ -530,6 +535,7 @@ function initialize() {
     $("#floatMessage").draggable({stop:function(){
         $(this).attr('hasDragged','true');
     }});
+    $("#Time").draggable();
     $("#crt").draggable().css({cursor:"move"});
     $("#muteButton").click(function(){
        if(!mute){
