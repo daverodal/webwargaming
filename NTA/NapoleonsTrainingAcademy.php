@@ -5,7 +5,7 @@ $force_name[1] = "Red";
 $force_name[2] = "Blue";
 require_once "constants.php";
 
-global $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
+global $phase_name,$mode_name, $event_name, $status_name, $results_name,$combatRatio_name;
 
 require_once "crtTraits.php";
 require_once "combatRules.php";
@@ -23,8 +23,7 @@ require_once "terrain.php";
 require_once "victory.php";
 
 
-class NapoleonsTrainingAcademy extends Battle
-{
+class NapoleonsTrainingAcademy extends Battle {
 
     /* @var Mapdata */
     public $mapData;
@@ -42,29 +41,23 @@ class NapoleonsTrainingAcademy extends Battle
 
 
     public $players;
-
-    static function getHeader($name, $playerData)
-    {
+    static function getHeader($name, $playerData){
         $playerData = array_shift($playerData);
-        foreach ($playerData as $k => $v) {
+        foreach($playerData as $k => $v){
             $$k = $v;
         }
         @include_once "globalHeader.php";
         @include_once "header.php";
     }
-
-    static function playAs($name, $wargame)
-    {
+    static function playAs($name, $wargame){
         @include_once "playAs.php";
     }
 
-    static function playMulti($name, $wargame)
-    {
+    static function playMulti($name, $wargame){
         @include_once "playMulti.php";
     }
 
-    static function getView($name, $mapUrl, $player = 0, $arg = false, $argTwo = false)
-    {
+    static function getView($name, $mapUrl,$player = 0, $arg = false, $argTwo = false){
 
         @include_once "view.php";
     }
@@ -83,76 +76,74 @@ class NapoleonsTrainingAcademy extends Battle
         $data->playerData = $this->playerData;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-" . get_class($this);
+        $data->terrainName = "terrain-".get_class($this);
         $data->genTerrain = $this->genTerrain;
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;
-        if ($this->genTerrain) {
+        if($this->genTerrain){
             $data->terrain = $this->terrain;
         }
         return $data;
     }
 
-    function poke($event, $id, $x, $y, $user, $click)
-    {
+    function poke($event, $id, $x, $y, $user, $click){
         $playerId = $this->gameRules->attackingForceId;
-        if ($this->players[$this->gameRules->attackingForceId] != $user) {
+        if($this->players[$this->gameRules->attackingForceId] != $user){
             return false;
         }
 
 
-        switch ($event) {
+        switch($event){
             case SELECT_MAP_EVENT:
                 $mapGrid = new MapGrid($this->mapViewer[$playerId]);
                 $mapGrid->setPixels($x, $y);
-                $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon(), $click);
+                $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon(),$click );
                 break;
 
             case SELECT_COUNTER_EVENT:
                 /* fall through */
             case SELECT_SHIFT_COUNTER_EVENT:
 
-                $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id), $click);
+                $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id),$click);
                 break;
 
             case SELECT_BUTTON_EVENT:
-                $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0, $click);
+                $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0,$click );
 
 
         }
         return true;
     }
 
-    public function init()
-    {
+    public function init(){
         // unit data -----------------------------------------------
         //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
 
 
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 204, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "red", false, "cavalry");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 205, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "red", false, "cavalry");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 206, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "red", false, "cavalry");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 104, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "red", false, "artillery");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 105, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "red", false, "artillery");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 106, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "red", false, "artillery");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 202, "multiInf.png", 4, 4, 4, true, STATUS_READY, "B", 1, 1, "red", false, "infantry");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 208, "multiInf.png", 5, 5, 4, true, STATUS_READY, "B", 1, 1, "red", false, "infantry");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 207, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "red", false, "infantry");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 203, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "red", false, "infantry");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 209, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "red", false, "infantry");
+        $this->force->addUnit("infantry-1", BLUE_FORCE, 204, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "red",false,"cavalry");
+        $this->force->addUnit("infantry-1", BLUE_FORCE, 205, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "red",false,"cavalry");
+        $this->force->addUnit("infantry-1", BLUE_FORCE, 206, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "red",false,"cavalry");
+        $this->force->addUnit("infantry-1", BLUE_FORCE, 104, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "red",false,"artillery");
+        $this->force->addUnit("infantry-1", BLUE_FORCE, 105, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "red",false,"artillery");
+        $this->force->addUnit("infantry-1", BLUE_FORCE, 106, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "red",false,"artillery");
+        $this->force->addUnit("infantry-1", BLUE_FORCE, 202, "multiInf.png", 4, 4, 4, true, STATUS_READY, "B", 1, 1, "red",false,"infantry");
+        $this->force->addUnit("infantry-1", BLUE_FORCE, 208, "multiInf.png", 5, 5, 4, true, STATUS_READY, "B", 1, 1, "red",false,"infantry");
+        $this->force->addUnit("infantry-1", BLUE_FORCE, 207, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "red",false,"infantry");
+        $this->force->addUnit("infantry-1", BLUE_FORCE, 203, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "red",false,"infantry");
+        $this->force->addUnit("infantry-1", BLUE_FORCE, 209, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "red",false,"infantry");
 
 
-        $this->force->addUnit("infantry-1", RED_FORCE, 1804, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "blue", false, "cavalry");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1805, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "blue", false, "cavalry");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1806, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "blue", false, "cavalry");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1904, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "blue", false, "artillery");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1905, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "blue", false, "artillery");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1906, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "blue", false, "artillery");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1802, "multiInf.png", 4, 4, 4, true, STATUS_READY, "B", 1, 1, "blue", false, "infantry");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1808, "multiInf.png", 5, 5, 4, true, STATUS_READY, "B", 1, 1, "blue", false, "infantry");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1807, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "blue", false, "infantry");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1803, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "blue", false, "infantry");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1809, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "blue", false, "infantry");
+        $this->force->addUnit("infantry-1", RED_FORCE, 1804, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "blue",false,"cavalry");
+        $this->force->addUnit("infantry-1", RED_FORCE, 1805, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "blue",false,"cavalry");
+        $this->force->addUnit("infantry-1", RED_FORCE, 1806, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "blue",false,"cavalry");
+        $this->force->addUnit("infantry-1", RED_FORCE, 1904, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "blue",false,"artillery");
+        $this->force->addUnit("infantry-1", RED_FORCE, 1905, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "blue",false,"artillery");
+        $this->force->addUnit("infantry-1", RED_FORCE, 1906, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "blue",false,"artillery");
+        $this->force->addUnit("infantry-1", RED_FORCE, 1802, "multiInf.png", 4, 4, 4, true, STATUS_READY, "B", 1, 1, "blue",false,"infantry");
+        $this->force->addUnit("infantry-1", RED_FORCE, 1808, "multiInf.png", 5, 5, 4, true, STATUS_READY, "B", 1, 1, "blue",false,"infantry");
+        $this->force->addUnit("infantry-1", RED_FORCE, 1807, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "blue",false,"infantry");
+        $this->force->addUnit("infantry-1", RED_FORCE, 1803, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "blue",false,"infantry");
+        $this->force->addUnit("infantry-1", RED_FORCE, 1809, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "blue",false,"infantry");
 
     }
 
@@ -163,10 +154,10 @@ class NapoleonsTrainingAcademy extends Battle
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
             $this->genTerrain = false;
-            $this->victory = new Victory("NTA", $data);
+            $this->victory = new Victory("NTA",$data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
-            $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
+            $this->mapViewer = array(new MapViewer($data->mapViewer[0]),new MapViewer($data->mapViewer[1]),new MapViewer($data->mapViewer[2]));
             $this->force = new Force($data->force);
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
@@ -184,11 +175,11 @@ class NapoleonsTrainingAcademy extends Battle
             $this->genTerrain = true;
             $this->victory = new Victory("NTA");
 
-            $this->mapData->setData(19, 9, "js/centre.png");
+            $this->mapData->setData(19,9,"js/centre.png");
 
-            $this->mapData->setSpecialHexes(array(1005 => 0));
+            $this->mapData->setSpecialHexes(array(1005=>0));
             $this->display = new Display();
-            $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
+            $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->force->combatRequired = true;
             $this->terrain = new Terrain();
@@ -197,9 +188,9 @@ class NapoleonsTrainingAcademy extends Battle
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-            $this->players = array("", "", "");
+            $this->players = array("","","");
             $this->playerData = new stdClass();
-            for ($player = 0; $player <= 2; $player++) {
+            for($player = 0;$player <= 2;$player++){
                 $this->playerData->${player} = new stdClass();
                 $this->playerData->${player}->mapWidth = "auto";
                 $this->playerData->${player}->mapHeight = "auto";
@@ -207,7 +198,7 @@ class NapoleonsTrainingAcademy extends Battle
                 $this->playerData->${player}->unitFontSize = "12px";
                 $this->playerData->${player}->unitMargin = "-21px";
 
-                $this->mapViewer[$player]->setData(65, 85, // originX, originY
+                $this->mapViewer[$player]->setData(65,85, // originX, originY
                     27.5, 27.5, // top hexagon height, bottom hexagon height
                     16, 32// hexagon edge width, hexagon center width
                 );
@@ -216,7 +207,7 @@ class NapoleonsTrainingAcademy extends Battle
 
             // game data
             $this->gameRules->setMaxTurn(7);
-            $this->gameRules->setInitialPhaseMode(BLUE_MOVE_PHASE, MOVING_MODE);
+            $this->gameRules->setInitialPhaseMode(BLUE_MOVE_PHASE,MOVING_MODE);
 
 
             $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
@@ -227,27 +218,67 @@ class NapoleonsTrainingAcademy extends Battle
 
 //            $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
+            $this->gameRules->addPhaseChange(RED_COMBAT_PHASE,BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
 
             // force data
             //$this->force->setEliminationTrayXY(900);
 
+
+            // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
+            $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
+            $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
+            $this->terrain->addTerrainFeature("road", "road", "r", .5, 0, 0, false);
+            $this->terrain->addTerrainFeature("fortified", "fortified", "h", 0, 0, 1, false);
+            $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 1, false);
+            $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
+            $this->terrain->addTerrainFeature("rough", "rough", "g", 3, 0, 1, true);
+            $this->terrain->addTerrainFeature("river", "Martian River", "v", 0, 1, 1, false);
+            $this->terrain->addTerrainFeature("newrichmond", "New Richmond", "m", 0, 0, 1, false);
+            $this->terrain->addTerrainFeature("eastedge", "East Edge", "m", 0, 0, 0, false);
+
+
+
+            for ($col = 100; $col <= 1900; $col += 100) {
+                for ($row = 1; $row <= 9; $row++) {
+                    $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
+                    $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
+                    $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
+                    $this->terrain->addTerrain($row + $col, HEXAGON_CENTER, "clear");
+
+                }
+            }
             // end terrain data ----------------------------------------
 
         }
     }
 
     /*
-     * terrainGen() gets called when a map is "published" from the map editor. It's not
-     * related to a game start or a game file. It just generates the terrain info that gets saved to the
-     * file terrain-Gamename
-     */
+  * terrainGen() gets called when a map is "published" from the map editor. It's not
+  * related to a game start or a game file. It just generates the terrain info that gets saved to the
+  * file terrain-Gamename
+  */
     function terrainGen($hexDocId)
     {
         // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
         $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
         $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
         $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
+        $this->terrain->addTerrainFeature("road", "road", "r", .5, 0, 0, false);
+        $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
+        $this->terrain->addTerrainFeature("fortified", "fortified", "h", 1, 0, 1, true);
+        $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 0, false);
+        $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
+        $this->terrain->addTerrainFeature("mountain", "mountain", "g", 3, 0, 2, true);
+        $this->terrain->addTerrainFeature("river", "Martian River", "v", 0, 1, 1, true);
+        $this->terrain->addTerrainFeature("newrichmond", "New Richmond", "m", 0, 0, 1, false);
+        $this->terrain->addTerrainFeature("eastedge", "East Edge", "m", 0, 0, 0, false);
+        $this->terrain->addTerrainFeature("westedge", "West Edge", "m", 0, 0, 0, false);
+        /* handle fort's in crtTraits */
+        $this->terrain->addTerrainFeature("forta", "forta", "f", 1, 0, 0, true);
+        $this->terrain->addTerrainFeature("fortb", "fortb", "f", 1, 0, 0, true);
+        $this->terrain->addTerrainFeature("mine", "mine", "m", 0, 0, 0, false);
+        $this->terrain->addNatAltEntranceCost("mine", "rebel", 'mech', 2);
+        $this->terrain->addNatAltEntranceCost("mine", "rebel", 'inf', 1);
 
         $CI =& get_instance();
         $CI->load->model('rest/rest_model');
