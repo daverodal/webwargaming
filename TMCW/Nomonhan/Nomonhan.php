@@ -55,7 +55,13 @@ class Nomonhan extends ModernLandBattle
         @include_once "nomonhanHeader.php";
     }
 
+    static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false)
+    {
+        global $force_name;
+        $player = $force_name[$player];
 
+        @include_once "view.php";
+    }
 
     function save()
     {
@@ -154,6 +160,56 @@ class Nomonhan extends ModernLandBattle
 
 
     }
+
+    function terrainGen($hexDocId)
+    {
+        parent::terrainGen($hexDocId);
+
+        // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
+        $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
+        $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
+        $this->terrain->addTerrainFeature("clear", "clear", "c", 1, 0, 0, true);
+        $this->terrain->addTerrainFeature("road", "road", "r", .5, 0, 0, false);
+        $this->terrain->addTerrainFeature("marsh", "marsh", "m", 2, 0, 2, true);
+        $this->terrain->addTerrainFeature("rough", "rough", "g", 2, 0, 2, true);
+        $this->terrain->addTerrainFeature("hills", "hills", "h", 4, 0, 2, true);
+        $this->terrain->addTerrainFeature("river", "river", "v", 2, 2, 1, false);
+        $this->terrain->addTerrainFeature("ford", "ford", "v", 2, 1, 1, true);
+        $this->terrain->addAltEntranceCost('marsh', 'artillery', 6);
+        $this->terrain->addAltEntranceCost('marsh', 'mech', 6);
+
+
+        for ($i = 1; $i <= 1; $i++) {
+            for ($j = 1; $j <= 37; $j++) {
+                if ($j == 10) {
+                    continue;
+                }
+                $this->terrain->addReinforceZone($j * 100 + $i, "J");
+
+            }
+        }
+        for ($i = 4; $i <= 25; $i++) {
+            for ($j = 1; $j <= 40; $j++) {
+                if ($i == 4 && ($j == 34 || $j == 35)) {
+                    continue;
+                }
+                if ($i == 2 && ($j == 36 || $j == 37)) {
+                    continue;
+                }
+                $this->terrain->addReinforceZone($j * 100 + $i, "R");
+            }
+        }
+        $this->terrain->addReinforceZone(3603, "R");
+
+        for ($i = 25; $i <= 25; $i++) {
+            for ($j = 1; $j <= 40; $j++) {
+
+                $this->terrain->addReinforceZone($j * 100 + $i, "W");
+
+            }
+        }
+
+    }
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
 
@@ -162,7 +218,7 @@ class Nomonhan extends ModernLandBattle
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
             $this->genTerrain = false;
-            $this->victory = new Victory("TMCW/Nomonhan", $data);
+            $this->victory = new Victory("TMCW/Nomonhan/nomonhanVictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
@@ -179,8 +235,7 @@ class Nomonhan extends ModernLandBattle
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->genTerrain = true;
-
-            $this->victory = new Victory("TMCW/Nomonhan");
+            $this->victory = new Victory("TMCW/Nomonhan/nomonhanVictoryCore.php");
             $this->display = new Display();
             $this->mapData->setData(40, 25, "js/Nomonhan3Small.png");
 

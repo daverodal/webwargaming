@@ -7,11 +7,15 @@
  * To change this template use File | Settings | File Templates.
  */
 
-class victoryCore{
+include_once "supplyRulesTraits.php";
+
+class nomonhanVictoryCore{
+
     public $victoryPoints;
     private $movementCache;
     private $combatCache;
 
+    use modernSupplyRules;
 
     function __construct($data){
         if($data){
@@ -31,6 +35,20 @@ class victoryCore{
         $ret->combatCache = $this->combatCache;
         return $ret;
     }
+
+    public function preRecoverUnits($args)
+    {
+        /* @var unit $unit */
+        $unit = $args[0];
+
+        $b = Battle::getBattle();
+
+        $this->japaneseGoal = [101];
+
+        $this->sovietGoal = [2020];
+    }
+
+
 
     public function specialHexChange($args){
         $battle = Battle::getBattle();
@@ -181,7 +199,8 @@ class victoryCore{
 //                    $unit->maxMove = $unit->maxMove * 2;
 //                }
                  if($unit->status == STATUS_READY || $unit->status == STATUS_UNAVAIL_THIS_PHASE){
-                    $unit->supplied = $b->moveRules->calcSupply($unit->id,$goal,$bias);
+//                    $unit->supplied = $b->moveRules->calcSupply($unit,$goal,$bias);
+                     $this->unitSupplyEffects($unit, $goal, $bias, false);
                 }else{
                     return;
                 }
