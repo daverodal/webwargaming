@@ -288,4 +288,82 @@ class NapoleonsTrainingAcademy extends Battle {
 
         }
     }
+
+    /*
+  * terrainGen() gets called when a map is "published" from the map editor. It's not
+  * related to a game start or a game file. It just generates the terrain info that gets saved to the
+  * file terrain-Gamename
+  */
+    function terrainGen($hexDocId)
+    {
+        // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
+        $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
+        $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
+        $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
+        $this->terrain->addTerrainFeature("road", "road", "r", .5, 0, 0, false);
+        $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
+        $this->terrain->addTerrainFeature("fortified", "fortified", "h", 1, 0, 1, true);
+        $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 0, false);
+        $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
+        $this->terrain->addTerrainFeature("mountain", "mountain", "g", 3, 0, 2, true);
+        $this->terrain->addTerrainFeature("river", "Martian River", "v", 0, 1, 1, true);
+        $this->terrain->addTerrainFeature("newrichmond", "New Richmond", "m", 0, 0, 1, false);
+        $this->terrain->addTerrainFeature("eastedge", "East Edge", "m", 0, 0, 0, false);
+        $this->terrain->addTerrainFeature("westedge", "West Edge", "m", 0, 0, 0, false);
+        /* handle fort's in crtTraits */
+        $this->terrain->addTerrainFeature("forta", "forta", "f", 1, 0, 0, true);
+        $this->terrain->addTerrainFeature("fortb", "fortb", "f", 1, 0, 0, true);
+        $this->terrain->addTerrainFeature("mine", "mine", "m", 0, 0, 0, false);
+        $this->terrain->addNatAltEntranceCost("mine", "rebel", 'mech', 2);
+        $this->terrain->addNatAltEntranceCost("mine", "rebel", 'inf', 1);
+
+        $CI =& get_instance();
+        $CI->load->model('rest/rest_model');
+        $terrainDoc = $CI->rest_model->get($hexDocId);
+        $terrainArr = json_decode($terrainDoc->hexStr->hexEncodedStr);
+        $mapId = $terrainDoc->hexStr->map;
+        $mapDoc = $CI->rest_model->get($mapId);
+        $map = $mapDoc->map;
+        $this->terrain->mapUrl = $mapUrl = $map->mapUrl;
+        $this->terrain->maxCol = $maxCol = $map->numX;
+        $this->terrain->maxRow = $maxRow = $map->numY;
+        $this->mapData->setData($maxCol, $maxRow, $mapUrl);
+
+        Hexagon::setMinMax();
+        $this->terrain->setMaxHex();
+        $a = $map->a;
+        $b = $map->b;
+        $c = $map->c;
+        $this->terrain->a = $a;
+        $this->terrain->b = $b;
+        $this->terrain->c = $c;
+        $this->terrain->originY = $b * 3 - $map->y;
+        $xOff = ($a + $c) * 2 - ($c / 2 + $a);
+        $this->terrain->originX = $xOff - $map->x;
+
+
+        for ($col = 100; $col <= $maxCol * 100; $col += 100) {
+            for ($row = 1; $row <= $maxRow; $row++) {
+                $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
+                $this->terrain->addTerrain($row + $col, UPPER_LEFT_HEXSIDE, "clear");
+                $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
+                $this->terrain->addTerrain($row + $col, HEXAGON_CENTER, "clear");
+
+            }
+        }
+        foreach ($terrainArr as $terrain) {
+            foreach ($terrain->type as $terrainType) {
+                $name = $terrainType->name;
+                $matches = [];
+                if (preg_match("/SpecialHex/", $name)) {
+                    $this->terrain->addSpecialHex($terrain->number, $name);
+                } else if (preg_match("/^ReinforceZone(.*)$/", $name, $matches)) {
+                    $this->terrain->addReinforceZone($terrain->number, $matches[1]);
+                } else {
+                    $tNum = sprintf("%04d", $terrain->number);
+                    $this->terrain->addTerrain($tNum, $terrain->hexpartType, strtolower($name));
+                }
+            }
+        }
+    }
 }
