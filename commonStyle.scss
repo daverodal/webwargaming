@@ -674,6 +674,7 @@ svg{
 }
 
 #phaseClicks{
+  display:none;
   cursor:pointer;
   .newPhase{
     min-width:10px;

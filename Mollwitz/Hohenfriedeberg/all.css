@@ -164,7 +164,7 @@ h4:hover {
   backgroundColor: white; }
 
 .dark {
-  background-color: black; }
+  background-color: #000; }
 
 .blueUnit {
   background-color: #84b5ff; }
@@ -445,7 +445,7 @@ h4:hover {
 
 body {
   background: #eee;
-  color: #333333; }
+  color: #333; }
 
 #status {
   /*height:70px;*/
@@ -703,6 +703,7 @@ svg {
     border-color: transparent; }
 
 #phaseClicks {
+  display: none;
   cursor: pointer; }
   #phaseClicks .newPhase {
     min-width: 10px;
@@ -1103,3 +1104,5 @@ p.forceMarch {
 .prussian.specialHexes {
   background-color: #fffd7f;
   color: black; }
+
+/*# sourceMappingURL=all.css.map */
