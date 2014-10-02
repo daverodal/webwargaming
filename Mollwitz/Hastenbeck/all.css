@@ -164,7 +164,7 @@ h4:hover {
   backgroundColor: white; }
 
 .dark {
-  background-color: black; }
+  background-color: #000; }
 
 .blueUnit {
   background-color: #84b5ff; }
@@ -440,7 +440,7 @@ h4:hover {
 
 body {
   background: #eee;
-  color: #333333; }
+  color: #333; }
 
 #status {
   /*height:70px;*/
@@ -698,6 +698,7 @@ svg {
     border-color: transparent; }
 
 #phaseClicks {
+  display: none;
   cursor: pointer; }
   #phaseClicks .newPhase {
     min-width: 10px;
@@ -1089,7 +1090,7 @@ p.forceMarch {
   color: #df5842; }
 
 .Allied .counterWrapper {
-  background-color: red; }
+  background-color: #f00; }
 
 .playerTwo #zoom span {
   /*border-color:white;*/ }
@@ -1101,3 +1102,5 @@ p.forceMarch {
 .allied.specialHexes {
   background-color: #df5842;
   color: white; }
+
+/*# sourceMappingURL=all.css.map */
