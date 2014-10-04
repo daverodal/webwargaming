@@ -1,34 +1,35 @@
 body {
 }
 
-@mixin player($nationality, $player, $color,$counterColor: $color ,$faceColor: $color ){
-  .player#{$player}{
-    background:$color;
-    border-color:$color !important;
+@mixin player($nationality, $player, $color, $counterColor: $color, $faceColor: $color) {
+  .player#{$player} {
+    background: $color;
+    border-color: $color !important;
   }
-  .#{$nationality}Face, .player#{$player}Face{
-    color:$faceColor;
+  .#{$nationality}Face, .player#{$player}Face {
+    color: $faceColor;
   }
-  .#{$nationality} .counterWrapper{
+  .#{$nationality} .counterWrapper {
     background-color: $counterColor;
   }
+}
+
+@mixin badge($nationality, $shortName) {
+  .#{$nationality}.infantry .counterWrapper .counter {
+    background-image: url('../../js/#{$shortName}InfBadge.png');
+    background-size: 14px;
+  }
+  .#{$nationality}.cavalry .counterWrapper .counter {
+    background-image: url('../../js/#{$shortName}CavBadge.png');
+    background-size: 14px;
   }
 
-@mixin badge($nationality, $shortName){
-  .#{$nationality}.infantry .counterWrapper .counter{
-    background-image:url('../../js/#{$shortName}InfBadge.png');
-    background-size:14px;
-  }
-  .#{$nationality}.cavalry .counterWrapper .counter{
-    background-image:url('../../js/#{$shortName}CavBadge.png');
-    background-size:14px;
-  }
-
-  .#{$nationality}.artillery .counterWrapper .counter{
-    background-image:url('../../js/#{$shortName}ArtBadge.png');
-    background-size:14px;
+  .#{$nationality}.artillery .counterWrapper .counter {
+    background-image: url('../../js/#{$shortName}ArtBadge.png');
+    background-size: 14px;
   }
 }
+
 $austrianColor: #df5842;
 $austrianWrapperColor: white;
 
@@ -51,30 +52,32 @@ $russianWrapperColor: #009c1d;
 $beluchiColor: #c68100;
 $beluchiWrapperColor: #c6c102;
 
-#map{
-  width:1000px !important;
+#map {
+  width: 1000px !important;
 }
 
-.unit{
-  border:solid black;
+.unit {
+  border: solid black;
   border-width: 3px;
 }
 
 .unit .counterWrapper div.counter {
   width: 14px;
-  height:14px;
-  display:block;
-  border-right:1px solid black;
+  height: 14px;
+  display: block;
+  border-right: 1px solid black;
 
 }
+
 @include badge(Sikh, Sikh);
 @include badge(Beluchi, Sikh);
 @include badge(British, Brit);
 
-.British.horseartillery .counterWrapper .counter{
-  background-image:url('../../js/BritHorArtBadge.png');
-  background-size:14px;
+.British.horseartillery .counterWrapper .counter {
+  background-image: url('../../js/BritHorArtBadge.png');
+  background-size: 14px;
 }
+
 @include badge(Native, Native);
 @include badge(Austrian, Aus);
 @include badge(Prussian, Pru);
@@ -84,25 +87,26 @@ $beluchiWrapperColor: #c6c102;
 @include badge(Anglo, Ang);
 @include badge(Allied, Ang);
 
-#header #GR a{
-  color:black;
-}
-.indent{
-  margin-left:20px;
-}
-.unit .counterWrapper{
-  border:solid black 1px;
-  height:14px;
+#header #GR a {
+  color: black;
 }
 
-.unit .unit-numbers .infoLen7{
-  font-size:13px;
+.indent {
+  margin-left: 20px;
 }
 
-.unit .unit-numbers .infoLen8{
-  font-size:12px;
+.unit .counterWrapper {
+  border: solid black 1px;
+  height: 14px;
 }
 
+.unit .unit-numbers .infoLen7 {
+  font-size: 13px;
+}
+
+.unit .unit-numbers .infoLen8 {
+  font-size: 12px;
+}
 
 .RussianaVP {
   color: rgb(132, 181, 255);
@@ -115,17 +119,18 @@ $beluchiWrapperColor: #c6c102;
   background: transparent;
 }
 
-.unit .unit-numbers{
+.unit .unit-numbers {
   border: 1px solid black;
   border-top-width: 0px;
-  height:15px;
-  line-height:16px;
-  font-size:16px !important;
-  letter-spacing:-1px;
+  height: 15px;
+  line-height: 16px;
+  font-size: 16px !important;
+  letter-spacing: -1px;
   background: white;
   font-weight: bold;
   font-family: serif;
 }
+
 p.forceMarch, p.range {
   position: absolute;
   top: -19px;
@@ -134,20 +139,22 @@ p.forceMarch, p.range {
   color: white;
   text-transform: lowercase;
 }
-p.range{
-  font-size:15px;
-  top:-15px;
-  right:5px;
-  display:block;
-  color:black;
+
+p.range {
+  font-size: 15px;
+  top: -15px;
+  right: 5px;
+  display: block;
+  color: black;
 }
-p.forceMarch{
-  color:black;
+
+p.forceMarch {
+  color: black;
 }
 
 .Russian, .Prussian {
-  p.forceMarch, p.range{
-    color:white;
+  p.forceMarch, p.range {
+    color: white;
   }
 }
 
@@ -190,12 +197,13 @@ p.forceMarch{
   background: white;
   color: black;
 }
-#tecImage{
-  width:500px;
+
+#tecImage {
+  width: 500px;
 }
 
-#TEC{
-  width:520px;
+#TEC {
+  width: 520px;
 }
 
 #TECWrapper .closer {
@@ -207,7 +215,6 @@ p.forceMarch{
   height: 0px;
   padding: 0px;
 }
-
 
 #GR {
   width: 600px;
@@ -221,166 +228,112 @@ p.forceMarch{
   position: absolute;
   right: 18px;
 }
-#crtDetailsButton{
-  font-size:10px;
+
+#crtDetailsButton {
+  font-size: 10px;
   cursor: pointer;
 }
-#crtDetails{
-  display:none;
-}
-.specialHexes.russian{
-  color:white;
-  background-color:$russianColor;
-}
-#CombatLog{
-  width:300px;
+
+#crtDetails {
+  display: none;
 }
 
-@mixin victoryPoints($color){
-  text-shadow:
-    0px 0px 1px $color,
-    0px 0px 1px $color,
-    0px 0px 1px $color,
-    0px 0px 2px $color,
-    0px 0px 2px $color,
-    0px 0px 2px $color,
-    0px 0px 3px $color,
-    0px 0px 3px $color,
-    0px 0px 3px $color,
-    0px 0px 4px $color,
-    0px 0px 4px $color,
-    0px 0px 4px $color,
-    0px 0px 5px $color,
-    0px 0px 5px $color,
-    0px 0px 5px $color,
-    0px 0px 6px $color,
-    0px 0px 6px $color,
-    0px 0px 6px $color,
-    0px 0px 7px $color,
-    0px 0px 7px $color,
-    0px 0px 7px $color,
-    0px 0px 8px $color,
-    0px 0px 8px $color,
-    0px 0px 8px $color,
-    0px 0px 9px $color,
-    0px 0px 9px $color,
-    0px 0px 9px $color,
-    0px 0px 10px $color,
-    0px 0px 10px $color,
-    0px 0px 10px $color,
-
-    0px 0px 1px $color,
-    0px 0px 1px $color,
-    0px 0px 1px $color,
-    0px 0px 2px $color,
-    0px 0px 2px $color,
-    0px 0px 2px $color,
-    0px 0px 3px $color,
-    0px 0px 3px $color,
-    0px 0px 3px $color,
-    0px 0px 4px $color,
-    0px 0px 4px $color,
-    0px 0px 4px $color,
-    0px 0px 5px $color,
-    0px 0px 5px $color,
-    0px 0px 5px $color,
-    0px 0px 6px $color,
-    0px 0px 6px $color,
-    0px 0px 6px $color,
-    0px 0px 7px $color,
-    0px 0px 7px $color,
-    0px 0px 7px $color,
-    0px 0px 8px $color,
-    0px 0px 8px $color,
-    0px 0px 8px $color,
-    0px 0px 9px $color,
-    0px 0px 9px $color,
-    0px 0px 9px $color,
-    0px 0px 10px $color,
-    0px 0px 10px $color,
-    0px 0px 10px $color;
+.specialHexes.russian {
+  color: white;
+  background-color: $russianColor;
 }
 
+#CombatLog {
+  width: 300px;
+}
 
-.specialHexesVP .austrian,.specialHexesVP .anglo{
-  background:transparent;
+@mixin victoryPoints($color) {
+  text-shadow: 0px 0px 1px $color, 0px 0px 1px $color, 0px 0px 1px $color, 0px 0px 2px $color, 0px 0px 2px $color, 0px 0px 2px $color, 0px 0px 3px $color, 0px 0px 3px $color, 0px 0px 3px $color, 0px 0px 4px $color, 0px 0px 4px $color, 0px 0px 4px $color, 0px 0px 5px $color, 0px 0px 5px $color, 0px 0px 5px $color, 0px 0px 6px $color, 0px 0px 6px $color, 0px 0px 6px $color, 0px 0px 7px $color, 0px 0px 7px $color, 0px 0px 7px $color, 0px 0px 8px $color, 0px 0px 8px $color, 0px 0px 8px $color, 0px 0px 9px $color, 0px 0px 9px $color, 0px 0px 9px $color, 0px 0px 10px $color, 0px 0px 10px $color, 0px 0px 10px $color, 0px 0px 1px $color, 0px 0px 1px $color, 0px 0px 1px $color, 0px 0px 2px $color, 0px 0px 2px $color, 0px 0px 2px $color, 0px 0px 3px $color, 0px 0px 3px $color, 0px 0px 3px $color, 0px 0px 4px $color, 0px 0px 4px $color, 0px 0px 4px $color, 0px 0px 5px $color, 0px 0px 5px $color, 0px 0px 5px $color, 0px 0px 6px $color, 0px 0px 6px $color, 0px 0px 6px $color, 0px 0px 7px $color, 0px 0px 7px $color, 0px 0px 7px $color, 0px 0px 8px $color, 0px 0px 8px $color, 0px 0px 8px $color, 0px 0px 9px $color, 0px 0px 9px $color, 0px 0px 9px $color, 0px 0px 10px $color, 0px 0px 10px $color, 0px 0px 10px $color;
+}
+
+.specialHexesVP .austrian, .specialHexesVP .anglo {
+  background: transparent;
   @include victoryPoints($austrianColor);
- }
+}
 
-.specialHexesVP .prussian{
-  color:black;
-  background:transparent;
+.specialHexesVP .prussian {
+  color: black;
+  background: transparent;
   @include victoryPoints($prussianColor);
 
-
 }
 
-.specialHexesVP .british{
-  color:black;
-  background:transparent;
+.specialHexesVP .british {
+  color: black;
+  background: transparent;
   @include victoryPoints($britishColor);
 
-
 }
 
-.specialHexesVP .russian{
-  color:white;
-  background:transparent;
+.specialHexesVP .russian {
+  color: white;
+  background: transparent;
   @include victoryPoints($russianColor);
 }
-.specialHexesVP .french{
-  color:white;
-  background:transparent;
+
+.specialHexesVP .french {
+  color: white;
+  background: transparent;
   @include victoryPoints($frenchColor);
 }
 
-.specialHexesVP .beluchi{
-  color:white;
-  background:transparent;
+.specialHexesVP .beluchi {
+  color: white;
+  background: transparent;
   @include victoryPoints($beluchiWrapperColor);
 }
-.ruleComment{
-  font-style:italic;
-  margin-left:10px;
-  color:#999;
+
+.ruleComment {
+  font-style: italic;
+  margin-left: 10px;
+  color: #999;
 }
-#GR ol.ExclusiveRules{
+
+#GR ol.ExclusiveRules {
   counter-reset: item 6;
 }
 
-.left{
-  float:left;
-  margin-right:15px;
+.left {
+  float: left;
+  margin-right: 15px;
 }
-.austrian.specialHexes{
-  background-color:$austrianColor;
-  color:white;
+
+.austrian.specialHexes {
+  background-color: $austrianColor;
+  color: white;
 }
-.prussian.specialHexes{
+
+.prussian.specialHexes {
   background-color: $prussianColor;
-  color:black;
+  color: black;
 }
-.unitOdds{
-  &.altColor{
+
+.unitOdds {
+  &.altColor {
     background: #00ec00;
-    &:hover{
-      background:transparent;
+    &:hover {
+      background: transparent;
     }
   }
-  &.determinedColor{
+  &.determinedColor {
     background: red;
-    color:white;
-    &:hover{
-      background:transparent;
-      color:transparent;
+    color: white;
+    &:hover {
+      background: transparent;
+      color: transparent;
     }
   }
-  &.pinnedColor{
+  &.pinnedColor {
     background: #ff00ff;
-    color:white;
-    &:hover{
-      background:transparent;
-      color:transparent;
+    color: white;
+    &:hover {
+      background: transparent;
+      color: transparent;
     }
   }
 }

@@ -528,6 +528,7 @@ function initialize() {
         doitCRT(col,event);
     })
     $("#gameImages").on("click",".specialHexes",mapClick);
+    $("#gameImages").on("click","svg",mapClick);
 
     $("#nextPhaseButton").on('click',nextPhaseMouseDown);
     $("#gameImages" ).draggable({stop:mapStop, distance:15});
@@ -558,6 +559,14 @@ function initialize() {
             DR.showArrows = false;
             $('svg').hide();
         }
+    });
+    $('.unit:not(.clone)').hover(function(event){
+
+        $(".unitPath"+this.id).css({opacity: 1.0});
+
+    },function(event){
+        $(".unitPath"+this.id).css({opacity:''});
+
     });
     // end setup events ----------------------------------------
 

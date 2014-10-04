@@ -164,7 +164,7 @@ h4:hover {
   backgroundColor: white; }
 
 .dark {
-  background-color: #000; }
+  background-color: black; }
 
 .blueUnit {
   background-color: #84b5ff; }
@@ -445,7 +445,7 @@ h4:hover {
 
 body {
   background: #eee;
-  color: #333; }
+  color: #333333; }
 
 #status {
   /*height:70px;*/
@@ -733,6 +733,15 @@ svg {
 #timeMachine, #timeSurge {
   font-size: 22px; }
 
+svg g {
+  opacity: .6;
+  fill: red;
+  stroke: red; }
+  svg g:hover, svg g .hover {
+    opacity: 1.0; }
+svg marker#head {
+  fill: red; }
+
 .blueUnit, .blue, .playerTwo {
   background-color: #84b5ff;
   border-color: #84b5ff; }
@@ -812,5 +821,3 @@ svg {
 
 #clock {
   margin-left: 6em; }
-
-/*# sourceMappingURL=all.css.map */

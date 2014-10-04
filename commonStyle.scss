@@ -712,3 +712,20 @@ svg{
 #timeMachine,#timeSurge{
   font-size:22px;
 }
+
+
+$arrowColor: red;
+$arrowHead: red;
+svg {
+  g {
+    opacity: .6;
+    fill: $arrowColor;
+    stroke: $arrowColor;
+    &:hover, .hover {
+      opacity: 1.0;
+    }
+  }
+  marker#head{
+    fill:$arrowHead;
+  }
+}

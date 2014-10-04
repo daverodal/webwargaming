@@ -3,34 +3,26 @@ x = new Sync("<?=site_url("wargame/fetch/");?>");
 x.register("sentBreadcrumbs", function(breadcrumbs,data) {
 //    return;
 
-    $('svg > path').remove();
-    $('svg circle').remove();
+    $('svg g').remove();
     var lastUnit = '';
     var lastMoves = '';
     for(var unitId in breadcrumbs){
+        var g = $('svg').append('<g class="unitPath'+unitId+'">');
         for(var moves in breadcrumbs[unitId]){
             var path = "";
             if(breadcrumbs[unitId][moves-0+1]){
-//                path += "<path stroke-width='15' fill='none' stroke='#84b5ff'";
-                path += "<path stroke-width='15' fill='none' stroke='orange'";
+                path += "<path stroke-width='15'";
             }else{
-                path += "<path marker-end='url(#head)' stroke-width='15' fill='none' stroke='orange'";
+                path += "<path marker-end='url(#head)' stroke-width='15'";
             }
             var d = 'M'+breadcrumbs[unitId][moves].fromX+','+breadcrumbs[unitId][moves].fromY;
             d += ' L'+breadcrumbs[unitId][moves].toX+','+breadcrumbs[unitId][moves].toY;
             path += ' d="'+d + '"/>';
-            var circle = '<circle fill="orange" cx="'+breadcrumbs[unitId][moves].toX+'" cy="'+breadcrumbs[unitId][moves].toY+'" r="7"/>';
-            $('svg').append(path);
-            $('svg').append(circle);
+            var circle = '<circle cx="'+breadcrumbs[unitId][moves].toX+'" cy="'+breadcrumbs[unitId][moves].toY+'" r="7"/>';
+            $('g.unitPath'+unitId).append(path);
+            $('g.unitPath'+unitId).append(circle);
             lastMoves = moves;
         }
-//        if(breadcrumbs[unitId][lastMoves]){
-//            var path = "<path marker-end='url(#head)'  stroke-width='15' fill='none' stroke='#df5842'";
-//            var d = 'M'+breadcrumbs[unitId][lastMoves].fromX+','+breadcrumbs[unitId][lastMoves].fromY;
-//            d += ' L'+breadcrumbs[unitId][lastMoves].toX+','+breadcrumbs[unitId][lastMoves].toY;
-//            path += ' d="'+d + '"/>';
-//            $('svg').append(path);
-//        }
 
     }
     var svgHtml = $('#svgWrapper').html();
@@ -778,7 +770,6 @@ x.register("moveRules", function(moveRules,data) {
                 position:"absolute"}
             );
             var diff = 0;
-            console.log(diff = new Date().getTime());
             var counter = 0;
             for( i in moveRules.moves){
                 counter++;
@@ -801,12 +792,8 @@ x.register("moveRules", function(moveRules,data) {
                 /* left and top need to be set after appendTo() */
 
                 secondGenClone.appendTo('#gameImages').css({left:moveRules.moves[i].pixX - width/2 +"px",top:moveRules.moves[i].pixY - height/2 +"px"});
-//                $('#gameImages').append(secondGenClone).css({left:moveRules.moves[i].pixX - width/2 +"px",top:moveRules.moves[i].pixY - height/2 +"px"});
-//                    $("<div style='position:absolute' id='"+newId+"'>hi</div>").appendTo('#gameImages').css({left:moveRules.moves[i].pixX - width/2 +"px",top:moveRules.moves[i].pixY - height/2 +"px"});
                 /* apparently cloning attaches the mouse events */
             }
-            console.log(counter);
-            console.log(new Date().getTime() - diff);
 
             $("#firstclone").remove();
         }
@@ -892,6 +879,14 @@ x.register("combatRules", function(combatRules,data) {
                     for(var j in attackers){
                         var numDef = Object.keys(defenders).length;
                         for(k in defenders){
+                            // next version we address this stuff (svg arrows for combat )
+
+//                            var thisunit = data.mapUnits[j];
+//                            var circle = '<circle cx="'+thisunit.x+'" cy="'+thisunit.y+'" r="30"/>';
+//                            $('svg').append(circle);
+//                            var svgHtml = $('#svgWrapper').html();
+//                            $('#svgWrapper').html(svgHtml);
+
                             $("#"+j+ " .arrow").clone().addClass('arrowClone').addClass('arrow'+k).insertAfter("#"+j+ " .arrow").removeClass('arrow');
                             theta = thetas[j][k];
                             theta *= 15;

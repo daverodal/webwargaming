@@ -164,7 +164,7 @@ h4:hover {
   backgroundColor: white; }
 
 .dark {
-  background-color: #000; }
+  background-color: black; }
 
 .blueUnit {
   background-color: #84b5ff; }
@@ -445,7 +445,7 @@ h4:hover {
 
 body {
   background: #eee;
-  color: #333; }
+  color: #333333; }
 
 #status {
   /*height:70px;*/
@@ -732,6 +732,15 @@ svg {
 
 #timeMachine, #timeSurge {
   font-size: 22px; }
+
+svg g {
+  opacity: .6;
+  fill: red;
+  stroke: red; }
+  svg g:hover, svg g .hover {
+    opacity: 1.0; }
+svg marker#head {
+  fill: red; }
 
 #map {
   width: 1000px !important; }
@@ -1105,5 +1114,3 @@ p.forceMarch {
 
 #GR {
   left: -200px; }
-
-/*# sourceMappingURL=all.css.map */
