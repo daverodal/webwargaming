@@ -17,7 +17,7 @@ x.register("sentBreadcrumbs", function(breadcrumbs,data) {
             }
             var d = 'M'+breadcrumbs[unitId][moves].fromX+','+breadcrumbs[unitId][moves].fromY;
             d += ' L'+breadcrumbs[unitId][moves].toX+','+breadcrumbs[unitId][moves].toY;
-            path += ' d="'+d + '"/>';
+            path += ' d="' + d + '"/>';
             var circle = '<circle cx="'+breadcrumbs[unitId][moves].toX+'" cy="'+breadcrumbs[unitId][moves].toY+'" r="7"/>';
             $('g.unitPath'+unitId).append(path);
             $('g.unitPath'+unitId).append(circle);
@@ -884,6 +884,19 @@ x.register("combatRules", function(combatRules,data) {
 //                            var thisunit = data.mapUnits[j];
 //                            var circle = '<circle cx="'+thisunit.x+'" cy="'+thisunit.y+'" r="30"/>';
 //                            $('svg').append(circle);
+//                            var thisDefender = data.mapUnits[k];
+//                            var circle = '<circle cx="'+thisDefender.x+'" cy="'+thisDefender.y+'" stroke="white" fill="white" r="30"/>';
+//
+//                            var path = "";
+//
+//                            path += "<path marker-end='url(#head)' stroke-width='10'";
+//                            var d = 'M'+thisAttacker.x+','+thisAttacker.y;
+//                            d += ' L'+thisDefender.x+','+thisDefender.y;
+//                            path += ' d="' + d + '"/>';
+//
+//                            $('svg').append(circle);
+//                            $('svg').append(path);
+//
 //                            var svgHtml = $('#svgWrapper').html();
 //                            $('#svgWrapper').html(svgHtml);
 

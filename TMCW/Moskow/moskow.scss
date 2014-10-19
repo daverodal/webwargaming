@@ -3,6 +3,7 @@
 @include player(german, One, $germanColor);
 @include player(soviet,Two,$sovietColor);
 @include player(loyalGuards,Three,$loyalistGuardColor);
+@include player(sovietguard, Four, red);
 
 #map {
   width:1400px;

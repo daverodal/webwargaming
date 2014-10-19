@@ -922,6 +922,16 @@ svg marker#head {
 .loyalGuards {
   background-color: #aaaaaa; }
 
+.playerFour {
+  background: red;
+  border-color: red !important; }
+
+.sovietguardFace, .playerFourFace {
+  color: red; }
+
+.sovietguard {
+  background-color: red; }
+
 #map {
   width: 1400px; }
 

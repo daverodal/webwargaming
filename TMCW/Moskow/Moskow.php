@@ -106,7 +106,7 @@ class Moskow extends ModernLandBattle
             $this->force->addUnit("xxx", SOVIET_FORCE, "deadpile", "multiInf.png", 8, 4, 4, true, STATUS_ELIMINATED, "B", 1, 1, "soviet", true, 'inf');
         }
 
-        $this->force->addUnit("guard", SOVIET_FORCE, "gameTurn6", "multiInf.png", 10, 5, 4, true, STATUS_CAN_REINFORCE, "B",6, 1, "soviet", true, 'inf');
+        $this->force->addUnit("guard", SOVIET_FORCE, "gameTurn6", "multiInf.png", 10, 5, 4, true, STATUS_CAN_REINFORCE, "B",6, 1, "sovietguard", true, 'inf');
 
 
         $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 12, 6, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");

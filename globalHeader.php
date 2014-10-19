@@ -466,6 +466,9 @@ function counterClick(event) {
     if(!id){
         id = $(event.target).parent().attr("id");
     }
+    if(!id){
+        id = $(event.target).parent().parent().attr("id");
+    }
     doitUnit(id,event);
 }
 
