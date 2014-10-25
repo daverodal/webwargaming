@@ -61,10 +61,7 @@ class Kiev extends ModernLandBattle
     function terrainGen($hexDocId)
     {
         parent::terrainGen($hexDocId);
-        $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 1, false);
-        $this->terrain->addTerrainFeature("road", "road", "r", 1, 0, 0, false);
-        $this->terrain->addNatAltEntranceCost('road','soviet','inf',.3);
-        $this->terrain->addNatAltEntranceCost('road','soviet','mudinf',1./12.);
+        $this->terrain->addTerrainFeature("swamp", "swamp", "f", 3, 0, 1, true);
 
     }
     function save()
