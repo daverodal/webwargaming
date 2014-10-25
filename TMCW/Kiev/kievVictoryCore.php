@@ -267,7 +267,7 @@ class kievVictoryCore extends victoryCore
         }
         if ($attackingId == SOVIET_FORCE) {
             $gameRules->flashMessages[] = "Soviet Player Turn";
-            $gameRules->replacementsAvail = 8;
+            $gameRules->replacementsAvail = 2;
         }
 
         /*only get special VPs' at end of first Movement Phase */
