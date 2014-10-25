@@ -191,15 +191,11 @@ class Moskow extends ModernLandBattle
             $this->force = new Force();
             $this->terrain = new Terrain();
             $this->moveRules = new MoveRules($this->force, $this->terrain);
-            if ($scenario && $scenario->supply === true) {
-                $this->moveRules->enterZoc = 2;
-                $this->moveRules->exitZoc = 1;
-                $this->moveRules->noZocZocOneHex = false;
-            } else {
-                $this->moveRules->enterZoc = "stop";
-                $this->moveRules->exitZoc = 0;
-                $this->moveRules->noZocZocOneHex = false;
-            }
+
+            $this->moveRules->enterZoc = "stop";
+            $this->moveRules->exitZoc = 0;
+            $this->moveRules->noZocZocOneHex = false;
+
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);

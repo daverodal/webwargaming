@@ -243,74 +243,9 @@ class kievVictoryCore extends victoryCore
                 $goal = $this->sovietGoal;
             }
             $this->unitSupplyEffects($unit, $goal, $bias, $this->supplyLen);
-
-            if($b->gameRules->turn >= 4 && $b->gameRules->turn <= 6){
-
-                if(!isset($this->movementCache->$id)) {
-                    $this->movementCache->$id = $unit->maxMove;
-                    $unit->maxMove = 1;
-                    if($unit->forceId == SOVIET_FORCE){
-                        $unit->class = 'mudinf';
-                    }
-                }
-                if($unit->forceId == $b->gameRules->attackingForceId){
-                    $unit->addAdjustment('mud','floorHalf');
-                }else{
-                    $unit->removeAdjustment('mud');
-                }
-            }
-            if($b->gameRules->turn == 7){
-                if(isset($this->movementCache->$id)) {
-                    $unit->maxMove = $this->movementCache->$id;
-                    $unit->removeAdjustment('mud');
-                    if($unit->class === 'mudinf'){
-                        $unit->class = 'inf';
-                    }
-                }
-            }
         }
     }
 
-    public function preCombatResults($args)
-    {
-        return $args;
-        list($defenderId, $attackers, $combatResults, $dieRoll) = $args;
-        $battle = Battle::getBattle();
-        /* @var mapData $mapData */
-        $mapData = $battle->mapData;
-        $unit = $battle->force->getUnit($defenderId);
-        $defendingHex = $unit->hexagon->name;
-        if ($defendingHex == 407 || $defendingHex == 2415 || $defendingHex == 2414 || $defendingHex == 2515) {
-            /* Cunieform */
-            if ($unit->forceId == RED_FORCE) {
-                if ($combatResults == DR2) {
-                    $combatResults = NE;
-                }
-                if ($combatResults == DRL2) {
-                    $combatResults = DL;
-                }
-            }
-        }
-        return array($defenderId, $attackers, $combatResults, $dieRoll);
-    }
-
-    public function preStartMovingUnit($arg)
-    {
-        $unit = $arg[0];
-        $battle = Battle::getBattle();
-        if ($battle->scenario->supply === true) {
-            if ($unit->class != 'mech') {
-                $battle->moveRules->enterZoc = "stop";
-                $battle->moveRules->exitZoc = 0;
-                $battle->moveRules->noZocZoc = false;
-            } else {
-                $battle->moveRules->enterZoc = 2;
-                $battle->moveRules->exitZoc = 1;
-                $battle->moveRules->noZocZoc = false;
-
-            }
-        }
-    }
 
     public function playerTurnChange($arg)
     {
@@ -328,9 +263,6 @@ class kievVictoryCore extends victoryCore
             if($gameRules->turn <= $gameRules->maxTurn){
                 $gameRules->flashMessages[] = "German Player Turn";
                 $gameRules->replacementsAvail = 1;
-                if($gameRules->turn == 4){
-                    $gameRules->flashMessages[] = "Mud In Effect ";
-                }
             }
         }
         if ($attackingId == SOVIET_FORCE) {

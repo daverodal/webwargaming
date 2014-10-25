@@ -269,29 +269,6 @@ class amphVictoryCore extends victoryCore
         }
     }
 
-    public function preCombatResults($args)
-    {
-        return $args;
-        list($defenderId, $attackers, $combatResults, $dieRoll) = $args;
-        $battle = Battle::getBattle();
-        /* @var mapData $mapData */
-        $mapData = $battle->mapData;
-        $unit = $battle->force->getUnit($defenderId);
-        $defendingHex = $unit->hexagon->name;
-        if ($defendingHex == 407 || $defendingHex == 2415 || $defendingHex == 2414 || $defendingHex == 2515) {
-            /* Cunieform */
-            if ($unit->forceId == RED_FORCE) {
-                if ($combatResults == DR2) {
-                    $combatResults = NE;
-                }
-                if ($combatResults == DRL2) {
-                    $combatResults = DL;
-                }
-            }
-        }
-        return array($defenderId, $attackers, $combatResults, $dieRoll);
-    }
-
     public function preStartMovingUnit($arg)
     {
         $unit = $arg[0];
