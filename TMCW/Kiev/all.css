@@ -902,6 +902,26 @@ svg marker#head {
 .german {
   background-color: #9ee0ff; }
 
+.playerFour {
+  background: #fcbaff;
+  border-color: #fcbaff !important; }
+
+.secondArmyFace, .playerFourFace {
+  color: #fcbaff; }
+
+.secondArmy {
+  background-color: #fcbaff; }
+
+.playerFive {
+  background: #97ff9b;
+  border-color: #97ff9b !important; }
+
+.armyGroupSouthFace, .playerFiveFace {
+  color: #97ff9b; }
+
+.armyGroupSouth {
+  background-color: #97ff9b; }
+
 .playerTwo {
   background: #ba9f34;
   border-color: #ba9f34 !important; }
@@ -911,16 +931,6 @@ svg marker#head {
 
 .soviet {
   background-color: #ba9f34; }
-
-.playerThree {
-  background: #aaaaaa;
-  border-color: #aaaaaa !important; }
-
-.loyalGuardsFace, .playerThreeFace {
-  color: #aaaaaa; }
-
-.loyalGuards {
-  background-color: #aaaaaa; }
 
 #crt {
   width: 308px; }
