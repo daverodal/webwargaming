@@ -893,34 +893,54 @@ svg marker#head {
   text-shadow: 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff; }
 
 .playerOne {
-  background: #9ee0ff;
-  border-color: #9ee0ff !important; }
+  background: #58c3ff;
+  border-color: #58c3ff !important; }
 
 .germanFace, .playerOneFace {
-  color: #9ee0ff; }
+  color: #58c3ff; }
 
 .german {
-  background-color: #9ee0ff; }
+  background-color: #58c3ff; }
 
 .playerFour {
-  background: #fcbaff;
-  border-color: #fcbaff !important; }
+  background: #5d6cff;
+  border-color: #5d6cff !important; }
 
 .secondArmyFace, .playerFourFace {
-  color: #fcbaff; }
+  color: #5d6cff; }
 
 .secondArmy {
-  background-color: #fcbaff; }
+  background-color: #5d6cff; }
 
 .playerFive {
-  background: #97ff9b;
-  border-color: #97ff9b !important; }
+  background: #ff3f3c;
+  border-color: #ff3f3c !important; }
 
-.armyGroupSouthFace, .playerFiveFace {
-  color: #97ff9b; }
+.firstPanzerArmyFace, .playerFiveFace {
+  color: #ff3f3c; }
 
-.armyGroupSouth {
-  background-color: #97ff9b; }
+.firstPanzerArmy {
+  background-color: #ff3f3c; }
+
+.playerFive {
+  background: #ff8f47;
+  border-color: #ff8f47 !important; }
+
+.sixthArmyFace, .playerFiveFace {
+  color: #ff8f47; }
+
+.sixthArmy {
+  background-color: #ff8f47; }
+
+.playerFive {
+  background: #ffe54b;
+  border-color: #ffe54b !important; }
+
+.seventeenthArmyFace, .playerFiveFace {
+  color: #ffe54b; }
+
+.seventeenthArmy {
+  background-color: #ffe54b; }
 
 .playerTwo {
   background: #ba9f34;

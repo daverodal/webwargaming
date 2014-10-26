@@ -96,85 +96,101 @@ class Kiev extends ModernLandBattle
 
         $scenario = $this->scenario;
 
-        for($i = 0; $i < 40;$i++){
-            $this->force->addUnit("xxx", SOVIET_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "D", 1, 1, "soviet", true, 'inf');
+        for($i = 0; $i < 60;$i++){
+            $this->force->addUnit("xxx", SOVIET_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "soviet", true, 'inf');
         }
 
-        for($i = 0; $i < 4;$i++){
-            $this->force->addUnit("xxx", SOVIET_FORCE, "deadpile", "multiInf.png", 2, 1, 4, true, STATUS_ELIMINATED, "D", 1, 1, "soviet", true, 'inf');
+        for($i = 0; $i < 18;$i++){
+            $this->force->addUnit("xxx", SOVIET_FORCE, "deadpile", "multiInf.png", 2, 1, 4, true, STATUS_ELIMINATED, "A", 1, 1, "soviet", true, 'inf');
         }
 
         /* Second panzer army */
         /* 21 corp */
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiMech.png", 7, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiMech.png", 7, 3, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "german", true, "mech");
 
         /* 47 corp */
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiMech.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiMech.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "german", true, "mech");
 
         /* 48 corp */
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiMech.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "german", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiMech.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "german", true, "mech");
 
         /* 35 corp */
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 3, 1, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 3, 1, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "german", true, "inf");
 
         /* 34 corp */
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 3, 1, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 3, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "german", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "german", true, "inf");
 
         /* Second Army */
         /* 13 corp */
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "secondArmy", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "secondArmy", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "secondArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "C", 1, 1, "secondArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "C", 1, 1, "secondArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "C", 1, 1, "secondArmy", true, "inf");
 
         /* 53 corp */
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "secondArmy", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "secondArmy", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "secondArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "C", 1, 1, "secondArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "C", 1, 1, "secondArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "C", 1, 1, "secondArmy", true, "inf");
 
         /* 42 corp */
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "secondArmy", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "secondArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "C", 1, 1, "secondArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "C", 1, 1, "secondArmy", true, "inf");
 
         /* army reserve */
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "secondArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "C", 1, 1, "secondArmy", true, "inf");
 
         /* First panzer army */
         /* 3 corp */
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "C", 1, 1, "armyGroupSouth", true, "mech");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "C", 1, 1, "armyGroupSouth", true, "mech");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiMech.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "C", 1, 1, "armyGroupSouth", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "E", 1, 1, "firstPanzerArmy", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "E", 1, 1, "firstPanzerArmy", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiMech.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "E", 1, 1, "firstPanzerArmy", true, "mech");
 
         /* 14 corp */
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "C", 1, 1, "armyGroupSouth", true, "mech");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "C", 1, 1, "armyGroupSouth", true, "mech");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiMech.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "C", 1, 1, "armyGroupSouth", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "E", 1, 1, "firstPanzerArmy", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "E", 1, 1, "firstPanzerArmy", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiMech.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "E", 1, 1, "firstPanzerArmy", true, "mech");
 
         /* 48 corp ? */
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "C", 1, 1, "armyGroupSouth", true, "mech");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "C", 1, 1, "armyGroupSouth", true, "mech");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiMech.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "C", 1, 1, "armyGroupSouth", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "E", 1, 1, "firstPanzerArmy", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "E", 1, 1, "firstPanzerArmy", true, "mech");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiMech.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "E", 1, 1, "firstPanzerArmy", true, "mech");
 
-        /* AG South extra inf  */
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 3, 1, 4, false, STATUS_CAN_DEPLOY, "C", 1, 1, "armyGroupSouth", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 3, 1, 4, false, STATUS_CAN_DEPLOY, "C", 1, 1, "armyGroupSouth", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "C", 1, 1, "armyGroupSouth", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "C", 1, 1, "armyGroupSouth", true, "inf");
+        /* AG Sixth Army */
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "D", 1, 1, "sixthArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "D", 1, 1, "sixthArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "D", 1, 1, "sixthArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "D", 1, 1, "sixthArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "D", 1, 1, "sixthArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "D", 1, 1, "sixthArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "D", 1, 1, "sixthArmy", true, "inf");
 
-        /* AG South extra inf */
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 3, 1, 4, false, STATUS_CAN_DEPLOY, "C", 1, 1, "armyGroupSouth", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "C", 1, 1, "armyGroupSouth", true, "inf");
+        /* Some corp Sixth Army */
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "D", 1, 1, "sixthArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "D", 1, 1, "sixthArmy", true, "inf");
 
 
+        /* AG Seventeenth Army */
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "seventeenthArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "seventeenthArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "seventeenthArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "seventeenthArmy", true, "inf");
+
+        /* Some corp Seventeenth Army */
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "seventeenthArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "seventeenthArmy", true, "inf");
+
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "seventeenthArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "seventeenthArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "seventeenthArmy", true, "inf");
 
 
 
