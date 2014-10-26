@@ -166,14 +166,14 @@ class Kiev extends ModernLandBattle
 
         /* Two unknown corps to round out First Panzer Army */
         /* ? corp */
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "firstPanzerArmy", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "firstPanzerArmy", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "firstPanzerArmy", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "firstPanzerArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "E", 1, 1, "firstPanzerArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "E", 1, 1, "firstPanzerArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "E", 1, 1, "firstPanzerArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "E", 1, 1, "firstPanzerArmy", true, "inf");
 
         /* ? corp */
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "firstPanzerArmy", true, "inf");
-        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "firstPanzerArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "E", 1, 1, "firstPanzerArmy", true, "inf");
+        $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "E", 1, 1, "firstPanzerArmy", true, "inf");
 
         /*  Sixth Army */
         $this->force->addUnit("xx", GERMAN_FORCE, "deployBox", "multiInf.png", 2, 1, 4, false, STATUS_CAN_DEPLOY, "D", 1, 1, "sixthArmy", true, "inf");
