@@ -214,6 +214,13 @@ h4:hover {
 .brightRed {
   background-color: #df5842; }
 
+.unit-desig {
+  font-size: 7px;
+  position: absolute;
+  right: 7px;
+  -webkit-transform: rotate(-90deg);
+  -webkit-transform-origin: top right; }
+
 #phaseDiv, #statusDiv, #chatsDiv, #crtWrapper, #victoryDiv {
   display: inline;
   vertical-align: top;

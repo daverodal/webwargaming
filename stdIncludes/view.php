@@ -178,7 +178,7 @@
                             <div class="unitSize">{unitSize}</div>
                             <img class="arrow" src="<?php echo base_url(); ?>js/short-red-arrow-md.png" class="counter">
                             <div class="counterWrapper">
-                                <img src="<?php echo base_url(); ?>js/{image}" class="counter">
+                                <img src="<?php echo base_url(); ?>js/{image}" class="counter"><span class="unit-desig"></span>
                             </div>
                             <div class="unit-numbers">5 - 4</div>
                         </div>

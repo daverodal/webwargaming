@@ -77,3 +77,11 @@ $love:peace;
 .brightRed{
   background-color: $brightRed;
 }
+
+.unit-desig{
+  font-size: 7px;
+  position: absolute;
+  right: 7px;
+  -webkit-transform: rotate(-90deg);
+  -webkit-transform-origin: top right;
+}
