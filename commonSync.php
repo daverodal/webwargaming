@@ -664,7 +664,7 @@ x.register("mapUnits", function(mapUnits) {
         var html = reduceDisp + str + symb + move + "</span>"
         $("#"+i+" .unit-numbers").html(html);
         var len  = $("#"+i+" .unit-numbers").text().length;
-        $("#"+i+" div span ").addClass("infoLen"+len);
+        $("#"+i+" div.unit-numbers span ").addClass("infoLen"+len);
         $("#"+i).attr("src",img);
     }
     var dpBox = $("#deployBox").children().size();
@@ -697,7 +697,7 @@ x.register("moveRules", function(moveRules,data) {
 
                 $("#"+newId).css("left",moveRules.hexPath[i].pixX - width/2 +"px");
                 $("#"+newId).css("top",moveRules.hexPath[i].pixY - height/2 +"px");
-                $("#"+newId+" div span").html("24 - "+moveRules.hexPath[i].pointsLeft );
+                $("#"+newId+" div.unit-numbers span").html("24 - "+moveRules.hexPath[i].pointsLeft );
                 $("#"+newId).css("opacity",.9);
                 $("#"+newId).css("z-index",101);
 
@@ -744,7 +744,7 @@ x.register("moveRules", function(moveRules,data) {
 
                 });
 
-            var label = MYCLONE.find("div span").html();
+            var label = MYCLONE.find("div.unit-numbers span").html();
             if(data.gameRules.phase == <?=RED_COMBAT_PHASE;?> || data.gameRules.phase == <?=BLUE_COMBAT_PHASE;?>){
                 if(data.gameRules.mode == <?=ADVANCING_MODE;?>){
                     var unit = moveRules.movingUnitId;
@@ -783,7 +783,7 @@ x.register("moveRules", function(moveRules,data) {
                 );
 
                 var newLabel = label.replace(/((?:<span[^>]*>)?[-+ru](?:<\/span>)?).*/,"$1 "+moveRules.moves[i].pointsLeft);
-                secondGenClone.find('div span').html(newLabel).addClass('infoLen'+newLabel.length);
+                secondGenClone.find('div.unit-numbers span').html(newLabel).addClass('infoLen'+newLabel.length);
                 if(moveRules.moves[i].isOccupied){
                     secondGenClone.addClass("occupied");
 

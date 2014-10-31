@@ -217,9 +217,12 @@ h4:hover {
 .unit-desig {
   font-size: 7px;
   position: absolute;
-  right: 7px;
+  left: 14px;
+  top: 12px;
   -webkit-transform: rotate(-90deg);
-  -webkit-transform-origin: top right; }
+  -webkit-transform-origin: center;
+  width: 30px;
+  text-align: center; }
 
 #phaseDiv, #statusDiv, #chatsDiv, #crtWrapper, #victoryDiv {
   display: inline;
@@ -759,6 +762,8 @@ svg marker#head {
 
 .rebel {
   background-color: #df5842; }
+  .rebel .unit-desig {
+    color: white; }
 
 .playerTwo {
   background: #84b5ff;
@@ -769,6 +774,8 @@ svg marker#head {
 
 .loyalist {
   background-color: #84b5ff; }
+  .loyalist .unit-desig {
+    color: white; }
 
 .rebel div {
   color: black; }
@@ -908,6 +915,8 @@ svg marker#head {
 
 .german {
   background-color: #58c3ff; }
+  .german .unit-desig {
+    color: white; }
 
 .playerFour {
   background: #5d6cff;
@@ -918,6 +927,8 @@ svg marker#head {
 
 .secondArmy {
   background-color: #5d6cff; }
+  .secondArmy .unit-desig {
+    color: white; }
 
 .playerFive {
   background: #ff3f3c;
@@ -928,6 +939,8 @@ svg marker#head {
 
 .firstPanzerArmy {
   background-color: #ff3f3c; }
+  .firstPanzerArmy .unit-desig {
+    color: white; }
 
 .playerFive {
   background: #ff8f47;
@@ -938,16 +951,20 @@ svg marker#head {
 
 .sixthArmy {
   background-color: #ff8f47; }
+  .sixthArmy .unit-desig {
+    color: white; }
 
 .playerFive {
   background: #ffe54b;
   border-color: #ffe54b !important; }
 
 .seventeenthArmyFace, .playerFiveFace {
-  color: #ffe54b; }
+  color: #58c3ff; }
 
 .seventeenthArmy {
   background-color: #ffe54b; }
+  .seventeenthArmy .unit-desig {
+    color: black; }
 
 .playerTwo {
   background: #ba9f34;
@@ -958,6 +975,8 @@ svg marker#head {
 
 .soviet {
   background-color: #ba9f34; }
+  .soviet .unit-desig {
+    color: white; }
 
 #crt {
   width: 308px; }

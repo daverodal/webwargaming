@@ -4,7 +4,7 @@
 @include player(secondArmy, Four, $secondArmyColor);
 @include player(firstPanzerArmy, Five, $firstPanzerArmyColor);
 @include player(sixthArmy, Five, $sixthArmyColor);
-@include player(seventeenthArmy, Five, $seventeenthArmyColor);
+@include player(seventeenthArmy, Five, $seventeenthArmyColor, $germanColor, black);
 
 @include player(soviet,Two,$sovietColor);
 

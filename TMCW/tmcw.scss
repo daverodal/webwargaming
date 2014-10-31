@@ -1,5 +1,5 @@
 /* Unit Styles */
-@mixin player($nationality, $player, $color, $faceColor: $color){
+@mixin player($nationality, $player, $color, $faceColor: $color, $desigColor: white){
   .player#{$player}{
     background:$color;
     border-color:$color !important;
@@ -7,8 +7,12 @@
   .#{$nationality}Face, .player#{$player}Face{
     color:$faceColor;
   }
+
   .#{$nationality} {
     background-color: $color;
+    .unit-desig{
+      color: $desigColor;
+    }
   }
 
 }

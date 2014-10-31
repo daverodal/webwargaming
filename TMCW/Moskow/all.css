@@ -217,9 +217,12 @@ h4:hover {
 .unit-desig {
   font-size: 7px;
   position: absolute;
-  right: 7px;
+  left: 14px;
+  top: 12px;
   -webkit-transform: rotate(-90deg);
-  -webkit-transform-origin: top right; }
+  -webkit-transform-origin: center;
+  width: 30px;
+  text-align: center; }
 
 #phaseDiv, #statusDiv, #chatsDiv, #crtWrapper, #victoryDiv {
   display: inline;
@@ -759,6 +762,8 @@ svg marker#head {
 
 .rebel {
   background-color: #df5842; }
+  .rebel .unit-desig {
+    color: white; }
 
 .playerTwo {
   background: #84b5ff;
@@ -769,6 +774,8 @@ svg marker#head {
 
 .loyalist {
   background-color: #84b5ff; }
+  .loyalist .unit-desig {
+    color: white; }
 
 .rebel div {
   color: black; }
@@ -908,6 +915,8 @@ svg marker#head {
 
 .german {
   background-color: #9ee0ff; }
+  .german .unit-desig {
+    color: white; }
 
 .playerTwo {
   background: #ba9f34;
@@ -918,6 +927,8 @@ svg marker#head {
 
 .soviet {
   background-color: #ba9f34; }
+  .soviet .unit-desig {
+    color: white; }
 
 .playerThree {
   background: #aaaaaa;
@@ -928,6 +939,8 @@ svg marker#head {
 
 .loyalGuards {
   background-color: #aaaaaa; }
+  .loyalGuards .unit-desig {
+    color: white; }
 
 .playerFour {
   background: red;
@@ -938,6 +951,8 @@ svg marker#head {
 
 .sovietguard {
   background-color: red; }
+  .sovietguard .unit-desig {
+    color: white; }
 
 #map {
   width: 1400px; }
