@@ -236,10 +236,10 @@ class kievVictoryCore extends victoryCore
         }
         if ($b->scenario->supply === true) {
             if ($unit->forceId == GERMAN_FORCE) {
-                $bias = array(5 => true, 6 => true, 1 => true);
+                $bias = array(5 => true, 6 => true);
                 $goal = $this->germanGoal;
             } else {
-                $bias = array(2 => true, 3 => true, 4 => true);
+                $bias = array(2 => true, 3 => true);
                 $goal = $this->sovietGoal;
             }
             $this->unitSupplyEffects($unit, $goal, $bias, $this->supplyLen);
