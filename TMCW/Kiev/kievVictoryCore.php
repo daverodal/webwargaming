@@ -61,15 +61,15 @@ class kievVictoryCore extends victoryCore
         $battle = Battle::getBattle();
         list($mapHexName, $forceId) = $args;
 
-        if(in_array($mapHexName, $battle->specialHexC)){
-
-            if ($forceId == SOVIET_FORCE) {
-                $this->victoryPoints = "The Soviets hold Kiev";
-            }
-            if ($forceId == GERMAN_FORCE) {
-                $this->victoryPoints = "The Germans hold Kiev";
-            }
-        }
+//        if(in_array($mapHexName, $battle->specialHexC)){
+//
+//            if ($forceId == SOVIET_FORCE) {
+//                $this->victoryPoints = "The Soviets hold Kiev";
+//            }
+//            if ($forceId == GERMAN_FORCE) {
+//                $this->victoryPoints = "The Germans hold Kiev";
+//            }
+//        }
     }
 
     public function postReinforceZones($args)
