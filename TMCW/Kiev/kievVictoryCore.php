@@ -205,14 +205,14 @@ class kievVictoryCore extends victoryCore
         $germanGoal = $sovietGoal = [];
 
         /* German goal is west Edge */
-        for($i = 1; $i <= 20;$i++){
+        for($i = 1; $i <= 38;$i++){
             $germanGoal[] = 100 + $i;
         }
         $this->germanGoal = $germanGoal;
 
         /* Soviet goal is west Edge */
-        for($i = 1; $i <= 20;$i++){
-            $sovietGoal[] = 2200 + $i;
+        for($i = 1; $i <= 38    ;$i++){
+            $sovietGoal[] = 4600 + $i;
         }
         $this->sovietGoal = $sovietGoal;
 
