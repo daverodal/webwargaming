@@ -955,14 +955,14 @@ svg marker#head {
     color: white; }
 
 .playerFive {
-  background: #ffe54b;
-  border-color: #ffe54b !important; }
+  background: #ff2ccf;
+  border-color: #ff2ccf !important; }
 
 .seventeenthArmyFace, .playerFiveFace {
   color: #58c3ff; }
 
 .seventeenthArmy {
-  background-color: #ffe54b; }
+  background-color: #ff2ccf; }
   .seventeenthArmy .unit-desig {
     color: black; }
 
