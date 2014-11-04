@@ -611,7 +611,7 @@ x.register("mapUnits", function(mapUnits) {
     for (i in mapUnits) {
         width = $("#"+i).width();
         height = $("#"+i).height();
-        x =  [mapUnits[i].x];
+        x =  mapUnits[i].x;
         y = mapUnits[i].y;
         if(isStacked[x] === undefined){
             isStacked[x] = new Array();
@@ -620,9 +620,10 @@ x.register("mapUnits", function(mapUnits) {
             isStacked[x][y] = 0;
         }
         fudge = 0;
-        if(isStacked[x][y]++){
-            fudge = isStacked[x][y] * 2;
+        if(isStacked[x][y]){
+            fudge = isStacked[x][y] * 4;
         }
+        isStacked[x][y]++;
         if(mapUnits[i].parent != $("#"+i).parent().attr("id")){
             $("#"+i).appendTo($("#"+mapUnits[i].parent));
             if(mapUnits[i].parent != "gameImages"){

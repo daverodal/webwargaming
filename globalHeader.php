@@ -571,6 +571,20 @@ function initialize() {
         $(".unitPath"+this.id).css({opacity:''});
 
     });
+
+    $('.unit').bind('contextmenu',function(e){
+        var css = $(this).css('z-index');
+        console.log(this);
+        $('.unit').each(function(index){
+            var localZ = $(this).css('z-index') - 0;
+            if(localZ < 3){
+                console.log(localZ);
+                $(this).css('z-index', localZ + 1);
+            }
+        });
+        $(this).css('z-index', 1);
+        return false;
+    });
     // end setup events ----------------------------------------
 
 

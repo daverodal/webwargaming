@@ -105,6 +105,7 @@ class CombatRules
         $mapData = MapData::getInstance();
         $battle = Battle::getBattle();
         $victory = $battle->victory;
+        $unit = $battle->force->units[$id];
 
         $cd = $this->currentDefender;
 
@@ -170,8 +171,24 @@ class CombatRules
                         $this->defenders->$id = $id;
                     }
                 } else {
+                    $mapHex = $battle->mapData->getHex($unit->hexagon->getName());
+                    $forces = $mapHex->getForces($unit->forceId);
+
                     $this->currentDefender = $id;
-                    $this->defenders->$id = $id;
+                    foreach($forces as $force){
+                        $this->defenders->$force = $id;
+                        if($force != $id){
+                            $cd = $this->currentDefender;
+                            $this->force->setupDefender($force);
+                            if (!$this->combats) {
+                                $this->combats = new  stdClass();
+                            }
+                            if (!$this->combats->$cd) {
+                                $this->combats->$cd = new Combat();
+                            }
+                            $this->combats->$cd->defenders->$force = $id;
+                        }
+                    }
                 }
                 $cd = $this->currentDefender;
 //                $this->defenders->{$this->currentDefender} = $id;

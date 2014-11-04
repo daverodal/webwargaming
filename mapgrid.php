@@ -141,9 +141,13 @@ class MapHex
         return count((array)$this->adjacent[$forceId]);
     }
 
-    public function isOccupied($forceId)
+    public function isOccupied($forceId, $num = 1)
     {
-        return count((array)$this->forces[$forceId]);
+        return count((array)$this->forces[$forceId]) >= $num;
+    }
+
+    public function getForces($forceId){
+        return $this->forces[$forceId];
     }
 }
 
