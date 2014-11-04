@@ -250,6 +250,8 @@ class Kiev extends ModernLandBattle
             $this->moveRules->enterZoc = "stop";
             $this->moveRules->exitZoc = 0;
             $this->moveRules->noZocZocOneHex = false;
+            $this->moveRules->stacking = 3;
+            $this->moveRules->friendlyAllowsRetreat = true;
 
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);

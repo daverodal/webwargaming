@@ -992,23 +992,6 @@ class Force
             return true;
         }
         return false;
-        $isOccupied = false;
-        if(is_array($mapHex->forces)){
-            foreach($mapHex->forces as $force)
-            {
-                if(count((array)$force) > 0){
-                    $isOccupied = true;
-                }
-            }
-        }
-//        for ($id = 0; $id < count($this->units); $id++)
-//        {
-//            if ($this->units[$id]->hexagon->equals($hexagon)) {
-//                $isOccupied = true;
-//            }
-//        }
-
-        return $isOccupied;
     }
 
     function mapHexIsZoc(MapHex $mapHex, $defendingForceId = false){
@@ -1021,7 +1004,6 @@ class Force
         if($neighbors){
             $battle = Battle::getBattle();
             $mapData = $battle->mapData;
-//            $mapData = MapData::getInstance();
             foreach($neighbors as $neighbor){
                 if($this->mapHexIsOccupiedEnemy($mapData->getHex($neighbor))){
                     return true;
@@ -1030,29 +1012,24 @@ class Force
         }
         return false;
     }
-    function hexagonIsOccupied($hexagon)
-    {
-        $isOccupied = false;
+
+    function hexagonIsOccupiedForce($hexagon, $forceId, $stacking = 1){
         $battle = Battle::getBattle();
         $mapData = $battle->mapData;
-//        $mapData = MapData::getInstance();
         $mapHex = $mapData->getHex($hexagon->getName());
-        if(is_array($mapHex->forces)){
-        foreach($mapHex->forces as $force)
-        {
-           if(count((array)$force) > 0){
-                $isOccupied = true;
-            }
-        }
-        }
-//        for ($id = 0; $id < count($this->units); $id++)
-//        {
-//            if ($this->units[$id]->hexagon->equals($hexagon)) {
-//                $isOccupied = true;
-//            }
-//        }
+        return $mapHex->isOccupied($forceId, $stacking);
+    }
 
-        return $isOccupied;
+    function hexagonIsOccupied($hexagon, $stacking = 1)
+    {
+        $battle = Battle::getBattle();
+        $mapData = $battle->mapData;
+        $mapHex = $mapData->getHex($hexagon->getName());
+        if($mapHex->isOccupied($this->defendingForceId)){
+            return true;
+        }
+        return $mapHex->isOccupied($this->attackingForceId, $stacking);
+
     }
     function mapHexIsOccupiedEnemy(MapHex $mapHex)
     {
