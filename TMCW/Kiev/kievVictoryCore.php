@@ -61,15 +61,15 @@ class kievVictoryCore extends victoryCore
         $battle = Battle::getBattle();
         list($mapHexName, $forceId) = $args;
 
-        if(in_array($mapHexName, $battle->specialHexC)){
-
-            if ($forceId == SOVIET_FORCE) {
-                $this->victoryPoints = "The Soviets hold Kiev";
-            }
-            if ($forceId == GERMAN_FORCE) {
-                $this->victoryPoints = "The Germans hold Kiev";
-            }
-        }
+//        if(in_array($mapHexName, $battle->specialHexC)){
+//
+//            if ($forceId == SOVIET_FORCE) {
+//                $this->victoryPoints = "The Soviets hold Kiev";
+//            }
+//            if ($forceId == GERMAN_FORCE) {
+//                $this->victoryPoints = "The Germans hold Kiev";
+//            }
+//        }
     }
 
     public function postReinforceZones($args)
@@ -205,14 +205,14 @@ class kievVictoryCore extends victoryCore
         $germanGoal = $sovietGoal = [];
 
         /* German goal is west Edge */
-        for($i = 1; $i <= 20;$i++){
+        for($i = 1; $i <= 38;$i++){
             $germanGoal[] = 100 + $i;
         }
         $this->germanGoal = $germanGoal;
 
         /* Soviet goal is west Edge */
-        for($i = 1; $i <= 20;$i++){
-            $sovietGoal[] = 2200 + $i;
+        for($i = 1; $i <= 38    ;$i++){
+            $sovietGoal[] = 4600 + $i;
         }
         $this->sovietGoal = $sovietGoal;
 
@@ -236,10 +236,10 @@ class kievVictoryCore extends victoryCore
         }
         if ($b->scenario->supply === true) {
             if ($unit->forceId == GERMAN_FORCE) {
-                $bias = array(5 => true, 6 => true, 1 => true);
+                $bias = array(5 => true, 6 => true);
                 $goal = $this->germanGoal;
             } else {
-                $bias = array(2 => true, 3 => true, 4 => true);
+                $bias = array(2 => true, 3 => true);
                 $goal = $this->sovietGoal;
             }
             $this->unitSupplyEffects($unit, $goal, $bias, $this->supplyLen);
