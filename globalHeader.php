@@ -571,6 +571,36 @@ function initialize() {
         $(".unitPath"+this.id).css({opacity:''});
 
     });
+    DR.mouseWheel = 0;
+    $(window).bind('mousewheel', function (event) {
+        DR.mouseWheel += event.originalEvent.wheelDelta;
+        if (DR.mouseWheel > 90 || DR.mouseWheel < -90) {
+            if (DR.mouseWheel > 0) {
+                globalZoom += .1;
+            } else
+                globalZoom -= .1;
+            DR.mouseWheel = 0;
+        }
+        if (globalZoom <= 0) {
+            globalZoom = .1;
+        }
+        if (globalZoom > 2.0) {
+            globalZoom = 2.0;
+        }
+
+        var vHeight = $('#gameViewer').height();
+        var vWidth = $('#gameViewer').width();
+        vHeight /= 2;
+        vWidth /= 2;
+        var top = $('#gameImages').css('top').replace(/auto/, "0").replace(/px/, '');
+        vHeight -= top;
+        var left = $('#gameImages').css('left').replace(/auto/, "0").replace(/px/, '');
+        vWidth -= left;
+        $("#gameImages").css('-webkit-transform-origin', vWidth + "px " + vHeight + "px").css('transform-origin', vWidth + "px " + vHeight + "px");
+        $("#gameImages").css('transform', 'scale(' + globalZoom + ',' + globalZoom + ')').css('-webkig-transform', 'scale(' + globalZoom + ',' + globalZoom + ')');
+
+
+    });
     // end setup events ----------------------------------------
 
 
