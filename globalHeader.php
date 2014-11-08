@@ -572,7 +572,7 @@ function initialize() {
 
     });
     DR.mouseWheel = 0;
-    $(window).bind('mousewheel', function (event) {
+    $("#map").bind('mousewheel', function (event) {
         DR.mouseWheel += event.originalEvent.wheelDelta;
         if (DR.mouseWheel > 90 || DR.mouseWheel < -90) {
             if (DR.mouseWheel > 0) {
