@@ -272,12 +272,12 @@ class chawinda1965VictoryCore extends victoryCore
         if ($attackingId == INDIAN_FORCE) {
             if($gameRules->turn <= $gameRules->maxTurn){
                 $gameRules->flashMessages[] = "Indian Player Turn";
-                $gameRules->replacementsAvail = 1;
+                $gameRules->replacementsAvail = 3;
             }
         }
         if ($attackingId == PAKISTANI_FORCE) {
             $gameRules->flashMessages[] = "Pakistani Player Turn";
-            $gameRules->replacementsAvail = 2;
+            $gameRules->replacementsAvail = 3;
         }
 
         /*only get special VPs' at end of first Movement Phase */
