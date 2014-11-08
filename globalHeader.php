@@ -598,6 +598,7 @@ function initialize() {
         vWidth -= left;
         $("#gameImages").css('-webkit-transform-origin', vWidth + "px " + vHeight + "px").css('transform-origin', vWidth + "px " + vHeight + "px");
         $("#gameImages").css('transform', 'scale(' + globalZoom + ',' + globalZoom + ')').css('-webkig-transform', 'scale(' + globalZoom + ',' + globalZoom + ')');
+    });
 
 
     $('.unit').bind('contextmenu',function(e){
