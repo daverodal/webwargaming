@@ -1,0 +1,286 @@
+<?php
+/**
+ * Created by JetBrains PhpStorm.
+ * User: markarianr
+ * Date: 5/7/13
+ * Time: 7:06 PM
+ * To change this template use File | Settings | File Templates.
+ */
+include_once "victoryCore.php";
+
+class chawinda1965VictoryCore extends victoryCore
+{
+    public $victoryPoints;
+    protected $movementCache;
+    protected $combatCache;
+    protected $supplyLen = false;
+    public $pakistaniGoal;
+    public $indianGoal;
+
+    public $gameOver = false;
+
+
+    function __construct($data)
+    {
+        if ($data) {
+            $this->victoryPoints = $data->victory->victoryPoints;
+            $this->movementCache = $data->victory->movementCache;
+            $this->combatCache = $data->victory->combatCache;
+            $this->supplyLen = $data->victory->supplyLen;
+            $this->indianGoal = $data->victory->indianGoal;
+            $this->pakistaniGoal = $data->victory->pakistaniGoal;
+            $this->gameOver = $data->victory->gameOver;
+        } else {
+            $this->victoryPoints = [0, 0, 0];
+            $this->movementCache = new stdClass();
+            $this->combatCache = new stdClass();
+            $this->indianGoal = $this->pakistaniGoal = [];
+        }
+    }
+
+    public function setSupplyLen($supplyLen)
+    {
+        $this->supplyLen = $supplyLen[0];
+    }
+
+    public function save()
+    {
+        $ret = new stdClass();
+        $ret->victoryPoints = $this->victoryPoints;
+        $ret->movementCache = $this->movementCache;
+        $ret->combatCache = $this->combatCache;
+        $ret->supplyLen = $this->supplyLen;
+        $ret->indianGoal = $this->indianGoal;
+        $ret->pakistaniGoal = $this->pakistaniGoal;
+        $ret->gameOver = $this->gameOver;
+        return $ret;
+    }
+
+    public function specialHexChange($args)
+    {
+        $battle = Battle::getBattle();
+        list($mapHexName, $forceId) = $args;
+
+//        if(in_array($mapHexName, $battle->specialHexC)){
+//
+//            if ($forceId == PAKISTANI_FORCE) {
+//                $this->victoryPoints = "The Pakistanis hold Kiev";
+//            }
+//            if ($forceId == INDIAN_FORCE) {
+//                $this->victoryPoints = "The Indians hold Kiev";
+//            }
+//        }
+    }
+
+    public function postReinforceZones($args)
+    {
+        list($zones, $unit) = $args;
+
+        $forceId = $unit->forceId;
+        if($unit->forceId == INDIAN_FORCE){
+            $zones = $this->indianGoal;
+        }else{
+            $zones = $this->pakistaniGoal;
+        }
+        $reinforceZones = [];
+        foreach($zones as $zone){
+            $reinforceZones[] = new ReinforceZone($zone, $zone);
+        }
+        $battle = Battle::getBattle();
+
+        $specialHexes = $battle->mapData->specialHexes;
+        foreach($specialHexes as $hexNum => $specialHex){
+            if($specialHex == $forceId){
+                $reinforceZones[] = new ReinforceZone($hexNum, $hexNum);
+            }
+        }
+        return array($reinforceZones);
+    }
+
+    public function reduceUnit($args)
+    {
+        $unit = $args[0];
+        $multiplier = 1;
+        /* mech units score double */
+        if($unit->class == "mech"){
+            $multiplier = 2;
+        }
+        if ($unit->strength == $unit->maxStrength) {
+            if ($unit->status == STATUS_ELIMINATING || $unit->status == STATUS_RETREATING) {
+                $vp = $unit->maxStrength * $multiplier;
+            } else {
+                $vp = ($unit->maxStrength - $unit->minStrength) * $multiplier;
+            }
+        } else {
+            $vp = $unit->minStrength * $multiplier;
+        }
+        if ($unit->forceId == 1) {
+            $victorId = 2;
+            $this->victoryPoints[$victorId] += $vp;
+            $hex = $unit->hexagon;
+            $battle = Battle::getBattle();
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='loyalistVictoryPoints'>+$vp vp</span>";
+        } else {
+            $victorId = 1;
+            $hex  = $unit->hexagon;
+            $battle = Battle::getBattle();
+            $battle->mapData->specialHexesVictory->{$hex->name} = "+$vp vp";
+            $this->victoryPoints[$victorId] += $vp;
+        }
+    }
+
+    public function incrementTurn()
+    {
+        $battle = Battle::getBattle();
+
+        $theUnits = $battle->force->units;
+        foreach ($theUnits as $id => $unit) {
+
+            if ($unit->status == STATUS_CAN_REINFORCE && $unit->reinforceTurn <= $battle->gameRules->turn && $unit->hexagon->parent != "deployBox") {
+                $theUnits[$id]->status = STATUS_CAN_REINFORCE;
+                $theUnits[$id]->hexagon->parent = "deployBox";
+            }
+        }
+    }
+
+    public function gameOver()
+    {
+        $battle = Battle::getBattle();
+        $kiev = $battle->specialHexC[0];
+        if ($battle->mapData->getSpecialHex($kiev) === PAKISTANI_FORCE) {
+            $battle->gameRules->flashMessages[] = "Pakistani Player Wins";
+        }else{
+            $battle->gameRules->flashMessages[] = "Indian Player Wins";
+        }
+        $this->gameOver = true;
+        return true;
+    }
+
+    public function phaseChange()
+    {
+
+        /* @var $battle MartianCivilWar */
+        $battle = Battle::getBattle();
+        /* @var $gameRules GameRules */
+        $gameRules = $battle->gameRules;
+        $forceId = $gameRules->attackingForceId;
+        $turn = $gameRules->turn;
+        $force = $battle->force;
+
+        if ($turn == 1 && $gameRules->phase == BLUE_MOVE_PHASE) {
+            /* first 4 units gaga */
+            $supply = [];
+            $battle->terrain->reinforceZones = [];
+            $units = $force->units;
+            $num = count($units);
+            for ($i = 0; $i <= $num; $i++) {
+                $unit = $units[$i];
+                if ($unit->forceId == BLUE_FORCE && $unit->hexagon->parent === "gameImages") {
+                    $supply[$unit->hexagon->name] = BLUE_FORCE;
+                }
+            }
+        }
+        if ($gameRules->phase == RED_COMBAT_PHASE || $gameRules->phase == BLUE_COMBAT_PHASE) {
+            $gameRules->flashMessages[] = "@hide deployWrapper";
+        } else {
+            $gameRules->flashMessages[] = "@hide crt";
+
+            /* Restore all un-supplied strengths */
+            $force = $battle->force;
+            $this->restoreAllCombatEffects($force);
+        }
+        if ($gameRules->phase == BLUE_REPLACEMENT_PHASE || $gameRules->phase == RED_REPLACEMENT_PHASE) {
+            $gameRules->flashMessages[] = "@show deadpile";
+            $forceId = $gameRules->attackingForceId;
+        }
+        if ($gameRules->phase == BLUE_MOVE_PHASE || $gameRules->phase == RED_MOVE_PHASE) {
+            $gameRules->flashMessages[] = "@hide deadpile";
+            if ($battle->force->reinforceTurns->$turn->$forceId) {
+                $gameRules->flashMessages[] = "@show deployWrapper";
+                $gameRules->flashMessages[] = "Reinforcements have been moved to the Deploy/Staging Area";
+            }
+        }
+    }
+
+    public function preRecoverUnits($args)
+    {
+        /* @var unit $unit */
+        $unit = $args[0];
+
+        $indianGoal = $pakistaniGoal = [];
+
+        /* indian goal is west Edge */
+        for($i = 1; $i <= 28;$i++){
+            $indianGoal[] = 3100 + $i;
+        }
+        $this->indianGoal = $indianGoal;
+
+        /* pakistani goal is east Edge */
+        for($i = 1; $i <= 28    ;$i++){
+            $pakistaniGoal[] = 100 + $i;
+        }
+        $this->pakistaniGoal = $pakistaniGoal;
+
+    }
+
+    function isExit($args)
+    {
+        return false;
+    }
+
+    public function postRecoverUnit($args)
+    {
+        /* @var unit $unit */
+        $unit = $args[0];
+
+        $b = Battle::getBattle();
+        $id = $unit->id;
+        if ($unit->forceId != $b->gameRules->attackingForceId) {
+//            return;
+        }
+        if ($b->scenario->supply === true) {
+            if ($unit->forceId == INDIAN_FORCE) {
+                $bias = array(2 => true, 3 => true);
+                $goal = $this->indianGoal;
+            } else {
+                $bias = array(5 => true, 6 => true);
+                $goal = $this->pakistaniGoal;
+            }
+            $this->unitSupplyEffects($unit, $goal, $bias, $this->supplyLen);
+        }
+
+        if($b->gameRules->attackingForceId == INDIAN_FORCE && $unit->forceId == PAKISTANI_FORCE && $unit->class == "inf"){
+            $unit->addAdjustment('defense','double');
+        }else{
+            $unit->removeAdjustment('defense');
+        }
+    }
+
+
+    public function playerTurnChange($arg)
+    {
+        $attackingId = $arg[0];
+        $battle = Battle::getBattle();
+        $mapData = $battle->mapData;
+        $vp = $this->victoryPoints;
+        $specialHexes = $mapData->specialHexes;
+        $gameRules = $battle->gameRules;
+
+        if ($gameRules->phase == BLUE_MECH_PHASE || $gameRules->phase == RED_MECH_PHASE) {
+            $gameRules->flashMessages[] = "@hide crt";
+        }
+        if ($attackingId == INDIAN_FORCE) {
+            if($gameRules->turn <= $gameRules->maxTurn){
+                $gameRules->flashMessages[] = "Indian Player Turn";
+                $gameRules->replacementsAvail = 1;
+            }
+        }
+        if ($attackingId == PAKISTANI_FORCE) {
+            $gameRules->flashMessages[] = "Pakistani Player Turn";
+            $gameRules->replacementsAvail = 2;
+        }
+
+        /*only get special VPs' at end of first Movement Phase */
+        $this->victoryPoints = $vp;
+    }
+}

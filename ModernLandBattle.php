@@ -90,7 +90,7 @@ class ModernLandBattle extends LandBattle
         $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 0, false);
         $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
         $this->terrain->addTerrainFeature("mountain", "mountain", "g", 3, 0, 2, true);
-        $this->terrain->addTerrainFeature("river", "Martian River", "v", 0, 1, 1, true);
+        $this->terrain->addTerrainFeature("river", "river", "v", 0, 1, 1, true);
         $this->terrain->addTerrainFeature("newrichmond", "New Richmond", "m", 0, 0, 1, false);
         $this->terrain->addTerrainFeature("eastedge", "East Edge", "m", 0, 0, 0, false);
         $this->terrain->addTerrainFeature("westedge", "West Edge", "m", 0, 0, 0, false);

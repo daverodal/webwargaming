@@ -1,0 +1,53 @@
+@import "chawinda1965Colors";
+
+@include player(indian, One, $indianColor);
+@include player(pakistani, Two, $pakistaniColor);
+
+#map {
+  width:1550px;
+}
+
+#crt {
+  width: 520px;
+}
+
+.reduced {
+  color: white;
+}
+
+#infoWrapper .WrapperLabel {
+  width: auto;
+}
+
+.game-name {
+  word-break: break-all;
+  font-family: 'Nosifer';
+}
+
+#gameTurn6 {
+}
+
+#gameTurn6 .unit {
+  float: left;
+}
+
+.specialHexesVP .rebelVictoryPoints {
+  @include victoryPoints(orange)
+}
+
+.specialHexesVP .loyalistVictoryPoints {
+ @include victoryPoints(#666);
+}
+
+/* RULES OVERRIDES */
+
+.gameLength{
+  color:transparent;
+  font-size:0px;
+  &::before{
+    content:"11";
+    color:rgb(51,51,51);
+    color:$darkBlack;
+    font-size:$stdFont;
+  }
+}
