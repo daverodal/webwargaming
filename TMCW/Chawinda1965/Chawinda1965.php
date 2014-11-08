@@ -101,17 +101,17 @@ class Chawinda1965 extends ModernLandBattle
         $scenario = $this->scenario;
 
         for($i = 0; $i < 4;$i++){
-            $this->force->addUnit("x", PAKISTANI_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, "mech", $i);
+            $this->force->addUnit("x", PAKISTANI_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, "mech", $i+1);
         }
 
         for($i = 0; $i < 6;$i++){
-            $this->force->addUnit("x", PAKISTANI_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, 'inf', $i);
+            $this->force->addUnit("x", PAKISTANI_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, 'inf', $i+1);
         }
 
         for($i = 2; $i <= 8; $i++) {
-            $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "mech", "T $i");
-            $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", 4, 2, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i");
-            $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", 4, 2, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i");
+            $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "mech", "T $i 1");
+            $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", 4, 2, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 2");
+            $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", 4, 2, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 3");
         }
 
         $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "1");
