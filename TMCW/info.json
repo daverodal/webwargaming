@@ -91,6 +91,22 @@
             }
         }
     },
+    "Chawinda1965": {
+        "name": "Chawinda 1965",
+        "path": "TMCW",
+        "genre": "20'th Century Games",
+        "fileName": "Chawinda1965/Chawinda1965.php",
+        "scenarios": {
+            "Main": {
+                "description": "The of Chawinda 1965",
+                "supply": true,
+                "loyalMechMove": 8,
+                "loyalExtraInf": true,
+                "supplyLen": false,
+                "showHexNums": true
+            }
+        }
+    },
     "RetreatOne": {
         "name": "Retreat One",
         "path": "TMCW",

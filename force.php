@@ -108,6 +108,9 @@ class unit implements JsonSerializable
                 case 'half':
                     $strength = $strength/2;
                     break;
+                case 'double':
+                    $strength = $strength * 2;
+                    break;
             }
         }
         return $strength;
