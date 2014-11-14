@@ -87,10 +87,8 @@ class moodkee1845VictoryCore extends indiaVictoryCore
                 $sikhWin = true;
             }
             if ($turn == $gameRules->maxTurn + 1) {
-                if (!$britishWin) {
-                    $sikhWin = true;
-                }
-                if ($sikhWin && $britishWin) {
+
+                if (($sikhWin && $britishWin) || (!$sikhWin && !$britishWin)) {
                     $this->winner = 0;
                     $britishWin = $sikhWin = false;
                     $gameRules->flashMessages[] = "Tie Game";
