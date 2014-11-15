@@ -205,8 +205,8 @@ x.register("force", function(force,data) {
 //            var y = $("#"+i).css('top').replace(/px/,"");
             var x = $("#"+i).position().left;
             var y = $("#"+i).position().top;
-            y /= globalZoom;
-            x /= globalZoom;
+            y /= DR.globalZoom;
+            x /= DR.globalZoom;
 
             var mapWidth = $("body").width();
             var mapHeight = $("#gameViewer").height();
@@ -451,7 +451,12 @@ x.register("gameRules", function(gameRules,data) {
         case <?=ATTACKER_LOSING_MODE?>:
             var result = data.combatRules.lastResolvedCombat.combatResult;
 
-            $("#floatMessage header").html(result+": Attacker Loss Mode");
+            $("#floatMessage header").html(result+": Attacker Loss Mode.");
+            var floatStat = $("#floatMessage p").html();
+
+            floatStat = "Lose at least "+data.force.exchangeAmount+ " strength points<br>" + floatStat;
+           $("#floatMessage p").html(floatStat);
+
 //            html += "<br>Lose at least "+gameRules.exchangeAmount+" strength points from the units outlined in red";
             break;
         case <?=ADVANCING_MODE?>:

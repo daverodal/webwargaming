@@ -233,16 +233,17 @@ body{
 }
 #zoom{
   margin-left:6em;
-}
-#zoom{
   cursor: pointer;
+  .minusZoom, .plusZoom{
+    padding: 0 4px;
+  }
+  span{
+    text-decoration: none;
+    border:1px solid #333;
+    min-width: 20px;
+  }
 }
-#zoom .defaultZoom{
-  text-decoration: underline;
-}
-#zoom span{
-  border:1px solid #333;
-}
+
 #clock{
   margin-left:0;
 }

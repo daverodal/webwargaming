@@ -220,7 +220,7 @@ h4:hover {
   left: 14px;
   top: 12px;
   -webkit-transform: rotate(-90deg);
-  -webkit-transform-origin: cen;
+  -webkit-transform-origin: center;
   width: 30px;
   text-align: center; }
 
@@ -287,16 +287,14 @@ h4:hover {
   bottom: 0px; }
 
 #zoom {
-  margin-left: 6em; }
-
-#zoom {
+  margin-left: 6em;
   cursor: pointer; }
-
-#zoom .defaultZoom {
-  text-decoration: underline; }
-
-#zoom span {
-  border: 1px solid #333; }
+  #zoom .minusZoom, #zoom .plusZoom {
+    padding: 0 4px; }
+  #zoom span {
+    text-decoration: none;
+    border: 1px solid #333;
+    min-width: 20px; }
 
 #clock {
   margin-left: 0; }

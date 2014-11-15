@@ -38,6 +38,11 @@
                         </ul>
                     </div>
                 </div>
+                <span id="zoom">
+                    <span class="minusZoom">-</span>
+                    <span class="defaultZoom">1.0</span>
+                    <span class="plusZoom">+</span>
+                </span>
                 <span id="clock"></span>
                 <span id="status"></span>
                 <span id="requiredCombats"></span>

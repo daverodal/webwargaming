@@ -209,15 +209,15 @@ class Chawinda1965 extends ModernLandBattle
             $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, RED_DEPLOY_PHASE, DEPLOY_MODE, PAKISTANI_FORCE, INDIAN_FORCE, false);
             $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, INDIAN_FORCE, PAKISTANI_FORCE, false);
 
-            $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, INDIAN_FORCE, PAKISTANI_FORCE, false);
+//            $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, INDIAN_FORCE, PAKISTANI_FORCE, false);
 
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, INDIAN_FORCE, PAKISTANI_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, BLUE_MECH_PHASE, MOVING_MODE, INDIAN_FORCE, PAKISTANI_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_MECH_PHASE, RED_REPLACEMENT_PHASE, REPLACING_MODE, PAKISTANI_FORCE, INDIAN_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_MOVE_PHASE, MOVING_MODE, PAKISTANI_FORCE, INDIAN_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_MECH_PHASE, RED_MOVE_PHASE, MOVING_MODE, PAKISTANI_FORCE, INDIAN_FORCE, false);
+//            $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_MOVE_PHASE, MOVING_MODE, PAKISTANI_FORCE, INDIAN_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, PAKISTANI_FORCE, INDIAN_FORCE, false);
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MECH_PHASE, MOVING_MODE, PAKISTANI_FORCE, INDIAN_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_MECH_PHASE, BLUE_REPLACEMENT_PHASE, REPLACING_MODE, INDIAN_FORCE, PAKISTANI_FORCE, true);
+            $this->gameRules->addPhaseChange(RED_MECH_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, INDIAN_FORCE, PAKISTANI_FORCE, true);
         }
     }
 }
