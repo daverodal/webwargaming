@@ -709,14 +709,27 @@ function doUserZoom(){
         precision = 2;
     }
     $("#zoom .defaultZoom").html(DR.globalZoom.toPrecision(precision));
-    var vHeight = $('#gameViewer').height();
-    var vWidth = $('#gameViewer').width();
+    var origHeight = vHeight = $('#gameViewer').height();
+    var origWidth = vWidth = $('#gameViewer').width();
     vHeight /= 2;
     vWidth /= 2;
-    var top = $('#gameImages').css('top').replace(/auto/, "0").replace(/px/, '');
+    var pos = $('#gameImages').position();
+    var top = pos.top;
     vHeight -= top;
-    var left = $('#gameImages').css('left').replace(/auto/, "0").replace(/px/, '');
+    var left = pos.left;
     vWidth -= left;
+    if(vWidth > origWidth){
+        vWidth = origWidth;
+    }
+    if(vHeight > origHeight){
+        vHeight = origHeight;
+    }
+    if(vHeight < 0){
+        vheight = 0;
+    }
+    if(vWidth < 0){
+        vWidth = 0;
+    }
     $("#gameImages").css('-webkit-transform-origin', vWidth + "px " + vHeight + "px").css('transform-origin', vWidth + "px " + vHeight + "px");
     $("#gameImages").css('transform', 'scale(' + DR.globalZoom + ',' + DR.globalZoom + ')').css('-webkit-transform', 'scale(' + DR.globalZoom + ',' + DR.globalZoom + ')');
 }
