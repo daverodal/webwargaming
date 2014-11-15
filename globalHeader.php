@@ -544,6 +544,7 @@ function initialize() {
     DR.mouseWheel = 0;
     $("#map").bind('mousewheel', function (event) {
         DR.mouseWheel += event.originalEvent.wheelDelta;
+        debugger;
         if (DR.mouseWheel > 90 || DR.mouseWheel < -90) {
             if (DR.mouseWheel > 0) {
                 DR.globalZoom += .1;
@@ -557,7 +558,7 @@ function initialize() {
         if (DR.globalZoom > 2.0) {
             DR.globalZoom = 2.0;
         }
-        doUserZoom();
+        doUserZoom(event);
 
     });
 
@@ -702,33 +703,42 @@ function initialize() {
 }
 
 
-function doUserZoom(){
+function doUserZoom(event){
 
+    var vHeight;
+    var vWidth;
     var precision = 1;
-    if(DR.globalZoom >= 1.0){
+    if (DR.globalZoom >= 1.0) {
         precision = 2;
     }
     $("#zoom .defaultZoom").html(DR.globalZoom.toPrecision(precision));
-    var origHeight = vHeight = $('#gameViewer').height();
-    var origWidth = vWidth = $('#gameViewer').width();
-    vHeight /= 2;
-    vWidth /= 2;
-    var pos = $('#gameImages').position();
-    var top = pos.top;
-    vHeight -= top;
-    var left = pos.left;
-    vWidth -= left;
-    if(vWidth > origWidth){
-        vWidth = origWidth;
-    }
-    if(vHeight > origHeight){
-        vHeight = origHeight;
-    }
-    if(vHeight < 0){
-        vheight = 0;
-    }
-    if(vWidth < 0){
-        vWidth = 0;
+
+    if(event){
+        vWidth = event.pageX - event.target.x;
+        vHeight = event.pageY - event.target.y;
+        console.log(event.pageX, event.target.x, vWidth);
+    }else {
+        var origHeight = vHeight = $('#gameViewer').height();
+        var origWidth = vWidth = $('#gameViewer').width();
+        vHeight /= 2;
+        vWidth /= 2;
+        var pos = $('#gameImages').position();
+        var top = pos.top;
+        vHeight -= top;
+        var left = pos.left;
+        vWidth -= left;
+        if (vWidth > origWidth) {
+            vWidth = origWidth;
+        }
+        if (vHeight > origHeight) {
+            vHeight = origHeight;
+        }
+        if (vHeight < 0) {
+            vheight = 0;
+        }
+        if (vWidth < 0) {
+            vWidth = 0;
+        }
     }
     $("#gameImages").css('-webkit-transform-origin', vWidth + "px " + vHeight + "px").css('transform-origin', vWidth + "px " + vHeight + "px");
     $("#gameImages").css('transform', 'scale(' + DR.globalZoom + ',' + DR.globalZoom + ')').css('-webkit-transform', 'scale(' + DR.globalZoom + ',' + DR.globalZoom + ')');
