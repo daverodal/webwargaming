@@ -15,7 +15,7 @@ class CombatResultsTable extends ModernCombatResultsTable
             array(AE, AL, AR, NE, DR, EX, EX, EX, DRL, DE, DE),
             array(AE, AL, NE, NE, DR, EX, EX, DRL, DE, DE, DE),
             array(AL, AR, NE, DR, EX, DRL, DRL, DRL, DE, DE, DE),
-            array(AL, AR, DR, DR, EX, DRL, DE, DE, DE, DE, DE),
+            array(AL, AR, DR, EX, EX, DRL, DE, DE, DE, DE, DE),
         );
 
         $this->combatOddsTable = array(

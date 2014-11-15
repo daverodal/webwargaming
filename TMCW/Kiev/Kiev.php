@@ -255,6 +255,7 @@ class Kiev extends ModernLandBattle
 
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
+            $this->gameRules->legacyExchangeRule = false;
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
 
             // game data

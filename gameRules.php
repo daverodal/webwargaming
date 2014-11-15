@@ -59,6 +59,7 @@ class GameRules
     public $turnChange;
     public $phaseClicks;
     public $phaseClickNames;
+    public $legacyExchangeRule;
 
     function save()
     {
@@ -89,7 +90,6 @@ class GameRules
             $this->combatRules = $CombatRules;
             $this->force = $Force;
             $this->display = $display;
-
         } else {
             $this->moveRules = $MoveRules;
             $this->combatRules = $CombatRules;
@@ -98,6 +98,7 @@ class GameRules
             $this->currentReplacement = false;
 
             $this->turn = 1;
+            $this->legacyExchangeRule = true;
             $this->combatModeType = COMBAT_SETUP_MODE;
             $this->gameHasCombatResolutionMode = true;
             $this->trayX = 0;
@@ -109,6 +110,9 @@ class GameRules
             $this->phaseClicks = array();
 
             $this->force->setAttackingForceId($this->attackingForceId);
+        }
+        if($this->legacyExchangeRule !== false){
+            $this->legacyExchangeRule = true;
         }
     }
 
@@ -568,10 +572,12 @@ class GameRules
                             if ($this->force->unitsAreBeingEliminated() == true) {
                                 $this->force->removeEliminatingUnits();
                             }
-                            if ($this->force->exchangingAreAdvancing() == true && $this->mode == EXCHANGING_MODE) { // melee
-                                $this->mode = ADVANCING_MODE;
-                            } else {
-                                $this->mode = COMBAT_RESOLUTION_MODE;
+                            if($this->legacyExchangeRule || $this->force->getExchangeAmount() <= 0) {
+                                if ($this->force->exchangingAreAdvancing() == true && $this->mode == EXCHANGING_MODE) { // melee
+                                    $this->mode = ADVANCING_MODE;
+                                } else {
+                                    $this->mode = COMBAT_RESOLUTION_MODE;
+                                }
                             }
                         }
                 }

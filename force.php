@@ -575,14 +575,14 @@ class Force
                     case EX:
                         if($this->units[$defenderId]->isReduced){
                             $this->units[$defenderId]->status = STATUS_ELIMINATING;
-                            $this->exchangeAmount = $this->units[$defenderId]->minStrength;
+                            $this->exchangeAmount += $this->units[$defenderId]->minStrength;
                         }else{
                             $battle->victory->reduceUnit($this->units[$defenderId]);
                             $this->units[$defenderId]->status = STATUS_CAN_RETREAT;
                             $this->units[$defenderId]->isReduced = true;
 //                            $this->units[$defenderId]->strength = $this->units[$defenderId]->minStrength;
                             $this->units[$defenderId]->retreatCountRequired = $distance;
-                            $this->exchangeAmount = $this->units[$defenderId]->maxStrength - $this->units[$defenderId]->minStrength;
+                            $this->exchangeAmount += $this->units[$defenderId]->maxStrength - $this->units[$defenderId]->minStrength;
                         }
                         $this->units[$defenderId]->moveCount = 0;
                         $this->addToRetreatHexagonList($defenderId, $this->getUnitHexagon($defenderId));
@@ -1301,9 +1301,22 @@ class Force
 
     function setStatus($id, $status)
     {
-        return $this->units[$id]->setStatus($status);
+        /* @var unit $unit */
+        $unit = $this->units[$id];
+        $ret = $unit->setStatus($status);
+        if($status === STATUS_EXCHANGED){
+            $this->exchangeAmount += $unit->exchangeAmount;
+        }
+        return $ret;
     }
 
+    function getExchangeAmount(){
+        return $this->exchangeAmount;
+    }
+
+    function clearExchangeAmount(){
+        $this->exchangeAmount = 0;
+    }
     function setupAttacker($id, $range)
     {
         if($range > 1){

@@ -417,7 +417,7 @@ class CombatRules
         //  Math->floor gives lower integer, which is now 0,1,2,3,4,5
 
         $Die = floor($this->crt->dieSideCount * (rand() / getrandmax()));
-//        $Die = 5;
+        $Die = 5;
 //        $index = $this->force->getUnitCombatIndex($id);
         $index = $this->combatsToResolve->$id->index;
         if ($this->combatsToResolve->$id->pinCRT !== false) {
@@ -429,6 +429,7 @@ class CombatRules
         $this->combatsToResolve->$id->Die = $Die + 1;
         $this->combatsToResolve->$id->combatResult = $results_name[$combatResults];
         $this->force->clearRetreatHexagonList();
+        $this->force->clearExchangeAmount();
         foreach ($this->combatsToResolve->{$id}->defenders as $defenderId => $defender) {
             $this->force->applyCRTresults($defenderId, $this->combatsToResolve->{$id}->attackers, $combatResults, $Die);
         }
