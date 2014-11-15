@@ -47,7 +47,8 @@ trait modernSupplyRules
             } else {
                 return;
             }
-            if ($unit->forceId == $b->gameRules->attackingForceId && !$unit->supplied && !isset($this->combatCache->$id)) {
+//            if ($unit->forceId == $b->gameRules->attackingForceId && !$unit->supplied && !isset($this->combatCache->$id)) {
+            if (!$unit->supplied && !isset($this->combatCache->$id)) {
                 $this->combatCache->$id = true;
                 $unit->addAdjustment('supply','floorHalf');
 //                    $unit->strength = floor($unit->strength / 2);
