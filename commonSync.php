@@ -107,7 +107,7 @@ x.register("force", function(force,data) {
                     $("#"+i+" .forceMarch").show();
                     $("#"+i+" .range").hide();
 
-                    color = "f00 #666 #666 #f00";
+                    color = "#f00 #666 #666 #f00";
                 }else{
                     $("#"+i+" .forceMarch").hide();
                     $("#"+i+" .range").show();
@@ -115,9 +115,11 @@ x.register("force", function(force,data) {
                     color = "#ccc #666 #666 #ccc";
 
                 }
+                $("#"+i).css({zIndex:4});
+                color = "lightgreen";
                 shadow = false;
 //                $("#"+i).css({zIndex: 101});
-                boxShadow = '5px 5px 5px #333';
+//                boxShadow = '5px 5px 5px #333';
 //               var top =  $("#"+i).css("top");
 //                var left =  $("#"+i).css("left");
 //                 $("#"+i).css({top:top-5});
