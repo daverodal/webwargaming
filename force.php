@@ -610,7 +610,9 @@ class Force
             case EX:
                 $eliminated = $defUnit->damageUnit();
                 if (!$eliminated){
-                    $defUnit->status = STATUS_CAN_RETREAT;
+                    if($distance) {
+                        $defUnit->status = STATUS_CAN_RETREAT;
+                    }
                     $defUnit->retreatCountRequired = $distance;
                 }
                 $this->exchangeAmount += $defUnit->exchangeAmount * $exchangeMultiplier;
