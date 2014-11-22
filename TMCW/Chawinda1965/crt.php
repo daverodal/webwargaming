@@ -41,10 +41,10 @@ class CombatResultsTable extends ModernCombatResultsTable
             array(),
         );
 
-        $this->combatIndexCount = 11;
+        $this->combatIndexCount = 6;
         $this->maxCombatIndex = $this->combatIndexCount - 1;
         $this->dieSideCount = 6;
-        $this->combatResultCount = 10;
+        $this->combatResultCount = 5;
 
         $this->setCombatOddsTable();
     }
