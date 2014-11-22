@@ -709,6 +709,22 @@ svg {
     background: transparent;
     color: transparent;
     border-color: transparent; }
+  .unitOdds.altColor {
+    background: #00ec00; }
+    .unitOdds.altColor:hover {
+      background: transparent; }
+  .unitOdds.determinedColor {
+    background: red;
+    color: white; }
+    .unitOdds.determinedColor:hover {
+      background: transparent;
+      color: transparent; }
+  .unitOdds.pinnedColor {
+    background: #ff00ff;
+    color: white; }
+    .unitOdds.pinnedColor:hover {
+      background: transparent;
+      color: transparent; }
 
 #phaseClicks {
   display: none;

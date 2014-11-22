@@ -35,6 +35,7 @@ class MoveRules
     public $zocBlocksRetreat = true;
     public $friendlyAllowsRetreat = false;
     public $stacking = 1;
+    public $blockedRetreatDamages = false;
 
     function save()
     {
@@ -327,7 +328,17 @@ class MoveRules
                 $this->movingUnitId = NONE;
                 $this->anyUnitIsMoving = false;
                 $this->moves = new stdClass();
-                $this->force->eliminateUnit($id);
+                if($this->blockedRetreatDamages){
+                    if($this->force->units[$id]->damageUnit()) {
+                        $this->force->eliminateUnit($id);
+                    }else{
+                        $this->force->units[$id]->setStatus(STATUS_STOPPED);
+                        $this->force->clearAdvancing();
+                    }
+                }else{
+                    $this->force->eliminateUnit($id);
+                }
+
                 $done = true;
             }
             if($validCount > 0){
@@ -340,7 +351,13 @@ class MoveRules
                     $this->movingUnitId = NONE;
                     $this->anyUnitIsMoving = false;
                     $this->moves = new stdClass();
-                    $this->force->eliminateUnit($id);
+                    if($this->blockedRetreatDamages){
+                        if($this->force->units[$id]->damageUnit()) {
+                            $this->force->eliminateUnit($id);
+                        }
+                    }else{
+                        $this->force->eliminateUnit($id);
+                    }
                     $done = true;
                 }
             }

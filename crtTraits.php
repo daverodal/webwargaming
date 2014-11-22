@@ -72,6 +72,104 @@ trait divCombatShiftTerrain
     }
 }
 
+trait divCombatHalfDoubleTerrain
+{
+    function setCombatIndex($defenderId)
+    {
+        $combatLog = "";
+
+        $battle = Battle::getBattle();
+        $combatRules = $battle->combatRules;
+        $combats = $battle->combatRules->combats->$defenderId;
+        /* @var Force $force */
+        $force = $battle->force;
+        $hexagon = $battle->force->units[$defenderId]->hexagon;
+        $hexpart = new Hexpart();
+        $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
+
+        if (count((array)$combats->attackers) == 0) {
+            $combats->index = null;
+            $combats->attackStrength = null;
+            $combats->defenseStrength = null;
+            $combats->terrainCombatEffect = null;
+            return;
+        }
+
+
+        $defenders = $combats->defenders;
+        $isTown = $isHill = $isForest = $isSwamp = $attackerIsSunkenRoad = $isRedoubt = $isElevated = false;
+
+        foreach ($defenders as $defId => $defender) {
+            $hexagon = $battle->force->units[$defId]->hexagon;
+            $hexpart = new Hexpart();
+            $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
+            $isTown |= $battle->terrain->terrainIs($hexpart, 'town');
+            $isHill |= $battle->terrain->terrainIs($hexpart, 'hill');
+            $isForest |= $battle->terrain->terrainIs($hexpart, 'forest');
+            $isSwamp |= $battle->terrain->terrainIs($hexpart, 'swamp');
+            $isElevated |= $battle->terrain->terrainIs($hexpart, 'elevation');
+        }
+        $isClear = true;
+        if ($isTown || $isForest || $isHill || $isSwamp) {
+            $isClear = false;
+        }
+
+        $attackStrength = 0;
+        $combatLog .= "Attackers<br>";
+
+        foreach ($combats->attackers as $attackerId => $v) {
+            $unit = $force->units[$attackerId];
+            $combatLog .= $unit->strength." ".$unit->class;
+
+
+            $acrossRiver = false;
+            foreach ($defenders as $defId => $defender) {
+                if ($battle->combatRules->thisAttackAcrossRiver($defId, $attackerId)) {
+                    $combatLog  .= " attack across river or wadi ";
+                    $acrossRiver = true;
+                }
+            }
+
+            $strength = $unit->strength;
+            if($acrossRiver){
+                $strength /= 2;
+            }
+            $attackStrength += $strength;
+        }
+        $defenseStrength = 0;
+        $combatLog .= " = $attackStrength<br>Defenders<br> ";
+
+        foreach ($defenders as $defId => $defender) {
+            $unit = $battle->force->units[$defId];
+            $combatLog .= $unit->strength. " " .$unit->class." ";
+
+            $defenseStrength += $force->getDefenderStrength($defId);
+            $combatLog .= "<br>";
+        }
+        if($isTown){
+            $defenseStrength /= 2;
+        }
+        $combatLog .= " = $defenseStrength";
+        $combatIndex = $this->getCombatIndex($attackStrength, $defenseStrength);
+        /* Do this before terrain effects */
+        if ($combatIndex >= $this->maxCombatIndex) {
+            $combatIndex = $this->maxCombatIndex;
+        }
+
+
+        /* @var $combatRules CombatRules */
+        $terrainCombatEffect = $combatRules->getDefenderTerrainCombatEffect($defenderId);
+
+        $combatIndex -= $terrainCombatEffect;
+
+        $combats->attackStrength = $attackStrength;
+        $combats->defenseStrength = $defenseStrength;
+        $combats->terrainCombatEffect = $terrainCombatEffect;
+        $combats->index = $combatIndex;
+        $combats->combatLog = $combatLog;
+    }
+}
+
 trait divMCWCombatShiftTerrain
 {
     function setCombatIndex($defenderId)

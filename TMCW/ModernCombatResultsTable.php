@@ -54,10 +54,11 @@ class ModernCombatResultsTable
         $this->setCombatOddsTable();
     }
 
-    function getCombatResults($Die, $index)
+    function getCombatResults($Die, $index, $combat)
     {
         return $this->combatResultsTable[$Die][$index];
     }
+    
     function getCombatIndex($attackStrength, $defenseStrength){
         $combatIndex = floor($attackStrength / $defenseStrength)-1;
 

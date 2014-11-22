@@ -17,6 +17,8 @@ class chawinda1965VictoryCore extends victoryCore
     public $pakistaniGoal;
     public $indianGoal;
 
+    public $unsuppliedDefenderHalved = true;
+
     public $gameOver = false;
 
 

@@ -63,10 +63,14 @@ class unit implements JsonSerializable
     public $forceMarch = false;
     public $class;
     public $supplied = true;
-    public $exchangeAmount;
     public $dirty;
     public $adjustments;
     public $unitDesig;
+    /* damage is related to exchangeAmount, damage is always strength points, for victory points,
+     * exchangeAmount may be in steps or strength points
+     */
+    public $damage;
+    public $exchangeAmount;
 
     public function jsonSerialize()
     {
@@ -91,6 +95,13 @@ class unit implements JsonSerializable
         return $canMove;
     }
 
+    public function getUnmodifiedStrength(){
+        if ($this->isReduced) {
+            $strength = $this->minStrength;
+        } else {
+            $strength = $this->maxStrength;
+        }
+    }
     public function __get($name)
     {
         if ($name !== "strength") {
@@ -171,19 +182,8 @@ class unit implements JsonSerializable
         switch ($status) {
             case STATUS_EXCHANGED:
                 if (($this->status == STATUS_CAN_ATTACK_LOSE || $this->status == STATUS_CAN_EXCHANGE)) {
-                    if ($this->isReduced) {
-                        $this->status = STATUS_ELIMINATING;
-                        $amtLost = $this->minStrength;
-                    } else {
-                        $battle->victory->reduceUnit($this);
-//                        $this->strength = $this->minStrength;
-                        $this->isReduced = true;
-                        $amtLost = $this->maxStrength - $this->minStrength;
-                    }
-                    $this->exchangeAmount -= $amtLost;
-                    if ($this->exchangeAmount <= 0) {
-                        $success = true;
-                    }
+                    $this->damageUnit();
+                    $success = true;
                 }
                 break;
 
@@ -404,6 +404,23 @@ class unit implements JsonSerializable
         $this->unitDesig = $unitDesig;
     }
 
+    function damageUnit()
+    {
+        $battle = Battle::getBattle();
+
+        if ($this->isReduced) {
+            $this->status = STATUS_ELIMINATING;
+            $this->exchangeAmount = $this->minStrength;
+            return true;
+        } else {
+            $this->damage = $this->maxStrength - $this->minStrength;
+            $battle->victory->reduceUnit($this);
+            $this->isReduced = true;
+            $this->exchangeAmount = $this->damage;
+        }
+        return false;
+    }
+
     function __construct($data = null)
     {
         if ($data) {
@@ -571,102 +588,102 @@ class Force
         $distance = 1;
         list($defenderId, $attackers, $combatResults, $dieRoll) = $battle->victory->preCombatResults($defenderId, $attackers, $combatResults, $dieRoll);
         $vacated = false;
+        $exchangeMultiplier = 1;
+        if($combatResults === EX02){
+            $distance = 0;
+            $combatResults = EX;
+            $exchangeMultiplier = 2;
+        }
+        if($combatResults === EX03){
+            $distance = 0;
+            $combatResults = EX;
+            $exchangeMultiplier = 3;
+        }
         if ($combatResults === EX0) {
             $distance = 0;
             $combatResults = EX;
         }
+        $defUnit = $this->units[$defenderId];
         switch ($combatResults) {
             case EX2:
                 $distance = 2;
             case EX:
-                if ($this->units[$defenderId]->isReduced) {
-                    $this->units[$defenderId]->status = STATUS_ELIMINATING;
-                    $this->exchangeAmount += $this->units[$defenderId]->minStrength;
-                } else {
-                    $battle->victory->reduceUnit($this->units[$defenderId]);
-                    $this->units[$defenderId]->status = STATUS_CAN_RETREAT;
-                    $this->units[$defenderId]->isReduced = true;
-//                            $this->units[$defenderId]->strength = $this->units[$defenderId]->minStrength;
-                    $this->units[$defenderId]->retreatCountRequired = $distance;
-                    $this->exchangeAmount += $this->units[$defenderId]->maxStrength - $this->units[$defenderId]->minStrength;
+                $eliminated = $defUnit->damageUnit();
+                if (!$eliminated){
+                    $defUnit->status = STATUS_CAN_RETREAT;
+                    $defUnit->retreatCountRequired = $distance;
                 }
-                $this->units[$defenderId]->moveCount = 0;
+                $this->exchangeAmount += $defUnit->exchangeAmount * $exchangeMultiplier;
+                $defUnit->moveCount = 0;
                 $this->addToRetreatHexagonList($defenderId, $this->getUnitHexagon($defenderId));
                 break;
 
             case AL:
-                $this->units[$defenderId]->status = STATUS_DEFENDED;
-                $this->units[$defenderId]->retreatCountRequired = 0;
+                $defUnit->status = STATUS_DEFENDED;
+                $defUnit->retreatCountRequired = 0;
                 break;
 
             case AE:
-                $this->units[$defenderId]->status = STATUS_DEFENDED;
-                $this->units[$defenderId]->retreatCountRequired = 0;
+                $defUnit->status = STATUS_DEFENDED;
+                $defUnit->retreatCountRequired = 0;
                 break;
 
             case AR:
-                $this->units[$defenderId]->status = STATUS_DEFENDED;
-                $this->units[$defenderId]->retreatCountRequired = 0;
+                $defUnit->status = STATUS_DEFENDED;
+                $defUnit->retreatCountRequired = 0;
                 break;
 
             case DE:
-                $this->units[$defenderId]->status = STATUS_ELIMINATING;
-                $this->units[$defenderId]->retreatCountRequired = $distance;
-                $this->units[$defenderId]->moveCount = 0;
+                $defUnit->status = STATUS_ELIMINATING;
+                $defUnit->retreatCountRequired = $distance;
+                $defUnit->moveCount = 0;
                 $this->addToRetreatHexagonList($defenderId, $this->getUnitHexagon($defenderId));
                 break;
 
             case DRL2:
                 $distance = 2;
             case DRL:
-                if ($this->units[$defenderId]->isReduced) {
-                    $this->units[$defenderId]->status = STATUS_ELIMINATING;
-                    $this->units[$defenderId]->retreatCountRequired = $distance;
-                    $this->units[$defenderId]->moveCount = 0;
+                $eliminated = $defUnit->damageUnit();
+                if ($eliminated) {
+                    $defUnit->moveCount = 0;
                     $this->addToRetreatHexagonList($defenderId, $this->getUnitHexagon($defenderId));
 
                 } else {
-                    $battle->victory->reduceUnit($this->units[$defenderId]);
-                    $this->units[$defenderId]->isReduced = true;
-//                            $this->units[$defenderId]->strength = $this->units[$defenderId]->minStrength;
-                    $this->units[$defenderId]->status = STATUS_CAN_RETREAT;
-                    $this->units[$defenderId]->retreatCountRequired = $distance;
+                    $defUnit->status = STATUS_CAN_RETREAT;
                 }
+                $defUnit->retreatCountRequired = $distance;
                 break;
             case DR2:
                 $distance = 2;
             case DR:
-                $this->units[$defenderId]->status = STATUS_CAN_RETREAT;
-                $this->units[$defenderId]->retreatCountRequired = $distance;
+                $defUnit->status = STATUS_CAN_RETREAT;
+                $defUnit->retreatCountRequired = $distance;
                 break;
 
             case NE:
-                $this->units[$defenderId]->status = STATUS_NO_RESULT;
-                $this->units[$defenderId]->retreatCountRequired = 0;
+                $defUnit->status = STATUS_NO_RESULT;
+                $defUnit->retreatCountRequired = 0;
                 break;
             case DL:
-                if ($this->units[$defenderId]->isReduced) {
+                $eliminated = $defUnit->damageUnit();
+                if ($eliminated) {
                     $vacated = true;
-                    $this->units[$defenderId]->status = STATUS_ELIMINATING;
-                    $this->units[$defenderId]->retreatCountRequired = 0;
-                    $this->units[$defenderId]->moveCount = 0;
+                    $defUnit->retreatCountRequired = 0;
+                    $defUnit->moveCount = 0;
                     $this->addToRetreatHexagonList($defenderId, $this->getUnitHexagon($defenderId));
 
                 } else {
-                    $battle->victory->reduceUnit($this->units[$defenderId]);
-                    $this->units[$defenderId]->isReduced = true;
-//                            $this->units[$defenderId]->strength = $this->units[$defenderId]->minStrength;
-                    $this->units[$defenderId]->status = STATUS_DEFENDED;
-                    $this->units[$defenderId]->retreatCountRequired = 0;
+                    $defUnit->status = STATUS_DEFENDED;
+                    $defUnit->retreatCountRequired = 0;
                 }
                 break;
             default:
                 break;
         }
-        $this->units[$defenderId]->combatResults = $combatResults;
-        $this->units[$defenderId]->dieRoll = $dieRoll;
-        $this->units[$defenderId]->combatNumber = 0;
-        $this->units[$defenderId]->moveCount = 0;
+        $defUnit->combatResults = $combatResults;
+        $defUnit->dieRoll = $dieRoll;
+        $defUnit->combatNumber = 0;
+        $defUnit->moveCount = 0;
 
 
         foreach ($attackers as $attacker => $val) {
@@ -690,7 +707,7 @@ class Force
 
                     case AE:
                         $this->units[$attacker]->status = STATUS_ELIMINATING;
-                        $this->units[$defenderId]->retreatCountRequired = 0;
+                        $defUnit->retreatCountRequired = 0;
                         break;
 
                     case AL:
@@ -763,17 +780,19 @@ class Force
         $this->retreatHexagonList = array();
     }
 
+
+
     function eliminateUnit($id)
     {
         /* @var unit $unit */
         $unit = $this->units[$id];
         $battle = Battle::getBattle();
+        $unit->damage = $unit->getUnmodifiedStrength();
         $battle->victory->reduceUnit($unit);
         $forceId = $unit->forceId;
         $this->deleteCount++;
         $battle = Battle::getBattle();
         $mapData = $battle->mapData;
-//        $mapData = MapData::getInstance();
         $mapHex = $mapData->getHex($unit->hexagon->getName());
 
         if ($mapHex) {
@@ -782,18 +801,11 @@ class Force
         $unit->status = STATUS_ELIMINATED;
         $unit->isReduced = true;
         $unit->supplied = true;
-//        $unit->strength = $this->units[$id]->minStrength;
         $col = 0;
-//        if($unit->forceId == 2){
-//
-//            $col = 2100 + floor($id / 10) * 100;
-//        }
         $unit->hexagon = new Hexagon($col + $id % 10);
 
         $unit->hexagon->parent = "deadpile";
         $battle->victory->postEliminated($unit);
-
-//        $this->units[$id]->hexagon->setXY($this->eliminationTrayHexagonX + (2 * $this->deleteCount), $this->eliminationTrayHexagonY);
     }
 
     function getAttackerStrength($attackers)
@@ -1299,7 +1311,7 @@ class Force
         $unit = $this->units[$id];
         $ret = $unit->setStatus($status);
         if ($status === STATUS_EXCHANGED) {
-            $this->exchangeAmount += $unit->exchangeAmount;
+            $this->exchangeAmount -= $unit->exchangeAmount;
         }
         return $ret;
     }
@@ -1782,6 +1794,18 @@ class Force
             }
         }
         return $areAdvancing;
+    }
+
+    function clearAdvancing()
+    {
+        foreach($this->units as $unit){
+            if($unit->status == STATUS_CAN_ADVANCE){
+                $unit->setStatus(STATUS_ADVANCING);
+            }
+            if($unit->status == STATUS_ADVANCING){
+                $unit->setStatus(STATUS_ADVANCED);
+            }
+        }
     }
 
     function unitsAreAdvancing()

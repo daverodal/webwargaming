@@ -79,6 +79,24 @@ $(document).ready(function(){
     });
     fixHeader();
     $(window).resize(fixItAll);
+
+    $("#mainTable").on('click', function(){
+        $(this).hide();
+        $("#detTable").show();
+        $('.tableWrapper.determined').hide();
+        $('.tableWrapper.main').show();
+    });
+    $("#detTable").on('click', function(){
+        $(this).hide();
+        $("#mainTable").show();
+        $('.tableWrapper.main').hide();
+        $('.tableWrapper.determined').show();
+    });
+    $("#mainTable").hide();
+    $("#detTable").show();
+    $('.tableWrapper.determined').hide();
+    $(".tableWrapper.main").show();
+
 });
 function fixItAll(){
     fixHeader();
@@ -544,7 +562,6 @@ function initialize() {
     DR.mouseWheel = 0;
     $("#map").bind('mousewheel', function (event) {
         DR.mouseWheel += event.originalEvent.wheelDelta;
-        debugger;
         if (DR.mouseWheel > 90 || DR.mouseWheel < -90) {
             if (DR.mouseWheel > 0) {
                 DR.globalZoom += .1;
@@ -564,16 +581,18 @@ function initialize() {
 
 
     $('.unit').bind('contextmenu',function(e){
-        var css = $(this).css('z-index');
-        console.log(this);
-        $('.unit').each(function(index){
-            var localZ = $(this).css('z-index') - 0;
-            if(localZ < 3){
-                console.log(localZ);
-                $(this).css('z-index', localZ + 1);
-            }
-        });
-        $(this).css('z-index', 1);
+        if(e.ctrlKey){
+            return true;
+        }
+        var id = this.id;
+        var x = DR.stackModel.ids[id].x;
+        var y = DR.stackModel.ids[id].y;
+        var units = DR.stackModel[x][y].ids;
+        for(i in units){
+            var zindex = $("#"+i).css('z-index') - 0;
+            $("#"+i).css({zIndex: zindex+1});
+        }
+        $(this).css({zIndex: 1});
         return false;
     });
     // end setup events ----------------------------------------
@@ -682,7 +701,6 @@ function initialize() {
      * Set DR.globalZoom so clicks on map are still correct.
      */
     $("#zoom .minusZoom").click(function(){
-        debugger;
         if((DR.globalZoom -.1) >= .3){
             DR.globalZoom -= .1;
             doUserZoom();
@@ -702,11 +720,37 @@ function initialize() {
     });
 }
 
+var state = {
+    x: 0,
+    y: 0,
+    scale: 1
+};
+var oX, oY;
+var changeScale = function (scale) {
+    // Limit the scale here if you want
+    // Zoom and pan transform-origin equivalent
+    var scaleD = scale / state.scale;
+    var currentX = state.x;
+    var currentY = state.y;
+    // The magic
+    var x = scaleD * (currentX - oX) + oX;
+    var y = scaleD * (currentY - oY) + oY;
+
+    state.scale = scale;
+    state.x = x;
+    state.y = y;
+
+    var transform = "matrix("+scale+",0,0,"+scale+","+x+","+y+")";
+    //var transform = "translate("+x+","+y+") scale("+scale+")"; //same
+//    view.setAttributeNS(null, "transform", transform);
+    $("#gameImages").css('transform', transform);
+};
 
 function doUserZoom(event){
 
     var vHeight;
     var vWidth;
+    var prevWidth;
     var precision = 1;
     if (DR.globalZoom >= 1.0) {
         precision = 2;
@@ -714,9 +758,15 @@ function doUserZoom(event){
     $("#zoom .defaultZoom").html(DR.globalZoom.toPrecision(precision));
 
     if(event){
+        prevWidth = $("#gameImages").css('-webkit-transform-origin');
         vWidth = event.pageX - event.target.x;
         vHeight = event.pageY - event.target.y;
-        console.log(event.pageX, event.target.x, vWidth);
+//        oX = vWidth;
+//        oY = vHeight;
+//        oX = window.innerWidth/2;
+//        oY = window.innerHeight/2;
+//        changeScale(DR.globalZoom);
+        console.log(event.pageX, event.target.x, vWidth, prevWidth);
     }else {
         var origHeight = vHeight = $('#gameViewer').height();
         var origWidth = vWidth = $('#gameViewer').width();

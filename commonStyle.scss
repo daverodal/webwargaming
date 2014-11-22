@@ -655,22 +655,44 @@ svg{
   display:none;
 }
 
-.unitOdds{
+.unitOdds {
   position: absolute;
   background: white;
   border-radius: 10px;
   left: 15px;
   right: -9px;
-  text-align:center;
+  text-align: center;
   letter-spacing: -1px;
-  font-size:70%;
+  font-size: 70%;
   z-index: 2;
   border: 1px solid #999;
 
-  &:hover{
-    background:transparent;
-    color:transparent;
+  &:hover {
+    background: transparent;
+    color: transparent;
     border-color: transparent;
+  }
+  &.altColor {
+    background: #00ec00;
+    &:hover {
+      background: transparent;
+    }
+  }
+  &.determinedColor {
+    background: red;
+    color: white;
+    &:hover {
+      background: transparent;
+      color: transparent;
+    }
+  }
+  &.pinnedColor {
+    background: #ff00ff;
+    color: white;
+    &:hover {
+      background: transparent;
+      color: transparent;
+    }
   }
 }
 

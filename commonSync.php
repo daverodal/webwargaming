@@ -27,14 +27,10 @@ x.register("sentBreadcrumbs", function(breadcrumbs,data) {
     }
     var svgHtml = $('#svgWrapper').html();
     $('#svgWrapper').html(svgHtml);
-//    $("svg").html($('svg').html());
 });
+
 x.register("force", function(force,data) {
-//        if(this.animate !== false){
-//            self.clearInterval(this.animate);
-//            this.animate = false;
-//            $("#"+this.animateId).stop(true);
-//        }
+
     var units = force.units;
 
     var status = "";
@@ -50,7 +46,6 @@ x.register("force", function(force,data) {
         $("#"+i + " .arrow").css({opacity: "0.0"});
         $("#"+i+" .arrowClone").remove();
         boxShadow = "none";
-//        $("#"+i).css({zIndex: 100});
         shadow = true;
         if(units[i].forceId !== force.attackingForceId){
             shadow = false;
@@ -81,12 +76,8 @@ x.register("force", function(force,data) {
                 if(units[i].forceId === force.attackingForceId){
                     $("#"+i + " .arrow").css({opacity: "0.0"});
 
-//                    color = "turquoise";
                     shadow = false;
                 }else{
-//                    shadow = false;
-
-//                    color = "purple";
                 }
                 if(force.requiredAttacks[i] === true){
                     color =  "black";
@@ -100,7 +91,6 @@ x.register("force", function(force,data) {
                 boxShadow = '5px 5px 5px #333';
 
 
-//                color = "orange";
                 break;
             case <?=STATUS_MOVING?>:
                 if(units[i].forceMarch){
@@ -118,18 +108,13 @@ x.register("force", function(force,data) {
                 $("#"+i).css({zIndex:4});
                 color = "lightgreen";
                 shadow = false;
-//                $("#"+i).css({zIndex: 101});
-//                boxShadow = '5px 5px 5px #333';
-//               var top =  $("#"+i).css("top");
-//                var left =  $("#"+i).css("left");
-//                 $("#"+i).css({top:top-5});
-//                $("#"+i).css({left:left-5});
-
-
-
-//                status += " "+units[i].moveAmountUsed+" MF's Used";
+                DR.lastMoved = i;
                 break;
+
             case <?=STATUS_STOPPED?>:
+                if(i === DR.lastMoved){
+                    $("#"+i).css({zIndex:4});
+                }
                 color = "#ccc #666 #666 #ccc";
                 break;
             case <?=STATUS_DEFENDING?>:
@@ -141,8 +126,8 @@ x.register("force", function(force,data) {
             case <?=STATUS_ATTACKING?>:
 
                 shadow = false;
-//                color = "red";
                 break;
+
             case <?=STATUS_CAN_RETREAT?>:
                 if(data.gameRules.mode == <?=RETREATING_MODE?>){
                     status = "Click on the Purple Unit to start retreating";
@@ -203,8 +188,7 @@ x.register("force", function(force,data) {
         }
         if(status){
             showStatus = true;
-//            var x = $("#"+i).css('left').replace(/px/,"");
-//            var y = $("#"+i).css('top').replace(/px/,"");
+
             var x = $("#"+i).position().left;
             var y = $("#"+i).position().top;
             y /= DR.globalZoom;
@@ -212,34 +196,15 @@ x.register("force", function(force,data) {
 
             var mapWidth = $("body").width();
             var mapHeight = $("#gameViewer").height();
-//                    $("#map").css('width').replace(/px/,"");
 
-//            if(x < mapWidth/2){
-//                var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
-//                var crtWid = $("#crt").css('width').replace(/px/,"");
-//                crtWid = 0 - (crtWid - wrapWid + 40);
-//
-//                var moveLeft = $("body").css('width').replace(/px/,"");
-//                $("#crt").animate({left:crtWid},300);
-//                $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
-//            }else{
-//                $("#crtWrapper").animate({left:0},300);
-//                $("#crt").animate({left:0},300);
-//
-//
-//            }
 
-//            alert($("#"+i).offset().top);
-//            y = $("#"+i).offset().top;
-//            var mapOffset  = $("#gameImages").css('top').replace(/px/,"");
             var mapOffset  = $("#gameImages").position().top;
 
             if(mapOffset === "auto"){
                 mapOffset = 0;
             }
             var moveAmt;
-//            alert($("#crt").offset().top);
-//            alert($("#gameViewer").offset().top);
+
             if(mapOffset + y > 2*mapHeight/3){
                 moveAmt = (100 + (mapOffset + y)/3);
                 if(moveAmt > 250){
@@ -247,44 +212,15 @@ x.register("force", function(force,data) {
                 }
                 y -= moveAmt;
 
-//                if(y + mapOffset < 180){
-//                    y = 180 - mapOffset;
-//                }
-//                alert("B");
+
             }else{
-//                alert("a");
                 moveAmt = (mapHeight - (mapOffset + y ))/2;
                 if(moveAmt > 200){
                     moveAmt = 200;
                 }
                 y += moveAmt;
             }
-//            y = y + off;
-//            alert(off);
-//            x = parseInt(x);
-//            y = parseInt(y) + off.top;
-//            if(y > mapHeight/2){
-//                y -= 200 + off.top;
-//            }else{
-//                y += 200 - off.top;
-//            }
-//            mapWidth = parseInt(mapWidth);
-//            alert($("#crt").offset().top);
-//            alert($("#crt").height());
-//            if(x > mapWidth/2){
-//                var floatWidth = $("#floatMessage").width();
-//                    x -= (300 + floatWidth);
-////                x = (mapWidth - x);
-////                x += 100;
-//                $("#floatMessage").css('left',x+"px");
-//                $("#floatMessage").css('right',"auto");
-////
-//            }else{
-//                x += 100;
-//                $("#floatMessage").css('left',x+"px");
-//                $("#floatMessage").css('right',"auto");
-//            }
-//            alert(y);
+
             var dragged = $("#floatMessage").attr('hasDragged');
 
             if(dragged != 'true'){
@@ -295,8 +231,7 @@ x.register("force", function(force,data) {
             $("#floatMessage p").html(status);
             status = "";
         }
-        /*$("#status").html(status);*/
-//        $("#"+i).css({borderColor: color});
+
         $("#"+i).css({borderColor: color,borderStyle:style});
         if(shadow){
             $("#"+i+" .shadow_mask").addClass("shadowy");
@@ -407,24 +342,18 @@ x.register("gameRules", function(gameRules,data) {
 
     var pix = turn  + (turn - 1) * 36 + 1;
     if(gameRules.attackingForceId == 1){
-//        $("#header").css("background","rgb(223,88,66)");
-
         $("#header").removeClass("playerTwo").addClass("playerOne");
         $("#turnCounter").css("background","rgb(0,128,0)");
         $("#turnCounter").css("color","white");
-//        $("#crt").css("border-color","rgb(223,88,66)");
         $("#crt").addClass("playerOne").removeClass("playerTwo");
-//        $(".row1,.row3,.row5").css("background-color","rgb(223,88,66)");
         $(".row1,.row3,.row5").addClass("playerOne").removeClass("playerTwo");
     }else{
         $("#header").removeClass("playerOne").addClass("playerTwo");
         $(".row1,.row3,.row5").addClass("playerTwo").removeClass("playerOne");
         $("#crt").addClass("playerTwo").removeClass("playerOne");
-//        $("#header").css("background","rgb(132,181,255)");
         $("#turnCounter").css("background","rgb(0,128,255)");
         $("#turnCounter").css("color","white");
-//        $("#crt").css("border-color","rgb(132,181,255)");
-//        $(".row1,.row3,.row5").css("background-color","rgb(132,181,255)");
+
     }
 
     var html = "<span id='turn'>Turn "+turn+" of "+maxTurn+"</span> ";
@@ -496,15 +425,14 @@ x.register("games", function(games) {
         $("#games").append(str);
     }
 });
-x.register("clock", function(clock) {
-    //$("#clock").html(clock);
-});
+
 var flashMessages;
 x.register("flashMessages",function(messages,data){
 
     flashMessages = messages;
     flashMessage(data.gameRules.playerStatus);
 });
+
 function flashMessage(playerStatus){
     var x = 100;
     var y = 200;
@@ -532,9 +460,7 @@ function flashMessage(playerStatus){
                 $("#gameViewer").append('<div id="FlashMessage" style="top:'+y+'px;left:'+x+'px;" class="flashMessage">'+"Game Over"+'</div>');
                 $("#FlashMessage").animate({opacity:0},fadeOut,flashMessage);
 
-//                game = mess.match(/^@show ([^,]*)/);
-//                id = game[1];
-//                $("#"+id).show({effect:"blind",direction:"up",complete:flashMessage});
+
                 return;
             }
         }
@@ -544,15 +470,11 @@ function flashMessage(playerStatus){
     }
 }
 x.register("specialHexes", function(specialHexes, data) {
-//    $(".specialHexes").remove();
     var lab = ['unowned','<?=strtolower($force_name[1])?>','<?=strtolower($force_name[2])?>'];
     for(var i in specialHexes){
-//        alert(i);
         var newHtml = lab[specialHexes[i]];
         var curHtml = $("#special"+i).html();
-//        alert(curHtml);
-//        alert("I "+i+" "+newHtml);
-        <!--        -->
+
         if(true || newHtml != curHtml){
             var hexPos = i.replace(/\.\d*/g,'');
             var x = hexPos.match(/x(\d*)y/)[1];
@@ -560,13 +482,10 @@ x.register("specialHexes", function(specialHexes, data) {
             $("#special"+hexPos).remove();
             if(data.specialHexesChanges[i]){
                 $("#gameImages").append('<div id="special'+hexPos+'" style="border-radius:30px;border:10px solid black;top:'+y+'px;left:'+x+'px;font-size:205px;z-index:1000;" class="'+lab[specialHexes[i]]+' specialHexes">'+lab[specialHexes[i]]+'</div>');
-//                alert("Hi");
                 $('#special'+hexPos).animate({fontSize:"16px",zIndex:0,borderWidth:"0px",borderRadius:"0px"},1900,function(){
                     var id = $(this).attr('id');
                     id = id.replace(/special/,'');
-//                    alert(id);
 
-//                    alert("spec "+data.specialHexesVictory);
 
                     if(data.specialHexesVictory[id]){
                         var hexPos = id.replace(/\.\d*/g,'');
@@ -608,87 +527,8 @@ x.register("specialHexes", function(specialHexes, data) {
 
 
 });
-x.register("mapUnits", function(mapUnits) {
-    var str;
-    var isStacked = new Array();
-    var fudge;
-    var x,y;
-    var beforeDeploy = $("#deployBox").children().size();
-
-    for (i in mapUnits) {
-        width = $("#"+i).width();
-        height = $("#"+i).height();
-        x =  mapUnits[i].x;
-        y = mapUnits[i].y;
-        if(isStacked[x] === undefined){
-            isStacked[x] = new Array();
-        }
-        if(isStacked[x][y] === undefined){
-            isStacked[x][y] = 0;
-        }
-        fudge = 0;
-        if(isStacked[x][y]){
-            fudge = isStacked[x][y] * 4;
-        }
-        isStacked[x][y]++;
-        if(mapUnits[i].parent != $("#"+i).parent().attr("id")){
-            $("#"+i).appendTo($("#"+mapUnits[i].parent));
-            if(mapUnits[i].parent != "gameImages"){
-                $("#"+ i).css({top:"0"});
-                $("#"+ i).css({left:"0"});
-                if(!mapUnits[i].parent.match(/^gameTurn/)){
-                    $("#"+ i).css({float:"left"});
-                }
-                $("#"+ i).css({position:"relative"});
-            }  else{
-                $("#"+ i).css({float:"none"});
-                $("#"+ i).css({position:"absolute"});
-
-            }
-        }
-        width += 6;
-        height += 6;
-        if(mapUnits[i].parent == "gameImages"){
-
-            $("#"+i).css({left:mapUnits[i].x-width/2-fudge+"px",top:mapUnits[i].y-height/2-fudge+"px"});
-        }
-        var img = $("#"+i+" img").attr("src");
-        if(mapUnits[i].isReduced){
-            img = img.replace(/(.*[0-9])(\.png)/,"$1reduced.png");
-        }else{
-            img = img.replace(/([0-9])reduced\.png/,"$1.png");
-        }
-        var  move = mapUnits[i].maxMove - mapUnits[i].moveAmountUsed;
-        move = move.toFixed(2);
-        move = move.replace(/\.00$/,'');
-        move = move.replace(/(\.[1-9])0$/,'$1');
-        var str = mapUnits[i].strength;
-        var reduced = mapUnits[i].isReduced;
-        var reduceDisp = "<span>";
-        if(reduced){
-            reduceDisp = "<span class='reduced'>";
-        }
-        var symb = mapUnits[i].supplied !== false ? " - " : " <span class='reduced'>u</span> ";
-        var html = reduceDisp + str + symb + move + "</span>"
-        $("#"+i+" .unit-numbers").html(html);
-        var len  = $("#"+i+" .unit-numbers").text().length;
-        $("#"+i+" div.unit-numbers span ").addClass("infoLen"+len);
-        $("#"+i).attr("src",img);
-    }
-    var dpBox = $("#deployBox").children().size();
-    if(dpBox != beforeDeploy){
-        fixHeader();
-        beforeDeploy = dpBox;
-
-    }
-    if(dpBox == 0 && $("#deployBox").is(":visible")){
-        $("#deployWrapper").hide({effect:"blind",direction:"up",complete:fixHeader});
-    }
-
-});
 x.register("moveRules", function(moveRules,data) {
     var str;
-    /*$("#status").html("");*/
     $(".clone").remove();
     if(moveRules.movingUnitId >= 0){
         if(moveRules.hexPath){
@@ -830,14 +670,99 @@ function fixCrt(){
         $("#crt").animate({left:0},300);
     }
 }
+
+x.register("mapUnits", function(mapUnits) {
+    var str;
+    var fudge;
+    var x,y;
+    var beforeDeploy = $("#deployBox").children().size();
+    DR.stackModel = {};
+    DR.stackModel.ids = {};
+
+    for (i in mapUnits) {
+        width = $("#"+i).width();
+        height = $("#"+i).height();
+        x =  mapUnits[i].x;
+        y = mapUnits[i].y;
+        if(DR.stackModel[x] === undefined){
+            DR.stackModel[x] = {};
+        }
+        if(DR.stackModel[x][y] === undefined){
+            DR.stackModel[x][y] = {count:0,ids: {}};
+        }
+        fudge = 0;
+        if(DR.stackModel[x][y].count){
+            fudge = DR.stackModel[x][y].count * 4;
+        }
+        DR.stackModel[x][y].count++;
+        var zIndex = DR.stackModel[x][y].count;
+        /* really looking at the keys so the value can be the same */
+        DR.stackModel[x][y].ids[i] = i;
+        DR.stackModel.ids[i] = {x: x, y: y};
+
+        if(mapUnits[i].parent != $("#"+i).parent().attr("id")){
+            $("#"+i).appendTo($("#"+mapUnits[i].parent));
+            if(mapUnits[i].parent != "gameImages"){
+                $("#"+ i).css({top:"0"});
+                $("#"+ i).css({left:"0"});
+                if(!mapUnits[i].parent.match(/^gameTurn/)){
+                    $("#"+ i).css({float:"left"});
+                }
+                $("#"+ i).css({position:"relative"});
+            }  else{
+                $("#"+ i).css({float:"none"});
+                $("#"+ i).css({position:"absolute"});
+
+            }
+        }
+        width += 6;
+        height += 6;
+        if(mapUnits[i].parent == "gameImages"){
+
+            $("#"+i).css({left:mapUnits[i].x-width/2-fudge+"px",top:mapUnits[i].y-height/2-fudge+"px", zIndex: zIndex});
+        }
+        var img = $("#"+i+" img").attr("src");
+
+        if(mapUnits[i].isReduced){
+            img = img.replace(/(.*[0-9])(\.png)/,"$1reduced.png");
+        }else{
+            img = img.replace(/([0-9])reduced\.png/,"$1.png");
+        }
+        var  move = mapUnits[i].maxMove - mapUnits[i].moveAmountUsed;
+        move = move.toFixed(2);
+        move = move.replace(/\.00$/,'');
+        move = move.replace(/(\.[1-9])0$/,'$1');
+        var str = mapUnits[i].strength;
+        var reduced = mapUnits[i].isReduced;
+        var reduceDisp = "<span>";
+        if(reduced){
+            reduceDisp = "<span class='reduced'>";
+        }
+        var symb = mapUnits[i].supplied !== false ? " - " : " <span class='reduced'>u</span> ";
+        var html = reduceDisp + str + symb + move + "</span>"
+        $("#"+i+" .unit-numbers").html(html);
+        var len  = $("#"+i+" .unit-numbers").text().length;
+        $("#"+i+" div.unit-numbers span ").addClass("infoLen"+len);
+        $("#"+i).attr("src",img);
+    }
+    var dpBox = $("#deployBox").children().size();
+    if(dpBox != beforeDeploy){
+        fixHeader();
+        beforeDeploy = dpBox;
+
+    }
+    if(dpBox == 0 && $("#deployBox").is(":visible")){
+        $("#deployWrapper").hide({effect:"blind",direction:"up",complete:fixHeader});
+    }
+
+});
+
 var chattyCrt = false;
 var cD; /* object oriented! */
 x.register("combatRules", function(combatRules,data) {
 
     for(var combatCol = 1;combatCol <= 10;combatCol++){
         $(".col"+combatCol).css({background:"transparent"});
-//            $(".odd .col"+combatCol).css({color:"white"});
-//            $(".even .col"+combatCol).css({color:"black"});
 
     }
     var title = "Combat Results ";
@@ -849,7 +774,28 @@ x.register("combatRules", function(combatRules,data) {
         cD = combatRules.currentDefender;
         if(combatRules.combats && Object.keys(combatRules.combats).length > 0){
             if(cD !== false){
+
                 var defenders = combatRules.combats[cD].defenders;
+                if(combatRules.combats[cD].useAlt){
+                    $('.tableWrapper.main').hide();
+                    $('.tableWrapper.determined').hide();
+                    $('#altTable').hide();
+                    if(combatRules.combats[cD].useDetermined){
+                        $('#detTable').show();
+                    }else{
+                        $('#mainTable').show();
+                    }
+                }else{
+                    if(combatRules.combats[cD].useDetermined){
+                        $('.tableWrapper.main').hide();
+                        $('.tableWrapper.determined').show();
+                    }else{
+                        $('.tableWrapper.main').show();
+                        $('.tableWrapper.determined').hide();
+                    }
+                    $('#detTable').show();
+                    $('#mainTable').hide();
+                }
                 for(var loop in defenders){
                     $("#"+loop).css({borderColor: "yellow"});
                 }
@@ -926,6 +872,10 @@ x.register("combatRules", function(combatRules,data) {
                     var def = combatRules.combats[i].defenseStrength;
                     var ter = combatRules.combats[i].terrainCombatEffect;
                     var idx = combatRules.combats[i].index+ 1;
+                    var useAltColor = combatRules.combats[i].useAlt ? " altColor":"";
+                    if(combatRules.combats[i].useDetermined){
+                        useAltColor = " determinedColor";
+                    }
                     var odds = Math.floor(atk/def);
                     var oddsDisp = odds + " : 1";
                     if(odds < 1){
@@ -939,16 +889,14 @@ x.register("combatRules", function(combatRules,data) {
                     }else{
                         ratio = $(".col"+idx).html() || "No Effect";
                     }
-                    $("#"+i).attr('title',ratio).prepend('<div class="unitOdds">'+ratio+'</div>');
+                    $("#"+i).attr('title',ratio).prepend('<div class="unitOdds '+useAltColor+'">'+ratio+'</div>');
                     newLine =  "<h5>odds = "+ oddsDisp +"</h5><div id='crtDetails'>"+combatRules.combats[i].combatLog+"</div><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+ratio +"</div>";
                     if(cD !== false && cD == i){
                         activeCombat = combatIndex;
                         activeCombatLine = newLine;
-                        /*cdLine = "<fieldset><legend>Current Combat</legend><strong>"+newLine+"</strong></fieldset>";
-                         newLine = "";*/
+
                     }
                     combatIndex++;
-//                            str += newLine;
                 }
 
             }

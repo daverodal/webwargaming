@@ -100,6 +100,21 @@ class CombatRules
         }
     }
 
+    function noMoreAttackers(){
+
+        $cd = $this->currentDefender;
+        if ($cd !== false) {
+            $attackers = $this->resolvedCombats->$cd->attackers;
+            $battle = Battle::getBattle();
+            foreach($attackers as $attackId => $val){
+                if($battle->force->units[$attackId]->status != STATUS_ELIMINATED){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     function setupCombat($id, $shift = false)
     {
         $mapData = MapData::getInstance();
@@ -393,6 +408,7 @@ class CombatRules
 
     function resolveCombat($id)
     {
+        $battle = Battle::getBattle();
         global $results_name;
         if ($this->force->unitIsEnemy($id) && !isset($this->combatsToResolve->$id)) {
             if (isset($this->defenders->$id)) {
@@ -417,8 +433,7 @@ class CombatRules
         //  Math->floor gives lower integer, which is now 0,1,2,3,4,5
 
         $Die = floor($this->crt->dieSideCount * (rand() / getrandmax()));
-        //$Die = 5;
-//        $index = $this->force->getUnitCombatIndex($id);
+//        $Die = 4;
         $index = $this->combatsToResolve->$id->index;
         if ($this->combatsToResolve->$id->pinCRT !== false) {
             if ($index > ($this->combatsToResolve->$id->pinCRT)) {
@@ -430,8 +445,34 @@ class CombatRules
         $this->combatsToResolve->$id->combatResult = $results_name[$combatResults];
         $this->force->clearRetreatHexagonList();
         $this->force->clearExchangeAmount();
-        foreach ($this->combatsToResolve->{$id}->defenders as $defenderId => $defender) {
+
+        /* determine which units are defending */
+        $defenders = $this->combatsToResolve->{$id}->defenders;
+        $defendingHexes = [];
+        /* others is units not in combat, but in hex, combat results apply to them too */
+        $others = [];
+
+        foreach($defenders as $defenderId => $defender){
+            $unit = $this->force->units[$defenderId];
+            $hex = $unit->hexagon;
+            if(!isset($defendingHexes[$hex->name])){
+                $mapHex = $battle->mapData->getHex($hex->getName());
+                $hexDefenders = $mapHex->getForces($unit->forceId);
+                foreach($hexDefenders as $hexDefender){
+                    if($defenders->$hexDefender){
+                        continue;
+                    }
+                    $others[] = $hexDefender;
+                }
+            }
+        }
+        /* apply combat results to defenders */
+        foreach ($defenders as $defenderId => $defender) {
             $this->force->applyCRTresults($defenderId, $this->combatsToResolve->{$id}->attackers, $combatResults, $Die);
+        }
+        /* apply combat results to other units in defending hexes */
+        foreach ($others as $otherId) {
+            $this->force->applyCRTresults($otherId, $this->combatsToResolve->{$id}->attackers, $combatResults, $Die);
         }
         $this->lastResolvedCombat = $this->combatsToResolve->$id;
         if (!$this->resolvedCombats) {

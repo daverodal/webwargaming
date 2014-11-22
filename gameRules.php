@@ -572,7 +572,8 @@ class GameRules
                             if ($this->force->unitsAreBeingEliminated() == true) {
                                 $this->force->removeEliminatingUnits();
                             }
-                            if($this->legacyExchangeRule || $this->force->getExchangeAmount() <= 0) {
+                            $this->combats->$cd->attackers;
+                            if($this->legacyExchangeRule || $this->force->getExchangeAmount() <= 0 || $this->combatRules->noMoreAttackers()) {
                                 if ($this->force->exchangingAreAdvancing() == true && $this->mode == EXCHANGING_MODE) { // melee
                                     $this->mode = ADVANCING_MODE;
                                 } else {
