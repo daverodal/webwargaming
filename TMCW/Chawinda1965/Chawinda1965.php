@@ -193,6 +193,7 @@ class Chawinda1965 extends ModernLandBattle
             $this->moveRules->noZocZocOneHex = true;
             $this->moveRules->stacking = 3;
             $this->moveRules->friendlyAllowsRetreat = true;
+            $this->moveRules->blockedRetreatDamages = true;
 
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);

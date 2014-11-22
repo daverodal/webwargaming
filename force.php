@@ -612,12 +612,16 @@ class Force
                 if (!$eliminated){
                     if($distance) {
                         $defUnit->status = STATUS_CAN_RETREAT;
+                    }else{
+                        $this->clearAdvancing();
+                        $defUnit->status = STATUS_EXCHANGED;
                     }
                     $defUnit->retreatCountRequired = $distance;
+                }else{
+                    $this->addToRetreatHexagonList($defenderId, $this->getUnitHexagon($defenderId));
                 }
                 $this->exchangeAmount += $defUnit->exchangeAmount * $exchangeMultiplier;
                 $defUnit->moveCount = 0;
-                $this->addToRetreatHexagonList($defenderId, $this->getUnitHexagon($defenderId));
                 break;
 
             case AL:
@@ -1763,8 +1767,13 @@ class Force
 
         for ($id = 0; $id < count($this->units); $id++) {
             if ($this->units[$id]->status == STATUS_CAN_EXCHANGE) {
-                $this->units[$id]->status = STATUS_CAN_ADVANCE;
-                $areAdvancing = true;
+                if(count($this->retreatHexagonList)){
+                    $this->units[$id]->status = STATUS_CAN_ADVANCE;
+
+                }else{
+                    $this->units[$id]->status = STATUS_ATTACKED;
+                }
+                $areAdvancing = false;
             }
             if ($this->units[$id]->status == STATUS_CAN_ATTACK_LOSE) {
                 $this->units[$id]->status = STATUS_ATTACKED;
