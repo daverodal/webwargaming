@@ -158,9 +158,9 @@ trait divCombatHalfDoubleTerrain
 
 
         /* @var $combatRules CombatRules */
-        $terrainCombatEffect = $combatRules->getDefenderTerrainCombatEffect($defenderId);
+//        $terrainCombatEffect = $combatRules->getDefenderTerrainCombatEffect($defenderId);
 
-        $combatIndex -= $terrainCombatEffect;
+//        $combatIndex -= $terrainCombatEffect;
 
         $combats->attackStrength = $attackStrength;
         $combats->defenseStrength = $defenseStrength;
