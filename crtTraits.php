@@ -147,7 +147,7 @@ trait divCombatHalfDoubleTerrain
             $combatLog .= "<br>";
         }
         if($isTown){
-            $defenseStrength /= 2;
+            $defenseStrength *= 2;
         }
         $combatLog .= " = $defenseStrength";
         $combatIndex = $this->getCombatIndex($attackStrength, $defenseStrength);
