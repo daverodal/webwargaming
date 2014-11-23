@@ -29,6 +29,92 @@ x.register("sentBreadcrumbs", function(breadcrumbs,data) {
     $('#svgWrapper').html(svgHtml);
 });
 
+x.register("mapUnits", function(mapUnits) {
+    var str;
+    var fudge;
+    var x,y;
+    var beforeDeploy = $("#deployBox").children().size();
+    DR.stackModel = {};
+    DR.stackModel.ids = {};
+
+    for (i in mapUnits) {
+        width = $("#"+i).width();
+        height = $("#"+i).height();
+        x =  mapUnits[i].x;
+        y = mapUnits[i].y;
+        if(DR.stackModel[x] === undefined){
+            DR.stackModel[x] = {};
+        }
+        if(DR.stackModel[x][y] === undefined){
+            DR.stackModel[x][y] = {count:0,ids: {}};
+        }
+        fudge = 0;
+        if(DR.stackModel[x][y].count){
+            fudge = DR.stackModel[x][y].count * 4;
+        }
+        DR.stackModel[x][y].count++;
+        var zIndex = DR.stackModel[x][y].count;
+        /* really looking at the keys so the value can be the same */
+        DR.stackModel[x][y].ids[i] = i;
+        DR.stackModel.ids[i] = {x: x, y: y};
+
+        if(mapUnits[i].parent != $("#"+i).parent().attr("id")){
+            $("#"+i).appendTo($("#"+mapUnits[i].parent));
+            if(mapUnits[i].parent != "gameImages"){
+                $("#"+ i).css({top:"0"});
+                $("#"+ i).css({left:"0"});
+                if(!mapUnits[i].parent.match(/^gameTurn/)){
+                    $("#"+ i).css({float:"left"});
+                }
+                $("#"+ i).css({position:"relative"});
+            }  else{
+                $("#"+ i).css({float:"none"});
+                $("#"+ i).css({position:"absolute"});
+
+            }
+        }
+        width += 6;
+        height += 6;
+        if(mapUnits[i].parent == "gameImages"){
+
+            $("#"+i).css({left:mapUnits[i].x-width/2-fudge+"px",top:mapUnits[i].y-height/2-fudge+"px", zIndex: zIndex});
+        }
+        var img = $("#"+i+" img").attr("src");
+
+        if(mapUnits[i].isReduced){
+            img = img.replace(/(.*[0-9])(\.png)/,"$1reduced.png");
+        }else{
+            img = img.replace(/([0-9])reduced\.png/,"$1.png");
+        }
+        var  move = mapUnits[i].maxMove - mapUnits[i].moveAmountUsed;
+        move = move.toFixed(2);
+        move = move.replace(/\.00$/,'');
+        move = move.replace(/(\.[1-9])0$/,'$1');
+        var str = mapUnits[i].strength;
+        var reduced = mapUnits[i].isReduced;
+        var reduceDisp = "<span>";
+        if(reduced){
+            reduceDisp = "<span class='reduced'>";
+        }
+        var symb = mapUnits[i].supplied !== false ? " - " : " <span class='reduced'>u</span> ";
+        var html = reduceDisp + str + symb + move + "</span>"
+        $("#"+i+" .unit-numbers").html(html);
+        var len  = $("#"+i+" .unit-numbers").text().length;
+        $("#"+i+" div.unit-numbers span ").addClass("infoLen"+len);
+        $("#"+i).attr("src",img);
+    }
+    var dpBox = $("#deployBox").children().size();
+    if(dpBox != beforeDeploy){
+        fixHeader();
+        beforeDeploy = dpBox;
+
+    }
+    if(dpBox == 0 && $("#deployBox").is(":visible")){
+        $("#deployWrapper").hide({effect:"blind",direction:"up",complete:fixHeader});
+    }
+
+});
+
 x.register("force", function(force,data) {
 
     var units = force.units;
@@ -670,92 +756,6 @@ function fixCrt(){
         $("#crt").animate({left:0},300);
     }
 }
-
-x.register("mapUnits", function(mapUnits) {
-    var str;
-    var fudge;
-    var x,y;
-    var beforeDeploy = $("#deployBox").children().size();
-    DR.stackModel = {};
-    DR.stackModel.ids = {};
-
-    for (i in mapUnits) {
-        width = $("#"+i).width();
-        height = $("#"+i).height();
-        x =  mapUnits[i].x;
-        y = mapUnits[i].y;
-        if(DR.stackModel[x] === undefined){
-            DR.stackModel[x] = {};
-        }
-        if(DR.stackModel[x][y] === undefined){
-            DR.stackModel[x][y] = {count:0,ids: {}};
-        }
-        fudge = 0;
-        if(DR.stackModel[x][y].count){
-            fudge = DR.stackModel[x][y].count * 4;
-        }
-        DR.stackModel[x][y].count++;
-        var zIndex = DR.stackModel[x][y].count;
-        /* really looking at the keys so the value can be the same */
-        DR.stackModel[x][y].ids[i] = i;
-        DR.stackModel.ids[i] = {x: x, y: y};
-
-        if(mapUnits[i].parent != $("#"+i).parent().attr("id")){
-            $("#"+i).appendTo($("#"+mapUnits[i].parent));
-            if(mapUnits[i].parent != "gameImages"){
-                $("#"+ i).css({top:"0"});
-                $("#"+ i).css({left:"0"});
-                if(!mapUnits[i].parent.match(/^gameTurn/)){
-                    $("#"+ i).css({float:"left"});
-                }
-                $("#"+ i).css({position:"relative"});
-            }  else{
-                $("#"+ i).css({float:"none"});
-                $("#"+ i).css({position:"absolute"});
-
-            }
-        }
-        width += 6;
-        height += 6;
-        if(mapUnits[i].parent == "gameImages"){
-
-            $("#"+i).css({left:mapUnits[i].x-width/2-fudge+"px",top:mapUnits[i].y-height/2-fudge+"px", zIndex: zIndex});
-        }
-        var img = $("#"+i+" img").attr("src");
-
-        if(mapUnits[i].isReduced){
-            img = img.replace(/(.*[0-9])(\.png)/,"$1reduced.png");
-        }else{
-            img = img.replace(/([0-9])reduced\.png/,"$1.png");
-        }
-        var  move = mapUnits[i].maxMove - mapUnits[i].moveAmountUsed;
-        move = move.toFixed(2);
-        move = move.replace(/\.00$/,'');
-        move = move.replace(/(\.[1-9])0$/,'$1');
-        var str = mapUnits[i].strength;
-        var reduced = mapUnits[i].isReduced;
-        var reduceDisp = "<span>";
-        if(reduced){
-            reduceDisp = "<span class='reduced'>";
-        }
-        var symb = mapUnits[i].supplied !== false ? " - " : " <span class='reduced'>u</span> ";
-        var html = reduceDisp + str + symb + move + "</span>"
-        $("#"+i+" .unit-numbers").html(html);
-        var len  = $("#"+i+" .unit-numbers").text().length;
-        $("#"+i+" div.unit-numbers span ").addClass("infoLen"+len);
-        $("#"+i).attr("src",img);
-    }
-    var dpBox = $("#deployBox").children().size();
-    if(dpBox != beforeDeploy){
-        fixHeader();
-        beforeDeploy = dpBox;
-
-    }
-    if(dpBox == 0 && $("#deployBox").is(":visible")){
-        $("#deployWrapper").hide({effect:"blind",direction:"up",complete:fixHeader});
-    }
-
-});
 
 var chattyCrt = false;
 var cD; /* object oriented! */

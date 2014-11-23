@@ -1765,20 +1765,20 @@ class Force
     function exchangingAreAdvancing()
     {
         $areAdvancing = false;
-
+        /*
+         * Todo should not assign to status, should set status
+         */
         for ($id = 0; $id < count($this->units); $id++) {
             if ($this->units[$id]->status == STATUS_CAN_EXCHANGE) {
                 if(count($this->retreatHexagonList)){
                     $this->units[$id]->status = STATUS_CAN_ADVANCE;
-
+                    $areAdvancing = true;
                 }else{
                     $this->units[$id]->status = STATUS_ATTACKED;
                 }
-                $areAdvancing = false;
             }
             if ($this->units[$id]->status == STATUS_CAN_ATTACK_LOSE) {
                 $this->units[$id]->status = STATUS_ATTACKED;
-                $areAdvancing = true;
             }
         }
         return $areAdvancing;
