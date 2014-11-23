@@ -101,6 +101,7 @@ class unit implements JsonSerializable
         } else {
             $strength = $this->maxStrength;
         }
+        return $strength;
     }
     public function __get($name)
     {

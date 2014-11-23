@@ -776,26 +776,19 @@ x.register("combatRules", function(combatRules,data) {
             if(cD !== false){
 
                 var defenders = combatRules.combats[cD].defenders;
-                if(combatRules.combats[cD].useAlt){
-                    $('.tableWrapper.main').hide();
-                    $('.tableWrapper.determined').hide();
-                    $('#altTable').hide();
-                    if(combatRules.combats[cD].useDetermined){
-                        $('#detTable').show();
-                    }else{
-                        $('#mainTable').show();
-                    }
-                }else{
                     if(combatRules.combats[cD].useDetermined){
                         $('.tableWrapper.main').hide();
                         $('.tableWrapper.determined').show();
+                        $('#detTable').hide();
+                        $('#mainTable').show();
                     }else{
                         $('.tableWrapper.main').show();
                         $('.tableWrapper.determined').hide();
+                        $('#detTable').show();
+                        $('#mainTable').hide();
                     }
-                    $('#detTable').show();
-                    $('#mainTable').hide();
-                }
+
+
                 for(var loop in defenders){
                     $("#"+loop).css({borderColor: "yellow"});
                 }
@@ -922,6 +915,18 @@ x.register("combatRules", function(combatRules,data) {
             $('.unit').removeAttr('title');
             $('.unit .unitOdds').remove();
             if(combatRules.lastResolvedCombat){
+                if(combatRules.lastResolvedCombat.useDetermined){
+                    $('.tableWrapper.main').hide();
+                    $('.tableWrapper.determined').show();
+                    $('#detTable').hide();
+                    $('#mainTable').show()
+                }else{
+                        $('.tableWrapper.main').show();
+                        $('.tableWrapper.determined').hide();
+
+                    $('#detTable').show();
+                    $('#mainTable').hide();
+                }
                 title += "<strong style='margin-left:20px;font-size:150%'>"+combatRules.lastResolvedCombat.Die+" "+combatRules.lastResolvedCombat.combatResult+"</strong>";
                 combatCol = combatRules.lastResolvedCombat.index + 1;
                 combatRoll = combatRules.lastResolvedCombat.Die;
@@ -970,7 +975,11 @@ x.register("combatRules", function(combatRules,data) {
                     var odds = Math.floor(atk/def);
                     var oddsDisp = odds + " : 1";
                     var ratio = $(".col"+idx).html() || "No Effect";
-                    $("#"+i).attr('title',oddsDisp).prepend('<div class="unitOdds">'+ratio+'</div>');
+                    var useAltColor = combatRules.combatsToResolve[i].useAlt ? " altColor":"";
+                    if(combatRules.combatsToResolve[i].useDetermined){
+                        useAltColor = " determinedColor";
+                    }
+                    $("#"+i).attr('title',oddsDisp).prepend('<div class="unitOdds  '+useAltColor+'">'+ratio+'</div>');
                     newLine =  "<h5>odds = "+ oddsDisp +"</h5><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+idxDisp+"</div>";
                 }
 

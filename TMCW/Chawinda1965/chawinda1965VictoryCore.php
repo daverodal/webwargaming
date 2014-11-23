@@ -45,6 +45,11 @@ class chawinda1965VictoryCore extends victoryCore
         $this->supplyLen = $supplyLen[0];
     }
 
+    public function setInitialPakistaniVP($args){
+        list($vp) = $args;
+        $this->victoryPoints[PAKISTANI_FORCE] = $vp;
+    }
+
     public function save()
     {
         $ret = new stdClass();
@@ -63,15 +68,30 @@ class chawinda1965VictoryCore extends victoryCore
         $battle = Battle::getBattle();
         list($mapHexName, $forceId) = $args;
 
-//        if(in_array($mapHexName, $battle->specialHexC)){
-//
-//            if ($forceId == PAKISTANI_FORCE) {
-//                $this->victoryPoints = "The Pakistanis hold Kiev";
-//            }
-//            if ($forceId == INDIAN_FORCE) {
-//                $this->victoryPoints = "The Indians hold Kiev";
-//            }
-//        }
+        if(in_array($mapHexName, $battle->specialHexA)){
+
+            if ($forceId == PAKISTANI_FORCE) {
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='pakistani'>+3 Pakistani vp -3 Indian vp</span>";
+                $this->victoryPoints[PAKISTANI_FORCE]  += 3;
+                $this->victoryPoints[INDIAN_FORCE]  -= 3;
+            }
+            if ($forceId == INDIAN_FORCE) {
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='indian'>+3 Indian vp -3 Pakistani vp</span>";
+                $this->victoryPoints[INDIAN_FORCE]  += 3;
+                $this->victoryPoints[PAKISTANI_FORCE]  -= 3;
+            }
+        }
+        if(in_array($mapHexName, $battle->specialHexB)){
+
+            if ($forceId == PAKISTANI_FORCE) {
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='pakistani'>+3 Pakistani vp</span>";
+                $this->victoryPoints[PAKISTANI_FORCE]  += 3;
+            }
+            if ($forceId == INDIAN_FORCE) {
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='intian'>-3 Pakistani vp</span>";
+                $this->victoryPoints[PAKISTANI_FORCE]  -= 3;
+            }
+        }
     }
 
     public function postReinforceZones($args)
@@ -107,27 +127,20 @@ class chawinda1965VictoryCore extends victoryCore
         if($unit->class == "mech"){
             $multiplier = 2;
         }
-        if ($unit->strength == $unit->maxStrength) {
-            if ($unit->status == STATUS_ELIMINATING || $unit->status == STATUS_RETREATING) {
-                $vp = $unit->maxStrength * $multiplier;
-            } else {
-                $vp = ($unit->maxStrength - $unit->minStrength) * $multiplier;
-            }
-        } else {
-            $vp = $unit->minStrength * $multiplier;
-        }
-        if ($unit->forceId == 1) {
-            $victorId = 2;
+        $vp = $unit->damage * $multiplier;
+
+        if ($unit->forceId == INDIAN_FORCE) {
+            $victorId = PAKISTANI_FORCE;
             $this->victoryPoints[$victorId] += $vp;
             $hex = $unit->hexagon;
             $battle = Battle::getBattle();
-            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='loyalistVictoryPoints'>+$vp vp</span>";
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='pakistani'>+$vp vp</span>";
         } else {
-            $victorId = 1;
+            $victorId = INDIAN_FORCE;
+            $this->victoryPoints[$victorId] += $vp;
             $hex  = $unit->hexagon;
             $battle = Battle::getBattle();
-            $battle->mapData->specialHexesVictory->{$hex->name} = "+$vp vp";
-            $this->victoryPoints[$victorId] += $vp;
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='indian'>+$vp vp</span>";
         }
     }
 

@@ -18,7 +18,7 @@ class Chawinda1965 extends ModernLandBattle
 {
     /* a comment */
 
-    public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>2, 'SpecialHexC'=>2];
+    public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>1, 'SpecialHexC'=>2];
 
     /* @var MapData $mapData */
     public $mapData;
@@ -56,6 +56,13 @@ class Chawinda1965 extends ModernLandBattle
         $player = $force_name[$player];
 
         @include_once "view.php";
+    }
+
+    function terrainInit($terrainName)
+    {
+        parent::terrainInit($terrainName);
+        $vp = count((array)$this->specialHexA);
+        $this->victory->setInitialPakistaniVP($vp * 3);
     }
 
     function terrainGen($hexDocId)
