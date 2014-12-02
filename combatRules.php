@@ -459,7 +459,7 @@ class CombatRules
                 $mapHex = $battle->mapData->getHex($hex->getName());
                 $hexDefenders = $mapHex->getForces($unit->forceId);
                 foreach($hexDefenders as $hexDefender){
-                    if($defenders->$hexDefender){
+                    if(isset($defenders->$hexDefender)){
                         continue;
                     }
                     $others[] = $hexDefender;

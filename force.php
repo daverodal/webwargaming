@@ -619,6 +619,7 @@ class Force
                     }
                     $defUnit->retreatCountRequired = $distance;
                 }else{
+                    $defUnit->moveCount = 0;
                     $this->addToRetreatHexagonList($defenderId, $this->getUnitHexagon($defenderId));
                 }
                 $this->exchangeAmount += $defUnit->exchangeAmount * $exchangeMultiplier;
