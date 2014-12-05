@@ -197,7 +197,7 @@ class Chawinda1965 extends ModernLandBattle
 
             $this->moveRules->enterZoc = 1;
             $this->moveRules->exitZoc = 2;
-            $this->moveRules->noZocZocOneHex = true;
+            $this->moveRules->noZocZocOneHex = false;
             $this->moveRules->stacking = 3;
             $this->moveRules->friendlyAllowsRetreat = true;
             $this->moveRules->blockedRetreatDamages = true;
