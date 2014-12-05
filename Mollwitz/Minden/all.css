@@ -766,9 +766,6 @@ svg g {
 svg marker#head {
   fill: red; }
 
-#map {
-  width: 1000px !important; }
-
 .unit {
   border: solid black;
   border-width: 3px; }
@@ -1106,9 +1103,6 @@ p.forceMarch {
   .unitOdds.pinnedColor:hover {
     background: transparent;
     color: transparent; }
-
-#map {
-  width: 1200px !important; }
 
 .playerOne {
   background: #84b5ff;

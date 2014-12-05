@@ -992,6 +992,9 @@ svg marker#head {
   .soviet .unit-desig {
     color: white; }
 
+#map {
+  width: auto; }
+
 #crt {
   width: 520px; }
 

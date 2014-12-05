@@ -766,9 +766,6 @@ svg g {
 svg marker#head {
   fill: red; }
 
-#map {
-  width: 1000px !important; }
-
 .unit {
   border: solid black;
   border-width: 3px; }
@@ -1126,9 +1123,6 @@ p.forceMarch {
 
 .Prussian .counterWrapper {
   background-color: #0117de; }
-
-#map {
-  width: 1800px !important; }
 
 .austrian.specialHexes {
   color: white; }

@@ -148,6 +148,7 @@
             <?php if ($scenario->showHexNums) { ?>
                 <span class="dropDown" id="showHexNums"> show/hide hex numbers</span>
             <?php } ?>
+        </div>
     </header>
     <div id="content">
         <div id="rightCol">
@@ -221,10 +222,36 @@
             <audio class="poop" src="<?= base_url() . 'js/lowpop.m4a' ?>"></audio>
             <audio class="buzz" src="<?= base_url() . 'js/buzz.m4a' ?>"></audio>
 
-            <div style="clear:both;height:20px;"></div>
         </div>
     </div>
-    <script type="text/javascript">
+
+    <script>
+        var $panzoom = $('#gameImages').panzoom({cursor: "normal"});
+        console.log("In ");
+        $panzoom.parent().on('mousewheel DOMMouseScroll MozMousePixelScroll', function (e) {
+            console.log('wheel');
+            e.preventDefault();
+            var delta = e.delta || e.originalEvent.wheelDelta;
+
+            var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
+            var zoomLevel = $("#zoom .defaultZoom").html() - 0;
+            if (zoomLevel >= 1.0) {
+                precision = 2;
+            }
+
+            if(zoomOut){
+                zoomLevel  -= .1
+                $("#zoom .defaultZoom").html(zoomLevel.toPrecision(precision));
+            }else{
+                zoomLevel += .1
+                $("#zoom .defaultZoom").html(zoomLevel.toPrecision(precision));
+            }
+            $panzoom.panzoom('zoom', zoomOut, {
+                increment: 0.1,
+                animate: false,
+                focal: e
+            });
+        });
     </script>
     <div id="display"></div>
 </div>

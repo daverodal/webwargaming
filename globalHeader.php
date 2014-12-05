@@ -1,14 +1,6 @@
 <?php global $force_name;?>
 <link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 <style type="text/css">
-#map {
-    width:<?=$mapWidth;?>;/*really*/
-    height:<?=$mapHeight;?>;
-}
-#gameImages {
-    width:<?=$mapWidth;?>;/*really*/
-    height:<?=$mapHeight;?>;
-}
 </style>
 <script>
 var DR = {};
@@ -397,13 +389,6 @@ function mapClick(event) {
         zoomed = false;
         return;
     }
-    /*
-     * Account for maps zooming in and out
-     */
-
-    pixelX /= DR.globalZoom;
-    pixelY /= DR.globalZoom;
-    doitMap(pixelX,pixelY);
 }
 
 function changePosition(player){
@@ -522,7 +507,7 @@ function initialize() {
     $("#gameImages").on("click","svg",mapClick);
 
     $("#nextPhaseButton").on('click',nextPhaseMouseDown);
-    $("#gameImages" ).draggable({stop:mapStop, distance:15});
+//    $("#gameImages" ).draggable({stop:mapStop, distance:15});
     $("#gameImages #map").on("click",mapClick);
     $("#floatMessage").draggable({stop:function(){
         $(this).attr('hasDragged','true');
@@ -559,25 +544,47 @@ function initialize() {
         $(".unitPath"+this.id).css({opacity:''});
 
     });
-    DR.mouseWheel = 0;
-    $("#map").bind('mousewheel', function (event) {
-        DR.mouseWheel += event.originalEvent.wheelDelta;
-        if (DR.mouseWheel > 90 || DR.mouseWheel < -90) {
-            if (DR.mouseWheel > 0) {
-                DR.globalZoom += .1;
-            } else
-                DR.globalZoom -= .1;
-            DR.mouseWheel = 0;
-        }
-        if (DR.globalZoom <= .3) {
-            DR.globalZoom = .3;
-        }
-        if (DR.globalZoom > 2.0) {
-            DR.globalZoom = 2.0;
-        }
-        doUserZoom(event);
 
-    });
+
+
+//    $("#gameContainer").bind('mousewheel', function (event) {
+//        DR.mouseWheel += event.originalEvent.wheelDelta;
+//        if (DR.mouseWheel > 90 || DR.mouseWheel < -90) {
+//            if (DR.mouseWheel > 0) {
+//                DR.globalZoom += .1;
+//            } else
+//                DR.globalZoom -= .1;
+//            DR.mouseWheel = 0;
+//        }
+//        if (DR.globalZoom <= .3) {
+//            DR.globalZoom = .3;
+//        }
+//        if (DR.globalZoom > 2.0) {
+//            DR.globalZoom = 2.0;
+//        }
+//var e = event;
+//
+//
+//
+//
+//        e.preventDefault();
+//        var delta = e.delta || e.originalEvent.wheelDelta;
+//        var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
+//        $panzoom.panzoom('zoom', zoomOut, {
+//            increment: 0.1,
+//            animate: false,
+//            focal: e
+//        });
+//
+//
+//
+//
+//
+//
+//
+////        doUserZoom(event);
+//
+//    });
 
 
     $('.unit').bind('contextmenu',function(e){
@@ -718,6 +725,8 @@ function initialize() {
         DR.globalZoom = 1.0;
         doUserZoom();
     });
+
+
 }
 
 var state = {

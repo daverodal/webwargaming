@@ -766,9 +766,6 @@ svg g {
 svg marker#head {
   fill: red; }
 
-#map {
-  width: 1000px !important; }
-
 .unit {
   border: solid black;
   border-width: 3px; }

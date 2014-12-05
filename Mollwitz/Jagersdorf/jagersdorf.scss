@@ -4,9 +4,6 @@ body {
 @include player(Prussian, One, $prussianColor, $prussianWrapperColor, $prussianWrapperColor);
 @include player(Russian, Two, $russianColor, $russianWrapperColor);
 #map {
-  width: 1023px !important;
-  left: 0px;
-  top: 00px;
 }
 
 img.counter {

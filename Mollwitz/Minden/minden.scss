@@ -1,5 +1,4 @@
 #map{
-  width:1200px !important;
 }
 @include player(French, One, $frenchColor, $frenchWrapperColor);
 @include player(AngloAllied, Two, $angloAlliedColor, $angloAlliedWrapperColor);

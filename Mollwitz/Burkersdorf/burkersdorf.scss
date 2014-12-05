@@ -5,7 +5,6 @@ $prussian: rgb(255, 253, 127);
 @include player(Prussian, Two, $prussianColor,  $prussianWrapperColor, $prussianWrapperColor);
 
 #map{
-  width:1800px !important;
 }
 
 .austrian.specialHexes{
