@@ -195,8 +195,8 @@ class Chawinda1965 extends ModernLandBattle
             $this->terrain = new Terrain();
             $this->moveRules = new MoveRules($this->force, $this->terrain);
 
-            $this->moveRules->enterZoc = 3;
-            $this->moveRules->exitZoc = 0;
+            $this->moveRules->enterZoc = 1;
+            $this->moveRules->exitZoc = 2;
             $this->moveRules->noZocZocOneHex = true;
             $this->moveRules->stacking = 3;
             $this->moveRules->friendlyAllowsRetreat = true;

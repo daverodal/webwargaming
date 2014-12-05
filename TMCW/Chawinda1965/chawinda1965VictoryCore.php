@@ -94,31 +94,6 @@ class chawinda1965VictoryCore extends victoryCore
         }
     }
 
-    public function postReinforceZones($args)
-    {
-        list($zones, $unit) = $args;
-
-        $forceId = $unit->forceId;
-        if($unit->forceId == INDIAN_FORCE){
-            $zones = $this->indianGoal;
-        }else{
-            $zones = $this->pakistaniGoal;
-        }
-        $reinforceZones = [];
-        foreach($zones as $zone){
-            $reinforceZones[] = new ReinforceZone($zone, $zone);
-        }
-        $battle = Battle::getBattle();
-
-        $specialHexes = $battle->mapData->specialHexes;
-        foreach($specialHexes as $hexNum => $specialHex){
-            if($specialHex == $forceId){
-                $reinforceZones[] = new ReinforceZone($hexNum, $hexNum);
-            }
-        }
-        return array($reinforceZones);
-    }
-
     public function reduceUnit($args)
     {
         $unit = $args[0];
