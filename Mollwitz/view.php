@@ -236,7 +236,7 @@
                             </defs>
                         </svg>
                     </div>
-                    <img width="2539" height="2539" id="map" alt="map" src="<?php preg_match("/http/",$mapUrl) ?   $pre = '': $pre = base_url();echo "$pre$mapUrl";?>"
+                    <img id="map" alt="map" src="<?php preg_match("/http/",$mapUrl) ?   $pre = '': $pre = base_url();echo "$pre$mapUrl";?>"
                          style="position: relative;visibility: visible;z-index: 0;">
                     <?php $id = 0; ?>
                     {units}
