@@ -488,7 +488,6 @@ var mute = false;
 function playAudio() {
     var aud = $('.pop').get(0);
     <!--    aud.src = "-->
-    <?//=base_url().'js/pop.m4a'?><!--";-->
     if (aud && !mute) {
         aud.play();
     }
@@ -497,7 +496,6 @@ function playAudio() {
 function playAudioLow() {
     var aud = $('.poop').get(0);
     <!--    aud.src = "-->
-    <?//=base_url().'js/pop.m4a'?><!--";-->
     if (aud && !mute) {
         aud.play();
     }
@@ -514,7 +512,6 @@ function muteMe() {
 function playAudioBuzz() {
     var aud = $('.buzz').get(0);
     <!--    aud.src = "-->
-    <?//=base_url().'js/pop.m4a'?><!--";-->
     if (aud) {
         aud.play();
     }
