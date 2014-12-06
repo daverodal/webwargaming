@@ -31,7 +31,7 @@ class kievVictoryCore extends victoryCore
             $this->sovietGoal = $data->victory->sovietGoal;
             $this->gameOver = $data->victory->gameOver;
         } else {
-            $this->victoryPoints = "The Soviets hold Kiev";
+            $this->victoryPoints = [0,0,0,0];
             $this->movementCache = new stdClass();
             $this->combatCache = new stdClass();
             $this->germanGoal = $this->sovietGoal = [];
@@ -88,12 +88,6 @@ class kievVictoryCore extends victoryCore
         }
         $battle = Battle::getBattle();
 
-        $specialHexes = $battle->mapData->specialHexes;
-        foreach($specialHexes as $hexNum => $specialHex){
-            if($specialHex == $forceId){
-                $reinforceZones[] = new ReinforceZone($hexNum, $hexNum);
-            }
-        }
         return array($reinforceZones);
     }
 
@@ -110,18 +104,42 @@ class kievVictoryCore extends victoryCore
             $vp = $unit->minStrength;
         }
         if ($unit->forceId == 1) {
-//            $victorId = 2;
-//            $this->victoryPoints[$victorId] += $vp;
-//            $hex = $unit->hexagon;
-//            $battle = Battle::getBattle();
-//            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='loyalistVictoryPoints'>+$vp vp</span>";
+            $victorId = 2;
+            $this->victoryPoints[$victorId] += $vp;
+            $hex = $unit->hexagon;
+            $battle = Battle::getBattle();
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='loyalistVictoryPoints'>+$vp vp</span>";
         } else {
-//            $victorId = 1;
-//            $hex  = $unit->hexagon;
-//            $battle = Battle::getBattle();
-//            $battle->mapData->specialHexesVictory->{$hex->name} = "+$vp vp";
-//            $this->victoryPoints[$victorId] += $vp;
+            $victorId = 1;
+            $hex  = $unit->hexagon;
+            $battle = Battle::getBattle();
+            $battle->mapData->specialHexesVictory->{$hex->name} = "+$vp vp";
+            $this->victoryPoints[$victorId] += $vp;
         }
+    }
+
+    protected function checkVictory($attackingId, $battle){
+        $battle = Battle::getBattle();
+
+        global $force_name;
+        $gameRules = $battle->gameRules;
+        $turn = $gameRules->turn;
+        $this->victoryPoints[3] = 0;
+        if(!$this->gameOver){
+            $battle = Battle::getBattle();
+
+            $units = $battle->force->units;
+            foreach($units as $unit){
+                if($unit->forceId == SOVIET_FORCE){
+                    if($unit->hexagon->parent == "gameImages"){
+                        if($unit->supplied === false){
+                            $this->victoryPoints[3] += $unit->getUnmodifiedStrength();
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public function incrementTurn()
@@ -249,6 +267,7 @@ class kievVictoryCore extends victoryCore
 
     public function playerTurnChange($arg)
     {
+        parent::playerTurnChange($arg);
         $attackingId = $arg[0];
         $battle = Battle::getBattle();
         $mapData = $battle->mapData;

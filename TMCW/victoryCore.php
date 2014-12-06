@@ -60,6 +60,25 @@ class victoryCore
         }
     }
 
+    protected function checkVictory($attackingId, $battle){
+        if(!$this->gameOver){
+        }
+        return false;
+    }
+
+    public function playerTurnChange($arg){
+        $attackingId = $arg[0];
+        $battle = Battle::getBattle();
+
+        /* @var GameRules $gameRules */
+        $gameRules = $battle->gameRules;
+        $gameRules->flashMessages[] = "@hide crt";
+
+        if($this->checkVictory($attackingId,$battle)){
+            return;
+        }
+    }
+
     public function phaseChange()
     {
 
