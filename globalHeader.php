@@ -531,7 +531,7 @@ function initialize() {
     });
 
 
-    $(".unit").on('click', counterClick);
+    $(".unit").on('click touchstart', counterClick);
     $("#crt #odds span").on('click', function (event) {
         var col = $(event.target).attr('class');
         col = col.replace(/col/, '');
