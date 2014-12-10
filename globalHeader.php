@@ -7,6 +7,13 @@
     var zoomed = false;
     DR.globalZoom = 1;
 
+    window.addEventListener("load",function() {
+        // Set a timeout...
+        setTimeout(function(){
+            // Hide the address bar!
+            window.scrollTo(0, 1);
+        }, 0);
+    });
     $(document).ready(function () {
 
         DR.crtDetails = false;
