@@ -210,10 +210,10 @@
                             <div class="unit-numbers">5 - 4</div>
                         </div>
                         {/units}
-                        <div id="floatMessage">
-                            <header></header>
-                            <p></p>
-                        </div>
+                    </div>
+                    <div id="floatMessage">
+                        <header></header>
+                        <p></p>
                     </div>
                 </div>
             </div>
