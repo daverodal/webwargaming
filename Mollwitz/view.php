@@ -252,10 +252,10 @@
 
                     </div>
                     {/units}
+                </div>
                     <div id="floatMessage">
                         <header></header>
                         <p></p></div>
-                </div>
             </div>
         </div>
 

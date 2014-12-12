@@ -3,7 +3,7 @@
         body{
             background:#ccc;
             color:#333;
-            background: url("<?=base_url("js/British_Indian_Empire_1909_Imperial_Gazetteer_of_India.png")?>") #333 no-repeat;
+            background: url("<?=base_url("js/Battle_of_Chillianwalla.jpg")?>") #333 no-repeat;
             background-position: 25% 0;
             background-size:100%;
         }
@@ -91,3 +91,6 @@
         <a href="<?=site_url("wargame/play");?>">Back to lobby</a>
     </div>
 </div>
+<footer class="attribution">
+    By Not given [Public domain], <a target='blank' href="http://commons.wikimedia.org/wiki/File%3ABattle_of_Chillianwalla.jpg">via Wikimedia Commons</a>
+</footer>
