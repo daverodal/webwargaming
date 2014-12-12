@@ -778,7 +778,6 @@ function initialize() {
         DR.globalZoom = 1.0;
 //        doUserZoom();
         $("#zoom .defaultZoom").html(DR.globalZoom.toPrecision(precision));
-        debugger;
         DR.$panzoom.panzoom('reset');
     });
 
