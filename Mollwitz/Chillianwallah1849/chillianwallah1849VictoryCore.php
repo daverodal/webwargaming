@@ -79,11 +79,11 @@ class chillianwallah1849VictoryCore extends indiaVictoryCore
 
         if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
-            $britVic = 45;
+            $britVic = 50;
             if (($this->victoryPoints[BRITISH_FORCE] >= $britVic && ($this->victoryPoints[BRITISH_FORCE] - ($this->victoryPoints[SIKH_FORCE]) >= 15))) {
                 $britishWin = true;
             }
-            if (($this->victoryPoints[SIKH_FORCE] >= 30)) {
+            if (($this->victoryPoints[SIKH_FORCE] >= 50)) {
                 $sikhWin = true;
             }
             if ($turn == $gameRules->maxTurn + 1) {
