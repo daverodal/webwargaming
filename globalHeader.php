@@ -20,7 +20,7 @@
         DR.showArrows = false;
 
 
-        var $panzoom = $('#gameImages').panzoom({cursor: "normal"});
+        var $panzoom = $('#gameImages').panzoom({cursor: "normal", animate: true, onPan: function(e, panzoom){ DR.dragged = true;}});
         $panzoom.parent().on('mousewheel DOMMouseScroll MozMousePixelScroll', function (e) {
             console.log('wheel');
             e.preventDefault();
@@ -28,6 +28,12 @@
 
             var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
             var zoomLevel = $("#zoom .defaultZoom").html() - 0;
+            if(zoomLevel >= 2.0 && !zoomOut){
+                return;
+            }
+            if(zoomLevel <= 0.3 && zoomOut){
+                return;
+            }
             if (zoomLevel >= 1.0) {
                 precision = 2;
             }
@@ -39,6 +45,7 @@
                 zoomLevel += .1
                 $("#zoom .defaultZoom").html(zoomLevel.toPrecision(precision));
             }
+
             $panzoom.panzoom('zoom', zoomOut, {
                 increment: 0.1,
                 animate: false,
@@ -127,6 +134,7 @@
 
     });
     function fixItAll() {
+        DR.$panzoom.panzoom('resetDimensions');
         fixHeader();
 //    alert("WHY");
 //    fixCrt();
@@ -464,6 +472,9 @@ function doZoom(event) {
 }
 
 function counterClick(event) {
+    if(DR.dragged){
+        return;
+    }
     if (zoomed) {
         doZoom(event);
         return;
@@ -538,7 +549,8 @@ function initialize() {
     });
 
 
-    $(".unit").on('click touchstart', counterClick);
+    $(".unit").on('mousedown touchstart', function(){DR.dragged = false;});
+    $(".unit").on('mouseup touchend', counterClick);
     $("#crt #odds span").on('click', function (event) {
         var col = $(event.target).attr('class');
         col = col.replace(/col/, '');
@@ -550,11 +562,9 @@ function initialize() {
     $("#nextPhaseButton").on('click', nextPhaseMouseDown);
 //    $("#gameImages" ).draggable({stop:mapStop, distance:15});
     $("#gameImages #map").on("click", mapClick);
-    $("#floatMessage").draggable({
-        stop: function () {
-            $(this).attr('hasDragged', 'true');
-        }
-    });
+
+    $('#floatMessage').panzoom({cursor: "normal", disableZoom: true, onPan: function(e, panzoom){ DR.dragged = true;}});
+
     $("#Time").draggable();
     $("#crt").draggable().css({cursor: "move"});
     $("#muteButton").click(function () {

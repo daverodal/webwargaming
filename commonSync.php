@@ -277,6 +277,7 @@ x.register("force", function(force,data) {
 
             var x = $("#"+i).position().left;
             var y = $("#"+i).position().top;
+            DR.globalZoom = $(".defaultZoom").html() - 0;
             y /= DR.globalZoom;
             x /= DR.globalZoom;
 
