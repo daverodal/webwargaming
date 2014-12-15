@@ -20,7 +20,9 @@
         DR.showArrows = false;
 
 
-        var $panzoom = $('#gameImages').panzoom({cursor: "normal", animate: true, onPan: function(e, panzoom){ DR.dragged = true;}});
+        var $panzoom = $('#gameImages').panzoom({cursor: "normal", animate: true, onPan: function(e, panzoom){
+            DR.dragged = true;
+        }});
         $panzoom.parent().on('mousewheel DOMMouseScroll MozMousePixelScroll', function (e) {
             console.log('wheel');
             e.preventDefault();
@@ -549,8 +551,13 @@ function initialize() {
     });
 
 
-    $(".unit").on('mousedown touchstart', function(){DR.dragged = false;});
-    $(".unit").on('mouseup touchend', counterClick);
+    $(".unit").on('mousedown', function(){
+        DR.dragged = false;});
+    $(".unit").on('mouseup', counterClick);
+    $(".unit").on('touchstart',function(e){
+        DR.dragged = false;
+        counterClick(e);
+    });
     $("#crt #odds span").on('click', function (event) {
         var col = $(event.target).attr('class');
         col = col.replace(/col/, '');
