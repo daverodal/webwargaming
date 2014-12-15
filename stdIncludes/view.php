@@ -171,7 +171,7 @@
             <div style="display:none;" id="undeadpile"></div>
             <div id="gameViewer">
                 <div id="gameContainer">
-                    <div id="gameImages" class="ui-widget-content">
+                    <div id="gameImages">
                         <div id="svgWrapper">
                             <svg style="opacity:.6;position:absolute;" xmlns="http://www.w3.org/2000/svg">
                                 <defs>

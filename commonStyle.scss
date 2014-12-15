@@ -508,6 +508,7 @@ fieldset{
 }
 #gameImages{
   position: relative;
+  overflow: visible !important;
 }
 #gameViewer{
   position:fixed;

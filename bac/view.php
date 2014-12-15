@@ -133,7 +133,7 @@
         </div>
 
         <div id="gameViewer" style="position:relative;">
-            <div id="gameImages" class="ui-widget-content">
+            <div id="gameImages">
                 <img id="map" alt="map" src="<?php echo base_url().$mapUrl;?>"
                      style="position: relative;visibility: visible;z-index: 0;">
                 <?php $id = 0;?>

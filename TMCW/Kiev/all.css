@@ -164,7 +164,7 @@ h4:hover {
   backgroundColor: white; }
 
 .dark {
-  background-color: black; }
+  background-color: #000; }
 
 .blueUnit {
   background-color: #84b5ff; }
@@ -453,7 +453,7 @@ h4:hover {
 
 body {
   background: #eee;
-  color: #333333; }
+  color: #333; }
 
 #status {
   /*height:70px;*/
@@ -557,7 +557,8 @@ fieldset {
   width: 32px; }
 
 #gameImages {
-  position: relative; }
+  position: relative;
+  overflow: visible !important; }
 
 #gameViewer {
   position: fixed;
@@ -1015,7 +1016,7 @@ svg marker#head {
   text-shadow: 0px 0px 1px orange, 0px 0px 1px orange, 0px 0px 1px orange, 0px 0px 2px orange, 0px 0px 2px orange, 0px 0px 2px orange, 0px 0px 3px orange, 0px 0px 3px orange, 0px 0px 3px orange, 0px 0px 4px orange, 0px 0px 4px orange, 0px 0px 4px orange, 0px 0px 5px orange, 0px 0px 5px orange, 0px 0px 5px orange, 0px 0px 6px orange, 0px 0px 6px orange, 0px 0px 6px orange, 0px 0px 7px orange, 0px 0px 7px orange, 0px 0px 7px orange, 0px 0px 8px orange, 0px 0px 8px orange, 0px 0px 8px orange, 0px 0px 9px orange, 0px 0px 9px orange, 0px 0px 9px orange, 0px 0px 10px orange, 0px 0px 10px orange, 0px 0px 10px orange, 0px 0px 1px orange, 0px 0px 1px orange, 0px 0px 1px orange, 0px 0px 2px orange, 0px 0px 2px orange, 0px 0px 2px orange, 0px 0px 3px orange, 0px 0px 3px orange, 0px 0px 3px orange, 0px 0px 4px orange, 0px 0px 4px orange, 0px 0px 4px orange, 0px 0px 5px orange, 0px 0px 5px orange, 0px 0px 5px orange, 0px 0px 6px orange, 0px 0px 6px orange, 0px 0px 6px orange, 0px 0px 7px orange, 0px 0px 7px orange, 0px 0px 7px orange, 0px 0px 8px orange, 0px 0px 8px orange, 0px 0px 8px orange, 0px 0px 9px orange, 0px 0px 9px orange, 0px 0px 9px orange, 0px 0px 10px orange, 0px 0px 10px orange, 0px 0px 10px orange; }
 
 .specialHexesVP .loyalistVictoryPoints {
-  text-shadow: 0px 0px 1px #666666, 0px 0px 1px #666666, 0px 0px 1px #666666, 0px 0px 2px #666666, 0px 0px 2px #666666, 0px 0px 2px #666666, 0px 0px 3px #666666, 0px 0px 3px #666666, 0px 0px 3px #666666, 0px 0px 4px #666666, 0px 0px 4px #666666, 0px 0px 4px #666666, 0px 0px 5px #666666, 0px 0px 5px #666666, 0px 0px 5px #666666, 0px 0px 6px #666666, 0px 0px 6px #666666, 0px 0px 6px #666666, 0px 0px 7px #666666, 0px 0px 7px #666666, 0px 0px 7px #666666, 0px 0px 8px #666666, 0px 0px 8px #666666, 0px 0px 8px #666666, 0px 0px 9px #666666, 0px 0px 9px #666666, 0px 0px 9px #666666, 0px 0px 10px #666666, 0px 0px 10px #666666, 0px 0px 10px #666666, 0px 0px 1px #666666, 0px 0px 1px #666666, 0px 0px 1px #666666, 0px 0px 2px #666666, 0px 0px 2px #666666, 0px 0px 2px #666666, 0px 0px 3px #666666, 0px 0px 3px #666666, 0px 0px 3px #666666, 0px 0px 4px #666666, 0px 0px 4px #666666, 0px 0px 4px #666666, 0px 0px 5px #666666, 0px 0px 5px #666666, 0px 0px 5px #666666, 0px 0px 6px #666666, 0px 0px 6px #666666, 0px 0px 6px #666666, 0px 0px 7px #666666, 0px 0px 7px #666666, 0px 0px 7px #666666, 0px 0px 8px #666666, 0px 0px 8px #666666, 0px 0px 8px #666666, 0px 0px 9px #666666, 0px 0px 9px #666666, 0px 0px 9px #666666, 0px 0px 10px #666666, 0px 0px 10px #666666, 0px 0px 10px #666666; }
+  text-shadow: 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 10px #666, 0px 0px 10px #666, 0px 0px 10px #666, 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 10px #666, 0px 0px 10px #666, 0px 0px 10px #666; }
 
 /* RULES OVERRIDES */
 .gameLength {
@@ -1024,5 +1025,7 @@ svg marker#head {
   .gameLength::before {
     content: "11";
     color: #333333;
-    color: #333333;
+    color: #333;
     font-size: 16px; }
+
+/*# sourceMappingURL=all.css.map */

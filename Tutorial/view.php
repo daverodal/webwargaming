@@ -81,7 +81,7 @@
     <div id="rightCol">
 
         <div id="gameViewer" style="position:relative;">
-            <div id="gameImages" class="ui-widget-content">
+            <div id="gameImages">
                 <img id="map" style="position: relative;visibility: visible;z-index: 0; alt="map" src="<?php echo base_url().$mapUrl;?>">
                 <?php $id = 0;?>
                 {units}

@@ -137,7 +137,7 @@
             </div>
             <div id="gameViewer">
                 <div id="gameContainer">
-                    <div id="gameImages" class="ui-widget-content">
+                    <div id="gameImages">
                         <img id="map" alt="map" src="<?php echo base_url() . $mapUrl; ?>">
                         <?php $id = 0; ?>
                         {units}

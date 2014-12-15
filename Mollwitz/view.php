@@ -197,7 +197,7 @@
         </div>
         <div id="gameViewer">
             <div id="gameContainer">
-                <div id="gameImages" class="ui-widget-content">
+                <div id="gameImages">
                     <div id="svgWrapper">
                         <svg style="position:absolute;" xmlns="http://www.w3.org/2000/svg">
                             <defs>
