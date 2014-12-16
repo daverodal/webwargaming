@@ -477,6 +477,9 @@ function counterClick(event) {
     if(DR.dragged){
         return;
     }
+    if(event.which === 3){
+        return;
+    }
     if (zoomed) {
         doZoom(event);
         return;
