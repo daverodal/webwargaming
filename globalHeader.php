@@ -164,8 +164,8 @@
         var width = bodyWidth - 35;
 
 
-        $("#gameViewer").height(height);
-        $("#gameViewer").width(width);
+//        $("#gameViewer").height(height);
+//        $("#gameViewer").width(width);
     }
 </script>
 <?php include_once("commonSync.php"); ?>

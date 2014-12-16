@@ -1,5 +1,7 @@
 body {
-  min-width: 675px; }
+  min-width: 675px;
+  margin: 0;
+  padding: 0; }
 
 h2 #status {
   font-size: 16px; }
@@ -118,7 +120,7 @@ h4:hover {
 
 #header {
   position: fixed;
-  width: 99%;
+  width: 100%;
   top: 0px;
   /*background:#99cc99;*/
   /*background:rgb(132,181,255);*/
@@ -562,8 +564,6 @@ fieldset {
 
 #gameViewer {
   position: fixed;
-  border: 10px solid #555;
-  border-radius: 10px;
   overflow: hidden;
   background: #ccc;
   margin-bottom: 5px; }
