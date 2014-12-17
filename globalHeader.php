@@ -24,7 +24,6 @@
             DR.dragged = true;
         }});
         $panzoom.parent().on('mousewheel DOMMouseScroll MozMousePixelScroll', function (e) {
-            console.log('wheel');
             e.preventDefault();
             var delta = e.delta || e.originalEvent.wheelDelta;
 
@@ -53,8 +52,8 @@
                 animate: false,
                 focal: e
             });
-            DR.$panzoom = $panzoom;
         });
+        DR.$panzoom = $panzoom;
 
         $("#crtDetailsButton").on('click', function () {
             $('#crtDetails').toggle(function () {
@@ -136,16 +135,13 @@
 
     });
     function fixItAll() {
-        DR.$panzoom.panzoom('resetDimensions');
         fixHeader();
-//    alert("WHY");
-//    fixCrt();
+
     }
     function fixHeader() {
         height = $("#crtWrapper h4").height();
         $("#bottomHeader").css("height", height);
-//    $("#crtWrapper").animate({left:0},300);
-//    $("#crt").animate({left:0},300);
+
         var headerHeight = $("#header").height();
         $("#content").css("margin-top", $("#header").height() + 10);
         var bodyHeight = $(window).height();
@@ -162,6 +158,7 @@
         }
         var height = bodyHeight - deployHeight - deadHeight - headerHeight - 40;
         var width = bodyWidth - 35;
+        DR.$panzoom.panzoom('resetDimensions');
 
 
 //        $("#gameViewer").height(height);
@@ -850,7 +847,6 @@ function doUserZoom(event) {
 //        oX = window.innerWidth/2;
 //        oY = window.innerHeight/2;
 //        changeScale(DR.globalZoom);
-        console.log(event.pageX, event.target.x, vWidth, prevWidth);
     } else {
         var origHeight = vHeight = $('#gameViewer').height();
         var origWidth = vWidth = $('#gameViewer').width();

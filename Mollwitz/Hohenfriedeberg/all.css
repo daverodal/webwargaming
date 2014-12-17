@@ -166,7 +166,7 @@ h4:hover {
   backgroundColor: white; }
 
 .dark {
-  background-color: #000; }
+  background-color: black; }
 
 .blueUnit {
   background-color: #84b5ff; }
@@ -455,7 +455,7 @@ h4:hover {
 
 body {
   background: #eee;
-  color: #333; }
+  color: #333333; }
 
 #status {
   /*height:70px;*/
@@ -566,7 +566,8 @@ fieldset {
   position: fixed;
   overflow: hidden;
   background: #ccc;
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+  width: 100%; }
 
 #leftcol {
   /*float:left;
@@ -1132,5 +1133,3 @@ p.forceMarch {
 .prussian.specialHexes {
   background-color: #fffd7f;
   color: black; }
-
-/*# sourceMappingURL=all.css.map */
