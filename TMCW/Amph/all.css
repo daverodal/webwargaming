@@ -166,7 +166,7 @@ h4:hover {
   backgroundColor: white; }
 
 .dark {
-  background-color: black; }
+  background-color: #000; }
 
 .blueUnit {
   background-color: #84b5ff; }
@@ -455,7 +455,7 @@ h4:hover {
 
 body {
   background: #eee;
-  color: #333333; }
+  color: #333; }
 
 #status {
   /*height:70px;*/
@@ -643,7 +643,8 @@ fieldset {
   top: 0;
   z-index: 3;
   width: 32px;
-  height: 32px; }
+  height: 32px;
+  border: solid 3px black; }
 
 .unit .shadow_mask {
   top: 0px;
@@ -767,6 +768,15 @@ svg g {
     opacity: 1.0; }
 svg marker#head {
   fill: red; }
+
+.ruleComment {
+  font-style: italic;
+  margin-left: 10px;
+  color: #999; }
+
+.big {
+  font-size: 19px;
+  font-weight: bold; }
 
 /* Unit Styles */
 .playerOne {
@@ -923,14 +933,14 @@ svg marker#head {
   text-shadow: 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff; }
 
 .playerOne {
-  background: #55cc55;
-  border-color: #55cc55 !important; }
+  background: #5c5;
+  border-color: #5c5 !important; }
 
 .rebelFace, .playerOneFace {
-  color: #55cc55; }
+  color: #5c5; }
 
 .rebel {
-  background-color: #55cc55; }
+  background-color: #5c5; }
   .rebel .unit-desig {
     color: white; }
 
@@ -947,14 +957,14 @@ svg marker#head {
     color: white; }
 
 .playerThree {
-  background: #aaaaaa;
-  border-color: #aaaaaa !important; }
+  background: #aaa;
+  border-color: #aaa !important; }
 
 .loyalGuardsFace, .playerThreeFace {
-  color: #aaaaaa; }
+  color: #aaa; }
 
 .loyalGuards {
-  background-color: #aaaaaa; }
+  background-color: #aaa; }
   .loyalGuards .unit-desig {
     color: white; }
 
@@ -978,4 +988,6 @@ svg marker#head {
   text-shadow: 0px 0px 1px orange, 0px 0px 1px orange, 0px 0px 1px orange, 0px 0px 2px orange, 0px 0px 2px orange, 0px 0px 2px orange, 0px 0px 3px orange, 0px 0px 3px orange, 0px 0px 3px orange, 0px 0px 4px orange, 0px 0px 4px orange, 0px 0px 4px orange, 0px 0px 5px orange, 0px 0px 5px orange, 0px 0px 5px orange, 0px 0px 6px orange, 0px 0px 6px orange, 0px 0px 6px orange, 0px 0px 7px orange, 0px 0px 7px orange, 0px 0px 7px orange, 0px 0px 8px orange, 0px 0px 8px orange, 0px 0px 8px orange, 0px 0px 9px orange, 0px 0px 9px orange, 0px 0px 9px orange, 0px 0px 10px orange, 0px 0px 10px orange, 0px 0px 10px orange, 0px 0px 1px orange, 0px 0px 1px orange, 0px 0px 1px orange, 0px 0px 2px orange, 0px 0px 2px orange, 0px 0px 2px orange, 0px 0px 3px orange, 0px 0px 3px orange, 0px 0px 3px orange, 0px 0px 4px orange, 0px 0px 4px orange, 0px 0px 4px orange, 0px 0px 5px orange, 0px 0px 5px orange, 0px 0px 5px orange, 0px 0px 6px orange, 0px 0px 6px orange, 0px 0px 6px orange, 0px 0px 7px orange, 0px 0px 7px orange, 0px 0px 7px orange, 0px 0px 8px orange, 0px 0px 8px orange, 0px 0px 8px orange, 0px 0px 9px orange, 0px 0px 9px orange, 0px 0px 9px orange, 0px 0px 10px orange, 0px 0px 10px orange, 0px 0px 10px orange; }
 
 .specialHexesVP .loyalistVictoryPoints {
-  text-shadow: 0px 0px 1px #666666, 0px 0px 1px #666666, 0px 0px 1px #666666, 0px 0px 2px #666666, 0px 0px 2px #666666, 0px 0px 2px #666666, 0px 0px 3px #666666, 0px 0px 3px #666666, 0px 0px 3px #666666, 0px 0px 4px #666666, 0px 0px 4px #666666, 0px 0px 4px #666666, 0px 0px 5px #666666, 0px 0px 5px #666666, 0px 0px 5px #666666, 0px 0px 6px #666666, 0px 0px 6px #666666, 0px 0px 6px #666666, 0px 0px 7px #666666, 0px 0px 7px #666666, 0px 0px 7px #666666, 0px 0px 8px #666666, 0px 0px 8px #666666, 0px 0px 8px #666666, 0px 0px 9px #666666, 0px 0px 9px #666666, 0px 0px 9px #666666, 0px 0px 10px #666666, 0px 0px 10px #666666, 0px 0px 10px #666666, 0px 0px 1px #666666, 0px 0px 1px #666666, 0px 0px 1px #666666, 0px 0px 2px #666666, 0px 0px 2px #666666, 0px 0px 2px #666666, 0px 0px 3px #666666, 0px 0px 3px #666666, 0px 0px 3px #666666, 0px 0px 4px #666666, 0px 0px 4px #666666, 0px 0px 4px #666666, 0px 0px 5px #666666, 0px 0px 5px #666666, 0px 0px 5px #666666, 0px 0px 6px #666666, 0px 0px 6px #666666, 0px 0px 6px #666666, 0px 0px 7px #666666, 0px 0px 7px #666666, 0px 0px 7px #666666, 0px 0px 8px #666666, 0px 0px 8px #666666, 0px 0px 8px #666666, 0px 0px 9px #666666, 0px 0px 9px #666666, 0px 0px 9px #666666, 0px 0px 10px #666666, 0px 0px 10px #666666, 0px 0px 10px #666666; }
+  text-shadow: 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 10px #666, 0px 0px 10px #666, 0px 0px 10px #666, 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 10px #666, 0px 0px 10px #666, 0px 0px 10px #666; }
+
+/*# sourceMappingURL=all.css.map */

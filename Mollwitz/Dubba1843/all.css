@@ -166,7 +166,7 @@ h4:hover {
   backgroundColor: white; }
 
 .dark {
-  background-color: black; }
+  background-color: #000; }
 
 .blueUnit {
   background-color: #84b5ff; }
@@ -455,7 +455,7 @@ h4:hover {
 
 body {
   background: #eee;
-  color: #333333; }
+  color: #333; }
 
 #status {
   /*height:70px;*/
@@ -643,7 +643,8 @@ fieldset {
   top: 0;
   z-index: 3;
   width: 32px;
-  height: 32px; }
+  height: 32px;
+  border: solid 3px black; }
 
 .unit .shadow_mask {
   top: 0px;
@@ -767,6 +768,15 @@ svg g {
     opacity: 1.0; }
 svg marker#head {
   fill: red; }
+
+.ruleComment {
+  font-style: italic;
+  margin-left: 10px;
+  color: #999; }
+
+.big {
+  font-size: 19px;
+  font-weight: bold; }
 
 .unit {
   border: solid black;
@@ -1117,7 +1127,7 @@ p.forceMarch {
   color: #df5842; }
 
 .British .counterWrapper {
-  background-color: red; }
+  background-color: #f00; }
 
 .playerTwo {
   background: #c68100;
@@ -1143,3 +1153,5 @@ p.forceMarch {
 
 p.forceMarch, p.range {
   color: white; }
+
+/*# sourceMappingURL=all.css.map */
