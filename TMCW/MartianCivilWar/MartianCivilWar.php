@@ -21,7 +21,6 @@ class MartianCivilWar extends ModernLandBattle
     /* @var MapData $mapData */
     public $mapData;
     public $mapViewer;
-    public $playerData;
     public $force;
     public $terrain;
     public $moveRules;
@@ -40,10 +39,6 @@ class MartianCivilWar extends ModernLandBattle
     {
         global $force_name;
 
-        $playerData = array_shift($playerData);
-        foreach ($playerData as $k => $v) {
-            $$k = $v;
-        }
         @include_once "globalHeader.php";
         @include_once "tmcwHeader.php";
     }
@@ -92,7 +87,6 @@ class MartianCivilWar extends ModernLandBattle
         $data->gameRules = $this->gameRules->save();
         $data->combatRules = $this->combatRules->save();
         $data->players = $this->players;
-        $data->playerData = $this->playerData;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
         $data->terrainName = $this->terrainName;
@@ -354,7 +348,6 @@ class MartianCivilWar extends ModernLandBattle
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = $data->players;
-            $this->playerData = $data->playerData;
             $this->terrainName = $data->terrainName;
         } else {
             $this->arg = $arg;

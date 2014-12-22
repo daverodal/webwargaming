@@ -45,14 +45,7 @@ class JagCore extends LandBattle{
         $this->mapData->setSpecialHexes($mapHexes);
 
         $this->players = array("", "", "");
-        $this->playerData = new stdClass();
         for ($player = 0; $player <= 2; $player++) {
-            $this->playerData->${player} = new stdClass();
-            $this->playerData->${player}->mapWidth = "auto";
-            $this->playerData->${player}->mapHeight = "auto";
-            $this->playerData->${player}->unitSize = "32px";
-            $this->playerData->${player}->unitFontSize = "12px";
-            $this->playerData->${player}->unitMargin = "-21px";
             $this->mapViewer[$player]->setData($terrainInfo->originX , $terrainInfo->originY, // originX, originY
                 $terrainInfo->b, $terrainInfo->b, // top hexagon height, bottom hexagon height
                 $terrainInfo->a, $terrainInfo->c// hexagon edge width, hexagon center width

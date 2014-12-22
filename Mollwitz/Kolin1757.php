@@ -17,10 +17,6 @@ class Kolin1757 extends JagCore
     public
     static function getHeader($name, $playerData, $arg = false)
     {
-        $playerData = array_shift($playerData);
-        foreach ($playerData as $k => $v) {
-            $$k = $v;
-        }
         @include_once "globalHeader.php";
         @include_once "header.php";
         @include_once "Kolin1757Header.php";
@@ -59,7 +55,6 @@ class Kolin1757 extends JagCore
         $data->gameRules = $this->gameRules->save();
         $data->combatRules = $this->combatRules->save();
         $data->players = $this->players;
-        $data->playerData = $this->playerData;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
         $data->terrainName = "terrain-".get_class($this);
@@ -198,7 +193,6 @@ class Kolin1757 extends JagCore
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = $data->players;
-            $this->playerData = $data->playerData;
         } else {
             $this->arg = $arg;
             $this->scenario = $scenario;

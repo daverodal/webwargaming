@@ -22,7 +22,6 @@ class Amph extends ModernLandBattle
     /* @var MapData $mapData */
     public $mapData;
     public $mapViewer;
-    public $playerData;
     public $force;
     public $terrain;
     public $moveRules;
@@ -41,10 +40,6 @@ class Amph extends ModernLandBattle
     {
         global $force_name;
 
-        $playerData = array_shift($playerData);
-        foreach ($playerData as $k => $v) {
-            $$k = $v;
-        }
         @include_once "globalHeader.php";
         @include_once "amphHeader.php";
     }
@@ -74,7 +69,6 @@ class Amph extends ModernLandBattle
         $data->gameRules = $this->gameRules->save();
         $data->combatRules = $this->combatRules->save();
         $data->players = $this->players;
-        $data->playerData = $this->playerData;
         $data->display = $this->display;
         $data->specialHexA = $this->specialHexA;
         $data->victory = $this->victory->save();
@@ -167,7 +161,6 @@ class Amph extends ModernLandBattle
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = $data->players;
-            $this->playerData = $data->playerData;
         } else {
             $this->arg = $arg;
             $this->scenario = $scenario;

@@ -22,7 +22,6 @@ class Manchuria1976 extends ModernLandBattle
     /* @var MapData $mapData */
     public $mapData;
     public $mapViewer;
-    public $playerData;
     /* @var Force */
     public $force;
     public $terrain;
@@ -42,10 +41,6 @@ class Manchuria1976 extends ModernLandBattle
     {
         global $force_name;
 
-        $playerData = array_shift($playerData);
-        foreach ($playerData as $k => $v) {
-            $$k = $v;
-        }
         @include_once "globalHeader.php";
         @include_once "Manchuria1976Header.php";
     }
@@ -80,7 +75,6 @@ class Manchuria1976 extends ModernLandBattle
         $data->gameRules = $this->gameRules->save();
         $data->combatRules = $this->combatRules->save();
         $data->players = $this->players;
-        $data->playerData = $this->playerData;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
         $data->terrainName = "terrain-".get_class($this);
@@ -187,7 +181,6 @@ class Manchuria1976 extends ModernLandBattle
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = $data->players;
-            $this->playerData = $data->playerData;
         } else {
             $this->arg = $arg;
             $this->scenario = $scenario;

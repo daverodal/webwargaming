@@ -27,7 +27,6 @@ class Nomonhan extends ModernLandBattle
     /* @var MapData $mapData */
     public $mapData;
     public $mapViewer;
-    public $playerData;
     public $force;
     public $terrain;
     public $moveRules;
@@ -47,10 +46,6 @@ class Nomonhan extends ModernLandBattle
     {
         global $force_name;
 
-        $playerData = array_shift($playerData);
-        foreach ($playerData as $k => $v) {
-            $$k = $v;
-        }
         @include_once "globalHeader.php";
         @include_once "nomonhanHeader.php";
     }
@@ -76,7 +71,6 @@ class Nomonhan extends ModernLandBattle
         $data->gameRules = $this->gameRules->save();
         $data->combatRules = $this->combatRules->save();
         $data->players = $this->players;
-        $data->playerData = $this->playerData;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
         $data->terrainName = "terrain-".get_class($this);
@@ -230,7 +224,6 @@ class Nomonhan extends ModernLandBattle
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = $data->players;
-            $this->playerData = $data->playerData;
         } else {
             $this->arg = $arg;
             $this->scenario = $scenario;
@@ -257,15 +250,6 @@ class Nomonhan extends ModernLandBattle
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = array("", "", "");
-            $this->playerData = new stdClass();
-            for ($player = 0; $player <= 2; $player++) {
-                $this->playerData->${player} = new stdClass();
-                $this->playerData->${player}->mapWidth = "auto";
-                $this->playerData->${player}->mapHeight = "auto";
-                $this->playerData->${player}->unitSize = "32px";
-                $this->playerData->${player}->unitFontSize = "12px";
-                $this->playerData->${player}->unitMargin = "-21px";
-            }
 
             /* Observer, BLUE_FORCE, RED_FORCE */
             for($i = 0; $i < 3;$i++){

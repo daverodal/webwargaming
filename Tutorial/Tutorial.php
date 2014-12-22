@@ -22,7 +22,6 @@ class Tutorial extends Battle {
     /* @var Mapdata */
     public $mapData;
     public $mapViewer;
-    public $playerData;
     public $force;
     public $terrain;
     public $moveRules;
@@ -37,10 +36,7 @@ class Tutorial extends Battle {
 
     public $players;
     static function getHeader($name,$playerData){
-        $playerData = array_shift($playerData);
-        foreach($playerData as $k => $v){
-            $$k = $v;
-        }
+
         @include_once "globalHeader.php";
         @include_once "header.php";
 
@@ -53,29 +49,7 @@ class Tutorial extends Battle {
     static function playAs($name, $wargame){
         @include_once "playAs.php";
     }
-    public function resize($small,$player){
-        if($small){
-            $this->mapViewer[$player]->setData(60,76, // originX, originY
-                25, 25, // top hexagon height, bottom hexagon height
-                15, 30 // hexagon edge width, hexagon center width
-            );
-            $this->playerData->${player}->mapWidth = "auto";
-            $this->playerData->${player}->mapHeight = "auto";
-            $this->playerData->${player}->unitSize = "32px";
-            $this->playerData->${player}->unitFontSize = "12px";
-            $this->playerData->${player}->unitMargin = "-21px";
-        }else{
-            $this->mapViewer[$player]->setData(60,76, // originX, originY
-                25, 25, // top hexagon height, bottom hexagon height
-                15, 30 // hexagon edge width, hexagon center width
-            );
-            $this->playerData->${player}->mapWidth = "auto";
-            $this->playerData->${player}->mapHeight = "auto";
-            $this->playerData->${player}->unitSize = "40px";
-            $this->playerData->${player}->unitFontSize = "16px";
-            $this->playerData->${player}->unitMargin = "-23px";
-        }
-    }
+
     function save()
     {
         $data = new stdClass();
@@ -87,7 +61,6 @@ class Tutorial extends Battle {
         $data->gameRules = $this->gameRules->save();
         $data->combatRules = $this->combatRules->save();
         $data->players = $this->players;
-        $data->playerData = $this->playerData;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
         $data->terrainName = "terrain-".get_class($this).$this->arg;
@@ -143,7 +116,6 @@ class Tutorial extends Battle {
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = $data->players;
-            $this->playerData = $data->playerData;
         } else {
             $this->genTerrain = true;
             $this->victory = new Victory("Tutorial");
@@ -159,15 +131,7 @@ class Tutorial extends Battle {
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = array("","","");
-            $this->playerData = new stdClass();
-            for($player = 0;$player <= 2;$player++){
-                $this->playerData->${player} = new stdClass();
-            $this->playerData->${player}->mapWidth = "auto";
-            $this->playerData->${player}->mapHeight = "auto";
-            $this->playerData->${player}->unitSize = "32px";
-            $this->playerData->${player}->unitFontSize = "12px";
-            $this->playerData->${player}->unitMargin = "-21px";
-            }
+
 
 
             for($player = 0;$player <= 2;$player++){
