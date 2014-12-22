@@ -160,6 +160,7 @@
         var width = bodyWidth - 35;
         DR.$panzoom.panzoom('resetDimensions');
 
+        window.scrollTo(0, 1);
 
 //        $("#gameViewer").height(height);
 //        $("#gameViewer").width(width);
@@ -541,6 +542,7 @@ function playAudioBuzz() {
 
 function initialize() {
 
+    $('body').height($(window).height());
     // setup events --------------------------------------------
     $("#map").load(function () {
         var width = $("#gameImages #map").width();

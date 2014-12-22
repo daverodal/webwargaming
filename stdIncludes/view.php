@@ -145,9 +145,6 @@
             <span id="hideShow">Retired Units</span>
             <span id="showDeploy">Deploy/Staging Box</span>
             <span class="dropDown" id="showExited">Exited Units<div class="clear"></div></span>
-            <?php if ($scenario->showHexNums) { ?>
-                <span class="dropDown" id="showHexNums"> show/hide hex numbers</span>
-            <?php } ?>
         </div>
     </header>
     <div id="content">
