@@ -60,6 +60,8 @@ class Moskow extends ModernLandBattle
         $this->terrain->addTerrainFeature("road", "road", "r", 1, 0, 0, false);
         $this->terrain->addNatAltEntranceCost('road','soviet','inf',.3);
         $this->terrain->addNatAltEntranceCost('road','soviet','mudinf',1./12.);
+        $this->terrain->addNatAltEntranceCost('road','sovietguard','inf',.3);
+        $this->terrain->addNatAltEntranceCost('road','sovietguard','mudinf',1./12.);
 
     }
     function save()
