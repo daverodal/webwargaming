@@ -560,10 +560,10 @@ function initialize() {
 //        DR.dragged = true;
 //    });
     $(".unit").on('mouseup', counterClick);
-    $(".unit").on('touchstart',function(e){
-        DR.dragged = false;
-        counterClick(e);
-    });
+//    $(".unit").on('touchstart',function(e){
+//        DR.dragged = false;
+//        counterClick(e);
+//    });
 //    $(".unit").on('touchend', counterClick);
 
     $("#crt #odds span").on('click', function (event) {
