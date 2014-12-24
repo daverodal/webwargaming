@@ -104,6 +104,7 @@ class ModernLandBattle extends LandBattle
         $this->terrain->mapUrl = $mapUrl = $map->mapUrl;
         $this->terrain->maxCol = $maxCol = $map->numX;
         $this->terrain->maxRow = $maxRow = $map->numY;
+        $this->terrain->mapWidth = $map->mapWidth;
         $this->mapData->setData($maxCol, $maxRow, $mapUrl);
 
         Hexagon::setMinMax();
