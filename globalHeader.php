@@ -139,15 +139,17 @@
 
     }
     function fixHeader() {
+
         height = $("#crtWrapper h4").height();
         $("#bottomHeader").css("height", height);
 
         var headerHeight = $("#header").height();
-        $("#content").css("margin-top", $("#header").height() + 10);
+        $("#content").css("margin-top",0);
         var bodyHeight = $(window).height();
         var bodyWidth = $(window).width();
         var deployHeight = $("#deployWrapper:visible").height();
         var deadHeight = $("#deadpile:visible").height();
+        $("#gameViewer, #gameContainer").height(bodyHeight - (deployHeight+deadHeight + 20));
         if (deadHeight) {
             deadHeight += 10 + 10 + 4 + 4;
         }
@@ -472,6 +474,11 @@ function doZoom(event) {
 }
 
 function counterClick(event) {
+    debugger;
+    if(event.type === "touchstart"){
+        event.stopPropagation();
+        event.preventDefault();
+    }
     if(DR.dragged){
         return;
     }
@@ -542,7 +549,10 @@ function playAudioBuzz() {
 
 function initialize() {
 
-    $('body').height($(window).height());
+    /* yuck */
+    if(navigator.userAgent.match(/Android/)){
+        $('body').height($(window).height()  + 30);
+    }
     // setup events --------------------------------------------
     $("#map").load(function () {
         var width = $("#gameImages #map").width();
@@ -560,10 +570,10 @@ function initialize() {
 //        DR.dragged = true;
 //    });
     $(".unit").on('mouseup', counterClick);
-//    $(".unit").on('touchstart',function(e){
-//        DR.dragged = false;
-//        counterClick(e);
-//    });
+    $(".unit").on('touchstart',function(e){
+        DR.dragged = false;
+        counterClick(e);
+    });
 //    $(".unit").on('touchend', counterClick);
 
     $("#crt #odds span").on('click', function (event) {

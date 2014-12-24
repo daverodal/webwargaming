@@ -119,7 +119,7 @@ h4:hover {
   margin: 3px; }
 
 #header {
-  position: fixed;
+  position: static;
   width: 100%;
   top: 0px;
   /*background:#99cc99;*/
@@ -166,7 +166,7 @@ h4:hover {
   backgroundColor: white; }
 
 .dark {
-  background-color: #000; }
+  background-color: black; }
 
 .blueUnit {
   background-color: #84b5ff; }
@@ -455,7 +455,7 @@ h4:hover {
 
 body {
   background: #eee;
-  color: #333; }
+  color: #333333; }
 
 #status {
   /*height:70px;*/
@@ -984,5 +984,3 @@ footer.attribution {
   padding: 20px;
   margin: 20px;
   border: 3px solid gray; }
-
-/*# sourceMappingURL=all.css.map */

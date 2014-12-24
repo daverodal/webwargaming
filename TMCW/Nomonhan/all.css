@@ -119,7 +119,7 @@ h4:hover {
   margin: 3px; }
 
 #header {
-  position: fixed;
+  position: static;
   width: 100%;
   top: 0px;
   /*background:#99cc99;*/
@@ -166,7 +166,7 @@ h4:hover {
   backgroundColor: white; }
 
 .dark {
-  background-color: #000; }
+  background-color: black; }
 
 .blueUnit {
   background-color: #84b5ff; }
@@ -455,7 +455,7 @@ h4:hover {
 
 body {
   background: #eee;
-  color: #333; }
+  color: #333333; }
 
 #status {
   /*height:70px;*/
@@ -983,5 +983,3 @@ svg marker#head {
 
 .specialHexesVP .loyalistVictoryPoints {
   text-shadow: 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842; }
-
-/*# sourceMappingURL=all.css.map */
