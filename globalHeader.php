@@ -21,7 +21,11 @@
 
 
         var $panzoom = $('#gameImages').panzoom({cursor: "normal", animate: true, onPan: function(e, panzoom){
-            DR.dragged = true;
+            var xDrag = Math.abs(event.clientX - DR.clickX);
+            var yDrag = Math.abs(event.clientY - DR.clickY);
+            if(xDrag > 4 || yDrag > 4){
+                DR.dragged = true;
+            }
         }});
         $panzoom.parent().on('mousewheel DOMMouseScroll MozMousePixelScroll', function (e) {
             e.preventDefault();
@@ -474,11 +478,11 @@ function doZoom(event) {
 }
 
 function counterClick(event) {
-    debugger;
     if(event.type === "touchstart"){
         event.stopPropagation();
         event.preventDefault();
     }
+    DR.clickX = DR.clickY = undefined;
     if(DR.dragged){
         return;
     }
@@ -563,7 +567,9 @@ function initialize() {
     });
 
 
-    $(".unit").on('mousedown', function(){
+    $(".unit").on('mousedown', function(e){
+        DR.clickX = e.clientX;
+        DR.clickY = e.clientY;
         DR.dragged = false;
     });
 //    $(".unit").on('touchmove',function(e) {
@@ -793,7 +799,7 @@ function initialize() {
             $("#zoom .defaultZoom").html(DR.globalZoom.toPrecision(precision));
             DR.$panzoom.panzoom('zoom', true, {
                 increment: 0.1,
-                animate: false,
+                animate: false
             });
         }
     });
