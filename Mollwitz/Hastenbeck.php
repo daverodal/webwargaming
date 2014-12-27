@@ -125,7 +125,7 @@ class Hastenbeck extends JagCore
             for ($i = 0; $i < 1; $i++) {
                 $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
             }
-            for ($i = 0; $i < 5; $i++) {
+            for ($i = 0; $i < 4; $i++) {
                 $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, $artRange, "French", false, 'artillery');
             }
 
