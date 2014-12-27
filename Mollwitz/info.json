@@ -36,6 +36,7 @@
             },
             "hastenbeckredux": {
                 "description": "Hastenbeck redux, smaller french force. "
+                "redux": true
             }
         }
     },
