@@ -350,9 +350,6 @@ class MartianCivilWar extends ModernLandBattle
             $this->scenario = $scenario;
             $this->genTerrain = true;
             $this->terrainName = "terrain-MartianCivilWar";
-            if($this->scenario->hardCuneiform){
-                $this->terrainName = "terrain-SiegeOfCuneiform";
-            }
             $this->victory = new Victory("TMCW/MartianCivilWar");
             if ($scenario->supplyLen) {
                 $this->victory->setSupplyLen($scenario->supplyLen);
