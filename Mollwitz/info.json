@@ -30,7 +30,7 @@
                 "description": "Standard Scenario",
                 "showHexNums":true
             },
-            "hastenbeck2": {
+            "Hastenbeck2": {
                 "description": "Hastenbeck2 ",
                 "hastenbeck2":true
             },

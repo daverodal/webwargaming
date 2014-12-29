@@ -53,9 +53,9 @@ class Moskow extends ModernLandBattle
         @include_once "view.php";
     }
 
-    function terrainGen($hexDocId)
+    function terrainGen($mapDoc, $terrainDoc)
     {
-        parent::terrainGen($hexDocId);
+        parent::terrainGen($mapDoc, $terrainDoc);
         $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 1, false);
         $this->terrain->addTerrainFeature("road", "road", "r", 1, 0, 0, false);
         $this->terrain->addNatAltEntranceCost('road','soviet','inf',.3);

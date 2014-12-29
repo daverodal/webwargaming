@@ -53,18 +53,18 @@ class Chawinda1965 extends ModernLandBattle
         @include_once "view.php";
     }
 
-    function terrainInit($terrainName)
+    function terrainInit($terrainDoc)
     {
-        parent::terrainInit($terrainName);
+        parent::terrainInit($terrainDoc);
         $vp = count((array)$this->specialHexA);
         $this->victory->setInitialPakistaniVP($vp * 3);
     }
 
-    function terrainGen($hexDocId)
+    function terrainGen($mapDoc, $terrainDoc)
     {
         $this->terrain->addTerrainFeature("swamp", "swamp", "s", 2, 0, 1, true);
         $this->terrain->addAltEntranceCost('swamp', 'mech', 3);
-        parent::terrainGen($hexDocId);
+        parent::terrainGen($mapDoc, $terrainDoc);
         $this->terrain->addTerrainFeature("river", "river", "v", 0, 2, 1, true);
         $this->terrain->addAltEntranceCost("river", 'mech', 3);
         $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 1, false);

@@ -85,8 +85,8 @@ class Minden extends JagCore
         return $data;
     }
 
-    public function terrainInit($terrainName){
-        parent::terrainInit($terrainName);
+    public function terrainInit($terrainDoc){
+        parent::terrainInit($terrainDoc);
         $specialHexes = $this->mapData->specialHexes;
         foreach($specialHexes as $hexId => $forceId){
             if($forceId == ANGLO_FORCE){
@@ -96,8 +96,8 @@ class Minden extends JagCore
             }
         }
     }
-    public function terrainGen($hexDocId){
-        parent::terrainGen($hexDocId);
+    public function terrainGen($mapDoc, $terrainDoc){
+        parent::terrainGen($mapDoc, $terrainDoc);
 
         for ($col = 2200; $col <= 2500; $col += 100) {
             for ($row = 1; $row <= 18; $row++) {

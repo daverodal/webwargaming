@@ -63,16 +63,12 @@ class MartianCivilWar extends ModernLandBattle
         @include_once "playMulti.php";
     }
 
-    function terrainInit($terrainName){
-        parent::terrainInit($this->terrainName);
+    function terrainInit($terrainDoc){
+        parent::terrainInit($terrainDoc);
     }
 
-    function terrainGen($hexDocId){
-        $this->terrainName = "terrain-".get_class($this);
-        if($this->scenario->hardCuneiform){
-            $this->terrainName = "terrain-SiegeOfCuneiform";
-        }
-        parent::terrainGen($hexDocId);
+    function terrainGen($mapDoc, $terrainDoc){
+        parent::terrainGen($mapDoc, $terrainDoc);
     }
 
     function save()

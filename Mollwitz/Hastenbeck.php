@@ -54,16 +54,13 @@ class Hastenbeck extends JagCore
         @include_once "view.php";
     }
 
-    function terrainInit($terrainName){
-        parent::terrainInit($this->terrainName);
+    function terrainInit($terrainDoc){
+        parent::terrainInit($terrainDoc);
     }
 
-    function terrainGen($hexDocId){
+    function terrainGen($mapDoc, $terrainDoc){
         $this->terrainName = "terrain-".get_class($this);
-        if($this->scenario->hastenbeck2){
-            $this->terrainName = "terrain-hastenbeck2";
-        }
-        parent::terrainGen($hexDocId);
+        parent::terrainGen($mapDoc, $terrainDoc);
         $this->terrain->addTerrainFeature("forta","forta","f",0,0,0,false);
         $this->terrain->addNatAltEntranceCost('forta','French','artillery','blocked');
         $this->terrain->addNatAltEntranceCost('forta','French','cavalry','blocked');

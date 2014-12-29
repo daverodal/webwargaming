@@ -64,7 +64,7 @@ class RetreatOne extends ModernLandBattle
         @include_once "view.php";
     }
 
-    function terrainGen($hexDocId){
+    function terrainGen($mapDoc, $terrainDoc){
         // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
         $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
         $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
@@ -82,7 +82,7 @@ class RetreatOne extends ModernLandBattle
         $this->terrain->addTerrainFeature("wadi", "wadi", "w", 0, 1, 1, false);
         $this->terrain->addAltEntranceCost("roughone", "mech", 6);
         $this->terrain->addAltEntranceCost("roughtwo", "mech", "blocked");
-        parent::terrainGen($hexDocId);
+        parent::terrainGen($mapDoc, $terrainDoc);
     }
     function save()
     {

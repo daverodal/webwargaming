@@ -155,9 +155,9 @@ class Nomonhan extends ModernLandBattle
 
     }
 
-    function terrainGen($hexDocId)
+    function terrainGen($mapDoc, $terrainDoc)
     {
-        parent::terrainGen($hexDocId);
+        parent::terrainGen($mapDoc, $terrainDoc);
 
         // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
         $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);

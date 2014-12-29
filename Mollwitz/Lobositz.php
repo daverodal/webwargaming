@@ -55,8 +55,8 @@ class Lobositz extends JagCore
         @include_once "view.php";
     }
 
-    public function terrainInit($terrainName){
-        parent::terrainInit($terrainName);
+    public function terrainInit($terrainDoc){
+        parent::terrainInit($terrainDoc);
         $this->prussianSpecialHexes = $this->specialHexA;
         $this->austrianSpecialHexes = $this->specialHexB;
     }

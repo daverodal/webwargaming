@@ -62,8 +62,8 @@ class Burkersdorf extends JagCore
     }
 
 
-    public function terrainInit($terrainName){
-        parent::terrainInit($terrainName);
+    public function terrainInit($terrainDoc){
+        parent::terrainInit($terrainDoc);
         $this->cities = $this->specialHexA;
         $this->loc = $this->specialHexB;
     }

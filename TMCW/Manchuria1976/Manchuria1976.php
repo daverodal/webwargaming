@@ -115,8 +115,8 @@ class Manchuria1976 extends ModernLandBattle
         return true;
     }
 
-    function terrainGen($hexDocId){
-        parent::TerrainGen($hexDocId);
+    function terrainGen($mapDoc, $terrainDoc){
+        parent::TerrainGen($mapDoc, $terrainDoc);
         $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
         $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
         $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);

@@ -53,11 +53,11 @@ class Kiev extends ModernLandBattle
         @include_once "view.php";
     }
 
-    function terrainGen($hexDocId)
+    function terrainGen($mapDoc, $terrainDoc)
     {
         $this->terrain->addTerrainFeature("swamp", "swamp", "s", 2, 0, 1, true);
         $this->terrain->addAltEntranceCost('swamp', 'mech', 3);
-        parent::terrainGen($hexDocId);
+        parent::terrainGen($mapDoc, $terrainDoc);
     }
     function save()
     {

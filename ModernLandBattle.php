@@ -28,12 +28,8 @@ class ModernLandBattle extends LandBattle
     /*
      * terrainInit() gets called during game init, from unitInit(). It happens as a new game gets started.
      */
-    function terrainInit($terrainName)
+    function terrainInit($terrainDoc)
     {
-        $CI =& get_instance();
-        try{
-        $terrainDoc = $CI->couchsag->get($terrainName);
-        }catch(Exception $e){var_dump($e->getMessage());}
         $terrainInfo = $terrainDoc->terrain;
 
         $specialHexes = $terrainInfo->specialHexes ? $terrainInfo->specialHexes : [];
@@ -71,7 +67,7 @@ class ModernLandBattle extends LandBattle
      * related to a game start or a game file. It just generates the terrain info that gets saved to the
      * file terrain-Gamename
      */
-    function terrainGen($hexDocId)
+    function terrainGen($mapDoc, $terrainDoc)
     {
         // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
         $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
@@ -94,12 +90,8 @@ class ModernLandBattle extends LandBattle
         $this->terrain->addNatAltEntranceCost("mine", "rebel", 'mech', 2);
         $this->terrain->addNatAltEntranceCost("mine", "rebel", 'inf', 1);
 
-        $CI =& get_instance();
-        $CI->load->model('rest/rest_model');
-        $terrainDoc = $CI->rest_model->get($hexDocId);
         $terrainArr = json_decode($terrainDoc->hexStr->hexEncodedStr);
         $mapId = $terrainDoc->hexStr->map;
-        $mapDoc = $CI->rest_model->get($mapId);
         $map = $mapDoc->map;
         $this->terrain->mapUrl = $mapUrl = $map->mapUrl;
         $this->terrain->maxCol = $maxCol = $map->numX;

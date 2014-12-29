@@ -56,8 +56,8 @@ class Malplaquet extends JagCore
         @include_once "view.php";
     }
 
-    public function terrainInit($terrainName){
-        parent::terrainInit($terrainName);
+    public function terrainInit($terrainDoc){
+        parent::terrainInit($terrainDoc);
         $this->malplaquet = $this->specialHexA;
         $this->otherCities = $this->specialHexB;
     }

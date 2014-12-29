@@ -242,7 +242,7 @@ class NapoleonsTrainingAcademy extends Battle {
   * related to a game start or a game file. It just generates the terrain info that gets saved to the
   * file terrain-Gamename
   */
-    function terrainGen($hexDocId)
+    function terrainGen($mapDoc, $terrainDoc)
     {
         // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
         $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
@@ -265,12 +265,9 @@ class NapoleonsTrainingAcademy extends Battle {
         $this->terrain->addNatAltEntranceCost("mine", "rebel", 'mech', 2);
         $this->terrain->addNatAltEntranceCost("mine", "rebel", 'inf', 1);
 
-        $CI =& get_instance();
-        $CI->load->model('rest/rest_model');
-        $terrainDoc = $CI->rest_model->get($hexDocId);
+
         $terrainArr = json_decode($terrainDoc->hexStr->hexEncodedStr);
-        $mapId = $terrainDoc->hexStr->map;
-        $mapDoc = $CI->rest_model->get($mapId);
+
         $map = $mapDoc->map;
         $this->terrain->mapUrl = $mapUrl = $map->mapUrl;
         $this->terrain->maxCol = $maxCol = $map->numX;

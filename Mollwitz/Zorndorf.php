@@ -53,8 +53,8 @@ class Zorndorf extends JagCore
         @include_once "view.php";
     }
 
-    function terrainGen($hexDocId){
-        parent::terrainGen($hexDocId);
+    function terrainGen($mapDoc, $terrainDoc){
+        parent::terrainGen($mapDoc, $terrainDoc);
         $this->terrain->addTerrainFeature("river", "river", "v", 0, 2, 0, false);
     }
 

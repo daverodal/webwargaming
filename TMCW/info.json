@@ -23,6 +23,14 @@
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
                 "supplyLen": 8
+            },
+            "HardCuneiform": {
+                "description": "Rebel closes in on fortified Cuneiform.",
+                "supply": true,
+                "loyalMechMove": 8,
+                "loyalExtraInf": true,
+                "supplyLen": 8,
+                "hardCuneiform": true
             }
         }
     },

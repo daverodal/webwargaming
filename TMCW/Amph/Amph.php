@@ -52,9 +52,9 @@ class Amph extends ModernLandBattle
         @include_once "view.php";
     }
 
-    function terrainGen($hexDocId)
+    function terrainGen($mapDoc, $terrainDoc)
     {
-        parent::terrainGen($hexDocId);
+        parent::terrainGen($mapDoc, $terrainDoc);
         $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 1, false);
     }
     function save()
