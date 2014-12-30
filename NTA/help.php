@@ -273,97 +273,21 @@ be moved into that hex. This must be done before the next attack is resolved. Ar
 
 </ul>
 
-
-<h2>Setting Up</h2>
-
-<h4>Historical set up (The Prussians Probably Lose)</h4>
-<ul>
-    <li>The Russian player sets up first.</li>
-    <li>He must deploy an artillery unit on the hill north of Norkitten Forrest</li>
-
-    <li>He must deploy a cavalry unit on each hex marked RC north of Norkitten Forrest and south of the Alm creek.</li>
-
-    <li>The balance of his units may be deployed on any hex marked "R" and or east of the line of Hexes marked "R"
-        running from the Alm Creek north to the board edge.
-    </li>
-
-    <li>The Prussian Player sets up after the Russian player is finished setting up</li>
-
-    <li>He must place a Prussian Cavalry unit on each hex marked "PC" North of Gross Jagersdorf and South of the Alm
-        Creek.
-    </li>
-
-    <li>The Balance of his units must be deployed on Hexes marked "P" and or within the line of hexes marked "P" around
-        Gross Jagersdorf.
-    </li>
-</ul>
-<h4>Attempt at balance Set up Variant</h4>
-
-<p>The Russian player removes from his OOB 1 artillery unit and 4 other units of his choice. If any are cavalry he is
-    not obligated to cover all "RC" hexes though he must cover as many as he can. He must always place an artillery unit
-    on the hill North of the Norkitten woods.</p>
-
 <h2>Victory Conditions</h2>
-<h4>The Game ends instantly at the end of any Turn when one or more of the following conditions applies. Mutual
-    victories are a Draw</h4>
-<ol>
-    <li> At the end of any turn that the Prussian player has lost an accumulated total of units with unmodified combat
-        strengths of 20 Russian victory.
-    </li>
-    <li>At the end of any turn that the Russian player has lost an accumulated total of units with unmodified combat
-        strengths of 25 Prussian victory.
-    </li>
+<h4>The game ends at the end of turn 7. The player last occupied or passed through the "tree of victory" (Arbre de la Victoire) wins the game.
+    If nobody passed through it, the game is a tie</h4>
 
-    <li>There are no Russian units between the Alm and Litten creeks and there is a Prussian Unit on either hex of the
-        East most Bridge of Alm creek. Prussian Victory
-    </li>
-
-    <li>There are no Russian units in the Norkitten forest or it's clearing. Prussian Victory.</li>
-
-
-    <li>Any Prussian turn concludes with no Prussian units within 5 hexes of Gross Jagersdorf (inclusive) and north of
-        the Alt Creek. Russian Victory
-    </li>
-
-    <li>Turn 12 concludes with none of the above conditions met. Draw</li>
-</ol>
-
-<h2>Alternate Victory Conditions</h2>
-<h4>Use with or without the reduced Russian <abbr title="Order Of Battle">OOB</abbr></h4>
-<ol>
-    <li>
-        The Prussian player has lost an accumulated total of units with unmodified combat strengths of 25 Russian
-        Victory.
-    </li>
-    <li>
-        The Russian player has lost an accumulated total of units with unmodified combat strengths of 25 Prussian
-        Victory.
-    </li>
-    <li>
-        There are more Prussian units than Russian units between the Alm and Litten creeks and there is a Prussian Unit
-        on either hex of the East most Bridge of Alm creek. Prussian Victory
-    </li>
-    <li>
-        That player with the most units on Norkitten woods hexes (including the clearing and hill hex) at the end of
-        turn 10 wins.
-    </li>
-    <li>
-        Any Prussian turn concludes with no Prussian units within 5 hexes of Gross Jagersdorf (inclusive) and north of
-        the Alt Creek. Russian Victory
-    </li>
-    <li>
-        Turn 10 concludes with none of the above conditions met. Draw
-    </li>
-</ol>
 
 <div id="credits">
-    <h2><cite>Gross Jagersdorf</cite></h2>
-    <h4>Design Credits</h4>
+    <h2><cite>Napoleons Training Academy</cite></h2>
+    <h3>Design Credits</h3>
 
     <h4>Game Design:</h4>
-    Lance Runolfsson
-    <h4>Graphics and Rules:</h4>
-    <site>Lance Runolfsson</site>
+    David M. Rodal
+    <h4>Graphics:</h4>
+    David M. Rodal
+    <h4>Rules:</h4>
+    <site>David M. Rodal, based off of a game created by Lance Runolfsson</site>
     <h4>HTML 5 Version:</h4>
     David M. Rodal
 </div>
