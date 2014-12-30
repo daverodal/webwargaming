@@ -67,6 +67,52 @@ class Hastenbeck extends JagCore
         $this->terrain->addNatAltEntranceCost('forta','French','infantry','blocked');
     }
 
+
+    public function specialHexChange($args)
+    {
+        $battle = Battle::getBattle();
+
+        list($mapHexName, $forceId) = $args;
+        if(in_array($mapHexName,$battle->specialHexA)){
+            if ($forceId == ALLIED_FORCE) {
+                $this->victoryPoints[ALLIED_FORCE]  += 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+5 Allied vp</span>";
+            }
+            if ($forceId == FRENCH_FORCE) {
+                $this->victoryPoints[ALLIED_FORCE]  -= 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-5 Allied vp</span>";
+            }
+        }
+        if(in_array($mapHexName,$battle->specialHexB)){
+            $vp = 5;
+
+            if ($forceId == FRENCH_FORCE) {
+                $this->victoryPoints[FRENCH_FORCE]  += $vp;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>+$vp French vp</span>";
+            }
+            if ($forceId == ALLIED_FORCE) {
+                $this->victoryPoints[FRENCH_FORCE]  -= $vp;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>-$vp French vp</span>";
+            }
+        }
+        if(in_array($mapHexName,$battle->specialHexC)){
+            $vp = 5;
+
+            if ($forceId == FRENCH_FORCE) {
+                $this->victoryPoints[FRENCH_FORCE]  += $vp;
+                $this->victoryPoints[ALLIED_FORCE]  -= $vp;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>+$vp French vp</span>";
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-$vp Allied vp</span>";
+            }
+            if ($forceId == ALLIED_FORCE) {
+                $this->victoryPoints[FRENCH_FORCE]  -= $vp;
+                $this->victoryPoints[ALLIED_FORCE]  += $vp;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>-$vp French vp</span>";
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+$vp Allied vp</span>";
+            }
+        }
+    }
+
     function save()
     {
         $data = new stdClass();
