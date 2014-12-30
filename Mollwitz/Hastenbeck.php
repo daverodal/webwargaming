@@ -87,8 +87,9 @@ class Hastenbeck extends JagCore
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;
         $data->game = $this->game;
-        $data->cities = $this->cities;
-        $data->loc = $this->loc;
+        $data->specialHexA = $this->specialHexA;
+        $data->specialHexB = $this->specialHexB;
+        $data->specialHexC = $this->specialHexC;
         if ($this->genTerrain) {
             $data->terrain = $this->terrain;
         }
@@ -197,6 +198,9 @@ class Hastenbeck extends JagCore
             $this->cities = $data->cities;
             $this->loc = $data->loc;
             $this->game = $data->game;
+            $this->specialHexA = $data->specialHexA;
+            $this->specialHexB = $data->specialHexB;
+            $this->specialHexC = $data->specialHexC;
             $this->genTerrain = false;
             $this->terrainName = $data->terrainName;
             $this->victory = new Victory("Mollwitz/Hastenbeck/hastenbeckVictoryCore.php", $data);
