@@ -17,7 +17,7 @@ class hastenbeckVictoryCore extends victoryCore
             $this->victoryPoints = $data->victory->victoryPoints;
             $this->gameOver = $data->victory->gameOver;
         } else {
-            $this->victoryPoints = array(0, 20, 0);
+            $this->victoryPoints = array(0, 0, 20);
             $this->movementCache = new stdClass();
             $this->gameOver = false;
 
