@@ -24,7 +24,6 @@ class Burkersdorf extends JagCore
     public $prompt;
     public $display;
     public $victory;
-    public $genTerrain;
     public $cities;
     public $loc;
 
@@ -81,16 +80,12 @@ class Burkersdorf extends JagCore
         $data->players = $this->players;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-".get_class($this);
-        $data->genTerrain = $this->genTerrain;
+        $data->terrainName = $this->terrainName;
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;
         $data->game = $this->game;
         $data->cities = $this->cities;
         $data->loc = $this->loc;
-        if ($this->genTerrain) {
-            $data->terrain = $this->terrain;
-        }
         return $data;
     }
 
@@ -156,10 +151,10 @@ class Burkersdorf extends JagCore
         if ($data) {
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
+            $this->terrainName = $data->terrainName;
             $this->cities = $data->cities;
             $this->loc = $data->loc;
             $this->game = $data->game;
-            $this->genTerrain = false;
             $this->victory = new Victory("Mollwitz/Burkersdorf/burkersdorfVictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
@@ -177,7 +172,6 @@ class Burkersdorf extends JagCore
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->game = $game;
-            $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Burkersdorf/burkersdorfVictoryCore.php");
 
             $this->mapData->blocksZoc->blocked = true;

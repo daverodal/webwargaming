@@ -31,7 +31,6 @@ class Chawinda1965 extends ModernLandBattle
     public $prompt;
     public $display;
     public $victory;
-    public $genTerrain = false;
     public $arg;
     public $scenario;
 
@@ -87,11 +86,8 @@ class Chawinda1965 extends ModernLandBattle
         $data->specialHexB = $this->specialHexB;
         $data->specialHexC = $this->specialHexC;
         $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-" . get_class($this);
-        $data->genTerrain = $this->genTerrain;
-        if ($this->genTerrain) {
-            $data->terrain = $this->terrain;
-        }
+        $data->terrainName = $this->terrainName;
+
         return $data;
     }
 
@@ -160,7 +156,7 @@ class Chawinda1965 extends ModernLandBattle
             $this->specialHexB = $data->specialHexB;
             $this->specialHexC = $data->specialHexC;
             $this->scenario = $data->scenario;
-            $this->genTerrain = false;
+            $this->terrainName = $data->terrainName;
             $this->victory = new Victory("TMCW/Chawinda1965/chawinda1965VictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
@@ -176,7 +172,6 @@ class Chawinda1965 extends ModernLandBattle
         } else {
             $this->arg = $arg;
             $this->scenario = $scenario;
-            $this->genTerrain = true;
 
             $this->victory = new Victory("TMCW/Chawinda1965/chawinda1965VictoryCore.php");
             if ($scenario->supplyLen) {

@@ -27,7 +27,6 @@ class Malplaquet extends JagCore
     public $prompt;
     public $display;
     public $victory;
-    public $genTerrain;
     public $malplaquet;
     public $otherCities;
 
@@ -74,16 +73,13 @@ class Malplaquet extends JagCore
         $data->players = $this->players;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-".get_class($this);
-        $data->genTerrain = $this->genTerrain;
+        $data->terrainName = $this->terrainName;
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;
         $data->game = $this->game;
         $data->malplaquet = $this->malplaquet;
         $data->otherCities = $this->otherCities;
-        if ($this->genTerrain) {
-            $data->terrain = $this->terrain;
-        }
+
         return $data;
     }
 
@@ -128,10 +124,10 @@ class Malplaquet extends JagCore
         if ($data) {
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
+            $this->terrainName = $data->terrainName;
             $this->malplaquet = $data->malplaquet;
             $this->otherCities = $data->otherCities;
             $this->game = $data->game;
-            $this->genTerrain = false;
             $this->victory = new Victory("Mollwitz/Malplaquet/malplaquetVictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
@@ -149,7 +145,6 @@ class Malplaquet extends JagCore
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->game = $game;
-            $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Malplaquet/malplaquetVictoryCore.php");
 
             $this->mapData->blocksZoc->blocked = true;

@@ -31,7 +31,6 @@ class Moskow extends ModernLandBattle
     public $prompt;
     public $display;
     public $victory;
-    public $genTerrain = false;
     public $arg;
     public $scenario;
 
@@ -66,26 +65,11 @@ class Moskow extends ModernLandBattle
     }
     function save()
     {
-        $data = new stdClass();
-        $data->arg = $this->arg;
-        $data->scenario = $this->scenario;
-        $data->mapData = $this->mapData;
-        $data->mapViewer = $this->mapViewer;
-        $data->moveRules = $this->moveRules->save();
-        $data->force = $this->force;
-        $data->gameRules = $this->gameRules->save();
-        $data->combatRules = $this->combatRules->save();
-        $data->players = $this->players;
-        $data->display = $this->display;
+
+        $data = parent::save();
         $data->specialHexA = $this->specialHexA;
         $data->specialHexB = $this->specialHexB;
         $data->specialHexC = $this->specialHexC;
-        $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-" . get_class($this);
-        $data->genTerrain = $this->genTerrain;
-        if ($this->genTerrain) {
-            $data->terrain = $this->terrain;
-        }
         return $data;
     }
 
@@ -159,7 +143,7 @@ class Moskow extends ModernLandBattle
             $this->specialHexB = $data->specialHexB;
             $this->specialHexC = $data->specialHexC;
             $this->scenario = $data->scenario;
-            $this->genTerrain = false;
+            $this->terrainName = $data->terrainName;
             $this->victory = new Victory("TMCW/Moskow/moskowVictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
@@ -175,7 +159,6 @@ class Moskow extends ModernLandBattle
         } else {
             $this->arg = $arg;
             $this->scenario = $scenario;
-            $this->genTerrain = true;
 
             $this->victory = new Victory("TMCW/Moskow/moskowVictoryCore.php");
             if ($scenario->supplyLen) {

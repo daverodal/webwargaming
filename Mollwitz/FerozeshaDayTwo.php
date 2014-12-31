@@ -56,15 +56,12 @@ class FerozeshaDayTwo extends IndiaCore
         $data->players = $this->players;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-".get_class($this);
-        $data->genTerrain = $this->genTerrain;
+        $data->terrainName = $this->terrainName;
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;
         $data->game = $this->game;
         $data->roadHex = $this->roadHex;
-        if ($this->genTerrain) {
-            $data->terrain = $this->terrain;
-        }
+
         return $data;
     }
 
@@ -118,9 +115,9 @@ class FerozeshaDayTwo extends IndiaCore
         if ($data) {
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
+            $this->terrainName = $data->terrainName;
             $this->roadHex = $data->roadHex;
             $this->game = $data->game;
-            $this->genTerrain = false;
             $this->victory = new Victory("Mollwitz/Ferozesha/ferozesha2VictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
@@ -138,14 +135,9 @@ class FerozeshaDayTwo extends IndiaCore
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->game = $game;
-            $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Ferozesha/ferozesha2VictoryCore.php");
 
-//            if($scenario->dayTwo){
-//                $this->mapData->setData(33, 21, "js/Ferozesha2Small.png");
-//            }else{
-//                $this->mapData->setData(33, 21, "js/Ferozesha1Small.png");
-//            }
+
             $this->mapData->blocksZoc->blocked = true;
             $this->mapData->blocksZoc->blocksnonroad = true;
 
@@ -153,9 +145,7 @@ class FerozeshaDayTwo extends IndiaCore
             $this->display = new Display();
             $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
             $this->force = new Force();
-//            $this->force->combatRequired = true;
             $this->terrain = new Terrain();
-//            $this->terrain->setMaxHex("2223");
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->moveRules->enterZoc = "stop";
             $this->moveRules->exitZoc = "stop";
@@ -182,11 +172,9 @@ class FerozeshaDayTwo extends IndiaCore
             $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
 
-//            $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
 
-//            $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
 

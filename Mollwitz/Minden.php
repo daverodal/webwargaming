@@ -30,7 +30,6 @@ class Minden extends JagCore
     public $prompt;
     public $display;
     public $victory;
-    public $genTerrain;
     public $angloSpecialHexes;
     public $frenchSpecialHexes;
 
@@ -72,16 +71,13 @@ class Minden extends JagCore
         $data->players = $this->players;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-".get_class($this);
-        $data->genTerrain = $this->genTerrain;
+        $data->terrainName = $this->terrainName;
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;
         $data->game = $this->game;
         $data->angloSpecialHexes = $this->angloSpecialHexes;
         $data->frenchSpecialHexes = $this->frenchSpecialHexes;
-        if ($this->genTerrain) {
-            $data->terrain = $this->terrain;
-        }
+
         return $data;
     }
 
@@ -165,10 +161,10 @@ class Minden extends JagCore
         if ($data) {
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
+            $this->terrainName = $data->terrainName;
             $this->angloSpecialHexes = $data->angloSpecialHexes;
             $this->frenchSpecialHexes = $data->frenchSpecialHexes;
             $this->game = $data->game;
-            $this->genTerrain = false;
             $this->victory = new Victory("Mollwitz/Minden/mindenVictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
@@ -186,7 +182,6 @@ class Minden extends JagCore
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->game = $game;
-            $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Minden/mindenVictoryCore.php");
 
             $this->mapData->blocksZoc->blocked = true;

@@ -31,7 +31,6 @@ class Manchuria1976 extends ModernLandBattle
     public $prompt;
     public $display;
     public $victory;
-    public $genTerrain = false;
     public $arg;
     public $scenario;
 
@@ -65,24 +64,8 @@ class Manchuria1976 extends ModernLandBattle
 
     function save()
     {
-        $data = new stdClass();
-        $data->arg = $this->arg;
-        $data->scenario = $this->scenario;
-        $data->mapData = $this->mapData;
-        $data->mapViewer = $this->mapViewer;
-        $data->moveRules = $this->moveRules->save();
-        $data->force = $this->force;
-        $data->gameRules = $this->gameRules->save();
-        $data->combatRules = $this->combatRules->save();
-        $data->players = $this->players;
-        $data->display = $this->display;
-        $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-".get_class($this);
+        $data = parent::save();
         $data->specialHexA = $this->specialHexA;
-        $data->genTerrain = $this->genTerrain;
-        if ($this->genTerrain) {
-            $data->terrain = $this->terrain;
-        }
         return $data;
     }
 
@@ -168,7 +151,7 @@ class Manchuria1976 extends ModernLandBattle
             $this->specialHexA = $data->specialHexA;
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
-            $this->genTerrain = false;
+            $this->terrainName = $data->terrainName;
             $this->victory = new Victory("TMCW/Manchuria1976", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
@@ -184,7 +167,6 @@ class Manchuria1976 extends ModernLandBattle
         } else {
             $this->arg = $arg;
             $this->scenario = $scenario;
-            $this->genTerrain = true;
             $this->victory = new Victory("TMCW/Manchuria1976");
             $this->display = new Display();
 

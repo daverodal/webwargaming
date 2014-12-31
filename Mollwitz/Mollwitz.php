@@ -24,7 +24,6 @@ class Mollwitz extends JagCore
     public $prompt;
     public $display;
     public $victory;
-    public $genTerrain;
 
 
     public $players;
@@ -62,14 +61,11 @@ class Mollwitz extends JagCore
         $data->players = $this->players;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-".get_class($this);
-        $data->genTerrain = $this->genTerrain;
+        $data->terrainName = $this->terrainName;
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;
         $data->game = $this->game;
-        if ($this->genTerrain) {
-            $data->terrain = $this->terrain;
-        }
+
         return $data;
     }
 
@@ -154,8 +150,8 @@ class Mollwitz extends JagCore
         if ($data) {
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
+            $this->terrainName = $data->terrainName;
             $this->game = $data->game;
-            $this->genTerrain = false;
             $this->victory = new Victory("Mollwitz", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
@@ -172,7 +168,6 @@ class Mollwitz extends JagCore
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->game = $game;
-            $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz");
 
             $this->display = new Display();

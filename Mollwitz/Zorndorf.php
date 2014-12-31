@@ -27,7 +27,6 @@ class Zorndorf extends JagCore
     public $prompt;
     public $display;
     public $victory;
-    public $genTerrain;
 
 
     public $players;
@@ -70,14 +69,11 @@ class Zorndorf extends JagCore
         $data->players = $this->players;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-".get_class($this);
-        $data->genTerrain = $this->genTerrain;
+        $data->terrainName = $this->terrainName;
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;
         $data->game = $this->game;
-        if ($this->genTerrain) {
-            $data->terrain = $this->terrain;
-        }
+
         return $data;
     }
     function init(){
@@ -230,8 +226,8 @@ class Zorndorf extends JagCore
         if ($data) {
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
+            $this->terrainName = $data->terrainName;
             $this->game = $data->game;
-            $this->genTerrain = false;
             $this->victory = new Victory("Mollwitz/Zorndorf/zorndorfVictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
@@ -248,7 +244,6 @@ class Zorndorf extends JagCore
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->game = $game;
-            $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Zorndorf/zorndorfVictoryCore.php");
 
             $this->mapData->blocksZoc->blocked = true;

@@ -29,7 +29,6 @@ class MartianCivilWar extends ModernLandBattle
     public $prompt;
     public $display;
     public $victory;
-    public $genTerrain = false;
     public $arg;
     public $scenario;
 
@@ -73,23 +72,7 @@ class MartianCivilWar extends ModernLandBattle
 
     function save()
     {
-        $data = new stdClass();
-        $data->arg = $this->arg;
-        $data->scenario = $this->scenario;
-        $data->mapData = $this->mapData;
-        $data->mapViewer = $this->mapViewer;
-        $data->moveRules = $this->moveRules->save();
-        $data->force = $this->force;
-        $data->gameRules = $this->gameRules->save();
-        $data->combatRules = $this->combatRules->save();
-        $data->players = $this->players;
-        $data->display = $this->display;
-        $data->victory = $this->victory->save();
-        $data->terrainName = $this->terrainName;
-        $data->genTerrain = $this->genTerrain;
-        if ($this->genTerrain) {
-            $data->terrain = $this->terrain;
-        }
+        $data = parent::save();
         return $data;
     }
 
@@ -330,7 +313,7 @@ class MartianCivilWar extends ModernLandBattle
         if ($data) {
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
-            $this->genTerrain = false;
+            $this->terrainName = $data->terrainName;
             $this->victory = new Victory("TMCW/MartianCivilWar", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
@@ -348,7 +331,6 @@ class MartianCivilWar extends ModernLandBattle
         } else {
             $this->arg = $arg;
             $this->scenario = $scenario;
-            $this->genTerrain = true;
             $this->terrainName = "terrain-MartianCivilWar";
             $this->victory = new Victory("TMCW/MartianCivilWar");
             if ($scenario->supplyLen) {

@@ -27,7 +27,6 @@ class Ferozesha extends IndiaCore
     public $prompt;
     public $display;
     public $victory;
-    public $genTerrain;
     public $moodkee;
 
 
@@ -74,15 +73,11 @@ class Ferozesha extends IndiaCore
         $data->players = $this->players;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-".get_class($this);
-        $data->genTerrain = $this->genTerrain;
+        $data->terrainName = $this->terrainName;
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;
         $data->game = $this->game;
         $data->moodkee = $this->moodkee;
-        if ($this->genTerrain) {
-            $data->terrain = $this->terrain;
-        }
         return $data;
     }
 
@@ -136,9 +131,9 @@ class Ferozesha extends IndiaCore
         if ($data) {
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
+            $this->terrainName = $data->terrainName;
             $this->moodkee = $data->moodkee;
             $this->game = $data->game;
-            $this->genTerrain = false;
             $this->victory = new Victory("Mollwitz/Ferozesha/ferozeshaVictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
@@ -156,7 +151,6 @@ class Ferozesha extends IndiaCore
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->game = $game;
-            $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Ferozesha/ferozeshaVictoryCore.php");
 
 

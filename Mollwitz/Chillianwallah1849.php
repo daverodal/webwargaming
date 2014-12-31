@@ -57,17 +57,14 @@ class Chillianwallah1849 extends IndiaCore
         $data->players = $this->players;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-".get_class($this);
-        $data->genTerrain = $this->genTerrain;
+        $data->terrainName = $this->terrainName;
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;
         $data->game = $this->game;
         $data->roadHex = $this->roadHex;
         $data->specialHexA = $this->specialHexA;
         $data->specialHexB = $this->specialHexB;
-        if ($this->genTerrain) {
-            $data->terrain = $this->terrain;
-        }
+
         return $data;
     }
 
@@ -121,9 +118,9 @@ class Chillianwallah1849 extends IndiaCore
         if ($data) {
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
+            $this->terrainName = $data->terrainName;
             $this->roadHex = $data->roadHex;
             $this->game = $data->game;
-            $this->genTerrain = false;
             $this->specialHexA = $data->specialHexA;
             $this->specialHexB = $data->specialHexB;
             $this->victory = new Victory("Mollwitz/Chillianwallah1849/chillianwallah1849VictoryCore.php", $data);
@@ -143,7 +140,6 @@ class Chillianwallah1849 extends IndiaCore
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->game = $game;
-            $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Chillianwallah1849/chillianwallah1849VictoryCore.php");
 
             $this->mapData->blocksZoc->blocked = true;

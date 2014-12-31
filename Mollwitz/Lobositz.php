@@ -26,7 +26,6 @@ class Lobositz extends JagCore
     public $prompt;
     public $display;
     public $victory;
-    public $genTerrain;
     public $austrianSpecialHexes;
     public $prussianSpecialHexes;
 
@@ -73,16 +72,13 @@ class Lobositz extends JagCore
         $data->players = $this->players;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-".get_class($this);
-        $data->genTerrain = $this->genTerrain;
+        $data->terrainName = $this->terrainName;
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;
         $data->game = $this->game;
         $data->austrianSpecialHexes = $this->austrianSpecialHexes;
         $data->prussianSpecialHexes = $this->prussianSpecialHexes;
-        if ($this->genTerrain) {
-            $data->terrain = $this->terrain;
-        }
+
         return $data;
     }
 
@@ -141,10 +137,10 @@ class Lobositz extends JagCore
         if ($data) {
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
+            $this->terrainName = $data->terrainName;
             $this->austrianSpecialHexes = $data->austrianSpecialHexes;
             $this->prussianSpecialHexes = $data->prussianSpecialHexes;
             $this->game = $data->game;
-            $this->genTerrain = false;
             $this->victory = new Victory("Mollwitz/Lobositz/lobositzVictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
@@ -163,7 +159,6 @@ class Lobositz extends JagCore
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->game = $game;
-            $this->genTerrain = true;
             $this->victory = new Victory("Mollwitz/Lobositz/lobositzVictoryCore.php");
             $this->mapData->blocksZoc->blocked = true;
             $this->mapData->blocksZoc->blocksnonroad = true;

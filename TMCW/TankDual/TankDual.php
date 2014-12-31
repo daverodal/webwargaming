@@ -62,23 +62,7 @@ class TankDual extends ModernLandBattle
 
     function save()
     {
-        $data = new stdClass();
-        $data->arg = $this->arg;
-        $data->scenario = $this->scenario;
-        $data->mapData = $this->mapData;
-        $data->mapViewer = $this->mapViewer;
-        $data->moveRules = $this->moveRules->save();
-        $data->force = $this->force;
-        $data->gameRules = $this->gameRules->save();
-        $data->combatRules = $this->combatRules->save();
-        $data->players = $this->players;
-        $data->display = $this->display;
-        $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-" . get_class($this);
-        $data->genTerrain = $this->genTerrain;
-        if ($this->genTerrain) {
-            $data->terrain = $this->terrain;
-        }
+        $data = parent::save();
         return $data;
     }
 
@@ -191,6 +175,7 @@ class TankDual extends ModernLandBattle
         if ($data) {
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
+            $this->terrainName = $data->terrainName;
             $this->genTerrain = false;
             $this->victory = new Victory("TMCW/TankDual/tankDualVictoryCore.php", $data);
             $this->display = new Display($data->display);

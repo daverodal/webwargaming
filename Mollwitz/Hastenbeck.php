@@ -12,6 +12,7 @@ require_once "JagCore.php";
 
 class Hastenbeck extends JagCore
 {
+    public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>2, 'SpecialHexC'=>0];
 
     /* @var Mapdata */
     public $mapData;
@@ -25,7 +26,6 @@ class Hastenbeck extends JagCore
     public $prompt;
     public $display;
     public $victory;
-    public $genTerrain;
     public $cities;
     public $loc;
 
@@ -59,7 +59,6 @@ class Hastenbeck extends JagCore
     }
 
     function terrainGen($mapDoc, $terrainDoc){
-        $this->terrainName = "terrain-".get_class($this);
         parent::terrainGen($mapDoc, $terrainDoc);
         $this->terrain->addTerrainFeature("forta","forta","f",0,0,0,false);
         $this->terrain->addNatAltEntranceCost('forta','French','artillery','blocked');
@@ -82,17 +81,13 @@ class Hastenbeck extends JagCore
         $data->players = $this->players;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
-        $data->terrainName = $this->terrainName;
-        $data->genTerrain = $this->genTerrain;
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;
         $data->game = $this->game;
+        $data->terrainName = $this->terrainName;
         $data->specialHexA = $this->specialHexA;
         $data->specialHexB = $this->specialHexB;
         $data->specialHexC = $this->specialHexC;
-        if ($this->genTerrain) {
-            $data->terrain = $this->terrain;
-        }
         return $data;
     }
 
@@ -110,6 +105,7 @@ class Hastenbeck extends JagCore
         }
 
         if($this->scenario->redux){
+            $frenchDeploy = "B";
             for ($i = 0; $i < 4; $i++) {
                 $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'infantry');
             }
@@ -195,13 +191,13 @@ class Hastenbeck extends JagCore
         if ($data) {
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
+            $this->terrainName = $data->terrainName;
             $this->cities = $data->cities;
             $this->loc = $data->loc;
             $this->game = $data->game;
             $this->specialHexA = $data->specialHexA;
             $this->specialHexB = $data->specialHexB;
             $this->specialHexC = $data->specialHexC;
-            $this->genTerrain = false;
             $this->terrainName = $data->terrainName;
             $this->victory = new Victory("Mollwitz/Hastenbeck/hastenbeckVictoryCore.php", $data);
             $this->display = new Display($data->display);
@@ -222,12 +218,6 @@ class Hastenbeck extends JagCore
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->game = $game;
-            $this->genTerrain = true;
-
-            $this->terrainName = "terrain-".get_class($this);
-            if($this->scenario->hastenbeck2){
-                $this->terrainName = "terrain-hastenbeck2";
-            }
 
             $this->victory = new Victory("Mollwitz/Hastenbeck/hastenbeckVictoryCore.php");
 

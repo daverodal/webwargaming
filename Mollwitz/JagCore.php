@@ -61,7 +61,6 @@ class JagCore extends LandBattle{
             Hexagon::setMinMax();
             $this->terrain->setMaxHex();
         }
-        $this->genTerrain = false;
         return;
     }
 

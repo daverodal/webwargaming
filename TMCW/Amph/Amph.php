@@ -30,7 +30,6 @@ class Amph extends ModernLandBattle
     public $prompt;
     public $display;
     public $victory;
-    public $genTerrain = false;
     public $arg;
     public $scenario;
 
@@ -59,24 +58,8 @@ class Amph extends ModernLandBattle
     }
     function save()
     {
-        $data = new stdClass();
-        $data->arg = $this->arg;
-        $data->scenario = $this->scenario;
-        $data->mapData = $this->mapData;
-        $data->mapViewer = $this->mapViewer;
-        $data->moveRules = $this->moveRules->save();
-        $data->force = $this->force;
-        $data->gameRules = $this->gameRules->save();
-        $data->combatRules = $this->combatRules->save();
-        $data->players = $this->players;
-        $data->display = $this->display;
+        $data = parent::save();
         $data->specialHexA = $this->specialHexA;
-        $data->victory = $this->victory->save();
-        $data->terrainName = "terrain-" . get_class($this);
-        $data->genTerrain = $this->genTerrain;
-        if ($this->genTerrain) {
-            $data->terrain = $this->terrain;
-        }
         return $data;
     }
 
@@ -162,7 +145,7 @@ class Amph extends ModernLandBattle
             $this->arg = $data->arg;
             $this->specialHexA = $data->specialHexA;
             $this->scenario = $data->scenario;
-            $this->genTerrain = false;
+            $this->terrainName = $data->terrainName;
             $this->victory = new Victory("TMCW/Amph/amphVictoryCore.php", $data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
@@ -178,7 +161,6 @@ class Amph extends ModernLandBattle
         } else {
             $this->arg = $arg;
             $this->scenario = $scenario;
-            $this->genTerrain = true;
 
             $this->victory = new Victory("TMCW/Amph/amphVictoryCore.php");
             if ($scenario->supplyLen) {

@@ -11,6 +11,24 @@ class LandBattle extends Battle{
         @include_once "playMulti.php";
     }
 
+    public function save()
+    {
+        $data = new stdClass();
+        $data->arg = $this->arg;
+        $data->scenario = $this->scenario;
+        $data->mapData = $this->mapData;
+        $data->mapViewer = $this->mapViewer;
+        $data->moveRules = $this->moveRules->save();
+        $data->force = $this->force;
+        $data->gameRules = $this->gameRules->save();
+        $data->combatRules = $this->combatRules->save();
+        $data->players = $this->players;
+        $data->display = $this->display;
+        $data->victory = $this->victory->save();
+        $data->terrainName = $this->terrainName;
+        return $data;
+    }
+
     function poke($event, $id, $x, $y, $user, $click)
     {
 

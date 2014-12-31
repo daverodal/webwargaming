@@ -17,7 +17,7 @@ class hastenbeckVictoryCore extends victoryCore
             $this->victoryPoints = $data->victory->victoryPoints;
             $this->gameOver = $data->victory->gameOver;
         } else {
-            $this->victoryPoints = array(0, 0, 20);
+            $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
             $this->gameOver = false;
 
@@ -48,11 +48,11 @@ class hastenbeckVictoryCore extends victoryCore
         if(in_array($mapHexName,$battle->specialHexA)){
             if ($forceId == ALLIED_FORCE) {
                 $this->victoryPoints[ALLIED_FORCE]  += 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+5 Allied vp</span>";
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='anglo'>+5 Allied vp</span>";
             }
             if ($forceId == FRENCH_FORCE) {
                 $this->victoryPoints[ALLIED_FORCE]  -= 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-5 Allied vp</span>";
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>-5 Allied vp</span>";
             }
         }
         if(in_array($mapHexName,$battle->specialHexB)){
@@ -60,27 +60,32 @@ class hastenbeckVictoryCore extends victoryCore
 
             if ($forceId == FRENCH_FORCE) {
                 $this->victoryPoints[FRENCH_FORCE]  += $vp;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>+$vp French vp</span>";
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>+$vp French vp</span>";
             }
             if ($forceId == ALLIED_FORCE) {
                 $this->victoryPoints[FRENCH_FORCE]  -= $vp;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>-$vp French vp</span>";
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='anglo'>-$vp French vp</span>";
             }
         }
         if(in_array($mapHexName,$battle->specialHexC)){
             $vp = 5;
 
+            $prevForceId = $battle->mapData->specialHexes->$mapHexName;
             if ($forceId == FRENCH_FORCE) {
                 $this->victoryPoints[FRENCH_FORCE]  += $vp;
-                $this->victoryPoints[ALLIED_FORCE]  -= $vp;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>+$vp French vp</span>";
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-$vp Allied vp</span>";
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>+$vp French vp</span>";
+                if($prevForceId !== 0) {
+                    $this->victoryPoints[ALLIED_FORCE] -= $vp;
+                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='anglo'>-$vp Allied vp</span>";
+                }
             }
             if ($forceId == ALLIED_FORCE) {
-                $this->victoryPoints[FRENCH_FORCE]  -= $vp;
                 $this->victoryPoints[ALLIED_FORCE]  += $vp;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>-$vp French vp</span>";
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+$vp Allied vp</span>";
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='anglo'>+$vp Allied vp</span>";
+                if($prevForceId !== 0) {
+                    $this->victoryPoints[FRENCH_FORCE] -= $vp;
+                    $battle->mapData->specialHexesVictory->$mapHexName .= "<span class='french'>-$vp French vp</span>";
+                }
             }
         }
     }
