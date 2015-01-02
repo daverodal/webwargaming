@@ -277,12 +277,11 @@ x.register("force", function(force,data) {
 
             var x = $("#"+i).position().left;
             var y = $("#"+i).position().top;
-            DR.globalZoom = $(".defaultZoom").html() - 0;
             y /= DR.globalZoom;
             x /= DR.globalZoom;
 
             var mapWidth = $("body").width();
-            var mapHeight = $("#gameViewer").height();
+            var mapHeight = $("#gameViewer").height() / DR.globalZoom;
 
 
             var mapOffset  = $("#gameImages").position().top;
@@ -308,9 +307,8 @@ x.register("force", function(force,data) {
                 y += moveAmt;
             }
 
-            var dragged = $("#floatMessage").attr('hasDragged');
-
-            if(dragged != 'true'){
+            if(DR.floatMessageDragged != true){
+                DR.$floatMessagePanZoom.panzoom('reset');
                 $("#floatMessage").css('top',y+"px");
                 $("#floatMessage").css('left',x+"px");
             }
@@ -337,7 +335,7 @@ x.register("force", function(force,data) {
     }
 
     if(!showStatus){
-        $("#floatMessage").removeAttr("hasDragged");
+        DR.floatMessageDragged = false;
     }
 
 });
@@ -795,6 +793,7 @@ x.register("combatRules", function(combatRules,data) {
                 }
                 if(!chattyCrt){
                     $("#crt").show({effect:"blind",direction:"up"});
+                    $("#crtWrapper").css('overflow', 'visible');
                     chattyCrt = true;
                 }
 //                fixCrt();

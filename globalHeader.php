@@ -20,36 +20,39 @@
         DR.showArrows = false;
 
 
-            var $panzoom = $('#gameImages').panzoom({cursor: "normal", animate: true, onPan: function(e, panzoom){
-                var xDrag = Math.abs(event.clientX - DR.clickX);
-                var yDrag = Math.abs(event.clientY - DR.clickY);
-                if(xDrag > 4 || yDrag > 4){
-                    DR.dragged = true;
+            var $panzoom = $('#gameImages').panzoom({cursor: "normal", animate: true, maxScale: 2.0, minScale:.3, onPan: function(e, panzoom){
+
+                var xDrag;
+                var yDrag;
+                if(event.type === 'touchmove'){
+                    xDrag = Math.abs(event.touches[0].clientX - DR.clickX);
+                    yDrag = Math.abs(event.touches[0].clientY - DR.clickY);
+                    if(xDrag > 40 || yDrag > 40){
+                        DR.dragged = true;
+                    }
+                }else {
+                    xDrag = Math.abs(event.clientX - DR.clickX);
+                    yDrag = Math.abs(event.clientY - DR.clickY);
+                    if(xDrag > 4 || yDrag > 4){
+                        DR.dragged = true;
+                    }
                 }
+            },
+            onZoom:function(e,p,q){
+                var zoomLevel = DR.globalZoom = q;
+                var precision = 1;
+                if (zoomLevel >= 1.0) {
+                    precision = 2;
+                }
+
+                $("#zoom .defaultZoom").html(DR.globalZoom.toPrecision(precision));
             }});
+
             $panzoom.parent().on('mousewheel DOMMouseScroll MozMousePixelScroll', function (e) {
                 e.preventDefault();
                 var delta = e.delta || e.originalEvent.wheelDelta;
 
                 var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
-                var zoomLevel = $("#zoom .defaultZoom").html() - 0;
-                if(zoomLevel >= 2.0 && !zoomOut){
-                    return;
-                }
-                if(zoomLevel <= 0.3 && zoomOut){
-                    return;
-                }
-                if (zoomLevel >= 1.0) {
-                    precision = 2;
-                }
-
-                if(zoomOut){
-                    zoomLevel  -= .1
-                    $("#zoom .defaultZoom").html(zoomLevel.toPrecision(precision));
-                }else{
-                    zoomLevel += .1
-                    $("#zoom .defaultZoom").html(zoomLevel.toPrecision(precision));
-                }
 
                 $panzoom.panzoom('zoom', zoomOut, {
                     increment: 0.1,
@@ -59,13 +62,10 @@
             });
             DR.$panzoom = $panzoom;
         $('#map').load(function(){
-            var mapHeight = $("#map").height();
-            var mapWidth = $("#map").width();
-            console.log($("#gameImages, #gameContainer").height(mapHeight).width(mapWidth));
-            DR.$panzoom.panzoom('resetDimensions');
+                fixItAll();
         });
 
-        $("#crtDetailsButton").on('click', function () {
+        $("#crtDetailsButton").on('click touchstart', function () {
             $('#crtDetails').toggle(function () {
                 DR.crtDetails = $(this).css('display') == 'block';
             });
@@ -149,6 +149,19 @@
 
     }
     function fixHeader() {
+
+        var winHeight = $(window).height();
+        var winWidth = $(window).width();
+        var mapHeight = $("#map").height();
+        var mapWidth = $("#map").width();
+        if(winWidth > mapWidth){
+            mapWidth = winWidth;
+        }
+        if(winHeight > mapHeight){
+            mapHeight = winHeight;
+        }
+        $("#gameImages, #gameContainer").height(mapHeight).width(mapWidth);
+        DR.$panzoom.panzoom('resetDimensions');
 
         height = $("#crtWrapper h4").height();
         $("#bottomHeader").css("height", height);
@@ -484,10 +497,11 @@ function doZoom(event) {
 }
 
 function counterClick(event) {
-    if(event.type === "touchstart"){
+    if(event.type == 'touchend'){
         event.stopPropagation();
         event.preventDefault();
     }
+
     DR.clickX = DR.clickY = undefined;
     if(DR.dragged){
         return;
@@ -573,22 +587,16 @@ function initialize() {
     });
 
 
-    $(".unit").on('mousedown', function(e){
+    $(".unit").on('mousedown touchstart', function(e){
         DR.clickX = e.clientX;
         DR.clickY = e.clientY;
         DR.dragged = false;
     });
-//    $(".unit").on('touchmove',function(e) {
-//        DR.dragged = true;
-//    });
-    $(".unit").on('mouseup', counterClick);
-    $(".unit").on('touchstart',function(e){
-        DR.dragged = false;
-        counterClick(e);
-    });
-//    $(".unit").on('touchend', counterClick);
 
-    $("#crt #odds span").on('click', function (event) {
+    $(".unit").on('mouseup touchend', counterClick);
+
+
+    $("#crt #odds span").on('click touchstart', function (event) {
         var col = $(event.target).attr('class');
         col = col.replace(/col/, '');
         doitCRT(col, event);
@@ -600,10 +608,30 @@ function initialize() {
 //    $("#gameImages" ).draggable({stop:mapStop, distance:15});
     $("#gameImages #map").on("click", mapClick);
 
-    $('#floatMessage').panzoom({cursor: "normal", disableZoom: true, onPan: function(e, panzoom){ DR.dragged = true;}});
+    DR.$floatMessagePanZoom = $('#floatMessage').panzoom({cursor: "normal", disableZoom: true, onPan: function(e, panzoom){
+        DR.floatMessageDragged = true;
+    }});
 
     $("#Time").draggable();
-    DR.$crtPanZoom = $('#crt').panzoom({cursor: "move", disableZoom: true, onPan: function(e, panzoom){ DR.dragged = true;}});
+    DR.$crtPanZoom = $('#crt').panzoom({cursor: "move", disableZoom: true, onPan: function(e, panzoom){
+        var xDrag;
+        var yDrag;
+        if(event.type === 'touchmove'){
+            xDrag = Math.abs(event.touches[0].clientX - DR.clickX);
+            yDrag = Math.abs(event.touches[0].clientY - DR.clickY);
+            if(xDrag > 40 || yDrag > 40){
+                DR.dragged = true;
+            }
+        }else {
+            xDrag = Math.abs(event.clientX - DR.clickX);
+            yDrag = Math.abs(event.clientY - DR.clickY);
+            if(xDrag > 4 || yDrag > 4){
+                DR.dragged = true;
+            }
+        }
+
+        DR.dragged = true;
+    }});
 
     $("#muteButton").click(function () {
         if (!mute) {
@@ -760,7 +788,7 @@ function initialize() {
 
         return false;
     });
-    $(".close").click(function () {
+    $(".close").on('click touchstart', function () {
         $(this).parent().hide({effect: "blind", direction: "up"});
     })
     $("#crtWrapper .WrapperLabel").click(function () {
@@ -824,7 +852,7 @@ function initialize() {
             $("#zoom .defaultZoom").html(DR.globalZoom.toPrecision(precision));
             DR.$panzoom.panzoom('zoom', false, {
                 increment: 0.1,
-                animate: false,
+                animate: false
             });
         }
     });
