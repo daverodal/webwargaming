@@ -603,7 +603,8 @@ function initialize() {
     $('#floatMessage').panzoom({cursor: "normal", disableZoom: true, onPan: function(e, panzoom){ DR.dragged = true;}});
 
     $("#Time").draggable();
-    $("#crt").draggable().css({cursor: "move"});
+    DR.$crtPanZoom = $('#crt').panzoom({cursor: "move", disableZoom: true, onPan: function(e, panzoom){ DR.dragged = true;}});
+
     $("#muteButton").click(function () {
         if (!mute) {
             $("#muteButton").html("un-mute");
@@ -743,6 +744,8 @@ function initialize() {
     $("#crtWrapper .WrapperLabel .goLeft").click(function () {
         $("#crtWrapper").animate({left: 0}, 300);
         $("#crt").animate({left: "0px", top: 26}, 300);
+        DR.$crtPanZoom.panzoom('reset', {animate: false});
+
 
         return false;
     });
@@ -753,12 +756,17 @@ function initialize() {
         var moveLeft = $("body").css('width').replace(/px/, "");
         $("#crtWrapper").animate({left: moveLeft - wrapWid}, 300);
         $("#crt").animate({left: 0 - crtWid, top: 26}, 300);
+        DR.$crtPanZoom.panzoom('reset', {animate: false});
+
         return false;
     });
     $(".close").click(function () {
         $(this).parent().hide({effect: "blind", direction: "up"});
     })
     $("#crtWrapper .WrapperLabel").click(function () {
+        $("#crtWrapper").css('overflow', 'visible');
+        DR.$crtPanZoom.panzoom('reset');
+
         $("#crt").toggle({effect: "blind", direction: "up"});
     });
 
