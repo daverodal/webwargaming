@@ -20,44 +20,50 @@
         DR.showArrows = false;
 
 
-        var $panzoom = $('#gameImages').panzoom({cursor: "normal", animate: true, onPan: function(e, panzoom){
-            var xDrag = Math.abs(event.clientX - DR.clickX);
-            var yDrag = Math.abs(event.clientY - DR.clickY);
-            if(xDrag > 4 || yDrag > 4){
-                DR.dragged = true;
-            }
-        }});
-        $panzoom.parent().on('mousewheel DOMMouseScroll MozMousePixelScroll', function (e) {
-            e.preventDefault();
-            var delta = e.delta || e.originalEvent.wheelDelta;
+            var $panzoom = $('#gameImages').panzoom({cursor: "normal", animate: true, onPan: function(e, panzoom){
+                var xDrag = Math.abs(event.clientX - DR.clickX);
+                var yDrag = Math.abs(event.clientY - DR.clickY);
+                if(xDrag > 4 || yDrag > 4){
+                    DR.dragged = true;
+                }
+            }});
+            $panzoom.parent().on('mousewheel DOMMouseScroll MozMousePixelScroll', function (e) {
+                e.preventDefault();
+                var delta = e.delta || e.originalEvent.wheelDelta;
 
-            var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
-            var zoomLevel = $("#zoom .defaultZoom").html() - 0;
-            if(zoomLevel >= 2.0 && !zoomOut){
-                return;
-            }
-            if(zoomLevel <= 0.3 && zoomOut){
-                return;
-            }
-            if (zoomLevel >= 1.0) {
-                precision = 2;
-            }
+                var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
+                var zoomLevel = $("#zoom .defaultZoom").html() - 0;
+                if(zoomLevel >= 2.0 && !zoomOut){
+                    return;
+                }
+                if(zoomLevel <= 0.3 && zoomOut){
+                    return;
+                }
+                if (zoomLevel >= 1.0) {
+                    precision = 2;
+                }
 
-            if(zoomOut){
-                zoomLevel  -= .1
-                $("#zoom .defaultZoom").html(zoomLevel.toPrecision(precision));
-            }else{
-                zoomLevel += .1
-                $("#zoom .defaultZoom").html(zoomLevel.toPrecision(precision));
-            }
+                if(zoomOut){
+                    zoomLevel  -= .1
+                    $("#zoom .defaultZoom").html(zoomLevel.toPrecision(precision));
+                }else{
+                    zoomLevel += .1
+                    $("#zoom .defaultZoom").html(zoomLevel.toPrecision(precision));
+                }
 
-            $panzoom.panzoom('zoom', zoomOut, {
-                increment: 0.1,
-                animate: false,
-                focal: e
+                $panzoom.panzoom('zoom', zoomOut, {
+                    increment: 0.1,
+                    animate: false,
+                    focal: e
+                });
             });
+            DR.$panzoom = $panzoom;
+        $('#map').load(function(){
+            var mapHeight = $("#map").height();
+            var mapWidth = $("#map").width();
+            console.log($("#gameImages, #gameContainer").height(mapHeight).width(mapWidth));
+            DR.$panzoom.panzoom('resetDimensions');
         });
-        DR.$panzoom = $panzoom;
 
         $("#crtDetailsButton").on('click', function () {
             $('#crtDetails').toggle(function () {
@@ -153,7 +159,7 @@
         var bodyWidth = $(window).width();
         var deployHeight = $("#deployWrapper:visible").height();
         var deadHeight = $("#deadpile:visible").height();
-        $("#gameViewer, #gameContainer").height(bodyHeight - (deployHeight+deadHeight + 20));
+//        $("#gameViewer, #gameContainer").height(bodyHeight - (deployHeight+deadHeight + 20));
         if (deadHeight) {
             deadHeight += 10 + 10 + 4 + 4;
         }

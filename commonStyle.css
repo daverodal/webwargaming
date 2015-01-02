@@ -553,7 +553,7 @@ fieldset {
   position: fixed;
   border: 10px solid #555;
   border-radius: 10px;
-  overflow: hidden;
+  /*overflow: hidden;*/
   background: #ccc;
   margin-bottom: 5px; }
 
