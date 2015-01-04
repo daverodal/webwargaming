@@ -12,15 +12,6 @@ h5 {
 h4:hover {
   text-decoration: underline; }
 
-#rightHeader {
-  /*width:50%;*/
-  /*float:right;*/ }
-
-#leftHeader {
-  width: 49%;
-  float: left;
-  display: none; }
-
 .shadowy {
   background-color: rgba(0, 0, 0, 0.3) !important; }
 
@@ -121,10 +112,7 @@ h4:hover {
 #header {
   position: static;
   width: 100%;
-  top: 0px;
-  /*background:#99cc99;*/
-  /*background:rgb(132,181,255);*/
-  padding-bottom: 5px;
+  padding-bottom: 0px;
   z-index: 2000; }
 
 #mouseMove {
@@ -133,12 +121,11 @@ h4:hover {
 #headerContent {
   /*min-height:110px;*/ }
 
-#nextPhaseButton {
-  font-size: 15px;
-  position: static;
-  bottom: 0;
-  left: 17%;
-  display: inline-block; }
+#nextPhaseWrapper {
+  float: left; }
+  #nextPhaseWrapper #nextPhaseButton {
+    font-size: 28px;
+    position: static; }
 
 #header a, #header a:visited {
   color: white; }
@@ -226,11 +213,6 @@ h4:hover {
   width: 30px;
   text-align: center; }
 
-#phaseDiv, #statusDiv, #chatsDiv, #crtWrapper, #victoryDiv {
-  display: inline;
-  vertical-align: top;
-  /*float:left;*/ }
-
 #header, #content, #theDiv, #gameViewer {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -238,24 +220,22 @@ h4:hover {
   -ms-user-select: none;
   user-select: none; }
 
-#infoWrapper, #menuWrapper {
-  -webkit-touch-callout: none;
-  position: absolute; }
+.dropDown, #zoomWrapper {
+  font-size: 30px;
+  float: left;
+  margin-right: 10px;
+  border-right: 1px solid black;
+  padding-right: 10px; }
+  .dropDown.alpha, #zoomWrapper.alpha {
+    padding-left: 10px; }
 
-#TimeWrapper, #crtWrapper, #OBCWrapper, #TECWrapper, #VCWrapper, #jumpWrapper, #GRWrapper {
-  -webkit-touch-callout: none;
-  position: relative;
-  display: inline-block; }
+#crtWrapper {
+  border-right: 1px solid black;
+  padding-right: 10px;
+  margin-right: 10px; }
 
-#GRWrapper {
-  -webkit-user-select: all;
-  -moz-user-select: -moz-all;
-  -ms-user-select: all;
-  user-select: all; }
-
-.dropDown, #hideShow, #showDeploy {
-  border: 1px solid #333;
-  display: inline-block; }
+#zoomWrapper {
+  font-size: 30px; }
 
 .dropDownSelected {
   background: white; }
@@ -271,91 +251,110 @@ h4:hover {
   z-index: 30;
   display: none; }
 
-#TimeWrapper .WrapperLabel, #crtWrapper .WrapperLabel, #OBCWrapper .WrapperLabel, #TECWrapper .WrapperLabel, #VCWrapper .WrapperLabel, #jumpWrapper .WrapperLabel, #menuWrapper .WrapperLabel, #infoWrapper .WrapperLabel, #GRWrapper .WrapperLabel {
-  margin: 0;
-  border: none;
-  -webkit-touch-callout: none;
-  cursor: pointer;
-  /*width:3em;*/ }
+#infoWrapper, #menuWrapper {
+  -webkit-touch-callout: none; }
+  #infoWrapper .WrapperLabel, #menuWrapper .WrapperLabel {
+    font-size: 30px;
+    margin: 0;
+    border: none;
+    -webkit-touch-callout: none;
+    cursor: pointer;
+    /*width:3em;*/ }
+  #infoWrapper li, #menuWrapper li {
+    list-style-type: none;
+    padding: 5px 10px 5px 10px;
+    border: 0 solid black;
+    border-width: 1px 1px 0 1px; }
+    #infoWrapper li a, #infoWrapper li a:visited, #menuWrapper li a, #menuWrapper li a:visited {
+      color: #333;
+      text-decoration: none; }
 
-#menuWrapper .WrapperLabel, #infoWrapper .WrapperLabel {
-  width: 3em; }
+#menu {
+  background: white;
+  color: #333; }
+  #menu ul {
+    margin: 0;
+    padding: 0; }
 
-#menuWrapper h4 {
-  width: 2.5em; }
+#menuWrapper .WrapperLabel {
+  font-family: entypo;
+  line-height: 36px;
+  font-size: 70px; }
+
+#infoWrapper .WrapperLabel {
+  font-style: italic; }
+
+#phaseDiv, #statusDiv, #chatsDiv, #victoryDiv {
+  display: inline;
+  vertical-align: top;
+  /*float:left;*/ }
+
+#TimeWrapper {
+  float: left;
+  -webkit-touch-callout: none; }
+  #TimeWrapper .WrapperLabel {
+    font-size: 30px;
+    margin: 0;
+    border: none;
+    -webkit-touch-callout: none;
+    cursor: pointer;
+    /*width:3em;*/ }
+    #TimeWrapper .WrapperLabel .small {
+      font-size: 10px; }
+
+.dropDown .subMenu {
+  font-size: 20px;
+  position: absolute;
+  z-index: 30;
+  display: none;
+  background: #ccc;
+  /* .dropDowns may not exist inside a ul */ }
+  .dropDown .subMenu > ul {
+    margin: 0;
+    padding: 0;
+    z-index: 30;
+    font-size: 20px; }
+    .dropDown .subMenu > ul > li {
+      background: white;
+      border: 1px solid #333; }
+  .dropDown .subMenu .dropDown {
+    border: none; }
+  .dropDown .subMenu li, .dropDown .subMenu .dropDown {
+    float: none;
+    font-size: 20px;
+    cursor: pointer;
+    position: static;
+    font-weight: bold;
+    display: inline-block; }
+
+#statusWrapper {
+  float: right; }
 
 #crtWrapper {
-  left: 0px;
-  bottom: 0px; }
+  float: left;
+  -webkit-touch-callout: none; }
+  #crtWrapper .WrapperLabel {
+    font-size: 30px;
+    margin: 0;
+    border: none;
+    -webkit-touch-callout: none;
+    cursor: pointer;
+    /*width:3em;*/ }
 
-#zoom {
-  margin-left: 6em;
-  cursor: pointer; }
-  #zoom .minusZoom, #zoom .plusZoom {
-    padding: 0 4px; }
-  #zoom span {
-    text-decoration: none;
-    border: 1px solid #333;
-    min-width: 20px; }
+#crt {
+  width: 308px; }
 
-#clock {
-  margin-left: 0; }
-
-#menuWrapper {
-  width: 6em; }
-
-#infoWrapper {
-  left: 45px; }
-
-#menuWrapper li {
-  list-style-type: none;
-  padding: 5px 10px 5px 10px;
-  border: 0 solid black;
-  border-width: 1px 1px 0 1px; }
-
-#infoWrapper li {
-  list-style-type: none;
-  padding: 5px 10px 5px 10px;
-  border: 0 solid black;
-  border-width: 1px 1px 0 1px; }
-
-#menuWrapper li a, #menuWrapper li a:visited {
-  color: #333;
-  text-decoration: none; }
-
-#infoWrapper li a, #infoWrapper li a:visited {
-  color: #333;
-  text-decoration: none; }
-
-#VCWrapper {
-  /*width:10%;*/
-  /*left:48%;*/
-  /*bottom:0px;*/ }
-
-#jumpWrapper {
-  /*width:6%;*/
-  /*left:41%;*/
-  /*bottom:0px;*/ }
-
-#OBC {
-  /*left:0px;*/ }
+#crtWrapper h4 .goLeft, #crtWrapper h4 .goRight {
+  font-size: 22px;
+  padding: 0 10px; }
 
 #TEC ul {
-  margin: 0;
-  padding: 0; }
-
-#menu ul {
   margin: 0;
   padding: 0; }
 
 #Time ul {
   margin: 0;
   padding: 0; }
-
-#menu {
-  background: white;
-  color: #333;
-  width: 160%; }
 
 #info ul {
   margin: 0;
@@ -379,11 +378,6 @@ h4:hover {
 #VC ul {
   margin: 0;
   padding: 0; }
-
-#hideShow, #showDeploy, #showHexNums, #showExited {
-  cursor: pointer;
-  position: static;
-  font-weight: bold; }
 
 #OBC {
   background: white;
@@ -421,19 +415,9 @@ h4:hover {
   width: 579px;
   left: -230px; }
 
-#crtWrapper .WrapperLabel {
-  width: auto; }
-
-#crt {
-  width: 308px; }
-
 #clickCnt {
   display: inline-block;
   padding: 3px; }
-
-#crtWrapper h4 .goLeft, #crtWrapper h4 .goRight {
-  font-size: 22px;
-  padding: 0 10px; }
 
 #OBCWrapper h4 {
   /*width:2em;*/ }
@@ -449,9 +433,6 @@ h4:hover {
 
 #crt {
   z-index: 40; }
-
-#OBCWrapper h4:focus, #crtWrapper h4:focus {
-  outline: -webkit-focus-ring-color none; }
 
 body {
   background: #eee;

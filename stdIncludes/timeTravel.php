@@ -1,5 +1,5 @@
 <div class="dropDown"  id="TimeWrapper">
-    <h4 class="WrapperLabel" title=Time Travel'>Undo</h4>
+    <h4 class="WrapperLabel" title=Time Travel'>U<small>ndo</small></h4>
     <DIV id="Time" style="display:none;"><div class="close">X</div>
 
         Time you are viewing:

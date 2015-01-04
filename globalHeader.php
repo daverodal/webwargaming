@@ -726,7 +726,7 @@ function initialize() {
     var Player = 'Markarian';
 
     $(".dropDown .WrapperLabel").click(function () {
-        $(this).parent().siblings(".dropDown").children('div').hide({
+        $(this).parent().siblings(".dropDown, #crtWrapper").children('div').hide({
             effect: "blind", direction: "up", complete: function () {
                 $(this).parent().children('h4').removeClass('dropDownSelected');
             }
@@ -738,22 +738,27 @@ function initialize() {
                     $(this).parent().children('h4').addClass('dropDownSelected');
                 } else {
                     $(this).parent().children('h4').removeClass('dropDownSelected');
+                    $(this).parent().parent().parent('.dropDown').children('div').hide({
+                        effect: "blind", direction: "up", complete: function () {
+                            $(this).parent().children('h4').removeClass('dropDownSelected');
+                        }
+                    });
                 }
             }
         });
 
     });
 
-    $("#menuWrapper .WrapperLabel").click(function () {
-        $(".dropDown > div").hide({effect: "blind", direction: "up"});
-        $("#info").hide({effect: "blind", direction: "up"});
-        $("#menu").toggle({effect: "blind", direction: "up"});
-    });
-    $("#infoWrapper .WrapperLabel").click(function () {
-        $(".dropDown > div").hide({effect: "blind", direction: "up"});
-        $("#menu").hide({effect: "blind", direction: "up"});
-        $("#info").toggle({effect: "blind", direction: "up"});
-    });
+//    $("#menuWrapper .WrapperLabel").click(function () {
+//        $(".dropDown > div").hide({effect: "blind", direction: "up"});
+//        $("#info").hide({effect: "blind", direction: "up"});
+//        $("#menu").toggle({effect: "blind", direction: "up"});
+//    });
+//    $("#infoWrapper .WrapperLabel").click(function () {
+//        $(".dropDown > div").hide({effect: "blind", direction: "up"});
+//        $("#menu").hide({effect: "blind", direction: "up"});
+//        $("#info").toggle({effect: "blind", direction: "up"});
+//    });
 
     $("#jumpWrapper .WrapperLabel").click(function () {
 
@@ -826,6 +831,14 @@ function initialize() {
         fixHeader();
         return;
     });
+    $("#closeAllUnits").click(function(){
+        $("#deployWrapper").hide({effect: "blind", direction: "up", complete: fixHeader});
+        $("#exitWrapper").hide({effect: "blind", direction: "up", complete: fixHeader});
+        $("#deadpile").hide({effect: "blind", direction: "up", complete: fixHeader});
+        $("#units").hide({effect: "blind", direction: "up", complete: fixHeader});
+        $("#unitsWrapper .WrapperLabel").removeClass('dropDownSelected');
+        fixHeader();
+    })
     fixHeader();
     $("body").keypress(function (event) {
         doitKeypress(event.which);

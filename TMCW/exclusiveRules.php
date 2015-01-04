@@ -19,7 +19,7 @@
     }
 </style>
 <div class="dropDown" id="GRWrapper">
-    <h4 class="WrapperLabel" title="Game Rules">Exclusive Rules</h4>
+    <h4 class="WrapperLabel" title="Game Rules">Ex Rules</h4>
 
     <div id="GR" style="display:none">
         <div class="close">X</div>

@@ -1,3 +1,9 @@
+<style>
+    @font-face{
+        font-family: entypo;
+        src:url("<?=base_url("js/entypo.ttf")?>");
+    }
+</style>
 <body xmlns="http://www.w3.org/1999/html">
 <div id="theDiv">
     <header id="header">
@@ -7,7 +13,8 @@
                 <div id="comlinkWrapper" style="float:right;">
                     <div id="comlink"></div>
                 </div>
-                <div id="menuWrapper"><h4 class="WrapperLabel" title="Game Menu">Menu</h4>
+                <div class="dropDown alpha" id="menuWrapper">
+                    <h4 class="WrapperLabel" title="Game Menu">&#9776;</h4>
 
                     <div id="menu">
                         <div class="close">X</div>
@@ -15,6 +22,7 @@
                             <li><a id="muteButton">mute</a></li>
                             <li><a href="<?= site_url("wargame/leaveGame"); ?>">Go To Lobby</a></li>
                             <li><a href="<?= site_url("users/logout"); ?>">logout</a></li>
+                            <li><a id="arrowButton">show arrows</a></li>
                             <li><a href="#" onclick="seeUnits();return false;">See Units</a></li>
                             <li><a href="#" onclick="seeBoth();return false;">See Both</a></li>
                             <li><a href="#" onclick="seeMap();return false;">See Map</a></li>
@@ -22,7 +30,8 @@
                         </ul>
                     </div>
                 </div>
-                <div id="infoWrapper"><h4 class="WrapperLabel" title="Game Information">Info</h4>
+                <div class="dropDown" id="infoWrapper">
+                    <h4 class="WrapperLabel" title="Game Information">i</h4>
 
                     <div id="info">
                         <div class="close">X</div>
@@ -31,23 +40,112 @@
                             <li>you are playing as  <?= $player; ?></li>
                             <li>
                                 in <span class="game-name">{gameName}-{arg}</span></li>
-                            <li> The file is called {wargame}</li>
+                            <li> The file is called {name}</li>
+                            <!-- TODO: make game credits from DB -->
                             <li>Game Designer: David Rodal</li>
-
                             <li class="closer"></li>
                         </ul>
                     </div>
                 </div>
-                <span id="zoom">
-                    <span class="minusZoom">-</span>
-                    <span class="defaultZoom">1.0</span>
-                    <span class="plusZoom">+</span>
-                </span>
-                <span id="clock"></span>
-                <span id="status"></span>
-                <span id="requiredCombats"></span>
-                <span id="victory"></span>
+                <?php global $results_name; ?>
+
+                <div id="crtWrapper">
+                    <h4 class="WrapperLabel" title='Combat Results Table'>
+                        <span>CRT</span></h4>
+
+                    <div id="crt">
+                        <div class="close">X</div>
+                        <div id="mainTable">show normal table</div>
+                        <div id="detTable">show determined table</div>
+                        <h3>Combat Odds</h3>
+
+                        <div class="tableWrapper main">
+                            <div id="odds">
+                                <span class="col0">&nbsp;</span>
+                                <?php
+                                $crt = new CombatResultsTable();
+
+                                $i = 1;
+                                foreach ($crt->combatResultsHeader as $odds) {
+                                    ?>
+                                    <span class="col<?= $i++ ?>"><?= $odds ?></span>
+                                <?php } ?>
+                            </div>
+                            <?php
+                            $rowNum = 1;
+                            $odd = ($rowNum & 1) ? "odd" : "even";
+                            foreach ($crt->combatResultsTable as $row) {
+                                ?>
+                                <div class="roll <?= "row$rowNum $odd" ?>">
+                                    <span class="col0"><?= $rowNum++ ?></span>
+                                    <?php $col = 1;
+                                    foreach ($row as $cell) {
+                                        ?>
+                                        <span class="col<?= $col++ ?>"><?= $results_name[$cell] ?></span>
+
+                                    <?php } ?>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <?php if($crt->combatResultsTableDetermined){?>
+
+                            <div class="tableWrapper determined">
+                                <div id="odds">
+                                    <span class="col0">&nbsp;</span>
+                                    <?php
+                                    $crt = new CombatResultsTable();
+
+                                    $i = 1;
+                                    foreach ($crt->combatResultsHeader as $odds) {
+                                        ?>
+                                        <span class="col<?= $i++ ?>"><?= $odds ?></span>
+                                    <?php } ?>
+                                </div>
+                                <?php
+                                $rowNum = 1;
+                                $odd = ($rowNum & 1) ? "odd" : "even";
+                                foreach ($crt->combatResultsTableDetermined as $row) {
+                                    ?>
+                                    <div class="roll <?= "row$rowNum $odd" ?>">
+                                        <span class="col0"><?= $rowNum++ ?></span>
+                                        <?php $col = 1;
+                                        foreach ($row as $cell) {
+                                            ?>
+                                            <span class="col<?= $col++ ?>"><?= $results_name[$cell] ?></span>
+
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        <?php }?>
+
+                        <div id="crtDetailsButton">details</div>
+                        <div id="crtOddsExp"></div>
+                    </div>
+                </div>
+                <?php include "timeTravel.php"; ?>
+                <div id="statusWrapper">
+                    <div><span id="clock"></span></div>
+                    <div>
+                        <span id="status"></span>
+                        <span id="victory"></span>
+                    </div>
+                </div>
+                <div id="zoomWrapper">
+                    <span id="zoom">
+<!--                        <span class="minusZoom">-</span>-->
+                        <span class="defaultZoom">1.0</span>
+<!--                        <span class="plusZoom">+</span>-->
+                    </span>
+                </div>
+                <?php include_once "help.php"; ?>
+
+
             </div>
+            <div id="nextPhaseWrapper">
+                <button id="nextPhaseButton">Next Phase</button>
+            </div>
+
             <div style="clear:both;"></div>
 
             <!--            <div id="clickCnt"></div>-->
@@ -57,89 +155,6 @@
             <!--        <span id="phaseClicks"></span>-->
         </div>
         <?php global $results_name; ?>
-        <div id="bottomHeader" style="clear:both;">
-            <div id="crtWrapper">
-                <h4 class="WrapperLabel" title='Combat Results Table'><span class="goLeft">&laquo;</span>CRT<span
-                        class="goRight">&raquo;</span></h4>
-
-                <div id="crt">
-                    <div class="close">X</div>
-                    <div id="altTable">show cavalry table</div>
-                    <div id="mainTable">show normal table</div>
-                    <h3>Combat Odds</h3>
-
-                    <div class="tableWrapper main">
-                        <div id="odds">
-                            <span class="col0">&nbsp;</span>
-                            <?php
-                            $crt = new CombatResultsTable();
-
-                            $i = 1;
-                            foreach ($crt->combatResultsHeader as $odds) {
-                                ?>
-                                <span class="col<?= $i++ ?>"><?= $odds ?></span>
-                            <?php } ?>
-                        </div>
-                        <?php
-                        $rowNum = 1;
-                        $odd = ($rowNum & 1) ? "odd" : "even";
-                        foreach ($crt->combatResultsTable as $row) {
-                            ?>
-                            <div class="roll <?= "row$rowNum $odd" ?>">
-                                <span class="col0"><?= $rowNum++ ?></span>
-                                <?php $col = 1;
-                                foreach ($row as $cell) {
-                                    ?>
-                                    <span class="col<?= $col++ ?>"><?= $results_name[$cell] ?></span>
-
-                                <?php } ?>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <div class="tableWrapper alt">
-                        <div id="odds">
-                            <span class="col0">&nbsp;</span>
-                            <?php
-                            $crt = new CombatResultsTable();
-
-                            $i = 1;
-                            foreach ($crt->combatResultsHeader as $odds) {
-                                ?>
-                                <span class="col<?= $i++ ?>"><?= $odds ?></span>
-                            <?php } ?>
-                        </div>
-                        <?php
-                        $rowNum = 1;
-                        $odd = ($rowNum & 1) ? "odd" : "even";
-                        foreach ($crt->combatResultsTableCav as $row) {
-                            ?>
-                            <div class="roll <?= "row$rowNum $odd" ?>">
-                                <span class="col0"><?= $rowNum++ ?></span>
-                                <?php $col = 1;
-                                foreach ($row as $cell) {
-                                    ?>
-                                    <span class="col<?= $col++ ?>"><?= $results_name[$cell] ?></span>
-
-                                <?php } ?>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <div id="crtOddsExp"></div>
-                </div>
-            </div>
-            <button id="nextPhaseButton">Next Phase</button>
-            <div class="dropDown" id="jumpWrapper">
-                <h4 class="WrapperLabel" title="Jump Map">Jump</h4>
-            </div>
-
-            <?php include_once "obc.php"; ?>
-
-            <?php include_once "tec.php"; ?>
-            <?php include_once "timeTravel.php"; ?>
-
-            <?php include_once "help.php"; ?>
-            <span id="hideShow">Units Retired</span>
-    </header>
     <div id="content">
         <div id="rightCol">
             <div id="deployWrapper">

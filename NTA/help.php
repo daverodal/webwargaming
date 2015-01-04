@@ -10,6 +10,8 @@
 <style type="text/css">
     #gameRules {
         font-family: sans-serif;
+        font-size:16px;
+        font-weight: normal;
     }
 
     #gameRules table,  #gameRules th,  #gameRules td {
