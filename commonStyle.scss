@@ -192,6 +192,11 @@ body{
 }
 #zoomWrapper{
   font-size:30px;
+  #zoom{
+    .defaultZoom{
+      cursor: pointer;
+    }
+  }
 }
 .dropDownSelected{
   background:white;
