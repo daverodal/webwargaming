@@ -153,7 +153,12 @@ class Airborne extends ModernLandBattle
         $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 9, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
 
 
+        $this->force->addUnit("lll", BLUE_FORCE, "gameTurn2", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 2, 1, "rebel", true, "para");
+        $this->force->addUnit("lll", BLUE_FORCE, "gameTurn2", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 2, 1, "rebel", true, "para");
+        $this->force->addUnit("lll", BLUE_FORCE, "gameTurn2", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 2, 1, "rebel", true, "para");
 
+        $this->force->addUnit("lll", BLUE_FORCE, "gameTurn3", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 3, 1, "rebel", true, "para");
+        $this->force->addUnit("lll", BLUE_FORCE, "gameTurn3", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 3, 1, "rebel", true, "para");
 
         $this->force->addUnit("lll", BLUE_FORCE, "gameTurn6", "multiMech.png", 10, 5, 8, false, STATUS_CAN_REINFORCE, "A", 6, 1, "rebel", true, "mech");
         $this->force->addUnit("lll", BLUE_FORCE, "gameTurn6", "multiInf.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 6, 1, "rebel", true, "inf");
