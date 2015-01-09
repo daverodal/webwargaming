@@ -1,0 +1,973 @@
+body {
+  min-width: 675px;
+  margin: 0;
+  padding: 0; }
+
+h2 #status {
+  font-size: 16px; }
+
+h5 {
+  margin: 0px; }
+
+h4:hover {
+  text-decoration: underline; }
+
+.shadowy {
+  background-color: rgba(0, 0, 0, 0.3) !important; }
+
+#turn, #phase, #status, #victory {
+  background: white;
+  padding: 0 3px;
+  font-family: sans-serif; }
+
+#victory {
+  padding: 0; }
+
+#floatMessage {
+  white-space: nowrap;
+  position: absolute;
+  display: none;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  border: 2px solid black;
+  box-shadow: 10px 10px 10px rgba(30, 30, 30, 0.85);
+  z-index: 4;
+  padding: 0 5px;
+  cursor: move; }
+
+#floatMessage header {
+  font-size: 35px; }
+
+#altTable, #mainTable, #detTable {
+  position: absolute;
+  right: 18px;
+  cursor: pointer; }
+
+#comlinkWrapper {
+  border: 1px solid black;
+  border-radius: 10px;
+  background: white;
+  padding: 0 2px 0 2px;
+  font-style: italic; }
+
+.unit.pushed .shadow_mask {
+  /*color:#f3172d !important;*/
+  /*color:mediumpurple !important;*/
+  /*background-color: #858585 !important;*/
+  background-color: rgba(0, 0, 0, 0.5) !important; }
+
+#muteButton, #arrowButton {
+  cursor: pointer;
+  text-decoration: underline; }
+
+/*.embossed{*/
+/*-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -2px 0 rgba(0,0,0,.25), inset 0 -3px 0 rgba(255,255,255,.2), 0 1px 0 rgba(0,0,0,.1);*/
+/*-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -2px 0 rgba(0,0,0,.25), inset 0 -3px 0 rgba(255,255,255,.2), 0 1px 0 rgba(0,0,0,.1);*/
+/*box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -2px 0 rgba(0,0,0,.25), inset 0 -3px 0 rgba(255,255,255,.2), 0 1px 0 rgba(0,0,0,.1);*/
+/*}*/
+.specialHexes, .specialHexesVP {
+  position: absolute;
+  text-transform: capitalize;
+  background: yellow;
+  opacity: .8; }
+
+.specialHexesVP {
+  background: transparent !important;
+  color: white; }
+
+#display {
+  display: none;
+  position: fixed;
+  top: 25%;
+  width: 90%;
+  left: 5%;
+  padding: 30px 0;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 100px;
+  text-align: center;
+  border: #000 solid 10px;
+  border-radius: 30px;
+  z-index: 4; }
+
+.flashMessage {
+  position: fixed;
+  width: 80%;
+  background: rgba(255, 255, 255, 0.9);
+  /*background:transparent;*/
+  text-align: center;
+  border-radius: 30px;
+  border: 10px solid black;
+  /*border:none;*/
+  font-size: 100px;
+  z-index: 1000;
+  pointer-events: none; }
+
+#display button {
+  font-size: 30px; }
+
+#comlinkWrapper h4 {
+  font-weight: bold;
+  margin: 3px; }
+
+#header {
+  position: static;
+  width: 100%;
+  padding-bottom: 0px;
+  z-index: 2000; }
+
+#mouseMove {
+  display: none; }
+
+#headerContent {
+  /*min-height:110px;*/ }
+
+#nextPhaseWrapper {
+  float: left; }
+  #nextPhaseWrapper #nextPhaseButton, #nextPhaseWrapper #fullScreenButton {
+    font-size: 28px;
+    position: static; }
+
+#header a, #header a:visited {
+  color: white; }
+
+#phaseClicks a {
+  color: black; }
+
+#header a:hover {
+  color: #ddd !important; }
+
+#header h2 {
+  margin: 10px 0 5px; }
+
+#content {
+  margin-top: 140px; }
+
+.clear {
+  clear: both !important;
+  float: none !important; }
+
+.love {
+  color: peace; }
+
+.light {
+  backgroundColor: white; }
+
+.dark {
+  background-color: black; }
+
+.blueUnit {
+  background-color: #84b5ff; }
+
+.darkBlueUnit {
+  background-color: #6388c0; }
+
+.redUnit {
+  background-color: #ef734a; }
+
+.darkRedUnit {
+  background-color: #b35637; }
+
+.armyGreen {
+  background-color: #94bd4a; }
+
+.gold {
+  background-color: #f7ef8e; }
+
+.lightYellow {
+  background-color: #ffef9c; }
+
+.gray {
+  background-color: #b5b59c; }
+
+.oliveDrab {
+  background-color: #739c73; }
+
+.kaki {
+  background-color: #dec684; }
+
+.lightGreen {
+  background-color: #b5ce73; }
+
+.lightBlue {
+  background-color: #c4d8e4; }
+
+.lightGray {
+  background-color: #d8dad6; }
+
+.brightGreen {
+  background-color: #7bde52; }
+
+.flesh {
+  background-color: #efc69c; }
+
+.brightRed {
+  background-color: #df5842; }
+
+.unit-desig {
+  font-size: 7px;
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  -webkit-transform: rotate(-90deg);
+  -webkit-transform-origin: center;
+  width: 30px;
+  text-align: center; }
+
+#header, #content, #theDiv, #gameViewer {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.dropDown, #zoomWrapper {
+  font-size: 30px;
+  float: left;
+  margin-right: 10px;
+  border-right: 1px solid black;
+  padding-right: 10px; }
+  .dropDown.alpha, #zoomWrapper.alpha {
+    padding-left: 10px; }
+
+#crtWrapper {
+  border-right: 1px solid black;
+  padding-right: 10px;
+  margin-right: 10px; }
+
+#zoomWrapper {
+  font-size: 30px; }
+  #zoomWrapper #zoom .defaultZoom {
+    cursor: pointer; }
+
+.dropDownSelected {
+  background: white; }
+
+.dropDown .WrapperLabel {
+  margin: 0;
+  border: none;
+  cursor: pointer; }
+
+.dropDown .dropDownContent {
+  background: white;
+  position: absolute;
+  z-index: 30;
+  display: none; }
+
+#infoWrapper, #menuWrapper {
+  -webkit-touch-callout: none; }
+  #infoWrapper .WrapperLabel, #menuWrapper .WrapperLabel {
+    font-size: 30px;
+    margin: 0;
+    border: none;
+    -webkit-touch-callout: none;
+    cursor: pointer;
+    /*width:3em;*/ }
+  #infoWrapper li, #menuWrapper li {
+    list-style-type: none;
+    padding: 5px 10px 5px 10px;
+    border: 0 solid black;
+    border-width: 1px 1px 0 1px; }
+    #infoWrapper li a, #infoWrapper li a:visited, #menuWrapper li a, #menuWrapper li a:visited {
+      color: #333;
+      text-decoration: none; }
+
+#menu {
+  background: white;
+  color: #333; }
+  #menu ul {
+    margin: 0;
+    padding: 0; }
+
+#menuWrapper .WrapperLabel {
+  font-family: entypo;
+  line-height: 36px;
+  font-size: 70px; }
+
+#infoWrapper .WrapperLabel {
+  font-style: italic; }
+
+#phaseDiv, #statusDiv, #chatsDiv, #victoryDiv {
+  display: inline;
+  vertical-align: top;
+  /*float:left;*/ }
+
+#TimeWrapper {
+  float: left;
+  -webkit-touch-callout: none; }
+  #TimeWrapper .WrapperLabel {
+    font-size: 30px;
+    margin: 0;
+    border: none;
+    -webkit-touch-callout: none;
+    cursor: pointer;
+    /*width:3em;*/ }
+    #TimeWrapper .WrapperLabel .small {
+      font-size: 10px; }
+
+.dropDown .subMenu {
+  font-size: 20px;
+  position: absolute;
+  z-index: 30;
+  display: none;
+  background: #ccc;
+  /* .dropDowns may not exist inside a ul */ }
+  .dropDown .subMenu > ul {
+    margin: 0;
+    padding: 0;
+    z-index: 30;
+    font-size: 20px; }
+    .dropDown .subMenu > ul > li {
+      background: white;
+      border: 1px solid #333; }
+  .dropDown .subMenu .dropDown {
+    border: none; }
+  .dropDown .subMenu li, .dropDown .subMenu .dropDown {
+    float: none;
+    font-size: 20px;
+    cursor: pointer;
+    position: static;
+    font-weight: bold;
+    display: inline-block; }
+
+#statusWrapper {
+  float: right; }
+
+#crtWrapper {
+  float: left;
+  -webkit-touch-callout: none; }
+  #crtWrapper .WrapperLabel {
+    font-size: 30px;
+    margin: 0;
+    border: none;
+    -webkit-touch-callout: none;
+    cursor: pointer;
+    /*width:3em;*/ }
+
+#crt {
+  width: 308px; }
+
+#crtWrapper h4 .goLeft, #crtWrapper h4 .goRight {
+  font-size: 22px;
+  padding: 0 10px; }
+
+#TEC ul {
+  margin: 0;
+  padding: 0; }
+
+#Time ul {
+  margin: 0;
+  padding: 0; }
+
+#info ul {
+  margin: 0;
+  padding: 0; }
+
+#info {
+  background: white;
+  color: #333;
+  width: 10em; }
+
+.close {
+  position: absolute;
+  border: 1px solid #ccc;
+  right: 3px;
+  top: 3px;
+  color: #ccc;
+  font-size: 11px;
+  line-height: 12px;
+  cursor: pointer; }
+
+#VC ul {
+  margin: 0;
+  padding: 0; }
+
+#OBC {
+  background: white;
+  width: 514px; }
+
+#OBC .unit {
+  margin-top: 10px; }
+
+#OBC .unit .shadow_mask {
+  /*background-color:rgba(0,0,0,.3);*/ }
+
+#Time {
+  background: white;
+  width: 600px;
+  cursor: move;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  border: 2px solid black;
+  box-shadow: 10px 10px 10px rgba(30, 30, 30, 0.85);
+  padding: 0 5px; }
+
+#TEC {
+  background: white;
+  width: 579px; }
+
+#GR {
+  background: white;
+  max-height: 500px;
+  min-height: 100px;
+  overflow-y: auto;
+  padding: 0 20px 10px; }
+
+#VC {
+  background: white;
+  width: 579px;
+  left: -230px; }
+
+#clickCnt {
+  display: inline-block;
+  padding: 3px; }
+
+#OBCWrapper h4 {
+  /*width:2em;*/ }
+
+#OBC, #crt, #TEC, #VC, #jump, #menu, #info, #GR, #Time {
+  position: absolute;
+  z-index: 30;
+  display: none; }
+
+.closer {
+  height: 0px;
+  padding: 0px !important; }
+
+#crt {
+  z-index: 40; }
+
+body {
+  background: #eee;
+  color: #333333; }
+
+#status {
+  /*height:70px;*/
+  /*overflow-y:scroll;*/
+  /*text-align:right;*/ }
+
+#status legend {
+  /*text-align:left;*/ }
+
+fieldset {
+  background: white;
+  border-radius: 9px; }
+
+#OBC fieldset {
+  float: left;
+  min-height: 100px; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+#crt {
+  border-radius: 15px;
+  border-width: 10px;
+  border-style: solid;
+  /*border:10px solid rgb(132,181,255);*/
+  background: #fff;
+  color: black;
+  font-weight: bold;
+  padding: 1px 5px 10px 15px;
+  box-shadow: 10px 10px 10px rgba(30, 30, 30, 0.85); }
+
+#crt h3 {
+  height: 40px;
+  margin-bottom: 5px;
+  vertical-align: bottom; }
+
+#crt span {
+  width: 32px; }
+
+.col1 {
+  left: 20px; }
+
+.col2 {
+  left: 60px; }
+
+.col3 {
+  left: 100px; }
+
+.col4 {
+  left: 140px; }
+
+.col5 {
+  left: 180px; }
+
+.col6 {
+  left: 220px; }
+
+.roll, #odds {
+  height: 20px;
+  /*background :#1af;*/
+  background: #84b5ff;
+  margin-right: 14px; }
+
+#odds {
+  background: white; }
+
+.even {
+  color: black; }
+
+.odd {
+  color: black; }
+
+.row1 {
+  top: 80px; }
+
+.row2 {
+  top: 100px;
+  background: white; }
+
+.row3 {
+  top: 120px; }
+
+.row4 {
+  top: 140px;
+  background: white; }
+
+.row5 {
+  top: 160px; }
+
+.row6 {
+  top: 180px;
+  background: white; }
+
+.roll span, #odds span {
+  margin-right: 10px;
+  float: left;
+  display: block;
+  width: 32px; }
+
+#gameImages {
+  position: relative;
+  overflow: visible !important; }
+
+#gameViewer {
+  position: fixed;
+  background: #ccc;
+  margin-bottom: 5px;
+  width: 100%; }
+
+#leftcol {
+  /*float:left;
+  width:360px;*/ }
+
+#rightCol {
+  /*float:right;*/
+  overflow: hidden; }
+
+#gameturnContainer {
+  height: 38px;
+  position: relative;
+  float: left; }
+
+#gameturnContainer div {
+  float: left;
+  height: 36px;
+  width: 36px;
+  border: solid black;
+  border-width: 1px 1px 1px 0;
+  font-size: 18px;
+  text-indent: 2px; }
+
+.storm {
+  font-size: 50%; }
+
+#gameturnContainer #turn1 {
+  border-width: 1px; }
+
+#turnCounter {
+  width: 32px;
+  height: 32px;
+  font-size: 11px;
+  text-indent: 0px;
+  top: 2px;
+  left: 2px;
+  text-align: center;
+  border: 2px solid;
+  border-color: #ccc #666 #666 #ccc; }
+
+#deadpile {
+  border-radius: 10px;
+  border: 10px solid #555;
+  height: 70px;
+  background: #333;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 5px;
+  /*display:none;*/ }
+
+#deployBox {
+  position: relative;
+  font-family: serif; }
+
+#deployWrapper, #exitWrapper {
+  /*display:none;*/
+  padding: 4px 7px 4px 7px;
+  text-align: left;
+  font-family: sans-serif;
+  font-size: 1.2em;
+  color: white;
+  border-radius: 10px;
+  border: 10px solid #555;
+  background: #aaa;
+  margin-bottom: 5px; }
+
+#deployWrapper .unit {
+  margin-right: 5px; }
+
+.unit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  width: 32px;
+  height: 32px;
+  border: solid 3px black; }
+
+.unit .shadow_mask {
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: transparent;
+  z-index: 1; }
+
+.unit .unit-numbers {
+  text-align: center;
+  color: black; }
+
+.unit .unitSize {
+  font-size: 9px;
+  text-align: center;
+  color: black; }
+
+.unit .unit-numbers {
+  height: 12px;
+  font-size: 11px; }
+
+.arrowClone, .arrow {
+  position: absolute;
+  pointer-events: none;
+  z-index: 102;
+  top: 0px;
+  width: 100%;
+  height: 100%; }
+
+.clone {
+  /*pointer-events:none;*/ }
+
+.occupied {
+  display: none; }
+
+#TEC {
+  max-height: 500px;
+  overflow: auto; }
+
+#crtDetailsButton {
+  font-size: 10px;
+  cursor: pointer; }
+
+#crtDetails {
+  display: none; }
+
+svg {
+  z-index: 1;
+  display: none; }
+
+.unitOdds {
+  position: absolute;
+  background: white;
+  border-radius: 10px;
+  left: 15px;
+  right: -9px;
+  text-align: center;
+  letter-spacing: -1px;
+  font-size: 70%;
+  z-index: 2;
+  border: 1px solid #999; }
+  .unitOdds:hover {
+    background: transparent;
+    color: transparent;
+    border-color: transparent; }
+  .unitOdds.altColor {
+    background: #00ec00; }
+    .unitOdds.altColor:hover {
+      background: transparent; }
+  .unitOdds.determinedColor {
+    background: red;
+    color: white; }
+    .unitOdds.determinedColor:hover {
+      background: transparent;
+      color: transparent; }
+  .unitOdds.pinnedColor {
+    background: #ff00ff;
+    color: white; }
+    .unitOdds.pinnedColor:hover {
+      background: transparent;
+      color: transparent; }
+
+#phaseClicks {
+  display: none;
+  cursor: pointer; }
+  #phaseClicks .newPhase {
+    min-width: 10px;
+    height: 40px;
+    border-left: 1px solid red;
+    display: inline-block;
+    margin-bottom: 10px; }
+  #phaseClicks .newTick {
+    text-align: center;
+    margin-top: 10px;
+    width: 15px;
+    height: 10px;
+    border-left: 1px solid black;
+    display: inline-block;
+    font-size: 10px; }
+    #phaseClicks .newTick.tickShim {
+      width: 0px; }
+    #phaseClicks .newTick:hover {
+      background: #999;
+      color: #fff; }
+    #phaseClicks .newTick.activeTick {
+      background-color: #666; }
+      #phaseClicks .newTick.activeTick a {
+        background-color: #666;
+        color: white; }
+
+#timeMachine, #timeSurge {
+  font-size: 22px; }
+
+svg g {
+  opacity: .6;
+  fill: red;
+  stroke: red; }
+  svg g:hover, svg g .hover {
+    opacity: 1.0; }
+svg marker#head {
+  fill: red; }
+
+.ruleComment {
+  font-style: italic;
+  margin-left: 10px;
+  color: #999; }
+
+.big {
+  font-size: 19px;
+  font-weight: bold; }
+
+/* Unit Styles */
+.playerOne {
+  background: #df5842;
+  border-color: #df5842 !important; }
+
+.rebelFace, .playerOneFace {
+  color: #df5842; }
+
+.rebel {
+  background-color: #df5842; }
+  .rebel .unit-desig {
+    color: white; }
+
+.playerTwo {
+  background: #84b5ff;
+  border-color: #84b5ff !important; }
+
+.loyalistFace, .playerTwoFace {
+  color: #84b5ff; }
+
+.loyalist {
+  background-color: #84b5ff; }
+  .loyalist .unit-desig {
+    color: white; }
+
+.rebel div {
+  color: black; }
+
+.sympth div {
+  color: black; }
+
+.game-name {
+  word-break: break-all;
+  font-family: 'Nosifer'; }
+
+.reduced {
+  color: white; }
+
+.unit .unitSize {
+  height: 10px;
+  font-size: 9px;
+  text-align: center;
+  color: black; }
+
+.unit .counterWrapper {
+  height: 10px; }
+
+.unit .counter {
+  width: 32px;
+  margin-top: -4px; }
+
+.unit .unit-numbers {
+  font-size: 12px;
+  font-weight: bold; }
+
+.unit .unit-numbers .infoLen45 {
+  font-size: 11px;
+  letter-spacing: -1px; }
+
+.unit .unit-numbers .infoLen5 {
+  letter-spacing: -1px; }
+
+.unit .unit-numbers .infoLen7 {
+  font-size: 13px;
+  letter-spacing: -1px; }
+
+.unit .unit-numbers .infoLen8 {
+  letter-spacing: -1px; }
+
+/* dropdown styles */
+#OBC {
+  background: white;
+  width: 514px; }
+
+#crt {
+  width: 308px; }
+
+#TEC {
+  background: white;
+  width: 579px; }
+
+#TECWrapper .closer {
+  height: 0px;
+  padding: 0px; }
+
+#TECWrapper .colOne.riverHex {
+  background-image: url("<?=base_url()?>js/river.png");
+  background-position: 0px -26px; }
+
+#TECWrapper .colOne.bridgeHex {
+  background-image: url("<?=base_url()?>js/riverRoad.png");
+  background-position: 0px -26px; }
+
+#TECWrapper .colOne.blankHex {
+  background-image: url("<?=base_url()?>js/blank.png"); }
+
+#TECWrapper .colOne.forestHex {
+  background-image: url("<?=base_url()?>js/forest 2.png"); }
+
+#TECWrapper .colOne.mountainHex {
+  background-image: url("<?=base_url()?>js/mountain.png"); }
+
+#TECWrapper .colOne.roadHex {
+  background-image: url("<?=base_url()?>js/road.png");
+  background-position: 0px -26px; }
+
+#TECWrapper .colOne.trailHex {
+  background-image: url("<?=base_url()?>js/trail.png");
+  background-position: 0px -26px;
+  background-size: 516px;
+  /* TODO why this different from others */ }
+
+#TECWrapper .colOne {
+  background-size: 400px;
+  width: 220px;
+  height: 56px;
+  margin-left: 20px; }
+
+#TECWrapper .colTwo {
+  width: 170px;
+  padding-right: 10px; }
+
+#TECWrapper .colThree {
+  width: 136px; }
+
+#TECWrapper .colOne span {
+  margin-top: 12px;
+  margin-left: 80px;
+  display: inline-block; }
+
+#TECWrapper .colTwo, #TECWrapper .colThree {
+  margin-top: 12px; }
+
+#TECWrapper .colOne,
+#TECWrapper .colTwo,
+#TECWrapper .colThree {
+  float: left; }
+
+#TECWrapper li {
+  list-style-type: none;
+  padding: 5px 20px 5px 0px; }
+
+#GR {
+  width: 600px; }
+
+.specialHexesVP .prcVictoryPoints {
+  text-shadow: 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 10px gold, 0px 0px 10px gold, 0px 0px 10px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 10px gold, 0px 0px 10px gold, 0px 0px 10px gold; }
+
+.specialHexesVP .sovietVictoryPoints, .specialHexesVP .rebelVictoryPoints {
+  text-shadow: 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842; }
+
+.specialHexesVP .loyalistVictoryPoints {
+  text-shadow: 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff; }
+
+.playerOne {
+  background: #55cc55;
+  border-color: #55cc55 !important; }
+
+.rebelFace, .playerOneFace {
+  color: #55cc55; }
+
+.rebel {
+  background-color: #55cc55; }
+  .rebel .unit-desig {
+    color: white; }
+
+.playerTwo {
+  background: #e5de52;
+  border-color: #e5de52 !important; }
+
+.loyalistFace, .playerTwoFace {
+  color: #e5de52; }
+
+.loyalist {
+  background-color: #e5de52; }
+  .loyalist .unit-desig {
+    color: white; }
+
+.playerThree {
+  background: #aaaaaa;
+  border-color: #aaaaaa !important; }
+
+.loyalGuardsFace, .playerThreeFace {
+  color: #aaaaaa; }
+
+.loyalGuards {
+  background-color: #aaaaaa; }
+  .loyalGuards .unit-desig {
+    color: white; }
+
+#crt {
+  width: 308px; }
+
+.reduced {
+  color: white; }
+
+#infoWrapper .WrapperLabel {
+  width: auto; }
+
+.game-name {
+  word-break: break-all;
+  font-family: 'Nosifer'; }
+
+#gameTurn6 .unit {
+  float: left; }
+
+.specialHexesVP .rebelVictoryPoints {
+  text-shadow: 0px 0px 1px orange, 0px 0px 1px orange, 0px 0px 1px orange, 0px 0px 2px orange, 0px 0px 2px orange, 0px 0px 2px orange, 0px 0px 3px orange, 0px 0px 3px orange, 0px 0px 3px orange, 0px 0px 4px orange, 0px 0px 4px orange, 0px 0px 4px orange, 0px 0px 5px orange, 0px 0px 5px orange, 0px 0px 5px orange, 0px 0px 6px orange, 0px 0px 6px orange, 0px 0px 6px orange, 0px 0px 7px orange, 0px 0px 7px orange, 0px 0px 7px orange, 0px 0px 8px orange, 0px 0px 8px orange, 0px 0px 8px orange, 0px 0px 9px orange, 0px 0px 9px orange, 0px 0px 9px orange, 0px 0px 10px orange, 0px 0px 10px orange, 0px 0px 10px orange, 0px 0px 1px orange, 0px 0px 1px orange, 0px 0px 1px orange, 0px 0px 2px orange, 0px 0px 2px orange, 0px 0px 2px orange, 0px 0px 3px orange, 0px 0px 3px orange, 0px 0px 3px orange, 0px 0px 4px orange, 0px 0px 4px orange, 0px 0px 4px orange, 0px 0px 5px orange, 0px 0px 5px orange, 0px 0px 5px orange, 0px 0px 6px orange, 0px 0px 6px orange, 0px 0px 6px orange, 0px 0px 7px orange, 0px 0px 7px orange, 0px 0px 7px orange, 0px 0px 8px orange, 0px 0px 8px orange, 0px 0px 8px orange, 0px 0px 9px orange, 0px 0px 9px orange, 0px 0px 9px orange, 0px 0px 10px orange, 0px 0px 10px orange, 0px 0px 10px orange; }
+
+.specialHexesVP .loyalistVictoryPoints {
+  text-shadow: 0px 0px 1px #666666, 0px 0px 1px #666666, 0px 0px 1px #666666, 0px 0px 2px #666666, 0px 0px 2px #666666, 0px 0px 2px #666666, 0px 0px 3px #666666, 0px 0px 3px #666666, 0px 0px 3px #666666, 0px 0px 4px #666666, 0px 0px 4px #666666, 0px 0px 4px #666666, 0px 0px 5px #666666, 0px 0px 5px #666666, 0px 0px 5px #666666, 0px 0px 6px #666666, 0px 0px 6px #666666, 0px 0px 6px #666666, 0px 0px 7px #666666, 0px 0px 7px #666666, 0px 0px 7px #666666, 0px 0px 8px #666666, 0px 0px 8px #666666, 0px 0px 8px #666666, 0px 0px 9px #666666, 0px 0px 9px #666666, 0px 0px 9px #666666, 0px 0px 10px #666666, 0px 0px 10px #666666, 0px 0px 10px #666666, 0px 0px 1px #666666, 0px 0px 1px #666666, 0px 0px 1px #666666, 0px 0px 2px #666666, 0px 0px 2px #666666, 0px 0px 2px #666666, 0px 0px 3px #666666, 0px 0px 3px #666666, 0px 0px 3px #666666, 0px 0px 4px #666666, 0px 0px 4px #666666, 0px 0px 4px #666666, 0px 0px 5px #666666, 0px 0px 5px #666666, 0px 0px 5px #666666, 0px 0px 6px #666666, 0px 0px 6px #666666, 0px 0px 6px #666666, 0px 0px 7px #666666, 0px 0px 7px #666666, 0px 0px 7px #666666, 0px 0px 8px #666666, 0px 0px 8px #666666, 0px 0px 8px #666666, 0px 0px 9px #666666, 0px 0px 9px #666666, 0px 0px 9px #666666, 0px 0px 10px #666666, 0px 0px 10px #666666, 0px 0px 10px #666666; }
