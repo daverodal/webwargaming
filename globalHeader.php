@@ -6,18 +6,32 @@
     var DR = {};
     var zoomed = false;
     DR.globalZoom = 1;
+    function toggleFullScreen() {
+        var doc = window.document;
+        var docEl = doc.documentElement;
 
-    window.addEventListener("load",function() {
-        // Set a timeout...
-        setTimeout(function(){
-            // Hide the address bar!
-            window.scrollTo(0, 1);
-        }, 0);
-    });
+        var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+        var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+        if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+           console.log("b4");
+            requestFullScreen.call(docEl);
+            console.log("Aft");
+        }
+        else {
+            cancelFullScreen.call(doc);
+        }
+    }
+
     $(document).ready(function () {
 
         DR.crtDetails = false;
         DR.showArrows = false;
+
+        $("#fullScreenButton").on('click touchstart', function () {
+            toggleFullScreen();
+            return false;
+        });
 
 
             var $panzoom = $('#gameImages').panzoom({cursor: "normal", animate: true, maxScale: 2.0, minScale:.3, onPan: function(e, panzoom){

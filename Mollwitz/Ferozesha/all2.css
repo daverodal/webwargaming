@@ -153,7 +153,7 @@ h4:hover {
   backgroundColor: white; }
 
 .dark {
-  background-color: #000; }
+  background-color: black; }
 
 .blueUnit {
   background-color: #84b5ff; }
@@ -438,7 +438,7 @@ h4:hover {
 
 body {
   background: #eee;
-  color: #333; }
+  color: #333333; }
 
 #status {
   /*height:70px;*/
@@ -1119,7 +1119,7 @@ p.forceMarch {
   color: #df5842; }
 
 .British .counterWrapper {
-  background-color: #f00; }
+  background-color: red; }
 
 .unit.Native .counterWrapper {
   background-color: #df5842; }
@@ -1135,5 +1135,3 @@ p.forceMarch {
 
 p.forceMarch, p.range {
   color: white; }
-
-/*# sourceMappingURL=all2.css.map */
