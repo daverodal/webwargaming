@@ -95,26 +95,7 @@
                 "supply": true,
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
-                "supplyLen": 8,
                 "hardCuneiform": true
-            },
-            "Weaker": {
-                "description": "Rebel raid by the sea, Weaker Loyalists",
-                "supply": true,
-                "loyalMechMove": 8,
-                "loyalExtraInf": true,
-                "supplyLen": 8,
-                "hardCuneiform": true,
-                "weakerLoyalist": true
-            },
-            "Stronger": {
-                "description": "Rebel raid by the sea, Stronger Loyalists",
-                "supply": true,
-                "loyalMechMove": 8,
-                "loyalExtraInf": true,
-                "supplyLen": 8,
-                "hardCuneiform": true,
-                "strongerLoyalist": true
             }
         }
     },

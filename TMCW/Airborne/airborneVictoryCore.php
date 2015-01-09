@@ -101,12 +101,8 @@ class airborneVictoryCore extends victoryCore
         if ($unit->forceId == BLUE_FORCE) {
             $zone = $unit->reinforceZone;
             $zones = [];
+
             if ($zone == "A") {
-                foreach ($this->landingZones as $landingZone) {
-                    $zones[] = new ReinforceZone($landingZone, "A");
-                }
-            }
-            if ($zone == "C") {
                 foreach ($this->airdropZones as $airdropZone) {
                     $zones[] = new ReinforceZone($airdropZone, "C");
                 }
@@ -187,8 +183,6 @@ class airborneVictoryCore extends victoryCore
                     $supply[$unit->hexagon->name] = BLUE_FORCE;
                     if ($unit->class === "para") {
                         $this->airdropZones[] = $unit->hexagon->name;
-                    } else {
-                        $this->landingZones[] = $unit->hexagon->name;
                     }
                 }
             }
@@ -223,11 +217,11 @@ class airborneVictoryCore extends victoryCore
 
         $b = Battle::getBattle();
 
-        $goal = array_merge($this->landingZones, $this->airdropZones);
+        $goal = array_merge([101], $this->airdropZones);
         $this->rebelGoal = $goal;
 
         $goal = array();
-        $goal = array_merge($goal, array(110, 210, 310, 410, 510, 610, 710, 810, 910, 1010, 1110, 1210, 1310, 1410, 1510, 1610, 1710, 1810, 1910, 2010));
+        $goal = array_merge($goal, array(120, 220, 320, 420, 520, 620, 720, 820, 920, 1020, 1120 , 1220, 1320, 1420, 1520, 1620, 1720, 1820, 1920, 2020));
         $this->loyalistGoal = $goal;
     }
 
