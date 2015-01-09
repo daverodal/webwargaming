@@ -123,7 +123,7 @@ h4:hover {
 
 #nextPhaseWrapper {
   float: left; }
-  #nextPhaseWrapper #nextPhaseButton {
+  #nextPhaseWrapper #nextPhaseButton, #nextPhaseWrapper #fullScreenButton {
     font-size: 28px;
     position: static; }
 
