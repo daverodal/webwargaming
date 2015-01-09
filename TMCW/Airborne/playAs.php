@@ -2,7 +2,7 @@
 <style>
     <?php @include "playAs.css";?>
     body{
-        background:url("<?=base_url("js/Sailors_conduct_amphibious_assault_training.jpg")?>") #333 no-repeat;
+        background:url("<?=base_url("js/C-47_Dakotas_and_paratroops.jpg")?>") #333 no-repeat;
         background-position:center 0;
         background-size:100%;
     }
@@ -17,6 +17,5 @@
     <a class="link"  href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>">Play Multi Player </a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a>
     <div class="attribution">
-        By Official U.S. Navy Page from United States of America MC2 Tamara Vaughn/U.S. Navy (Sailors conduct amphibious assault training.) [Public domain], <a target='blank' href="http://commons.wikimedia.org/wiki/File%3ASailors_conduct_amphibious_assault_training._(9137290248).jpg">via Wikimedia Commons</a>
-    </div>
+        By Sgt. D.M. Smith, British Army Film and Photographic Unit [Public domain], <a target="blank" href="http://commons.wikimedia.org/wiki/File%3AC-47_Dakotas_and_paratroops.jpg">via Wikimedia Commons</a>    </div>
 </fieldset>
