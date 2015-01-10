@@ -180,8 +180,8 @@ class airborneVictoryCore extends victoryCore
             for ($i = 0; $i <= $num; $i++) {
                 $unit = $units[$i];
                 if ($unit->forceId == BLUE_FORCE && $unit->hexagon->parent === "gameImages") {
-                    $supply[$unit->hexagon->name] = BLUE_FORCE;
                     if ($unit->class === "para") {
+                        $supply[$unit->hexagon->name] = BLUE_FORCE;
                         $this->airdropZones[] = $unit->hexagon->name;
                     }
                 }
@@ -223,15 +223,6 @@ class airborneVictoryCore extends victoryCore
         $goal = array();
         $goal = array_merge($goal, array(120, 220, 320, 420, 520, 620, 720, 820, 920, 1020, 1120 , 1220, 1320, 1420, 1520, 1620, 1720, 1820, 1920, 2020));
         $this->loyalistGoal = $goal;
-    }
-
-    function isExit($args)
-    {
-        list($unit) = $args;
-        if ($unit->forceId == BLUE_FORCE && in_array($unit->hexagon->name, $this->landingZones)) {
-            return true;
-        }
-        return false;
     }
 
 
