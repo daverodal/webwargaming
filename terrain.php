@@ -574,7 +574,6 @@ class Terrain
 
         $terrains = $this->getTerrainCodeXY($hexagon->getx(),$hexagon->getY());
         foreach ($terrains as $terrainFeature) {
-            var_dump($terrainFeature);
             $combatEffect += $this->terrainFeatures->$terrainFeature->combatEffect;
         }
         return $combatEffect;
