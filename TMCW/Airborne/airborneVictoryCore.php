@@ -252,12 +252,6 @@ class airborneVictoryCore extends victoryCore
             }
             $this->unitSupplyEffects($unit, $goal, $bias, $this->supplyLen);
         }
-
-        if($b->gameRules->attackingForceId == REBEL_FORCE && $unit->forceId == LOYALIST_FORCE && $unit->nationality == "loyalist"){
-            $unit->addAdjustment('defense','double');
-        }else{
-            $unit->removeAdjustment('defense');
-        }
     }
 
     public function preStartMovingUnit($arg)

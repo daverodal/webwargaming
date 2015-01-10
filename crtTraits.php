@@ -253,7 +253,6 @@ trait divMCWCombatShiftTerrain
         /* @var $combatRules CombatRules */
         $terrainCombatEffect = $combatRules->getDefenderTerrainCombatEffect($defenderId);
 
-        $combatLog .= "hi $terrainCombatEffect";
         if($isMountainInf && $isMountain){
             /* Mountain Inf helps combat agains Mountain hexes */
             $terrainCombatEffect--;
