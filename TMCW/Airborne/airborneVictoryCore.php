@@ -221,7 +221,13 @@ class airborneVictoryCore extends victoryCore
         $this->rebelGoal = $goal;
 
         $goal = array();
-        $goal = array_merge($goal, array(120, 220, 320, 420, 520, 620, 720, 820, 920, 1020, 1120 , 1220, 1320, 1420, 1520, 1620, 1720, 1820, 1920, 2020));
+        for($row = 1;$row <= 20;$row++){
+            $goal[] = 2000+$row;
+        }
+        /* Don't put lower right corner in twice! */
+        for($col = 1;$col <= 19;$col++){
+            $goal[] = ($col*100)+20;
+        }
         $this->loyalistGoal = $goal;
     }
 
@@ -245,6 +251,12 @@ class airborneVictoryCore extends victoryCore
                 $goal = $this->loyalistGoal;
             }
             $this->unitSupplyEffects($unit, $goal, $bias, $this->supplyLen);
+        }
+
+        if($b->gameRules->attackingForceId == REBEL_FORCE && $unit->forceId == LOYALIST_FORCE && $unit->nationality == "loyalist"){
+            $unit->addAdjustment('defense','double');
+        }else{
+            $unit->removeAdjustment('defense');
         }
     }
 

@@ -927,26 +927,26 @@ svg marker#head {
     color: white; }
 
 .playerTwo {
-  background: #e5de52;
-  border-color: #e5de52 !important; }
+  background: #83aee9;
+  border-color: #83aee9 !important; }
 
 .loyalistFace, .playerTwoFace {
-  color: #e5de52; }
+  color: #83aee9; }
 
 .loyalist {
-  background-color: #e5de52; }
+  background-color: #83aee9; }
   .loyalist .unit-desig {
     color: white; }
 
 .playerThree {
-  background: #aaaaaa;
-  border-color: #aaaaaa !important; }
+  background: silver;
+  border-color: silver !important; }
 
 .loyalGuardsFace, .playerThreeFace {
-  color: #aaaaaa; }
+  color: silver; }
 
 .loyalGuards {
-  background-color: #aaaaaa; }
+  background-color: silver; }
   .loyalGuards .unit-desig {
     color: white; }
 

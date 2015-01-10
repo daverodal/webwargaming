@@ -61,6 +61,7 @@ x.register("mapUnits", function(mapUnits) {
         if(mapUnits[i].parent != $("#"+i).parent().attr("id")){
             $("#"+i).appendTo($("#"+mapUnits[i].parent));
             if(mapUnits[i].parent != "gameImages"){
+                debugger;
                 $("#"+ i).css({top:"0"});
                 $("#"+ i).css({left:"0"});
                 if(!mapUnits[i].parent.match(/^gameTurn/)){

@@ -96,6 +96,13 @@
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
                 "hardCuneiform": true
+            },
+            "Bigger": {
+                "description": "Assault from the air, Bigger map",
+                "supply": true,
+                "loyalMechMove": 8,
+                "loyalExtraInf": true,
+                "hardCuneiform": true
             }
         }
     },
