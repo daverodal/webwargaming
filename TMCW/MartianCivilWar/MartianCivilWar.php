@@ -16,23 +16,6 @@ require_once "ModernLandBattle.php";
 
 class MartianCivilWar extends ModernLandBattle
 {
-    /* a comment */
-
-    /* @var MapData $mapData */
-    public $mapData;
-    public $mapViewer;
-    public $force;
-    public $terrain;
-    public $moveRules;
-    public $combatRules;
-    public $gameRules;
-    public $prompt;
-    public $display;
-    public $victory;
-    public $arg;
-    public $scenario;
-
-    public $players;
 
     static function getHeader($name, $playerData, $arg = false)
     {
@@ -45,21 +28,7 @@ class MartianCivilWar extends ModernLandBattle
     static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false, $game = false)
     {
         global $force_name;
-        $youAre = $force_name[$player];
-        $deployTwo = $playerOne = "Prussian";
-        $deployOne = $playerTwo = "Austrian";
         @include_once "view.php";
-    }
-
-    static function playAs($name, $wargame, $arg = false)
-    {
-
-        @include_once "playAs.php";
-    }
-
-    static function playMulti($name, $wargame, $arg = false)
-    {
-        @include_once "playMulti.php";
     }
 
     function terrainInit($terrainDoc){
@@ -76,34 +45,6 @@ class MartianCivilWar extends ModernLandBattle
         return $data;
     }
 
-    function poke($event, $id, $x, $y, $user, $click)
-    {
-
-        $playerId = $this->gameRules->attackingForceId;
-        if ($this->players[$this->gameRules->attackingForceId] != $user) {
-            return false;
-        }
-
-        switch ($event) {
-            case SELECT_MAP_EVENT:
-                $mapGrid = new MapGrid($this->mapViewer[$playerId]);
-                $mapGrid->setPixels($x, $y);
-                return $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon(), $click);
-                break;
-
-            case SELECT_COUNTER_EVENT:
-                /* fall through */
-            case SELECT_SHIFT_COUNTER_EVENT:
-                return $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id), $click);
-
-                break;
-
-            case SELECT_BUTTON_EVENT:
-                $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0, $click);
-
-        }
-        return true;
-    }
 
     public function oldInit()
     {
@@ -122,12 +63,6 @@ class MartianCivilWar extends ModernLandBattle
         $this->force->addUnit("xx", RED_FORCE, 512, "multiInf.png", 2, 1, 4, true, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
         $this->force->addUnit("xx", RED_FORCE, 1909, "multiInf.png", 2, 1, 4, true, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
         $this->force->addUnit("xx", RED_FORCE, 914, "multiInf.png", 2, 1, 4, true, STATUS_READY, "B", 1, 1, "loyalist", true, 'inf');
-
-//
-//            for($i = 1;$i<= 10;$i+=2){
-//                $this->force->addUnit("xx", RED_FORCE, 500+$i, "multiInf.png", 2, 1, 4, true, STATUS_READY, "B", 1, 1, "loyalist");
-//
-//            }
 
         for ($i = 7; $i <= 10; $i += 2) {
             $this->force->addUnit("xx", RED_FORCE, 1000 + $i, "multiInf.png", 2, 1, 4, true, STATUS_READY, "B", 1, 1, "loyalist");
@@ -173,16 +108,6 @@ class MartianCivilWar extends ModernLandBattle
             $this->force->addUnit("xx", RED_FORCE, "gameTurn5", "multiRecon.png", 5, 2, 9, $bigLoyalist, STATUS_CAN_REINFORCE, "B", 5, 1, "loyalist", true, "mech");
         }
 
-//            $this->force->addUnit("xx", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "B", 2, 1, "loyalist");
-//            $this->force->addUnit("xx", RED_FORCE, "gameTurn2", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "B", 2, 1, "loyalist");
-//            $this->force->addUnit("xx", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "B", 3, 1, "loyalist");
-//            $this->force->addUnit("xx", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "B", 3, 1, "loyalist");
-//            $this->force->addUnit("xx", RED_FORCE, "gameTurn3", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "B", 3, 1, "loyalist");
-//            $this->force->addUnit("xx", RED_FORCE, "gameTurn4", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "B", 4, 1, "loyalist");
-//            $this->force->addUnit("xx", RED_FORCE, "gameTurn4", "multiMech.png",9, 4, 6, true, STATUS_CAN_REINFORCE, "B", 4, 1, "loyalist");
-//            $this->force->addUnit("xx", RED_FORCE, "gameTurn5", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "B", 5, 1, "loyalist");
-//            $this->force->addUnit("xx", RED_FORCE, "gameTurn5", "multiArmor.png",7, 3, 6, true, STATUS_CAN_REINFORCE, "B", 5, 1, "loyalist");
-
 
         $i = 1;
         $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiArmor.png", 6, 3, 8, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
@@ -207,9 +132,7 @@ class MartianCivilWar extends ModernLandBattle
         $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "inf");
         $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "inf");
         $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "inf");
-        $j = $i;
-        $i = 0;
-        $j = 11;
+
         $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "inf");
         $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "inf");
         $this->force->addUnit("xx", BLUE_FORCE, "deployBox", "multiInf.png", 2, 1, 5, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "inf");
@@ -308,40 +231,16 @@ class MartianCivilWar extends ModernLandBattle
 
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
+        parent::__construct($data, $arg, $scenario, $game);
 
-        $this->mapData = MapData::getInstance();
         if ($data) {
-            $this->arg = $data->arg;
-            $this->scenario = $data->scenario;
-            $this->terrainName = $data->terrainName;
-            $this->victory = new Victory("TMCW/MartianCivilWar", $data);
-            $this->display = new Display($data->display);
-            $this->mapData->init($data->mapData);
-            $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
-            $this->force = new Force($data->force);
-            $this->terrain = new Terrain($data->terrain);
-            $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
-            $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
-            $this->combatRules->crt->aggressorId = REBEL_FORCE;
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-            $this->players = $data->players;
-            $this->terrainName = $data->terrainName;
+
         } else {
-            $this->arg = $arg;
-            $this->scenario = $scenario;
             $this->terrainName = "terrain-MartianCivilWar";
             $this->victory = new Victory("TMCW/MartianCivilWar");
             if ($scenario->supplyLen) {
                 $this->victory->setSupplyLen($scenario->supplyLen);
             }
-            $this->display = new Display();
-
-            $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
-            $this->force = new Force();
-            $this->terrain = new Terrain();
-            $this->moveRules = new MoveRules($this->force, $this->terrain);
             if ($scenario && $scenario->supply === true) {
                 $this->moveRules->enterZoc = 2;
                 $this->moveRules->exitZoc = 1;
@@ -351,11 +250,7 @@ class MartianCivilWar extends ModernLandBattle
                 $this->moveRules->exitZoc = 0;
                 $this->moveRules->noZocZocOneHex = false;
             }
-            $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->combatRules->crt->aggressorId = REBEL_FORCE;
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-
 
             // game data
             $this->gameRules->setMaxTurn(7);

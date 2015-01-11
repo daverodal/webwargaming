@@ -34,22 +34,6 @@
             }
         }
     },
-    "SiegeOfCuneiform": {
-        "name": "The Siege of Cuneiform",
-        "path": "TMCW",
-        "genre": "20'th Century Games",
-        "fileName": "MartianCivilWar/MartianCivilWar.php",
-        "scenarios": {
-            "HardCuneiform": {
-                "description": "Rebel closes in on fortified Cuneiform.",
-                "supply": true,
-                "loyalMechMove": 8,
-                "loyalExtraInf": true,
-                "supplyLen": 8,
-                "hardCuneiform": true
-            }
-        }
-    },
     "Amph": {
         "name": "Sur La Mer",
         "path": "TMCW",
@@ -172,7 +156,21 @@
             }
         }
     },
+
+    "Manchuria1976": {
+        "name": "Manchuria 1976",
+        "path": "TMCW",
+        "genre": "20'th Century Games",
+        "fileName": "Manchuria1976/Manchuria1976.php",
+        "scenarios": {
+            "standard": {
+                "description": "Standard scenario. Peoples Republic of China vs Soviet Union",
+                "supply": true
+            }
+        }
+    },
     "TankDual": {
+        "disabled": true,
         "name": "Tank Dual!!!",
         "path": "TMCW",
         "genre": "20'th Century Games",
@@ -189,6 +187,7 @@
         }
     },
     "Nomonhan": {
+        "disabled": true,
         "name": "The Nomonhan Incident",
         "path": "TMCW",
         "fileName": "Nomonhan/Nomonhan.php",
@@ -196,18 +195,6 @@
         "scenarios": {
             "standard": {
                 "description": "Standard scenario. Japan vs Soviet Union",
-                "supply": true
-            }
-        }
-    },
-    "Manchuria1976": {
-        "name": "Manchuria 1976",
-        "path": "TMCW",
-        "genre": "20'th Century Games",
-        "fileName": "Manchuria1976/Manchuria1976.php",
-        "scenarios": {
-            "standard": {
-                "description": "Standard scenario. Peoples Republic of China vs Soviet Union",
                 "supply": true
             }
         }

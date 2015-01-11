@@ -25,6 +25,7 @@ class LandBattle extends Battle{
         $data->players = $this->players;
         $data->display = $this->display;
         $data->victory = $this->victory->save();
+//        var_dump($data->victory);echo "Big Save ";
         $data->terrainName = $this->terrainName;
         return $data;
     }

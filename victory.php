@@ -8,10 +8,21 @@
  */
 class Victory{
     private $core;
+    private $coreName;
     function __construct($name = null, $data = null){
+
         if($name == null){
             return;
         }
+        if(is_object($name)){
+            $data = $name;
+            $name = $data->victory->coreName;
+            $this->coreName = $name;
+            unset($data->victory->coreName);
+        }else{
+            $this->coreName = $name;
+        }
+
         $class = __DIR__."/".$name;
         if(!strstr($class,".php")){
             $className = "victoryCore";
@@ -25,6 +36,11 @@ class Victory{
             require_once($class);
             $this->core = new $className($data);
         }
+    }
+    public function save(){
+        $ret = $this->core->save();
+        $ret->coreName = $this->coreName;
+        return $ret;
     }
     public function __call($name, $arguments){
         if($this->core && method_exists($this->core,$name)){

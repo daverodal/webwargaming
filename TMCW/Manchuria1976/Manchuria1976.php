@@ -19,23 +19,6 @@ class Manchuria1976 extends ModernLandBattle
 {
     public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>1, 'SpecialHexC'=>1];
 
-    /* @var MapData $mapData */
-    public $mapData;
-    public $mapViewer;
-    /* @var Force */
-    public $force;
-    public $terrain;
-    public $moveRules;
-    public $combatRules;
-    public $gameRules;
-    public $prompt;
-    public $display;
-    public $victory;
-    public $arg;
-    public $scenario;
-
-    public $players;
-
     static function getHeader($name, $playerData, $arg = false)
     {
         global $force_name;
@@ -52,16 +35,6 @@ class Manchuria1976 extends ModernLandBattle
         @include_once "view.php";
     }
 
-    static function playAs($name, $wargame, $arg = false)
-    {
-
-        @include_once "playAs.php";
-    }
-
-    static function playMulti($name, $wargame, $arg = false){
-        @include_once "playMulti.php";
-    }
-
     function save()
     {
         $data = parent::save();
@@ -69,34 +42,6 @@ class Manchuria1976 extends ModernLandBattle
         return $data;
     }
 
-    function poke($event, $id, $x, $y, $user, $click)
-    {
-
-        $playerId = $this->gameRules->attackingForceId;
-        if ($this->players[$this->gameRules->attackingForceId] != $user) {
-            return false;
-        }
-
-        switch ($event) {
-            case SELECT_MAP_EVENT:
-                $mapGrid = new MapGrid($this->mapViewer[$playerId]);
-                $mapGrid->setPixels($x, $y);
-                return $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon(), $click);
-                break;
-
-            case SELECT_COUNTER_EVENT:
-                /* fall through */
-            case SELECT_SHIFT_COUNTER_EVENT:
-                return $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id), $click);
-
-                break;
-
-            case SELECT_BUTTON_EVENT:
-                $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0, $click);
-
-        }
-        return true;
-    }
 
     function terrainGen($mapDoc, $terrainDoc){
         parent::TerrainGen($mapDoc, $terrainDoc);
@@ -146,34 +91,13 @@ class Manchuria1976 extends ModernLandBattle
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
 
-        $this->mapData = MapData::getInstance();
+        parent::__construct($data, $arg, $scenario, $game);
+
         if ($data) {
             $this->specialHexA = $data->specialHexA;
-            $this->arg = $data->arg;
-            $this->scenario = $data->scenario;
-            $this->terrainName = $data->terrainName;
-            $this->victory = new Victory("TMCW/Manchuria1976", $data);
-            $this->display = new Display($data->display);
-            $this->mapData->init($data->mapData);
-            $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
-            $this->force = new Force($data->force);
-            $this->terrain = new Terrain($data->terrain);
-            $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
-            $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-            $this->players = $data->players;
         } else {
-            $this->arg = $arg;
-            $this->scenario = $scenario;
             $this->victory = new Victory("TMCW/Manchuria1976");
-            $this->display = new Display();
 
-            $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
-            $this->force = new Force();
-            $this->terrain = new Terrain();
-            $this->moveRules = new MoveRules($this->force, $this->terrain);
             if ($scenario && $scenario->supply === true) {
                 $this->moveRules->enterZoc = 2;
                 $this->moveRules->exitZoc = 1;
@@ -183,10 +107,6 @@ class Manchuria1976 extends ModernLandBattle
                 $this->moveRules->exitZoc = 0;
                 $this->moveRules->noZocZocOneHex = false;
             }
-            $this->combatRules = new CombatRules($this->force, $this->terrain);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-
             // game data
             $this->gameRules->setMaxTurn(12);
 
@@ -195,9 +115,6 @@ class Manchuria1976 extends ModernLandBattle
             $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
             $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */
             $this->force->setAttackingForceId($this->gameRules->attackingForceId); /* so object oriented */
-
-
-
 
             $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_DEPLOY_PHASE, DEPLOY_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, DEPLOY_MODE, BLUE_FORCE, RED_FORCE, false);

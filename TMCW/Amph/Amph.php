@@ -19,22 +19,6 @@ class Amph extends ModernLandBattle
 
     public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>2, 'SpecialHexC'=>1];
 
-    /* @var MapData $mapData */
-    public $mapData;
-    public $mapViewer;
-    public $force;
-    public $terrain;
-    public $moveRules;
-    public $combatRules;
-    public $gameRules;
-    public $prompt;
-    public $display;
-    public $victory;
-    public $arg;
-    public $scenario;
-
-    public $players;
-
     static function getHeader($name, $playerData, $arg = false)
     {
         global $force_name;
@@ -153,37 +137,15 @@ class Amph extends ModernLandBattle
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
 
+        parent::__construct($data, $arg, $scenario, $game);
 
-        $this->mapData = MapData::getInstance();
         if ($data) {
-            $this->arg = $data->arg;
-            $this->specialHexA = $data->specialHexA;
-            $this->scenario = $data->scenario;
-            $this->terrainName = $data->terrainName;
-            $this->victory = new Victory("TMCW/Amph/amphVictoryCore.php", $data);
-            $this->display = new Display($data->display);
-            $this->mapData->init($data->mapData);
-            $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
-            $this->force = new Force($data->force);
-            $this->terrain = new Terrain($data->terrain);
-            $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
-            $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-            $this->players = $data->players;
-        } else {
-            $this->arg = $arg;
-            $this->scenario = $scenario;
 
+        } else {
             $this->victory = new Victory("TMCW/Amph/amphVictoryCore.php");
             if ($scenario->supplyLen) {
                 $this->victory->setSupplyLen($scenario->supplyLen);
             }
-            $this->display = new Display();
-            $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
-            $this->force = new Force();
-            $this->terrain = new Terrain();
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             if ($scenario && $scenario->supply === true) {
                 $this->moveRules->enterZoc = 2;
@@ -194,10 +156,6 @@ class Amph extends ModernLandBattle
                 $this->moveRules->exitZoc = 0;
                 $this->moveRules->noZocZocOneHex = false;
             }
-            $this->combatRules = new CombatRules($this->force, $this->terrain);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-
             // game data
             $this->gameRules->setMaxTurn(7);
             $this->gameRules->setInitialPhaseMode(BLUE_DEPLOY_PHASE, DEPLOY_MODE);

@@ -71,22 +71,11 @@ class Chawinda1965 extends ModernLandBattle
     }
     function save()
     {
-        $data = new stdClass();
-        $data->arg = $this->arg;
-        $data->scenario = $this->scenario;
-        $data->mapData = $this->mapData;
-        $data->mapViewer = $this->mapViewer;
-        $data->moveRules = $this->moveRules->save();
-        $data->force = $this->force;
-        $data->gameRules = $this->gameRules->save();
-        $data->combatRules = $this->combatRules->save();
-        $data->players = $this->players;
-        $data->display = $this->display;
+
+        $data = parent::save();
         $data->specialHexA = $this->specialHexA;
         $data->specialHexB = $this->specialHexB;
         $data->specialHexC = $this->specialHexC;
-        $data->victory = $this->victory->save();
-        $data->terrainName = $this->terrainName;
 
         return $data;
     }
@@ -147,42 +136,18 @@ class Chawinda1965 extends ModernLandBattle
 
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
-
+        parent::__construct($data, $arg, $scenario, $game);
 
         $this->mapData = MapData::getInstance();
         if ($data) {
-            $this->arg = $data->arg;
             $this->specialHexA = $data->specialHexA;
             $this->specialHexB = $data->specialHexB;
             $this->specialHexC = $data->specialHexC;
-            $this->scenario = $data->scenario;
-            $this->terrainName = $data->terrainName;
-            $this->victory = new Victory("TMCW/Chawinda1965/chawinda1965VictoryCore.php", $data);
-            $this->display = new Display($data->display);
-            $this->mapData->init($data->mapData);
-            $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
-            $this->force = new Force($data->force);
-            $this->terrain = new Terrain($data->terrain);
-            $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
-            $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-            $this->players = $data->players;
         } else {
-            $this->arg = $arg;
-            $this->scenario = $scenario;
-
             $this->victory = new Victory("TMCW/Chawinda1965/chawinda1965VictoryCore.php");
             if ($scenario->supplyLen) {
                 $this->victory->setSupplyLen($scenario->supplyLen);
             }
-            $this->display = new Display();
-            $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
-            $this->force = new Force();
-            $this->terrain = new Terrain();
-            $this->moveRules = new MoveRules($this->force, $this->terrain);
-
             $this->moveRules->enterZoc = 1;
             $this->moveRules->exitZoc = 2;
             $this->moveRules->noZocZocOneHex = false;
@@ -190,10 +155,7 @@ class Chawinda1965 extends ModernLandBattle
             $this->moveRules->friendlyAllowsRetreat = true;
             $this->moveRules->blockedRetreatDamages = true;
 
-            $this->combatRules = new CombatRules($this->force, $this->terrain);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
             $this->gameRules->legacyExchangeRule = false;
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
 
             // game data
             $this->gameRules->setMaxTurn(8);
