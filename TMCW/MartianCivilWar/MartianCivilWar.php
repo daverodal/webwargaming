@@ -36,7 +36,13 @@ class MartianCivilWar extends ModernLandBattle
     }
 
     function terrainGen($mapDoc, $terrainDoc){
+        $this->terrain->addTerrainFeature("newrichmond", "New Richmond", "m", 0, 0, 1, false);
+        $this->terrain->addTerrainFeature("eastedge", "East Edge", "m", 0, 0, 0, false);
+        $this->terrain->addTerrainFeature("westedge", "West Edge", "m", 0, 0, 0, false);
         parent::terrainGen($mapDoc, $terrainDoc);
+        $this->terrain->addNatAltTraverseCost("mine", "rebel", 'mech', 2);
+        $this->terrain->addNatAltTraverseCost("mine", "rebel", 'inf', 1);
+        $this->terrain->addNatAltTraverseCost("mine", "rebel", 'mountain', 1);
     }
 
     function save()

@@ -29,6 +29,7 @@ class TerrainFeature
     public $combatEffect;
     public $isExclusive;
     public $altEntranceCost;
+    public $altTraverseCost;
     public $blocksRanged;
 
     function __construct($terrainFeatureName, $terrainFeatureDisplayName, $terrainFeatureLetter,
@@ -46,6 +47,7 @@ class TerrainFeature
         $this->isExclusive = $terrainFeatureIsExclusive;
         $this->blocksRanged = $blocksRanged;
         $this->altEntranceCost = new stdClass();
+        $this->altTraverseCost = new stdClass();
 
     }
 }
@@ -140,6 +142,24 @@ class Terrain
             $feature->altEntranceCost->$nationality->$altClass = $entranceCost;
         }
     }
+
+    public function addAltTraverseCost($terrain,$altClass,$traverseCost){
+        $feature = $this->terrainFeatures->$terrain;
+        if($feature){
+            $feature->altTraverseCost->$altClass = $traverseCost;
+        }
+    }
+
+    public function addNatAltTraverseCost($terrain, $nationality,$altClass,$traverseCost){
+        $feature = $this->terrainFeatures->$terrain;
+        if($feature){
+            if(!$feature->altTraverseCost->$nationality){
+                $feature->altTraverseCost->$nationality = new stdClass();
+            }
+            $feature->altTraverseCost->$nationality->$altClass = $traverseCost;
+        }
+    }
+
     /* this method will die someday  sooner than later */
     public function setMaxHex(){
         $mapData = MapData::getInstance();
@@ -459,16 +479,16 @@ class Terrain
 
     }
 
-    private function getTerrainCodeCost($terrainCode, $unit){
+    private function getTerrainTraverseCost($terrainCode, $unit){
         $traverseCost = 0;
         foreach ($terrainCode as $code) {
                 $feature = $this->terrainFeatures->$code;
-            if($unit->nationality && $unit->class && $feature->altEntranceCost->{$unit->nationality}->{$unit->class}){
+            if($unit->nationality && $unit->class && $feature->altTraverseCost->{$unit->nationality}->{$unit->class}){
                 $cost = $feature->altTraverseCost->{$unit->nationality}->{$unit->class};
                 if($cost === "blocked"){
                     return "blocked";
                 }
-            }else if($unit->class && $feature->altEntranceCost->{$unit->class}){
+            }else if($unit->class && $feature->altTraverseCost->{$unit->class}){
                 $cost = $feature->altTraverseCost->{$unit->class};
                 if($cost === "blocked"){
                     return "blocked";
@@ -553,7 +573,7 @@ class Terrain
              if($moveCost === "blocked"){
                  return "blocked";
              }
-            $cost = $this->getTerrainCodeCost($terrainCode, $unit);
+            $cost = $this->getTerrainTraverseCost($terrainCode, $unit);
              if($cost === "blocked"){
                  return "blocked";
              }

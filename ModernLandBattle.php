@@ -112,13 +112,16 @@ class ModernLandBattle extends LandBattle
      * terrainGen() gets called when a map is "published" from the map editor. It's not
      * related to a game start or a game file. It just generates the terrain info that gets saved to the
      * file terrain-Gamename
+     *
+     * TerrainFeatures that aren't declared here MUST be declared in the subclass BEFORE it calls it's parent::
+     * TerrainFeatures that DO exist here but need to be modified MUST be declared AFTER the subclass calls it's parent::
      */
     function terrainGen($mapDoc, $terrainDoc)
     {
         // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
         $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
         $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
-        $this->terrain->addTerrainFeature("clear", "", "c", 1, 0, 0, true);
+        $this->terrain->addTerrainFeature("clear", "clear", "c", 1, 0, 0, true);
         $this->terrain->addTerrainFeature("road", "road", "r", .5, 0, 0, false);
         $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
         $this->terrain->addTerrainFeature("fortified", "fortified", "h", 1, 0, 1, true);
@@ -126,15 +129,12 @@ class ModernLandBattle extends LandBattle
         $this->terrain->addTerrainFeature("forest", "forest", "f", 2, 0, 1, true);
         $this->terrain->addTerrainFeature("mountain", "mountain", "g", 3, 0, 2, true);
         $this->terrain->addTerrainFeature("river", "river", "v", 0, 1, 1, true);
-        $this->terrain->addTerrainFeature("newrichmond", "New Richmond", "m", 0, 0, 1, false);
-        $this->terrain->addTerrainFeature("eastedge", "East Edge", "m", 0, 0, 0, false);
-        $this->terrain->addTerrainFeature("westedge", "West Edge", "m", 0, 0, 0, false);
+
         /* handle fort's in crtTraits */
         $this->terrain->addTerrainFeature("forta", "forta", "f", 1, 0, 0, true);
         $this->terrain->addTerrainFeature("fortb", "fortb", "f", 1, 0, 0, true);
         $this->terrain->addTerrainFeature("mine", "mine", "m", 0, 0, 0, false);
-        $this->terrain->addNatAltEntranceCost("mine", "rebel", 'mech', 2);
-        $this->terrain->addNatAltEntranceCost("mine", "rebel", 'inf', 1);
+
 
         $terrainArr = json_decode($terrainDoc->hexStr->hexEncodedStr);
         $mapId = $terrainDoc->hexStr->map;
