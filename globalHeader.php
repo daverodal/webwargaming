@@ -884,7 +884,7 @@ function initialize() {
         }
     });
 
-    $("#zoom .defaultZoom").click(function () {
+    $("#zoom .defaultZoom").on('click', function () {
         var precision = 2;
         DR.globalZoom = 1.0;
         $("#zoom .defaultZoom").html(DR.globalZoom.toPrecision(precision));

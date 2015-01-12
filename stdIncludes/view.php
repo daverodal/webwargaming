@@ -42,6 +42,7 @@
                         <li> The file is called {name}</li>
                         <!-- TODO: make game credits from DB -->
                         <li>Game Designer: David Rodal</li>
+                        <li>Entypo pictograms by Daniel Bruce — www.entypo.com</li>
                         <li class="closer"></li>
                     </ul>
                 </div>
