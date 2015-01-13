@@ -232,7 +232,7 @@ function doitKeypress(key) {
     $(this).css({cursor: "wait"});
 //    $("#"+id+"").addClass("pushed");
 
-    $("#comlink").html('waiting');
+    $("#comlink").html('Waiting');
     $.ajax({
         url: "<?=site_url("wargame/poke");?>/",
         type: "POST",
@@ -802,6 +802,14 @@ function initialize() {
     fixHeader();
     $("body").keypress(function (event) {
         doitKeypress(event.which);
+    });
+
+    $("#forceMarchEvent").on('click',function(){
+        doitKeypress(109);
+    });
+
+    $("#determinedAttackEvent").on('click',function(){
+        doitKeypress(100);
     });
 
     $("#zoom .defaultZoom").on('click', function () {

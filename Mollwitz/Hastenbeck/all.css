@@ -49,6 +49,8 @@ h4:hover {
   background: white;
   padding: 0 2px 0 2px;
   font-style: italic; }
+  #comlinkWrapper #comlink {
+    min-width: 56px; }
 
 .unit.pushed .shadow_mask {
   /*color:#f3172d !important;*/
@@ -105,10 +107,6 @@ h4:hover {
 #display button {
   font-size: 30px; }
 
-#comlinkWrapper h4 {
-  font-weight: bold;
-  margin: 3px; }
-
 #header {
   position: static;
   width: 100%;
@@ -123,10 +121,13 @@ h4:hover {
 
 #nextPhaseWrapper {
   float: left; }
-  #nextPhaseWrapper #nextPhaseButton, #nextPhaseWrapper #fullScreenButton {
+  #nextPhaseWrapper #nextPhaseButton, #nextPhaseWrapper #fullScreenButton, #nextPhaseWrapper #forceMarchEvent, #nextPhaseWrapper #determinedAttackEvent {
     font-size: 28px;
     position: static; }
 
+@media screen and (min-width: 1281px) {
+  #forceMarchEvent, #determinedAttackEvent {
+    display: none; } }
 #header a, #header a:visited {
   color: white; }
 

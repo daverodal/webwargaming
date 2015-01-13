@@ -168,6 +168,8 @@
                 <div id="nextPhaseWrapper">
                     <button id="nextPhaseButton">Next Phase</button>
                     <button id="fullScreenButton">Full Screen</button>
+                    <button id="forceMarchEvent">m</button>
+                    <button id="determinedAttackEvent">d</button>
                 </div>
 
             </div>
