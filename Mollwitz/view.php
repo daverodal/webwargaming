@@ -167,6 +167,7 @@
 
                 <div id="nextPhaseWrapper">
                     <button id="nextPhaseButton">Next Phase</button>
+                    <button id="fullScreenButton">Full Screen</button>
                 </div>
 
             </div>
