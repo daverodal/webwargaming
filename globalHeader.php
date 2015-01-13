@@ -53,13 +53,10 @@
                 }
             },
             onZoom:function(e,p,q){
-                var zoomLevel = DR.globalZoom = q;
-                var precision = 1;
-                if (zoomLevel >= 1.0) {
-                    precision = 2;
-                }
+                DR.globalZoom = q;
+                var out = DR.globalZoom.toFixed(1);
 
-                $("#zoom .defaultZoom").html(DR.globalZoom.toPrecision(precision));
+                $("#zoom .defaultZoom").html(out);
             }});
 
             $panzoom.parent().on('mousewheel DOMMouseScroll MozMousePixelScroll', function (e) {
@@ -589,7 +586,7 @@ function initialize() {
 
     /* yuck */
     if(navigator.userAgent.match(/Android/)){
-        $('body').height($(window).height()  + 30);
+        $('body').height($(window).height());
     }
     // setup events --------------------------------------------
     $("#map").load(function () {
@@ -679,46 +676,6 @@ function initialize() {
     });
 
 
-//    $("#gameContainer").bind('mousewheel', function (event) {
-//        DR.mouseWheel += event.originalEvent.wheelDelta;
-//        if (DR.mouseWheel > 90 || DR.mouseWheel < -90) {
-//            if (DR.mouseWheel > 0) {
-//                DR.globalZoom += .1;
-//            } else
-//                DR.globalZoom -= .1;
-//            DR.mouseWheel = 0;
-//        }
-//        if (DR.globalZoom <= .3) {
-//            DR.globalZoom = .3;
-//        }
-//        if (DR.globalZoom > 2.0) {
-//            DR.globalZoom = 2.0;
-//        }
-//var e = event;
-//
-//
-//
-//
-//        e.preventDefault();
-//        var delta = e.delta || e.originalEvent.wheelDelta;
-//        var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
-//        $panzoom.panzoom('zoom', zoomOut, {
-//            increment: 0.1,
-//            animate: false,
-//            focal: e
-//        });
-//
-//
-//
-//
-//
-//
-//
-////        doUserZoom(event);
-//
-//    });
-
-
     $('.unit').bind('contextmenu', function (e) {
         if (e.ctrlKey) {
             return true;
@@ -762,17 +719,6 @@ function initialize() {
         });
 
     });
-
-//    $("#menuWrapper .WrapperLabel").click(function () {
-//        $(".dropDown > div").hide({effect: "blind", direction: "up"});
-//        $("#info").hide({effect: "blind", direction: "up"});
-//        $("#menu").toggle({effect: "blind", direction: "up"});
-//    });
-//    $("#infoWrapper .WrapperLabel").click(function () {
-//        $(".dropDown > div").hide({effect: "blind", direction: "up"});
-//        $("#menu").hide({effect: "blind", direction: "up"});
-//        $("#info").toggle({effect: "blind", direction: "up"});
-//    });
 
     $("#jumpWrapper .WrapperLabel").click(function () {
 
@@ -858,36 +804,9 @@ function initialize() {
         doitKeypress(event.which);
     });
 
-    /*
-     * attach click events to zoom buttons. use Transform not zoom to perform zoom
-     * Set DR.globalZoom so clicks on map are still correct.
-     */
-    $("#zoom .minusZoom").click(function () {
-        if ((DR.globalZoom - .1) >= .3) {
-            DR.globalZoom -= .1;
-            $("#zoom .defaultZoom").html(DR.globalZoom.toPrecision(precision));
-            DR.$panzoom.panzoom('zoom', true, {
-                increment: 0.1,
-                animate: false
-            });
-        }
-    });
-
-    $("#zoom .plusZoom").click(function () {
-        if (DR.globalZoom < 2) {
-            DR.globalZoom += .1;
-            $("#zoom .defaultZoom").html(DR.globalZoom.toPrecision(precision));
-            DR.$panzoom.panzoom('zoom', false, {
-                increment: 0.1,
-                animate: false
-            });
-        }
-    });
-
     $("#zoom .defaultZoom").on('click', function () {
-        var precision = 2;
         DR.globalZoom = 1.0;
-        $("#zoom .defaultZoom").html(DR.globalZoom.toPrecision(precision));
+        $("#zoom .defaultZoom").html(DR.globalZoom.toFixed(1));
         DR.$panzoom.panzoom('reset');
     });
 

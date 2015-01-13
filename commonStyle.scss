@@ -136,6 +136,18 @@ h4:hover{
   }
 }
 
+@media screen and (max-width: 1280px){
+  #deployWrapper .unit{
+  }
+  .dropDown, #zoomWrapper{
+  }
+  #nextPhaseWrapper{
+    #nextPhaseButton, #fullScreenButton{
+
+    }
+  }
+}
+
 #header a, #header a:visited{
   color:white;
 }
