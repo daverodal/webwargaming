@@ -541,9 +541,24 @@ class CombatRules
         return false;
     }
 
-    function thisAttackAcrossType($defenderId, $attackerId, $type)
+    function thisAttackAcrossTYPE($defenderId, $attackerId, $type){
+        $los = new Los();
+
+        $los->setOrigin($this->force->getUnitHexagon($defenderId));
+        $los->setEndPoint($this->force->getUnitHexagon($attackerId));
+
+        $hexParts = $los->getlosList();
+        /*
+         *  defender is located in hexParts[0],
+         * x first hexside adjacent to defender is in $hexParts[1]
+         */
+        return ($this->terrain->terrainIs($hexParts[1], $type));
+
+    }
+    function tthisAttackAcrossType($defenderId, $attackerId, $type)
     {
 
+        $this->isAttackAcrossType($defenderId, $attackerId, $type);
 
 //     $attackerHexagonList = array();
 //    $attackerHexagonList = $this->force->getAttackerHexagonList($combatNumber);
@@ -558,8 +573,10 @@ class CombatRules
         $hexside = new Hexpart($hexsideX, $hexsideY);
 
         if ($this->terrain->terrainIs($hexside, $type) === false) {
+            echo " FALSE!!! ";
             return false;
         }
+        echo "TRUE !!! ";
         return true;
     }
 
