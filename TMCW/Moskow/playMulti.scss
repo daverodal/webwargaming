@@ -45,7 +45,7 @@ div{
 }
 
 .german {
-  color: $germanColor;
+  color: darken($germanColor, 30%);
 }
 .attribution{
   background: rgba(255,255,255,.6);
