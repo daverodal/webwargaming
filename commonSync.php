@@ -413,6 +413,13 @@ x.register("users", function(users) {
     }
 });
 x.register("gameRules", function(gameRules,data) {
+    $(".dynamicButton").hide();
+    if(gameRules.mode === <?= MOVING_MODE?>){
+        $(".movementButton").show();
+    }
+    if(gameRules.mode === <?= COMBAT_SETUP_MODE?>){
+        $(".combatButton").show();
+    }
     if(gameRules.display.currentMessage){
         $("#display").html(gameRules.display.currentMessage+"<button onclick='doitNext()'>Next</button>").show();
     }else{
