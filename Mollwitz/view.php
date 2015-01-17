@@ -1,20 +1,14 @@
-<style>
-    @font-face{
-        font-family: entypo;
-        src:url("<?=base_url("js/entypo.ttf")?>");
-    }
-</style>
+<link rel="stylesheet" href="<?= base_url("js/font-awesome-4.2.0/css/font-awesome.min.css"); ?>">
+
 <body xmlns="http://www.w3.org/1999/html">
 <div id="theDiv">
     <header id="header">
         <div id="headerContent">
             <div id="rightHeader">
                 <div id="mouseMove">mouse</div>
-                <div id="comlinkWrapper" style="float:right;">
-                    <div id="comlink"></div>
-                </div>
+
                 <div class="dropDown alpha" id="menuWrapper">
-                    <h4 class="WrapperLabel" title="Game Menu">&#9776;</h4>
+                    <h4 class="WrapperLabel" title="Game Menu"><i class="fa fa-bars"></i></h4>
 
                     <div id="menu">
                         <div class="close">X</div>
@@ -43,7 +37,6 @@
                             <li> The file is called {name}</li>
                             <!-- TODO: make game credits from DB -->
                             <li>Game Designer: David Rodal</li>
-                            <li>Entypo pictograms by Daniel Bruce — www.entypo.com</li>
                             <li class="closer"></li>
                         </ul>
                     </div>
@@ -56,6 +49,7 @@
 
                     <div id="crt">
                         <div class="close">X</div>
+                        <div id="altTable">show cavalry table</div>
                         <div id="mainTable">show normal table</div>
                         <div id="detTable">show determined table</div>
                         <h3>Combat Odds</h3>
@@ -76,6 +70,34 @@
                             $rowNum = 1;
                             $odd = ($rowNum & 1) ? "odd" : "even";
                             foreach ($crt->combatResultsTable as $row) {
+                                ?>
+                                <div class="roll <?= "row$rowNum $odd" ?>">
+                                    <span class="col0"><?= $rowNum++ ?></span>
+                                    <?php $col = 1;
+                                    foreach ($row as $cell) {
+                                        ?>
+                                        <span class="col<?= $col++ ?>"><?= $results_name[$cell] ?></span>
+
+                                    <?php } ?>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <div class="tableWrapper alt">
+                            <div id="odds">
+                                <span class="col0">&nbsp;</span>
+                                <?php
+                                $crt = new CombatResultsTable();
+
+                                $i = 1;
+                                foreach ($crt->combatResultsHeader as $odds) {
+                                    ?>
+                                    <span class="col<?= $i++ ?>"><?= $odds ?></span>
+                                <?php } ?>
+                            </div>
+                            <?php
+                            $rowNum = 1;
+                            $odd = ($rowNum & 1) ? "odd" : "even";
+                            foreach ($crt->combatResultsTableCav as $row) {
                                 ?>
                                 <div class="roll <?= "row$rowNum $odd" ?>">
                                     <span class="col0"><?= $rowNum++ ?></span>
@@ -126,8 +148,11 @@
                 </div>
                 <?php include "timeTravel.php"; ?>
                 <div id="statusWrapper">
-                    <div><span id="clock"></span></div>
-                    <div>
+                    <div id="comlinkWrapper">
+                        <div id="comlink"></div>
+                    </div>
+                    <div id="topStatus"></div>
+                    <div class="clear">
                         <span id="status"></span>
                         <span id="victory"></span>
                     </div>
@@ -140,15 +165,15 @@
                     </span>
                 </div>
                 <div class="dropDown">
-                    <h4 class="WrapperLabel">?</h4>
+                    <h4 class="WrapperLabel">Rules</h4>
                     <div class="subMenu">
                         <?php include_once "commonRules.php"; ?>
                         <?php include_once "exclusiveRules.php"; ?>
                         <?php include_once "obc.php"; ?>
-                        <?php include_once "tec.php"; ?>
 
                     </div>
                 </div>
+                <?php include_once "tec.php"; ?>
                 <div class="dropDown" id="unitsWrapper">
                     <h4 class="WrapperLabel" title="Offmap Units">Units</h4>
                     <div id="units" class="subMenu">
@@ -163,13 +188,13 @@
                 <?php include_once "commonRules.php"; ?>
                 <?php include_once "exclusiveRules.php"; ?>
                 <?php include_once "obc.php"; ?>
-                <?php include_once "tec.php"; ?>
 
                 <div id="nextPhaseWrapper">
                     <button id="nextPhaseButton">Next Phase</button>
-                    <button id="fullScreenButton">Full Screen</button>
+                    <button id="fullScreenButton"><i class="fa fa-arrows-alt"></i></button>
                     <button id="forceMarchEvent">m</button>
                     <button id="determinedAttackEvent">d</button>
+                    <button id="clearCombatEvent">c</button>
                 </div>
 
             </div>

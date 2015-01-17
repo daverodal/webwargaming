@@ -61,10 +61,10 @@ $phase_name[15] = "red deploy phase";
 
 $phase_name = array();
 $phase_name[1] = "<span class='playerOneFace'>{$force_name[1]}</span> Move";
-$phase_name[2] = "<span class='playerOneFace'>{$force_name[1]}</span> Combat";
+$phase_name[2] = "<span class='playerOneFace'>{$force_name[1]}</span>";
 $phase_name[3] = "";
 $phase_name[4] = "<span class='playerTwoFace'>{$force_name[2]}</span> Move";
-$phase_name[5] = "<span class='playerTwoFace'>{$force_name[2]}</span> Combat";
+$phase_name[5] = "<span class='playerTwoFace'>{$force_name[2]}</span>";
 $phase_name[6] = "";
 $phase_name[7] = "Victory";
 $phase_name[8] = "<span class='playerOneFace'>{$force_name[1]}</span> Deploy";

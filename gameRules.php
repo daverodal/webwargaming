@@ -371,6 +371,9 @@ class GameRules
                         if ($c == 'd' || $c == 'D') {
                             $this->combatRules->useDetermined();
                         }
+                        if ($c == 'c' || $c == 'C') {
+                            $this->combatRules->clearCurrentCombat();
+                        }
                         break;
 
                     /** @noinspection PhpMissingBreakStatementInspection */

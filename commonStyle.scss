@@ -54,9 +54,11 @@ h4:hover{
   background:white;
   padding:0 2px 0 2px;
   font-style: italic;
-  #comlink{
-    min-width:56px;
-  }
+  font-size:10px;
+  float:right;
+}
+#topStatus{
+  float:right;
 }
 .unit.pushed .shadow_mask{
   /*color:#f3172d !important;*/
@@ -130,15 +132,9 @@ h4:hover{
 }
 #nextPhaseWrapper{
   float:left;
-  #nextPhaseButton, #fullScreenButton,#forceMarchEvent, #determinedAttackEvent{
+  #nextPhaseButton, #fullScreenButton,#forceMarchEvent, #determinedAttackEvent, #clearCombatEvent{
     font-size:28px;
     position: static;
-  }
-}
-
-@media screen and (min-width: 1281px) {
-  #forceMarchEvent, #determinedAttackEvent{
-    display:none;
   }
 }
 
@@ -261,11 +257,6 @@ body{
   }
   background:white;
   color:#333;
-}
-#menuWrapper .WrapperLabel{
-  font-family:entypo;
-  line-height:36px;
-  font-size:70px;
 }
 
 #infoWrapper{

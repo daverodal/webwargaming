@@ -55,10 +55,10 @@ x.register("combatRules", function(combatRules, data){
                     $("#" + loop).css({borderColor: "yellow"});
                 }
                 if(!chattyCrt){
-                    $("#crt").show({effect: "blind", direction: "up"});
+                    $("#crt").show({effect:"blind",direction:"up"});
+                    $("#crtWrapper").css('overflow', 'visible');
                     chattyCrt = true;
                 }
-                fixCrt();
                 if(Object.keys(combatRules.combats[cD].attackers).length != 0){
                     combatCol = combatRules.combats[cD].index + 1;
                     if(combatCol >= 1){
@@ -176,7 +176,7 @@ x.register("combatRules", function(combatRules, data){
             var noCombats = false;
             if(Object.keys(combatRules.combatsToResolve) == 0){
                 noCombats = true;
-                str += "there are no combats to resolve";
+                str += "0 combats to resolve";
             }
             var combatsToResolve = 0;
             for(i in combatRules.combatsToResolve){
@@ -218,22 +218,6 @@ x.register("combatRules", function(combatRules, data){
                         var x = $("#" + cD).css('left').replace(/px/, "");
                         var mapWidth = $("body").css('width').replace(/px/, "");
                         /* STATUS_ELIMINATED */
-                        if(data.force.units[cD].status != 22){
-//                            if(x < mapWidth/2){
-//                                var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
-//                                var crtWid = $("#crt").css('width').replace(/px/,"");
-//                                var moveLeft = $("body").css('width').replace(/px/,"");
-//                                crtWid = crtWid - wrapWid + 40;
-//                                $("#crt").animate({left:0 - crtWid},300);
-//                                $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
-//                            }else{
-//                                $("#crt").animate({left:crtWid},300);
-//                                $("#crtWrapper").animate({left:0},300);
-//
-//                            }
-                        }
-
-
                     }
                     newLine += " Attack = " + atkDisp + " / Defender " + def + " odds = " + atk / def + "<br>= " + Math.floor(atk / def) + " : 1<br>Combined Arms Shift " + ter + " = " + idx + " : 1<br><br>";
                     if(cD === i){

@@ -256,28 +256,35 @@ class CombatResultsTable
             $combatLog .= "$unitDefense ".$unit->class." ";
             /* set to true to disable for not scenario->doubleArt */
             $clearHex = false;
-            $artInClear = false;
+            $artInNonTown = false;
             $notClearHex = false;
             $hexagon = $unit->hexagon;
             $hexpart = new Hexpart();
             $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
-            $notClearHex |= $battle->terrain->terrainIs($hexpart, 'town');
-            $notClearHex |= $battle->terrain->terrainIs($hexpart, 'hill');
-            $notClearHex |= $battle->terrain->terrainIs($hexpart, 'forest');
-            $notClearHex |= $battle->terrain->terrainIs($hexpart, 'swamp');
+            $isTown = $battle->terrain->terrainIs($hexpart, 'town');
+            $isHill = $battle->terrain->terrainIs($hexpart, 'hill');
+            $isForest = $battle->terrain->terrainIs($hexpart, 'forest');
+            $isSwamp = $battle->terrain->terrainIs($hexpart, 'swamp');
+
+            $notClearHex = false;
+            if ($isTown || $isForest || $isHill || $isSwamp) {
+                $notClearHex = true;
+            }
+
             $clearHex = !$notClearHex;
-            if(($unit->class == 'artillery' || $unit->class == 'horseartillery') && $clearHex){
+            if(($unit->class == 'artillery' || $unit->class == 'horseartillery') && !$isTown){
                 if($scenario->doubleArt){
-                    $combatLog .= "doubled for defending in clear";
+                    $combatLog .= "doubled for defending in non town ";
                 }else{
-                    $combatLog .= "1.5x for defending in clear";
+                    $combatLog .= "1.5x for defending in non town ";
                 }
-                $artInClear = true;
+                $artInNonTown = true;
             }
 
             if ($unit->class != 'cavalry') {
                 $defendersAllCav = false;
             }
+
             if($scenario->jagersdorfCombat){
                 if ($unit->forceId == PRUSSIAN_FORCE && $class == "infantry" && $isClear) {
                     $unitDefense += 1;
@@ -294,13 +301,14 @@ class CombatResultsTable
             }
 
             $defMultiplier = 1;
-            if(($isTown && $class !== 'cavalry') || $artInClear || $isHill){
+            if(($isTown && $class !== 'cavalry') || $artInNonTown || $isHill){
                 $defMultiplier = 1.5;
-                if($artInClear && $scenario->doubleArt){
+                if($artInNonTown && $scenario->doubleArt){
                     $defMultiplier = 2;
                 }
                 if(($isTown && $class !== 'cavalry') || $isHill){
                     $defMultiplier = 2;
+                    $combatLog .= "defender doubled for terrain ";
                 }
             }
             $defenseStrength += $unitDefense * $defMultiplier;

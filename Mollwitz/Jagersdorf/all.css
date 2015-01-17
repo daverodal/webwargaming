@@ -48,9 +48,12 @@ h4:hover {
   border-radius: 10px;
   background: white;
   padding: 0 2px 0 2px;
-  font-style: italic; }
-  #comlinkWrapper #comlink {
-    min-width: 56px; }
+  font-style: italic;
+  font-size: 10px;
+  float: right; }
+
+#topStatus {
+  float: right; }
 
 .unit.pushed .shadow_mask {
   /*color:#f3172d !important;*/
@@ -121,13 +124,10 @@ h4:hover {
 
 #nextPhaseWrapper {
   float: left; }
-  #nextPhaseWrapper #nextPhaseButton, #nextPhaseWrapper #fullScreenButton, #nextPhaseWrapper #forceMarchEvent, #nextPhaseWrapper #determinedAttackEvent {
+  #nextPhaseWrapper #nextPhaseButton, #nextPhaseWrapper #fullScreenButton, #nextPhaseWrapper #forceMarchEvent, #nextPhaseWrapper #determinedAttackEvent, #nextPhaseWrapper #clearCombatEvent {
     font-size: 28px;
     position: static; }
 
-@media screen and (min-width: 1281px) {
-  #forceMarchEvent, #determinedAttackEvent {
-    display: none; } }
 #header a, #header a:visited {
   color: white; }
 
@@ -278,11 +278,6 @@ h4:hover {
   #menu ul {
     margin: 0;
     padding: 0; }
-
-#menuWrapper .WrapperLabel {
-  font-family: entypo;
-  line-height: 36px;
-  font-size: 70px; }
 
 #infoWrapper .WrapperLabel {
   font-style: italic; }

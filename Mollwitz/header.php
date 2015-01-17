@@ -21,6 +21,7 @@ $(document).ready(function(){
     });
     $("#detTable").on('click', function(){
         $(this).hide();
+        $("#mainTable").hide();
         $("#altTable").show();
         $('.tableWrapper.alt').hide();
         $('.tableWrapper.main').hide();
@@ -83,10 +84,10 @@ x.register("combatRules", function(combatRules, data){
                     $("#" + loop).css({borderColor: "yellow"});
                 }
                 if(!chattyCrt){
-                    $("#crt").show({effect: "blind", direction: "up"});
+                    $("#crt").show({effect:"blind",direction:"up"});
+                    $("#crtWrapper").css('overflow', 'visible');
                     chattyCrt = true;
                 }
-//                fixCrt();
                 if(Object.keys(combatRules.combats[cD].attackers).length != 0){
                     if(combatRules.combats[cD].pinCRT !== false){
                         combatCol = combatRules.combats[cD].pinCRT + 1;
@@ -256,7 +257,7 @@ x.register("combatRules", function(combatRules, data){
             var noCombats = false;
             if(Object.keys(combatRules.combatsToResolve) == 0){
                 noCombats = true;
-                str += "there are no combats to resolve";
+                str += "0 combats to resolve";
             }
             var combatsToResolve = 0;
             toResolveLog += "Combats to Resolve<br>";
@@ -306,7 +307,7 @@ x.register("combatRules", function(combatRules, data){
 
             }
             if(combatsToResolve){
-                str += "Combats To Resolve: " + combatsToResolve;
+//                str += "Combats To Resolve: " + combatsToResolve;
             }
             var resolvedCombats = 0;
             toResolveLog += "<br>Resolved Combats <br>";
@@ -339,7 +340,7 @@ x.register("combatRules", function(combatRules, data){
 
             }
             if(!noCombats){
-                str += " Resolved Combats: " + resolvedCombats + "";
+                str += "Combats: " + resolvedCombats + " of " + (resolvedCombats+combatsToResolve);
             }
             $("#status").html(lastCombat + str);
             $("#status").show();

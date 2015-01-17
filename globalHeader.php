@@ -14,12 +14,12 @@
         var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
 
         if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-           console.log("b4");
             requestFullScreen.call(docEl);
-            console.log("Aft");
+            $("#fullScreenButton i").removeClass("fa-arrows-alt").addClass("fa-compress");
         }
         else {
             cancelFullScreen.call(doc);
+            $("#fullScreenButton i").addClass("fa-arrows-alt").removeClass("fa-compress");
         }
     }
 
@@ -452,7 +452,6 @@ function mapStop(event) {
 
     $("#map").data('did-drag', true);
     event.stopPropagation();
-//    fixCrt();
 }
 function mapClick(event) {
     var didDrag = $("#map").data('did-drag');
@@ -810,6 +809,10 @@ function initialize() {
 
     $("#determinedAttackEvent").on('click',function(){
         doitKeypress(100);
+    });
+
+    $("#clearCombatEvent").on('click',function(){
+        doitKeypress(99);
     });
 
     $("#zoom .defaultZoom").on('click', function () {

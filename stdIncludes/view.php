@@ -1,19 +1,12 @@
-<style>
-    @font-face{
-        font-family: entypo;
-        src:url("<?=base_url("js/entypo.ttf")?>");
-    }
-</style>
+<link rel="stylesheet" href="<?= base_url("js/font-awesome-4.2.0/css/font-awesome.min.css"); ?>">
 <body xmlns="http://www.w3.org/1999/html">
 <div id="theDiv">
     <header id="header">
         <div id="headerContent">
             <div id="mouseMove">mouse</div>
-            <div id="comlinkWrapper" style="float:right;">
-                <div id="comlink"></div>
-            </div>
+
             <div class="dropDown alpha" id="menuWrapper">
-                <h4 class="WrapperLabel" title="Game Menu">&#9776;</h4>
+                <h4 class="WrapperLabel" title="Game Menu"><i class="fa fa-bars"></i></h4>
 
                 <div id="menu">
                     <div class="close">X</div>
@@ -42,7 +35,6 @@
                         <li> The file is called {name}</li>
                         <!-- TODO: make game credits from DB -->
                         <li>Game Designer: David Rodal</li>
-                        <li>Entypo pictograms by Daniel Bruce — www.entypo.com</li>
                         <li class="closer"></li>
                     </ul>
                 </div>
@@ -125,8 +117,11 @@
             </div>
             <?php include "timeTravel.php"; ?>
             <div id="statusWrapper">
-                <div><span id="clock"></span></div>
-                <div>
+                <div id="comlinkWrapper">
+                    <div id="comlink"></div>
+                </div>
+                <div id="topStatus"></div>
+                <div class="clear">
                     <span id="status"></span>
                     <span id="victory"></span>
                 </div>
@@ -139,16 +134,17 @@
                     </span>
             </div>
             <div class="dropDown">
-                <h4 class="WrapperLabel">?</h4>
+                <h4 class="WrapperLabel">Rules</h4>
 
                 <div class="subMenu">
                     <?php include_once "commonRules.php"; ?>
                     <?php include_once "exclusiveRules.php"; ?>
                     <?php include_once "obc.php"; ?>
-                    <?php include_once "tec.php"; ?>
 
                 </div>
             </div>
+            <?php include_once "tec.php"; ?>
+
             <div class="dropDown" id="unitsWrapper">
                 <h4 class="WrapperLabel" title="Offmap Units">Units</h4>
 
@@ -164,7 +160,8 @@
 
             <div id="nextPhaseWrapper">
                 <button id="nextPhaseButton">Next Phase</button>
-                <button id="fullScreenButton">Full Screen</button>
+                <button id="fullScreenButton"><i class="fa fa-arrows-alt"></i></button>
+
             </div>
 
             <div style="clear:both;"></div>

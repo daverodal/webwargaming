@@ -115,6 +115,29 @@ class CombatRules
         return true;
     }
 
+    function clearCurrentCombat(){
+
+        $cd = $this->currentDefender;
+        if($cd === false){
+            return false;
+        }
+
+        $battle = Battle::getBattle();
+        $victory = $battle->victory;
+
+        foreach ($this->combats->{$this->currentDefender}->attackers as $attackerId => $attacker) {
+            $this->force->undoAttackerSetup($attackerId);
+            unset($this->attackers->$attackerId);
+            unset($this->combats->$cd->attackers->$attackerId);
+            unset($this->combats->$cd->thetas->$attackerId);
+            $victory->postUnsetAttacker($this->units[$attackerId]);
+        }
+        $this->combats->$cd->useDetermined = false;
+
+        $this->crt->setCombatIndex($cd);
+
+    }
+
     function setupCombat($id, $shift = false)
     {
         $mapData = MapData::getInstance();

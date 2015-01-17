@@ -447,9 +447,7 @@ x.register("gameRules", function(gameRules,data) {
         html += " "+gameRules.mode_name[gameRules.mode];
     }
     html += "</span>";
-    if(gameRules.storm){
-        html += "<br><strong>Sand Storm rules in effect</strong>";
-    }
+
     switch(gameRules.phase){
         case <?=BLUE_REPLACEMENT_PHASE?>:
         case <?=RED_REPLACEMENT_PHASE?>:
@@ -487,7 +485,7 @@ x.register("gameRules", function(gameRules,data) {
             $("#floatMessage header").html(result+": Retreating Mode");
             break;
     }
-    $("#clock").html(html);
+    $("#topStatus").html(html);
     if(status){
         $("#status").html(status);
         $("#status").show();
@@ -734,28 +732,6 @@ x.register("moveRules", function(moveRules,data) {
     }
 });
 
-function fixCrt(){
-    if(!cD){
-        return;
-    }
-    var off = parseInt($("#gameImages").offset().left);
-    var x = parseInt($("#"+cD).css('left').replace(/px/,"")) + off;
-    var mapWidth = $("body").css('width').replace(/px/,"");
-    $("#map").css('width').replace(/px/,"");
-    if(x < mapWidth/2){
-        var wrapWid = $("#crtWrapper").css('width').replace(/px/,"");
-        var crtWid = $("#crt").css('width').replace(/px/,"");
-        crtWid = 0 - (crtWid - wrapWid + 40);
-
-        var moveLeft = $("body").css('width').replace(/px/,"");
-        $("#crt").animate({left:crtWid},300);
-        $("#crtWrapper").animate({left:moveLeft - wrapWid},300);
-    }else{
-        $("#crtWrapper").animate({left:0},300);
-        $("#crt").animate({left:0},300);
-    }
-}
-
 var chattyCrt = false;
 var cD; /* object oriented! */
 x.register("combatRules", function(combatRules,data) {
@@ -937,7 +913,7 @@ x.register("combatRules", function(combatRules,data) {
             var noCombats = false;
             if(Object.keys(combatRules.combatsToResolve) == 0){
                 noCombats = true;
-                str += "there are no combats to resolve";
+                str += "0 combats to resolve";
             }
             var combatsToResolve = 0;
             for(i in combatRules.combatsToResolve){
@@ -985,7 +961,7 @@ x.register("combatRules", function(combatRules,data) {
 
             }
             if(combatsToResolve){
-                str += "Combats To Resolve: "+combatsToResolve;
+//                str += "Combats To Resolve: "+combatsToResolve;
             }
             var resolvedCombats = 0;
             for(i in combatRules.resolvedCombats){
@@ -1012,7 +988,7 @@ x.register("combatRules", function(combatRules,data) {
 
             }
             if(!noCombats){
-                str += " Resolved Combats: "+resolvedCombats+"";
+                str += "Combats: " + resolvedCombats + " of " + (resolvedCombats+combatsToResolve);
             }
 
             $("#status").html(lastCombat+str);
