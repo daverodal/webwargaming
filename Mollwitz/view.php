@@ -192,8 +192,8 @@
                 <div id="nextPhaseWrapper">
                     <button id="nextPhaseButton">Next Phase</button>
                     <button id="fullScreenButton"><i class="fa fa-arrows-alt"></i></button>
-                    <button id="forceMarchEvent">m</button>
                     <button id="determinedAttackEvent">d</button>
+                    <button id="forceMarchEvent">m</button>
                     <button id="clearCombatEvent">c</button>
                 </div>
 
