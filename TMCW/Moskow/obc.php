@@ -20,16 +20,19 @@
         <fieldset>
             <legend>turn 4</legend>
             <div id="gameTurn4">
+                MUD
             </div>
         </fieldset>
         <fieldset>
             <legend>turn 5</legend>
             <div id="gameTurn5">
+                MUD
             </div>
         </fieldset>
         <fieldset>
             <legend>turn 6</legend>
             <div id="gameTurn6">
+                MUD
             </div>
         </fieldset>
         <fieldset>
