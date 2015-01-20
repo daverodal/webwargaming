@@ -10,7 +10,6 @@ require_once "hexpart.php";
 require_once "los.php";
 require_once "mapgrid.php";
 require_once "moveRules.php";
-require_once "prompt.php";
 require_once "terrain.php";
 require_once "display.php";
 require_once "victory.php";

@@ -11,7 +11,6 @@ require_once "hexpart.php";
 require_once "los.php";
 require_once "mapgrid.php";
 require_once "moveRules.php";
-require_once "prompt.php";
 require_once "terrain.php";
 require_once "display.php";
 require_once "victory.php";
@@ -34,7 +33,6 @@ class OrigMartianCivilWar extends Battle {
     public $moveRules;
     public $combatRules;
     public $gameRules;
-    public $prompt;
     public $display;
     public $victory;
 
@@ -119,8 +117,6 @@ class OrigMartianCivilWar extends Battle {
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = $data->players;
             $this->playerData = $data->playerData;
         } else {
@@ -134,7 +130,6 @@ class OrigMartianCivilWar extends Battle {
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules,$this->force ,$this->display );
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = array("","","");
             $this->playerData = new stdClass();
             for($player = 0;$player <= 2;$player++){

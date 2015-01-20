@@ -12,7 +12,6 @@ require_once "hexpart.php";
 require_once "los.php";
 require_once "mapgrid.php";
 require_once "moveRules.php";
-require_once "prompt.php";
 require_once "display.php";
 require_once "terrain.php";
 require_once "victory.php";
@@ -27,6 +26,50 @@ class JagCore extends LandBattle{
     public $specialHexA;
     public $specialHexB;
     public $specialHexC;
+
+
+
+
+
+    function __construct($data = null, $arg = false, $scenario = false, $game = false)
+    {
+        $this->mapData = MapData::getInstance();
+        if ($data) {
+            $this->arg = $data->arg;
+            $this->scenario = $data->scenario;
+            $this->terrainName = $data->terrainName;
+            $this->roadHex = $data->roadHex;
+            $this->game = $data->game;
+
+            $this->display = new Display($data->display);
+            $this->mapData->init($data->mapData);
+            $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
+            $this->force = new Force($data->force);
+            $this->terrain = new Terrain($data->terrain);
+            $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
+            $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
+            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
+            $this->victory = new Victory($data);
+
+            $this->players = $data->players;
+        } else {
+            $this->arg = $arg;
+            $this->scenario = $scenario;
+            $this->game = $game;
+
+            $this->display = new Display();
+            $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
+            $this->force = new Force();
+            $this->terrain = new Terrain();
+
+            $this->moveRules = new MoveRules($this->force, $this->terrain);
+            $this->combatRules = new CombatRules($this->force, $this->terrain);
+            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
+        }
+    }
+
+
+
     /*
      * terrainInit() gets called during game init, from unitInit(). It happens as a new game gets started.
      */

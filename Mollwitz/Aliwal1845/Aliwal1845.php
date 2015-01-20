@@ -149,8 +149,6 @@ class Aliwal1845 extends IndiaCore
             $this->moveRules->stickyZOC = false;
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = $data->players;
         } else {
             $this->arg = $arg;
@@ -174,7 +172,6 @@ class Aliwal1845 extends IndiaCore
             $this->moveRules->zocBlocksRetreat = true;
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
 
 
             // game data

@@ -17,7 +17,6 @@ require_once "hexpart.php";
 require_once "los.php";
 require_once "mapgrid.php";
 require_once "moveRules.php";
-require_once "prompt.php";
 require_once "display.php";
 require_once "terrain.php";
 require_once "victory.php";
@@ -33,7 +32,6 @@ class NapoleonsTrainingAcademy extends Battle {
     public $moveRules;
     public $combatRules;
     public $gameRules;
-    public $prompt;
     public $display;
     public $victory;
     public $genTerrain;
@@ -158,8 +156,6 @@ class NapoleonsTrainingAcademy extends Battle {
             $this->moveRules->stickyZOC = true;
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = $data->players;
         } else {
 
@@ -180,7 +176,6 @@ class NapoleonsTrainingAcademy extends Battle {
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
             $this->players = array("","","");
             for($player = 0;$player <= 2;$player++){
                 $this->mapViewer[$player]->setData(65,85, // originX, originY

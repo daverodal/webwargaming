@@ -28,7 +28,6 @@ class Chawinda1965 extends ModernLandBattle
     public $moveRules;
     public $combatRules;
     public $gameRules;
-    public $prompt;
     public $display;
     public $victory;
     public $arg;

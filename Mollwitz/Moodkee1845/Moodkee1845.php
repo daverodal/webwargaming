@@ -23,12 +23,6 @@ class Moodkee1845 extends IndiaCore
 
     }
 
-
-    static function enterMulti()
-    {
-        @include_once "enterMulti.php";
-    }
-
     static function playMulti($name, $wargame, $arg = false)
     {
         $deployTwo = $playerOne = "Sikh";
@@ -112,52 +106,22 @@ class Moodkee1845 extends IndiaCore
 
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
-        $this->mapData = MapData::getInstance();
+        parent::__construct($data, $arg, $scenario, $game);
+
         if ($data) {
-            $this->arg = $data->arg;
-            $this->scenario = $data->scenario;
-            $this->terrainName = $data->terrainName;
             $this->roadHex = $data->roadHex;
-            $this->game = $data->game;
             $this->specialHexA = $data->specialHexA;
             $this->specialHexB = $data->specialHexB;
-            $this->victory = new Victory("Mollwitz/Moodkee1845/moodkee1845VictoryCore.php", $data);
-            $this->display = new Display($data->display);
-            $this->mapData->init($data->mapData);
-            $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
-            $this->force = new Force($data->force);
-            $this->terrain = new Terrain($data->terrain);
-            $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
-            $this->moveRules->stickyZOC = false;
-            $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-            $this->players = $data->players;
         } else {
-            $this->arg = $arg;
-            $this->scenario = $scenario;
-            $this->game = $game;
-            $this->victory = new Victory("Mollwitz/Moodkee1845/moodkee1845VictoryCore.php");
 
+            $this->victory = new Victory("Mollwitz/Moodkee1845/moodkee1845VictoryCore.php");
             $this->mapData->blocksZoc->blocked = true;
             $this->mapData->blocksZoc->blocksnonroad = true;
 
-
-            $this->display = new Display();
-            $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
-            $this->force = new Force();
-            $this->terrain = new Terrain();
-
-            $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->moveRules->enterZoc = "stop";
             $this->moveRules->exitZoc = "stop";
             $this->moveRules->noZocZoc = true;
             $this->moveRules->zocBlocksRetreat = true;
-            $this->combatRules = new CombatRules($this->force, $this->terrain);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
-            $this->prompt = new Prompt($this->gameRules, $this->moveRules, $this->combatRules, $this->force, $this->terrain);
-
 
             // game data
 
@@ -172,11 +136,9 @@ class Moodkee1845 extends IndiaCore
             $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
 
-//            $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
 
-//            $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
 
