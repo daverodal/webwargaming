@@ -5,7 +5,8 @@ define("BELUCHI_FORCE", 2);
 
 global $force_name;
 $force_name[BRITISH_FORCE] = "British";
-$force_name[BELUCHI_FORCE] = "Beluchi";require_once "IndiaCore.php";
+$force_name[BELUCHI_FORCE] = "Beluchi";
+require_once "IndiaCore.php";
 
 
 class Dubba1843 extends IndiaCore

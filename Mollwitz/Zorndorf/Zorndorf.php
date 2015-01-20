@@ -9,7 +9,7 @@ $force_name = array();
 $force_name[1] = "Prussian";
 $force_name[2] = "Russian";
 
-require_once"JagCore.php";
+require_once "JagCore.php";
 
 class Zorndorf extends JagCore
 {
