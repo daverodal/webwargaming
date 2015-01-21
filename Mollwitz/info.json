@@ -3,7 +3,7 @@
         "name": "The Battle of Mollwitz",
         "path": "Mollwitz",
         "genre": "18'th Century Europe",
-        "fileName": "Mollwitz.php",
+        "fileName": "Mollwitz/Mollwitz.php",
         "scenarios": {
             "main": {
                 "description": "Standard Scenario"
