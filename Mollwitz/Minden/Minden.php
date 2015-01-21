@@ -156,13 +156,16 @@ class Minden extends JagCore
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
         parent::__construct($data, $arg, $scenario, $game);
-
         if ($data) {
+            $this->arg = $data->arg;
             $this->angloSpecialHexes = $data->angloSpecialHexes;
             $this->frenchSpecialHexes = $data->frenchSpecialHexes;
         } else {
+            $this->victory = new Victory("Mollwitz/Minden/mindenVictoryCore.php");
+
             $this->mapData->blocksZoc->blocked = true;
             $this->mapData->blocksZoc->blocksnonroad = true;
+
 
             $this->moveRules->enterZoc = "stop";
             $this->moveRules->exitZoc = "stop";
