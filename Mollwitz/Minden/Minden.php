@@ -155,15 +155,12 @@ class Minden extends JagCore
 
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
-        $this->mapData = MapData::getInstance();
+        parent::__construct($data, $arg, $scenario, $game);
+
         if ($data) {
             $this->angloSpecialHexes = $data->angloSpecialHexes;
             $this->frenchSpecialHexes = $data->frenchSpecialHexes;
-            $this->game = $data->game;
-            $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
         } else {
-            $this->game = $game;
             $this->mapData->blocksZoc->blocked = true;
             $this->mapData->blocksZoc->blocksnonroad = true;
 

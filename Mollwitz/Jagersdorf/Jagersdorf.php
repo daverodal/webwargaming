@@ -1,5 +1,4 @@
 <?php
-set_include_path(__DIR__ . "/Jagersdorf". PATH_SEPARATOR .  get_include_path());
 
 define("PRUSSIAN_FORCE",1);
 define("RUSSIAN_FORCE",2);
@@ -174,45 +173,16 @@ class Jagersdorf extends JagCore {
     }
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
-        $this->mapData = MapData::getInstance();
+        parent::__construct($data, $arg, $scenario, $game);
         if ($data) {
-            $this->arg = $data->arg;
-            $this->scenario = $data->scenario;
-            $this->terrainName = $data->terrainName;
-            $this->game = $data->game;
-            $this->victory = new Victory("Mollwitz/Jagersdorf/jagerVictoryCore.php",$data);
-            $this->display = new Display($data->display);
-            $this->mapData->init($data->mapData);
-            $this->mapViewer = array(new MapViewer($data->mapViewer[0]),new MapViewer($data->mapViewer[1]),new MapViewer($data->mapViewer[2]));
-            $this->force = new Force($data->force);
-            $this->terrain = new Terrain($data->terrain);
-            $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
-            $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
-            $this->players = $data->players;
+
         } else {
-            $this->arg = $arg;
-            $this->scenario = $scenario;
-            $this->game = $game;
             $this->victory = new Victory("Mollwitz/Jagersdorf/jagerVictoryCore.php");
 
-            $this->display = new Display();
-            $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
-            $this->force = new Force();
-//            $this->force->combatRequired = true;
-            $this->terrain = new Terrain();
-//            $this->terrain->setMaxHex("2223");
-            $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->moveRules->enterZoc = "stop";
             $this->moveRules->exitZoc = "stop";
             $this->moveRules->noZocZoc = true;
             $this->moveRules->stickyZOC = false;
-            $this->combatRules = new CombatRules($this->force, $this->terrain);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
-
-
-
-
 
             // game data
             $this->gameRules->setMaxTurn(12);
@@ -221,7 +191,6 @@ class Jagersdorf extends JagCore {
             $this->gameRules->attackingForceId = RED_FORCE;/* object oriented! */
             $this->gameRules->defendingForceId = BLUE_FORCE;/* object oriented! */
             $this->force->setAttackingForceId($this->gameRules->attackingForceId); /* so object oriented */
-
 
             /**
              * not not prussian deploy phase for now

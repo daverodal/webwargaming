@@ -46,6 +46,7 @@ class ModernLandBattle extends LandBattle
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
             $this->terrainName = $data->terrainName;
+            $this->game = $data->game;
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
@@ -60,6 +61,7 @@ class ModernLandBattle extends LandBattle
         } else {
             $this->arg = $arg;
             $this->scenario = $scenario;
+            $this->game = $game;
 
             $this->display = new Display();
             $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());

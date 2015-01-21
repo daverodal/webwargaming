@@ -1,5 +1,4 @@
 <?php
-set_include_path(__DIR__ . "/Lobositz" . PATH_SEPARATOR . get_include_path());
 
 define("PRUSSIAN_FORCE", 1);
 define("AUSTRIAN_FORCE", 2);
@@ -132,44 +131,20 @@ class Lobositz extends JagCore
 
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
-        $this->mapData = MapData::getInstance();
+        parent::__construct($data, $arg, $scenario, $game);
         if ($data) {
-            $this->arg = $data->arg;
-            $this->scenario = $data->scenario;
-            $this->terrainName = $data->terrainName;
             $this->austrianSpecialHexes = $data->austrianSpecialHexes;
             $this->prussianSpecialHexes = $data->prussianSpecialHexes;
-            $this->game = $data->game;
-            $this->victory = new Victory("Mollwitz/Lobositz/lobositzVictoryCore.php", $data);
-            $this->display = new Display($data->display);
-            $this->mapData->init($data->mapData);
-            $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
-            $this->force = new Force($data->force);
-            $this->terrain = new Terrain($data->terrain);
-            $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
-            $this->moveRules->stickyZOC = false;
-            $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
-            $this->players = $data->players;
         } else {
 
-            $this->arg = $arg;
-            $this->scenario = $scenario;
-            $this->game = $game;
             $this->victory = new Victory("Mollwitz/Lobositz/lobositzVictoryCore.php");
+
             $this->mapData->blocksZoc->blocked = true;
             $this->mapData->blocksZoc->blocksnonroad = true;
-
-            $this->display = new Display();
-            $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
-            $this->force = new Force();
-            $this->terrain = new Terrain();
-            $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->moveRules->enterZoc = "stop";
             $this->moveRules->exitZoc = "stop";
             $this->moveRules->noZocZoc = true;
-            $this->combatRules = new CombatRules($this->force, $this->terrain);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
+
             // game data
             $this->gameRules->setMaxTurn(14);
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
