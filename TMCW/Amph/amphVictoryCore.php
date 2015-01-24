@@ -32,7 +32,7 @@ class amphVictoryCore extends victoryCore
             $this->scienceCenterDestroyed = $data->victory->scienceCenterDestroyed;
             $this->gameOver = $data->victory->gameOver;
         } else {
-            $this->victoryPoints = array(0, 0, 0);
+            $this->victoryPoints = array(0, 0, 25);
             $this->movementCache = new stdClass();
             $this->combatCache = new stdClass();
             $this->landingZones = [];
@@ -93,6 +93,24 @@ class amphVictoryCore extends victoryCore
                 $newAirdrops[] = $airdropZone;
             }
             $this->airdropZones = $newAirdrops;
+        }
+
+        if(in_array($mapHexName,$battle->specialHexA)){
+            $vp = 25;
+
+            $prevForceId = $battle->mapData->specialHexes->$mapHexName;
+            if ($forceId == REBEL_FORCE) {
+                $this->victoryPoints[REBEL_FORCE]  += $vp;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebel'>+$vp Rebel vp</span>";
+                $this->victoryPoints[LOYALIST_FORCE] -= $vp;
+                $battle->mapData->specialHexesVictory->$mapHexName .= "<span class='rebel'> -$vp Loyalist vp</span>";
+            }
+            if ($forceId == LOYALIST_FORCE) {
+                $this->victoryPoints[LOYALIST_FORCE]  += $vp;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalist'>+$vp Loyalist vp</span>";
+                $this->victoryPoints[REBEL_FORCE] -= $vp;
+                $battle->mapData->specialHexesVictory->$mapHexName .= "<span class='loyalist'> -$vp Rebel vp</span>";
+            }
         }
 
     }

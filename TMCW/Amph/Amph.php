@@ -140,6 +140,7 @@ class Amph extends ModernLandBattle
         parent::__construct($data, $arg, $scenario, $game);
 
         if ($data) {
+            $this->specialHexA = $data->specialHexA;
 
         } else {
             $this->victory = new Victory("TMCW/Amph/amphVictoryCore.php");

@@ -38,7 +38,6 @@
 
                 }else{
                     if(specialHexes[i] == 1 && i != 'x416y357'){
-                        debugger;
 //                        $("#gameImages").append('<div id="special'+i+'" style="top:'+y+'px;left:'+x+'px;" class="'+lab[specialHexes[i]]+' specialHexes supply fa fa-adjust"></div>');
                         $("#gameImages").append('<div id="special'+i+'" class="specialHexes fa fa-adjust supply"></div>');
                         $("#special"+i).css({top:y+"px", left:x+"px"}).addClass(lab[specialHexes[i]]);
