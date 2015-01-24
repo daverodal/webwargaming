@@ -564,7 +564,7 @@ class CombatRules
         return false;
     }
 
-    function thisAttackAcrossTYPE($defenderId, $attackerId, $type){
+    function thisAttackAcrossType($defenderId, $attackerId, $type){
         $los = new Los();
 
         $los->setOrigin($this->force->getUnitHexagon($defenderId));
