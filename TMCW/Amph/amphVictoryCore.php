@@ -74,6 +74,8 @@ class amphVictoryCore extends victoryCore
             foreach ($this->landingZones as $landingZone) {
                 if ($landingZone == $mapHexName) {
                     $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>Beachhead Destroyed</span>";
+                    $battle->mapData->removeSpecialHex($mapHexName);
+                    unset($battle->mapData->specialHexesChanges->$mapHexName);
                     continue;
                 }
                 $newLandings[] = $landingZone;
@@ -84,13 +86,13 @@ class amphVictoryCore extends victoryCore
             foreach ($this->airdropZones as $airdropZone) {
                 if ($airdropZone == $mapHexName) {
                     $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>Airdrop zone Destroyed</span>";
+                    $battle->mapData->removeSpecialHex($mapHexName);
+                    unset($battle->mapData->specialHexesChanges->$mapHexName);
                     continue;
                 }
                 $newAirdrops[] = $airdropZone;
             }
             $this->airdropZones = $newAirdrops;
-
-            $battle->mapData->removeSpecialHex($mapHexName);
         }
 
     }

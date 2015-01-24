@@ -592,7 +592,8 @@ x.register("specialHexes", function(specialHexes, data) {
                 });
 
             }else{
-                $("#gameImages").append('<div id="special'+i+'" style="border-radius:0px;border:0px;top:'+y+'px;left:'+x+'px;font-size:16px;z-index:0;" class="'+lab[specialHexes[i]]+' specialHexes">'+lab[specialHexes[i]]+'</div>');
+                $("#gameImages").append('<div id="special'+i+'" class="specialHexes">'+lab[specialHexes[i]]+'</div>');
+                $("#special"+i).css({top:y+"px", left:x+"px"}).addClass(lab[specialHexes[i]]);
 
             }
 

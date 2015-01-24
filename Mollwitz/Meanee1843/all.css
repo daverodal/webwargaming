@@ -74,7 +74,11 @@ h4:hover {
   position: absolute;
   text-transform: capitalize;
   background: yellow;
-  opacity: .8; }
+  opacity: .8;
+  border-radius: 0px;
+  border: 0px;
+  font-size: 16px;
+  z-index: 0; }
 
 .specialHexesVP {
   background: transparent !important;

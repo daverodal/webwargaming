@@ -1,0 +1,57 @@
+
+body{
+  background:#000;
+  background-repeat: no-repeat;
+  background-position:center 10%;
+  background-size:100%;
+}
+h2{
+  color:#f66;
+  text-shadow: 0 0 3px black,0 0 3px black,0 0 3px black,0 0 3px black,0 0 3px black,0 0 3px black,
+  0 0 3px black,0 0 3px black;
+}
+h1{
+  text-align:center;
+  font-size:90px;
+  font-family:'Pinyon Scrip';
+  color:#f66;
+  margin-top:0px;
+  text-shadow: 0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,
+  0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,
+  0 0 5px black,0 0 5px black,0 0 5px black, 0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,
+  0 0 5px black,0 0 5px black,0 0 5px black;
+}
+.link{
+  font-size:40px;
+  text-decoration: none;
+  color:#f66;
+  text-shadow: 3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black
+}
+legend   {
+  color:black;
+}
+fieldset{
+  text-align: center;
+  width:30%;
+  margin:0px;
+  position:absolute;
+  top:300px;
+  left:50%;
+  margin-left:-15%;
+  background-color: rgba(255,255,255,.4);
+}
+.attribution{
+  background: rgba(255,255,255,.6);
+}
+.attribution a{
+  color:red;
+  text-shadow: 1px 1px 1px black;
+}
+footer.attribution{
+  text-align: center;
+  background:rgba(255,255,255,.8);
+  border-radius:15px;
+  padding:20px;
+  margin:20px;
+  border:3px solid gray;
+}

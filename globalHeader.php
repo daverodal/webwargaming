@@ -28,6 +28,10 @@
         DR.crtDetails = false;
         DR.showArrows = false;
 
+        $("#header").on('touchmove', function(event){
+            event.stopPropagation();
+        });
+
         $("#fullScreenButton").on('click touchstart', function () {
             toggleFullScreen();
             return false;

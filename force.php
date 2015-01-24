@@ -356,9 +356,9 @@ class unit implements JsonSerializable
             if (isset($mapData->specialHexes->$mapHexName)) {
                 if ($mapData->specialHexes->$mapHexName != $this->forceId) {
                     $victory = $battle->victory;
-                    $victory->specialHexChange($mapHexName, $this->forceId);
-                    $mapData->specialHexes->$mapHexName = $this->forceId;
                     $mapData->specialHexesChanges->$mapHexName = true;
+                    $victory->specialHexChange($mapHexName, $this->forceId);
+                    $mapData->alterSpecialHex($mapHexName, $this->forceId);
                 }
             }
         }

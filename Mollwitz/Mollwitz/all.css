@@ -74,7 +74,11 @@ h4:hover {
   position: absolute;
   text-transform: capitalize;
   background: yellow;
-  opacity: .8; }
+  opacity: .8;
+  border-radius: 0px;
+  border: 0px;
+  font-size: 16px;
+  z-index: 0; }
 
 .specialHexesVP {
   background: transparent !important;
@@ -154,7 +158,7 @@ h4:hover {
   backgroundColor: white; }
 
 .dark {
-  background-color: #000; }
+  background-color: black; }
 
 .blueUnit {
   background-color: #84b5ff; }
@@ -434,7 +438,7 @@ h4:hover {
 
 body {
   background: #eee;
-  color: #333; }
+  color: #333333; }
 
 #status {
   /*height:70px;*/
@@ -1113,5 +1117,3 @@ p.forceMarch {
 
 .Austrian .counterWrapper {
   background-color: white; }
-
-/*# sourceMappingURL=all.css.map */
