@@ -42,7 +42,7 @@ div{
 }
 
 .loyalist {
-  color:$loyalistColor;
+  color:darken($loyalistColor,20%);
 }
 
 .rebel, .sympth {

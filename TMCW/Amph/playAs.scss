@@ -5,9 +5,9 @@ h1{
   @include textShadow(white);
 }
 h2{
+  font-family: PoiretOne;
   text-align:center;
   font-size:38px;
-  font-family:'Great Vibes';
   color:#f66;
   @include textShadow(white);
 }

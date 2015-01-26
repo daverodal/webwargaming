@@ -7,10 +7,10 @@
         background-size:100%;
     }
 </style>
-<link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 
 <h2 style="text-align:center;font-size:30px;font-family:'Great Vibes'"> Welcome to</h2>
-<h1 style="text-align:center;font-size:90px;font-family:'Nosifer'">Uit de Hemel</h1>
+<h1 style="text-align:center;font-size:90px;font-family:'Lobster'">Uit de Hemel</h1>
 <div class="clear">&nbsp;</div>
 <fieldset ><Legend>Play As </Legend>
     <a class="link"  href="<?=site_url("wargame/enterHotseat");?>/<?=$wargame?>">Play Hotseat</a><br>
