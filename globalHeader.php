@@ -28,7 +28,7 @@
         DR.crtDetails = false;
         DR.showArrows = false;
 
-        $("#header").on('touchmove', function(event){
+        $("#header, #deadpile, #deployWrapper").on('touchmove', function(event){
             event.stopPropagation();
         });
 
