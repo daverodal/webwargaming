@@ -740,7 +740,8 @@ svg {
         color: white; }
 
 #timeMachine, #timeSurge {
-  font-size: 22px; }
+  font-size: 45px;
+  width: 45px; }
 
 svg g {
   opacity: .6;

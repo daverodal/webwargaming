@@ -29,6 +29,9 @@
         DR.showArrows = false;
 
         $("#header, #deadpile, #deployWrapper, #exitWrapper").on('touchmove', function(event){
+            if($(event.target).parents('#crt').length > 0){
+                return;
+            }
             event.stopPropagation();
         });
 
@@ -646,6 +649,26 @@ function initialize() {
 
         DR.dragged = true;
     }});
+//
+//    DR.$crtPanZoom = $('#Time').panzoom({cursor: "move", disableZoom: true, onPan: function(e, panzoom){
+//        var xDrag;
+//        var yDrag;
+//        if(event.type === 'touchmove'){
+//            xDrag = Math.abs(event.touches[0].clientX - DR.clickX);
+//            yDrag = Math.abs(event.touches[0].clientY - DR.clickY);
+//            if(xDrag > 40 || yDrag > 40){
+//                DR.dragged = true;
+//            }
+//        }else {
+//            xDrag = Math.abs(event.clientX - DR.clickX);
+//            yDrag = Math.abs(event.clientY - DR.clickY);
+//            if(xDrag > 4 || yDrag > 4){
+//                DR.dragged = true;
+//            }
+//        }
+//
+//        DR.dragged = true;
+//    }});
 
     $("#muteButton").click(function () {
         if (!mute) {
@@ -699,6 +722,9 @@ function initialize() {
 
     var Player = 'Markarian';
 
+    $("#TimeWrapper .WrapperLabel").click(function(){
+        $("#TimeWrapper").css('overflow', 'visible');
+    });
     $(".dropDown .WrapperLabel").click(function () {
         $(this).parent().siblings(".dropDown, #crtWrapper").children('div').hide({
             effect: "blind", direction: "up", complete: function () {
