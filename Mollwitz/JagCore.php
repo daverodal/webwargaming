@@ -147,7 +147,8 @@ class JagCore extends LandBattle{
         $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
         $this->terrain->addTerrainFeature("swamp", "swamp", "s", 9, 0, 1, true, false);
         $this->terrain->addTerrainFeature("blocked", "blocked", "b", 1, 0, 0, true);
-        $this->terrain->addTerrainFeature("redoubt", "redoubt", "d", 0, 2, 0, false);
+        $this->terrain->addTerrainFeature("redoubt", "redoubt", "d", 0, 0, 0, false);
+        $this->terrain->addTerrainFeature("redoubtfront", "redoubtfront", "d", 0, 2, 0, false);
         $this->terrain->addTerrainFeature("blocksnonroad", "blocksnonroad", "b", 1, 0, 0, false);
         $this->terrain->addAltEntranceCost('swamp','artillery','blocked');
         $this->terrain->addTerrainFeature("sunkenroad", "sunkenroad", "k", 0, 0, 1, false, false);
