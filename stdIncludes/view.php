@@ -162,6 +162,7 @@
                 <button id="nextPhaseButton">Next Phase</button>
                 <button id="fullScreenButton"><i class="fa fa-arrows-alt"></i></button>
                 <button class="dynamicButton combatButton" id="clearCombatEvent">c</button>
+                <button class="dynamicButton combatButton" id="shiftKey">+</button>
 
             </div>
 

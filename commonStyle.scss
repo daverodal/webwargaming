@@ -136,7 +136,7 @@ h4:hover{
 }
 #nextPhaseWrapper{
   float:left;
-  #nextPhaseButton, #fullScreenButton,#forceMarchEvent, #determinedAttackEvent, #clearCombatEvent{
+  #nextPhaseButton, #fullScreenButton,#forceMarchEvent, #determinedAttackEvent, #clearCombatEvent, #shiftKey{
     font-size:28px;
     position: static;
   }
@@ -816,4 +816,8 @@ svg {
 
 .something{
 
+}
+.swooshy{
+  background:black;
+  color:#eee;
 }

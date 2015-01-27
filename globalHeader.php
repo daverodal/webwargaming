@@ -290,7 +290,7 @@ function doitCRT(id, event) {
     $.ajax({
         url: "<?=site_url("wargame/poke");?>/",
         type: "POST",
-        data: {id: id, event: event.shiftKey ? <?=COMBAT_PIN_EVENT;?> : <?=COMBAT_PIN_EVENT?>},
+        data: {id: id, event: (event.shiftKey || DR.shiftKey) ? <?=COMBAT_PIN_EVENT;?> : <?=COMBAT_PIN_EVENT?>},
         error: function (data, text, third) {
             try {
                 obj = jQuery.parseJSON(data.responseText);
@@ -331,10 +331,14 @@ function doitUnit(id, event) {
     $("#" + id + "").addClass("pushed");
 
     $("#comlink").html('waiting');
+    if(DR.shiftKey){
+        event.shiftKey = true;
+        $("#shiftKey").click();
+    }
     $.ajax({
         url: "<?=site_url("wargame/poke");?>/",
         type: "POST",
-        data: {id: id, event: event.shiftKey ? <?=SELECT_SHIFT_COUNTER_EVENT;?> : <?=SELECT_COUNTER_EVENT?>},
+        data: {id: id, event: (event.shiftKey || DR.shiftKey) ? <?=SELECT_SHIFT_COUNTER_EVENT;?> : <?=SELECT_COUNTER_EVENT?>},
         error: function (data, text, third) {
             try {
                 obj = jQuery.parseJSON(data.responseText);
@@ -843,6 +847,11 @@ function initialize() {
 
     $("#clearCombatEvent").on('click',function(){
         doitKeypress(99);
+    });
+
+    $("#shiftKey").on('click',function(){
+        DR.shiftKey = !DR.shiftKey;
+        $("#shiftKey").toggleClass('swooshy', DR.shiftKey);
     });
 
     $("#zoom .defaultZoom").on('click', function () {

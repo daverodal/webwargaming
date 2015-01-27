@@ -128,7 +128,7 @@ h4:hover {
 
 #nextPhaseWrapper {
   float: left; }
-  #nextPhaseWrapper #nextPhaseButton, #nextPhaseWrapper #fullScreenButton, #nextPhaseWrapper #forceMarchEvent, #nextPhaseWrapper #determinedAttackEvent, #nextPhaseWrapper #clearCombatEvent {
+  #nextPhaseWrapper #nextPhaseButton, #nextPhaseWrapper #fullScreenButton, #nextPhaseWrapper #forceMarchEvent, #nextPhaseWrapper #determinedAttackEvent, #nextPhaseWrapper #clearCombatEvent, #nextPhaseWrapper #shiftKey {
     font-size: 28px;
     position: static; }
 
@@ -760,6 +760,10 @@ svg marker#head {
 .big {
   font-size: 19px;
   font-weight: bold; }
+
+.swooshy {
+  background: black;
+  color: #eee; }
 
 .blueUnit, .blue, .playerTwo {
   background-color: #84b5ff;

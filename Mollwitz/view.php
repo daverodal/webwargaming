@@ -195,6 +195,7 @@
                     <button class="dynamicButton combatButton" id="determinedAttackEvent">d</button>
                     <button class="dynamicButton movementButton" id="forceMarchEvent">m</button>
                     <button class="dynamicButton combatButton" id="clearCombatEvent">c</button>
+                    <button class="dynamicButton combatButton" id="shiftKey">+</button>
                 </div>
 
             </div>
