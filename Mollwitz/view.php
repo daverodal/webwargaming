@@ -158,9 +158,7 @@
                 </div>
                 <div id="zoomWrapper">
                     <span id="zoom">
-<!--                        <span class="minusZoom">-</span>-->
                         <span class="defaultZoom">1.0</span>
-<!--                        <span class="plusZoom">+</span>-->
                     </span>
                 </div>
                 <div class="dropDown">
