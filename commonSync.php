@@ -560,6 +560,7 @@ function flashMessage(playerStatus){
     }
 }
 x.register("specialHexes", function(specialHexes, data) {
+    debugger;
     var lab = ['unowned','<?=strtolower($force_name[1])?>','<?=strtolower($force_name[2])?>'];
     for(var i in specialHexes){
         var newHtml = lab[specialHexes[i]];
@@ -578,6 +579,7 @@ x.register("specialHexes", function(specialHexes, data) {
 
 
                     if(data.specialHexesVictory[id]){
+                        debugger;
                         var hexPos = id.replace(/\.\d*/g,'');
 
                         var x = hexPos.match(/x(\d*)y/)[1];
@@ -601,6 +603,7 @@ x.register("specialHexes", function(specialHexes, data) {
     }
     for(var i in data.specialHexesVictory)
     {
+        debugger;
         if(data.specialHexesChanges[i]){
             continue;
         }
@@ -610,9 +613,8 @@ x.register("specialHexes", function(specialHexes, data) {
         var y = hexPos.match(/y(\d*)\D*/)[1];
         $('<div id="VP'+hexPos+'" style="z-index:1000;border-radius:0px;border:0px;top:'+y+'px;left:'+x+'px;font-size:60px;" class="'+' specialHexesVP">'+data.specialHexesVictory[id]+'</div>').appendTo('#gameImages');
         $("#VP"+hexPos).animate({top:y-30,opacity:0.0},1900,function(){
-            var id = $(this).attr('id');
 
-            $("#"+id).remove();
+            $(this).remove();
         });
     }
 

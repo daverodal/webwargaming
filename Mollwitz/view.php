@@ -8,8 +8,7 @@
                 <div id="mouseMove">mouse</div>
 
                 <div class="dropDown alpha" id="menuWrapper">
-                    <h4 class="WrapperLabel" title="Game Menu"><i class="fa fa-bars"></i></h4>
-
+                    <h4 class="WrapperLabel" title="Game Menu"><i class="tablet fa fa-bars"></i><span class="desktop">Menu</span></h4>
                     <div id="menu">
                         <div class="close">X</div>
                         <ul>
@@ -25,8 +24,8 @@
                     </div>
                 </div>
                 <div class="dropDown" id="infoWrapper">
-                    <h4 class="WrapperLabel" title="Game Information">i</h4>
-
+                    <h4 class="WrapperLabel tablet" title="Game Information"><i>i</i></h4>
+                    <h4 class="desktop WrapperLabel">Info</h4>
                     <div id="info">
                         <div class="close">X</div>
                         <ul>
@@ -165,7 +164,8 @@
                     </span>
                 </div>
                 <div class="dropDown">
-                    <h4 class="WrapperLabel">Rules</h4>
+                    <h4 class="WrapperLabel desktop">Rules</h4>
+                    <h4 class="WrapperLabel tablet">?</h4>
                     <div class="subMenu">
                         <?php include_once "commonRules.php"; ?>
                         <?php include_once "exclusiveRules.php"; ?>

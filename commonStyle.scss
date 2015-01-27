@@ -142,17 +142,6 @@ h4:hover{
   }
 }
 
-@media screen and (max-width: 1280px){
-  #deployWrapper .unit{
-  }
-  .dropDown, #zoomWrapper{
-  }
-  #nextPhaseWrapper{
-    #nextPhaseButton, #fullScreenButton{
-
-    }
-  }
-}
 
 #header a, #header a:visited{
   color:white;
@@ -265,7 +254,6 @@ body{
 
 #infoWrapper{
   .WrapperLabel{
-    font-style: italic;
   }
 }
 
@@ -782,8 +770,8 @@ svg{
 }
 
 #timeMachine,#timeSurge{
-  font-size:45px;
-  width:45px;
+  font-size:22px;
+  width:22px;
 }
 
 
@@ -820,4 +808,33 @@ svg {
 .swooshy{
   background:black;
   color:#eee;
+}
+
+
+@media screen and (min-width: 1281px){
+  .tablet{
+    display:none !important;
+  }
+}
+@media screen and (max-width: 1280px){
+  .tablet{
+
+  }
+  .desktop{
+    display:none;
+  }
+  #timeMachine,#timeSurge{
+    font-size:45px;
+    width:45px;
+  }
+
+  #deployWrapper .unit{
+  }
+  .dropDown, #zoomWrapper{
+  }
+  #nextPhaseWrapper{
+    #nextPhaseButton, #fullScreenButton{
+
+    }
+  }
 }

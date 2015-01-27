@@ -27,18 +27,15 @@
 
                             var x = hexPos.match(/x(\d*)y/)[1];
                             var y = hexPos.match(/y(\d*)\D*/)[1];
-                            $('<div id="VP'+hexPos+'" style="z-index:1000;border-radius:0px;border:0px;top:'+y+'px;left:'+x+'px;font-size:60px;" class="'+' specialHexesVP">'+data.specialHexesVictory[id]+'</div>').insertAfter('#special'+i);
-                            $("#VP"+hexPos).animate({top:y-30,opacity:0.0},1900,function(){
-                                var id = $(this).attr('id');
-
-                                $("#"+id).remove();
+                            var newVP = $('<div style="z-index:1000;border-radius:0px;border:0px;top:'+y+'px;left:'+x+'px;font-size:60px;" class="'+' specialHexesVP">'+data.specialHexesVictory[id]+'</div>').insertAfter('#special'+i);
+                            $(newVP).animate({top:y-30,opacity:0.0},1900,function(){
+                                $(this).remove();
                             });
                         }
                     });
 
                 }else{
                     if(specialHexes[i] == 1 && i != 'x416y357'){
-//                        $("#gameImages").append('<div id="special'+i+'" style="top:'+y+'px;left:'+x+'px;" class="'+lab[specialHexes[i]]+' specialHexes supply fa fa-adjust"></div>');
                         $("#gameImages").append('<div id="special'+i+'" class="specialHexes fa fa-adjust supply"></div>');
                         $("#special"+i).css({top:y+"px", left:x+"px"}).addClass(lab[specialHexes[i]]);
                     }else{
@@ -48,20 +45,20 @@
 
             }
         }
-        for(var i in data.specialHexesVictory)
+
+        for(var id in data.specialHexesVictory)
         {
-            if(data.specialHexesChanges[i]){
+            if(data.specialHexesChanges[id]){
                 continue;
             }
-            var id = i;
             var hexPos = id.replace(/\.\d*/g,'');
             var x = hexPos.match(/x(\d*)y/)[1];
             var y = hexPos.match(/y(\d*)\D*/)[1];
-            $('<div id="VP'+hexPos+'" style="z-index:1000;border-radius:0px;border:0px;top:'+y+'px;left:'+x+'px;font-size:60px;" class="'+' specialHexesVP">'+data.specialHexesVictory[id]+'</div>').appendTo('#gameImages');
-            $("#VP"+hexPos).animate({top:y-30,opacity:0.0},1900,function(){
+            var newVP = $('<div  style="z-index:1000;border-radius:0px;border:0px;top:'+y+'px;left:'+x+'px;font-size:60px;" class="'+' specialHexesVP">'+data.specialHexesVictory[id]+'</div>').appendTo('#gameImages');
+            $(newVP).animate({top:y-30,opacity:0.0},1900,function(){
                 var id = $(this).attr('id');
 
-                $("#"+id).remove();
+                $(this).remove();
             });
         }
 

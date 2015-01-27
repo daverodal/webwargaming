@@ -283,9 +283,6 @@ h4:hover {
     margin: 0;
     padding: 0; }
 
-#infoWrapper .WrapperLabel {
-  font-style: italic; }
-
 #phaseDiv, #statusDiv, #chatsDiv, #victoryDiv {
   display: inline;
   vertical-align: top;
@@ -740,8 +737,8 @@ svg {
         color: white; }
 
 #timeMachine, #timeSurge {
-  font-size: 45px;
-  width: 45px; }
+  font-size: 22px;
+  width: 22px; }
 
 svg g {
   opacity: .6;
@@ -765,6 +762,16 @@ svg marker#head {
   background: black;
   color: #eee; }
 
+@media screen and (min-width: 1281px) {
+  .tablet {
+    display: none !important; } }
+@media screen and (max-width: 1280px) {
+  .desktop {
+    display: none; }
+
+  #timeMachine, #timeSurge {
+    font-size: 45px;
+    width: 45px; } }
 .unit {
   border: solid black;
   border-width: 3px; }
