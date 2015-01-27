@@ -83,7 +83,8 @@
                 fixItAll();
         });
 
-        $("#crtDetailsButton").on('click touchstart', function () {
+        $("#crtDetailsButton").on('click touchend', function (e) {
+            e.stopPropagation();
             $('#crtDetails').toggle(function () {
                 DR.crtDetails = $(this).css('display') == 'block';
             });

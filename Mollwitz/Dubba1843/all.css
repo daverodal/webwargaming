@@ -669,7 +669,7 @@ fieldset {
   overflow: auto; }
 
 #crtDetailsButton {
-  font-size: 10px;
+  font-size: 20px;
   cursor: pointer; }
 
 #crtDetails {
@@ -1024,7 +1024,7 @@ p.forceMarch {
   right: 18px; }
 
 #crtDetailsButton {
-  font-size: 10px;
+  font-size: 20px;
   cursor: pointer; }
 
 #crtDetails {
