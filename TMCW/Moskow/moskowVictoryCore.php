@@ -275,6 +275,7 @@ class moskowVictoryCore extends victoryCore
     {
         $attackingId = $arg[0];
         $battle = Battle::getBattle();
+        $scenario = $battle->scenario;
         $mapData = $battle->mapData;
         $vp = $this->victoryPoints;
         $specialHexes = $mapData->specialHexes;
@@ -287,6 +288,11 @@ class moskowVictoryCore extends victoryCore
             if($gameRules->turn <= $gameRules->maxTurn){
                 $gameRules->flashMessages[] = "German Player Turn";
                 $gameRules->replacementsAvail = 1;
+                if($scenario->weakGermans) {
+                    if($battle->gameRules->turn & 2 !== 0){
+                        $gameRules->replacementsAvail = 0;
+                    }
+                }
                 if($gameRules->turn == 4){
                     $gameRules->flashMessages[] = "Mud In Effect ";
                 }
@@ -295,6 +301,9 @@ class moskowVictoryCore extends victoryCore
         if ($attackingId == SOVIET_FORCE) {
             $gameRules->flashMessages[] = "Soviet Player Turn";
             $gameRules->replacementsAvail = 8;
+            if($scenario->weakSoviets){
+                $gameRules->replacementsAvail = 6;
+            }
         }
 
         /*only get special VPs' at end of first Movement Phase */

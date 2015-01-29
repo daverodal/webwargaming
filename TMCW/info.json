@@ -105,14 +105,36 @@
         "path": "TMCW",
         "genre": "20'th Century Games",
         "fileName": "Moskow/Moskow.php",
+        "description": "Germans drive on Moscow in October 1941. Turns are 5 days. 11 Turns.",
         "scenarios": {
             "Main": {
-                "description": "The Battle for Moskow",
+                "description": "Standard",
                 "supply": true,
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
                 "supplyLen": false,
-                "showHexNums": true
+                "showHexNums": true,
+                "longDescription": "Historical, tends to favor Soviets"
+            },
+            "weakSoviets": {
+                "description": "Weaker Soviets",
+                "supply": true,
+                "loyalMechMove": 8,
+                "loyalExtraInf": true,
+                "supplyLen": false,
+                "showHexNums": true,
+                "weakSoviets": true,
+                "longDescription":"Only 5 instead of 8 replacements a turn for soviets."
+            },
+            "weakGermans": {
+                "description": "Weaker Germans",
+                "supply": true,
+                "loyalMechMove": 8,
+                "loyalExtraInf": true,
+                "supplyLen": false,
+                "showHexNums": true,
+                "weakGermans": true,
+                "longDescription":"1 replacement on even turns only (as opposed to every turn)."
             }
         }
     },
@@ -171,9 +193,10 @@
         "path": "TMCW",
         "genre": "20'th Century Games",
         "fileName": "Manchuria1976/Manchuria1976.php",
+        "description": "Peoples Republic of China vs Soviet Union, circa 1975",
         "scenarios": {
             "standard": {
-                "description": "Standard scenario. Peoples Republic of China vs Soviet Union",
+                "description": "Standard scenario.",
                 "supply": true
             }
         }
