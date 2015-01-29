@@ -7,22 +7,25 @@
         "description":"Rebels strike from the northwest, trying to capture or isolate cuneiform.",
         "scenarios": {
             "main": {
-                "description": "original game, stop on enter zoc, no supply",
+                "description": "original game.",
                 "supply": false,
-                "bigLoyal": false
+                "bigLoyal": false,
+                "longDescription": "Units stop on enter zoc, no supply rules."
             },
 
             "Supply": {
-                "description": "Supply Rules,",
+                "description": "Supply Rules",
                 "supply": true,
-                "bigLoyal": false
+                "bigLoyal": false,
+                "longDescription": "Mech units spend +2 MP's to enter zoc, +1 to leave. Supply determined for movement and combat"
             },
             "FastLoyal": {
-                "description": "Supply Rules, loyalist move 8, more infantry to start",
+                "description": "Strong Loyalists",
                 "supply": true,
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
-                "supplyLen": 8
+                "supplyLen": 8,
+                "longDescription": "Sams As 'Supply Rules' above, loyalist mech units move 8. There is more loyalists infantry to start"
             },
             "HardCuneiform": {
                 "description": "Rebel closes in on fortified Cuneiform.",
@@ -30,7 +33,8 @@
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
                 "supplyLen": 8,
-                "hardCuneiform": true
+                "hardCuneiform": true,
+                "longDescription": "The Siege of Cuneiform is not the same game as above "
             }
         }
     },
