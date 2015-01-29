@@ -4,7 +4,7 @@
         "path": "TMCW",
         "genre": "20'th Century Games",
         "fileName": "MartianCivilWar/MartianCivilWar.php",
-        "description":"This is a short description",
+        "description":"Rebels strike from the northwest, trying to capture or isolate cuneiform.",
         "scenarios": {
             "main": {
                 "description": "original game, stop on enter zoc, no supply",
@@ -39,32 +39,37 @@
         "path": "TMCW",
         "genre": "20'th Century Games",
         "fileName": "Amph/Amph.php",
+        "description": "Hypothetical amphibious invasion. The goal is the castle town, Chateau Sur Mer.",
         "scenarios": {
             "Main": {
-                "description": "Rebel raid by the sea",
+                "description": "Standard",
                 "supply": true,
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
                 "supplyLen": 8,
-                "hardCuneiform": true
+                "hardCuneiform": true,
+                "longDescription":"Standard scenario, balanced for both sides."
             },
             "Weaker": {
-                "description": "Rebel raid by the sea, Weaker Loyalists",
+                "description": "Weaker Loyalists",
                 "supply": true,
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
                 "supplyLen": 8,
                 "hardCuneiform": true,
-                "weakerLoyalist": true
+                "weakerLoyalist": true,
+                "longDescription":"Weaker Loyalists, best for a weaker player to play rebels here."
             },
             "Stronger": {
-                "description": "Rebel raid by the sea, Stronger Loyalists",
+                "description": "Stronger Loyalists",
                 "supply": true,
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
                 "supplyLen": 8,
                 "hardCuneiform": true,
-                "strongerLoyalist": true
+                "strongerLoyalist": true,
+                "longDescription":"Stronger Loyalists, best for a weaker player to play loyalists here."
+
             }
         }
     },
