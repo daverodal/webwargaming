@@ -426,6 +426,9 @@ h4:hover {
   z-index: 30;
   display: none; }
 
+#TEC, #menu, #info {
+  font-size: 20px !important; }
+
 .closer {
   height: 0px;
   padding: 0px !important; }

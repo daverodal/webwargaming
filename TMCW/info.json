@@ -124,7 +124,17 @@
                 "supplyLen": false,
                 "showHexNums": true,
                 "weakSoviets": true,
-                "longDescription":"Only 5 instead of 8 replacements a turn for soviets."
+                "longDescription":"Only 6 instead of 8 replacements a turn for soviets."
+            },
+            "veryWeakSoviets": {
+                "description": "Very Weak Soviets",
+                "supply": true,
+                "loyalMechMove": 8,
+                "loyalExtraInf": true,
+                "supplyLen": false,
+                "showHexNums": true,
+                "veryWeakSoviets": true,
+                "longDescription":"Only 4 instead of 8 replacements a turn for soviets."
             },
             "weakGermans": {
                 "description": "Weaker Germans",

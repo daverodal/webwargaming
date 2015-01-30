@@ -304,6 +304,9 @@ class moskowVictoryCore extends victoryCore
             if($scenario->weakSoviets){
                 $gameRules->replacementsAvail = 6;
             }
+            if($scenario->veryWeakSoviets){
+                $gameRules->replacementsAvail = 4;
+            }
         }
 
         /*only get special VPs' at end of first Movement Phase */

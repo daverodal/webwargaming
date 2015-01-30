@@ -24,8 +24,7 @@
                     </div>
                 </div>
                 <div class="dropDown" id="infoWrapper">
-                    <h4 class="WrapperLabel tablet" title="Game Information"><i>i</i></h4>
-                    <h4 class="desktop WrapperLabel">Info</h4>
+                    <h4 class="WrapperLabel" title="Game Information"><i class="tablet">i</i><span class="desktop">Info</span></h4>
                     <div id="info">
                         <div class="close">X</div>
                         <ul>
@@ -162,8 +161,7 @@
                     </span>
                 </div>
                 <div class="dropDown">
-                    <h4 class="WrapperLabel desktop">Rules</h4>
-                    <h4 class="WrapperLabel tablet">?</h4>
+                    <h4 class="WrapperLabel"><span class="tablet">?</span><span class="desktop">Rules</span></h4>
                     <div class="subMenu">
                         <?php include_once "commonRules.php"; ?>
                         <?php include_once "exclusiveRules.php"; ?>
