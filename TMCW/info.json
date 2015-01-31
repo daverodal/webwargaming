@@ -50,7 +50,7 @@
                 "supply": true,
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
-                "supplyLen": 8,
+                "supplyLen": 12,
                 "hardCuneiform": true,
                 "longDescription":"Standard scenario, balanced for both sides."
             },
@@ -59,7 +59,7 @@
                 "supply": true,
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
-                "supplyLen": 8,
+                "supplyLen": 12,
                 "hardCuneiform": true,
                 "weakerLoyalist": true,
                 "longDescription":"Weaker Loyalists, best for a weaker player to play rebels here."
@@ -69,7 +69,7 @@
                 "supply": true,
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
-                "supplyLen": 8,
+                "supplyLen": 12,
                 "hardCuneiform": true,
                 "strongerLoyalist": true,
                 "longDescription":"Stronger Loyalists, best for a weaker player to play loyalists here. Extra road for loyalists"
