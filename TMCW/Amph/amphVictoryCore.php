@@ -18,6 +18,7 @@ class amphVictoryCore extends victoryCore
     private $airdropZones;
     private $scienceCenterDestroyed = false;
     public $gameOver = false;
+    public $winner = false;
 
 
     function __construct($data)
@@ -174,11 +175,16 @@ class amphVictoryCore extends victoryCore
     public function gameOver()
     {
         $battle = Battle::getBattle();
-        $city = $battle->specialHexA[0];
-        if ($battle->mapData->getSpecialHex($city) === LOYALIST_FORCE) {
+        if ($this->victoryPoints[LOYALIST_FORCE] > $this->victoryPoints[REBEL_FORCE]) {
             $battle->gameRules->flashMessages[] = "Loyalist Player Wins";
-        }else{
+            $this->winner = LOYALIST_FORCE;
+        }
+        if ($this->victoryPoints[LOYALIST_FORCE] > $this->victoryPoints[REBEL_FORCE]) {
             $battle->gameRules->flashMessages[] = "Rebel Player Wins";
+            $this->winner = REBEL_FORCE;
+        }
+        if ($this->victoryPoints[LOYALIST_FORCE] == $this->victoryPoints[REBEL_FORCE]) {
+            $battle->gameRules->flashMessages[] = "Tie Game";
         }
         $this->gameOver = true;
         return true;
