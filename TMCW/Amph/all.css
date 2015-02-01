@@ -971,19 +971,51 @@ svg marker#head {
 .reduced {
   color: white; }
 
-#TEC ul {
-  width: 600px; }
-  #TEC ul .column-one {
-    float: left;
-    width: 30%;
-    padding-right: 4%; }
-  #TEC ul .column-two {
-    float: left;
-    width: 30%;
-    padding-right: 4%; }
-  #TEC ul .column-three {
-    float: left;
-    width: 30%; }
+#TECWrapper #TEC {
+  padding-bottom: 15px;
+  width: 700px; }
+  #TECWrapper #TEC ul {
+    width: 600px;
+    margin-left: 10px; }
+    #TECWrapper #TEC ul li {
+      clear: both;
+      padding: 20px 5px 34px 0px; }
+      #TECWrapper #TEC ul li.row-one .column-image {
+        background-position: 0px 0px; }
+      #TECWrapper #TEC ul li.row-two .column-image {
+        background-position: 0px -55px; }
+      #TECWrapper #TEC ul li.row-three .column-image {
+        background-position: 0px -110px; }
+      #TECWrapper #TEC ul li.row-four .column-image {
+        background-position: 0px -165px; }
+      #TECWrapper #TEC ul li.row-five .column-image {
+        background-position: 0px -220px; }
+      #TECWrapper #TEC ul li.row-six .column-image {
+        background-position: 0px -303px; }
+      #TECWrapper #TEC ul li.row-seven .column-image {
+        background-position: 0px -385px; }
+      #TECWrapper #TEC ul li.row-eight .column-image {
+        background-position: 0px -465px; }
+      #TECWrapper #TEC ul li.row-nine .column-image {
+        background-position: 0px -550px; }
+    #TECWrapper #TEC ul .column-image {
+      float: left;
+      width: 94px;
+      height: 56px;
+      background-image: url("<?=base_url()?>js/AmphTEC.png");
+      background-repeat: no-repeat; }
+    #TECWrapper #TEC ul .column-one {
+      float: left;
+      width: 24%;
+      padding-right: 4%;
+      padding-top: 10px; }
+    #TECWrapper #TEC ul .column-two {
+      float: left;
+      width: 24%;
+      padding-right: 4%; }
+    #TECWrapper #TEC ul .column-three {
+      float: left;
+      width: 24%; }
 
 #infoWrapper .WrapperLabel {
   width: auto; }
@@ -1007,10 +1039,3 @@ svg marker#head {
   border-radius: 0px;
   border: 0px;
   transform: rotate(180deg); }
-
-#TEC {
-  width: 700px; }
-
-#TECWrapper li {
-  clear: both;
-  padding: 20px 5px 34px 0px; }

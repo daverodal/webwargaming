@@ -20,10 +20,10 @@
             </li>
             <li>
                 <div class="colOne mountainHex">
-                    <span>City (red hex)</span>
+                    <span>Mountain</span>
                 </div>
-                <div class="colTwo">No Effect</div>
-                <div class="colThree">Shift one</div>
+                <div class="colTwo">3 Movement points (2 for mountain)</div>
+                <div class="colThree">Shift two</div>
                 <div class="clear"></div>
             </li>
             <li>
