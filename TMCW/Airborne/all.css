@@ -986,3 +986,49 @@ svg marker#head {
 
 .specialHexesVP .loyalistVictoryPoints {
   text-shadow: 0px 0px 1px #666666, 0px 0px 1px #666666, 0px 0px 1px #666666, 0px 0px 2px #666666, 0px 0px 2px #666666, 0px 0px 2px #666666, 0px 0px 3px #666666, 0px 0px 3px #666666, 0px 0px 3px #666666, 0px 0px 4px #666666, 0px 0px 4px #666666, 0px 0px 4px #666666, 0px 0px 5px #666666, 0px 0px 5px #666666, 0px 0px 5px #666666, 0px 0px 6px #666666, 0px 0px 6px #666666, 0px 0px 6px #666666, 0px 0px 7px #666666, 0px 0px 7px #666666, 0px 0px 7px #666666, 0px 0px 8px #666666, 0px 0px 8px #666666, 0px 0px 8px #666666, 0px 0px 9px #666666, 0px 0px 9px #666666, 0px 0px 9px #666666, 0px 0px 10px #666666, 0px 0px 10px #666666, 0px 0px 10px #666666, 0px 0px 1px #666666, 0px 0px 1px #666666, 0px 0px 1px #666666, 0px 0px 2px #666666, 0px 0px 2px #666666, 0px 0px 2px #666666, 0px 0px 3px #666666, 0px 0px 3px #666666, 0px 0px 3px #666666, 0px 0px 4px #666666, 0px 0px 4px #666666, 0px 0px 4px #666666, 0px 0px 5px #666666, 0px 0px 5px #666666, 0px 0px 5px #666666, 0px 0px 6px #666666, 0px 0px 6px #666666, 0px 0px 6px #666666, 0px 0px 7px #666666, 0px 0px 7px #666666, 0px 0px 7px #666666, 0px 0px 8px #666666, 0px 0px 8px #666666, 0px 0px 8px #666666, 0px 0px 9px #666666, 0px 0px 9px #666666, 0px 0px 9px #666666, 0px 0px 10px #666666, 0px 0px 10px #666666, 0px 0px 10px #666666; }
+
+#TECWrapper #TEC {
+  padding-bottom: 15px;
+  width: 700px; }
+  #TECWrapper #TEC ul {
+    width: 600px;
+    margin-left: 10px; }
+    #TECWrapper #TEC ul li {
+      clear: both;
+      padding: 20px 5px 34px 0px; }
+      #TECWrapper #TEC ul li.row-one .column-image {
+        background-position: 0px 0px; }
+      #TECWrapper #TEC ul li.row-two .column-image {
+        background-position: 0px -55px; }
+      #TECWrapper #TEC ul li.row-three .column-image {
+        background-position: 0px -110px; }
+      #TECWrapper #TEC ul li.row-four .column-image {
+        background-position: 0px -165px; }
+      #TECWrapper #TEC ul li.row-five .column-image {
+        background-position: 0px -220px; }
+      #TECWrapper #TEC ul li.row-six .column-image {
+        background-position: 0px -303px; }
+      #TECWrapper #TEC ul li.row-seven .column-image {
+        background-position: 0px -412px; }
+      #TECWrapper #TEC ul li.row-eight .column-image {
+        background-position: 0px -522px; }
+      #TECWrapper #TEC ul li.row-nine .column-image {
+        background-position: 0px -605px; }
+    #TECWrapper #TEC ul .column-image {
+      float: left;
+      width: 94px;
+      height: 56px;
+      background-image: url("<?=base_url()?>js/AirborneTEC.png");
+      background-repeat: no-repeat; }
+    #TECWrapper #TEC ul .column-one {
+      float: left;
+      width: 24%;
+      padding-right: 4%;
+      padding-top: 10px; }
+    #TECWrapper #TEC ul .column-two {
+      float: left;
+      width: 24%;
+      padding-right: 4%; }
+    #TECWrapper #TEC ul .column-three {
+      float: left;
+      width: 24%; }
