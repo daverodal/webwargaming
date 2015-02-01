@@ -971,6 +971,20 @@ svg marker#head {
 .reduced {
   color: white; }
 
+#TEC ul {
+  width: 600px; }
+  #TEC ul .column-one {
+    float: left;
+    width: 30%;
+    padding-right: 4%; }
+  #TEC ul .column-two {
+    float: left;
+    width: 30%;
+    padding-right: 4%; }
+  #TEC ul .column-three {
+    float: left;
+    width: 30%; }
+
 #infoWrapper .WrapperLabel {
   width: auto; }
 
@@ -993,3 +1007,10 @@ svg marker#head {
   border-radius: 0px;
   border: 0px;
   transform: rotate(180deg); }
+
+#TEC {
+  width: 700px; }
+
+#TECWrapper li {
+  clear: both;
+  padding: 20px 5px 34px 0px; }

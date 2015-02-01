@@ -1,5 +1,7 @@
 @import "amphColors";
 
+
+
 @include player(rebel, One, $rebelColor);
 @include player(loyalist,Two,$loyalistColor);
 @include player(loyalGuards,Three,$loyalistGuardColor);
@@ -15,6 +17,12 @@
   color: white;
 }
 
+#TEC ul{
+  width:600px;
+.column-one{float:left;width:30%;padding-right:4%;}
+  .column-two{float:left;width:30%;padding-right:4%;}
+  .column-three{float:left;width:30%;}
+}
 #infoWrapper .WrapperLabel {
   width: auto;
 }
@@ -45,4 +53,12 @@
   border-radius:0px;
   border:0px;
   transform: rotate(180deg);
+}
+
+#TEC{
+  width:700px;
+}
+#TECWrapper li{
+  clear:both;
+  padding: 20px 5px 34px 0px;
 }
