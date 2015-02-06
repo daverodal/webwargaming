@@ -157,10 +157,9 @@
             "Main": {
                 "description": "The Battle of Kiev",
                 "supply": true,
-                "loyalMechMove": 8,
-                "loyalExtraInf": true,
-                "supplyLen": false,
-                "showHexNums": true
+                "supplyLen": 55,
+                "preDeploy": true,
+                "longDescription": "The largest encirclement of troops in history. Some say it cost Hitler the war."
             }
         }
     },

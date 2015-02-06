@@ -1,279 +1,307 @@
 $darkBlack: #333;
-$stdFont:16px;
+$stdFont: 16px;
 
-body{
-  min-width:675px;
-  margin:0;
-  padding:0;
-}
-h2 #status{
-  font-size:16px;
-}
-h5{
-  margin:0px;
-}
-h4:hover{
-  text-decoration:underline;
+body {
+  min-width: 675px;
+  margin: 0;
+  padding: 0;
 }
 
+h2 #status {
+  font-size: 16px;
+}
 
-.shadowy{
-  background-color: rgba(0,0,0,.3) !important;
+h5 {
+  margin: 0px;
 }
-#turn,#phase, #status,#victory{
-  background:white;
-  padding:0 3px;
-  font-family:sans-serif;
+
+h4:hover {
+  text-decoration: underline;
 }
-#victory{
-  padding:0;
+
+.shadowy {
+  background-color: rgba(0, 0, 0, .3) !important;
 }
-#floatMessage{
+
+#turn, #phase, #status, #victory {
+  background: white;
+  padding: 0 3px;
+  font-family: sans-serif;
+}
+
+#victory {
+  padding: 0;
+}
+
+#floatMessage {
   white-space: nowrap;
-  position:absolute;
-  display:none;
-  background:rgba(255,255,255,.9);
+  position: absolute;
+  display: none;
+  background: rgba(255, 255, 255, .9);
   border-radius: 10px;
-  border:2px solid black;
-  box-shadow: 10px 10px 10px rgba(30,30,30,.85);
-  z-index:4;
-  padding:0 5px;
-  cursor:move;
+  border: 2px solid black;
+  box-shadow: 10px 10px 10px rgba(30, 30, 30, .85);
+  z-index: 4;
+  padding: 0 5px;
+  cursor: move;
 }
-#floatMessage header{
-  font-size:35px;
+
+#floatMessage header {
+  font-size: 35px;
 }
+
 #altTable, #mainTable, #detTable {
   position: absolute;
   right: 18px;
-  cursor:pointer;
+  cursor: pointer;
 }
-#comlinkWrapper{
-  border:1px solid black;
+
+#comlinkWrapper {
+  border: 1px solid black;
   border-radius: 10px;
-  background:white;
-  padding:0 2px 0 2px;
+  background: white;
+  padding: 0 2px 0 2px;
   font-style: italic;
-  font-size:10px;
-  float:right;
+  font-size: 10px;
+  float: right;
 }
-#topStatus{
-  float:right;
+
+#topStatus {
+  float: right;
 }
-.unit.pushed .shadow_mask{
+
+.unit.pushed .shadow_mask {
   /*color:#f3172d !important;*/
   /*color:mediumpurple !important;*/
   /*background-color: #858585 !important;*/
-  background-color: rgba(0,0,0,.5) !important;
+  background-color: rgba(0, 0, 0, .5) !important;
 
 }
-#muteButton, #arrowButton{
-  cursor:pointer;
+
+#muteButton, #arrowButton {
+  cursor: pointer;
   text-decoration: underline;
 }
+
 /*.embossed{*/
 /*-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -2px 0 rgba(0,0,0,.25), inset 0 -3px 0 rgba(255,255,255,.2), 0 1px 0 rgba(0,0,0,.1);*/
 /*-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -2px 0 rgba(0,0,0,.25), inset 0 -3px 0 rgba(255,255,255,.2), 0 1px 0 rgba(0,0,0,.1);*/
 /*box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -2px 0 rgba(0,0,0,.25), inset 0 -3px 0 rgba(255,255,255,.2), 0 1px 0 rgba(0,0,0,.1);*/
 /*}*/
-.specialHexes,.specialHexesVP{
-  position:absolute;
+.specialHexes, .specialHexesVP {
+  position: absolute;
   text-transform: capitalize;
-  background:yellow;
-  opacity:.8;
-  border-radius:0px;
-  border:0px;
-  font-size:16px;
-  z-index:0;
-}
-.specialHexesVP{
-  background:transparent !important;
-  color:white;
+  background: yellow;
+  opacity: .8;
+  border-radius: 0px;
+  border: 0px;
+  font-size: 16px;
+  z-index: 0;
 }
 
-#display{
-  display:none;
-  position:fixed;
-  top:25%;
-  width:90%;
-  left:5%;
-  padding:30px 0;
-  background:rgba(255,255,255,.9);
-  font-size:100px;
-  text-align: center;
-  border:#000 solid 10px;
-  border-radius: 30px;
-  z-index:4;
+.specialHexesVP {
+  background: transparent !important;
+  color: white;
 }
-.flashMessage{
-  position:fixed;
-  width:80%;
-  background:rgba(255,255,255,.9);
+
+#display {
+  display: none;
+  position: fixed;
+  top: 25%;
+  width: 90%;
+  left: 5%;
+  padding: 30px 0;
+  background: rgba(255, 255, 255, .9);
+  font-size: 100px;
+  text-align: center;
+  border: #000 solid 10px;
+  border-radius: 30px;
+  z-index: 4;
+}
+
+.flashMessage {
+  position: fixed;
+  width: 80%;
+  background: rgba(255, 255, 255, .9);
   /*background:transparent;*/
   text-align: center;
-  border-radius:30px;
-  border:10px solid black;
+  border-radius: 30px;
+  border: 10px solid black;
   /*border:none;*/
-  font-size:100px;
-  z-index:1000;
-  pointer-events:none;
-}
-#display button{
-  font-size:30px;
+  font-size: 100px;
+  z-index: 1000;
+  pointer-events: none;
 }
 
-#header{
-  position:static;
-  width:100%;
-  padding-bottom:0px;
-  z-index:2000;
+#display button {
+  font-size: 30px;
 }
-#mouseMove{
-  display:none;
+
+#header {
+  position: static;
+  width: 100%;
+  padding-bottom: 0px;
+  z-index: 2000;
 }
-#headerContent{
+
+#mouseMove {
+  display: none;
+}
+
+#headerContent {
   /*min-height:110px;*/
 }
-#nextPhaseWrapper{
-  float:left;
-  #nextPhaseButton, #fullScreenButton,#forceMarchEvent, #determinedAttackEvent, #clearCombatEvent, #shiftKey{
-    font-size:28px;
+
+#nextPhaseWrapper {
+  float: left;
+  #nextPhaseButton, #fullScreenButton, #forceMarchEvent, #determinedAttackEvent, #clearCombatEvent, #shiftKey {
+    font-size: 28px;
     position: static;
   }
 }
 
+#phaseClicks a {
+  color: black;
+}
 
-#header a, #header a:visited{
-  color:white;
+#header a {
+  color: #333;
 }
-#phaseClicks a{
-  color:black;
+
+#header a:hover {
+  color: #999 !important;
 }
-#header a:hover{
-  color:#ddd !important;
-}
-#header h2{
+
+#header h2 {
   margin: 10px 0 5px;
 }
-#content{
-  margin-top:140px;
+
+#content {
+  margin-top: 140px;
 }
-.clear{
-  clear:both !important;
-  float:none !important;
+
+.clear {
+  clear: both !important;
+  float: none !important;
 }
+
 @import "commonUnits";
 
-#statusDiv{
+#statusDiv {
 
 }
-body{
+
+body {
 
 }
-#header, #content, #theDiv, #gameViewer{
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -moz-user-select:-moz-none;
-  -ms-user-select:none;
-  user-select:none;
+
+#header, #content, #theDiv, #gameViewer {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-
-#hideShow, #showDeploy, #closeAllUnits, #showExited{
+#hideShow, #showDeploy, #closeAllUnits, #showExited {
 
 }
-.dropDown, #zoomWrapper{
-  font-size:30px;
-  float:left;
-  margin-right:10px;
-  border-right:1px solid black;
-  padding-right:10px;
-  &.alpha{
-    padding-left:10px;
+
+.dropDown, #zoomWrapper {
+  font-size: 30px;
+  float: left;
+  margin-right: 10px;
+  border-right: 1px solid black;
+  padding-right: 10px;
+  &.alpha {
+    padding-left: 10px;
   }
 }
-#crtWrapper{
-  border-right:1px solid black;
-  padding-right:10px;
-  margin-right:10px;
+
+#crtWrapper {
+  border-right: 1px solid black;
+  padding-right: 10px;
+  margin-right: 10px;
 }
-#zoomWrapper{
-  font-size:30px;
-  #zoom{
-    .defaultZoom{
+
+#zoomWrapper {
+  font-size: 30px;
+  #zoom {
+    .defaultZoom {
       cursor: pointer;
     }
   }
 }
-.dropDownSelected{
-  background:white;
-}
-.dropDown .WrapperLabel{
-  margin:0;
-  border:none;
-  cursor:pointer;
-}
-.dropDown .dropDownContent{
-  background:white;
-  position:absolute;
-  z-index:30;
-  display:none;
+
+.dropDownSelected {
+  background: white;
 }
 
+.dropDown .WrapperLabel {
+  margin: 0;
+  border: none;
+  cursor: pointer;
+}
 
-#infoWrapper, #menuWrapper{
+.dropDown .dropDownContent {
+  background: white;
+  position: absolute;
+  z-index: 30;
+  display: none;
+}
+
+#infoWrapper, #menuWrapper {
   -webkit-touch-callout: none;
-  .WrapperLabel{
-    font-size:30px;
-    margin:0;
-    border:none;
+  .WrapperLabel {
+    font-size: 30px;
+    margin: 0;
+    border: none;
     -webkit-touch-callout: none;
     cursor: pointer;
     /*width:3em;*/
   }
-  li{
+  li {
     list-style-type: none;
-    padding:5px 10px 5px 10px;
-    border:0 solid black;
-    border-width:1px 1px 0 1px;
-    a, a:visited{
-      color:#333;
-      text-decoration:none;
+    padding: 5px 10px 5px 10px;
+    border: 0 solid black;
+    border-width: 1px 1px 0 1px;
+    a, a:visited {
+      color: #333;
+      text-decoration: none;
     }
   }
 }
 
-#menu{
-  ul{
-    margin:0;
-    padding:0;
+#menu {
+  ul {
+    margin: 0;
+    padding: 0;
   }
-  background:white;
-  color:#333;
+  background: white;
+  color: #333;
 }
 
-#infoWrapper{
-  .WrapperLabel{
+#infoWrapper {
+  .WrapperLabel {
   }
 }
 
-
-#phaseDiv,#statusDiv,#chatsDiv,#victoryDiv{
-  display:inline;
+#phaseDiv, #statusDiv, #chatsDiv, #victoryDiv {
+  display: inline;
   vertical-align: top;
   /*float:left;*/
 }
 
-#TimeWrapper{
-  float:left;
+#TimeWrapper {
+  float: left;
   -webkit-touch-callout: none;
-  .WrapperLabel{
-    font-size:30px;
-    .small{
-      font-size:10px;
+  .WrapperLabel {
+    font-size: 30px;
+    .small {
+      font-size: 10px;
     }
-    margin:0;
-    border:none;
+    margin: 0;
+    border: none;
     -webkit-touch-callout: none;
     cursor: pointer;
     /*width:3em;*/
@@ -283,49 +311,125 @@ body{
 
 .dropDown {
   .subMenu {
-    font-size:20px;
+    font-size: 20px;
     position: absolute;
     z-index: 30;
     display: none;
     background: #ccc;
-    &>ul {
+    & > ul {
       margin: 0;
       padding: 0;
       z-index: 30;
-      font-size: 20px;
-      &>li{
-        background:white;
+      font-size: 50px;
+      & > li {
+        background: white;
         border: 1px solid #333;
       }
     }
-    .dropDown{
-      border:none;
+    .dropDown {
+      border: none;
     }
 
     /* .dropDowns may not exist inside a ul */
-    li, .dropDown {
-      float:none;
-      font-size: 20px;
+    .dropDown {
+      float: none;
+      font-size: 24px;
       cursor: pointer;
       position: static;
       font-weight: bold;
       display: inline-block;
     }
+
   }
 }
 
-
-#statusWrapper{
-  float:right;
+#gameRules h4:hover {
+  text-decoration: none;
 }
 
-#crtWrapper{
-  float:left;
-  .WrapperLabel{
-    font-size:30px;
+#GR {
+  ol {
+    counter-reset: item;
+    padding-left: 10px;
+  }
+  li {
 
-    margin:0;
-    border:none;
+    &:before {
+      content: "[" counters(item, ".") "] ";
+      counter-increment: item;
+      font-weight: bold;
+    }
+
+    margin: 3px 0;
+    display: block;
+    font-size: 16px !important;
+    font-weight: normal !important;
+  }
+  .topNumbers {
+    counter-reset: item -1;
+    & > li {
+      border-top:silver 2px solid;
+      padding-top:10px;
+      margin-top:30px;
+      &:before {
+        content: "[" counters(item, ".") ".0] ";
+        font-size: 19px;
+      }
+      li {
+        margin-top:20px;
+
+        &:before {
+          font-size: 18px;
+        }
+        li {
+          margin-top:15px;
+          padding-top:0px;
+          border:none;
+          &:before {
+            font-size: 16px;
+          }
+          li{
+            margin-top:10px;
+            &:before {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  h4 {
+    margin-bottom: 5px;
+  }
+  #credits {
+    h2 {
+      color: #338833;
+    }
+    h4 {
+      margin-bottom: 0px;
+    }
+  }
+
+  background: white;
+  max-height: 500px;
+  min-height: 100px;
+  overflow-y: auto;
+  padding: 0 20px 10px;
+
+}
+
+#statusWrapper {
+  float: right;
+}
+
+#crtWrapper {
+  float: left;
+  .WrapperLabel {
+    font-size: 30px;
+
+    margin: 0;
+    border: none;
     -webkit-touch-callout: none;
     cursor: pointer;
     /*width:3em;*/
@@ -334,365 +438,424 @@ body{
 
 }
 
-#crt{
-  width:308px;
-}
-#crtWrapper h4 .goLeft,#crtWrapper h4 .goRight{
-  font-size:22px;
-  padding:0 10px;
+#crt {
+  width: 308px;
 }
 
-#TEC ul{
-  margin:0;
-  padding:0
+#crtWrapper h4 .goLeft, #crtWrapper h4 .goRight {
+  font-size: 22px;
+  padding: 0 10px;
 }
 
-#Time ul{
-  margin:0;
-  padding:0;
+#TEC ul {
+  margin: 0;
+  padding: 0
 }
 
-#info ul{
-  margin:0;
-  padding:0;
+#Time ul {
+  margin: 0;
+  padding: 0;
 }
-#info{
-  background:white;
-  color:#333;
-  width:10em;
+
+#info ul {
+  margin: 0;
+  padding: 0;
 }
-.close{
+
+#info {
+  background: white;
+  color: #333;
+  width: 10em;
+}
+
+.close {
   position: absolute;
   border: 1px solid #ccc;
-  right:3px;
-  top:3px;
-  color:#ccc;
-  font-size:11px;
+  right: 3px;
+  top: 3px;
+  color: #ccc;
+  font-size: 11px;
   line-height: 12px;
-  cursor:pointer;
+  cursor: pointer;
 }
-#VC ul{
-  margin:0;
-  padding:0
+
+#VC ul {
+  margin: 0;
+  padding: 0
 }
-#hideShow,#showDeploy, #showHexNums, #showExited, #closeAllUnits{
+
+#hideShow, #showDeploy, #showHexNums, #showExited, #closeAllUnits {
 
 }
-#OBC{
-  background:white;
-  width:514px;
+
+#OBC {
+  background: white;
+  width: 514px;
 }
-#OBC .unit{
-  margin-top:10px;
+
+#OBC .unit {
+  margin-top: 10px;
 }
-#OBC .unit .shadow_mask{
+
+#OBC .unit .shadow_mask {
   /*background-color:rgba(0,0,0,.3);*/
 }
-#Time{
-  background:white;
-  width:600px;
-  cursor:move;
-  background:rgba(255,255,255,.9);
+
+#Time {
+  background: white;
+  width: 600px;
+  cursor: move;
+  background: rgba(255, 255, 255, .9);
   border-radius: 10px;
-  border:2px solid black;
-  box-shadow: 10px 10px 10px rgba(30,30,30,.85);
-  padding:0 5px;
-}
-#TEC{
-  background:white;
-  width:579px;
-}
-#GR{
-  background:white;
-  max-height:500px;
-  min-height:100px;
-  overflow-y:auto;
-  padding:0 20px 10px;
-}
-#VC{
-  background:white;
-  width:579px;
-  left:-230px;
+  border: 2px solid black;
+  box-shadow: 10px 10px 10px rgba(30, 30, 30, .85);
+  padding: 0 5px;
 }
 
-#clickCnt{
-  display:inline-block;
-  padding:3px;
+#TEC {
+  background: white;
+  width: 579px;
+}
+
+#VC {
+  background: white;
+  width: 579px;
+  left: -230px;
+}
+
+#clickCnt {
+  display: inline-block;
+  padding: 3px;
 }
 
 #OBCWrapper h4 {
   /*width:2em;*/
 }
-#OBC, #crt, #TEC,#VC,#jump,#menu,#info,#GR, #Time{
-  position:absolute;
-  z-index:30;
-  display:none;
+
+#OBC, #crt, #TEC, #VC, #jump, #menu, #info, #GR, #Time {
+  position: absolute;
+  z-index: 30;
+  display: none;
 }
-#TEC, #menu, #info{
-  font-size:20px !important;
+
+#TEC, #menu, #info {
+  font-size: 20px !important;
 }
-.closer{
-  height:0px;
-  padding:0px !important;
+
+.closer {
+  height: 0px;
+  padding: 0px !important;
 }
-#crt{
+
+#crt {
   z-index: 40;
 }
 
-body{
-  background:#eee;
-  color:$darkBlack;
+body {
+  background: #eee;
+  color: $darkBlack;
 }
 
-#status{
+#status {
   /*height:70px;*/
   /*overflow-y:scroll;*/
   /*text-align:right;*/
 }
-#status legend{
+
+#status legend {
   /*text-align:left;*/
 }
-fieldset{
-  background:white;
-  border-radius:9px;
+
+fieldset {
+  background: white;
+  border-radius: 9px;
 }
-#OBC fieldset{
-  float:left;
+
+#OBC fieldset {
+  float: left;
   min-height: 100px;
 }
-.left{
-  float:left;
+
+.left {
+  float: left;
 }
-.right{
-  float:right;
+
+.right {
+  float: right;
 }
-#crt{
-  border-radius:15px;
+
+#crt {
+  border-radius: 15px;
   border-width: 10px;
   border-style: solid;
   /*border:10px solid rgb(132,181,255);*/
-  background:#fff;color:black;
-  font-weight:bold;
-  padding:1px 5px 10px 15px;
-  box-shadow: 10px 10px 10px rgba(30,30,30,.85);
+  background: #fff;
+  color: black;
+  font-weight: bold;
+  padding: 1px 5px 10px 15px;
+  box-shadow: 10px 10px 10px rgba(30, 30, 30, .85);
 }
-#crt h3{
-  height:40px;
-  margin-bottom:5px;
-  vertical-align:bottom;
+
+#crt h3 {
+  height: 40px;
+  margin-bottom: 5px;
+  vertical-align: bottom;
 }
-#crt span{
-  width:32px;
+
+#crt span {
+  width: 32px;
 }
-.col1{
-  left:20px;
+
+.col1 {
+  left: 20px;
 }
-.col2{
-  left:60px;
+
+.col2 {
+  left: 60px;
 }
-.col3{
-  left:100px;
+
+.col3 {
+  left: 100px;
 }
-.col4{
-  left:140px;
+
+.col4 {
+  left: 140px;
 }
-.col5{
-  left:180px;
+
+.col5 {
+  left: 180px;
 }
-.col6{
-  left:220px;
+
+.col6 {
+  left: 220px;
 }
-.roll, #odds{
-  height:20px;
+
+.roll, #odds {
+  height: 20px;
   /*background :#1af;*/
-  background: rgb(132,181,255);
-  margin-right:14px
+  background: rgb(132, 181, 255);
+  margin-right: 14px
 }
-#odds{
-  background:white;
+
+#odds {
+  background: white;
 }
-.even{
-  color:black;
+
+.even {
+  color: black;
 }
-.odd{
-  color:black;
+
+.odd {
+  color: black;
 }
-.row1{
-  top:80px;
+
+.row1 {
+  top: 80px;
 
 }
-.row2{
-  top:100px;
-  background:white;
+
+.row2 {
+  top: 100px;
+  background: white;
 }
+
 .row3 {
-  top:120px;
+  top: 120px;
 }
-.row4{
-  top:140px;
-  background:white;
+
+.row4 {
+  top: 140px;
+  background: white;
 }
-.row5{
-  top:160px;
+
+.row5 {
+  top: 160px;
 }
-.row6{
-  top:180px;
-  background:white;
+
+.row6 {
+  top: 180px;
+  background: white;
 }
-.roll span, #odds span{
-  margin-right:10px;
-  float:left;
-  display:block;
-  width:32px;
+
+.roll span, #odds span {
+  margin-right: 10px;
+  float: left;
+  display: block;
+  width: 32px;
 }
-#gameImages{
+
+#gameImages {
   position: relative;
   overflow: visible !important;
 }
-#gameViewer{
-  position:fixed;
-  background:#ccc;
-  margin-bottom:5px;
-  width:100%;
+
+#gameViewer {
+  position: fixed;
+  background: #ccc;
+  margin-bottom: 5px;
+  width: 100%;
 }
 
 #leftcol {
   /*float:left;
   width:360px;*/
 }
-#rightCol{
+
+#rightCol {
   /*float:right;*/
-  overflow:hidden;
-}
-#gameturnContainer{
-  height:38px;
-  position:relative;
-  float:left;
-}
-#gameturnContainer div{
-  float:left;
-  height:36px;
-  width:36px;
-  border:solid black;
-  border-width:1px 1px 1px 0;
-  font-size:18px;
-  text-indent:2px;
-}
-.storm {
-  font-size:50%;
-}
-#gameturnContainer #turn1{
-  border-width:1px;
-}
-#turnCounter{
-  width:32px;
-  height:32px;
-  font-size:11px;
-  text-indent:0px;
-  top:2px;
-  left:2px;
-  text-align:center;
-  border:2px solid;
-  border-color:#ccc #666 #666 #ccc;
-
+  overflow: hidden;
 }
 
-#content{
-
-
-}
-
-#deadpile{
-  border-radius:10px;
-  border:10px solid #555;
-  height:70px;
-  background:#333;
-  overflow:hidden;
+#gameturnContainer {
+  height: 38px;
   position: relative;
-  margin-bottom:5px;
+  float: left;
+}
+
+#gameturnContainer div {
+  float: left;
+  height: 36px;
+  width: 36px;
+  border: solid black;
+  border-width: 1px 1px 1px 0;
+  font-size: 18px;
+  text-indent: 2px;
+}
+
+.storm {
+  font-size: 50%;
+}
+
+#gameturnContainer #turn1 {
+  border-width: 1px;
+}
+
+#turnCounter {
+  width: 32px;
+  height: 32px;
+  font-size: 11px;
+  text-indent: 0px;
+  top: 2px;
+  left: 2px;
+  text-align: center;
+  border: 2px solid;
+  border-color: #ccc #666 #666 #ccc;
+
+}
+
+#content {
+
+}
+
+#deadpile {
+  border-radius: 10px;
+  border: 10px solid #555;
+  height: 70px;
+  background: #333;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 5px;
   /*display:none;*/
 }
-#deployBox{
-  position:relative;
-  font-family:serif;
+
+#deployBox {
+  position: relative;
+  font-family: serif;
 }
-#deployWrapper, #exitWrapper{
+
+#deployWrapper, #exitWrapper {
   /*display:none;*/
-  padding:4px 7px 4px 7px;
-  text-align:left;
-  font-family:sans-serif;
-  font-size:1.2em;
-  color:white;
-  border-radius:10px;
-  border:10px solid #555;
-  background:#aaa;
-  margin-bottom:5px;
+  padding: 4px 7px 4px 7px;
+  text-align: left;
+  font-family: sans-serif;
+  font-size: 1.2em;
+  color: white;
+  border-radius: 10px;
+  border: 10px solid #555;
+  background: #aaa;
+  margin-bottom: 5px;
 }
-#deployWrapper .unit{
-  margin-right:5px;
+
+#deployWrapper .unit {
+  margin-right: 5px;
 }
-.unit{
-  position:absolute;
-  left:0;top:0;
-  z-index:3;
-  width:32px;
-  height:32px;
-  border:solid 3px black;
+
+.unit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  width: 32px;
+  height: 32px;
+  border: solid 3px black;
 }
-.unit .shadow_mask{
-  top:0px;
-  left:0px;
-  height:100%;
-  width:100%;
-  position:absolute;
-  background:transparent;
+
+.unit .shadow_mask {
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: transparent;
   z-index: 1;
 }
+
 .unit .unit-numbers {
-  text-align:center;
-  color:black;
-}
-.unit .unitSize{
-  font-size:9px;
   text-align: center;
-  color:black;
+  color: black;
 }
-.unit .unit-numbers{
-  height:12px;
-  font-size:11px;
+
+.unit .unitSize {
+  font-size: 9px;
+  text-align: center;
+  color: black;
 }
-.unit img{
+
+.unit .unit-numbers {
+  height: 12px;
+  font-size: 11px;
 }
+
+.unit img {
+}
+
 .unit .counter {
 }
-.arrowClone,.arrow{
-  position:absolute;
-  pointer-events:none;
-  z-index:102;
-  top:0px;
-  width:100%;
-  height:100%;
+
+.arrowClone, .arrow {
+  position: absolute;
+  pointer-events: none;
+  z-index: 102;
+  top: 0px;
+  width: 100%;
+  height: 100%;
 }
-.clone{
+
+.clone {
   /*pointer-events:none;*/
 }
-.occupied{
-  display:none;
+
+.occupied {
+  display: none;
 }
-#TEC{
-  max-height:500px;
-  overflow:auto;
+
+#TEC {
+  max-height: 500px;
+  overflow: auto;
 }
-#crtDetailsButton{
-  font-size:20px;
+
+#crtDetailsButton {
+  font-size: 20px;
   cursor: pointer;
 }
-#crtDetails{
-  display:none;
+
+#crtDetails {
+  display: none;
 }
-svg{
-  z-index:1;
-  display:none;
+
+svg {
+  z-index: 1;
+  display: none;
 }
 
 .unitOdds {
@@ -736,47 +899,46 @@ svg{
   }
 }
 
-#phaseClicks{
-  display:none;
-  cursor:pointer;
-  .newPhase{
-    min-width:10px;
-    height:40px;
+#phaseClicks {
+  display: none;
+  cursor: pointer;
+  .newPhase {
+    min-width: 10px;
+    height: 40px;
     border-left: 1px solid red;
-    display:inline-block;
-    margin-bottom:10px;
+    display: inline-block;
+    margin-bottom: 10px;
   }
-  .newTick{
-    text-align:center;
-    margin-top:10px;
-    width:15px;
-    height:10px;
+  .newTick {
+    text-align: center;
+    margin-top: 10px;
+    width: 15px;
+    height: 10px;
     border-left: 1px solid black;
-    display:inline-block;
-    font-size:10px;
-    &.tickShim{
-      width:0px;
+    display: inline-block;
+    font-size: 10px;
+    &.tickShim {
+      width: 0px;
     }
-    &:hover{
-      background:#999;
-      color:#fff;
+    &:hover {
+      background: #999;
+      color: #fff;
     }
-    &.activeTick{
-      background-color:#666;
-      a{
-        background-color:#666;
-        color:white;
+    &.activeTick {
+      background-color: #666;
+      a {
+        background-color: #666;
+        color: white;
       }
     }
 
   }
 }
 
-#timeMachine,#timeSurge{
-  font-size:22px;
-  width:22px;
+#timeMachine, #timeSurge {
+  font-size: 22px;
+  width: 22px;
 }
-
 
 $arrowColor: red;
 $arrowHead: red;
@@ -789,10 +951,11 @@ svg {
       opacity: 1.0;
     }
   }
-  marker#head{
-    fill:$arrowHead;
+  marker#head {
+    fill: $arrowHead;
   }
 }
+
 .ruleComment {
   font-style: italic;
   margin-left: 10px;
@@ -805,38 +968,39 @@ svg {
 
 }
 
-.something{
+.something {
 
 }
-.swooshy{
-  background:black;
-  color:#eee;
+
+.swooshy {
+  background: black;
+  color: #eee;
 }
 
-
-@media screen and (min-width: 1281px){
-  .tablet{
-    display:none !important;
+@media screen and (min-width: 1281px) {
+  .tablet {
+    display: none !important;
   }
 }
-@media screen and (max-width: 1280px){
-  .tablet{
+
+@media screen and (max-width: 1280px) {
+  .tablet {
 
   }
-  .desktop{
-    display:none;
+  .desktop {
+    display: none;
   }
-  #timeMachine,#timeSurge{
-    font-size:45px;
-    width:45px;
+  #timeMachine, #timeSurge {
+    font-size: 45px;
+    width: 45px;
   }
 
-  #deployWrapper .unit{
+  #deployWrapper .unit {
   }
-  .dropDown, #zoomWrapper{
+  .dropDown, #zoomWrapper {
   }
-  #nextPhaseWrapper{
-    #nextPhaseButton, #fullScreenButton{
+  #nextPhaseWrapper {
+    #nextPhaseButton, #fullScreenButton {
 
     }
   }

@@ -16,4 +16,16 @@
             The player that holds Moskow at the ned of the game wins.
         </li>
     </ul>
+
+    <div id="credits">
+        <h2><cite><?=$name?></cite></h2>
+        <h4>Design Credits</h4>
+
+        <h4>Game Design:</h4>
+        Lance Runolfsson & David M. Rodal
+        <h4>Graphics:</h4>
+        <site>Lance Runolfsson</site>
+        <h4>HTML 5 Version:</h4>
+        David M. Rodal
+    </div>
 </div>

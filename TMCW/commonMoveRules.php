@@ -26,4 +26,5 @@
             <abbr title="Movement Points">MP</abbr>'s than the other terrain in the hex.</p>
 
     </li>
+    <?php @include "exclusiveMoveRules.php";?>
 </ol>

@@ -132,14 +132,14 @@ h4:hover {
     font-size: 28px;
     position: static; }
 
-#header a, #header a:visited {
-  color: white; }
-
 #phaseClicks a {
   color: black; }
 
+#header a {
+  color: #333; }
+
 #header a:hover {
-  color: #ddd !important; }
+  color: #999 !important; }
 
 #header h2 {
   margin: 10px 0 5px; }
@@ -312,19 +312,70 @@ h4:hover {
     margin: 0;
     padding: 0;
     z-index: 30;
-    font-size: 20px; }
+    font-size: 50px; }
     .dropDown .subMenu > ul > li {
       background: white;
       border: 1px solid #333; }
   .dropDown .subMenu .dropDown {
     border: none; }
-  .dropDown .subMenu li, .dropDown .subMenu .dropDown {
+  .dropDown .subMenu .dropDown {
     float: none;
-    font-size: 20px;
+    font-size: 24px;
     cursor: pointer;
     position: static;
     font-weight: bold;
     display: inline-block; }
+
+#gameRules h4:hover {
+  text-decoration: none; }
+
+#GR {
+  background: white;
+  max-height: 500px;
+  min-height: 100px;
+  overflow-y: auto;
+  padding: 0 20px 10px; }
+  #GR ol {
+    counter-reset: item;
+    padding-left: 10px; }
+  #GR li {
+    margin: 3px 0;
+    display: block;
+    font-size: 16px !important;
+    font-weight: normal !important; }
+    #GR li:before {
+      content: "[" counters(item,".") "] ";
+      counter-increment: item;
+      font-weight: bold; }
+  #GR .topNumbers {
+    counter-reset: item -1; }
+    #GR .topNumbers > li {
+      border-top: silver 2px solid;
+      padding-top: 10px;
+      margin-top: 30px; }
+      #GR .topNumbers > li:before {
+        content: "[" counters(item,".") ".0] ";
+        font-size: 19px; }
+      #GR .topNumbers > li li {
+        margin-top: 20px; }
+        #GR .topNumbers > li li:before {
+          font-size: 18px; }
+        #GR .topNumbers > li li li {
+          margin-top: 15px;
+          padding-top: 0px;
+          border: none; }
+          #GR .topNumbers > li li li:before {
+            font-size: 16px; }
+          #GR .topNumbers > li li li li {
+            margin-top: 10px; }
+            #GR .topNumbers > li li li li:before {
+              font-size: 14px; }
+  #GR h4 {
+    margin-bottom: 5px; }
+  #GR #credits h2 {
+    color: #338833; }
+  #GR #credits h4 {
+    margin-bottom: 0px; }
 
 #statusWrapper {
   float: right; }
@@ -401,13 +452,6 @@ h4:hover {
 #TEC {
   background: white;
   width: 579px; }
-
-#GR {
-  background: white;
-  max-height: 500px;
-  min-height: 100px;
-  overflow-y: auto;
-  padding: 0 20px 10px; }
 
 #VC {
   background: white;
@@ -981,3 +1025,13 @@ footer.attribution {
   padding: 20px;
   margin: 20px;
   border: 3px solid gray; }
+
+/* RULES OVERRIDES */
+.gameLength {
+  color: transparent;
+  font-size: 0px; }
+  .gameLength::before {
+    content: "12";
+    color: #333333;
+    color: #333333;
+    font-size: 16px; }

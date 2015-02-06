@@ -49,7 +49,7 @@ trait modernSupplyRules
             }
             if (($this->unsuppliedDefenderHalved || $unit->forceId == $b->gameRules->attackingForceId) && !$unit->supplied && !isset($this->combatCache->$id)) {
                 $this->combatCache->$id = true;
-                $unit->addAdjustment('supply','floorHalf');
+                $unit->addAdjustment('supply','half');
 //                    $unit->strength = floor($unit->strength / 2);
             }
             if ($unit->supplied && isset($this->combatCache->$id)) {

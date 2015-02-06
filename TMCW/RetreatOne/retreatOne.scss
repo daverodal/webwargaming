@@ -28,3 +28,17 @@ $laconians: #dd4f2b;
   word-break: break-all;
   font-family: 'Nosifer';
 }
+
+
+/* RULES OVERRIDES */
+
+.gameLength{
+  color:transparent;
+  font-size:0px;
+  &::before{
+    content:"15";
+    color:rgb(51,51,51);
+    color:$darkBlack;
+    font-size:$stdFont;
+  }
+}

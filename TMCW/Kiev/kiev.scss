@@ -56,3 +56,25 @@
     font-size:$stdFont;
   }
 }
+
+.player-one-replacements{
+  color:transparent;
+  font-size:0px;
+  &::before{
+    content:"1";
+    color:rgb(51,51,51);
+    color:$darkBlack;
+    font-size:$stdFont;
+  }
+}
+
+.player-two-replacements{
+  color:transparent;
+  font-size:0px;
+  &::before{
+    content:"6";
+    color:rgb(51,51,51);
+    color:$darkBlack;
+    font-size:$stdFont;
+  }
+}

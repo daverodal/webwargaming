@@ -19,6 +19,9 @@ class kievVictoryCore extends victoryCore
 
     public $gameOver = false;
 
+    public $unsuppliedDefenderHalved = true;
+
+
 
     function __construct($data)
     {
@@ -286,7 +289,7 @@ class kievVictoryCore extends victoryCore
         }
         if ($attackingId == SOVIET_FORCE) {
             $gameRules->flashMessages[] = "Soviet Player Turn";
-            $gameRules->replacementsAvail = 4;
+            $gameRules->replacementsAvail = 6;
         }
 
         /*only get special VPs' at end of first Movement Phase */

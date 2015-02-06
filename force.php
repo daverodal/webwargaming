@@ -1168,6 +1168,9 @@ class Force
 
             switch ($this->units[$id]->status) {
                 case STATUS_CAN_DEPLOY:
+                    if($mode == DEPLOY_MODE){
+                        continue;
+                    }
                     if ($this->units[$id]->hexagon->parent == "deployBox") {
                         continue;
                     }

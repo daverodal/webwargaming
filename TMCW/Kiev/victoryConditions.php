@@ -10,7 +10,7 @@
     </ul>
 
     <h2>Victory Conditions</h2>
-    <h4>The Game lasts 11 turns. Victory is determined at the end of the game.</h4>
+    <h4>The Game lasts 11 turns. Victory is determined at the end of the game. The player with the most victory points wins.</h4>
     <ul>
         <li style="margin-bottom:20px">
             The player that holds Moskow at the ned of the game wins.

@@ -20,3 +20,17 @@
 }
 @import "../commonPlay";
 
+
+
+/* RULES OVERRIDES */
+
+.gameLength{
+  color:transparent;
+  font-size:0px;
+  &::before{
+    content:"12";
+    color:rgb(51,51,51);
+    color:$darkBlack;
+    font-size:$stdFont;
+  }
+}
