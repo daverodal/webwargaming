@@ -55,9 +55,5 @@ trait modernSupplyRules
 //                    $unit->strength = $this->combatCache->$id;
             unset($this->combatCache->$id);
         }
-        if ($unit->supplied && isset($this->movementCache->$id)) {
-            $unit->maxMove = $this->movementCache->$id;
-            unset($this->movementCache->$id);
-        }
     }
 }
