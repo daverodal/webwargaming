@@ -41,6 +41,10 @@ class Kiev extends ModernLandBattle
         $this->terrain->addTerrainFeature("swamp", "swamp", "s", 2, 0, 1, true);
         $this->terrain->addAltEntranceCost('swamp', 'mech', 3);
         parent::terrainGen($mapDoc, $terrainDoc);
+        $this->terrain->addTerrainFeature("road", "road", "r", 1, 0, 0, true);
+        $this->terrain->addNatAltEntranceCost('road','soviet','inf',1);
+
+
     }
 
     function terrainInit($terrainDoc){

@@ -225,16 +225,38 @@ class kievVictoryCore extends victoryCore
 
         $germanGoal = $sovietGoal = [];
 
-        /* German goal is west Edge */
-        for($i = 1; $i <= 38;$i++){
-            $germanGoal[] = 100 + $i;
+
+        $b = Battle::getBattle();
+
+
+        if ($b->scenario->supplyRailroads === true) {
+            $germanBias = array(5 => true, 6 => true);
+            $sovietBias = array(2 => true, 3 => true);
+            $germanGoal = array_merge($b->moveRules->calcRoadSupply(GERMAN_FORCE, 112, $germanBias),
+            $b->moveRules->calcRoadSupply(GERMAN_FORCE, 121, $germanBias),
+            $b->moveRules->calcRoadSupply(GERMAN_FORCE, 125, $germanBias),
+            $b->moveRules->calcRoadSupply(GERMAN_FORCE, 1901, $germanBias));
+
+            $sovietGoal = array_merge($b->moveRules->calcRoadSupply(SOVIET_FORCE, 4201, $sovietBias),
+            $b->moveRules->calcRoadSupply(SOVIET_FORCE, 4612, $sovietBias),
+            $b->moveRules->calcRoadSupply(SOVIET_FORCE, 4622, $sovietBias),
+            $b->moveRules->calcRoadSupply(SOVIET_FORCE, 4626, $sovietBias));
+
+
+        }else{
+            /* German goal is west Edge */
+            for($i = 1; $i <= 38;$i++){
+                $germanGoal[] = 100 + $i;
+            }
+            /* Soviet goal is west Edge */
+            for($i = 1; $i <= 38    ;$i++){
+                $sovietGoal[] = 4600 + $i;
+            }
         }
+
         $this->germanGoal = $germanGoal;
 
-        /* Soviet goal is west Edge */
-        for($i = 1; $i <= 38    ;$i++){
-            $sovietGoal[] = 4600 + $i;
-        }
+
         $this->sovietGoal = $sovietGoal;
 
     }

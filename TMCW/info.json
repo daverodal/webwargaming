@@ -160,6 +160,14 @@
                 "supplyLen": 55,
                 "preDeploy": true,
                 "longDescription": "The largest encirclement of troops in history. Some say it cost Hitler the war."
+            },
+            "Roads": {
+                "description": "The Battle of Kiev",
+                "supply": true,
+                "supplyLen": 12,
+                "preDeploy": true,
+                "supplyRailroads":true,
+                "longDescription": "The Map has railroads on it. Supply must be traced to a railroad"
             }
         }
     },
