@@ -740,7 +740,7 @@ var chattyCrt = false;
 var cD; /* object oriented! */
 x.register("combatRules", function(combatRules,data) {
 
-    for(var combatCol = 1;combatCol <= 10;combatCol++){
+    for(var combatCol = 1;combatCol <= 12;combatCol++){
         $(".col"+combatCol).css({background:"transparent"});
 
     }
