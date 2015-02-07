@@ -25,42 +25,39 @@ trait modernSupplyRules
             }
             return;
         }
-        if ($b->gameRules->mode == MOVING_MODE) {
-            if ($unit->status == STATUS_READY || $unit->status == STATUS_UNAVAIL_THIS_PHASE) {
-                $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias, $supplyLen);
-            } else {
-                return;
-            }
-            if (!$unit->supplied && !isset($this->movementCache->$id)) {
-                $this->movementCache->$id = $unit->maxMove;
-                $unit->maxMove = floor($unit->maxMove / 2);
-            }
-            if ($unit->supplied && isset($this->movementCache->$id)) {
-                $unit->maxMove = $this->movementCache->$id;
-                unset($this->movementCache->$id);
-            }
+        if ($unit->status == STATUS_READY || $unit->status == STATUS_UNAVAIL_THIS_PHASE) {
+            $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias, $supplyLen);
+        } else {
+            return;
         }
-        if ($b->gameRules->mode == COMBAT_SETUP_MODE) {
-            if ($unit->status == STATUS_READY || $unit->status == STATUS_DEFENDING || $unit->status == STATUS_UNAVAIL_THIS_PHASE) {
+        if (!$unit->supplied && !isset($this->movementCache->$id)) {
+            $this->movementCache->$id = $unit->maxMove;
+            $unit->maxMove = floor($unit->maxMove / 2);
+        }
+        if ($unit->supplied && isset($this->movementCache->$id)) {
+            $unit->maxMove = $this->movementCache->$id;
+            unset($this->movementCache->$id);
+        }
 
-                $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias, $supplyLen);
-            } else {
-                return;
-            }
-            if (($this->unsuppliedDefenderHalved || $unit->forceId == $b->gameRules->attackingForceId) && !$unit->supplied && !isset($this->combatCache->$id)) {
-                $this->combatCache->$id = true;
-                $unit->addAdjustment('supply','half');
+        if ($unit->status == STATUS_READY || $unit->status == STATUS_DEFENDING || $unit->status == STATUS_UNAVAIL_THIS_PHASE) {
+
+            $unit->supplied = $b->moveRules->calcSupply($unit->id, $goal, $bias, $supplyLen);
+        } else {
+            return;
+        }
+        if (($this->unsuppliedDefenderHalved || $unit->forceId == $b->gameRules->attackingForceId) && !$unit->supplied && !isset($this->combatCache->$id)) {
+            $this->combatCache->$id = true;
+            $unit->addAdjustment('supply','half');
 //                    $unit->strength = floor($unit->strength / 2);
-            }
-            if ($unit->supplied && isset($this->combatCache->$id)) {
-                $unit->removeAdjustment('supply');
+        }
+        if ($unit->supplied && isset($this->combatCache->$id)) {
+            $unit->removeAdjustment('supply');
 //                    $unit->strength = $this->combatCache->$id;
-                unset($this->combatCache->$id);
-            }
-            if ($unit->supplied && isset($this->movementCache->$id)) {
-                $unit->maxMove = $this->movementCache->$id;
-                unset($this->movementCache->$id);
-            }
+            unset($this->combatCache->$id);
+        }
+        if ($unit->supplied && isset($this->movementCache->$id)) {
+            $unit->maxMove = $this->movementCache->$id;
+            unset($this->movementCache->$id);
         }
     }
 }
