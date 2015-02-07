@@ -236,11 +236,16 @@ class kievVictoryCore extends victoryCore
             $b->moveRules->calcRoadSupply(GERMAN_FORCE, 121, $germanBias),
             $b->moveRules->calcRoadSupply(GERMAN_FORCE, 125, $germanBias),
             $b->moveRules->calcRoadSupply(GERMAN_FORCE, 1901, $germanBias));
+            /* Magic to remove dups then remove holes created by removal */
+            $germanGoal = array_merge(array_unique($germanGoal));
 
             $sovietGoal = array_merge($b->moveRules->calcRoadSupply(SOVIET_FORCE, 4201, $sovietBias),
             $b->moveRules->calcRoadSupply(SOVIET_FORCE, 4612, $sovietBias),
             $b->moveRules->calcRoadSupply(SOVIET_FORCE, 4622, $sovietBias),
             $b->moveRules->calcRoadSupply(SOVIET_FORCE, 4626, $sovietBias));
+
+            /* Magic to remove dups then remove holes created by removal */
+            $sovietGoal = array_merge(array_unique($sovietGoal));
 
 
         }else{
