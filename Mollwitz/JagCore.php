@@ -154,6 +154,8 @@ class JagCore extends LandBattle{
         $this->terrain->addTerrainFeature("sunkenroad", "sunkenroad", "k", 0, 0, 1, false, false);
         $this->terrain->addTerrainFeature("slope","slope", "s", 0, 1, 0, false);
         $this->terrain->addTerrainFeature("elevation","elevation", "e", 0, 0, 0, false);
+        $this->terrain->addTerrainFeature("elevation2","elevation2", "e", 0, 0, 0, false);
+
 
 
         for ($col = 100; $col <= $maxCol * 100; $col += 100) {
