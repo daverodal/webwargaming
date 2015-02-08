@@ -265,23 +265,38 @@ class CombatRules
                         }
                         if ($range > 1) {
                             $hexParts = $los->getlosList();
+                            // remove first and last hexPart
+
                             $src = array_shift($hexParts);
                             $target = array_pop($hexParts);
                             $srcElevated = $targetElevated = false;
 
+                            if ($this->terrain->terrainIs($src, "elevation2")) {
+                                $srcElevated2 = true;
+                            }
+                            if ($this->terrain->terrainIs($target, "elevation2")) {
+                                $targetElevated2 = true;
+                            }
                             if ($this->terrain->terrainIs($src, "elevation")) {
                                 $srcElevated = true;
                             }
                             if ($this->terrain->terrainIs($target, "elevation")) {
                                 $targetElevated = true;
                             }
-                            // remove first and last hexPart
                             foreach ($hexParts as $hexPart) {
                                 if ($this->terrain->terrainIs($hexPart, "blocksRanged")) {
                                     $good = false;
                                     break;
                                 }
-                                if ($this->terrain->terrainIs($hexPart, "elevation") && (!$srcElevated || !$targetElevated)) {
+                                if ($this->terrain->terrainIs($hexPart, "elevation2") && (!$srcElevated2 || !$targetElevated2)) {
+                                    $good = false;
+                                    break;
+                                }
+                                /*
+                                 * Ugly if statement. If elevation1 both src and target MUST be elevation1 OR either src or target can be elevation2.
+                                 * otherwise, blocked.
+                                 */
+                                if ($this->terrain->terrainIs($hexPart, "elevation") && !(($srcElevated && $targetElevated) || ($targetElevated2 || $srcElevated2))) {
                                     $good = false;
                                     break;
                                 }

@@ -112,7 +112,12 @@ class CombatResultsTable
             $isHill |= $battle->terrain->terrainIs($hexpart, 'hill');
             $isForest |= $battle->terrain->terrainIs($hexpart, 'forest');
             $isSwamp |= $battle->terrain->terrainIs($hexpart, 'swamp');
-            $isElevated |= $battle->terrain->terrainIs($hexpart, 'elevation');
+            if($battle->terrain->terrainIs($hexpart, 'elevation')){
+                $isElevated = 1;
+            }
+            if($battle->terrain->terrainIs($hexpart, 'elevation2')){
+                $isElevated = 2;
+            }
         }
         $isClear = true;
         if ($isTown || $isForest || $isHill || $isSwamp) {
@@ -144,9 +149,16 @@ class CombatResultsTable
                 $terrainReason .= "attacker is in sunken road ";
             }
 
-            $attackerIsElevated = $battle->terrain->terrainIs($hexpart, 'elevation');
+            $attackerIsElevated = false;
+            if($battle->terrain->terrainIs($hexpart, 'elevation')){
+                $attackerIsElevated = 1;
+            }
+
+            if($battle->terrain->terrainIs($hexpart, 'elevationw')){
+             $attackerIsElevated = 2;
+            }
             $attackUpHill = false;
-            if($isElevated && !$attackerIsElevated){
+            if($isElevated && ($isElevated > $attackerIsElevated)){
                 $terrainReason .= "attack uphill ";
                 $attackUpHill = true;
             }
