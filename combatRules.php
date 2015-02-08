@@ -284,7 +284,7 @@ class CombatRules
                                 $targetElevated = true;
                             }
                             foreach ($hexParts as $hexPart) {
-                                if ($this->terrain->terrainIs($hexPart, "blocksRanged")) {
+                                if ($this->terrain->terrainIs($hexPart, "blocksRanged") && (!$srcElevated2 || !$targetElevated2)) {
                                     $good = false;
                                     break;
                                 }
