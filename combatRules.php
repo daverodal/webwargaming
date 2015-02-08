@@ -296,10 +296,10 @@ class CombatRules
                                  * Ugly if statement. If elevation1 both src and target MUST be elevation1 OR either src or target can be elevation2.
                                  * otherwise, blocked.
                                  */
-                                if ($this->terrain->terrainIs($hexPart, "elevation") && (!($targetElevated2 || $srcElevated2))) {
-                                    $good = false;
-                                    break;
-                                }
+//                                if ($this->terrain->terrainIs($hexPart, "elevation") && !(($srcElevated && $targetElevated) || ($targetElevated2 || $srcElevated2))) {
+//                                    $good = false;
+//                                    break;
+//                                }
                             }
                             if ($good === false) {
                                 break;
