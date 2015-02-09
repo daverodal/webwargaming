@@ -174,8 +174,14 @@
             },
             "bigRussian": {
                 "description": "Bigger Russians.",
-                "longDescription":"Larger Russian units for play balace.",
+                "longDescription":"Larger Russian units for play balance.",
                 "bigRussian": true
+            },
+            "deployForward": {
+                "description": "Prussians deploy farther forward, Bigger Russians too.",
+                "longDescription":"Prussians deploy farther forward. Larger Russian units for play balance. Game is one turn shorter",
+                "bigRussian": true,
+                "deployForward": true
             }
         }
     },
