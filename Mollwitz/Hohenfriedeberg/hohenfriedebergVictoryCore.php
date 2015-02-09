@@ -70,6 +70,10 @@ class hohenfriedebergVictoryCore extends victoryCore
         }
     }
     protected function checkVictory($attackingId,$battle){
+        $prussianWinTurn = 12;
+        if($battle->scenario->deployForward){
+            $prussianWinTurn = 11;
+        }
         $gameRules = $battle->gameRules;
         $turn = $gameRules->turn;
         if(!$this->gameOver){
@@ -80,7 +84,7 @@ class hohenfriedebergVictoryCore extends victoryCore
             if(($this->victoryPoints[PRUSSIAN_FORCE] >= 60) && ($this->victoryPoints[PRUSSIAN_FORCE] - $this->victoryPoints[AUSTRIAN_FORCE] >= 10)){
                 $prussianWin = true;
             }
-            if($prussianWin && $turn > 12 && $turn <= 15){
+            if($prussianWin && $turn > $prussianWinTurn && $turn <= 15){
                 $this->winner = 0;
                 $gameRules->flashMessages[] = "Tie Game";
             }
@@ -88,9 +92,9 @@ class hohenfriedebergVictoryCore extends victoryCore
                 $this->winner = AUSTRIAN_FORCE;
                 $gameRules->flashMessages[] = "Austrians Win";
             }
-            if($prussianWin && $turn <= 12){
+            if($prussianWin && $turn <= $prussianWinTurn){
                 $this->winner = PRUSSIAN_FORCE;
-                $msg = "Prussian Win 60 On or before turn 12";
+                $msg = "Prussian Win 60 On or before turn $prussianWinTurn";
                 $gameRules->flashMessages[] = $msg;
             }
             if($austrianWin || $prussianWin){

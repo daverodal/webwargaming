@@ -158,7 +158,11 @@ class Hohenfriedeberg extends JagCore
             $this->moveRules->noZocZoc = true;
 
             // game data
-            $this->gameRules->setMaxTurn(15);
+            if($scenario->deployForward){
+                $this->gameRules->setMaxTurn(14);
+            }else{
+                $this->gameRules->setMaxTurn(15);
+            }
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
             $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */
