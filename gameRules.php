@@ -98,7 +98,7 @@ class GameRules
             $this->currentReplacement = false;
 
             $this->turn = 1;
-            $this->legacyExchangeRule = true;
+            $this->legacyExchangeRule = false;
             $this->combatModeType = COMBAT_SETUP_MODE;
             $this->gameHasCombatResolutionMode = true;
             $this->trayX = 0;
