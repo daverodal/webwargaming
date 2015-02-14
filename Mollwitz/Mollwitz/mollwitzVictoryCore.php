@@ -6,7 +6,9 @@
  * Time: 7:06 PM
  * To change this template use File | Settings | File Templates.
  */
-class victoryCore
+include "victoryCore.php";
+
+class mollwitzVictoryCore extends victoryCore
 {
     public $victoryPoints;
     public $movementCache;
@@ -209,19 +211,5 @@ class victoryCore
     public function postSetDefender($args){
         $this->calcFromAttackers();
 
-    }
-    public function postRecoverUnit($args)
-    {
-        $unit = $args[0];
-        $b = Battle::getBattle();
-        if(($b->gameRules->phase == RED_MOVE_PHASE || $b->gameRules->phase == BLUE_MOVE_PHASE) && $unit->forceMarch){
-            $unit->forceMarch = false;
-        }
-        if(($b->gameRules->phase == RED_COMBAT_PHASE || $b->gameRules->phase == BLUE_COMBAT_PHASE) && $unit->forceMarch){
-            $unit->status = STATUS_UNAVAIL_THIS_PHASE;
-        }
-        if($unit->forceId == 1) {
-            return;
-        }
     }
 }

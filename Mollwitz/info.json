@@ -13,6 +13,13 @@
                 "description":"1 Extra Artillery for Austrians.",
                 "extraArt":true,
                 "artStr":true
+            },
+            "command": {
+                "description": "Command Control",
+                "longDescription":"Experimental version using command head quarters.",
+                "extraArt":true,
+                "artStr":true,
+                "commandControl":true
             }
         }
     },

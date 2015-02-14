@@ -28,6 +28,11 @@ body {
     background-image: url('../../js/#{$shortName}ArtBadge.png');
     background-size: 14px;
   }
+  .#{$nationality}.hq .counterWrapper .counter {
+    background-color:white;
+    background-image: url('../../js/HQBadge.png');
+    background-size: 14px;
+  }
 }
 
 $austrianColor: #df5842;

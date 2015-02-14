@@ -12,16 +12,20 @@ class victoryCore
     public $movementCache;
     public $gameOver;
 
+    public $headQuarters;
+
     function __construct($data)
     {
         if($data) {
             $this->movementCache = $data->victory->movementCache;
             $this->victoryPoints = $data->victory->victoryPoints;
             $this->gameOver = $data->victory->gameOver;
+            $this->headQuarters = $data->headQuarters;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
             $this->gameOver = false;
+            $this->headQuarters = [];
         }
     }
 
@@ -31,6 +35,7 @@ class victoryCore
         $ret->victoryPoints = $this->victoryPoints;
         $ret->movementCache = $this->movementCache;
         $ret->gameOver = $this->gameOver;
+        $ret->headQuarters = $this->headQuarters;
         return $ret;
     }
 
@@ -210,18 +215,77 @@ class victoryCore
         $this->calcFromAttackers();
 
     }
+
+
+    public function preRecoverUnits(){
+        echo "Like totally ";
+        $this->headQuarters = [];
+    }
+
+    public function preRecoverUnit($arg){
+        echo "Pre REc" ;
+        $unit = $arg[0];
+        $b = Battle::getBattle();
+        var_dump($b->force->attackingForceId);
+        $id = $unit->id;
+        var_dump($unit->hexagon);
+        if($unit->class == 'hq' && $unit->hexagon->name && $unit->forceId == $b->force->attackingForceId){
+            $this->headQuarters[] = $id;
+        }
+    }
+
+    public function checkCommand($unit){
+        $id = $unit->id;
+        $b = Battle::getBattle();
+
+        if(($b->gameRules->phase == RED_MOVE_PHASE || $b->gameRules->phase == BLUE_MOVE_PHASE)){
+            foreach($this->headQuarters as $hq){
+                if($id == $hq){
+                    return;
+                }
+                echo "Id $id HQ $hq ";
+                $los = new Los();
+
+                echo "the Low ";
+                $los->setOrigin($b->force->getUnitHexagon($id));
+                $los->setEndPoint($b->force->getUnitHexagon($hq));
+                $range = $los->getRange();
+                if($range < 4){
+                    return;
+                }
+            }
+            $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+            return;
+        }
+        if(($b->gameRules->phase == RED_COMBAT_PHASE || $b->gameRules->phase == BLUE_COMBAT_PHASE)){
+            foreach($this->headQuarters as $hq){
+                $los = new Los();
+
+                $los->setOrigin($b->force->getUnitHexagon($id));
+                $los->setEndPoint($b->force->getUnitHexagon($hq));
+                $range = $los->getRange();
+                if($range < 4){
+                    return;
+                }
+            }
+            $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+        }
+    }
+
     public function postRecoverUnit($args)
     {
         $unit = $args[0];
         $b = Battle::getBattle();
+
+        /* Deal with Forced March */
         if(($b->gameRules->phase == RED_MOVE_PHASE || $b->gameRules->phase == BLUE_MOVE_PHASE) && $unit->forceMarch){
             $unit->forceMarch = false;
         }
         if(($b->gameRules->phase == RED_COMBAT_PHASE || $b->gameRules->phase == BLUE_COMBAT_PHASE) && $unit->forceMarch){
             $unit->status = STATUS_UNAVAIL_THIS_PHASE;
         }
-        if($unit->forceId == 1) {
-            return;
+        if($b->scenario->commandControl){
+            $this->checkCommand($unit);
         }
     }
 }

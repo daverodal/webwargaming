@@ -75,6 +75,11 @@ class Mollwitz extends JagCore
         if($this->scenario->artStr){
             $artStr = 3;
         }
+        if($this->scenario->commandControl){
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Prussian", false, 'hq');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Prussian", false, 'hq');
+            $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Prussian", false, 'hq');
+        }
 
         $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Prussian", false, 'infantry');
         $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Prussian", false, 'infantry');
@@ -107,6 +112,11 @@ class Mollwitz extends JagCore
         $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruArtBadge.png", $artStr, $artStr, 2, true, STATUS_CAN_DEPLOY, "B", 1, $artRange, "Prussian", false, 'artillery');
         $this->force->addUnit("infantry-1", BLUE_FORCE, "deployBox", "PruArtBadge.png", $artStr, $artStr, 2, true, STATUS_CAN_DEPLOY, "B", 1, $artRange, "Prussian", false, 'artillery');
 
+        if($this->scenario->commandControl) {
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "HQBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Austrian", false, 'hq');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "HQBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Austrian", false, 'hq');
+            $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "HQBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Austrian", false, 'hq');
+        }
         $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "AusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Austrian", false, 'infantry');
         $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "AusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Austrian", false, 'infantry');
         $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "AusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Austrian", false, 'infantry');
@@ -149,7 +159,7 @@ class Mollwitz extends JagCore
         if ($data) {
 
         } else {
-            $this->victory = new Victory("Mollwitz/Mollwitz/victoryCore.php");
+            $this->victory = new Victory("Mollwitz/Mollwitz/mollwitzVictoryCore.php");
 
             $this->moveRules->enterZoc = "stop";
             $this->moveRules->exitZoc = "stop";

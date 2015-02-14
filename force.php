@@ -1164,7 +1164,7 @@ class Force
         $victory = $battle->victory;
         $victory->preRecoverUnits();
         for ($id = 0; $id < count($this->units); $id++) {
-            $victory->preRecoverUnit($id);
+            $victory->preRecoverUnit($this->units[$id]);
 
             switch ($this->units[$id]->status) {
                 case STATUS_CAN_DEPLOY:
