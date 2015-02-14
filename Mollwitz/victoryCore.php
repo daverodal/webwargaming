@@ -218,17 +218,13 @@ class victoryCore
 
 
     public function preRecoverUnits(){
-        echo "Like totally ";
         $this->headQuarters = [];
     }
 
     public function preRecoverUnit($arg){
-        echo "Pre REc" ;
         $unit = $arg[0];
         $b = Battle::getBattle();
-        var_dump($b->force->attackingForceId);
         $id = $unit->id;
-        var_dump($unit->hexagon);
         if($unit->class == 'hq' && $unit->hexagon->name && $unit->forceId == $b->force->attackingForceId){
             $this->headQuarters[] = $id;
         }
@@ -237,16 +233,15 @@ class victoryCore
     public function checkCommand($unit){
         $id = $unit->id;
         $b = Battle::getBattle();
+        $cmdRange = 4;
 
         if(($b->gameRules->phase == RED_MOVE_PHASE || $b->gameRules->phase == BLUE_MOVE_PHASE)){
             foreach($this->headQuarters as $hq){
                 if($id == $hq){
                     return;
                 }
-                echo "Id $id HQ $hq ";
                 $los = new Los();
 
-                echo "the Low ";
                 $los->setOrigin($b->force->getUnitHexagon($id));
                 $los->setEndPoint($b->force->getUnitHexagon($hq));
                 $range = $los->getRange();
@@ -264,7 +259,7 @@ class victoryCore
                 $los->setOrigin($b->force->getUnitHexagon($id));
                 $los->setEndPoint($b->force->getUnitHexagon($hq));
                 $range = $los->getRange();
-                if($range < 4){
+                if($range <= $cmdRange){
                     return;
                 }
             }
@@ -281,11 +276,12 @@ class victoryCore
         if(($b->gameRules->phase == RED_MOVE_PHASE || $b->gameRules->phase == BLUE_MOVE_PHASE) && $unit->forceMarch){
             $unit->forceMarch = false;
         }
-        if(($b->gameRules->phase == RED_COMBAT_PHASE || $b->gameRules->phase == BLUE_COMBAT_PHASE) && $unit->forceMarch){
-            $unit->status = STATUS_UNAVAIL_THIS_PHASE;
-        }
+//        if(($b->gameRules->phase == RED_COMBAT_PHASE || $b->gameRules->phase == BLUE_COMBAT_PHASE) && $unit->forceMarch){
+//            $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+//        }
         if($b->scenario->commandControl){
             $this->checkCommand($unit);
         }
+
     }
 }

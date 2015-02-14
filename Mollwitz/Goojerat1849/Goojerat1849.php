@@ -74,6 +74,14 @@ class Goojerat1849 extends IndiaCore
 
 
         $scenario = $this->scenario;
+        if($scenario->commandControl){
+            for ($i = 0; $i < 3; $i++) {
+                $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Sikh", false, 'hq');
+            }
+            for ($i = 0; $i < 4; $i++) {
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 7, 7, 4, true, STATUS_CAN_DEPLOY, "B", 1, 1, "British", false, 'hq');
+            }
+        }
         if ($scenario->theMoodkeeOOB) {
             /* Sikh */
             for ($i = 0; $i < 12; $i++) {

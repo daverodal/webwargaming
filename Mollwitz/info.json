@@ -329,7 +329,15 @@
                 "description": "Same OOB as moodkee, Alt Scenarios rules too",
                 "altScenario": true,
                 "theMoodkeeOOB":true
-            }        }
+            },
+            "command": {
+                "description": "Same OOB as moodkee.  Command And Control",
+                "longDescription": "command and control experiment. 3 sikh hq 4 british hq",
+                "altScenario": true,
+                "theMoodkeeOOB":true,
+                "commandControl":true
+            }
+        }
     },
     "Aliwal1845": {
         "name": "Aliwal 1845",
