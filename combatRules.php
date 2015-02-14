@@ -107,7 +107,7 @@ class CombatRules
             $attackers = $this->resolvedCombats->$cd->attackers;
             $battle = Battle::getBattle();
             foreach($attackers as $attackId => $val){
-                if($battle->force->units[$attackId]->status != STATUS_ELIMINATED){
+                if($battle->force->units[$attackId]->status === STATUS_CAN_EXCHANGE){
                     return false;
                 }
             }
