@@ -206,8 +206,13 @@ class CombatResultsTable
                     if(!$terrainReason){
                         $terrainReason = " terrain ";
                     }
-                    $combatLog .= "attacker halved for $terrainReason ";
-                    $unitStrength /= 2;
+                    if($attackUpHill){
+                        $unitStrength *= .75;
+                        $combatLog .= "attacker 3/4 for $terrainReason ";
+                    }else{
+                        $unitStrength /= 2;
+                        $combatLog .= "attacker halved for $terrainReason ";
+                    }
                 }
             }
 
@@ -219,8 +224,15 @@ class CombatResultsTable
                     if(!$terrainReason){
                         $terrainReason = " terrain ";
                     }
-                    $combatLog .= " halved for $terrainReason, loses combined arms bonus ";
-                    $unitStrength /= 2;
+                    $combatLog .= " , loses combined arms bonus ";
+                    if($attackUpHill){
+                        $unitStrength *= .75;
+                        $combatLog .= "attacker 3/4 for $terrainReason ";
+                    }else{
+                        $unitStrength /= 2;
+                        $combatLog .= "attacker halved for $terrainReason ";
+                    }
+                    $combatLog .= " , loses combined arms bonus ";
                 }else{
                     if($scenario->angloCavBonus && $unit->nationality == "AngloAllied"){
                         $unitStrength++;
@@ -238,13 +250,14 @@ class CombatResultsTable
                 if($isSwamp || $acrossRedoubt || $attackUpHill){
                     if($attackUpHill){
                         $unitStrength *= .75;
+                        $combatLog .= "attacker 3/4 for $terrainReason ";
                     }else{
                         $unitStrength /= 2;
+                        $combatLog .= "attacker halved for $terrainReason ";
                     }
                     if(!$terrainReason){
                         $terrainReason = " terrain ";
                     }
-                    $combatLog .= "attacker halved for $terrainReason ";
                 }
                 $class = $unit->class;
                 if($class == 'horseartillery'){
