@@ -154,7 +154,7 @@ class CombatResultsTable
                 $attackerIsElevated = 1;
             }
 
-            if($battle->terrain->terrainIs($hexpart, 'elevationw')){
+            if($battle->terrain->terrainIs($hexpart, 'elevation2')){
              $attackerIsElevated = 2;
             }
             $attackUpHill = false;
