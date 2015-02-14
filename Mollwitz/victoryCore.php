@@ -245,7 +245,7 @@ class victoryCore
                 $los->setOrigin($b->force->getUnitHexagon($id));
                 $los->setEndPoint($b->force->getUnitHexagon($hq));
                 $range = $los->getRange();
-                if($range < $cmdRange){
+                if($range <= $cmdRange){
                     return;
                 }
             }
