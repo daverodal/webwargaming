@@ -7,10 +7,12 @@
         "description":"April 10, 1741. The War of Austrian Succession",
         "scenarios": {
             "main": {
-                "description": "Standard Scenario"
+                "description": "Standard Scenario",
+                "longDescription":"Historical scenario. Hard for Austrians to win."
             },
             "extraArt":{
                 "description":"1 Extra Artillery for Austrians.",
+                "longDescription":"Extra artillery gives Austrians more opportunities to attack.",
                 "extraArt":true,
                 "artStr":true
             },
