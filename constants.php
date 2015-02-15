@@ -39,6 +39,9 @@ define("BLUE_DISPLAY_PHASE",13);
 define("RED_DISPLAY_PHASE",14);
 define("RED_DEPLOY_PHASE",15);
 define("BLUE_SURPRISE_MOVE_PHASE",16);
+define("GREEN_MOVE_PHASE",17);
+define("GREEN_COMBAT_PHASE",18);
+define("GREEN_MECH_PHASE", 19);
 
 
 $phase_name = array();

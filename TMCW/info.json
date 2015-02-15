@@ -38,11 +38,12 @@
             }
         }
     },
-    "Amph": {
-        "name": "Sur La Mer",
+
+    "Multi": {
+        "name": "Multyple",
         "path": "TMCW",
         "genre": "20'th Century Games",
-        "fileName": "Amph/Amph.php",
+        "fileName": "Multi/Multi.php",
         "description": "Hypothetical amphibious invasion. The goal is the castle town, Chateau Sur Mer.",
         "scenarios": {
             "Main": {

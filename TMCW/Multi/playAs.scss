@@ -1,0 +1,58 @@
+@import "../textShadow";
+@import "../commonPlay";
+h1{
+  color:#f66;
+  @include textShadow(white);
+}
+h2{
+  font-family: PoiretOne;
+  text-align:center;
+  font-size:38px;
+  color:#f66;
+  @include textShadow(white);
+}
+.rebel{
+  font-size:40px;
+}
+.loyalist{
+  font-size:40px;
+  color:blue;
+
+}
+.link{
+  font-size:40px;
+  text-decoration: none;
+  color:#f66;
+  text-shadow: 3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black
+}
+legend   {
+  color:white;
+}
+fieldset{
+  background:rgba(0,0,0,.3);
+  text-align:center;width:30%;
+  margin:60px auto;
+  border-radius:15px;
+}
+.clear{
+  clear:both;
+}
+a:hover{
+  text-decoration: underline;
+}
+
+.attribution{
+  background: rgba(255,255,255,.6);
+}
+.attribution a{
+  color:red;
+  text-shadow: 1px 1px 1px black;
+}
+footer.attribution{
+  text-align: center;
+  background:rgba(255,255,255,.8);
+  border-radius:15px;
+  padding:20px;
+  margin:20px;
+  border:3px solid gray;
+}
