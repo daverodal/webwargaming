@@ -221,15 +221,16 @@
             "doubleArt": true,
             "toughBritish":true
         },
+        "options":[
+            {
+                "name": "Command and Control. 2HQ Beluchi, 4HQ British ",
+                "keyName":"commandControl",
+                "value": true
+            }],
         "scenarios": {
             "main": {
                 "description": "Standard Scenario",
-                "longDescription":"No HQ's not very balanced."
-            },
-            "command": {
-                "description": "Command and control",
-                "longDescription": "2 HQ for Beluchi, 4 HQ for british",
-                "commandControl":true
+                "longDescription":"This game is best with option command control selected."
             }
         }
     },
@@ -241,16 +242,17 @@
         "params":{
             "doubleArt": true
         },
+        "options":[
+            {
+                "name": "Command and Control. 2HQ Beluchi, 4HQ British ",
+                "keyName":"commandControl",
+                "value": true
+            }
+        ],
         "scenarios": {
             "main": {
-                "description": "Day One",
-                "dayOne": true
-            },
-            "command": {
-                "description": "Command Control",
-                "dayOne": true,
-                "commandControl": true,
-                "longDescription":"Head Quarters. 4 for British, 2 for Beluchi"
+                "description": "Standard Scenario",
+                "longDescription": "The Battle of Meanee"
             }
         }
     },
@@ -263,9 +265,17 @@
             "doubleArt": true,
             "zocBlocksRetreat":true
         },
+        "options":[
+            {
+                "name": "Command and Control. 3HQ Sikh, 4HQ British ",
+                "keyName":"commandControl",
+                "value": true
+            }
+        ],
         "scenarios": {
             "main": {
                 "description": "Day One",
+                "longDescription":"Day of one of a two day battle. Battle continued in sister game, Ferozesha Day Two",
                 "dayOne": true
             }
         }
@@ -279,9 +289,17 @@
             "doubleArt": true,
             "zocBlocksRetreat":true
         },
+        "options":[
+            {
+                "name": "Command and Control. 3HQ Sikh, 4HQ British ",
+                "keyName":"commandControl",
+                "value": true
+            }
+        ],
         "scenarios": {
             "main": {
                 "description": "Day Two",
+                "longDescription":"Day of two of a two day battle. Battle continued from sister game, Ferozesha Day One",
                 "dayTwo": true
             }
         }
@@ -297,6 +315,13 @@
             "doubleArt": true,
             "zocBlocksRetreat":true
         },
+        "options":[
+            {
+                "name": "Command and Control. 3HQ Sikh, 4HQ British ",
+                "keyName":"commandControl",
+                "value": true
+            }
+        ],
         "scenarios": {
             "main": {
                 "description": "Standard Scenario"
@@ -314,6 +339,13 @@
             "doubleArt": true,
             "zocBlocksRetreat":true
         },
+        "options":[
+            {
+                "name": "Command and Control. 3HQ Sikh, 4HQ British ",
+                "keyName":"commandControl",
+                "value": true
+            }
+        ],
         "scenarios": {
             "main": {
                 "description": "Standard Scenario"
@@ -329,25 +361,33 @@
             "doubleArt": true,
             "zocBlocksRetreat":true
         },
+        "options":[
+            {
+                "name": "Command and Control. 3HQ Sikh, 4HQ British ",
+                "keyName":"commandControl",
+                "value": true
+            },
+            {
+                "name": "Stronger Sikh Infantry. 5-3",
+                "keyName":"strongerSikh",
+                "value": false
+            }
+        ],
         "scenarios": {
             "main": {
-                "description": "Standard Scenario"
+                "description": "Standard Scenario",
+                "longDescription": "Original scenario, Historical forces."
             },
             "altScenario": {
                 "description": "Sikh need 45 instead of 50 to win.",
-                "altScenario": true
+                "altScenario": true,
+                "longDescription": "Play Balance Scenario."
             },
             "moodkeeVariant": {
                 "description": "Same OOB as moodkee, Alt Scenarios rules too",
                 "altScenario": true,
-                "theMoodkeeOOB":true
-            },
-            "command": {
-                "description": "Same OOB as moodkee.  Command And Control",
-                "longDescription": "command and control experiment. 3 sikh hq 4 british hq",
-                "altScenario": true,
                 "theMoodkeeOOB":true,
-                "commandControl":true
+                "longDescription": "Accidental Order of Battle, made game enjoyable, so we kept it."
             }
         }
     },
@@ -360,6 +400,13 @@
             "doubleArt": true,
             "zocBlocksRetreat":true
         },
+        "options":[
+            {
+                "name": "Command and Control. 3HQ Sikh, 4HQ British ",
+                "keyName":"commandControl",
+                "value": true
+            }
+        ],
         "scenarios": {
             "main": {
                 "description": "Standard Scenario"

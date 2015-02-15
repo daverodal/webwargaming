@@ -76,16 +76,18 @@ class Meanee1843 extends IndiaCore
     {
 
         $artRange = 3;
+        $sikhStrength = 2;
 
 
             /* Beluchi */
         if($this->scenario->commandControl) {
+            $sikhStrength = 3;
             for ($i = 0; $i < 2; $i++) {
                 $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Beluchi", false, 'hq');
             }
         }
             for ($i = 0; $i < 9; $i++) {
-                $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Beluchi", false, 'infantry');
+                $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhInfBadge.png", $sikhStrength, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Beluchi", false, 'infantry');
             }
             for ($i = 0; $i < 20; $i++) {
                 $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Beluchi", false, 'cavalry');

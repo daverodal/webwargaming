@@ -53,10 +53,16 @@ class Moodkee1845 extends IndiaCore
     {
 
         $artRange = 3;
+        $scenario = $this->scenario;
 
 
 
         /* Sikh */
+        if ($scenario->commandControl) {
+            for ($i = 0; $i < 3; $i++) {
+                $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Sikh", false, 'hq');
+            }
+        }
         for ($i = 0; $i < 12; $i++) {
             $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Sikh", false, 'infantry');
         }
@@ -69,6 +75,11 @@ class Moodkee1845 extends IndiaCore
 
 
         /* British */
+        if ($scenario->commandControl) {
+            for ($i = 0; $i < 4; $i++) {
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "British", false, 'hq');
+            }
+        }
         for ($i = 0; $i < 4; $i++) {
             $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 7, 7, 4, true, STATUS_CAN_DEPLOY, "B", 1, 1, "British", false, 'infantry');
         }

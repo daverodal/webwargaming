@@ -74,6 +74,10 @@ class Goojerat1849 extends IndiaCore
 
 
         $scenario = $this->scenario;
+        $sikhStrength = 4;
+        if($scenario->strongerSikh){
+            $sikhStrength = 5;
+        }
         if($scenario->commandControl){
             for ($i = 0; $i < 3; $i++) {
                 $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Sikh", false, 'hq');
@@ -85,7 +89,7 @@ class Goojerat1849 extends IndiaCore
         if ($scenario->theMoodkeeOOB) {
             /* Sikh */
             for ($i = 0; $i < 12; $i++) {
-                $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Sikh", false, 'infantry');
+                $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhInfBadge.png", $sikhStrength, $sikhStrength, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Sikh", false, 'infantry');
             }
             for ($i = 0; $i < 16; $i++) {
                 $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Sikh", false, 'cavalry');
@@ -118,7 +122,7 @@ class Goojerat1849 extends IndiaCore
         } else {
             /* Sikh */
             for ($i = 0; $i < 20; $i++) {
-                $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Sikh", false, 'infantry');
+                $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhInfBadge.png", $sikhStrength, $sikhStrength, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Sikh", false, 'infantry');
             }
             for ($i = 0; $i < 21; $i++) {
                 $this->force->addUnit("infantry-1", SIKH_FORCE, "deployBox", "SikhCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Sikh", false, 'cavalry');
