@@ -81,9 +81,11 @@ class Dubba1843 extends IndiaCore
 
         $artRange = 3;
 
-
+        for ($i = 0; $i < 2; $i++) {
+            $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Beluchi", false, 'hq');
+        }
         for ($i = 0; $i < 25; $i++) {
-            $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhInfBadge.png", 2, 2, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Beluchi", false, 'infantry');
+            $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Beluchi", false, 'infantry');
         }
         for ($i = 0; $i < 15; $i++) {
             $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Beluchi", false, 'cavalry');
@@ -131,6 +133,10 @@ class Dubba1843 extends IndiaCore
             for ($i = 0; $i < 1; $i++) {
                 $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritHorArtBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "British", false, 'horseartillery');
             }
+        }
+
+        for ($i = 0; $i < 4; $i++) {
+            $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "British", false, 'hq');
         }
     }
 

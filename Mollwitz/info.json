@@ -223,7 +223,13 @@
         },
         "scenarios": {
             "main": {
-                "description": "Standard Scenario"
+                "description": "Standard Scenario",
+                "longDescription":"No HQ's not very balanced."
+            },
+            "command": {
+                "description": "Command and control",
+                "longDescription": "2 HQ for Beluchi, 4 HQ for british",
+                "commandControl":true
             }
         }
     },
@@ -239,6 +245,12 @@
             "main": {
                 "description": "Day One",
                 "dayOne": true
+            },
+            "command": {
+                "description": "Command Control",
+                "dayOne": true,
+                "commandControl": true,
+                "longDescription":"Head Quarters. 4 for British, 2 for Beluchi"
             }
         }
     },
