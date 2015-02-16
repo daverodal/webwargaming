@@ -4,7 +4,7 @@
         "path": "Mollwitz",
         "genre": "18'th Century Europe",
         "fileName": "Mollwitz/Mollwitz.php",
-        "description":"April 10, 1741. The War of Austrian Succession",
+        "description":"April 10, 1741. The War of the Austrian Succession",
         "scenarios": {
             "main": {
                 "description": "Standard Scenario",
@@ -30,7 +30,7 @@
         "path": "Mollwitz",
         "genre": "18'th Century Europe",
         "fileName": "Hastenbeck/Hastenbeck.php",
-        "description":"July 26, 1757. The Seven Years War",
+        "description":"July 26, 1757. French vs Anglo Allies. The Seven Years War",
         "scenarios": {
             "main": {
                 "description": "Standard Scenario.",
@@ -54,6 +54,7 @@
         "path": "Mollwitz",
         "genre": "18'th Century Europe",
         "fileName": "Hohenfriedeberg/Hohenfriedeberg.php",
+        "description": "June 4 1745. Prussian vs Austrian. The War of the Austrian Succession.",
         "scenarios": {
             "main": {
                 "description": "Standard Scenario"
@@ -88,6 +89,7 @@
         "path": "Mollwitz",
         "genre": "18'th Century Europe",
         "fileName": "Malplaquet/Malplaquet.php",
+        "description": "September 11, 1709. The War of the Spanish Succession",
         "scenarios": {
             "main": {
                 "description": "Standard Scenario",
@@ -107,7 +109,7 @@
         "path": "Mollwitz",
         "genre": "18'th Century Europe",
         "fileName": "Burkersdorf/Burkersdorf.php",
-        "description":"July 21, 1762. The Seven Years War.",
+        "description":"July 21, 1762. Prussian vs Austrian. The Seven Years War.",
         "scenarios": {
             "main": {
                 "description": "Standard Scenario.",
@@ -131,7 +133,7 @@
         "path": "Mollwitz",
         "genre": "18'th Century Europe",
         "fileName": "Kolin1757/Kolin1757.php",
-        "description":"3 scenarios for play balance",
+        "description":"June 18, 1757. Prussian vs Austrian. The Seven Years War.",
         "scenarios": {
             "main": {
                 "description": "Standard Scenario.",
@@ -154,6 +156,7 @@
         "path": "Mollwitz",
         "genre": "18'th Century Europe",
         "fileName": "Lobositz/Lobositz.php",
+        "description": "October 1, 1756. The Seven Years War.",
         "scenarios": {
             "main": {
                 "description": "Standard Scenario"
@@ -192,6 +195,7 @@
         "path": "Mollwitz",
         "genre": "18'th Century Europe",
         "fileName": "Jagersdorf/Jagersdorf.php",
+        "description": "August 30, 1757. Prussian vs Russian. The Seven Years War.",
         "params":{
             "jagersdorfCombat": true
         },
@@ -309,7 +313,7 @@
         "path": "Mollwitz",
         "genre": "19'th Century India",
         "fileName": "Chillianwallah1849/Chillianwallah1849.php",
-        "longDesc":"The battle of Chillianwallah",
+        "description":"The battle of Chillianwallah",
         "playerNotes":"Key",
         "params":{
             "doubleArt": true,
@@ -333,7 +337,7 @@
         "path": "Mollwitz",
         "genre": "19'th Century India",
         "fileName": "Moodkee1845/Moodkee1845.php",
-        "longDesc":"Mood",
+        "description":"Mood",
         "playerNotes":"Key",
         "params":{
             "doubleArt": true,
