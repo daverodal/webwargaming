@@ -117,7 +117,7 @@
             },
             "bigAustrian": {
                 "description": "Stronger Austrian Force.",
-                "longDescription": " 6 3-3 infanty units  are 4-3",
+                "longDescription": " 6 3-3 infantry units  are 4-3",
                 "bigAustrian": true
             },
             "requiredDeploy": {
@@ -221,6 +221,7 @@
         "path": "Mollwitz",
         "genre": "19'th Century India",
         "fileName": "Dubba1843/Dubba1843.php",
+        "description":"March 24, 1843. British vs Beluchi. Part of Conquest of Sindh",
         "params":{
             "doubleArt": true,
             "toughBritish":true
@@ -243,6 +244,7 @@
         "path": "Mollwitz",
         "genre": "19'th Century India",
         "fileName": "Meanee1843/Meanee1843.php",
+        "description":"February 17, 1843. British vs Beluchi. Part of the conquest of Sindh.",
         "params":{
             "doubleArt": true
         },
@@ -265,6 +267,7 @@
         "path": "Mollwitz",
         "genre": "19'th Century India",
         "fileName": "Ferozesha/Ferozesha.php",
+        "description":"December 21, 1845. British vs Sikh. First Anglo-Sikh War.",
         "params":{
             "doubleArt": true,
             "zocBlocksRetreat":true
@@ -289,6 +292,7 @@
         "path": "Mollwitz",
         "genre": "19'th Century India",
         "fileName": "Ferozesha/FerozeshaDayTwo.php",
+        "description":"December 22, 1845. British vs Sikh. First Anglo-Sikh War.",
         "params":{
             "doubleArt": true,
             "zocBlocksRetreat":true
@@ -313,7 +317,7 @@
         "path": "Mollwitz",
         "genre": "19'th Century India",
         "fileName": "Chillianwallah1849/Chillianwallah1849.php",
-        "description":"The battle of Chillianwallah",
+        "description":"January 13, 1849. British vs Sikh. The Second Anglo-Sikh War.",
         "playerNotes":"Key",
         "params":{
             "doubleArt": true,
@@ -337,7 +341,7 @@
         "path": "Mollwitz",
         "genre": "19'th Century India",
         "fileName": "Moodkee1845/Moodkee1845.php",
-        "description":"Mood",
+        "description":"December 18, 1845. British vs Sikh. First Anglo-Sikh War.",
         "playerNotes":"Key",
         "params":{
             "doubleArt": true,
@@ -361,6 +365,7 @@
         "path": "Mollwitz",
         "genre": "19'th Century India",
         "fileName": "Goojerat1849/Goojerat1849.php",
+        "description":"February 21, 1849. British vs Sikh. Second Anglo-Sikh War.",
         "params":{
             "doubleArt": true,
             "zocBlocksRetreat":true
@@ -400,6 +405,7 @@
         "path": "Mollwitz",
         "genre": "19'th Century India",
         "fileName": "Aliwal1845/Aliwal1845.php",
+        "description":"January 28 1846. British vs Sikh. First Anglo-Sikh War.",
         "params":{
             "doubleArt": true,
             "zocBlocksRetreat":true
