@@ -273,7 +273,7 @@ class MapData implements JsonSerializable
             return;
         }
         $hex = sprintf("%04d", "0000" . $hex);
-        if($this->specialHexes->$hex){
+        if(isset($this->specialHexes->$hex)){
             $this->specialHexes->$hex = $v;
         }
     }

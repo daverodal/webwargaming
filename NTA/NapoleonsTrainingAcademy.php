@@ -1,6 +1,7 @@
 <?php
 global $force_name;
 $force_name = array();
+$force_name[0] = "unknown";
 $force_name[1] = "Red";
 $force_name[2] = "Blue";
 require_once "constants.php";
