@@ -220,19 +220,26 @@ class CombatResultsTable
                 $combatLog .= "$unitStrength Cavalry ";
                 $attackersCav = true;
 
-                if ($attackerIsSwamp || $acrossRiver || !$isClear || $attackerIsSunkenRoad || $acrossRedoubt || $attackUpHill) {
+                if ($attackerIsSwamp || $acrossRiver || !$isClear || $attackerIsSunkenRoad || $acrossRedoubt) {
+
                     if(!$terrainReason){
                         $terrainReason = " terrain ";
                     }
                     $combatLog .= " , loses combined arms bonus ";
-                    if($attackUpHill){
-                        $unitStrength *= .75;
-                        $combatLog .= "attacker 3/4 for $terrainReason ";
+
+                    $unitStrength /= 2;
+                    $combatLog .= "attacker halved for $terrainReason ";
+
+
+                }elseif ( $attackUpHill ) {
+
+                    $unitStrength *= .75;
+                    $combatLog .= "attacker 3/4 for attacking uphill ";
+                    if($unit->nationality != "Beluchi" && $unit->nationality != "Sikh"){
+                        $combinedArms[$battle->force->units[$attackerId]->class]++;
                     }else{
-                        $unitStrength /= 2;
-                        $combatLog .= "attacker halved for $terrainReason ";
+                        $combatLog .= "no combined arms bonus for ".$unit->nationality." cavalry";
                     }
-                    $combatLog .= " , loses combined arms bonus ";
                 }else{
                     if($scenario->angloCavBonus && $unit->nationality == "AngloAllied"){
                         $unitStrength++;
