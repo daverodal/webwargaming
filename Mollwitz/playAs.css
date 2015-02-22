@@ -49,3 +49,71 @@ footer.attribution {
   padding: 20px;
   margin: 20px;
   border: 3px solid gray; }
+
+.wrapper {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px;
+  border: 3px solid gray; }
+
+a {
+  color: #000; }
+
+li {
+  list-style-type: none; }
+
+div {
+  text-align: center; }
+
+.center {
+  float: left;
+  width: 8%;
+  font-size: 45px; }
+
+.left {
+  width: 45%;
+  float: left; }
+
+.right {
+  width: 45%;
+  float: right; }
+
+.clear {
+  clear: both; }
+
+.big {
+  font-size: 50px;
+  text-align: center; }
+
+.British {
+  color: #f00; }
+
+.Sikh {
+  color: #865900; }
+
+.Rebel, .rebel {
+  color: red; }
+
+.Loyalist, .loyalist {
+  color: blue; }
+
+.Austrian {
+  color: #f00; }
+
+.Prussian {
+  color: #fffd7f;
+  color: #0c00a2;
+  border-color: #fffd7f !important; }
+
+.Beluchi {
+  color: #865900;
+  border-color: #3d6eff !important; }
+
+.Russian {
+  color: #4cb800;
+  border-color: #4cb800 !important; }
+
+.French {
+  color: #3d6eff;
+  border-color: #3d6eff !important; }

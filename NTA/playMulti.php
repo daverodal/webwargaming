@@ -1,4 +1,3 @@
-<head>
     <style type="text/css">
         body{
             background:#ccc;
@@ -41,10 +40,10 @@
         .clear{
             clear:both;
         }
-        .rebel{
+        .Red{
             color:red;
         }
-        .loyalist{
+        .Blue{
             color:blue;
         }
         .big{
@@ -52,36 +51,3 @@
             text-align: center;
         }
     </style>
-</head>
-<body>
-<div class="wrapper">
-    <div class="left rebel big">RED</div>
-    <div class="right loyalist big">BLUE</div>
-    <div class="clear"></div>
-    <div class="left big rebel">
-        YOU
-    </div>
-    <div class="center">&laquo;&laquo;vs&raquo;&raquo;</div>
-    <div class="right">
-        <ul>
-            {users}
-            <li><a class="loyalist" href="{path}/{wargame}/{me}/{key}">{key}</a></li>
-            {/users}
-        </ul>
-    </div>
-    <div class="clear"></div>
-    <div class="big">OR</div>
-    <div class="left">
-        <ul>
-            {others}
-            <li><a class="rebel" href="{path}/{wargame}/{key}">{key}</a></li>
-            {/others}
-        </ul>
-    </div>
-    <div class="center">&laquo;&laquo;vs&raquo;&raquo;</div>
-    <div class="right big loyalist">YOU</div>
-    <div class="clear"></div>
-    <div>
-        <a href="<?=site_url("wargame/play");?>">Back to lobby</a>
-    </div>
-</div>

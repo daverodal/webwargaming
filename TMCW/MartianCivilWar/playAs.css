@@ -1,53 +1,38 @@
-.attribution {
-  background: rgba(255, 255, 255, 0.6); }
-
-.attribution a {
-  color: red;
-  text-shadow: 1px 1px 1px black; }
-
-footer.attribution {
-  text-align: center;
+.wrapper {
   background: rgba(255, 255, 255, 0.8);
   border-radius: 15px;
   padding: 20px;
   margin: 20px;
   border: 3px solid gray; }
 
-h1 {
-  color: #f66;
-  text-shadow: 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white; }
+a {
+  color: #000; }
 
-h2 {
-  text-align: center;
-  font-size: 38px;
-  font-family: 'Great Vibes';
-  color: #f66;
-  text-shadow: 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white; }
+li {
+  list-style-type: none; }
 
-.loyalist {
-  color: blue; }
+div {
+  text-align: center; }
 
-.link {
-  font-size: 40px;
-  text-decoration: none;
-  color: #f66;
-  text-shadow: 3px 3px 3px black, 3px 3px 3px black, 3px 3px 3px black, 3px 3px 3px black, 3px 3px 3px black; }
+.center {
+  float: left;
+  width: 8%;
+  font-size: 45px; }
 
-legend {
-  color: white; }
+.left {
+  width: 45%;
+  float: left; }
 
-fieldset {
-  background: rgba(0, 0, 0, 0.3);
-  text-align: center;
-  width: 30%;
-  margin: 60px auto;
-  border-radius: 15px; }
+.right {
+  width: 45%;
+  float: right; }
 
 .clear {
   clear: both; }
 
-a:hover {
-  text-decoration: underline; }
+.big {
+  font-size: 50px;
+  text-align: center; }
 
 .attribution {
   background: rgba(255, 255, 255, 0.6); }
