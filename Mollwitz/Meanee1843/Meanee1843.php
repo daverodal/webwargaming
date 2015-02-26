@@ -83,7 +83,7 @@ class Meanee1843 extends IndiaCore
         if($this->scenario->commandControl) {
             $sikhStrength = 3;
             for ($i = 0; $i < 2; $i++) {
-                $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Beluchi", false, 'hq');
+                $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Beluchi", false, 'hq');
             }
         }
             for ($i = 0; $i < 9; $i++) {
@@ -117,7 +117,7 @@ class Meanee1843 extends IndiaCore
             }
         if($this->scenario->commandControl) {
             for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "British", false, 'hq');
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "British", false, 'hq');
             }
         }
 

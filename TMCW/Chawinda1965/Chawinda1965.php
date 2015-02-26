@@ -84,53 +84,44 @@ class Chawinda1965 extends ModernLandBattle
 
 
         $scenario = $this->scenario;
+        $infStrength = 4;
+        $halfInfStrength = 2;
+        $numPakistaniInf = 6;
+        if($scenario->bigPakistani){
+            $numPakistaniInf += 6;
+            $infStrength = 3;
+            $halfInfStrength = 2;
+        }
 
         for($i = 0; $i < 4;$i++){
             $this->force->addUnit("x", PAKISTANI_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, "mech", $i+1);
         }
 
-        for($i = 0; $i < 6;$i++){
-            $this->force->addUnit("x", PAKISTANI_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, 'inf', $i+1);
+        for($i = 0; $i < $numPakistaniInf;$i++){
+            $this->force->addUnit("x", PAKISTANI_FORCE, "deployBox", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, 'inf', $i+1);
         }
 
         for($i = 2; $i <= 8; $i++) {
             $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "mech", "T $i 1");
-            $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", 4, 2, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 2");
-            $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", 4, 2, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 3");
+            $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 2");
+            $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 3");
         }
 
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "1");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "2");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "3");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "4");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "5");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "6");
+        for($i = 0; $i < 6;$i++) {
 
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "7");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "8");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "9");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "10");
+            $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A $i");
+        }
 
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "1");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "2");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "3");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "4");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "5");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "6");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "7");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "8");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "9");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "10");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "11");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "12");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "13");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "14");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "15");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "16");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "17");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "18");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "19");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "20");
+        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 7");
+        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 8");
+        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 9");
+        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 10");
+
+        for($i = 0; $i < 20;$i++) {
+
+            $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "$i");
+        }
+
     }
 
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
