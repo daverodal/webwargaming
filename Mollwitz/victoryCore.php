@@ -234,6 +234,10 @@ class victoryCore
         $id = $unit->id;
         $b = Battle::getBattle();
         $cmdRange = 4;
+        if($unit->nationality == "Beluchi" || $unit->nationality == "Sikh"){
+            $cmdRange = 3;
+        }
+
 
         if(($b->gameRules->phase == RED_MOVE_PHASE || $b->gameRules->phase == BLUE_MOVE_PHASE)){
             foreach($this->headQuarters as $hq){
