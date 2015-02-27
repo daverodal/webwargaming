@@ -3,7 +3,7 @@
         body{
             background:#ccc;
             color:#333;
-            background: url("<?=base_url("js/British_Indian_Empire_1909_Imperial_Gazetteer_of_India.png")?>") #333 no-repeat;
+            background: url("<?=base_url("js/Types_of_ordnance._British_guns-elevated_position_mobile_mount_at_the_front._Engineer_Division_Ordnance_Department...._-_NARA_-_533676.png")?>") #333 no-repeat;
             background-position: 25% 0;
             background-size:100%;
         }
