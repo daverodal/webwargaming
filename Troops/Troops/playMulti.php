@@ -1,5 +1,5 @@
     <style type="text/css">
-        <?php include "playAs.css";?>
+<!--        --><?php //include "playAs.css";?>
         body{
             background:#ccc;
             color:#333;
