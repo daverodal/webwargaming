@@ -1,58 +1,107 @@
-/*
-Error: File to import not found or unreadable: ../textShadow.
-       Load paths:
-         
-        on line 1 of playAs.scss
+.wrapper {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px;
+  border: 3px solid gray; }
 
-1: @import "../textShadow";
-2: @import "../commonPlay";
-3: h1{
-4:   color:#f66;
-5:   @include textShadow(white);
-6: }
+a {
+  color: #000; }
 
-Backtrace:
-playAs.scss:1
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/import_node.rb:66:in `rescue in import'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/import_node.rb:45:in `import'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/import_node.rb:28:in `imported_file'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/import_node.rb:37:in `css_import?'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:301:in `visit_import'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/stack.rb:79:in `block in with_base'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/stack.rb:115:in `with_frame'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/stack.rb:79:in `with_base'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:52:in `map'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:157:in `visit'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:8:in `visit'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/root_node.rb:36:in `css_tree'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/engine.rb:368:in `_render_with_sourcemap'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/engine.rb:285:in `render_with_sourcemap'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/plugin/compiler.rb:489:in `update_stylesheet'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/plugin/compiler.rb:209:in `each'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/plugin.rb:82:in `update_stylesheets'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/exec/sass_scss.rb:350:in `watch_or_update'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/exec/sass_scss.rb:50:in `process_result'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/exec/base.rb:52:in `parse'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/lib/sass/exec/base.rb:19:in `parse!'
-/Users/david_rodal/.rvm/gems/ruby-2.0.0-p576/gems/sass-3.4.5/bin/scss:13:in `<top (required)>'
-/usr/bin/scss:23:in `load'
-/usr/bin/scss:23:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: File to import not found or unreadable: ../textShadow.\A        Load paths:\A          \A         on line 1 of playAs.scss\A \A 1: @import \"../textShadow\";\A 2: @import \"../commonPlay\";\A 3: h1{\A 4:   color:#f66;\A 5:   @include textShadow(white);\A 6: }"; }
+li {
+  list-style-type: none; }
+
+div {
+  text-align: center; }
+
+.center {
+  float: left;
+  width: 8%;
+  font-size: 45px; }
+
+.left {
+  width: 45%;
+  float: left; }
+
+.right {
+  width: 45%;
+  float: right; }
+
+.clear {
+  clear: both; }
+
+.big {
+  font-size: 50px;
+  text-align: center; }
+
+.attribution {
+  background: rgba(255, 255, 255, 0.6); }
+
+.attribution a {
+  color: red;
+  text-shadow: 1px 1px 1px black; }
+
+footer.attribution {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px;
+  border: 3px solid gray; }
+
+h1 {
+  color: #f66;
+  text-shadow: 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white; }
+
+h2 {
+  text-align: center;
+  font-size: 38px;
+  font-family: 'Great Vibes';
+  color: #f66;
+  text-shadow: 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white; }
+
+.rebel {
+  font-size: 40px; }
+
+.loyalist {
+  font-size: 40px;
+  color: blue; }
+
+.link {
+  font-size: 40px;
+  text-decoration: none;
+  color: #f66;
+  text-shadow: 3px 3px 3px black, 3px 3px 3px black, 3px 3px 3px black, 3px 3px 3px black, 3px 3px 3px black; }
+
+legend {
+  color: white; }
+
+fieldset {
+  background: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 30%;
+  margin: 60px auto;
+  border-radius: 15px; }
+
+.clear {
+  clear: both; }
+
+a:hover {
+  text-decoration: underline; }
+
+.attribution {
+  background: rgba(255, 255, 255, 0.6); }
+
+.attribution a {
+  color: red;
+  text-shadow: 1px 1px 1px black; }
+
+footer.attribution {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px;
+  border: 3px solid gray; }
+
+/*# sourceMappingURL=playAs.css.map */
