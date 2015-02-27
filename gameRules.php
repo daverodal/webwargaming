@@ -599,7 +599,7 @@ class GameRules
         if ($this->moveRules->anyUnitIsMoving) {
             $this->moveRules->stopMove($this->force->units[$this->moveRules->movingUnitId]);
         }
-        if ($this->force->moreCombatToResolve() == false && $this->moveRules->anyUnitIsMoving == false) {
+        if ((($this->gameHasCombatResolutionMode  == false) ||  ($this->force->moreCombatToResolve() == false)) && $this->moveRules->anyUnitIsMoving == false) {
             /* @var Battle $battle */
             $battle = Battle::getBattle();
             $victory = $battle->victory;

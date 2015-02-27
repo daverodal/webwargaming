@@ -39,6 +39,8 @@ define("BLUE_DISPLAY_PHASE",13);
 define("RED_DISPLAY_PHASE",14);
 define("RED_DEPLOY_PHASE",15);
 define("BLUE_SURPRISE_MOVE_PHASE",16);
+define("BLUE_COMBAT_RES_PHASE",17);
+
 
 
 $phase_name = array();
@@ -57,6 +59,8 @@ $phase_name[12] = "Loyalist Replacement";
 $phase_name[13] = "";
 $phase_name[14] = "";
 $phase_name[15] = "red deploy phase";
+$phase_name[16] = "blue suprise move phase";
+$phase_name[17] = "Blue Combat Res phase ";
 
 
 $phase_name = array();
