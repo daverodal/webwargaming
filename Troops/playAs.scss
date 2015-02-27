@@ -1,0 +1,141 @@
+
+body{
+  background:#000;
+  background-repeat: no-repeat;
+  background-position:center 10%;
+  background-size:100%;
+}
+h2{
+  color:#f66;
+  text-shadow: 0 0 3px black,0 0 3px black,0 0 3px black,0 0 3px black,0 0 3px black,0 0 3px black,
+  0 0 3px black,0 0 3px black;
+}
+h1{
+  text-align:center;
+  font-size:90px;
+  font-family:'Pinyon Scrip';
+  color:#f66;
+  margin-top:0px;
+  text-shadow: 0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,
+  0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,
+  0 0 5px black,0 0 5px black,0 0 5px black, 0 0 5px black,0 0 5px black,0 0 5px black,0 0 5px black,
+  0 0 5px black,0 0 5px black,0 0 5px black;
+}
+.link{
+  font-size:40px;
+  text-decoration: none;
+  color:#f66;
+  text-shadow: 3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black,3px 3px 3px black
+}
+legend   {
+  color:black;
+}
+fieldset{
+  text-align: center;
+  width:30%;
+  margin:0px;
+  position:absolute;
+  top:300px;
+  left:50%;
+  margin-left:-15%;
+  background-color: rgba(255,255,255,.4);
+}
+.attribution{
+  background: rgba(255,255,255,.6);
+}
+.attribution a{
+  color:red;
+  text-shadow: 1px 1px 1px black;
+}
+footer.attribution{
+  text-align: center;
+  background:rgba(255,255,255,.8);
+  border-radius:15px;
+  padding:20px;
+  margin:20px;
+  border:3px solid gray;
+}
+
+
+.wrapper{
+  background:rgba(255,255,255,.8);
+  border-radius:15px;
+  padding:20px;
+  margin:20px;
+  border:3px solid gray;
+}
+a{
+  color:#000;
+}
+li{
+  list-style-type: none;
+}
+div{
+  text-align:center;
+}
+.center{
+  float:left;
+  width:8%;
+  font-size:45px;
+}
+.left{
+  width:45%;
+
+  float:left;
+}
+.right{
+  width:45%;
+
+  float:right;
+}
+.clear{
+  clear:both;
+}
+
+.big{
+  font-size: 50px;
+  text-align: center;
+}
+
+
+.British{
+  color:#f00;
+}
+
+.Sikh {
+  color: #865900;
+}
+
+.Rebel, .rebel{
+  color:red;
+}
+.Loyalist, .loyalist{
+  color:blue;
+}
+
+.Austrian{
+  color:#f00;
+}
+
+.Prussian{
+  color:rgb(255,253,127);
+  color:rgb(12,0,162);
+  border-color:rgb(255,253,127) !important;
+}
+
+.Beluchi{
+  color:#865900;
+  border-color:rgb(61,110,255) !important;
+}
+
+.Russian{
+  color:rgb(76,184,0);
+  border-color:rgb(76,184,0) !important;
+}
+
+.French{
+  color:rgb(61,110,255);;
+  border-color:rgb(61,110,255) !important;
+}
+
+
