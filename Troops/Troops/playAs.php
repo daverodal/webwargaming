@@ -5,6 +5,7 @@
 <link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
 <style>
+    <?php include "playAs.css";?>
     body{
         background:#000;
         background:url("<?=base_url("js/Types_of_ordnance._British_guns-elevated_position_mobile_mount_at_the_front._Engineer_Division_Ordnance_Department...._-_NARA_-_533676.png")?>") #333 no-repeat;
@@ -53,7 +54,7 @@
 </style>
 <div class="backBox">
 <h2 style="text-align:center;font-size:30px;font-family:'Monsieur La Doulaise'"> Welcome to</h2>
-    <h1 style=""><span>Ferozesha Day One</span></h1>
+    <h1 style=""><span>Troops!</span></h1>
 </div>
 <div style="clear:both"></div>
 <fieldset ><Legend>Play As </Legend>
@@ -61,3 +62,6 @@
     <a  class="link" href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>/">Play Multi</a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a><br>
 </fieldset>
+<footer class="attribution">
+    John Warwick Brooke [Public domain or Public domain], <a href="http://commons.wikimedia.org/wiki/File%3ATypes_of_ordnance._British_guns-elevated_position_mobile_mount_at_the_front._Engineer_Division_Ordnance_Department...._-_NARA_-_533676.tif">via Wikimedia Commons</a>
+</footer>
