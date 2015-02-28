@@ -136,11 +136,16 @@ class chawinda1965VictoryCore extends victoryCore
     public function gameOver()
     {
         $battle = Battle::getBattle();
-        $kiev = $battle->specialHexC[0];
-        if ($battle->mapData->getSpecialHex($kiev) === PAKISTANI_FORCE) {
+        $pakistaniVP = $this->victoryPoints[PAKISTANI_FORCE];
+        $indianVP = $this->victoryPoints[INDIAN_FORCE];
+        if($pakistaniVP > $indianVP){
             $battle->gameRules->flashMessages[] = "Pakistani Player Wins";
-        }else{
+        }
+        if($pakistaniVP < $indianVP){
             $battle->gameRules->flashMessages[] = "Indian Player Wins";
+        }
+        if($pakistaniVP == $indianVP){
+            $battle->gameRules->flashMessages[] = "Tie Game";
         }
         $this->gameOver = true;
         return true;
