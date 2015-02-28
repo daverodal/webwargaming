@@ -10,8 +10,8 @@ class CombatResultsTable extends ModernCombatResultsTable
     function __construct(){
         $this->combatResultsHeader = array("1:1","2:1","3:1","4:1","5:1","6:1");
         $this->combatResultsTable = array(
-            array(AE, AE, AR, DR, DR, DR),
-            array(AE, AR, DR, DR, DE, DE),
+            array(AL, AL, AR, DR, DR, DR),
+            array(AL, AR, DR, DR, DE, DE),
             array(AR, AR, DR, DE, DE, DE),
             array(AR, DR, DR, DR, DE, DE),
             array(DR, DR, EX0, EX0, DE, DE),
@@ -19,8 +19,8 @@ class CombatResultsTable extends ModernCombatResultsTable
         );
 
         $this->combatResultsTableDetermined = array(
-            array(AE,   AE,   AR,   DR,    DE,  DE),
-            array(AE,   AR,   DR,   DE,    DE,  DE),
+            array(AL,   AL,   AR,   DR,    DE,  DE),
+            array(AL,   AR,   DR,   DE,    DE,  DE),
             array(AR,   DR,   DE,   DE,    DE,  DE),
             array(AR,   EX03, EX02, EX02,  DE,  DE),
             array(EX03, EX02, EX0,  EX0,   EX0, DE),
