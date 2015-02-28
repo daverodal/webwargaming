@@ -89,8 +89,8 @@ class Chawinda1965 extends ModernLandBattle
         $numPakistaniInf = 6;
         if($scenario->bigPakistani){
             $numPakistaniInf += 6;
-            $infStrength = 2;
-            $halfInfStrength = 1;
+            $infStrength = 3;
+            $halfInfStrength = 2;
         }
 
         for($i = 0; $i < 4;$i++){
