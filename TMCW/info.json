@@ -203,9 +203,14 @@
         "path": "TMCW",
         "genre": "20'th Century Games",
         "fileName": "RetreatOne/RetreatOne.php",
+        "description":"Hypothetical battle taking place in north africa, in the mid Twentieth Century",
+        "params":{
+            "commandControl":true
+        },
         "scenarios": {
             "Main": {
                 "description": "Laconians vs Caprolians",
+                "longDescription":"Added command control for retreating side, to make them retreat slower.",
                 "supply": true,
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,

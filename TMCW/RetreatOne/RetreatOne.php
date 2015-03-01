@@ -75,6 +75,13 @@ class RetreatOne extends ModernLandBattle
     public function init()
     {
 
+
+        $this->force->addUnit("hq", CAPROLIANS_FORCE, "5015", "multiInf.png", 1, 1, 5, false, STATUS_READY, "A", 1, 1, "caprolians", true, 'hq');
+
+        $this->force->addUnit("hq", CAPROLIANS_FORCE, "4307", "multiInf.png", 1, 1, 5, false, STATUS_READY, "A", 1, 1, "caprolians", true, 'hq');
+
+        $this->force->addUnit("hq", CAPROLIANS_FORCE, "116", "multiInf.png", 1, 1, 5, false, STATUS_READY, "A", 1, 1, "caprolians", true, 'hq');
+
         for($i = 0;$i < 16;$i++){
             $this->force->addUnit("xx", CAPROLIANS_FORCE, "deployBox", "multiInf.png", 3, 1, 3, false, STATUS_CAN_DEPLOY, "A", 1, 1, "caprolians", true, 'inf');
         }

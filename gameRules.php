@@ -402,7 +402,8 @@ class GameRules
                                 $this->flashMessages[] = "Required Combats Remain";
                             }
                         } else {
-                            $this->mode = COMBAT_SETUP_MODE;
+
+//                            $this->selectNextPhase($click);
                         }
                         break;
                     default:
@@ -606,7 +607,11 @@ class GameRules
             for ($i = 0; $i < count($this->phaseChanges); $i++) {
                 if ($this->phaseChanges[$i]->currentPhase == $this->phase) {
                     $this->phase = $this->phaseChanges[$i]->nextPhase;
+//                    $prevMode = $this->mode;
                     $this->mode = $this->phaseChanges[$i]->nextMode;
+//                    if($this->gameHasCombatResolutionMode === false && $this->mode == COMBAT_RESOLUTION_MODE && $prevMode == COMBAT_SETUP_MODE){
+//                        $this->combatRules->combatsToResolve = $this->combatRules->combats;
+//                    }
                     $this->replacementsAvail = false;
                     $this->phaseClicks[] = $click + 1;
                     $this->phaseClickNames[] = $phase_name[$this->phase];

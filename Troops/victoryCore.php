@@ -12,7 +12,6 @@ class victoryCore
     public $movementCache;
     public $gameOver;
 
-    public $headQuarters;
 
     function __construct($data)
     {
@@ -20,12 +19,10 @@ class victoryCore
             $this->movementCache = $data->victory->movementCache;
             $this->victoryPoints = $data->victory->victoryPoints;
             $this->gameOver = $data->victory->gameOver;
-            $this->headQuarters = $data->headQuarters;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
             $this->gameOver = false;
-            $this->headQuarters = [];
         }
     }
 
@@ -35,7 +32,6 @@ class victoryCore
         $ret->victoryPoints = $this->victoryPoints;
         $ret->movementCache = $this->movementCache;
         $ret->gameOver = $this->gameOver;
-        $ret->headQuarters = $this->headQuarters;
         return $ret;
     }
 
@@ -106,30 +102,7 @@ class victoryCore
         }
         return false;
     }
-    private function isMollwitz(){
-        $mollwitz = [602,702];
-        $b = Battle::getBattle();
-        $force = $b->force;
-        $units = $force->units;
-        foreach($units as $unit){
-            if($unit->forceId == PRUSSIAN_FORCE && in_array($unit->hexagon->name, $mollwitz) ){
-                return true;
-            }
-        }
-        return false;
-    }
-    private function isNeudorf(){
-        $neudorf = [911];
-        $b = Battle::getBattle();
-        $force = $b->force;
-        $units = $force->units;
-        foreach($units as $unit){
-            if($unit->forceId == AUSTRIAN_FORCE && in_array($unit->hexagon->name, $neudorf) ){
-                return true;
-            }
-        }
-        return false;
-    }
+
 
     public function playerTurnChange($arg){
         global $force_name;
@@ -149,127 +122,7 @@ class victoryCore
 
 
     }
-    public function postCombatResults($args){
-        list($defenderId, $attackers, $combatResults, $dieRoll) = $args;
-        $b = Battle::getBattle();
-        foreach ($attackers as $attackerId => $val) {
-            $unit = $b->force->units[$attackerId];
-            if ($unit->class == "artillery" && $unit->status == STATUS_CAN_ADVANCE) {
-                $unit->status = STATUS_ATTACKED;
-            }
-        }
-    }
-    public function calcFromAttackers(){
-        $mapData = MapData::getInstance();
 
-        $battle = Battle::getBattle();
-        /* @var CombatRules $cR */
-        $cR = $battle->combatRules;
-        /* @var Force $force */
-        $force = $battle->force;
-        $force->clearRequiredCombats();
-        $defenderForceId = $force->defendingForceId;
-        foreach($cR->attackers as $attackId => $combatId){
-            $mapHex = $mapData->getHex($force->getUnitHexagon($attackId)->name);
-            $neighbors = $mapHex->neighbors;
-            foreach($neighbors as $neighbor){
-                /* @var MapHex $hex */
-                $hex = $mapData->getHex($neighbor);
-                if($hex->isOccupied($defenderForceId)){
-                    $units = $hex->forces[$defenderForceId];
-                    foreach($units as $unitId=>$unitVal){
-                        $requiredVal = true;
-                        $combatId = $cR->defenders->$unitId;
-                        if($combatId !== null){
-                            $attackers = $cR->combats->$combatId->attackers;
-                            if($attackers){
-                                if(count((array)$attackers) > 0){
-                                    $requiredVal = false;
-                                }
-                            }
-
-                        }
-
-                        $force->requiredDefenses->$unitId = $requiredVal;
-                    }
-                }
-            }
-        }
-    }
-    public function postUnsetAttacker($args){
-        $this->calcFromAttackers();
-        list($unit) = $args;
-        $id = $unit->id;
-    }
-    public function postUnsetDefender($args){
-        $this->calcFromAttackers();
-
-        list($unit) = $args;
-    }
-    public function postSetAttacker($args){
-        $this->calcFromAttackers();
-
-        list($unit) = $args;
-    }
-    public function postSetDefender($args){
-        $this->calcFromAttackers();
-
-    }
-
-
-    public function preRecoverUnits(){
-        $this->headQuarters = [];
-    }
-
-    public function preRecoverUnit($arg){
-        $unit = $arg[0];
-        $b = Battle::getBattle();
-        $id = $unit->id;
-        if($unit->class == 'hq' && $unit->hexagon->name && $unit->forceId == $b->force->attackingForceId){
-            $this->headQuarters[] = $id;
-        }
-    }
-
-    public function checkCommand($unit){
-        $id = $unit->id;
-        $b = Battle::getBattle();
-        $cmdRange = 4;
-        if($unit->nationality == "Beluchi" || $unit->nationality == "Sikh"){
-            $cmdRange = 3;
-        }
-
-
-        if(($b->gameRules->phase == RED_MOVE_PHASE || $b->gameRules->phase == BLUE_MOVE_PHASE)){
-            foreach($this->headQuarters as $hq){
-                if($id == $hq){
-                    return;
-                }
-                $los = new Los();
-
-                $los->setOrigin($b->force->getUnitHexagon($id));
-                $los->setEndPoint($b->force->getUnitHexagon($hq));
-                $range = $los->getRange();
-                if($range <= $cmdRange){
-                    return;
-                }
-            }
-            $unit->status = STATUS_UNAVAIL_THIS_PHASE;
-            return;
-        }
-//        if(($b->gameRules->phase == RED_COMBAT_PHASE || $b->gameRules->phase == BLUE_COMBAT_PHASE)){
-//            foreach($this->headQuarters as $hq){
-//                $los = new Los();
-//
-//                $los->setOrigin($b->force->getUnitHexagon($id));
-//                $los->setEndPoint($b->force->getUnitHexagon($hq));
-//                $range = $los->getRange();
-//                if($range <= $cmdRange){
-//                    return;
-//                }
-//            }
-//            $unit->status = STATUS_UNAVAIL_THIS_PHASE;
-//        }
-    }
 
     public function postRecoverUnit($args)
     {
@@ -282,9 +135,6 @@ class victoryCore
         }
         if(($b->gameRules->phase == RED_COMBAT_PHASE || $b->gameRules->phase == BLUE_COMBAT_PHASE) && $unit->forceMarch){
             $unit->status = STATUS_UNAVAIL_THIS_PHASE;
-        }
-        if($b->scenario->commandControl){
-            $this->checkCommand($unit);
         }
 
     }

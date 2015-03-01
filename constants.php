@@ -40,6 +40,7 @@ define("RED_DISPLAY_PHASE",14);
 define("RED_DEPLOY_PHASE",15);
 define("BLUE_SURPRISE_MOVE_PHASE",16);
 define("BLUE_COMBAT_RES_PHASE",17);
+define("RED_COMBAT_RES_PHASE",18);
 
 
 
@@ -79,6 +80,9 @@ $phase_name[12] = "<span class='playerTwoFace'>{$force_name[2]}</span> Replaceme
 $phase_name[13] = "";
 $phase_name[14] = "";
 $phase_name[15] = "<span class='playerTwoFace'>{$force_name[2]}</span> Deploy";
+$phase_name[16] = "<span class='playerTwoFace'>{$force_name[1]}</span> Surprise";
+$phase_name[17] = "<span class='playerTwoFace'>{$force_name[1]}</span> Resolution";
+$phase_name[18] = "<span class='playerTwoFace'>{$force_name[2]}</span> Resolution";
 
 
 

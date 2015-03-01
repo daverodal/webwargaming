@@ -18,6 +18,7 @@ class retreatOneVictoryCore extends victoryCore
     public $loyalistGoal;
     public $gameOver = false;
 
+    public $headQuarters;
 
     function __construct($data)
     {
@@ -29,12 +30,16 @@ class retreatOneVictoryCore extends victoryCore
             $this->rebelGoal = $data->victory->rebelGoal;
             $this->loyalistGoal = $data->victory->loyalistGoal;
             $this->gameOver = $data->victory->gameOver;
+            $this->headQuarters = $data->victory->headQuarters;
+
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
             $this->combatCache = new stdClass();
             $this->rebelGoal = [];
             $this->loyalistGoal = [];
+            $this->headQuarters = [];
+
         }
     }
 
@@ -51,6 +56,7 @@ class retreatOneVictoryCore extends victoryCore
         $ret->rebelGoal = $this->rebelGoal;
         $ret->loyalistGoal = $this->loyalistGoal;
         $ret->gameOver = $this->gameOver;
+        $ret->headQuarters = $this->headQuarters;
         return $ret;
     }
 
@@ -192,7 +198,46 @@ class retreatOneVictoryCore extends victoryCore
             $this->loyalistGoal = $goal;
 
         }
+        $this->headQuarters = [];
 
+    }
+
+
+    public function preRecoverUnit($arg){
+        $unit = $arg[0];
+        $b = Battle::getBattle();
+        $id = $unit->id;
+        if($unit->class == 'hq' && $unit->hexagon->name && $unit->forceId == $b->force->attackingForceId){
+            $this->headQuarters[] = $id;
+        }
+    }
+
+    public function checkCommand($unit){
+        $id = $unit->id;
+        $b = Battle::getBattle();
+        $cmdRange = 8;
+        if($unit->nationality == "Beluchi" || $unit->nationality == "Sikh"){
+            $cmdRange = 3;
+        }
+
+
+        if(($b->gameRules->phase == RED_MOVE_PHASE || $b->gameRules->phase == BLUE_MOVE_PHASE)){
+            foreach($this->headQuarters as $hq){
+                if($id == $hq){
+                    return;
+                }
+                $los = new Los();
+
+                $los->setOrigin($b->force->getUnitHexagon($id));
+                $los->setEndPoint($b->force->getUnitHexagon($hq));
+                $range = $los->getRange();
+                if($range <= $cmdRange){
+                    return;
+                }
+            }
+            $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+            return;
+        }
     }
 
     public function postRecoverUnit($args)
@@ -216,7 +261,14 @@ class retreatOneVictoryCore extends victoryCore
             }
             $this->unitSupplyEffects($unit, $goal, $bias, $this->supplyLen);
         }
+        if($unit->forceId === CAPROLIANS_FORCE){
+            $this->checkCommand($unit);
+        }
+        if($b->gameRules->turn <= 2 && $b->gameRules->phase == RED_MOVE_PHASE && $unit->class == 'hq') {
+            $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+        }
     }
+
 
     public function preCombatResults($args)
     {
