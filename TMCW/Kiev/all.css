@@ -1,3 +1,39 @@
+/**
+ *
+ * Copyright 2012-2015 David Rodal
+ * User: David Markarian Rodal
+ * Date: 3/8/15
+ * Time: 5:48 PM
+ *
+ *  This program is free software; you can redistribute it
+ *  and/or modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation;
+ *  either version 2 of the License, or (at your option) any later version
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/*
+Copyright 2012-2015 David Rodal
+
+This program is free software; you can redistribute it
+and/or modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later version->
+
+This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   */
 body {
   min-width: 675px;
   margin: 0;
@@ -151,6 +187,22 @@ h4:hover {
   clear: both !important;
   float: none !important; }
 
+/*
+Copyright 2012-2015 David Rodal
+
+This program is free software; you can redistribute it
+and/or modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later version->
+
+This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   */
 .love {
   color: peace; }
 
@@ -819,6 +871,23 @@ svg marker#head {
   #timeMachine, #timeSurge {
     font-size: 45px;
     width: 45px; } }
+/**
+ *
+ * Copyright 2012-2015 David Rodal
+ *
+ *  This program is free software; you can redistribute it
+ *  and/or modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation;
+ *  either version 2 of the License, or (at your option) any later version
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /* Unit Styles */
 .playerOne {
   background: #df5842;
@@ -857,6 +926,23 @@ svg marker#head {
 .reduced {
   color: white; }
 
+/**
+ *
+ * Copyright 2012-2015 David Rodal
+ *
+ *  This program is free software; you can redistribute it
+ *  and/or modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation;
+ *  either version 2 of the License, or (at your option) any later version
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 .unit .unitSize {
   height: 10px;
   font-size: 9px;
@@ -888,6 +974,23 @@ svg marker#head {
 .unit .unit-numbers .infoLen8 {
   letter-spacing: -1px; }
 
+/**
+ *
+ * Copyright 2012-2015 David Rodal
+ *
+ *  This program is free software; you can redistribute it
+ *  and/or modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation;
+ *  either version 2 of the License, or (at your option) any later version
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /* dropdown styles */
 #OBC {
   background: white;
@@ -964,6 +1067,23 @@ svg marker#head {
 #GR {
   width: 600px; }
 
+/**
+ *
+ * Copyright 2012-2015 David Rodal
+ *
+ *  This program is free software; you can redistribute it
+ *  and/or modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation;
+ *  either version 2 of the License, or (at your option) any later version
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 .specialHexesVP .prcVictoryPoints {
   text-shadow: 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 10px gold, 0px 0px 10px gold, 0px 0px 10px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 10px gold, 0px 0px 10px gold, 0px 0px 10px gold; }
 
@@ -973,6 +1093,46 @@ svg marker#head {
 .specialHexesVP .loyalistVictoryPoints {
   text-shadow: 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff; }
 
+/**
+ *
+ * Copyright 2012-2015 David Rodal
+ * User: David Markarian Rodal
+ * Date: 3/8/15
+ * Time: 5:48 PM
+ *
+ *  This program is free software; you can redistribute it
+ *  and/or modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation;
+ *  either version 2 of the License, or (at your option) any later version
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/**
+ *
+ * Copyright 2012-2015 David Rodal
+ * User: David Markarian Rodal
+ * Date: 3/8/15
+ * Time: 5:48 PM
+ *
+ *  This program is free software; you can redistribute it
+ *  and/or modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation;
+ *  either version 2 of the License, or (at your option) any later version
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 .playerOne {
   background: #58c3ff;
   border-color: #58c3ff !important; }

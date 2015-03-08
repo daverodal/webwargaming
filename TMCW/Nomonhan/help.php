@@ -1,4 +1,24 @@
-<style type="text/css">
+<?php/**
+ *
+ * Copyright 2012-2015 David Rodal
+ * User: David Markarian Rodal
+ * Date: 3/8/15
+ * Time: 5:48 PM
+ *
+ *  This program is free software; you can redistribute it
+ *  and/or modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation;
+ *  either version 2 of the License, or (at your option) any later version
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+?><style type="text/css">
     #header{
         /*display:none;*/
     }
@@ -43,7 +63,7 @@
     <p> So towards that end, I created
     this game, "The Martian Civil War" as a first game and proof of concept. It strives to be like many of the WW II games I played
     with a dual movement phase and armor units.</p>
-    <p>I chose the Martian Civil War to go out of my way to not infringe on any copyrights.</p>
+    <p>I chose the Martian Civil War to go out of my way to not infringe on any Copyrights.</p>
     <p>The end goal of this game is to support as many different type of hex based games as possible by as many game designers as possible</p>
     <H2>The Units</H2>
     <h4>Unit Colors</h4>

@@ -9,7 +9,7 @@ It's being released under the license found in the code
 
 -------------------------------------------------------------------------------
 
- copyright (c) 2008-2011 Mark Butler
+ Copyright (c) 2008-2011 Mark Butler
 
  This program is free software; you can redistribute it
 
@@ -27,4 +27,4 @@ It's very rough right now. only two files converted
 
 the goal is to be able to play hex games with remote players via the web.
 
-copyright (c) 2012 David Rodal
+Copyright (c) 2012 David Rodal
