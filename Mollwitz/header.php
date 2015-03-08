@@ -321,6 +321,12 @@ x.register("combatRules", function(combatRules, data){
                     if(combatRules.combatsToResolve[i].useDetermined){
                         useAltColor = " determinedColor";
                     }
+                    if(combatRules.combatsToResolve[i].pinCRT !== false){
+                        oddsDisp = combatRules.combatsToResolve[i].pinCRT + 1;
+                        oddsDisp = $(".col" + oddsDisp).html();
+
+                        useAltColor = " pinnedColor";
+                    }
                     $("#"+i).attr('title',oddsDisp).prepend('<div class="unitOdds'+useAltColor+'">'+oddsDisp+'</div>');;
                     newLine = "<h5>odds = " + oddsDisp + "</h5><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + oddsDisp + "</div>";
                     toResolveLog += newLine;
