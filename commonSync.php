@@ -465,8 +465,7 @@ x.register("gameRules", function(gameRules,data) {
     }
 
     var html = "<span id='turn'>Turn "+turn+" of "+maxTurn+"</span> ";
-    debugger;
-    html += "<span id='phase'>"+gameRules.phase_name[gameRules.phase];
+\    html += "<span id='phase'>"+gameRules.phase_name[gameRules.phase];
     if(gameRules.mode_name[gameRules.mode]){
         html += " "+gameRules.mode_name[gameRules.mode];
     }
