@@ -106,6 +106,7 @@ class troopsVictoryCore extends troopersVictoryCore
         $turn = $gameRules->turn;
         $sikhWin = $britishWin = false;
 
+        return false;
         if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
             $britVic = 40;

@@ -415,8 +415,27 @@ class GameRules
                                 $this->flashMessages[] = "Required Combats Remain";
                             }
                         } else {
-
-//                            $this->selectNextPhase($click);
+                            $this->selectNextPhase($click);
+                            if($this->phase == BLUE_COMBAT_RES_PHASE || $this->phase == RED_COMBAT_RES_PHASE){
+                                $this->combatRules->combatResolutionMode();
+                                $defender = $this->force->defendingForceId;
+                                $attacker = $this->force->attackingForceId;
+                                if($this->combatRules->combatsToResolve) {
+                                    foreach ($this->combatRules->combatsToResolve as $key => $val) {
+                                        if ($this->force->units[$key]->forceId === $defender) {
+                                            $this->force->defendingForceId = $defender;
+                                            $this->force->attackingForceId = $attacker;
+                                        } else {
+                                            $this->force->defendingForceId = $attacker;
+                                            $this->force->attackingForceId = $defender;
+                                        }
+                                        $interaction->dieRoll = $this->combatRules->resolveCombat($key);
+                                        echo "Die " . $interaction->dieRoll;
+                                    }
+                                    $this->force->defendingForceId = $defender;
+                                    $this->force->attackingForceId = $attacker;
+                                }
+                            }
                         }
                         break;
                     default:
