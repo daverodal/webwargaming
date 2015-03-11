@@ -20,8 +20,9 @@
 #tecImage{
   width:800px;
 }
-@include player(British, One, $angloAlliedColor, $angloAlliedWrapperColor);
-@include player(Sikh, Two, $beluchiColor, $beluchiWrapperColor, $beluchiWrapperColor);
+$germanColor: #999;
+@include player(British, Two, $angloAlliedColor, $angloAlliedWrapperColor);
+@include player(German, One, $germanColor, #999, #999);
 
 .unit.Native .counterWrapper {
   background-color: $angloAlliedWrapperColor;
@@ -37,5 +38,5 @@
   color:white;
 }
 p.forceMarch,  p.range {
-  color:white;
+  color:black;
 }

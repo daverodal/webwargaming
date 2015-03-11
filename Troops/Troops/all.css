@@ -207,7 +207,7 @@ You should have received a copy of the GNU General Public License
   backgroundColor: white; }
 
 .dark {
-  background-color: black; }
+  background-color: #000; }
 
 .blueUnit {
   background-color: #84b5ff; }
@@ -531,7 +531,7 @@ You should have received a copy of the GNU General Public License
 
 body {
   background: #eee;
-  color: #333333; }
+  color: #333; }
 
 #status {
   /*height:70px;*/
@@ -1132,8 +1132,8 @@ p.forceMarch, p.range {
 
 p.range {
   font-size: 15px;
-  top: -15px;
-  right: 5px;
+  top: -13px;
+  right: 2px;
   display: block;
   color: black; }
 
@@ -1298,28 +1298,28 @@ p.forceMarch {
 #tecImage {
   width: 800px; }
 
-.playerOne {
+.playerTwo {
   background: #df5842;
   border-color: #df5842 !important; }
 
-.BritishFace, .playerOneFace {
+.BritishFace, .playerTwoFace {
   color: #df5842; }
 
 .British .counterWrapper {
-  background-color: red; }
+  background-color: #f00; }
 
-.playerTwo {
-  background: #c68100;
-  border-color: #c68100 !important; }
+.playerOne {
+  background: #999;
+  border-color: #999 !important; }
 
-.SikhFace, .playerTwoFace {
-  color: #c6c102; }
+.GermanFace, .playerOneFace {
+  color: #999; }
 
-.Sikh .counterWrapper {
-  background-color: #c6c102; }
+.German .counterWrapper {
+  background-color: #999; }
 
 .unit.Native .counterWrapper {
-  background-color: red; }
+  background-color: #f00; }
 
 .sikh.specialHexes {
   background-color: #c6c102; }
@@ -1331,4 +1331,6 @@ p.forceMarch {
   color: white; }
 
 p.forceMarch, p.range {
-  color: white; }
+  color: black; }
+
+/*# sourceMappingURL=all.css.map */
