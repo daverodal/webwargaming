@@ -37,8 +37,11 @@ h4:hover {
 
 .shadowy {
   background-color: rgba(0, 0, 0, .3) !important;
-}
 
+}
+.red-shadowy {
+  background-color: rgba(255, 0, 0, .3) !important;
+}
 #turn, #phase, #status, #victory {
   background: white;
   padding: 0 3px;

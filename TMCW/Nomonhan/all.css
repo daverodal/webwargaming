@@ -51,6 +51,9 @@ h4:hover {
 .shadowy {
   background-color: rgba(0, 0, 0, 0.3) !important; }
 
+.red-shadowy {
+  background-color: rgba(255, 0, 0, 0.3) !important; }
+
 #turn, #phase, #status, #victory {
   background: white;
   padding: 0 3px;
@@ -210,7 +213,7 @@ You should have received a copy of the GNU General Public License
   backgroundColor: white; }
 
 .dark {
-  background-color: black; }
+  background-color: #000; }
 
 .blueUnit {
   background-color: #84b5ff; }
@@ -534,7 +537,7 @@ You should have received a copy of the GNU General Public License
 
 body {
   background: #eee;
-  color: #333333; }
+  color: #333; }
 
 #status {
   /*height:70px;*/
@@ -1164,3 +1167,5 @@ svg marker#head {
 
 .specialHexesVP .loyalistVictoryPoints {
   text-shadow: 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842; }
+
+/*# sourceMappingURL=all.css.map */

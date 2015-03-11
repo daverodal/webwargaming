@@ -47,6 +47,9 @@ h4:hover {
 .shadowy {
   background-color: rgba(0, 0, 0, 0.3) !important; }
 
+.red-shadowy {
+  background-color: rgba(255, 0, 0, 0.3) !important; }
+
 #turn, #phase, #status, #victory {
   background: white;
   padding: 0 3px;
@@ -206,7 +209,7 @@ You should have received a copy of the GNU General Public License
   backgroundColor: white; }
 
 .dark {
-  background-color: black; }
+  background-color: #000; }
 
 .blueUnit {
   background-color: #84b5ff; }
@@ -530,7 +533,7 @@ You should have received a copy of the GNU General Public License
 
 body {
   background: #eee;
-  color: #333333; }
+  color: #333; }
 
 #status {
   /*height:70px;*/
@@ -1314,7 +1317,7 @@ You should have received a copy of the GNU General Public License
   color: #df5842; }
 
 .Allied .counterWrapper {
-  background-color: red; }
+  background-color: #f00; }
 
 .playerTwo #zoom span {
   /*border-color:white;*/ }
@@ -1326,3 +1329,5 @@ You should have received a copy of the GNU General Public License
 .allied.specialHexes {
   background-color: #df5842;
   color: white; }
+
+/*# sourceMappingURL=all.css.map */

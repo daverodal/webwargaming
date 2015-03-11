@@ -156,10 +156,10 @@ class troopsVictoryCore extends troopersVictoryCore
         $b = Battle::getBattle();
 
         /* Deal with Forced March */
-        if($b->gameRules->phase == RED_MOVE_PHASE && $unit->isDisrupted === RED_COMBAT_RES_PHASE){
+        if($b->gameRules->phase == BLUE_FIRST_COMBAT_PHASE && $unit->isDisrupted === BLUE_COMBAT_RES_PHASE) {
             $unit->isDisrupted = false;
         }
-        if($b->gameRules->phase == BLUE_MOVE_PHASE && $unit->isDisrupted === BLUE_COMBAT_RES_PHASE){
+        if($b->gameRules->phase == RED_SECOND_COMBAT_PHASE && $unit->isDisrupted === RED_COMBAT_RES_PHASE){
             $unit->isDisrupted = false;
         }
         if($unit->isDisrupted !== false){
