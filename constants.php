@@ -269,6 +269,7 @@ define("DL",11);
 define("EX0", 12);
 define("EX02", 13);
 define("EX03", 14);
+define("DD",15);
 
 $results_name = array();
 //results_name[DE] = "Defender eliminated";
@@ -291,6 +292,7 @@ $results_name[DL] = "DL";
 $results_name[EX0] = "EX";
 $results_name[EX02] = "EX2";
 $results_name[EX03] = "EX3";
+$results_name[DD] = "DD";
 
 // combat ratio
 $combatRatio_name = array();

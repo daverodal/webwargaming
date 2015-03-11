@@ -25,7 +25,6 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define("DD", NE);
 class CombatResultsTable
 {
     public $combatIndexCount;
@@ -191,20 +190,7 @@ class CombatResultsTable
             if ($unit->class == "infantry") {
                 $combinedArms[$battle->force->units[$attackerId]->class]++;
                 $combatLog .= "$unitStrength Infantry ";
-                if($scenario->jagersdorfCombat){
-                    if ($unit->nationality == "Prussian" && $isClear && !$acrossRiver) {
-                        $unitStrength++;
-                        $combatLog .= "+1 for attack into clear ";
-                    }
-                    if ($unit->nationality == "Russian" && ($isTown || $isForest) && !$acrossRiver) {
-                        $unitStrength++;
-                        $combatLog .= "+1 for attack into town or forest ";
-                    }
-                }
-                if (($unit->nationality == "Beluchi" || $unit->nationality == "Sikh") && ($isTown || $isForest) && !$acrossRiver) {
-                    $unitStrength++;
-                    $combatLog .= "+1 for attack into town or forest ";
-                }
+
                 if ($isSwamp || $attackerIsSwamp || $acrossRiver || $attackerIsSunkenRoad || $acrossRedoubt || $attackUpHill) {
                     if(!$terrainReason){
                         $terrainReason = " terrain ";
@@ -255,30 +241,6 @@ class CombatResultsTable
                     }
                 }
             }
-            if ($unit->class == "artillery" || $unit->class == "horseartillery") {
-                $combatLog .= "$unitStrength ".ucfirst($unit->class)." ";
-                if($isSwamp || $acrossRedoubt || $attackUpHill){
-                    if($attackUpHill){
-                        $unitStrength *= .75;
-                        $combatLog .= "attacker 3/4 for $terrainReason ";
-                    }else{
-                        $unitStrength /= 2;
-                        $combatLog .= "attacker halved for $terrainReason ";
-                    }
-                    if(!$terrainReason){
-                        $terrainReason = " terrain ";
-                    }
-                }
-                $class = $unit->class;
-                if($class == 'horseartillery'){
-                    $class = 'artillery';
-                }
-                if($unit->nationality != "Beluchi"){
-                    $combinedArms[$class]++;
-                }else{
-                    $combatLog .= "no combined arms bonus for Beluchi";
-                }
-            }
             $combatLog .= "<br>";
             $attackStrength += $unitStrength;
         }
@@ -312,32 +274,9 @@ class CombatResultsTable
             }
 
             $clearHex = !$notClearHex;
-            if(($unit->class == 'artillery' || $unit->class == 'horseartillery') && !$isTown){
-                if($scenario->doubleArt){
-                    $combatLog .= "doubled for defending in non town ";
-                }else{
-                    $combatLog .= "1.5x for defending in non town ";
-                }
-                $artInNonTown = true;
-            }
 
             if ($unit->class != 'cavalry') {
                 $defendersAllCav = false;
-            }
-
-            if($scenario->jagersdorfCombat){
-                if ($unit->forceId == PRUSSIAN_FORCE && $class == "infantry" && $isClear) {
-                    $unitDefense += 1;
-                    $combatLog .= "+1 for defending in clear ";
-                }
-                if ($unit->forceId == RUSSIAN_FORCE && $class == "infantry" && ($isTown || $isForest)) {
-                    $unitDefense += 1;
-                    $combatLog .= "+1 for defending in town or forest ";
-                }
-            }
-            if (($unit->nationality == "Beluchi" || $unit->nationality == "Sikh") && $class == "infantry" && ($isTown || $isForest)) {
-                $unitDefense++;
-                $combatLog .= "+1 for defending into town or forest ";
             }
 
             $defMultiplier = 1;
@@ -367,7 +306,6 @@ class CombatResultsTable
 
         $combatIndex = $this->getCombatIndex($attackStrength, $defenseStrength);
         /* Do this before terrain effects */
-        $combatIndex += $armsShift;
 
         if ($combatIndex >= $this->maxCombatIndex) {
             $combatIndex = $this->maxCombatIndex;
@@ -404,9 +342,6 @@ class CombatResultsTable
         $ratio = $attackStrength / $defenseStrength;
         if ($attackStrength >= $defenseStrength) {
             $combatIndex = floor($ratio) + 2;
-            if ($ratio >= 1.5) {
-                $combatIndex++;
-            }
         } else {
             $combatIndex = 4 - ceil($defenseStrength / $attackStrength);
         }

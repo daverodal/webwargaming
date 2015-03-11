@@ -78,6 +78,7 @@ class unit implements JsonSerializable
     public $dirty;
     public $adjustments;
     public $unitDesig;
+    public $isDisrupted = false;
     /* damage is related to exchangeAmount, damage is always strength points, for victory points,
      * exchangeAmount may be in steps or strength points
      */
@@ -636,6 +637,12 @@ class Force
                 }
                 $this->exchangeAmount += $defUnit->exchangeAmount * $exchangeMultiplier;
                 $defUnit->moveCount = 0;
+                break;
+
+            case DD:
+                $defUnit->status = STATUS_DEFENDED;
+                $defUnit->retreatCountRequired = 0;
+                $defUnit->isDisrupted = $battle->gameRules->phase;
                 break;
 
             case AL:

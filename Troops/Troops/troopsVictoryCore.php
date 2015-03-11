@@ -149,4 +149,21 @@ class troopsVictoryCore extends troopersVictoryCore
         }
         return false;
     }
+
+    public function postRecoverUnit($args)
+    {
+        $unit = $args[0];
+        $b = Battle::getBattle();
+
+        /* Deal with Forced March */
+        if($b->gameRules->phase == RED_MOVE_PHASE && $unit->isDisrupted === RED_COMBAT_RES_PHASE){
+            $unit->isDisrupted = false;
+        }
+        if($b->gameRules->phase == BLUE_MOVE_PHASE && $unit->isDisrupted === BLUE_COMBAT_RES_PHASE){
+            $unit->isDisrupted = false;
+        }
+        if($unit->isDisrupted !== false){
+            $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+        }
+    }
 }
