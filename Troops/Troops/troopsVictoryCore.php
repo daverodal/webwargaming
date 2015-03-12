@@ -45,6 +45,9 @@ class troopsVictoryCore extends troopersVictoryCore
     public function reduceUnit($args)
     {
         $unit = $args[0];
+        $hex = $unit->hexagon;
+        $battle = Battle::getBattle();
+
         $mult = 1;
         if ($unit->nationality == "British") {
             $mult = 2;
@@ -52,8 +55,10 @@ class troopsVictoryCore extends troopersVictoryCore
         if ($unit->forceId == 1) {
             $victorId = 2;
             $this->victoryPoints[$victorId] += $unit->strength * $mult;
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='british'>DE</span>";
         } else {
             $victorId = 1;
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='german'>DE</span>";
             $this->victoryPoints[$victorId] += $unit->strength * $mult;
         }
     }
