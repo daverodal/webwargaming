@@ -339,7 +339,6 @@ x.register("force", function(force,data) {
         }else{
             $("#"+i+" .shadow_mask").removeClass("shadowy");
         }
-        debugger;
         if(units[i].isDisrupted){
             $("#"+i+" .shadow_mask").addClass("red-shadowy");
         }else{

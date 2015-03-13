@@ -161,6 +161,18 @@ class troopsVictoryCore extends troopersVictoryCore
         $b = Battle::getBattle();
 
         /* Deal with Forced March */
+        if($b->gameRules->mode == COMBAT_SETUP_MODE){
+            var_dump($unit->class);
+            if($unit->class === 'infantry'){
+                if( $unit->moveAmountUnused < 2){
+                    $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+                }
+            } else{
+                if($unit->moveAmountUnused !== $unit->maxMove){
+                    $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+                }
+            }
+        }
         if($b->gameRules->phase == BLUE_FIRST_COMBAT_PHASE && $unit->isDisrupted === BLUE_COMBAT_RES_PHASE) {
             $unit->isDisrupted = false;
         }

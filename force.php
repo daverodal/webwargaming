@@ -79,6 +79,7 @@ class unit implements JsonSerializable
     public $adjustments;
     public $unitDesig;
     public $isDisrupted = false;
+    public $moveAmountUnused;
     /* damage is related to exchangeAmount, damage is always strength points, for victory points,
      * exchangeAmount may be in steps or strength points
      */
@@ -282,6 +283,7 @@ class unit implements JsonSerializable
                     $this->status = $status;
                     $this->moveCount = 0;
                     $this->moveAmountUsed = 0;
+                    $this->moveAmountUnused = $this->maxMove;
                     $success = true;
                 }
                 break;
@@ -289,6 +291,7 @@ class unit implements JsonSerializable
             case STATUS_STOPPED:
                 if ($this->status == STATUS_MOVING || $this->status == STATUS_DEPLOYING) {
                     $this->status = $status;
+                    $this->moveAmountUnused = $this->maxMove - $this->moveAmountUsed;
                     $this->moveAmountUsed = $this->maxMove;
 
                     $success = true;
@@ -399,6 +402,7 @@ class unit implements JsonSerializable
         $this->image = $unitImage;
 //        $this->strength = $isReduced ? $unitMinStrength : $unitMaxStrength;
         $this->maxMove = $unitMaxMove;
+        $this->moveAmountUnused = $unitMaxMove;
         $this->maxStrength = $unitMaxStrength;
         $this->minStrength = $unitMinStrength;
         $this->isReduced = $isReduced;
@@ -1219,6 +1223,7 @@ class Force
 //                    if($this->unitIsZOC($id)){
 //                        $status = STATUS_STOPPED;
 //                    }
+
                     if ($phase == BLUE_MECH_PHASE && $this->units[$id]->forceId == BLUE_FORCE && $this->units[$id]->class != "mech") {
                         $status = STATUS_STOPPED;
                     }
@@ -1279,6 +1284,9 @@ class Force
 
                 default:
                     break;
+            }
+            if($phase === BLUE_MOVE_PHASE || $phase === RED_MOVE_PHASE){
+                $this->units[$id]->moveAmountUnused = $this->units[$id]->maxMove;
             }
             $this->units[$id]->combatIndex = 0;
             $this->units[$id]->combatNumber = 0;
