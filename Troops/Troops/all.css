@@ -915,6 +915,10 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
+.Sikh.mg .counterWrapper .counter {
+  background-image: url("../../js/SikhMgBadge.png");
+  background-size: 14px; }
+
 .Beluchi.infantry .counterWrapper .counter {
   background-image: url("../../js/SikhInfBadge.png");
   background-size: 14px; }
@@ -932,6 +936,10 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
+.Beluchi.mg .counterWrapper .counter {
+  background-image: url("../../js/SikhMgBadge.png");
+  background-size: 14px; }
+
 .British.infantry .counterWrapper .counter {
   background-image: url("../../js/BritInfBadge.png");
   background-size: 14px; }
@@ -947,6 +955,31 @@ svg marker#head {
 .British.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.British.mg .counterWrapper .counter {
+  background-image: url("../../js/BritMgBadge.png");
+  background-size: 14px; }
+
+.German.infantry .counterWrapper .counter {
+  background-image: url("../../js/GermanInfBadge.png");
+  background-size: 14px; }
+
+.German.cavalry .counterWrapper .counter {
+  background-image: url("../../js/GermanCavBadge.png");
+  background-size: 14px; }
+
+.German.artillery .counterWrapper .counter {
+  background-image: url("../../js/GermanArtBadge.png");
+  background-size: 14px; }
+
+.German.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.German.mg .counterWrapper .counter {
+  background-image: url("../../js/GermanMgBadge.png");
   background-size: 14px; }
 
 .British.horseartillery .counterWrapper .counter {
@@ -970,6 +1003,10 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
+.Native.mg .counterWrapper .counter {
+  background-image: url("../../js/NativeMgBadge.png");
+  background-size: 14px; }
+
 .Austrian.infantry .counterWrapper .counter {
   background-image: url("../../js/AusInfBadge.png");
   background-size: 14px; }
@@ -985,6 +1022,10 @@ svg marker#head {
 .Austrian.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Austrian.mg .counterWrapper .counter {
+  background-image: url("../../js/AusMgBadge.png");
   background-size: 14px; }
 
 .Prussian.infantry .counterWrapper .counter {
@@ -1004,6 +1045,10 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
+.Prussian.mg .counterWrapper .counter {
+  background-image: url("../../js/PruMgBadge.png");
+  background-size: 14px; }
+
 .Russian.infantry .counterWrapper .counter {
   background-image: url("../../js/RusInfBadge.png");
   background-size: 14px; }
@@ -1019,6 +1064,10 @@ svg marker#head {
 .Russian.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Russian.mg .counterWrapper .counter {
+  background-image: url("../../js/RusMgBadge.png");
   background-size: 14px; }
 
 .French.infantry .counterWrapper .counter {
@@ -1038,6 +1087,10 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
+.French.mg .counterWrapper .counter {
+  background-image: url("../../js/FrenchMgBadge.png");
+  background-size: 14px; }
+
 .AngloAllied.infantry .counterWrapper .counter {
   background-image: url("../../js/AngInfBadge.png");
   background-size: 14px; }
@@ -1053,6 +1106,10 @@ svg marker#head {
 .AngloAllied.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.AngloAllied.mg .counterWrapper .counter {
+  background-image: url("../../js/AngMgBadge.png");
   background-size: 14px; }
 
 .Anglo.infantry .counterWrapper .counter {
@@ -1072,6 +1129,10 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
+.Anglo.mg .counterWrapper .counter {
+  background-image: url("../../js/AngMgBadge.png");
+  background-size: 14px; }
+
 .Allied.infantry .counterWrapper .counter {
   background-image: url("../../js/AngInfBadge.png");
   background-size: 14px; }
@@ -1087,6 +1148,10 @@ svg marker#head {
 .Allied.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Allied.mg .counterWrapper .counter {
+  background-image: url("../../js/AngMgBadge.png");
   background-size: 14px; }
 
 #header #GR a {

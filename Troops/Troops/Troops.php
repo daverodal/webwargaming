@@ -21,6 +21,9 @@ define("GERMAN_FORCE", 1);
 
 global $force_name;
 $force_name[BRITISH_FORCE] = "British";
+
+$force_name[BRITISH_FORCE] = "Filthy Belgian Bastards";
+
 $force_name[GERMAN_FORCE] = "German";
 require_once "TroopsCore.php";
 
@@ -105,27 +108,57 @@ class Troops extends TroopsCore
         $scenario = $this->scenario;
 
 
-        for ($i = 0; $i < 26; $i++) {
-            $this->force->addUnit("infantry-1", GERMAN_FORCE, "deployBox", "GermanInfBadge.png", 7, 7, 5, true, STATUS_CAN_DEPLOY, "A", 1, 5, "German", false, 'infantry');
-        }
-        for ($i = 0; $i < 3; $i++) {
-            $this->force->addUnit("infantry-1", GERMAN_FORCE, "deployBox", "GermanCavBadge.png", 17, 17, 3, true, STATUS_CAN_DEPLOY, "A", 1, 10, "German", false, 'mg');
-        }
-        for ($i = 0; $i < 4; $i++) {
-            $this->force->addUnit("infantry-1", GERMAN_FORCE, "deployBox", "GermanArtBadge.png", 10, 10, 4, true, STATUS_CAN_DEPLOY, "A", 1, 25, "German", false, 'artillery');
-        }
+        if($scenario->seven){
+            for ($i = 0; $i < 24; $i++) {
+                $this->force->addUnit("infantry-1", GERMAN_FORCE, "deployBox", "GermanInfBadge.png", 7, 7, 5, true, STATUS_CAN_DEPLOY, "A", 1, 5, "German", false, 'infantry');
+            }
+            for ($i = 0; $i < 2; $i++) {
+                $this->force->addUnit("infantry-1", GERMAN_FORCE, "deployBox", "GermanCavBadge.png", 17, 17, 3, true, STATUS_CAN_DEPLOY, "A", 1, 10, "German", false, 'mg');
+            }
+            for ($i = 0; $i < 4; $i++) {
+                $this->force->addUnit("infantry-1", GERMAN_FORCE, "deployBox", "GermanArtBadge.png", 10, 10, 4, true, STATUS_CAN_DEPLOY, "A", 1, 25, "German", false, 'artillery');
+            }
+            for ($i = 0; $i < 2; $i++) {
+                $this->force->addUnit("infantry-1", GERMAN_FORCE, "deployBox", "GermanArtBadge.png", 9, 9, 4, true, STATUS_CAN_DEPLOY, "A", 1, 25, "German", false, 'artillery');
+            }
 
-        /* British */
 
-        for ($i = 0; $i < 20; $i++) {
+            /* Belgian */
 
-            $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 11, 11, 5, true, STATUS_CAN_DEPLOY, "B", 1, 6, "British", false, 'infantry');
-        }
-        for ($i = 0; $i < 5; $i++) {
-            $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "NativeInfBadge.png", 6, 6, 5, true, STATUS_CAN_DEPLOY, "B", 1, 10, "Native", false, 'mg');
-        }
-        for ($i = 0; $i < 4; $i++) {
-            $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritArtBadge.png", 11, 11, 4, true, STATUS_CAN_DEPLOY, "B", 1, 25, "British", false, 'artillery');
+            for ($i = 0; $i < 11; $i++) {
+
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 7, 7, 5, true, STATUS_CAN_DEPLOY, "B", 1, 6, "British", false, 'infantry');
+            }
+            for ($i = 0; $i < 4; $i++) {
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "NativeInfBadge.png", 5, 5, 6, true, STATUS_CAN_DEPLOY, "B", 1, 10, "British", false, 'mg');
+            }
+            for ($i = 0; $i < 3; $i++) {
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritArtBadge.png", 11, 11, 4, true, STATUS_CAN_DEPLOY, "B", 1, 25, "British", false, 'artillery');
+            }
+
+        }else {
+            for ($i = 0; $i < 26; $i++) {
+                $this->force->addUnit("infantry-1", GERMAN_FORCE, "deployBox", "GermanInfBadge.png", 7, 7, 5, true, STATUS_CAN_DEPLOY, "A", 1, 5, "German", false, 'infantry');
+            }
+            for ($i = 0; $i < 3; $i++) {
+                $this->force->addUnit("infantry-1", GERMAN_FORCE, "deployBox", "GermanCavBadge.png", 17, 17, 3, true, STATUS_CAN_DEPLOY, "A", 1, 10, "German", false, 'mg');
+            }
+            for ($i = 0; $i < 4; $i++) {
+                $this->force->addUnit("infantry-1", GERMAN_FORCE, "deployBox", "GermanArtBadge.png", 10, 10, 4, true, STATUS_CAN_DEPLOY, "A", 1, 25, "German", false, 'artillery');
+            }
+
+            /* British */
+
+            for ($i = 0; $i < 20; $i++) {
+
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 11, 11, 5, true, STATUS_CAN_DEPLOY, "B", 1, 6, "British", false, 'infantry');
+            }
+            for ($i = 0; $i < 5; $i++) {
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "NativeInfBadge.png", 6, 6, 5, true, STATUS_CAN_DEPLOY, "B", 1, 10, "Native", false, 'mg');
+            }
+            for ($i = 0; $i < 4; $i++) {
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritArtBadge.png", 11, 11, 4, true, STATUS_CAN_DEPLOY, "B", 1, 25, "British", false, 'artillery');
+            }
         }
 
     }

@@ -50,7 +50,14 @@ body {
     background-image: url('../../js/HQBadge.png');
     background-size: 14px;
   }
+  .#{$nationality}.mg .counterWrapper .counter {
+    background-image: url('../../js/#{$shortName}MgBadge.png');
+    background-size: 14px;
+  }
 }
+
+
+
 
 $austrianColor: #df5842;
 $austrianWrapperColor: white;
@@ -93,6 +100,7 @@ $beluchiWrapperColor: #c6c102;
 @include badge(Sikh, Sikh);
 @include badge(Beluchi, Sikh);
 @include badge(British, Brit);
+@include badge(German, German);
 
 .British.horseartillery .counterWrapper .counter {
   background-image: url('../../js/BritHorArtBadge.png');

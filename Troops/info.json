@@ -9,6 +9,11 @@
             "main": {
                 "description": "Massacre of the Innocents",
                 "longDescription": "pretty dang bloody"
+            },
+            "seven": {
+                "seven": true,
+                "description": "Belgian Defensive Action",
+                "longDescription": "Belgian 11 inf 4 machine gun 3 field guns. German 24 inf 2 Machine gun companies 4 guns 2 howitzers"
             }
         }
     }
