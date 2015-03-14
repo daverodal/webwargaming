@@ -124,7 +124,9 @@ class Chawinda1965 extends ModernLandBattle
         for($i = 2; $i <= 8; $i++) {
             $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "mech", "T $i 1");
             $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 2");
-            $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 3");
+            if(!$scenario->bigPakistani) {
+                $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 3");
+            }
         }
 
         for($i = 0; $i < 6;$i++) {
