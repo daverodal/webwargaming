@@ -148,7 +148,7 @@ class CombatResultsTable
             $range = $los->getRange();
             $combatLog .= $unit->strength ." ".$unit->class." ";
 
-            if($unit->class === "infantry" && $range === 1){
+            if($unit->class === "infantry" && $range == 1){
                 $combatLog .= "infantry at range 1, doubled ";
                 $unitStrength *= 2;
             }
@@ -158,8 +158,8 @@ class CombatResultsTable
                 $unitStrength *= 2;
             }
             if($isTown || $isForest){
-                $combatLog .= "using observation fire, halved ";
                 if($range > 1){
+                    $combatLog .= "using observation fire, halved ";
                     $unitStrength /= 2;
                 }
             }
