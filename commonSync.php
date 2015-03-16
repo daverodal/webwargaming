@@ -470,7 +470,10 @@ x.register("gameRules", function(gameRules,data) {
     }
 
     var html = "<span id='turn'>Turn "+turn+" of "+maxTurn+"</span> ";
-    html += "<span id='phase'>"+gameRules.phase_name[gameRules.phase];
+    var phase = gameRules.phase_name[gameRules.phase];
+    phase = phase.replace(/fNameOne/,DR.playerOne);
+    phase = phase.replace(/fNameTwo/,DR.playerTwo);
+    html += "<span id='phase'>"+phase;
     if(gameRules.mode_name[gameRules.mode]){
         html += " "+gameRules.mode_name[gameRules.mode];
     }
@@ -525,7 +528,7 @@ x.register("gameRules", function(gameRules,data) {
     }
 });
 x.register("vp", function(vp){
-    $("#victory").html(" Victory: <span class='playerOneFace'><?=$force_name[1]?> </span>"+vp[1]+ " <span class='playerTwoFace'><?=$force_name[2];?> </span>"+vp[2]+"");
+    $("#victory").html(" Victory: <span class='playerOneFace'>"+DR.playerOne+" </span>"+vp[1]+ " <span class='playerTwoFace'>"+DR.playerTwo+" </span>"+vp[2]+"");
 
 });
 x.register("games", function(games) {

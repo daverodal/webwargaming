@@ -72,7 +72,10 @@ class NapoleonsTrainingAcademy extends Battle {
     }
 
     static function getView($name, $mapUrl,$player = 0, $arg = false, $argTwo = false){
-
+        global $force_name;
+        $youAre = $force_name[$player];
+        $deployTwo = $playerOne = $force_name[1];
+        $deployOne = $playerTwo = $force_name[2];
         @include_once "view.php";
     }
 

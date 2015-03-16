@@ -8,12 +8,16 @@
         "scenarios": {
             "main": {
                 "description": "Massacre of the Innocents",
-                "longDescription": "pretty dang bloody"
+                "longDescription": "pretty dang bloody",
+                "playerOne": "German",
+                "playerTwo": "British"
             },
             "seven": {
                 "seven": true,
                 "description": "Belgian Defensive Action",
-                "longDescription": "Belgian 11 inf 4 machine gun 3 field guns. German 24 inf 2 Machine gun companies 4 guns 2 howitzers"
+                "longDescription": "Belgian 11 inf 4 machine gun 3 field guns. German 24 inf 2 Machine gun companies 4 guns 2 howitzers",
+                "playerOne": "German",
+                "playerTwo": "Belgians"
             }
         }
     }

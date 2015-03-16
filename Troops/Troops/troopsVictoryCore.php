@@ -162,7 +162,6 @@ class troopsVictoryCore extends troopersVictoryCore
 
         /* Deal with Forced March */
         if($b->gameRules->mode == COMBAT_SETUP_MODE){
-            var_dump($unit->class);
             if($unit->class === 'infantry'){
                 if( $unit->moveAmountUnused < 2){
                     $unit->status = STATUS_UNAVAIL_THIS_PHASE;

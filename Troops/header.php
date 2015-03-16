@@ -23,6 +23,12 @@ $(document).ready(function(){
     if(!DR){
         DR = {};
     }
+    if(!DR.playerOne){
+        DR.playerOne = "playerOne";
+    }
+    if(!DR.playerTwo) {
+        DR.playerTwo = "playerTwo";
+    }
     $("#altTable").on('click', function(){
         $(this).hide();
         $("#mainTable").show();

@@ -19,7 +19,12 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-?><link rel="stylesheet" href="<?= base_url("js/font-awesome-4.2.0/css/font-awesome.min.css"); ?>">
+?>
+<script type="text/javascript">
+    DR.playerOne = "<?=$playerOne?>";
+    DR.playerTwo = "<?=$playerTwo?>";
+</script>
+<link rel="stylesheet" href="<?= base_url("js/font-awesome-4.2.0/css/font-awesome.min.css"); ?>">
 
 <body xmlns="http://www.w3.org/1999/html">
 <div id="theDiv">

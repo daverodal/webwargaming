@@ -430,7 +430,6 @@ class GameRules
                                             $this->force->attackingForceId = $defender;
                                         }
                                         $interaction->dieRoll = $this->combatRules->resolveCombat($key);
-                                        echo "Die " . $interaction->dieRoll;
                                     }
                                     $this->force->defendingForceId = $defender;
                                     $this->force->attackingForceId = $attacker;

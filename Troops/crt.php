@@ -111,15 +111,15 @@ class CombatResultsTable
             $hexpart = new Hexpart();
             $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
             $isTown |= $battle->terrain->terrainIs($hexpart, 'town');
-            $isHill |= $battle->terrain->terrainIs($hexpart, 'hill');
+//            $isHill |= $battle->terrain->terrainIs($hexpart, 'hill');
             $isForest |= $battle->terrain->terrainIs($hexpart, 'forest');
-            $isSwamp |= $battle->terrain->terrainIs($hexpart, 'swamp');
-            if($battle->terrain->terrainIs($hexpart, 'elevation')){
-                $isElevated = 1;
-            }
-            if($battle->terrain->terrainIs($hexpart, 'elevation2')){
-                $isElevated = 2;
-            }
+//            $isSwamp |= $battle->terrain->terrainIs($hexpart, 'swamp');
+//            if($battle->terrain->terrainIs($hexpart, 'elevation')){
+//                $isElevated = 1;
+//            }
+//            if($battle->terrain->terrainIs($hexpart, 'elevation2')){
+//                $isElevated = 2;
+//            }
         }
         $isClear = true;
         if ($isTown || $isForest || $isHill || $isSwamp) {
@@ -141,106 +141,129 @@ class CombatResultsTable
             $hexpart = new Hexpart();
             $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
 
+            $los = new Los();
+
+            $los->setOrigin($battle->force->getUnitHexagon($attackerId));
+            $los->setEndPoint($battle->force->getUnitHexagon($defenderId));
+            $range = $los->getRange();
+            $combatLog .= $unit->strength ." ".$unit->class." ";
+
+            if($unit->class === "infantry" && $range === 1){
+                $combatLog .= "infantry at range 1, doubled ";
+                $unitStrength *= 2;
+            }
+            if($unit->class === "mg" && $range <= 3){
+                $combatLog .= "machine gun at range 3 or less, doubled ";
+
+                $unitStrength *= 2;
+            }
+            if($isTown || $isForest){
+                $combatLog .= "using observation fire, halved ";
+                if($range > 1){
+                    $unitStrength /= 2;
+                }
+            }
+
             $attackerIsSwamp = $battle->terrain->terrainIs($hexpart, 'swamp');
             $attackerIsSunkenRoad = $battle->terrain->terrainIs($hexpart, 'sunkenroad');
 
-            if($attackerIsSwamp){
-                $terrainReason .= "attacker is in swamp ";
-            }
-            if($attackerIsSunkenRoad){
-                $terrainReason .= "attacker is in sunken road ";
-            }
+//            if($attackerIsSwamp){
+//                $terrainReason .= "attacker is in swamp ";
+//            }
+//            if($attackerIsSunkenRoad){
+//                $terrainReason .= "attacker is in sunken road ";
+//            }
 
-            $attackerIsElevated = false;
-            if($battle->terrain->terrainIs($hexpart, 'elevation')){
-                $attackerIsElevated = 1;
-            }
+//            $attackerIsElevated = false;
+//            if($battle->terrain->terrainIs($hexpart, 'elevation')){
+//                $attackerIsElevated = 1;
+//            }
+//
+//            if($battle->terrain->terrainIs($hexpart, 'elevation2')){
+//             $attackerIsElevated = 2;
+////            }
+//            $attackUpHill = false;
+//            if($isElevated && ($isElevated > $attackerIsElevated)){
+//                $terrainReason .= "attack uphill ";
+//                $attackUpHill = true;
+//            }
+//
+//            $acrossRiver = false;
+//            foreach ($defenders as $defId => $defender) {
+//                if ($battle->combatRules->thisAttackAcrossRiver($defId, $attackerId)) {
+//                    $terrainReason .= "attack across river or wadi";
+//                    $acrossRiver = true;
+//                }
+//            }
 
-            if($battle->terrain->terrainIs($hexpart, 'elevation2')){
-             $attackerIsElevated = 2;
-            }
-            $attackUpHill = false;
-            if($isElevated && ($isElevated > $attackerIsElevated)){
-                $terrainReason .= "attack uphill ";
-                $attackUpHill = true;
-            }
-
-            $acrossRiver = false;
-            foreach ($defenders as $defId => $defender) {
-                if ($battle->combatRules->thisAttackAcrossRiver($defId, $attackerId)) {
-                    $terrainReason .= "attack across river or wadi";
-                    $acrossRiver = true;
-                }
-            }
-
-            $acrossRedoubt = false;
-            foreach ($defenders as $defId => $defender) {
-                $isRedoubt = false;
-                $hexagon = $battle->force->units[$defId]->hexagon;
-                $hexpart = new Hexpart();
-                $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
-                $isRedoubt |= $battle->terrain->terrainIs($hexpart, 'redoubt');
-
-                if ($isRedoubt && $battle->combatRules->thisAttackAcrossType($defId, $attackerId, "redoubt")) {
-                    $acrossRedoubt = true;
-                    $terrainReason .= "attack across redoubt ";
-                }
-            }
+//            $acrossRedoubt = false;
+//            foreach ($defenders as $defId => $defender) {
+//                $isRedoubt = false;
+//                $hexagon = $battle->force->units[$defId]->hexagon;
+//                $hexpart = new Hexpart();
+//                $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
+//                $isRedoubt |= $battle->terrain->terrainIs($hexpart, 'redoubt');
+//
+//                if ($isRedoubt && $battle->combatRules->thisAttackAcrossType($defId, $attackerId, "redoubt")) {
+//                    $acrossRedoubt = true;
+//                    $terrainReason .= "attack across redoubt ";
+//                }
+//            }
 
             if ($unit->class == "infantry") {
-                $combinedArms[$battle->force->units[$attackerId]->class]++;
-                $combatLog .= "$unitStrength Infantry ";
-
-                if ($isSwamp || $attackerIsSwamp || $acrossRiver || $attackerIsSunkenRoad || $acrossRedoubt || $attackUpHill) {
-                    if(!$terrainReason){
-                        $terrainReason = " terrain ";
-                    }
-                    if($attackUpHill){
-                        $unitStrength *= .75;
-                        $combatLog .= "attacker 3/4 for $terrainReason ";
-                    }else{
-                        $unitStrength /= 2;
-                        $combatLog .= "attacker halved for $terrainReason ";
-                    }
-                }
+//                $combinedArms[$battle->force->units[$attackerId]->class]++;
+//                $combatLog .= "$unitStrength Infantry ";
+//
+//                if ($isSwamp || $attackerIsSwamp || $acrossRiver || $attackerIsSunkenRoad || $acrossRedoubt || $attackUpHill) {
+//                    if(!$terrainReason){
+//                        $terrainReason = " terrain ";
+//                    }
+//                    if($attackUpHill){
+//                        $unitStrength *= .75;
+//                        $combatLog .= "attacker 3/4 for $terrainReason ";
+//                    }else{
+//                        $unitStrength /= 2;
+//                        $combatLog .= "attacker halved for $terrainReason ";
+//                    }
+//                }
             }
 
-            if ($unit->class == "cavalry") {
-                $combatLog .= "$unitStrength Cavalry ";
-                $attackersCav = true;
-
-                if ($attackerIsSwamp || $acrossRiver || !$isClear || $attackerIsSunkenRoad || $acrossRedoubt) {
-
-                    if(!$terrainReason){
-                        $terrainReason = " terrain ";
-                    }
-                    $combatLog .= " , loses combined arms bonus ";
-
-                    $unitStrength /= 2;
-                    $combatLog .= "attacker halved for $terrainReason ";
-
-
-                }elseif ( $attackUpHill ) {
-
-                    $unitStrength *= .75;
-                    $combatLog .= "attacker 3/4 for attacking uphill ";
-                    if($unit->nationality != "Beluchi" && $unit->nationality != "Sikh"){
-                        $combinedArms[$battle->force->units[$attackerId]->class]++;
-                    }else{
-                        $combatLog .= "no combined arms bonus for ".$unit->nationality." cavalry";
-                    }
-                }else{
-                    if($scenario->angloCavBonus && $unit->nationality == "AngloAllied"){
-                        $unitStrength++;
-                        $combatLog .= "+1 for attack into clear ";
-                    }
-                    if($unit->nationality != "Beluchi" && $unit->nationality != "Sikh"){
-                        $combinedArms[$battle->force->units[$attackerId]->class]++;
-                    }else{
-                        $combatLog .= "no combined arms bonus for ".$unit->nationality." cavalry";
-                    }
-                }
-            }
+//            if ($unit->class == "cavalry") {
+//                $combatLog .= "$unitStrength Cavalry ";
+//                $attackersCav = true;
+//
+//                if ($attackerIsSwamp || $acrossRiver || !$isClear || $attackerIsSunkenRoad || $acrossRedoubt) {
+//
+//                    if(!$terrainReason){
+//                        $terrainReason = " terrain ";
+//                    }
+//                    $combatLog .= " , loses combined arms bonus ";
+//
+//                    $unitStrength /= 2;
+//                    $combatLog .= "attacker halved for $terrainReason ";
+//
+//
+//                }elseif ( $attackUpHill ) {
+//
+//                    $unitStrength *= .75;
+//                    $combatLog .= "attacker 3/4 for attacking uphill ";
+//                    if($unit->nationality != "Beluchi" && $unit->nationality != "Sikh"){
+//                        $combinedArms[$battle->force->units[$attackerId]->class]++;
+//                    }else{
+//                        $combatLog .= "no combined arms bonus for ".$unit->nationality." cavalry";
+//                    }
+//                }else{
+//                    if($scenario->angloCavBonus && $unit->nationality == "AngloAllied"){
+//                        $unitStrength++;
+//                        $combatLog .= "+1 for attack into clear ";
+//                    }
+//                    if($unit->nationality != "Beluchi" && $unit->nationality != "Sikh"){
+//                        $combinedArms[$battle->force->units[$attackerId]->class]++;
+//                    }else{
+//                        $combatLog .= "no combined arms bonus for ".$unit->nationality." cavalry";
+//                    }
+//                }
+//            }
             $combatLog .= "<br>";
             $attackStrength += $unitStrength;
         }
@@ -249,60 +272,39 @@ class CombatResultsTable
         $defenseStrength = 0;
         $defendersAllCav = true;
         $combatLog .= " = $attackStrength<br>Defenders<br>";
+        $defenseStrength = 0;
+
         foreach ($defenders as $defId => $defender) {
+            $unitStrength = 2;
 
             $unit = $battle->force->units[$defId];
             $class = $unit->class;
-            $unitDefense = $battle->force->getDefenderStrength($defId);
-            $unitDefense = 2;
-            $combatLog .= "$unitDefense ".$unit->class." ";
-            /* set to true to disable for not scenario->doubleArt */
             $clearHex = false;
-            $artInNonTown = false;
             $notClearHex = false;
             $hexagon = $unit->hexagon;
             $hexpart = new Hexpart();
             $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
             $isTown = $battle->terrain->terrainIs($hexpart, 'town');
-            $isHill = $battle->terrain->terrainIs($hexpart, 'hill');
+//            $isHill = $battle->terrain->terrainIs($hexpart, 'hill');
             $isForest = $battle->terrain->terrainIs($hexpart, 'forest');
             $isSwamp = $battle->terrain->terrainIs($hexpart, 'swamp');
-
-            $notClearHex = false;
-            if ($isTown || $isForest || $isHill || $isSwamp) {
-                $notClearHex = true;
+            $terran = "";
+            if($isTown){
+                $terrain = "in town ";
+                $unitStrength = 8;
             }
-
-            $clearHex = !$notClearHex;
-
-            if ($unit->class != 'cavalry') {
-                $defendersAllCav = false;
+            if($isForest){
+                $terrain = "in forest ";
+                $unitStrength = 5;
             }
+            $combatLog .= "$unitStrength ".$unit->class." $terrain";
 
-            $defMultiplier = 1;
-            if(($isTown && $class !== 'cavalry') || $artInNonTown || $isHill){
-                $defMultiplier = 1.5;
-                if($artInNonTown && $scenario->doubleArt){
-                    $defMultiplier = 2;
-                }
-                if(($isTown && $class !== 'cavalry') || $isHill){
-                    $defMultiplier = 2;
-                    $combatLog .= "defender doubled for terrain ";
-                }
-            }
-            $defenseStrength += $unitDefense * $defMultiplier;
+
+            $defenseStrength += $unitStrength;
             $combatLog .= "<br>";
         }
 
         $combatLog .= " = $defenseStrength";
-        $armsShift = 0;
-        if ($attackStrength >= $defenseStrength) {
-            $armsShift = count($combinedArms) - 1;
-        }
-
-        if ($armsShift < 0) {
-            $armsShift = 0;
-        }
 
         $combatIndex = $this->getCombatIndex($attackStrength, $defenseStrength);
         /* Do this before terrain effects */
@@ -316,24 +318,19 @@ class CombatResultsTable
 //        $combatIndex -= $terrainCombatEffect;
 
         $combats->attackStrength = $attackStrength;
-        $combats->defenseStrength = 2;
+        $combats->defenseStrength = $defenseStrength;
         $combats->terrainCombatEffect = 0;
-
-        if($combats->pinCRT !== false){
-            $pinIndex = $combats->pinCRT;
-            if($combatIndex > $pinIndex){
-                $combatLog .= "<br>Pinned to {$this->combatResultsHeader[$pinIndex]} ";
-            }else{
-                $combats->pinCRT = false;
-            }
-        }
+//
+//        if($combats->pinCRT !== false){
+//            $pinIndex = $combats->pinCRT;
+//            if($combatIndex > $pinIndex){
+//                $combatLog .= "<br>Pinned to {$this->combatResultsHeader[$pinIndex]} ";
+//            }else{
+//                $combats->pinCRT = false;
+//            }
+//        }
         $combats->index = $combatIndex;
         $combats->useAlt = false;
-        if ($defendersAllCav && !$attackersCav) {
-            $combats->useAlt = true;
-            $combats->useDetermined = false;
-            $combatLog .= "using cavalry table ";
-        }
         $combats->combatLog = $combatLog;
     }
 
