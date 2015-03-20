@@ -137,12 +137,10 @@
                 <div class="dropDown" id="unitsWrapper">
                     <h4 class="WrapperLabel" title="Offmap Units">Units</h4>
                     <div id="units" class="subMenu">
-                        <div id="units" class="subMenu">
-                            <div class="dropDown" id="closeAllUnits">Close All</div>
-                            <div class="dropDown" id="hideShow">Retired Units</div>
-                            <div class="dropDown" id="showDeploy">Deploy/Staging Box</div>
-                            <div class="dropDown" id="showExited">Exited Units</div>
-                        </div>
+                        <div class="dropDown" id="closeAllUnits">Close All</div>
+                        <div class="dropDown" id="hideShow">Retired Units</div>
+                        <div class="dropDown" id="showDeploy">Deploy/Staging Box</div>
+                        <div class="dropDown" id="showExited">Exited Units</div>
                     </div>
                 </div>
                 <?php include_once "commonRules.php"; ?>
