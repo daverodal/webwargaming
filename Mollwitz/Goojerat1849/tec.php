@@ -1,4 +1,6 @@
-<?php/*
+<?php
+
+/*
 Copyright 2012-2015 David Rodal
 
 This program is free software; you can redistribute it
