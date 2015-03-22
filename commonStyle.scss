@@ -40,8 +40,15 @@ h4:hover {
 
 }
 .red-shadowy {
-  background-color: rgba(255, 0, 0, .3) !important;
+  background-color: rgba(255, 0, 0, .7) !important;
+  font-size:9px;
+  color:white;
 }
+.red-shadowy:hover{
+  background-color: rgba(255, 0, 0, .2) !important;
+  color:transparent;
+}
+
 #turn, #phase, #status, #victory {
   background: white;
   padding: 0 3px;

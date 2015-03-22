@@ -20,13 +20,30 @@
 #tecImage{
   width:800px;
 }
-$germanColor: #999;
-$britishColor: #9f9;
-.British{
-  background: $britishColor;
-}
-@include player(British, Two, $britishColor, $britishColor);
-@include player(German, One, $germanColor, #999, #999);
+$germanColor: #C7C5C6;
+$britishColor: #f11;
+$belgianColor: #9f9;
+$frenchColor: #00b9ff;
+$belgianNumberColor: #white;
+$russianColor: #0b0;
+
+
+
+$germanColor: #C7C5C6;
+$britishColor: #9ea837;
+$belgianColor: #ffffe3;
+$frenchColor: #9ea837;
+$belgianNumberColor: #a9b14a;
+$russianColor: #F0F4CF;
+
+
+
+@include player(British, British, $britishColor, $britishColor, $britishColor, white);
+@include player(German, German, $germanColor, $germanColor, $germanColor, black);
+@include player(Belgian, Belgian, $belgianColor, $belgianColor, $belgianNumberColor, $belgianNumberColor);
+
+@include player(French, French, $frenchColor, $frenchColor, $frenchColor, black);
+@include player(Russian, Russian, $russianColor, $russianColor, $russianColor, black);
 
 .unit.Native .counterWrapper {
   background-color: $angloAlliedWrapperColor;

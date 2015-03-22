@@ -114,7 +114,6 @@ class Troops extends TroopsCore
         /* German */
         $scenario = $this->scenario;
 
-
         if($scenario->seven){
             for ($i = 0; $i < 24; $i++) {
                 $this->force->addUnit("infantry-1", GERMAN_FORCE, "deployBox", "GermanInfBadge.png", 7, 7, 5, true, STATUS_CAN_DEPLOY, "A", 1, 4, "German", true, 'infantry');
@@ -134,17 +133,49 @@ class Troops extends TroopsCore
 
             for ($i = 0; $i < 11; $i++) {
 
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 7, 7, 5, true, STATUS_CAN_DEPLOY, "B", 1, 4, "British", true, 'infantry');
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 7, 7, 5, true, STATUS_CAN_DEPLOY, "B", 1, 4, "Belgian", true, 'infantry');
             }
             for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "NativeInfBadge.png", 5, 5, 6, true, STATUS_CAN_DEPLOY, "B", 1, 10, "British", true, 'mg');
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "NativeInfBadge.png", 5, 5, 6, true, STATUS_CAN_DEPLOY, "B", 1, 10, "Belgian", true, 'mg');
             }
             for ($i = 0; $i < 3; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritArtBadge.png", 11, 11, 4, true, STATUS_CAN_DEPLOY, "B", 1, 25, "British", true, 'artillery');
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritArtBadge.png", 11, 11, 4, true, STATUS_CAN_DEPLOY, "B", 1, 25, "Belgian", true, 'artillery');
+            }
+
+        }elseif($scenario->one){
+            
+            /* German */
+            for ($i = 0; $i < 12; $i++) {
+                $this->force->addUnit("infantry-1", 2, "deployBox", "GermanInfBadge.png", 7, 7, 5, true, STATUS_CAN_DEPLOY, "A", 1, 4, "German", true, 'infantry');
+            }
+            for ($i = 0; $i < 1; $i++) {
+                $this->force->addUnit("infantry-1", 2, "deployBox", "GermanCavBadge.png", 17, 17, 3, true, STATUS_CAN_DEPLOY, "A", 1, 10, "German", true, 'mg');
+            }
+            for ($i = 0; $i < 2; $i++) {
+                $this->force->addUnit("infantry-1", 2, "deployBox", "GermanArtBadge.png", 10, 10, 4, true, STATUS_CAN_DEPLOY, "A", 1, 25, "German", true, 'artillery');
+            }
+            for ($i = 0; $i < 1; $i++) {
+                $this->force->addUnit("infantry-1", 2, "deployBox", "GermanArtBadge.png", 9, 9, 4, true, STATUS_CAN_DEPLOY, "A", 1, 25, "German", true, 'artillery');
+            }
+
+
+            /* French */
+
+            for ($i = 0; $i < 24; $i++) {
+
+                $this->force->addUnit("infantry-1", 1, "deployBox", "BritInfBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "B", 1, 3, "French", true, 'infantry');
+            }
+            for ($i = 0; $i < 6; $i++) {
+                $this->force->addUnit("infantry-1", 1, "deployBox", "NativeInfBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "B", 1, 9, "French", true, 'mg');
+            }
+            for ($i = 0; $i < 3; $i++) {
+                $this->force->addUnit("infantry-1", 1, "deployBox", "BritArtBadge.png", 6, 6, 6, true, STATUS_CAN_DEPLOY, "B", 1, 25, "French", true, 'artillery');
             }
 
         }else {
-            for ($i = 0; $i < 26; $i++) {
+            /* German */
+
+            for ($i = 0; $i < 36; $i++) {
                 $this->force->addUnit("infantry-1", GERMAN_FORCE, "deployBox", "GermanInfBadge.png", 7, 7, 5, true, STATUS_CAN_DEPLOY, "A", 1, 4, "German", true, 'infantry');
             }
             for ($i = 0; $i < 3; $i++) {
@@ -191,19 +222,34 @@ class Troops extends TroopsCore
 
             $this->gameRules->gameHasCombatResolutionMode = false;
             // game data
-            if ($scenario->dayTwo) {
-                $this->gameRules->setMaxTurn(14);
-            } else {
+            if($scenario->seven){
                 $this->gameRules->setMaxTurn(12);
+            }elseif($scenario->one){
+                $this->gameRules->setMaxTurn(18);
+            }else{
+                $this->gameRules->setMaxTurn(15);
             }
-            $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
-            $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
-            $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */
-            $this->force->setAttackingForceId($this->gameRules->attackingForceId); /* so object oriented */
+
+            if($scenario->one) {
+
+                $this->gameRules->setInitialPhaseMode(BLUE_DEPLOY_PHASE, DEPLOY_MODE);
+                $this->gameRules->attackingForceId = BLUE_FORCE; /* object oriented! */
+                $this->gameRules->defendingForceId = RED_FORCE; /* object oriented! */
+                $this->force->setAttackingForceId($this->gameRules->attackingForceId); /* so object oriented */
 
 
-            $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_DEPLOY_PHASE, DEPLOY_MODE, BLUE_FORCE, RED_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+                $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, RED_DEPLOY_PHASE, DEPLOY_MODE, RED_FORCE, BLUE_FORCE, false);
+                $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            }else{
+                $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
+                $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
+                $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */
+                $this->force->setAttackingForceId($this->gameRules->attackingForceId); /* so object oriented */
+
+
+                $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_DEPLOY_PHASE, DEPLOY_MODE, BLUE_FORCE, RED_FORCE, false);
+                $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            }
 
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_FIRST_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_FIRST_COMBAT_PHASE, RED_FIRST_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);

@@ -18,7 +18,11 @@
 body {
 }
 
-@mixin player($nationality, $player, $color, $counterColor: $color, $faceColor: $color) {
+@mixin player($nationality, $player, $color, $counterColor: $color, $faceColor: $color, $numbersColor: white) {
+  .unit.#{$nationality}{
+    background: $color;
+    color:$numbersColor;
+  }
   .player#{$player} {
     background: $color;
     border-color: $color !important;
@@ -28,6 +32,18 @@ body {
   }
   .#{$nationality} .counterWrapper {
     background-color: $counterColor;
+  }
+  #header.#{$nationality}{
+    background:$color;
+  }
+  .unit.#{$nationality} svg{
+    stroke: $numbersColor;
+  }
+  #crt.#{$nationality}{
+    border-color:$color;
+  }
+  #crt .roll.odd.#{$nationality}{
+    background-color:$color;
   }
 }
 
@@ -80,6 +96,9 @@ $russianWrapperColor: #009c1d;
 
 $beluchiColor: #c68100;
 $beluchiWrapperColor: #c6c102;
+
+$germanColor: #999;
+$germanWrapperColor: #999;
 
 #map {
 }
@@ -298,10 +317,16 @@ p.forceMarch {
 }
 
 .specialHexesVP .british {
-  color: black;
+  color: white;
   background: transparent;
   @include victoryPoints($britishColor);
 
+}
+
+.specialHexesVP .german {
+  color: white;
+  background: transparent;
+  @include victoryPoints(#666);
 }
 
 .specialHexesVP .russian {

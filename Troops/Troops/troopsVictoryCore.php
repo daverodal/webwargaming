@@ -47,19 +47,34 @@ class troopsVictoryCore extends troopersVictoryCore
         $unit = $args[0];
         $hex = $unit->hexagon;
         $battle = Battle::getBattle();
+        $playerOne = strtolower( $battle->scenario->playerOne);
+        $playerTwo = strtolower( $battle->scenario->playerTwo);
 
-        $mult = 1;
-        if ($unit->nationality == "British") {
-            $mult = 2;
-        }
+
         if ($unit->forceId == 1) {
             $victorId = 2;
-            $this->victoryPoints[$victorId] += $unit->strength * $mult;
-            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='british'>DE</span>";
+            $this->victoryPoints[$victorId] += $unit->strength;
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='$playerTwo'>DE</span>";
         } else {
             $victorId = 1;
-            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='german'>DE</span>";
-            $this->victoryPoints[$victorId] += $unit->strength * $mult;
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='$playerOne'>DE</span>";
+            $this->victoryPoints[$victorId] += $unit->strength;
+        }
+    }
+
+    public function disruptUnit($args){
+        list($unit) = $args;
+        $hex = $unit->hexagon;
+        $battle = Battle::getBattle();
+        $playerOne = strtolower( $battle->scenario->playerOne);
+        $playerTwo = strtolower( $battle->scenario->playerTwo);
+
+        if ($unit->forceId == 1) {
+            $victorId = 2;
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='$playerTwo'>DD</span>";
+        } else {
+            $victorId = 1;
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='$playerOne'>DD</span>";
         }
     }
 
@@ -166,7 +181,12 @@ class troopsVictoryCore extends troopersVictoryCore
                 if( $unit->moveAmountUnused < 2){
                     $unit->status = STATUS_UNAVAIL_THIS_PHASE;
                 }
-            } else{
+            } elseif($unit->class === 'artillery' && $unit->nationality === 'French'){
+                if( $unit->moveAmountUnused < 4){
+                    $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+                }
+            }else
+            {
                 if($unit->moveAmountUnused !== $unit->maxMove){
                     $unit->status = STATUS_UNAVAIL_THIS_PHASE;
                 }

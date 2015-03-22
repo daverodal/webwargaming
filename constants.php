@@ -102,7 +102,7 @@ $phase_name[13] = "";
 $phase_name[14] = "";
 $phase_name[15] = "<span class='playerTwoFace'>fNameTwo</span> Deploy";
 $phase_name[16] = "<span class='playerTwoFace'>fNameOne</span> Surprise";
-$phase_name[17] = "<span class='playerTwoFace'>fNameOne</span> Resolution";
+$phase_name[17] = "<span class='playerOneFace'>fNameOne</span> Resolution";
 $phase_name[18] = "<span class='playerTwoFace'>fNameTwo</span> Resolution";
 $phase_name[19] = "<span class='playerTwoFace'>fNameTwo</span> First ";
 $phase_name[20] = "<span class='playerTwoFace'>fNameOne</span> First ";

@@ -340,9 +340,13 @@ x.register("force", function(force,data) {
             $("#"+i+" .shadow-mask").removeClass("shadowy");
         }
         if(units[i].isDisrupted){
-            $("#"+i+" .shadow-mask").addClass("red-shadowy");
+            if(units[i].isDisrupted == 17){
+                $("#"+i+" .shadow-mask").addClass("red-shadowy").html(DR.playerOne);
+            }else{
+                $("#"+i+" .shadow-mask").addClass("red-shadowy").html(DR.playerTwo);
+            }
         }else{
-            $("#"+i+" .shadow-mask").removeClass("red-shadowy");
+            $("#"+i+" .shadow-mask").removeClass("red-shadowy").html('');
         }
         $("#"+i).css({boxShadow: boxShadow});
 
@@ -455,15 +459,15 @@ x.register("gameRules", function(gameRules,data) {
 
     var pix = turn  + (turn - 1) * 36 + 1;
     if(gameRules.attackingForceId == 1){
-        $("#header").removeClass("playerTwo").addClass("playerOne");
+        $("#header").removeClass(DR.playerTwo).addClass(DR.playerOne).removeClass('playerTwo').addClass('playerOne');
         $("#turnCounter").css("background","rgb(0,128,0)");
         $("#turnCounter").css("color","white");
-        $("#crt").addClass("playerOne").removeClass("playerTwo");
-        $(".row1,.row3,.row5").addClass("playerOne").removeClass("playerTwo");
+        $("#crt").removeClass(DR.playerTwo).addClass(DR.playerOne).removeClass('playerTwo').addClass('playerOne');
+        $(".row1,.row3,.row5").removeClass(DR.playerTwo).addClass(DR.playerOne).removeClass('playerTwo').addClass('playerOne');
     }else{
-        $("#header").removeClass("playerOne").addClass("playerTwo");
-        $(".row1,.row3,.row5").addClass("playerTwo").removeClass("playerOne");
-        $("#crt").addClass("playerTwo").removeClass("playerOne");
+        $("#header").removeClass(DR.playerOne).removeClass('playerOne').addClass(DR.playerTwo).addClass('playerTwo');
+        $(".row1,.row3,.row5").removeClass(DR.playerOne).removeClass('playerOne').addClass(DR.playerTwo).addClass('playerTwo');
+        $("#crt").removeClass(DR.playerOne).removeClass('playerOne').addClass(DR.playerTwo).addClass('playerTwo');
         $("#turnCounter").css("background","rgb(0,128,255)");
         $("#turnCounter").css("color","white");
 
@@ -528,7 +532,7 @@ x.register("gameRules", function(gameRules,data) {
     }
 });
 x.register("vp", function(vp){
-    $("#victory").html(" Victory: <span class='playerOneFace'>"+DR.playerOne+" </span>"+vp[1]+ " <span class='playerTwoFace'>"+DR.playerTwo+" </span>"+vp[2]+"");
+    $("#victory").html(" Victory: <span class='"+DR.playerOne+"Face'>"+DR.playerOne+" </span>"+vp[1]+ " <span class='"+DR.playerTwo+"Face'>"+DR.playerTwo+" </span>"+vp[2]+"");
 
 });
 x.register("games", function(games) {

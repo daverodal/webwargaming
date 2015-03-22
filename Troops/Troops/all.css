@@ -49,7 +49,13 @@ h4:hover {
   background-color: rgba(0, 0, 0, 0.3) !important; }
 
 .red-shadowy {
-  background-color: rgba(255, 0, 0, 0.3) !important; }
+  background-color: rgba(255, 0, 0, 0.7) !important;
+  font-size: 9px;
+  color: white; }
+
+.red-shadowy:hover {
+  background-color: rgba(255, 0, 0, 0.2) !important;
+  color: transparent; }
 
 #turn, #phase, #status, #victory {
   background: white;
@@ -1292,9 +1298,14 @@ p.forceMarch {
   text-shadow: 0px 0px 1px #fffd7f, 0px 0px 1px #fffd7f, 0px 0px 1px #fffd7f, 0px 0px 2px #fffd7f, 0px 0px 2px #fffd7f, 0px 0px 2px #fffd7f, 0px 0px 3px #fffd7f, 0px 0px 3px #fffd7f, 0px 0px 3px #fffd7f, 0px 0px 4px #fffd7f, 0px 0px 4px #fffd7f, 0px 0px 4px #fffd7f, 0px 0px 5px #fffd7f, 0px 0px 5px #fffd7f, 0px 0px 5px #fffd7f, 0px 0px 6px #fffd7f, 0px 0px 6px #fffd7f, 0px 0px 6px #fffd7f, 0px 0px 7px #fffd7f, 0px 0px 7px #fffd7f, 0px 0px 7px #fffd7f, 0px 0px 8px #fffd7f, 0px 0px 8px #fffd7f, 0px 0px 8px #fffd7f, 0px 0px 9px #fffd7f, 0px 0px 9px #fffd7f, 0px 0px 9px #fffd7f, 0px 0px 10px #fffd7f, 0px 0px 10px #fffd7f, 0px 0px 10px #fffd7f, 0px 0px 1px #fffd7f, 0px 0px 1px #fffd7f, 0px 0px 1px #fffd7f, 0px 0px 2px #fffd7f, 0px 0px 2px #fffd7f, 0px 0px 2px #fffd7f, 0px 0px 3px #fffd7f, 0px 0px 3px #fffd7f, 0px 0px 3px #fffd7f, 0px 0px 4px #fffd7f, 0px 0px 4px #fffd7f, 0px 0px 4px #fffd7f, 0px 0px 5px #fffd7f, 0px 0px 5px #fffd7f, 0px 0px 5px #fffd7f, 0px 0px 6px #fffd7f, 0px 0px 6px #fffd7f, 0px 0px 6px #fffd7f, 0px 0px 7px #fffd7f, 0px 0px 7px #fffd7f, 0px 0px 7px #fffd7f, 0px 0px 8px #fffd7f, 0px 0px 8px #fffd7f, 0px 0px 8px #fffd7f, 0px 0px 9px #fffd7f, 0px 0px 9px #fffd7f, 0px 0px 9px #fffd7f, 0px 0px 10px #fffd7f, 0px 0px 10px #fffd7f, 0px 0px 10px #fffd7f; }
 
 .specialHexesVP .british {
-  color: black;
+  color: white;
   background: transparent;
   text-shadow: 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842; }
+
+.specialHexesVP .german {
+  color: white;
+  background: transparent;
+  text-shadow: 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 10px #666, 0px 0px 10px #666, 0px 0px 10px #666, 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 10px #666, 0px 0px 10px #666, 0px 0px 10px #666; }
 
 .specialHexesVP .russian {
   color: white;
@@ -1367,28 +1378,135 @@ p.forceMarch {
 #tecImage {
   width: 800px; }
 
-.British {
-  background: #9f9; }
+.unit.British {
+  background: #9ea837;
+  color: white; }
 
-.playerTwo {
-  background: #9f9;
-  border-color: #9f9 !important; }
+.playerBritish {
+  background: #9ea837;
+  border-color: #9ea837 !important; }
 
-.BritishFace, .playerTwoFace {
-  color: #9f9; }
+.BritishFace, .playerBritishFace {
+  color: #9ea837; }
 
 .British .counterWrapper {
-  background-color: #9f9; }
+  background-color: #9ea837; }
 
-.playerOne {
-  background: #999;
-  border-color: #999 !important; }
+#header.British {
+  background: #9ea837; }
 
-.GermanFace, .playerOneFace {
-  color: #999; }
+.unit.British svg {
+  stroke: white; }
+
+#crt.British {
+  border-color: #9ea837; }
+
+#crt .roll.odd.British {
+  background-color: #9ea837; }
+
+.unit.German {
+  background: #C7C5C6;
+  color: black; }
+
+.playerGerman {
+  background: #C7C5C6;
+  border-color: #C7C5C6 !important; }
+
+.GermanFace, .playerGermanFace {
+  color: #C7C5C6; }
 
 .German .counterWrapper {
-  background-color: #999; }
+  background-color: #C7C5C6; }
+
+#header.German {
+  background: #C7C5C6; }
+
+.unit.German svg {
+  stroke: black; }
+
+#crt.German {
+  border-color: #C7C5C6; }
+
+#crt .roll.odd.German {
+  background-color: #C7C5C6; }
+
+.unit.Belgian {
+  background: #ffffe3;
+  color: #a9b14a; }
+
+.playerBelgian {
+  background: #ffffe3;
+  border-color: #ffffe3 !important; }
+
+.BelgianFace, .playerBelgianFace {
+  color: #a9b14a; }
+
+.Belgian .counterWrapper {
+  background-color: #ffffe3; }
+
+#header.Belgian {
+  background: #ffffe3; }
+
+.unit.Belgian svg {
+  stroke: #a9b14a; }
+
+#crt.Belgian {
+  border-color: #ffffe3; }
+
+#crt .roll.odd.Belgian {
+  background-color: #ffffe3; }
+
+.unit.French {
+  background: #9ea837;
+  color: black; }
+
+.playerFrench {
+  background: #9ea837;
+  border-color: #9ea837 !important; }
+
+.FrenchFace, .playerFrenchFace {
+  color: #9ea837; }
+
+.French .counterWrapper {
+  background-color: #9ea837; }
+
+#header.French {
+  background: #9ea837; }
+
+.unit.French svg {
+  stroke: black; }
+
+#crt.French {
+  border-color: #9ea837; }
+
+#crt .roll.odd.French {
+  background-color: #9ea837; }
+
+.unit.Russian {
+  background: #F0F4CF;
+  color: black; }
+
+.playerRussian {
+  background: #F0F4CF;
+  border-color: #F0F4CF !important; }
+
+.RussianFace, .playerRussianFace {
+  color: #F0F4CF; }
+
+.Russian .counterWrapper {
+  background-color: #F0F4CF; }
+
+#header.Russian {
+  background: #F0F4CF; }
+
+.unit.Russian svg {
+  stroke: black; }
+
+#crt.Russian {
+  border-color: #F0F4CF; }
+
+#crt .roll.odd.Russian {
+  background-color: #F0F4CF; }
 
 .unit.Native .counterWrapper {
   background-color: #f00; }

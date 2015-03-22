@@ -86,6 +86,12 @@
     .movement{
         margin-top:-13px;
     }
+    .French.mg .movement{
+        margin-top:0px;
+    }
+    .French.artillery .movement{
+        margin-top: -10px;
+    }
     .infantry .movement{
         margin-top:-2px;
     }
@@ -157,9 +163,6 @@
 
                     <div id="crt">
                         <div class="close">X</div>
-                        <div id="altTable">show cavalry table</div>
-                        <div id="mainTable">show normal table</div>
-                        <div id="detTable">show determined table</div>
                         <h3>Combat Odds</h3>
 
                         <div class="tableWrapper main">

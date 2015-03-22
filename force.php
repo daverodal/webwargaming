@@ -647,6 +647,7 @@ class Force
                 $defUnit->status = STATUS_DEFENDED;
                 $defUnit->retreatCountRequired = 0;
                 $defUnit->isDisrupted = $battle->gameRules->phase;
+                $battle->victory->disruptUnit($defUnit);
                 break;
 
             case AL:

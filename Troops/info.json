@@ -1,24 +1,31 @@
 {
     "Troops": {
-        "name": "Troops Fighting!",
-        "path": "Troops",
-        "genre": "early 20'th century tactical",
-        "fileName": "Troops/Troops.php",
-        "description": "1900s",
-        "scenarios": {
-            "main": {
-                "description": "Massacre of the Innocents",
-                "longDescription": "pretty dang bloody",
-                "playerOne": "German",
-                "playerTwo": "British"
-            },
-            "seven": {
-                "seven": true,
-                "description": "Belgian Defensive Action",
-                "longDescription": "Belgian 11 inf 4 machine gun 3 field guns. German 24 inf 2 Machine gun companies 4 guns 2 howitzers",
-                "playerOne": "German",
-                "playerTwo": "Belgians"
-            }
-        }
+      "name": "Troops Fighting!",
+      "path": "Troops",
+      "genre": "early 20'th century tactical",
+      "fileName": "Troops/Troops.php",
+      "description": "1900s",
+      "scenarios": {
+        "one": {
+          "one": true,
+          "description": "French Plan 17",
+          "longDescription": "Belgian 11 inf 4 machine gun 3 field guns. German 24 inf 2 Machine gun companies 4 guns 2 howitzers",
+          "playerOne": "French",
+          "playerTwo": "German"
+        }  ,
+        "main": {
+              "description": "Massacre of the Innocents",
+              "longDescription": "pretty dang bloody",
+              "playerOne": "German",
+              "playerTwo": "British"
+          },
+          "seven": {
+              "seven": true,
+              "description": "Belgian Defensive Action",
+              "longDescription": "Belgian 11 inf 4 machine gun 3 field guns. German 24 inf 2 Machine gun companies 4 guns 2 howitzers",
+              "playerOne": "German",
+              "playerTwo": "Belgian"
+          }
+      }
     }
 }
