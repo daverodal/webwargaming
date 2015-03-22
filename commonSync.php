@@ -334,7 +334,6 @@ x.register("force", function(force,data) {
         }
 
         $("#"+i).css({borderColor: color,borderStyle:style});
-        debugger;
         if(shadow){
             $("#"+i+" .shadow-mask").addClass("shadowy");
         }else{
@@ -743,7 +742,6 @@ x.register("moveRules", function(moveRules,data) {
                 );
 
                 var newLabel = label.replace(/((?:<span[^>]*>)?[-+ru](?:<\/span>)?).*/,"$1 "+moveRules.moves[i].pointsLeft);
-                debugger;
                 secondGenClone.find('div.unit-numbers span').html(newLabel).addClass('infoLen'+newLabel.length);
                 if(moveRules.moves[i].isOccupied){
                     secondGenClone.addClass("occupied");

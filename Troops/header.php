@@ -241,7 +241,6 @@ x.register("moveRules", function(moveRules,data) {
             var diff = 0;
             var counter = 0;
             for( i in moveRules.moves){
-                debugger;
                 counter++;
                 newId = id+"Hex"+i;
 

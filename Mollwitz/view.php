@@ -21,7 +21,6 @@
  */
 ?>
 <script type="text/javascript">
-    debugger;
     DR.playerOne = "<?=$playerOne?>";
     DR.playerTwo = "<?=$playerTwo?>";
 </script>
