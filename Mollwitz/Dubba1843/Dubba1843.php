@@ -57,6 +57,8 @@ class Dubba1843 extends IndiaCore
 
     static function enterMulti()
     {
+        $deployTwo = $playerOne = "British";
+        $deployOne = $playerTwo = "Beluchi";
         @include_once "enterMulti.php";
     }
 

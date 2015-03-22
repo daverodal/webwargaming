@@ -620,9 +620,9 @@ function initialize() {
     $("#map").load(function () {
         var width = $("#gameImages #map").width();
         var height = $("#gameImages #map").height();
-        $('svg').width(width);
-        $('svg').height(height);
-        $('svg').attr('viewBox', "0 0 " + width + " " + height);
+        $('#arrow-svg').width(width);
+        $('#arrow-svg').height(height);
+        $('#arrow-svg').attr('viewBox', "0 0 " + width + " " + height);
     });
 
 
@@ -707,11 +707,11 @@ function initialize() {
         if (!DR.showArrows) {
             $("#arrowButton").html("hide arrows");
             DR.showArrows = true;
-            $('svg').show();
+            $('#arrow-svg').show();
         } else {
             $("#arrowButton").html("show arrows");
             DR.showArrows = false;
-            $('svg').hide();
+            $('#arrow-svg').hide();
         }
     });
     $('.unit:not(.clone)').hover(function (event) {

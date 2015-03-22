@@ -60,320 +60,215 @@ $(document).ready(function(){
 
 
 });
-x.register("combatRules", function(combatRules, data){
+x.register("mapUnits", function(mapUnits) {
+    var str;
+    var fudge;
+    var x,y;
+    var beforeDeploy = $("#deployBox").children().size();
+    DR.stackModel = {};
+    DR.stackModel.ids = {};
 
-    for(var combatCol = 1; combatCol <= 10; combatCol++){
-        $(".col" + combatCol).css({background: "transparent"});
-//            $(".odd .col"+combatCol).css({color:"white"});
-//            $(".even .col"+combatCol).css({color:"black"});
+    for (i in mapUnits) {
+        width = $("#"+i).width();
+        height = $("#"+i).height();
+        x =  mapUnits[i].x;
+        y = mapUnits[i].y;
+        if(DR.stackModel[x] === undefined){
+            DR.stackModel[x] = {};
+        }
+        if(DR.stackModel[x][y] === undefined){
+            DR.stackModel[x][y] = {count:0,ids: {}};
+        }
+        fudge = 0;
+        if(DR.stackModel[x][y].count){
+            fudge = DR.stackModel[x][y].count * 4;
+        }
+        DR.stackModel[x][y].count++;
+        var zIndex = DR.stackModel[x][y].count;
+        /* really looking at the keys so the value can be the same */
+        DR.stackModel[x][y].ids[i] = i;
+        DR.stackModel.ids[i] = {x: x, y: y};
 
-    }
-    var title = "Combat Results ";
-    var cdLine = "";
-    var activeCombat = false;
-    var activeCombatLine = "";
-    str = "";
-    var toResolveLog = "";
-
-    if(combatRules){
-        cD = combatRules.currentDefender;
-        if(combatRules.combats && Object.keys(combatRules.combats).length > 0){
-            if(cD !== false){
-                var defenders = combatRules.combats[cD].defenders;
-                if(combatRules.combats[cD].useAlt){
-                    $('.tableWrapper.main').hide();
-                    $('.tableWrapper.determined').hide();
-                    $('.tableWrapper.alt').show();
-                    $('#altTable').hide();
-                    if(combatRules.combats[cD].useDetermined){
-                        $('#detTable').show();
-                    }else{
-                        $('#mainTable').show();
-                    }
-                }else{
-                    if(combatRules.combats[cD].useDetermined){
-                        $('.tableWrapper.main').hide();
-                        $('.tableWrapper.alt').hide();
-                        $('.tableWrapper.determined').show();
-                    }else{
-                        $('.tableWrapper.main').show();
-                        $('.tableWrapper.alt').hide();
-                        $('.tableWrapper.determined').hide();
-                    }
-                    $('#detTable').hide();
-                    $('#mainTable').hide();
-                    $('#altTable').show();
+        if(mapUnits[i].parent != $("#"+i).parent().attr("id")){
+            $("#"+i).appendTo($("#"+mapUnits[i].parent));
+            if(mapUnits[i].parent != "gameImages"){
+                $("#"+ i).css({top:"0"});
+                $("#"+ i).css({left:"0"});
+                if(!mapUnits[i].parent.match(/^gameTurn/)){
+                    $("#"+ i).css({float:"left"});
                 }
-                for(var loop in defenders){
-                    $("#" + loop).css({borderColor: "yellow"});
-                }
-                if(!chattyCrt){
-                    $("#crt").show({effect:"blind",direction:"up"});
-                    $("#crtWrapper").css('overflow', 'visible');
-                    chattyCrt = true;
-                }
-                if(Object.keys(combatRules.combats[cD].attackers).length != 0){
-                    if(combatRules.combats[cD].pinCRT !== false){
-                        combatCol = combatRules.combats[cD].pinCRT + 1;
-                        if(combatCol >= 1){
-                            $(".col" + combatCol).css('background-color', "rgba(255,0,255,.6)");
-                            if(combatRules.combats[cD].Die !== false){
-                                $(".row" + combatRules.combats[cD].Die + " .col" + combatCol).css('font-size', "110%");
-                                $(".row" + combatRules.combats[cD].Die + " .col" + combatCol).css('background', "#eee");
-                            }
-                        }
-                    }
-                    combatCol = combatRules.combats[cD].index + 1;
-                    if(combatCol >= 1){
-                        $(".col" + combatCol).css('background-color', "rgba(255,255,1,.6)");
-                        if(combatRules.combats[cD].Die !== false){
-                            $(".row" + combatRules.combats[cD].Die + " .col" + combatCol).css('font-size', "110%");
-                            $(".row" + combatRules.combats[cD].Die + " .col" + combatCol).css('background', "#eee");
-                        }
-                    }
-                }
-            }
-            var str = "";
-            cdLine = "";
-            var combatIndex = 0;
-            $('.unit').removeAttr('title');
-            $('.unit .unitOdds').remove();
-            for(i in combatRules.combats){
-                if(combatRules.combats[i].index !== null){
-
-
-                    attackers = combatRules.combats[i].attackers;
-                    defenders = combatRules.combats[i].defenders;
-                    thetas = combatRules.combats[i].thetas;
-
-                    var theta = 0;
-                    for(var j in attackers){
-                        var numDef = Object.keys(defenders).length;
-                        for(k in defenders){
-                            $("#" + j + " .arrow").clone().addClass('arrowClone').addClass('arrow' + k).insertAfter("#" + j + " .arrow").removeClass('arrow');
-                            theta = thetas[j][k];
-                            theta *= 15;
-                            theta += 180;
-                            $("#" + j + " .arrow" + k).css({opacity: "1.0"});
-                            $("#" + j + " .arrow" + k).css({webkitTransform: ' scale(.55,.55) rotate(' + theta + "deg) translateY(45px)"});
-                            $("#" + j + " .arrow" + k).css({transform: ' scale(.55,.55) rotate(' + theta + "deg) translateY(45px)"});
-                        }
-                    }
-
-                    var atk = combatRules.combats[i].attackStrength;
-                    var atkDisp = atk;
-                    if(combatRules.storm){
-                        atkDisp = atk * 2 + " halved for storm = " + atk;
-                    }
-                    var def = combatRules.combats[i].defenseStrength;
-                    var ter = combatRules.combats[i].terrainCombatEffect;
-                    var idx = combatRules.combats[i].index + 1;
-                    var useAltColor = combatRules.combats[i].useAlt ? " altColor":"";
-                    if(combatRules.combats[i].useDetermined){
-                        useAltColor = " determinedColor";
-                    }
-                    var odds = Math.floor(atk / def);
-                    var oddsDisp = $(".col" + combatCol).html();
-                    var currentCombatCol = combatRules.combats[i].index + 1;
-                    if(combatRules.combats[i].pinCRT !== false){
-                        currentCombatCol = combatRules.combats[i].pinCRT + 1;
-                        useAltColor = " pinnedColor";
-                    }
-                    var currentOddsDisp = $(".col" + currentCombatCol).html();
-                    $("#"+i).attr('title',currentOddsDisp).prepend('<div class="unitOdds'+useAltColor+'">'+currentOddsDisp+'</div>');;
-
-                    newLine = "<h5>odds = " + oddsDisp + " </h5><div id='crtDetails'>"+combatRules.combats[i].combatLog+"</div><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + $(".col" + combatCol).html() + "</div>";
-                    if(cD !== false && cD == i){
-                        activeCombat = combatIndex;
-                        activeCombatLine = newLine;
-                        /*cdLine = "<fieldset><legend>Current Combat</legend><strong>"+newLine+"</strong></fieldset>";
-                         newLine = "";*/
-                    }
-                    combatIndex++;
-//                            str += newLine;
-                }
+                $("#"+ i).css({position:"relative"});
+            }  else{
+                $("#"+ i).css({float:"none"});
+                $("#"+ i).css({position:"absolute"});
 
             }
-            str += "There are " + combatIndex + " Combats";
-            if(cD !== false){
-                attackers = combatRules.combats[cD].attackers;
-//                    var theta = 0;
-//                    for(var i in attackers){
-//                                      theta = attackers[i];
-//                        theta *= 15;
-//                        theta += 180;
-//                        $("#"+i+ " .arrow").css({display: "block"});
-//                        $("#"+i+ " .arrow").css({opacity: "1.0"});
-//                        $("#"+i+ " .arrow").css({webkitTransform: 'scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
-//
-//
-//                    }
-            }
-            str += "";
-            $("#crtOddsExp").html(activeCombatLine);
-            $("#status").html(cdLine + str);
-            if(DR.crtDetails){
-                $("#crtDetails").toggle();
-            }
-            $("#status").show();
+        }
+        width += 6;
+        height += 6;
+        if(mapUnits[i].parent == "gameImages"){
 
+            $("#"+i).css({left:mapUnits[i].x-width/2-fudge+"px",top:mapUnits[i].y-height/2-fudge+"px", zIndex: zIndex});
+        }
+        var img = $("#"+i+" img").attr("src");
+
+        if(mapUnits[i].isReduced){
+            img = img.replace(/(.*[0-9])(\.png)/,"$1reduced.png");
         }else{
-            chattyCrt = false;
+            img = img.replace(/([0-9])reduced\.png/,"$1.png");
         }
-
-
-        var lastCombat = "";
-        if(combatRules.combatsToResolve){
-            $('.unit').removeAttr('title');
-            $('.unit .unitOdds').remove();
-            if(combatRules.lastResolvedCombat){
-                toResolveLog = "Current Combat or Last Combat<br>";
-                title += "<strong style='margin-left:20px;font-size:150%'>" + combatRules.lastResolvedCombat.Die + " " + combatRules.lastResolvedCombat.combatResult + "</strong>";
-                combatCol = combatRules.lastResolvedCombat.index + 1;
-                $(".col" + combatCol).css('background-color', "rgba(255,255,1,.6)");
-                var pin = combatRules.lastResolvedCombat.pinCRT;
-                if(pin !== false){
-                    pin++;
-                    if(pin < combatCol){
-                        combatCol = pin;
-                        $(".col" + combatCol).css('background-color', "rgba(255, 0, 255, .6)");
-                    }
-                }
-                combatRoll = combatRules.lastResolvedCombat.Die;
-                $(".row" + combatRoll + " .col" + combatCol).css('background-color', "cyan");
-                if(combatRules.lastResolvedCombat.useAlt){
-                    $('.tableWrapper.main').hide();
-                    $('.tableWrapper.alt').show();
-                    $('#mainTable').show();
-                    $('#altTable').hide();
-
-                }else{
-                    if(combatRules.lastResolvedCombat.useDetermined){
-                        $('.tableWrapper.determined').show();
-                        $('.tableWrapper.main').hide();
-                        $('.tableWrapper.alt').hide();
-                    }else{
-                        $('.tableWrapper.determined').hide();
-                        $('.tableWrapper.main').show();
-                        $('.tableWrapper.alt').hide();
-                    }
-                    $('#mainTable').hide();
-                    $('#altTable').show();
-                }
-                var atk = combatRules.lastResolvedCombat.attackStrength;
-                var atkDisp = atk;
-                ;
-
-                var def = combatRules.lastResolvedCombat.defenseStrength;
-                var ter = combatRules.lastResolvedCombat.terrainCombatEffect;
-                var idx = combatRules.lastResolvedCombat.index + 1;
-                var odds = Math.floor(atk / def);
-                var oddsDisp = $(".col" + combatCol).html()
-                newLine = "<h5>odds = " + oddsDisp + "</h5><div id='crtDetails'>"+combatRules.lastResolvedCombat.combatLog+"</div><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + oddsDisp + "</div>";
-
-                toResolveLog += newLine;
-                toResolveLog += "Roll: "+combatRules.lastResolvedCombat.Die + " result: " + combatRules.lastResolvedCombat.combatResult+"<br><br>";
-
-                $("#crtOddsExp").html(newLine);
-//                    $(".row"+combatRoll+" .col"+combatCol).css('color',"white");
-            }
-            str += "";
-            var noCombats = false;
-            if(Object.keys(combatRules.combatsToResolve) == 0){
-                noCombats = true;
-                str += "0 combats to resolve";
-            }
-            var combatsToResolve = 0;
-            toResolveLog += "Combats to Resolve<br>";
-            for(i in combatRules.combatsToResolve){
-                combatsToResolve++;
-                if(combatRules.combatsToResolve[i].index !== null){
-                    attackers = combatRules.combatsToResolve[i].attackers;
-                    defenders = combatRules.combatsToResolve[i].defenders;
-                    thetas = combatRules.combatsToResolve[i].thetas;
-
-                    var theta = 0;
-                    for(var j in attackers){
-                        var numDef = Object.keys(defenders).length;
-                        for(k in defenders){
-                            $("#"+j+ " .arrow").clone().addClass('arrowClone').addClass('arrow'+k).insertAfter("#"+j+ " .arrow").removeClass('arrow');
-                            theta = thetas[j][k];
-                            theta *= 15;
-                            theta += 180;
-                            $("#"+j+ " .arrow"+k).css({opacity: "1.0"});
-                            $("#"+j+ " .arrow"+k).css({webkitTransform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
-                            $("#"+j+ " .arrow"+k).css({transform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
-                        }
-                    }
-
-                    var atk = combatRules.combatsToResolve[i].attackStrength;
-                    var atkDisp = atk;
-                    ;
-
-                    var def = combatRules.combatsToResolve[i].defenseStrength;
-                    var ter = combatRules.combatsToResolve[i].terrainCombatEffect;
-                    var combatCol = combatRules.combatsToResolve[i].index + 1;
-                    var useAltColor = combatRules.combatsToResolve[i].useAlt ? " altColor":"";
-
-                    if(combatRules.combatsToResolve[i].pinCRT !== false){
-                        combatCol = combatRules.combatsToResolve[i].pinCRT;
-                    }
-                    var odds = Math.floor(atk / def);
-                    var oddsDisp = $(".col" + combatCol).html();
-                    var useAltColor = combatRules.combatsToResolve[i].useAlt ? " altColor":"";
-                    if(combatRules.combatsToResolve[i].useDetermined){
-                        useAltColor = " determinedColor";
-                    }
-                    $("#"+i).attr('title',oddsDisp).prepend('<div class="unitOdds'+useAltColor+'">'+oddsDisp+'</div>');;
-                    newLine = "<h5>odds = " + oddsDisp + "</h5><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + oddsDisp + "</div>";
-                    toResolveLog += newLine;
-                }
-
-            }
-            if(combatsToResolve){
-//                str += "Combats To Resolve: " + combatsToResolve;
-            }
-            var resolvedCombats = 0;
-            toResolveLog += "<br>Resolved Combats <br>";
-            for(i in combatRules.resolvedCombats){
-                resolvedCombats++;
-                if(combatRules.resolvedCombats[i].index !== null){
-                    atk = combatRules.resolvedCombats[i].attackStrength;
-                    atkDisp = atk;
-                    ;
-                    if(combatRules.storm){
-                        atkDisp = atk * 2 + " halved for storm " + atk;
-                    }
-                    def = combatRules.resolvedCombats[i].defenseStrength;
-                    ter = combatRules.resolvedCombats[i].terrainCombatEffect;
-                    idx = combatRules.resolvedCombats[i].index + 1;
-                    newLine = "";
-                    if(combatRules.resolvedCombats[i].Die){
-                        var x = $("#" + cD).css('left').replace(/px/, "");
-                        var mapWidth = $("body").css('width').replace(/px/, "");
-                    }
-                    var oddsDisp = $(".col" + combatCol).html()
-
-                    newLine += " Attack = " + atkDisp + " / Defender " + def + atk / def + "<br>odds = " + Math.floor(atk / def) + " : 1<br>Combined Arms Shift " + ter + " = " + oddsDisp + "<br>";
-                    newLine += "Roll: "+combatRules.resolvedCombats[i].Die + " result: " + combatRules.resolvedCombats[i].combatResult+"<br><br>";
-                    if(cD === i){
-                        newLine = "";
-                    }
-                    toResolveLog += newLine;
-                }
-
-            }
-            if(!noCombats){
-                str += "Combats: " + resolvedCombats + " of " + (resolvedCombats+combatsToResolve);
-            }
-            $("#status").html(lastCombat + str);
-            $("#status").show();
-
+        var  move = mapUnits[i].maxMove - mapUnits[i].moveAmountUsed;
+        move = move.toFixed(2);
+        move = move.replace(/\.00$/,'');
+        move = move.replace(/(\.[1-9])0$/,'$1');
+        var str = mapUnits[i].strength;
+        var reduced = mapUnits[i].isReduced;
+        var reduceDisp = "<span>";
+        if(reduced){
+            reduceDisp = "<span class='reduced'>";
         }
+        var symb = mapUnits[i].supplied !== false ? " - " : " <span class='reduced'>u</span> ";
+        var html = reduceDisp + str + symb + move + "</span>"
+        $("#"+i+" .unitNumbers.attack").html(str);
+        var len  = $("#"+i+" .unitNumbers.attack").text().length;
+        $("#"+i+" unitNumbers.attack").addClass("infoLen"+len);
+        $("#"+i+" .unitNumbers.movement").html(move);
+        var len  = $("#"+i+" .unitNumbers.movement").text().length;
+        $("#"+i+" unitNumbers.movement").addClass("infoLen"+len);
     }
-    $("#CombatLog").html(toResolveLog);
-    $("#crt h3").html(title);
+    var dpBox = $("#deployBox").children().size();
+    if(dpBox != beforeDeploy){
+        fixHeader();
+        beforeDeploy = dpBox;
 
+    }
+    if(dpBox == 0 && $("#deployBox").is(":visible")){
+        $("#deployWrapper").hide({effect:"blind",direction:"up",complete:fixHeader});
+    }
 
 });
+
+x.register("moveRules", function(moveRules,data) {
+    var str;
+    $(".clone").remove();
+    if(moveRules.movingUnitId >= 0){
+        if(moveRules.hexPath){
+            id = moveRules.movingUnitId;
+            for( i in moveRules.hexPath){
+                newId = id+"Hex"+i;
+
+                $("#"+id).clone(true).attr('id',newId).appendTo('#gameImages');
+                $("#"+newId+" .arrow").hide();
+                $("#"+newId).addClass("clone");
+                $("#"+newId).css("top",20);
+                width = $("#"+newId).width();
+                height = $("#"+newId).height();
+
+                $("#"+newId).css("left",moveRules.hexPath[i].pixX - width/2 +"px");
+                $("#"+newId).css("top",moveRules.hexPath[i].pixY - height/2 +"px");
+                $("#"+newId+".unitNumbers.movement").html(moveRules.hexPath[i].pointsLeft);
+                $("#"+newId).css("opacity",.9);
+                $("#"+newId).css("z-index",101);
+
+
+            }
+        }
+        var opacity = .4;
+        var borderColor = "#ccc #333 #333 #ccc";
+        if(moveRules.moves){
+            id = moveRules.movingUnitId;
+            newId = "firstclone";
+            width = $("#"+id).width();
+            height = $("#"+id).height();
+
+            var MYCLONE = $("#"+id).clone(true).detach();
+            MYCLONE.find(".arrow").hide();
+            MYCLONE.addClass("clone");
+            MYCLONE.find('.shadow-mask').css({backgroundColor:'transparent'});
+            MYCLONE.hover(function(){
+                    if(opacity != 1){
+                        $(this).css("border-color","#fff");
+                    }
+                    $(this).css("opacity",1.0).css('box-shadow','#333 5px 5px 5px');
+                    var path = $(this).attr("path");
+                    var pathes = path.split(",");
+                    for(i in pathes){
+                        $("#"+id+"Hex"+pathes[i]).css("opacity",1.0).css("border-color","#fff").css('box-shadow','#333 5px 5px 5px');
+                        $("#"+id+"Hex"+pathes[i]+".occupied").css("display","block");
+
+                    }
+                },
+                function(){
+                    if(opacity != 1){
+                        $(this).css("border-color","#ccc #333 #333 #ccc");
+                    }
+                    $(this).css("opacity",opacity).css('box-shadow','none');
+                    var path = $(this).attr("path");
+                    var pathes = path.split(",");
+                    for(i in pathes){
+                        $("#"+id+"Hex"+pathes[i]).css("opacity",.4).css("border-color","#ccc #333 #333 #ccc").css('box-shadow','none');
+                        $("#"+id+"Hex"+pathes[i]+".occupied").css("display","none");
+
+                    }
+
+                });
+
+            var label = MYCLONE.find("unitNumbers.movement").html();
+            if(data.gameRules.phase == <?=RED_COMBAT_PHASE;?> || data.gameRules.phase == <?=BLUE_COMBAT_PHASE;?>){
+                if(data.gameRules.mode == <?=ADVANCING_MODE;?>){
+                    var unit = moveRules.movingUnitId;
+
+                    thetas = data.combatRules.resolvedCombats[data.combatRules.currentDefender].thetas[unit]
+                    for(k in thetas){
+                        $("#"+unit+ " .arrow").clone().addClass('arrowClone').addClass('arrow'+k).insertAfter("#"+unit+ " .arrow").removeClass('arrow');
+                        theta = thetas[k];
+                        theta *= 15;
+                        theta += 180;
+                        $("#"+unit+ " .arrow"+k).css({opacity: "1.0"});
+                        $("#"+unit+ " .arrow"+k).css({webkitTransform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
+                        $("#"+unit+ " .arrow"+k).css({transform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
+                    }
+                }
+                opacity = 1.;
+                borderColor = "turquoise";
+            }
+            MYCLONE.css({opacity:opacity,
+                    zIndex:102,
+                    borderColor:borderColor,
+                    boxShadow:"none",
+                    position:"absolute"}
+            );
+            var diff = 0;
+            var counter = 0;
+            for( i in moveRules.moves){
+                debugger;
+                counter++;
+                newId = id+"Hex"+i;
+
+                var secondGenClone = MYCLONE.clone(true).attr(
+                    {
+                        id:newId,
+                        path:moveRules.moves[i].pathToHere
+                    }
+                );
+
+                var newLabel = moveRules.moves[i].pointsLeft;
+                console.log(newLabel);
+                secondGenClone.find('.unitNumbers.movement').html(newLabel).addClass('infoLen'+newLabel.length);
+                if(moveRules.moves[i].isOccupied){
+                    secondGenClone.addClass("occupied");
+                }
+                /* left and top need to be set after appendTo() */
+
+                secondGenClone.appendTo('#gameImages').css({left:moveRules.moves[i].pixX - width/2 +"px",top:moveRules.moves[i].pixY - height/2 +"px"});
+                /* apparently cloning attaches the mouse events */
+            }
+
+            $("#firstclone").remove();
+            $("#firstclone").remove();
+        }
+
+    }
+});
+
 </script>

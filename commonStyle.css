@@ -73,7 +73,7 @@ h4:hover {
   padding: 0 2px 0 2px;
   font-style: italic; }
 
-.unit.pushed .shadow_mask {
+.unit.pushed .shadow-mask {
   /*color:#f3172d !important;*/
   /*color:mediumpurple !important;*/
   /*background-color: #858585 !important;*/
@@ -398,7 +398,7 @@ h4:hover {
 #OBC .unit {
   margin-top: 10px; }
 
-#OBC .unit .shadow_mask {
+#OBC .unit .shadow-mask {
   /*background-color:rgba(0,0,0,.3);*/ }
 
 #Time {
@@ -648,7 +648,7 @@ fieldset {
   width: 32px;
   height: 32px; }
 
-.unit .shadow_mask {
+.unit .shadow-mask {
   top: 0px;
   left: 0px;
   height: 100%;

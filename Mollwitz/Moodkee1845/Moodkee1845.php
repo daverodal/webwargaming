@@ -44,8 +44,8 @@ class Moodkee1845 extends IndiaCore
 
     static function playMulti($name, $wargame, $arg = false)
     {
-        $deployTwo = $playerOne = "Sikh";
-        $deployOne = $playerTwo = "British";
+        $deployTwo = $playerOne = "British";
+        $deployOne = $playerTwo = "Sikh";
         @include_once "playMulti.php";
     }
 
@@ -53,8 +53,8 @@ class Moodkee1845 extends IndiaCore
     {
         global $force_name;
         $youAre = $force_name[$player];
-        $deployTwo = $playerOne = "Sikh";
-        $deployOne = $playerTwo = "British";
+        $deployTwo = $playerOne = "British";
+        $deployOne = $playerTwo = "Sikh";
         @include_once "view.php";
     }
 

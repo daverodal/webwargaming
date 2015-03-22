@@ -257,7 +257,7 @@
                     <?php $id = 0; ?>
                     {units}
                     <div class="unit {class} {type}" id="{id}" alt="0">
-                        <div class="shadow_mask"></div>
+                        <div class="shadow-mask"></div>
                         <div class="counterWrapper">
                             <div class="counter"></div>
                         </div>

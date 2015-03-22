@@ -334,15 +334,16 @@ x.register("force", function(force,data) {
         }
 
         $("#"+i).css({borderColor: color,borderStyle:style});
+        debugger;
         if(shadow){
-            $("#"+i+" .shadow_mask").addClass("shadowy");
+            $("#"+i+" .shadow-mask").addClass("shadowy");
         }else{
-            $("#"+i+" .shadow_mask").removeClass("shadowy");
+            $("#"+i+" .shadow-mask").removeClass("shadowy");
         }
         if(units[i].isDisrupted){
-            $("#"+i+" .shadow_mask").addClass("red-shadowy");
+            $("#"+i+" .shadow-mask").addClass("red-shadowy");
         }else{
-            $("#"+i+" .shadow_mask").removeClass("red-shadowy");
+            $("#"+i+" .shadow-mask").removeClass("red-shadowy");
         }
         $("#"+i).css({boxShadow: boxShadow});
 
@@ -674,7 +675,7 @@ x.register("moveRules", function(moveRules,data) {
             var MYCLONE = $("#"+id).clone(true).detach();
             MYCLONE.find(".arrow").hide();
             MYCLONE.addClass("clone");
-            MYCLONE.find('.shadow_mask').css({backgroundColor:'transparent'});
+            MYCLONE.find('.shadow-mask').css({backgroundColor:'transparent'});
             MYCLONE.hover(function(){
                     if(opacity != 1){
                         $(this).css("border-color","#fff");
@@ -690,13 +691,13 @@ x.register("moveRules", function(moveRules,data) {
                 },
                 function(){
                     if(opacity != 1){
-                        $(this).css("border-color","transparent");
+                        $(this).css("border-color","#ccc #333 #333 #ccc");
                     }
                     $(this).css("opacity",opacity).css('box-shadow','none');
                     var path = $(this).attr("path");
                     var pathes = path.split(",");
                     for(i in pathes){
-                        $("#"+id+"Hex"+pathes[i]).css("opacity",.4).css("border-color","transparent").css('box-shadow','none');
+                        $("#"+id+"Hex"+pathes[i]).css("opacity",.4).css("border-color","#ccc #333 #333 #ccc").css('box-shadow','none');
                         $("#"+id+"Hex"+pathes[i]+".occupied").css("display","none");
 
                     }
@@ -742,6 +743,7 @@ x.register("moveRules", function(moveRules,data) {
                 );
 
                 var newLabel = label.replace(/((?:<span[^>]*>)?[-+ru](?:<\/span>)?).*/,"$1 "+moveRules.moves[i].pointsLeft);
+                debugger;
                 secondGenClone.find('div.unit-numbers span').html(newLabel).addClass('infoLen'+newLabel.length);
                 if(moveRules.moves[i].isOccupied){
                     secondGenClone.addClass("occupied");

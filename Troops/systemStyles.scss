@@ -84,18 +84,7 @@ $beluchiWrapperColor: #c6c102;
 #map {
 }
 
-.unit {
-  border: solid black;
-  border-width: 3px;
-}
 
-.unit .counterWrapper div.counter {
-  width: 14px;
-  height: 14px;
-  display: block;
-  border-right: 1px solid black;
-
-}
 
 @include badge(Sikh, Sikh);
 @include badge(Beluchi, Sikh);
@@ -124,8 +113,21 @@ $beluchiWrapperColor: #c6c102;
   margin-left: 20px;
 }
 
+
+.unit {
+  border: solid black;
+  border-width: 3px;
+}
+
+.unit .counterWrapper div.counter {
+  width: 14px;
+  height: 14px;
+  display: block;
+  border-right: 1px solid black;
+
+}
+
 .unit .counterWrapper {
-  border: solid black 1px;
   height: 14px;
 }
 
@@ -332,7 +334,6 @@ p.forceMarch {
 
 .left {
   float: left;
-  margin-right: 15px;
 }
 
 .austrian.specialHexes {

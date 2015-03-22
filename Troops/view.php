@@ -22,6 +22,93 @@
     DR.playerTwo = "<?=$playerTwo?>";
 </script>
 <link rel="stylesheet" href="<?= base_url("js/font-awesome-4.2.0/css/font-awesome.min.css"); ?>">
+<style type="text/css">
+    .topDiv {
+        stroke:black;
+        fill:black;
+        stroke-width:2;
+        color:black;
+        font-family:sans-serif;
+        border: 3px solid black;
+        border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204);
+        top: 400px;
+        width: 48px;
+        height: 48px;
+    }
+    .shadow-mask{
+        position: absolute;
+        top:0px;
+        left:0px;
+        width:48px;
+        height:48px;
+        z-index:3;
+    }
+
+    .unitSize {
+        height: 11px;
+        font-size:13px;
+        text-align:center;
+    }
+
+    .counterWrapper{
+        height:16px;
+    }
+    .counterWrapper svg{
+        margin: 0 auto;
+        display:block;
+    }
+    .infantry .counterWrapper svg{
+        padding-top:0;
+    }
+    .unitNumbers{
+        text-align: center;
+        font-size:13px;
+        padding-top:1px;
+        letter-spacing: .5px;
+        height:12px;
+    }
+    .infantry .unitNumbers {
+        font-size:15px;
+    }
+    .topDiv.smallUnit{
+        width:32px;
+        height:32px;
+    }
+    .orange{
+        background:orange;
+    }
+    .left{
+        float:left;
+    }
+    .right{
+        float:right;
+    }
+    .movement{
+        margin-top:-13px;
+    }
+    .infantry .movement{
+        margin-top:-2px;
+    }
+    .type-wrapper{
+        display:none;
+    }
+    .mg .mg-svg{
+        display:block;
+        width:10px;
+        margin: 0 auto;
+    }
+    .artillery .artillery-svg{
+        display:block;
+    }
+    .infantry .infantry-svg{
+        display:block;
+    }
+    .German{
+        background: #999;
+    }
+    .British{
+    }
+</style>
 
 <body xmlns="http://www.w3.org/1999/html">
 <div id="theDiv">
@@ -176,7 +263,7 @@
             <div id="gameContainer">
                 <div id="gameImages">
                     <div id="svgWrapper">
-                        <svg style="position:absolute;" xmlns="http://www.w3.org/2000/svg">
+                        <svg id="arrow-svg" style="position:absolute;" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <marker id='heead' orient="auto"
                                         markerWidth='2' markerHeight='4'
@@ -216,17 +303,51 @@
                     <img id="map" alt="map" src="<?php preg_match("/http/", $mapUrl) ? $pre = '' : $pre = base_url();
                     echo "$pre$mapUrl"; ?>"
                          style="position: relative;visibility: visible;z-index: 0;">
-                    <?php $id = 0; ?>
+                    <?php $id = 0;?>
                     {units}
-                    <div class="unit {class} {type}" id="{id}" alt="0">
-                        <div class="shadow_mask"></div>
-                        <div class="counterWrapper">
-                            <div class="counter"></div>
-                        </div>
-                        <p class="tacRange range">{range}</p>
+                    <div class="unit {class} {type} topDiv smallUnit" id="{id}">
+                        <div class="shadow-mask"></div>
                         <img class="arrow" src="<?php echo base_url(); ?>js/short-red-arrow-md.png" class="counter">
 
-                        <div class="unit-numbers">5 - 4</div>
+
+                        <div class="counterWrapper">
+                            <div class="unitNumbers attack left">
+                                6
+                            </div>
+                            <div class="unitNumbers rangewe right">
+                                {range}
+                            </div>
+                            <div class="type-wrapper artillery-svg">
+                                <svg width="10" height="15" viewBox="0 0 10 20">
+                                    <line x1="5" x2="5" y1="0" y2="20" stroke-width="2"></line>
+                                    <line x1="0" x2="10" y1="10" y2="10"></line>
+                                    <line x1="1" x2="1" y1="4" y2="16"></line>
+                                    <line x1="9" x2="9" y1="4" y2="16"></line>
+                                </svg>
+                            </div>
+                            <div class="type-wrapper mg-svg">
+                                <svg width="10" height="20" viewBox="0 0 10 20">
+                                    <line x1="5" x2="5" y1="0" y2="20" stroke-width="2"></line>
+                                    <line x1="5" x2="0" y1="1" y2="5"></line>
+                                    <line x1="5" x2="10" y1="1" y2="5"></line>
+                                    <line x1="0" x2="10" y1="10" y2="10"></line>
+                                    <line x1="0" x2="10" y1="13" y2="13"></line>
+                                </svg>
+                            </div>
+                            <div class="type-wrapper infantry-svg">
+                                <svg width="15" height="7" viewBox="0 0 20 10">
+                                    <line x1="1" x2="1" y1="0" y2="10" stroke-width="2"></line>
+                                    <line x1="0" x2="20" y1="9" y2="9" stroke-width="2"></line>
+                                    <line x1="19" x2="19" y1="0" y2="20" stroke-width="2"></line>
+                                    <line x1="0" x2="20" y1="1" y2="1" stroke-width="2"></line>
+                                    <line x1="1" x2="19" y1="1" y2="9" stroke-width="2"></line>
+                                    <line x1="1" x2="19" y1="9" y2="1" stroke-width="2"></line>
+                                </svg>
+                            </div>
+                            <div class="unitNumbers movement right">
+                                3
+                            </div>
+                        </div>
 
                     </div>
                     {/units}

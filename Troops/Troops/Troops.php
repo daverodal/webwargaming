@@ -68,6 +68,7 @@ class Troops extends TroopsCore
     {
 
         global $force_name;
+        $blood = "lust";
         $youAre = $force_name[$player];
         $deployTwo = $playerOne = $force_name[1];
         $deployOne = $playerTwo = $force_name[2];
@@ -183,10 +184,10 @@ class Troops extends TroopsCore
             $this->mapData->blocksZoc->blocked = true;
             $this->mapData->blocksZoc->blocksnonroad = true;
 
-            $this->moveRules->enterZoc = "stop";
-            $this->moveRules->exitZoc = "stop";
-            $this->moveRules->noZocZoc = true;
-            $this->moveRules->zocBlocksRetreat = true;
+            $this->moveRules->enterZoc = 0;
+            $this->moveRules->exitZoc = 0;
+            $this->moveRules->noZocZoc = false;
+            $this->moveRules->zocBlocksRetreat = false;
 
             $this->gameRules->gameHasCombatResolutionMode = false;
             // game data
@@ -206,15 +207,15 @@ class Troops extends TroopsCore
 
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_FIRST_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_FIRST_COMBAT_PHASE, RED_FIRST_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_FIRST_COMBAT_PHASE, BLUE_COMBAT_RES_PHASE, COMBAT_RESOLUTION_MODE, BLUE_FORCE, RED_FORCE, true);
+            $this->gameRules->addPhaseChange(RED_FIRST_COMBAT_PHASE, BLUE_COMBAT_RES_PHASE, COMBAT_RESOLUTION_MODE, BLUE_FORCE, RED_FORCE, false);
 
             $this->gameRules->addPhaseChange(BLUE_COMBAT_RES_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE,BLUE_FORCE , false);
 
             $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_SECOND_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_SECOND_COMBAT_PHASE, BLUE_SECOND_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, true);
+            $this->gameRules->addPhaseChange(RED_SECOND_COMBAT_PHASE, BLUE_SECOND_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_SECOND_COMBAT_PHASE, RED_COMBAT_RES_PHASE, COMBAT_RESOLUTION_MODE, RED_FORCE, BLUE_FORCE, false);
 
-            $this->gameRules->addPhaseChange(RED_COMBAT_RES_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_COMBAT_RES_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
 
         }
     }

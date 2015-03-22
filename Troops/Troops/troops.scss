@@ -21,7 +21,11 @@
   width:800px;
 }
 $germanColor: #999;
-@include player(British, Two, $angloAlliedColor, $angloAlliedWrapperColor);
+$britishColor: #9f9;
+.British{
+  background: $britishColor;
+}
+@include player(British, Two, $britishColor, $britishColor);
 @include player(German, One, $germanColor, #999, #999);
 
 .unit.Native .counterWrapper {

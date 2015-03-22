@@ -91,7 +91,7 @@ h4:hover {
 #topStatus {
   float: right; }
 
-.unit.pushed .shadow_mask {
+.unit.pushed .shadow-mask {
   /*color:#f3172d !important;*/
   /*color:mediumpurple !important;*/
   /*background-color: #858585 !important;*/
@@ -488,7 +488,7 @@ You should have received a copy of the GNU General Public License
 #OBC .unit {
   margin-top: 10px; }
 
-#OBC .unit .shadow_mask {
+#OBC .unit .shadow-mask {
   /*background-color:rgba(0,0,0,.3);*/ }
 
 #Time {
@@ -724,7 +724,7 @@ fieldset {
   height: 32px;
   border: solid 3px black; }
 
-.unit .shadow_mask {
+.unit .shadow-mask {
   top: 0px;
   left: 0px;
   height: 100%;
@@ -888,16 +888,6 @@ svg marker#head {
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-.unit {
-  border: solid black;
-  border-width: 3px; }
-
-.unit .counterWrapper div.counter {
-  width: 14px;
-  height: 14px;
-  display: block;
-  border-right: 1px solid black; }
-
 .Sikh.infantry .counterWrapper .counter {
   background-image: url("../../js/SikhInfBadge.png");
   background-size: 14px; }
@@ -1160,8 +1150,17 @@ svg marker#head {
 .indent {
   margin-left: 20px; }
 
+.unit {
+  border: solid black;
+  border-width: 3px; }
+
+.unit .counterWrapper div.counter {
+  width: 14px;
+  height: 14px;
+  display: block;
+  border-right: 1px solid black; }
+
 .unit .counterWrapper {
-  border: solid black 1px;
   height: 14px; }
 
 .unit .unit-numbers .infoLen7 {
@@ -1321,8 +1320,7 @@ p.forceMarch {
   counter-reset: item 6; }
 
 .left {
-  float: left;
-  margin-right: 15px; }
+  float: left; }
 
 .austrian.specialHexes {
   background-color: #df5842;
@@ -1369,15 +1367,18 @@ p.forceMarch {
 #tecImage {
   width: 800px; }
 
+.British {
+  background: #9f9; }
+
 .playerTwo {
-  background: #df5842;
-  border-color: #df5842 !important; }
+  background: #9f9;
+  border-color: #9f9 !important; }
 
 .BritishFace, .playerTwoFace {
-  color: #df5842; }
+  color: #9f9; }
 
 .British .counterWrapper {
-  background-color: #f00; }
+  background-color: #9f9; }
 
 .playerOne {
   background: #999;

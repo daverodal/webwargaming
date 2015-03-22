@@ -59,6 +59,8 @@ class Ferozesha extends IndiaCore
 
     static function enterMulti()
     {
+        $deployTwo = $playerOne = "British";
+        $deployOne = $playerTwo = "Sikh";
         @include_once "enterMulti.php";
     }
 

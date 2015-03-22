@@ -21,6 +21,7 @@
  */
 ?>
 <script type="text/javascript">
+    debugger;
     DR.playerOne = "<?=$playerOne?>";
     DR.playerTwo = "<?=$playerTwo?>";
 </script>
@@ -239,7 +240,7 @@
             <div id="gameContainer">
                 <div id="gameImages">
                     <div id="svgWrapper">
-                        <svg style="position:absolute;" xmlns="http://www.w3.org/2000/svg">
+                        <svg id="arrow-svg" style="position:absolute;" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <marker id='heead' orient="auto"
                                         markerWidth='2' markerHeight='4'
@@ -282,7 +283,7 @@
                     <?php $id = 0; ?>
                     {units}
                     <div class="unit {class} {type}" id="{id}" alt="0">
-                        <div class="shadow_mask"></div>
+                        <div class="shadow-mask"></div>
                         <div class="counterWrapper">
                             <div class="counter"></div>
                         </div>

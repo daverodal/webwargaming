@@ -216,7 +216,7 @@
                 <div id="gameContainer">
                     <div id="gameImages">
                         <div id="svgWrapper">
-                            <svg style="opacity:.6;position:absolute;" xmlns="http://www.w3.org/2000/svg">
+                            <svg id="arrow-svg" style="opacity:.6;position:absolute;" xmlns="http://www.w3.org/2000/svg">
                                 <defs>
                                     <marker id='heead' orient="auto"
                                             markerWidth='2' markerHeight='4'
@@ -244,7 +244,7 @@
                         <?php $id = 0; ?>
                         {units}
                         <div class="unit {nationality}" id="{id}" alt="0">
-                            <div class="shadow_mask"></div>
+                            <div class="shadow-mask"></div>
                             <div class="unitSize">{unitSize}</div>
                             <img class="arrow" src="<?php echo base_url(); ?>js/short-red-arrow-md.png" class="counter">
                             <div class="counterWrapper">
