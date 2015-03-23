@@ -239,15 +239,18 @@ class victoryCore
 
     public function preRecoverUnits(){
         $this->headQuarters = [];
+        $b = Battle::getBattle();
+        $units = $b->force->units;
+        foreach($units as $unit){
+            if($unit->class == 'hq' && $unit->hexagon->name && $unit->forceId == $b->force->attackingForceId){
+                $this->headQuarters[] = $unit->id;
+            }
+        }
+
     }
 
     public function preRecoverUnit($arg){
-        $unit = $arg[0];
-        $b = Battle::getBattle();
-        $id = $unit->id;
-        if($unit->class == 'hq' && $unit->hexagon->name && $unit->forceId == $b->force->attackingForceId){
-            $this->headQuarters[] = $id;
-        }
+
     }
 
     public function checkCommand($unit){

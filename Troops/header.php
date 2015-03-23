@@ -252,7 +252,6 @@ x.register("moveRules", function(moveRules,data) {
                 );
 
                 var newLabel = moveRules.moves[i].pointsLeft;
-                console.log(newLabel);
                 secondGenClone.find('.unitNumbers.movement').html(newLabel).addClass('infoLen'+newLabel.length);
                 if(moveRules.moves[i].isOccupied){
                     secondGenClone.addClass("occupied");
