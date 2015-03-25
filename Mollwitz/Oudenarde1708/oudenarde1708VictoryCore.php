@@ -89,44 +89,33 @@ class oudenarde1708VictoryCore extends victoryCore
         $gameRules = $battle->gameRules;
         $scenario = $battle->scenario;
         $turn = $gameRules->turn;
-        $prussianScore = $austrianWin = $prussianWin = $draw = false;
+        $angloWin = $frenchWin = $draw = false;
 
         if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
-            $winScore = 60;
-            if (($this->victoryPoints[PRUSSIAN_FORCE] >= $winScore && ($this->victoryPoints[PRUSSIAN_FORCE] - ($this->victoryPoints[AUSTRIAN_FORCE]) >= 10))) {
-                if ($turn < 9) {
-                    $prussianWin = true;
-                }
-                if ($turn < 12) {
-                    $draw = true;
-                }
-                $prussianScore = true;
-            }
-            if ($this->victoryPoints[AUSTRIAN_FORCE] >= $winScore && ($this->victoryPoints[AUSTRIAN_FORCE] - ($this->victoryPoints[PRUSSIAN_FORCE]))) {
-                if ($turn < 13) {
-                    $austrianWin = true;
+            $winScore = 35;
+            if (($this->victoryPoints[ANGLO_ALLIED_FORCE] >= $winScore && ($this->victoryPoints[ANGLO_ALLIED_FORCE] - ($this->victoryPoints[FRENCH_FORCE]) >= 5))) {
+                if ($turn < 7) {
+                    $angloWin = true;
                 }
             }
-            if ($turn == $gameRules->maxTurn + 1) {
-                if (!$prussianScore) {
-                    $austrianWin = true;
-                }
-                $gameRules->flashMessages[] = "Game Over";
-                $this->gameOver = true;
-                return true;
+            if ($this->victoryPoints[FRENCH_FORCE] >= $winScore) {
+                $frenchWin = true;
             }
 
-            if ($prussianWin) {
-                $this->winner = PRUSSIAN_FORCE;
-                $gameRules->flashMessages[] = "Prussian Win";
+            if ($angloWin) {
+                $this->winner = ANGLO_ALLIED_FORCE;
+                $gameRules->flashMessages[] = "Anglo Allied Win";
             }
-            if ($austrianWin) {
+            if ($frenchWin) {
                 $this->winner = AUSTRIAN_FORCE;
                 $msg = "Austrian Win";
                 $gameRules->flashMessages[] = $msg;
             }
-            if ($prussianWin || $austrianWin) {
+            if ($angloWin || $frenchWin ||  $turn == ($gameRules->maxTurn + 1)) {
+                if(!$angloWin && !$frenchWin){
+                    $gameRules->flashMessages[] = "Tie Game";
+                }
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
                 return true;
