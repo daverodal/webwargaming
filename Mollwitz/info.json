@@ -151,6 +151,19 @@
             }
         }
     },
+  "Oudenarde1708": {
+    "name": "The Battle of Oudenarde 1708",
+    "path": "Mollwitz",
+    "genre": "18'th Century Europe",
+    "fileName": "Oudenarde1708/Oudenarde1708.php",
+    "description":"July 11, 1708. Anglo Allies vs Franco Bavarian. The war for Spanish Succession.",
+    "scenarios": {
+      "main": {
+        "description": "Standard Scenario.",
+        "longDescription":"Whatever"
+      }
+    }
+  },
     "Lobositz": {
         "name": "The Battle of Lobositz",
         "path": "Mollwitz",
