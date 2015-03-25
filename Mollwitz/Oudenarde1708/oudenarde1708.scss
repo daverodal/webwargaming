@@ -19,8 +19,8 @@ You should have received a copy of the GNU General Public License
 #tecImage{
   width:500px;
 }
-@include player(AngloAllied, Two, $angloAlliedColor, $angloAlliedWrapperColor);
-@include player(French, One, $frenchColor, $frenchSaxonWrapperColor);
+@include player(AngloAllied,One , $angloAlliedColor, $angloAlliedWrapperColor);
+@include player(French, Two, $frenchColor, $frenchSaxonWrapperColor);
 
 .french.specialHexes{
   background-color: $frenchColor;

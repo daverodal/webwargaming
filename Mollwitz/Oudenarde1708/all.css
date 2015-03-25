@@ -1308,21 +1308,21 @@ You should have received a copy of the GNU General Public License
 #tecImage {
   width: 500px; }
 
-.playerTwo {
+.playerOne {
   background: #df5842;
   border-color: #df5842 !important; }
 
-.AngloAlliedFace, .playerTwoFace {
+.AngloAlliedFace, .playerOneFace {
   color: #df5842; }
 
 .AngloAllied .counterWrapper {
   background-color: #f00; }
 
-.playerOne {
+.playerTwo {
   background: #84b5ff;
   border-color: #84b5ff !important; }
 
-.FrenchFace, .playerOneFace {
+.FrenchFace, .playerTwoFace {
   color: #84b5ff; }
 
 .French .counterWrapper {
