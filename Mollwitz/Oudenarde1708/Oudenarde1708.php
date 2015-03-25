@@ -102,7 +102,7 @@ class Oudenarde1708 extends JagCore
             $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'cavalry');
         }
         for ($i = 0; $i < 2; $i++) {
-            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedCavBadge.png", 5, 6, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'cavalry');
+            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'cavalry');
         }
         for ($i = 0; $i < 5; $i++) {
             $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, "A", 1, 3, "AngloAllied", false, 'artillery');
