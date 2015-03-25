@@ -89,97 +89,50 @@ class Oudenarde1708 extends JagCore
 
         $artRange = 3;
         $coinFlip = floor(2 * (rand() / getrandmax()));
-        $prussianDeploy = ($coinFlip == 1 ? "B": "C");
+        $prussianDeploy = "B";
 
         /* AngloAllied */
-        for ($i = 0; $i < 5; $i++) {
-            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'infantry');
+        for ($i = 0; $i < 4; $i++) {
+            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedInfBadge.png", 6, 6, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'infantry');
         }
-        for ($i = 0; $i < 16; $i++) {
-            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'infantry');
+        for ($i = 0; $i < 12; $i++) {
+            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'infantry');
         }
         for ($i = 0; $i < 5; $i++) {
             $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'cavalry');
         }
-        for ($i = 0; $i < 8; $i++) {
-            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'cavalry');
-        }
         for ($i = 0; $i < 2; $i++) {
-            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedCavBadge.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'cavalry');
+            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedCavBadge.png", 5, 6, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'cavalry');
         }
-        for ($i = 0; $i < 2; $i++) {
-            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedArtBadge.png", 4, 4, 2, true, STATUS_CAN_DEPLOY, "A", 1, 3, "AngloAllied", false, 'artillery');
-        }
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, "A", 1, 3, "AngloAllied", false, 'artillery');
         }
 
-        if($this->scenario->fredBringsMore){
-            /* French */
-            for ($i = 0; $i < 5; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 1, "French", false, 'infantry');
-            }
-            for ($i = 0; $i < 16; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 1, "French", false, 'infantry');
-            }
-            for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 1, "French", false, 'cavalry');
-            }
-            for ($i = 0; $i < 8; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 1, "French", false, 'cavalry');
-            }
-            for ($i = 0; $i < 2; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 4, 4, 6, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 1, "French", false, 'cavalry');
-            }
-            for ($i = 0; $i < 2; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 3, "French", false, 'artillery');
-            }
-            for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchArtBadge.png", 2, 2, 2, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 3, "French", false, 'artillery');
-            }
-        }else{
-            if($this->scenario->fredBringsALittleMore){
-                /* French */
-                for ($i = 0; $i < 4; $i++) {
-                    $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 1, "French", false, 'infantry');
-                }
-                for ($i = 0; $i < 14; $i++) {
-                    $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 1, "French", false, 'infantry');
-                }
-                for ($i = 0; $i < 3; $i++) {
-                    $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 1, "French", false, 'cavalry');
-                }
-                for ($i = 0; $i < 6; $i++) {
-                    $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 1, "French", false, 'cavalry');
-                }
-                for ($i = 0; $i < 2; $i++) {
-                    $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 4, 4, 6, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 1, "French", false, 'cavalry');
-                }
-                for ($i = 0; $i < 5; $i++) {
-                    $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchArtBadge.png", 2, 2, 2, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 3, "French", false, 'artillery');
-                }
-            }else{
-                /* French */
-                for ($i = 0; $i < 4; $i++) {
-                    $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 1, "French", false, 'infantry');
-                }
-                for ($i = 0; $i < 12; $i++) {
-                    $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 1, "French", false, 'infantry');
-                }
-                for ($i = 0; $i < 3; $i++) {
-                    $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 1, "French", false, 'cavalry');
-                }
-                for ($i = 0; $i < 5; $i++) {
-                    $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 1, "French", false, 'cavalry');
-                }
-                for ($i = 0; $i < 2; $i++) {
-                    $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 4, 4, 6, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 1, "French", false, 'cavalry');
-                }
-                for ($i = 0; $i < 5; $i++) {
-                    $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchArtBadge.png", 2, 2, 2, true, STATUS_CAN_DEPLOY, $prussianDeploy, 1, 3, "French", false, 'artillery');
-                }
-            }
+
+        /* French */
+        for ($i = 0; $i < 3; $i++) {
+            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'infantry');
         }
+        for ($i = 0; $i < 7; $i++) {
+            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'infantry');
+        }
+        for ($i = 0; $i < 8; $i++) {
+            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'infantry');
+        }
+        for ($i = 0; $i < 2; $i++) {
+            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'cavalry');
+        }
+        for ($i = 0; $i < 4; $i++) {
+            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'cavalry');
+        }
+        for ($i = 0; $i < 3; $i++) {
+            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, "B", 1, 3, "French", false, 'artillery');
+        }
+
+        for ($i = 0; $i < 2; $i++) {
+            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchArtBadge.png", 2, 2, 2, true, STATUS_CAN_DEPLOY, "B", 1, 3, "French", false, 'artillery');
+        }
+
     }
 
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
