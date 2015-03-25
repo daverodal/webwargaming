@@ -28,7 +28,7 @@ require_once "IndiaCore.php";
 
 class Oudenarde1708 extends JagCore
 {
-    public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>2, 'SpecialHexC'=>0];
+    public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>1, 'SpecialHexC'=>0];
 
     public
     static function getHeader($name, $playerData, $arg = false)
