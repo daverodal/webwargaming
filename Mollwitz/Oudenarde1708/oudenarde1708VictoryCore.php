@@ -63,23 +63,23 @@ class oudenarde1708VictoryCore extends victoryCore
 
         list($mapHexName, $forceId) = $args;
         if (in_array($mapHexName, $battle->specialHexA)) {
-            if ($forceId == AUSTRIAN_FORCE) {
-                $this->victoryPoints[AUSTRIAN_FORCE] += 10;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>+10 Austrian vp</span>";
+            if ($forceId == ANGLO_ALLIED_FORCE) {
+                $this->victoryPoints[ANGLO_ALLIED_FORCE] += 15;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='angloallied'>+15 Anglo Allied vp</span>";
             }
-            if ($forceId == PRUSSIAN_FORCE) {
-                $this->victoryPoints[AUSTRIAN_FORCE] -= 10;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>-10 Prussian vp</span>";
+            if ($forceId == FRENCH_FORCE) {
+                $this->victoryPoints[ANGLO_ALLIED_FORCE] -= 15;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>-15 Anglo Allied vp</span>";
             }
         }
         if (in_array($mapHexName, $battle->specialHexB)) {
-            if ($forceId == PRUSSIAN_FORCE) {
-                $this->victoryPoints[PRUSSIAN_FORCE] += 20;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+20 Prussian vp</span>";
+            if ($forceId == FRENCH_FORCE) {
+                $this->victoryPoints[FRENCH_FORCE] += 10;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>+10 French vp</span>";
             }
-            if ($forceId == AUSTRIAN_FORCE) {
-                $this->victoryPoints[PRUSSIAN_FORCE] -= 20;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-20 Austrian vp</span>";
+            if ($forceId == ANGLO_ALLIED_FORCE) {
+                $this->victoryPoints[FRENCH_FORCE] -= 10;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='angloallied'>-10 French vp</span>";
             }
         }
     }
