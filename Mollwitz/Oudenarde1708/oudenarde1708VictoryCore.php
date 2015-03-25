@@ -108,8 +108,8 @@ class oudenarde1708VictoryCore extends victoryCore
                 $gameRules->flashMessages[] = "Anglo Allied Win";
             }
             if ($frenchWin) {
-                $this->winner = AUSTRIAN_FORCE;
-                $msg = "Austrian Win";
+                $this->winner = FRENCH_FORCE;
+                $msg = "French Win";
                 $gameRules->flashMessages[] = $msg;
             }
             if ($angloWin || $frenchWin ||  $turn == ($gameRules->maxTurn + 1)) {
