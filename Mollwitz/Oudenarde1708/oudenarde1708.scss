@@ -19,7 +19,22 @@ You should have received a copy of the GNU General Public License
 #tecImage{
   width:500px;
 }
-@include player(French, One, $prussianColor, $prussianWrapperColor, $prussianWrapperColor);
-@include player(AngloAllied, Two, $austrianColor, $austrianWrapperColor);
+@include player(AngloAllied, One, $angloAlliedColor, $angloAlliedWrapperColor);
+@include player(French, Two, $frenchColor, $frenchSaxonWrapperColor);
 
+.french.specialHexes{
+  background-color: $frenchColor;
+}
 
+.anglo {
+  background-color: $angloAlliedColor;
+}
+.french.specialHexes, .anglo.specialHexes{
+  color:white;
+}
+.French, .AngloAllied {
+  p.forceMarch, p.range{
+    color:white;
+  }
+}
+@include badge(French, Fre);

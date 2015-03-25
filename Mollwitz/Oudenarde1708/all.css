@@ -1309,23 +1309,52 @@ You should have received a copy of the GNU General Public License
   width: 500px; }
 
 .playerOne {
-  background: #fffd7f;
-  border-color: #fffd7f !important; }
-
-.FrenchFace, .playerOneFace {
-  color: #0117de; }
-
-.French .counterWrapper {
-  background-color: #0117de; }
-
-.playerTwo {
   background: #df5842;
   border-color: #df5842 !important; }
 
-.AngloAlliedFace, .playerTwoFace {
+.AngloAlliedFace, .playerOneFace {
   color: #df5842; }
 
 .AngloAllied .counterWrapper {
-  background-color: white; }
+  background-color: #f00; }
+
+.playerTwo {
+  background: #84b5ff;
+  border-color: #84b5ff !important; }
+
+.FrenchFace, .playerTwoFace {
+  color: #84b5ff; }
+
+.French .counterWrapper {
+  background-color: #9f9f9f; }
+
+.french.specialHexes {
+  background-color: #84b5ff; }
+
+.anglo {
+  background-color: #df5842; }
+
+.french.specialHexes, .anglo.specialHexes {
+  color: white; }
+
+.French p.forceMarch, .French p.range, .AngloAllied p.forceMarch, .AngloAllied p.range {
+  color: white; }
+
+.French.infantry .counterWrapper .counter {
+  background-image: url("../../js/FreInfBadge.png");
+  background-size: 14px; }
+
+.French.cavalry .counterWrapper .counter {
+  background-image: url("../../js/FreCavBadge.png");
+  background-size: 14px; }
+
+.French.artillery .counterWrapper .counter {
+  background-image: url("../../js/FreArtBadge.png");
+  background-size: 14px; }
+
+.French.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
 
 /*# sourceMappingURL=all.css.map */
