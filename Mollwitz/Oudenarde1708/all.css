@@ -1312,20 +1312,20 @@ You should have received a copy of the GNU General Public License
   background: #fffd7f;
   border-color: #fffd7f !important; }
 
-.PrussianFace, .playerOneFace {
+.FrenchFace, .playerOneFace {
   color: #0117de; }
 
-.Prussian .counterWrapper {
+.French .counterWrapper {
   background-color: #0117de; }
 
 .playerTwo {
   background: #df5842;
   border-color: #df5842 !important; }
 
-.AustrianFace, .playerTwoFace {
+.AngloAlliedFace, .playerTwoFace {
   color: #df5842; }
 
-.Austrian .counterWrapper {
+.AngloAllied .counterWrapper {
   background-color: white; }
 
 /*# sourceMappingURL=all.css.map */
