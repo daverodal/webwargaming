@@ -17,8 +17,8 @@ You should have received a copy of the GNU General Public License
    */
 
 
-define("FRENCH_FORCE", 1);
-define("ANGLO_ALLIED_FORCE", 2);
+define("ANGLO_ALLIED_FORCE", 1);
+define("FRENCH_FORCE", 2);
 
 global $force_name;
 $force_name[ANGLO_ALLIED_FORCE] = "Anglo Allied";
@@ -47,8 +47,8 @@ class Oudenarde1708 extends JagCore
 
     static function playMulti($name, $wargame, $arg = false)
     {
-        $deployTwo = $playerOne = "French";
-        $deployOne = $playerTwo = "AngloAllied";
+        $deployTwo = $playerOne = "AngloAllied";
+        $deployOne = $playerTwo = "French";
         @include_once "playMulti.php";
     }
 
@@ -56,8 +56,8 @@ class Oudenarde1708 extends JagCore
     {
         global $force_name;
         $youAre = $force_name[$player];
-        $deployTwo = $playerOne = "French";
-        $deployOne = $playerTwo = "AngloAllied";
+        $deployTwo = $playerOne = "AngloAllied";
+        $deployOne = $playerTwo = "French";
         @include_once "view.php";
     }
 
