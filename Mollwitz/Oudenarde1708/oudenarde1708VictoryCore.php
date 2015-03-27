@@ -91,7 +91,7 @@ class oudenarde1708VictoryCore extends victoryCore
             $specialHexes = $battle->mapData->specialHexes;
             $winScore = 35;
             if (($this->victoryPoints[ANGLO_ALLIED_FORCE] >= $winScore && ($this->victoryPoints[ANGLO_ALLIED_FORCE] - ($this->victoryPoints[FRENCH_FORCE]) >= 5))) {
-                if ($turn < 7) {
+                if ($turn <= 7) {
                     $angloWin = true;
                 }
             }
