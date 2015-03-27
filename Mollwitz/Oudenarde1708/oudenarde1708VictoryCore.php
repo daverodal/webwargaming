@@ -23,7 +23,6 @@ You should have received a copy of the GNU General Public License
  * To change this template use File | Settings | File Templates.
  */
 include "victoryCore.php";
-include "indiaVictoryCore.php";
 
 class oudenarde1708VictoryCore extends victoryCore
 {
@@ -45,9 +44,6 @@ class oudenarde1708VictoryCore extends victoryCore
     {
         $unit = $args[0];
         $mult = 1;
-        if ($unit->nationality == "British") {
-            $mult = 2;
-        }
         if ($unit->forceId == 1) {
             $victorId = 2;
             $this->victoryPoints[$victorId] += $unit->strength * $mult;

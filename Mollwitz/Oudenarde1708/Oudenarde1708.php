@@ -24,7 +24,7 @@ global $force_name;
 $force_name[ANGLO_ALLIED_FORCE] = "Anglo Allied";
 $force_name[FRENCH_FORCE] = "French";
 
-require_once "IndiaCore.php";
+require_once "JagCore.php";
 
 class Oudenarde1708 extends JagCore
 {
@@ -156,7 +156,7 @@ class Oudenarde1708 extends JagCore
 
             // game data
 
-            $this->gameRules->setMaxTurn(14);
+            $this->gameRules->setMaxTurn(10);
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
             $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */
