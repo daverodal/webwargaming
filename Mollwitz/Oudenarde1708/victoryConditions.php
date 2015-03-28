@@ -17,9 +17,25 @@ You should have received a copy of the GNU General Public License
    */
 ?><li><span class="lessBig">Victory Conditions</span>
     <ol>
-        <li>14 Turns</li>
-        <li>Prussians win by scoring 60 points with a lead of 10 before turn 9.</li>
-        <li>Prussians draw by achieving above before turn 12</li>
-        <li>Austrians win by scoring 60 points with a 10 point lead before turn 13 or the Prussian has not made the draw condition of 60+10 by turn 14.</li>
+
+        <li>
+        Each side is awarded one victory point for each hostile combat factor destroyed. And
+        multiple victory points for locations occupied.
+            These locations are marked with numbers in red for Anglo objectives and blue for Franco Objectives.
+            <p class="ruleComment">
+                Note: objectives start in the possession of the enemy, so they will have a label of the opposite color
+                of their number at the beginning of the game. It will switch back and forth depending upon whoever last occupied the objective.
+            </p>
+            </li>
+
+        <li>Anglo player wins: At the end of any turn prior to turn 7 that he has scored 35 or more
+
+        points with a lead of at least 5 points.</li>
+
+        <li>Franco Player Wins: At the end of any turn prior to turn 10 that he has scored 35 or
+
+        more points.</li>
+
+        <li>A Draw Occurs: If neither side has won by the end of turn 10.</li>
     </ol>
 </li>
