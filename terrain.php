@@ -133,6 +133,36 @@ class Terrain
 //
 //            }
         }
+        $this->additionalRules = [];
+        $rule = new stdClass();
+        $rule->startHex = "elevation";
+        $rule->endHex = "elevation2";
+        $rule->cost = 1;
+        $this->additionalRules[] = $rule;
+
+        $rule = new stdClass();
+        $rule->startHex = "clear";
+        $rule->endHex = "elevation";
+        $rule->cost = 1;
+        $this->additionalRules[] = $rule;
+
+        $rule = new stdClass();
+        $rule->startHex = "swamp";
+        $rule->endHex = "elevation";
+        $rule->cost = 1;
+        $this->additionalRules[] = $rule;
+
+        $rule = new stdClass();
+        $rule->startHex = "forest";
+        $rule->endHex = "elevation";
+        $rule->cost = 1;
+        $this->additionalRules[] = $rule;
+
+        $rule = new stdClass();
+        $rule->startHex = "town";
+        $rule->endHex = "elevation";
+        $rule->cost = 1;
+        $this->additionalRules[] = $rule;
     }
 
     public function addSpecialHex($specialHex, $value){
@@ -531,6 +561,21 @@ class Terrain
         return $moveCost;
 
     }
+    function getTerrainAdditionalCost($startHexagon, $endHexagon, unit $unit){
+        $moveCost = 0;
+        list($startX, $startY) = Hexagon::getHexPartXY($startHexagon);
+        list($endX, $endY) = Hexagon::getHexPartXY($endHexagon);
+        $startTerrainCode = $this->getTerrainCodeXY($startX,$startY);
+        $endTerrainCode = $this->getTerrainCodeXY($endX,$endY);
+        $rules = $this->additionalRules;
+
+        foreach($rules as $rule){
+            if($startTerrainCode->{$rule->startHex} && $endTerrainCode->{$rule->endHex}){
+                $moveCost += $rule->cost;
+            }
+        }
+        return $moveCost;
+    }
     /*
       * very public
       * used in moveRules
@@ -542,7 +587,7 @@ class Terrain
         }
         if(is_object($endHexagon)){
             $endHexagon = $endHexagon->name;
-    }
+        }
         $moveCost = 0;
         list($startX, $startY) = Hexagon::getHexPartXY($startHexagon);
         list($endX, $endY) = Hexagon::getHexPartXY($endHexagon);
@@ -590,6 +635,8 @@ class Terrain
              if($cost === "blocked"){
                  return "blocked";
              }
+             $moveCost += $cost;
+             $cost = $this->getTerrainAdditionalCost($startHexagon, $endHexagon, $unit);
              $moveCost += $cost;
          }
         return $moveCost;
