@@ -160,7 +160,12 @@
     "scenarios": {
       "main": {
         "description": "Standard Scenario.",
-        "longDescription":"Whatever"
+        "longDescription":"Original"
+      },
+      "slightlyBiggerFrench": {
+        "description": "Play balance.",
+        "longDescription":"3 more 3-3's for the french.",
+        "slightlyBiggerFrench": true
       }
     }
   },

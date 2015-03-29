@@ -28,11 +28,11 @@ You should have received a copy of the GNU General Public License
             </p>
             </li>
 
-        <li>Anglo player wins: At the end of any turn prior to turn 7 that they have scored 35 or more
+        <li>Anglo player wins: At the end of any turn prior to turn 7 that they have scored 40 or more
 
         points with a lead of at least 5 points.</li>
 
-        <li>Franco Player Wins: At the end of any turn prior to turn 10 that they have scored 35 or
+        <li>Franco Player Wins: At the end of any turn prior to turn 10 that they have scored 40 or
 
         more points.</li>
 

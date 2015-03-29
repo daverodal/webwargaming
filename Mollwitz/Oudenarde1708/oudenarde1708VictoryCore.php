@@ -89,7 +89,7 @@ class oudenarde1708VictoryCore extends victoryCore
 
         if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
-            $winScore = 35;
+            $winScore = 40;
             if (($this->victoryPoints[ANGLO_ALLIED_FORCE] >= $winScore && ($this->victoryPoints[ANGLO_ALLIED_FORCE] - ($this->victoryPoints[FRENCH_FORCE]) >= 5))) {
                 if ($turn <= 7) {
                     $angloWin = true;

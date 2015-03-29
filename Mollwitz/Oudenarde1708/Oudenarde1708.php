@@ -90,6 +90,11 @@ class Oudenarde1708 extends JagCore
         $artRange = 3;
         $coinFlip = floor(2 * (rand() / getrandmax()));
         $prussianDeploy = "B";
+        $scenario = $this->scenario;
+
+        if($scenario->slightlyBiggerFrench){
+            $numThreeThrees = 11;
+        }
 
         /* AngloAllied */
         for ($i = 0; $i < 4; $i++) {
@@ -116,7 +121,7 @@ class Oudenarde1708 extends JagCore
         for ($i = 0; $i < 7; $i++) {
             $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'infantry');
         }
-        for ($i = 0; $i < 8; $i++) {
+        for ($i = 0; $i < $numThreeThrees; $i++) {
             $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'infantry');
         }
         for ($i = 0; $i < 2; $i++) {
