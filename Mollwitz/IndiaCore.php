@@ -26,7 +26,7 @@ class IndiaCore extends JagCore{
     function terrainGen($mapDoc, $terrainDoc)
     {
         $this->terrain->addTerrainFeature("wadi", "wadi", "v", 0, 2, 0, false);
-        $this->terrain->addTerrainFeature("elevation","elevation", "e", 1, 0, 0, true);
+        $this->terrain->addTerrainFeature("elevation","elevation", "e", 0, 0, 0, false);
         $this->terrain->addTerrainFeature("slope","slope", "s", 0, 1, 0, false);
         parent::terrainGen($mapDoc, $terrainDoc);
         $this->terrain->addTerrainFeature("road", "road", "r", .75, 0, 0, false);

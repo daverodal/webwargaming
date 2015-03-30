@@ -141,28 +141,11 @@ class Terrain
         $this->additionalRules[] = $rule;
 
         $rule = new stdClass();
-        $rule->startHex = "clear";
+        $rule->startHex = "elevation0";
         $rule->endHex = "elevation";
         $rule->cost = 1;
         $this->additionalRules[] = $rule;
 
-        $rule = new stdClass();
-        $rule->startHex = "swamp";
-        $rule->endHex = "elevation";
-        $rule->cost = 1;
-        $this->additionalRules[] = $rule;
-
-        $rule = new stdClass();
-        $rule->startHex = "forest";
-        $rule->endHex = "elevation";
-        $rule->cost = 1;
-        $this->additionalRules[] = $rule;
-
-        $rule = new stdClass();
-        $rule->startHex = "town";
-        $rule->endHex = "elevation";
-        $rule->cost = 1;
-        $this->additionalRules[] = $rule;
     }
 
     public function addSpecialHex($specialHex, $value){
