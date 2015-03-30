@@ -202,7 +202,8 @@ class JagCore extends LandBattle{
                     $this->terrain->addReinforceZone($terrain->number, $matches[1]);
                 }else{
                     $tNum = sprintf("%04d",$terrain->number);
-                    if(preg_match("/^elevation/", $terrain->number)){
+                    if(preg_match("/^Elevation/", $name)){
+
                         unset($elevationMap[$tNum]);
                     }
                     $this->terrain->addTerrain($tNum, $terrain->hexpartType, strtolower($name));
