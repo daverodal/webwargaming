@@ -160,12 +160,14 @@
     "scenarios": {
       "main": {
         "description": "Standard Scenario.",
-        "longDescription":"Original"
+        "longDescription":"Original",
+        "units":[{"num":4,"forceId":1,"combat":6,"movement":3,"reinforce":"A","range":1,"nationality":"AngloAllied","class":"infantry"},{"num":12,"forceId":1,"combat":4,"movement":3,"reinforce":"A","range":1,"nationality":"AngloAllied","class":"infantry"},{"num":5,"forceId":1,"combat":4,"movement":5,"reinforce":"A","range":1,"nationality":"AngloAllied","class":"cavalry"},{"num":2,"forceId":1,"combat":5,"movement":5,"reinforce":"A","range":1,"nationality":"AngloAllied","class":"cavalry"},{"num":5,"forceId":1,"combat":3,"movement":2,"reinforce":"A","range":3,"nationality":"AngloAllied","class":"artillery"},{"num":3,"forceId":2,"combat":5,"movement":3,"reinforce":"A","range":1,"nationality":"French","class":"infantry"},{"num":7,"forceId":2,"combat":4,"movement":3,"reinforce":"A","range":1,"nationality":"French","class":"infantry"},{"num":8,"forceId":2,"combat":3,"movement":3,"reinforce":"A","range":1,"nationality":"French","class":"infantry"},{"num":2,"forceId":2,"combat":5,"movement":5,"reinforce":"A","range":1,"nationality":"French","class":"cavalry"},{"num":4,"forceId":2,"combat":4,"movement":5,"reinforce":"A","range":1,"nationality":"French","class":"cavalry"},{"num":3,"forceId":2,"combat":3,"movement":2,"reinforce":"A","range":3,"nationality":"French","class":"artillery"},{"num":2,"forceId":2,"combat":2,"movement":2,"reinforce":"A","range":3,"nationality":"French","class":"artillery"}]
       },
       "slightlyBiggerFrench": {
         "description": "Play balance.",
         "longDescription":"3 more 3-3's for the french.",
-        "slightlyBiggerFrench": true
+        "slightlyBiggerFrench": true,
+        "units":[{"num":4,"forceId":1,"combat":6,"movement":3,"reinforce":"A","range":1,"nationality":"AngloAllied","class":"infantry"},{"num":12,"forceId":1,"combat":4,"movement":3,"reinforce":"A","range":1,"nationality":"AngloAllied","class":"infantry"},{"num":5,"forceId":1,"combat":4,"movement":5,"reinforce":"A","range":1,"nationality":"AngloAllied","class":"cavalry"},{"num":2,"forceId":1,"combat":5,"movement":5,"reinforce":"A","range":1,"nationality":"AngloAllied","class":"cavalry"},{"num":5,"forceId":1,"combat":3,"movement":2,"reinforce":"A","range":3,"nationality":"AngloAllied","class":"artillery"},{"num":3,"forceId":2,"combat":5,"movement":3,"reinforce":"A","range":1,"nationality":"French","class":"infantry"},{"num":7,"forceId":2,"combat":4,"movement":3,"reinforce":"A","range":1,"nationality":"French","class":"infantry"},{"num":11,"forceId":2,"combat":3,"movement":3,"reinforce":"A","range":1,"nationality":"French","class":"infantry"},{"num":2,"forceId":2,"combat":5,"movement":5,"reinforce":"A","range":1,"nationality":"French","class":"cavalry"},{"num":4,"forceId":2,"combat":4,"movement":5,"reinforce":"A","range":1,"nationality":"French","class":"cavalry"},{"num":3,"forceId":2,"combat":3,"movement":2,"reinforce":"A","range":3,"nationality":"French","class":"artillery"},{"num":2,"forceId":2,"combat":2,"movement":2,"reinforce":"A","range":3,"nationality":"French","class":"artillery"}]
       }
     }
   },

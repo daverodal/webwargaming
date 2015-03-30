@@ -91,52 +91,201 @@ class Oudenarde1708 extends JagCore
         $coinFlip = floor(2 * (rand() / getrandmax()));
         $prussianDeploy = "B";
         $scenario = $this->scenario;
+//        var_dump($scenario);die("peace");
 
         if($scenario->slightlyBiggerFrench){
             $numThreeThrees = 11;
         }
 
-        /* AngloAllied */
-        for ($i = 0; $i < 4; $i++) {
-            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedInfBadge.png", 6, 6, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'infantry');
-        }
-        for ($i = 0; $i < 12; $i++) {
-            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'infantry');
-        }
-        for ($i = 0; $i < 5; $i++) {
-            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'cavalry');
-        }
-        for ($i = 0; $i < 2; $i++) {
-            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'cavalry');
-        }
-        for ($i = 0; $i < 5; $i++) {
-            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, "A", 1, 3, "AngloAllied", false, 'artillery');
-        }
+//        $unitSets = [];
+//        $unitSet = new stdClass();
+//        $unitSet->num = 4;
+//        $unitSet->forceId = ANGLO_ALLIED_FORCE;
+//        $unitSet->combat = 6;
+//        $unitSet->movement = 3;
+//        $unitSet->reinforce = "A";
+//        $unitSet->range = 1;
+//        $unitSet->nationality = "AngloAllied";
+//        $unitSet->class = "infantry";
+//        $unitSets[] = $unitSet;
+//
+//        $unitSet = new stdClass();
+//        $unitSet->num = 12;
+//        $unitSet->forceId = ANGLO_ALLIED_FORCE;
+//        $unitSet->combat = 4;
+//        $unitSet->movement = 3;
+//        $unitSet->reinforce = "A";
+//        $unitSet->range = 1;
+//        $unitSet->nationality = "AngloAllied";
+//        $unitSet->class = "infantry";
+//
+//        $unitSets[] = $unitSet;
+//
+//
+//        $unitSet = new stdClass();
+//        $unitSet->num = 5;
+//        $unitSet->forceId = ANGLO_ALLIED_FORCE;
+//        $unitSet->combat = 4;
+//        $unitSet->movement = 5;
+//        $unitSet->reinforce = "A";
+//        $unitSet->range = 1;
+//        $unitSet->nationality = "AngloAllied";
+//        $unitSet->class = "cavalry";
+//
+//        $unitSets[] = $unitSet;
+//
+//
+//        $unitSet = new stdClass();
+//        $unitSet->num = 2;
+//        $unitSet->forceId = ANGLO_ALLIED_FORCE;
+//        $unitSet->combat = 5;
+//        $unitSet->movement = 5;
+//        $unitSet->reinforce = "A";
+//        $unitSet->range = 1;
+//        $unitSet->nationality = "AngloAllied";
+//        $unitSet->class = "cavalry";
+//
+//        $unitSets[] = $unitSet;
+//
+//        $unitSet = new stdClass();
+//        $unitSet->num = 5;
+//        $unitSet->forceId = ANGLO_ALLIED_FORCE;
+//        $unitSet->combat = 3;
+//        $unitSet->movement = 2;
+//        $unitSet->reinforce = "A";
+//        $unitSet->range = 3;
+//        $unitSet->nationality = "AngloAllied";
+//        $unitSet->class = "artillery";
+//
+//        $unitSets[] = $unitSet;
+//
+//        $unitSet = new stdClass();
+//        $unitSet->num = 3;
+//        $unitSet->forceId = FRENCH_FORCE;
+//        $unitSet->combat = 5;
+//        $unitSet->movement = 3;
+//        $unitSet->reinforce = "A";
+//        $unitSet->range = 1;
+//        $unitSet->nationality = "French";
+//        $unitSet->class = "infantry";
+//        $unitSets[] = $unitSet;
+//
+//        $unitSet = new stdClass();
+//        $unitSet->num = 7;
+//        $unitSet->forceId = FRENCH_FORCE;
+//        $unitSet->combat = 4;
+//        $unitSet->movement = 3;
+//        $unitSet->reinforce = "A";
+//        $unitSet->range = 1;
+//        $unitSet->nationality = "French";
+//        $unitSet->class = "infantry";
+//        $unitSets[] = $unitSet;
+//
+//        $unitSet = new stdClass();
+//        $unitSet->num = $numThreeThrees;
+//        $unitSet->forceId = FRENCH_FORCE;
+//        $unitSet->combat = 3;
+//        $unitSet->movement = 3;
+//        $unitSet->reinforce = "A";
+//        $unitSet->range = 1;
+//        $unitSet->nationality = "French";
+//        $unitSet->class = "infantry";
+//        $unitSets[] = $unitSet;
+//
+//        $unitSet = new stdClass();
+//        $unitSet->num = 2;
+//        $unitSet->forceId = FRENCH_FORCE;
+//        $unitSet->combat = 5;
+//        $unitSet->movement = 5;
+//        $unitSet->reinforce = "A";
+//        $unitSet->range = 1;
+//        $unitSet->nationality = "French";
+//        $unitSet->class = "cavalry";
+//        $unitSets[] = $unitSet;
+//
+//        $unitSet = new stdClass();
+//        $unitSet->num = 4;
+//        $unitSet->forceId = FRENCH_FORCE;
+//        $unitSet->combat = 4;
+//        $unitSet->movement = 5;
+//        $unitSet->reinforce = "A";
+//        $unitSet->range = 1;
+//        $unitSet->nationality = "French";
+//        $unitSet->class = "cavalry";
+//        $unitSets[] = $unitSet;
+//
+//        $unitSet = new stdClass();
+//        $unitSet->num = 3;
+//        $unitSet->forceId = FRENCH_FORCE;
+//        $unitSet->combat = 3;
+//        $unitSet->movement = 2;
+//        $unitSet->reinforce = "A";
+//        $unitSet->range = 3;
+//        $unitSet->nationality = "French";
+//        $unitSet->class = "artillery";
+//        $unitSets[] = $unitSet;
+//
+//        $unitSet = new stdClass();
+//        $unitSet->num = 2;
+//        $unitSet->forceId = FRENCH_FORCE;
+//        $unitSet->combat = 2;
+//        $unitSet->movement = 2;
+//        $unitSet->reinforce = "A";
+//        $unitSet->range = 3;
+//        $unitSet->nationality = "French";
+//        $unitSet->class = "artillery";
+//        $unitSets[] = $unitSet;
 
+
+        $unitSets = $scenario->units;
+
+
+        foreach($unitSets as $unitSet) {
+            for ($i = 0; $i < $unitSet->num; $i++) {
+                $this->force->addUnit("infantry-1", $unitSet->forceId, "deployBox", "", $unitSet->combat, $unitSet->combat, $unitSet->movement, true, STATUS_CAN_DEPLOY, $unitSet->reinforce, 1, $unitSet->range, $unitSet->nationality, false, $unitSet->class);
+            }
+        }
+                /* AngloAllied */
+//        for ($i = 0; $i < 4; $i++) {
+//            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "", 6, 6, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'infantry');
+//        }
+//        for ($i = 0; $i < 12; $i++) {
+//            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'infantry');
+//        }
+//        for ($i = 0; $i < 5; $i++) {
+//            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'cavalry');
+//        }
+//        for ($i = 0; $i < 2; $i++) {
+//            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "AngloAllied", false, 'cavalry');
+//        }
+//        for ($i = 0; $i < 5; $i++) {
+//            $this->force->addUnit("infantry-1", ANGLO_ALLIED_FORCE, "deployBox", "AngloAlliedArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, "A", 1, 3, "AngloAllied", false, 'artillery');
+//        }
+//
 
         /* French */
-        for ($i = 0; $i < 3; $i++) {
-            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'infantry');
-        }
-        for ($i = 0; $i < 7; $i++) {
-            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'infantry');
-        }
-        for ($i = 0; $i < $numThreeThrees; $i++) {
-            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'infantry');
-        }
-        for ($i = 0; $i < 2; $i++) {
-            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'cavalry');
-        }
-        for ($i = 0; $i < 4; $i++) {
-            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'cavalry');
-        }
-        for ($i = 0; $i < 3; $i++) {
-            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, "B", 1, 3, "French", false, 'artillery');
-        }
-
-        for ($i = 0; $i < 2; $i++) {
-            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchArtBadge.png", 2, 2, 2, true, STATUS_CAN_DEPLOY, "B", 1, 3, "French", false, 'artillery');
-        }
+//        for ($i = 0; $i < 3; $i++) {
+//            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 5, 5, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'infantry');
+//        }
+//        for ($i = 0; $i < 7; $i++) {
+//            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'infantry');
+//        }
+//        for ($i = 0; $i < $numThreeThrees; $i++) {
+//            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'infantry');
+//        }
+//        for ($i = 0; $i < 2; $i++) {
+//            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'cavalry');
+//        }
+//        for ($i = 0; $i < 4; $i++) {
+//            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "French", false, 'cavalry');
+//        }
+//        for ($i = 0; $i < 3; $i++) {
+//            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, "B", 1, 3, "French", false, 'artillery');
+//        }
+//
+//        for ($i = 0; $i < 2; $i++) {
+//            $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchArtBadge.png", 2, 2, 2, true, STATUS_CAN_DEPLOY, "B", 1, 3, "French", false, 'artillery');
+//        }
 
     }
 
