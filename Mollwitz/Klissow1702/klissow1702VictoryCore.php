@@ -59,23 +59,23 @@ class klissow1702VictoryCore extends victoryCore
 
         list($mapHexName, $forceId) = $args;
         if (in_array($mapHexName, $battle->specialHexA)) {
-            if ($forceId == PRUSSIAN_FORCE) {
-                $this->victoryPoints[PRUSSIAN_FORCE] += 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+5 Prussian vp</span>";
+            if ($forceId == SWEDISH_FORCE) {
+                $this->victoryPoints[SWEDISH_FORCE] += 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='swedish'>+5 Swedish vp</span>";
             }
-            if ($forceId == AUSTRIAN_FORCE) {
-                $this->victoryPoints[PRUSSIAN_FORCE] -= 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-5 Prussian vp</span>";
+            if ($forceId == SAXON_POLISH_FORCE) {
+                $this->victoryPoints[SWEDISH_FORCE] -= 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='saxonPolish'>-5 Swedish vp</span>";
             }
         }
         if (in_array($mapHexName, $battle->specialHexB)) {
-            if ($forceId == AUSTRIAN_FORCE) {
-                $this->victoryPoints[AUSTRIAN_FORCE] += 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>+5 Austrian vp</span>";
+            if ($forceId == SAXON_POLISH_FORCE) {
+                $this->victoryPoints[SAXON_POLISH_FORCE] += 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='saxonPolish'>+5 Saxon Polish vp</span>";
             }
-            if ($forceId == PRUSSIAN_FORCE) {
-                $this->victoryPoints[AUSTRIAN_FORCE] -= 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>-5 Austrian vp</span>";
+            if ($forceId == SWEDISH_FORCE) {
+                $this->victoryPoints[SAXON_POLISH_FORCE] -= 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='swedish'>-5 Saxon Polish vp</span>";
             }
         }
     }
@@ -85,31 +85,31 @@ class klissow1702VictoryCore extends victoryCore
         $gameRules = $battle->gameRules;
         $scenario = $battle->scenario;
         $turn = $gameRules->turn;
-        $prussianWin = $austrianWin = $draw = false;
+        $swedishWin = $saxonPolishWin = $draw = false;
 
         if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
-            $winScore = 30;
-            if ($this->victoryPoints[PRUSSIAN_FORCE] >= $winScore) {
+            $winScore = 40;
+            if ($this->victoryPoints[SWEDISH_FORCE] >= $winScore) {
                 if ($turn <= 5) {
-                    $prussianWin = true;
+                    $swedishWin = true;
                 }
             }
-            if ($this->victoryPoints[AUSTRIAN_FORCE] >= $winScore) {
-                $austrianWin = true;
+            if ($this->victoryPoints[SAXON_POLISH_FORCE] >= $winScore) {
+                $saxonPolishWin = true;
             }
 
-            if ($prussianWin) {
-                $this->winner = PRUSSIAN_FORCE;
-                $gameRules->flashMessages[] = "Prussian Win";
+            if ($swedishWin) {
+                $this->winner = SWEDISH_FORCE;
+                $gameRules->flashMessages[] = "Swedish Win";
             }
-            if ($austrianWin) {
-                $this->winner = AUSTRIAN_FORCE;
-                $msg = "Austrian Win";
+            if ($saxonPolishWin) {
+                $this->winner = SAXON_POLISH_FORCE;
+                $msg = "Saxon Polish Win";
                 $gameRules->flashMessages[] = $msg;
             }
-            if ($prussianWin || $austrianWin ||  $turn == ($gameRules->maxTurn + 1)) {
-                if(!$prussianWin && !$austrianWin){
+            if ($swedishWin || $saxonPolishWin ||  $turn == ($gameRules->maxTurn + 1)) {
+                if(!$swedishWin && !$saxonPolishWin){
                     $gameRules->flashMessages[] = "Tie Game";
                 }
                 $gameRules->flashMessages[] = "Game Over";
@@ -118,5 +118,42 @@ class klissow1702VictoryCore extends victoryCore
             }
         }
         return false;
+    }
+
+
+    public function postRecoverUnits($args)
+    {
+        $b = Battle::getBattle();
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE) {
+            $b->gameRules->flashMessages[] = "Sweedish Movement alowance +1 this turn.";
+        }
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE) {
+            $b->gameRules->flashMessages[] = "Saxon Polish Movement halved this turn.";
+        }
+    }
+
+    public function postRecoverUnit($args)
+    {
+        $unit = $args[0];
+        $b = Battle::getBattle();
+        $id = $unit->id;
+
+        parent::postRecoverUnit($args);
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE && $unit->status == STATUS_READY) {
+            $this->movementCache->$id = $unit->maxMove;
+            $unit->maxMove = $unit->maxMove+1;
+        }
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_COMBAT_PHASE && isset($this->movementCache->$id)) {
+            $unit->maxMove = $this->movementCache->$id;
+            unset($this->movementCache->$id);
+        }
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE && $unit->status == STATUS_READY) {
+            $this->movementCache->$id = $unit->maxMove;
+            $unit->maxMove = floor($this->maxMove/2);
+        }
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_COMBAT_PHASE && isset($this->movementCache->$id)) {
+            $unit->maxMove = $this->movementCache->$id;
+            unset($this->movementCache->$id);
+        }
     }
 }

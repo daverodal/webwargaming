@@ -28,11 +28,11 @@ You should have received a copy of the GNU General Public License
             </p>
             </li>
 
-        <li>Prussian wins: At the end of any turn prior to turn 5 that they have scored 30 or more
+        <li>Prussian wins: At the end of any turn prior to turn 5 that they have scored 40 or more
 
         points.</li>
 
-        <li>Austrian Wins: At the end of any turn prior to turn 8 that they have scored 30 or
+        <li>Austrian Wins: At the end of any turn prior to turn 8 that they have scored 40 or
 
         more points.</li>
 
