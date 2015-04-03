@@ -1241,6 +1241,10 @@ p.forceMarch {
   color: white;
   background-color: #4cb800; }
 
+.specialHexes.saxon.polish {
+  color: white;
+  background-color: #4cb800; }
+
 #CombatLog {
   width: 300px; }
 
@@ -1289,7 +1293,7 @@ p.forceMarch {
   background-color: #df5842;
   color: white; }
 
-.prussian.specialHexes {
+.prussian.specialHexes, .swedish.specialHexes {
   background-color: #fffd7f;
   color: black; }
 
