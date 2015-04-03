@@ -128,7 +128,7 @@ class CombatResultsTable
             $isHill |= $battle->terrain->terrainIs($hexpart, 'hill');
             $isForest |= $battle->terrain->terrainIs($hexpart, 'forest');
             $isSwamp |= $battle->terrain->terrainIs($hexpart, 'swamp');
-            if($battle->terrain->terrainIs($hexpart, 'elevation')){
+            if($battle->terrain->terrainIs($hexpart, 'elevation1')){
                 $isElevated = 1;
             }
             if($battle->terrain->terrainIs($hexpart, 'elevation2')){
@@ -166,7 +166,7 @@ class CombatResultsTable
             }
 
             $attackerIsElevated = false;
-            if($battle->terrain->terrainIs($hexpart, 'elevation')){
+            if($battle->terrain->terrainIs($hexpart, 'elevation1')){
                 $attackerIsElevated = 1;
             }
 
@@ -175,8 +175,16 @@ class CombatResultsTable
             }
             $attackUpHill = false;
             if($isElevated && ($isElevated > $attackerIsElevated)){
-                $terrainReason .= "attack uphill ";
-                $attackUpHill = true;
+                /* Special case for elevation 2 and attack no elevated, can be from be behind */
+                if($isElevated == 2  && $attackerIsElevated === false) {
+                    if ($battle->combatRules->thisAttackAcrossType($defId, $attackerId, "elevation1")) {
+                        $terrainReason .= "attack uphill ";
+                        $attackUpHill = true;
+                    }
+                }else{
+                    $terrainReason .= "attack uphill ";
+                    $attackUpHill = true;
+                }
             }
 
             $acrossRiver = false;

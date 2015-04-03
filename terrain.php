@@ -135,14 +135,14 @@ class Terrain
         }
         $this->additionalRules = [];
         $rule = new stdClass();
-        $rule->startHex = "elevation";
+        $rule->startHex = "elevation1";
         $rule->endHex = "elevation2";
         $rule->cost = 1;
         $this->additionalRules[] = $rule;
 
         $rule = new stdClass();
         $rule->startHex = "elevation0";
-        $rule->endHex = "elevation";
+        $rule->endHex = "elevation1";
         $rule->cost = 1;
         $this->additionalRules[] = $rule;
 

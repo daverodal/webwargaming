@@ -288,10 +288,10 @@ class CombatRules
                             if ($this->terrain->terrainIs($target, "elevation2")) {
                                 $targetElevated2 = true;
                             }
-                            if ($this->terrain->terrainIs($src, "elevation")) {
+                            if ($this->terrain->terrainIs($src, "elevation1")) {
                                 $srcElevated = true;
                             }
-                            if ($this->terrain->terrainIs($target, "elevation")) {
+                            if ($this->terrain->terrainIs($target, "elevation1")) {
                                 $targetElevated = true;
                             }
                             foreach ($hexParts as $hexPart) {
@@ -307,7 +307,7 @@ class CombatRules
                                  * Ugly if statement. If elevation1 both src and target MUST be elevation1 OR either src or target can be elevation2.
                                  * otherwise, blocked.
                                  */
-                                if ($this->terrain->terrainIs($hexPart, "elevation") && !(($srcElevated && $targetElevated) || ($targetElevated2 || $srcElevated2))) {
+                                if ($this->terrain->terrainIs($hexPart, "elevation1") && !(($srcElevated && $targetElevated) || ($targetElevated2 || $srcElevated2))) {
                                     $good = false;
                                     break;
                                 }
@@ -601,7 +601,7 @@ class CombatRules
          *  defender is located in hexParts[0],
          * x first hexside adjacent to defender is in $hexParts[1]
          */
-        return ($this->terrain->terrainIs($hexParts[1], $type));
+        return ($this->terrain->terrainIs($hexParts[1], $type) || $this->terrain->terrainIs($hexParts[2], $type) );
 
     }
     function tthisAttackAcrossType($defenderId, $attackerId, $type)
