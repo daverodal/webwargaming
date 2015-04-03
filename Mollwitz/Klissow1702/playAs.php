@@ -25,7 +25,7 @@ You should have received a copy of the GNU General Public License
     <style>
         body{
             background:#000;
-            background:url("<?=base_url("js/1280px-Battle_of_Kliszow_1702.jpg")?>") #333 no-repeat;
+            background:url("<?=base_url("js/1280px-Battle_of_Klissow_1702.jpg")?>") #333 no-repeat;
             background-position:center 0;
             background-size:100%;
 

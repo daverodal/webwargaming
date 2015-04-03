@@ -20,7 +20,7 @@ You should have received a copy of the GNU General Public License
         body{
             background:#ccc;
             color:#333;
-            background: url("<?=base_url("js/1280px-Battle_of_Kliszow_1702.jpg")?>") #333 no-repeat;
+            background: url("<?=base_url("js/1280px-Battle_of_Klissow_1702.jpg")?>") #333 no-repeat;
             background-position: 25% 0;
             background-size:100%;
         }
