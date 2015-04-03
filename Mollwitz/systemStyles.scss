@@ -96,6 +96,7 @@ $beluchiWrapperColor: #c6c102;
 @include badge(Sikh, Sikh);
 @include badge(Beluchi, Sikh);
 @include badge(British, Brit);
+@include badge(SaxonPolish, Rus);
 
 .British.horseartillery .counterWrapper .counter {
   background-image: url('../../js/BritHorArtBadge.png');

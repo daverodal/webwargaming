@@ -222,6 +222,34 @@
       }
     }
   },
+  "Klissow1702": {
+    "name": "The Battle of Klissow 1702",
+    "path": "Mollwitz",
+    "genre": "18'th Century Europe",
+    "fileName": "Klissow1702/Klissow1702.php",
+    "description":"1745 ",
+    "scenarios": {
+      "main": {
+        "description": "Standard Scenario.",
+        "longDescription":"Original",
+        "units":[
+          {"num":3,"forceId":1,"combat":5,"movement":3,"reinforce":"A","range":1,"nationality":"Swedish","class":"infantry"},
+          {"num":7,"forceId":1,"combat":4,"movement":3,"reinforce":"A","range":1,"nationality":"Swedish","class":"infantry"},
+          {"num":3,"forceId":1,"combat":4,"movement":5,"reinforce":"A","range":1,"nationality":"Swedish","class":"cavalry"},
+          {"num":1,"forceId":1,"combat":5,"movement":5,"reinforce":"A","range":1,"nationality":"Swedish","class":"cavalry"},
+          {"num":1,"forceId":1,"combat":3,"movement":6,"reinforce":"A","range":1,"nationality":"Swedish","class":"cavalry"},
+          {"num":4,"forceId":1,"combat":2,"movement":2,"reinforce":"A","range":3,"nationality":"Swedish","class":"artillery"},
+
+          {"num":2,"forceId":2,"combat":4,"movement":3,"reinforce":"B","range":1,"nationality":"SaxonPolish","class":"infantry"},
+          {"num":10,"forceId":2,"combat":3,"movement":3,"reinforce":"B","range":1,"nationality":"SaxonPolish","class":"infantry"},
+          {"num":1,"forceId":2,"combat":5,"movement":5,"reinforce":"B","range":1,"nationality":"SaxonPolish","class":"cavalry"},
+          {"num":4,"forceId":2,"combat":4,"movement":5,"reinforce":"B","range":1,"nationality":"SaxonPolish","class":"cavalry"},
+          {"num":1,"forceId":2,"combat":3,"movement":6,"reinforce":"B","range":1,"nationality":"SaxonPolish","class":"cavalry"},
+          {"num":1,"forceId":2,"combat":3,"movement":2,"reinforce":"B","range":3,"nationality":"SaxonPolish","class":"artillery"},
+          {"num":3,"forceId":2,"combat":2,"movement":2,"reinforce":"B","range":3,"nationality":"SaxonPolish","class":"artillery"}]
+      }
+    }
+  },
 
   "Lobositz": {
         "name": "The Battle of Lobositz",

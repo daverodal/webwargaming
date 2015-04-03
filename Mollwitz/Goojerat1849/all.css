@@ -957,6 +957,23 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
+.SaxonPolish.infantry .counterWrapper .counter {
+  background-image: url("../../js/RusInfBadge.png");
+  background-size: 14px; }
+
+.SaxonPolish.cavalry .counterWrapper .counter {
+  background-image: url("../../js/RusCavBadge.png");
+  background-size: 14px; }
+
+.SaxonPolish.artillery .counterWrapper .counter {
+  background-image: url("../../js/RusArtBadge.png");
+  background-size: 14px; }
+
+.SaxonPolish.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
 .British.horseartillery .counterWrapper .counter {
   background-image: url("../../js/BritHorArtBadge.png");
   background-size: 14px; }

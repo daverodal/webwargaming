@@ -1322,32 +1322,73 @@ This program is distributed in the hope that it will be useful,
 You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
    */
+#tecImage {
+  width: 500px; }
+
 .playerOne {
   background: #fffd7f;
   border-color: #fffd7f !important; }
 
-.PrussianFace, .playerOneFace {
+.SwedishFace, .playerOneFace {
   color: #0117de; }
 
-.Prussian .counterWrapper {
+.Swedish .counterWrapper {
   background-color: #0117de; }
 
 .playerTwo {
-  background: #df5842;
-  border-color: #df5842 !important; }
+  background: #4cb800;
+  border-color: #4cb800 !important; }
 
-.AustrianFace, .playerTwoFace {
-  color: #df5842; }
+.SaxonPolishFace, .playerTwoFace {
+  color: #4cb800; }
 
-.Austrian .counterWrapper {
-  background-color: white; }
+.SaxonPolish .counterWrapper {
+  background-color: #009c1d; }
 
-.austrian.specialHexes {
-  background-color: #df5842;
+.Swedish.infantry .counterWrapper .counter {
+  background-image: url("../../js/PruInfBadge.png");
+  background-size: 14px; }
+
+.Swedish.cavalry .counterWrapper .counter {
+  background-image: url("../../js/PruCavBadge.png");
+  background-size: 14px; }
+
+.Swedish.artillery .counterWrapper .counter {
+  background-image: url("../../js/PruArtBadge.png");
+  background-size: 14px; }
+
+.Swedish.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.french.specialHexes {
+  background-color: #84b5ff; }
+
+.anglo {
+  background-color: #df5842; }
+
+.french.specialHexes, .anglo.specialHexes {
   color: white; }
 
-.prussian.specialHexes {
-  background-color: #fffd7f;
-  color: black; }
+.Swedish p.forceMarch, .Swedish p.range, .SaxonPolish p.forceMarch, .SaxonPolish p.range {
+  color: white; }
+
+.French.infantry .counterWrapper .counter {
+  background-image: url("../../js/FreInfBadge.png");
+  background-size: 14px; }
+
+.French.cavalry .counterWrapper .counter {
+  background-image: url("../../js/FreCavBadge.png");
+  background-size: 14px; }
+
+.French.artillery .counterWrapper .counter {
+  background-image: url("../../js/FreArtBadge.png");
+  background-size: 14px; }
+
+.French.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
 
 /*# sourceMappingURL=all.css.map */
