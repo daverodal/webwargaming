@@ -21,21 +21,21 @@ You should have received a copy of the GNU General Public License
         <li>
         Each side is awarded one victory point for each hostile combat factor destroyed. And
         multiple victory points for locations occupied.
-            These locations are marked with numbers in red for Anglo objectives and blue for Franco Objectives.
+            These locations are marked with numbers in blue for Prussian objectives and red for Austrian Objectives.
             <p class="ruleComment">
                 Note: objectives start in the possession of the enemy, so they will have a label of the opposite color
                 of their number at the beginning of the game. It will switch back and forth depending upon whoever last occupied the objective.
             </p>
             </li>
 
-        <li>Anglo player wins: At the end of any turn prior to turn 7 that they have scored 40 or more
+        <li>Prussian wins: At the end of any turn prior to turn 5 that they have scored 30 or more
 
-        points with a lead of at least 5 points.</li>
+        points.</li>
 
-        <li>Franco Player Wins: At the end of any turn prior to turn 10 that they have scored 40 or
+        <li>Austrian Wins: At the end of any turn prior to turn 8 that they have scored 30 or
 
         more points.</li>
 
-        <li>A Draw Occurs: If neither side has won by the end of turn 10.</li>
+        <li>A Draw Occurs: If neither side has won by the end of turn 8.</li>
     </ol>
 </li>

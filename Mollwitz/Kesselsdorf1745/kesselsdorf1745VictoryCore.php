@@ -59,23 +59,23 @@ class kesselsdorf1745VictoryCore extends victoryCore
 
         list($mapHexName, $forceId) = $args;
         if (in_array($mapHexName, $battle->specialHexA)) {
-            if ($forceId == ANGLO_ALLIED_FORCE) {
-                $this->victoryPoints[ANGLO_ALLIED_FORCE] += 15;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='angloallied'>+15 Anglo Allied vp</span>";
+            if ($forceId == PRUSSIAN_FORCE) {
+                $this->victoryPoints[PRUSSIAN_FORCE] += 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+5 Prussian vp</span>";
             }
-            if ($forceId == FRENCH_FORCE) {
-                $this->victoryPoints[ANGLO_ALLIED_FORCE] -= 15;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>-15 Anglo Allied vp</span>";
+            if ($forceId == AUSTRIAN_FORCE) {
+                $this->victoryPoints[PRUSSIAN_FORCE] -= 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-5 Prussian vp</span>";
             }
         }
         if (in_array($mapHexName, $battle->specialHexB)) {
-            if ($forceId == FRENCH_FORCE) {
-                $this->victoryPoints[FRENCH_FORCE] += 10;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>+10 French vp</span>";
+            if ($forceId == AUSTRIAN_FORCE) {
+                $this->victoryPoints[AUSTRIAN_FORCE] += 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>+5 Austrian vp</span>";
             }
-            if ($forceId == ANGLO_ALLIED_FORCE) {
-                $this->victoryPoints[FRENCH_FORCE] -= 10;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='angloallied'>-10 French vp</span>";
+            if ($forceId == PRUSSIAN_FORCE) {
+                $this->victoryPoints[AUSTRIAN_FORCE] -= 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>-5 Austrian vp</span>";
             }
         }
     }
@@ -85,31 +85,31 @@ class kesselsdorf1745VictoryCore extends victoryCore
         $gameRules = $battle->gameRules;
         $scenario = $battle->scenario;
         $turn = $gameRules->turn;
-        $angloWin = $frenchWin = $draw = false;
+        $prussianWin = $austrianWin = $draw = false;
 
         if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
-            $winScore = 40;
-            if (($this->victoryPoints[ANGLO_ALLIED_FORCE] >= $winScore && ($this->victoryPoints[ANGLO_ALLIED_FORCE] - ($this->victoryPoints[FRENCH_FORCE]) >= 5))) {
-                if ($turn <= 7) {
-                    $angloWin = true;
+            $winScore = 30;
+            if ($this->victoryPoints[PRUSSIAN_FORCE] >= $winScore) {
+                if ($turn <= 5) {
+                    $prussianWin = true;
                 }
             }
-            if ($this->victoryPoints[FRENCH_FORCE] >= $winScore) {
-                $frenchWin = true;
+            if ($this->victoryPoints[AUSTRIAN_FORCE] >= $winScore) {
+                $austrianWin = true;
             }
 
-            if ($angloWin) {
-                $this->winner = ANGLO_ALLIED_FORCE;
-                $gameRules->flashMessages[] = "Anglo Allied Win";
+            if ($prussianWin) {
+                $this->winner = PRUSSIAN_FORCE;
+                $gameRules->flashMessages[] = "Prussian Win";
             }
-            if ($frenchWin) {
-                $this->winner = FRENCH_FORCE;
-                $msg = "French Win";
+            if ($austrianWin) {
+                $this->winner = AUSTRIAN_FORCE;
+                $msg = "Austrian Win";
                 $gameRules->flashMessages[] = $msg;
             }
-            if ($angloWin || $frenchWin ||  $turn == ($gameRules->maxTurn + 1)) {
-                if(!$angloWin && !$frenchWin){
+            if ($prussianWin || $austrianWin ||  $turn == ($gameRules->maxTurn + 1)) {
+                if(!$prussianWin && !$austrianWin){
                     $gameRules->flashMessages[] = "Tie Game";
                 }
                 $gameRules->flashMessages[] = "Game Over";
