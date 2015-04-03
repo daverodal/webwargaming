@@ -25,7 +25,7 @@ You should have received a copy of the GNU General Public License
     <style>
         body{
             background:#000;
-            background:url("<?=base_url("js/The_Duke_of_Marlborough_at_the_Battle_of_Oudenaarde_(1708)_by_John_Wootton.jpg")?>") #333 no-repeat;
+            background:url("<?=base_url("js/Schlacht_von_Kesselsdorf.jpg")?>") #333 no-repeat;
             background-position:center 0;
             background-size:100%;
 
@@ -89,4 +89,6 @@ You should have received a copy of the GNU General Public License
     <a  class="link" href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>/">Play Multi</a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a><br>
     <div class="attribution">
-        John Wootton [Public domain], <a target="blank" href="http://commons.wikimedia.org/wiki/File%3AThe_Duke_of_Marlborough_at_the_Battle_of_Oudenaarde_(1708)_by_John_Wootton.jpg">via Wikimedia Commons</a></fieldset>
+       [Public domain], <a target="blank" href="https://commons.wikimedia.org/wiki/File:Schlacht_von_Kesselsdorf.jpg">via Wikimedia Commons</a>
+    </div>
+</fieldset>

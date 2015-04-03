@@ -25,7 +25,7 @@ You should have received a copy of the GNU General Public License
     <style>
         body{
             background:#000;
-            background:url("<?=base_url("js/The_Duke_of_Marlborough_at_the_Battle_of_Oudenaarde_(1708)_by_John_Wootton.jpg")?>") #333 no-repeat;
+            background:url("<?=base_url("js/1280px-Battle_of_Kliszow_1702.jpg")?>") #333 no-repeat;
             background-position:center 0;
             background-size:100%;
 
@@ -81,7 +81,7 @@ You should have received a copy of the GNU General Public License
 
 <div class="backBox">
 <h2 style="text-align:center;font-size:30px;font-family:'Monsieur La Doulaise'"> Welcome to</h2>
-    <h1 style=""><span>Kesselsdorf 1745</span></h1>
+    <h1 style=""><span>Klissow 1702</span></h1>
 </div>
 <div style="clear:both"></div>
 <fieldset ><Legend>Play As </Legend>
@@ -89,4 +89,5 @@ You should have received a copy of the GNU General Public License
     <a  class="link" href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>/">Play Multi</a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a><br>
     <div class="attribution">
-        John Wootton [Public domain], <a target="blank" href="http://commons.wikimedia.org/wiki/File%3AThe_Duke_of_Marlborough_at_the_Battle_of_Oudenaarde_(1708)_by_John_Wootton.jpg">via Wikimedia Commons</a></fieldset>
+        By Anonymous (Zbigniew Anusik, Karol XII, 2006) [Public domain], <a target="blank" href="https://commons.wikimedia.org/wiki/File%3ABattle_of_Kliszow_1702.JPG">via Wikimedia Commons</a>    </div>
+</fieldset>

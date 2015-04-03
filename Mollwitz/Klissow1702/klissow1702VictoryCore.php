@@ -149,7 +149,7 @@ class klissow1702VictoryCore extends victoryCore
         }
         if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE && $unit->status == STATUS_READY) {
             $this->movementCache->$id = $unit->maxMove;
-            $unit->maxMove = floor($this->maxMove/2);
+            $unit->maxMove = floor($unit->maxMove/2);
         }
         if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_COMBAT_PHASE && isset($this->movementCache->$id)) {
             $unit->maxMove = $this->movementCache->$id;

@@ -21,18 +21,18 @@ You should have received a copy of the GNU General Public License
         <li>
         Each side is awarded one victory point for each hostile combat factor destroyed. And
         multiple victory points for locations occupied.
-            These locations are marked with numbers in blue for Prussian objectives and red for Austrian Objectives.
+            These locations are marked with numbers in blue for Swedish objectives and red for Saxon Polish Objectives.
             <p class="ruleComment">
                 Note: objectives start in the possession of the enemy, so they will have a label of the opposite color
                 of their number at the beginning of the game. It will switch back and forth depending upon whoever last occupied the objective.
             </p>
             </li>
 
-        <li>Prussian wins: At the end of any turn prior to turn 5 that they have scored 40 or more
+        <li>Swedish wins: At the end of any turn prior to turn 5 that they have scored 40 or more
 
         points.</li>
 
-        <li>Austrian Wins: At the end of any turn prior to turn 8 that they have scored 40 or
+        <li>Saxon Polish Wins: At the end of any turn prior to turn 8 that they have scored 40 or
 
         more points.</li>
 
