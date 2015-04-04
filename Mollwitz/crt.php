@@ -230,7 +230,7 @@ class CombatResultsTable
                     if(!$terrainReason){
                         $terrainReason = " terrain ";
                     }
-                    if($attackUpHill){
+                    if($attackUpHill && !($isSwamp || $attackerIsSwamp || $acrossRiver || $attackerIsSunkenRoad || $acrossRedoubt)){
                         $unitStrength *= .75;
                         $combatLog .= "attacker 3/4 for $terrainReason ";
                     }else{
