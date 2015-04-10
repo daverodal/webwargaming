@@ -238,7 +238,7 @@
 
           {"num":10,"forceId":2,"combat":3,"movement":3,"reinforce":"B","range":1,"nationality":"SaxonPolish","class":"infantry"},
           {"num":5,"forceId":2,"combat":2,"movement":3,"reinforce":"B","range":1,"nationality":"SaxonPolish","class":"infantry"},
-          {"num":4,"forceId":2,"combat":4,"movement":5,"reinforce":"B","range":1,"nationality":"SaxonPolish","class":"cavalry"},
+          {"num":4,"forceId":2,"combat":4,"movement":5,"reinforce":"B","range":1,"nationality":"SaxonPolish","class":"cavalry"}
         ]
       }
     }
