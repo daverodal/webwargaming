@@ -1340,13 +1340,23 @@ You should have received a copy of the GNU General Public License
   background-color: #0117de; }
 
 .playerTwo {
+  background: #FD4223;
+  border-color: #FD4223 !important; }
+
+.SaxonFace, .playerTwoFace {
+  color: #FD4223; }
+
+.Saxon .counterWrapper {
+  background-color: #FD4223; }
+
+.playerThree {
   background: #4cb800;
   border-color: #4cb800 !important; }
 
-.SaxonPolishFace, .playerTwoFace {
+.RussianFace, .playerThreeFace {
   color: #4cb800; }
 
-.SaxonPolish .counterWrapper {
+.Russian .counterWrapper {
   background-color: #009c1d; }
 
 .Swedish.infantry .counterWrapper .counter {
@@ -1362,6 +1372,23 @@ You should have received a copy of the GNU General Public License
   background-size: 14px; }
 
 .Swedish.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Saxon.infantry .counterWrapper .counter {
+  background-image: url("../../js/SaxonInfBadge.png");
+  background-size: 14px; }
+
+.Saxon.cavalry .counterWrapper .counter {
+  background-image: url("../../js/SaxonCavBadge.png");
+  background-size: 14px; }
+
+.Saxon.artillery .counterWrapper .counter {
+  background-image: url("../../js/SaxonArtBadge.png");
+  background-size: 14px; }
+
+.Saxon.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }

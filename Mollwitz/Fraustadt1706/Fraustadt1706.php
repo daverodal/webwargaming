@@ -47,7 +47,7 @@ class Fraustadt1706 extends JagCore
     static function playMulti($name, $wargame, $arg = false)
     {
         $deployTwo = $playerOne = "Swedish";
-        $deployOne = $playerTwo = "SaxonPolish";
+        $deployOne = $playerTwo = "Saxon Russian";
         @include_once "playMulti.php";
     }
 
@@ -56,7 +56,7 @@ class Fraustadt1706 extends JagCore
         global $force_name;
         $youAre = $force_name[$player];
         $deployTwo = $playerOne = "Swedish";
-        $deployOne = $playerTwo = "SaxonPolish";
+        $deployOne = $playerTwo = "Saxon Russian";
         @include_once "view.php";
     }
 
@@ -118,7 +118,7 @@ class Fraustadt1706 extends JagCore
 
             // game data
 
-            $this->gameRules->setMaxTurn(8);
+            $this->gameRules->setMaxTurn(6);
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
             $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */

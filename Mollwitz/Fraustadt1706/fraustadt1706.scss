@@ -21,8 +21,10 @@ You should have received a copy of the GNU General Public License
 }
 
 @include player(Swedish, One , $prussianColor, $prussianWrapperColor, $prussianWrapperColor);
-@include player(SaxonPolish, Two, $russianColor, $russianWrapperColor);
+@include player(Saxon, Two, #FD4223, #FD4223);
+@include player(Russian, Three, $russianColor, $russianWrapperColor);
 @include badge(Swedish, Pru);
+@include badge(Saxon, Saxon);
 
 .french.specialHexes{
   background-color: $frenchColor;

@@ -89,13 +89,19 @@ class fraustadt1706VictoryCore extends victoryCore
 
         if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
-            $winScore = 40;
+            $winScore = 25;
+            $highWinScore = 30;
             if ($this->victoryPoints[SWEDISH_FORCE] >= $winScore) {
-                if ($turn <= 5) {
+                if ($turn <= 4) {
                     $swedishWin = true;
                 }
             }
-            if ($this->victoryPoints[SAXON_POLISH_FORCE] >= $winScore) {
+            if ($this->victoryPoints[SWEDISH_FORCE] >= $highWinScore) {
+                if ($turn <= 6) {
+                    $swedishWin = true;
+                }
+            }
+            if ($this->victoryPoints[SAXON_POLISH_FORCE] >= $highWinScore) {
                 $saxonPolishWin = true;
             }
 
@@ -109,8 +115,10 @@ class fraustadt1706VictoryCore extends victoryCore
                 $gameRules->flashMessages[] = $msg;
             }
             if ($swedishWin || $saxonPolishWin ||  $turn == ($gameRules->maxTurn + 1)) {
-                if(!$swedishWin && !$saxonPolishWin){
-                    $gameRules->flashMessages[] = "Tie Game";
+                if(!$swedishWin){
+                    $this->winner = SAXON_POLISH_FORCE;
+                    $msg = "Saxon Polish Win";
+                    $gameRules->flashMessages[] = $msg;
                 }
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
