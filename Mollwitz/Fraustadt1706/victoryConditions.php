@@ -28,11 +28,11 @@ You should have received a copy of the GNU General Public License
             </p>
             </li>
 
-        <li>Swedish: win at the end of any Game turn that they have 25 or more points by turn 4 inclusive or
+        <li><?= $playerOne?>: win at the end of any Game turn that they have 25 or more points by turn 4 inclusive or
             30 points by turn 6 inclusive.
         </li>
 
-        <li> Saxon / Polish: win at the end of any game turn that they have 30 points by turn 6 inclusive.
+        <li> <?= $playerTwo?>: win at the end of any game turn that they have 30 points by turn 6 inclusive.
             Or swedes do not win by the end of turn 6.</li>
 
         <li>A draw occurs if both sides meet the above victory conditions on same turn.</li>

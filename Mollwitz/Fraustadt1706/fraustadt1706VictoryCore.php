@@ -119,7 +119,7 @@ class fraustadt1706VictoryCore extends victoryCore
             if ($swedishWin || $saxonPolishWin ||  $turn == ($gameRules->maxTurn + 1)) {
                 if(!$swedishWin){
                     $this->winner = SAXON_POLISH_FORCE;
-                    $msg = "Saxon Polish Win";
+                    $msg = "Saxon Russian Win";
                     $gameRules->flashMessages[] = $msg;
                 }
                 $gameRules->flashMessages[] = "Game Over";
