@@ -113,7 +113,7 @@ class hastenbeckVictoryCore extends victoryCore
 
         if(!$this->gameOver){
             $specialHexes = $battle->mapData->specialHexes;
-            if($attackingId == ANGLO_FORCE){
+            if($attackingId == ALLIED_FORCE){
                 $otherCities = $battle->loc;
                 $frenchCities = 0;
                 if($specialHexes->$malplaquet == FRENCH_FORCE){
@@ -124,7 +124,7 @@ class hastenbeckVictoryCore extends victoryCore
                     }
                 }
             }
-            if($this->victoryPoints[ANGLO_FORCE] >= 45){
+            if($this->victoryPoints[ALLIED_FORCE] >= 45){
                 $angloWin = true;
             }
             if($frenchCities >= 3 && ($this->victoryPoints[FRENCH_FORCE] >= 60) && $turn <= 10){
@@ -150,7 +150,7 @@ class hastenbeckVictoryCore extends victoryCore
 
 
             if($angloWin){
-                $this->winner = ANGLO_FORCE;
+                $this->winner = ALLIED_FORCE;
                 $gameRules->flashMessages[] = "Allies Win";
             }
             if($frenchWin){
