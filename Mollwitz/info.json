@@ -228,6 +228,9 @@
     "genre": "18'th Century Europe",
     "fileName": "Fraustadt1706/Fraustadt1706.php",
     "description":"1706",
+    "params":{
+      "weakRedoubts": true
+    },
     "scenarios": {
       "main": {
         "description": "Standard Scenario.",

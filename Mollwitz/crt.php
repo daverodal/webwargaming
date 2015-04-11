@@ -234,8 +234,10 @@ class CombatResultsTable
                         $unitStrength *= .75;
                         $combatLog .= "attacker 3/4 for $terrainReason ";
                     }else{
-                        $unitStrength /= 2;
-                        $combatLog .= "attacker halved for $terrainReason ";
+                        if(!$scenario->weakRedoubts){
+                            $unitStrength /= 2;
+                            $combatLog .= "attacker halved for $terrainReason ";
+                        }
                     }
                 }
             }

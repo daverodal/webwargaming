@@ -60,6 +60,12 @@ class Fraustadt1706 extends JagCore
         @include_once "view.php";
     }
 
+    function terrainGen($mapDoc, $terrainDoc){
+        parent::terrainGen($mapDoc, $terrainDoc);
+        $this->terrain->addTerrainFeature("redoubtfront", "redoubtfront", "d", 0, 0, 0, false);
+        $this->terrain->addAltTraverseCost('redoubtfront','cavalry',1);
+    }
+
     function save()
     {
         $data = new stdClass();
