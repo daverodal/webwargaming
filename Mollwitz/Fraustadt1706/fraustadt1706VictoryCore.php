@@ -105,13 +105,15 @@ class fraustadt1706VictoryCore extends victoryCore
                 $saxonPolishWin = true;
             }
 
-            if ($swedishWin) {
+
+            if ($swedishWin && !$saxonPolishWin) {
                 $this->winner = SWEDISH_FORCE;
                 $gameRules->flashMessages[] = "Swedish Win";
             }
-            if ($saxonPolishWin) {
-                $this->winner = SAXON_POLISH_FORCE;
-                $msg = "Saxon Polish Win";
+
+            if ($saxonPolishWin && $swedishWin) {
+                $this->winner = 0;
+                $msg = "Tie Game";
                 $gameRules->flashMessages[] = $msg;
             }
             if ($swedishWin || $saxonPolishWin ||  $turn == ($gameRules->maxTurn + 1)) {

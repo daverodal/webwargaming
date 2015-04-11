@@ -33,8 +33,8 @@ You should have received a copy of the GNU General Public License
         </li>
 
         <li> Saxon / Polish: win at the end of any game turn that they have 30 points by turn 6 inclusive.
-            Or swedes do not win by the end of turn 6..</li>
+            Or swedes do not win by the end of turn 6.</li>
 
-        <li>A Draw Occurs: If neither side has won by the end of turn 8.</li>
+        <li>A draw occurs if both sides meet the above victory conditions on same turn.</li>
     </ol>
 </li>
