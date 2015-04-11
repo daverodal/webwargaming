@@ -61,6 +61,8 @@ class Fraustadt1706 extends JagCore
     }
 
     function terrainGen($mapDoc, $terrainDoc){
+        $this->terrain->addTerrainFeature("frozenswamp", "frozenswamp", "s", 2, 1, 0, true, false);
+
         parent::terrainGen($mapDoc, $terrainDoc);
         $this->terrain->addTerrainFeature("redoubtfront", "redoubtfront", "d", 0, 0, 0, false);
         $this->terrain->addAltTraverseCost('redoubtfront','cavalry',1);
