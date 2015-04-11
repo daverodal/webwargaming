@@ -177,7 +177,7 @@ class CombatResultsTable
             if($isElevated && ($isElevated > $attackerIsElevated)){
                 /* Special case for elevation 2 and attack no elevated, can be from be behind */
                 if($isElevated == 2  && $attackerIsElevated === false) {
-                    if ($battle->combatRules->thisAttackAcrossType($defId, $attackerId, "elevation1")) {
+                    if ($battle->combatRules->thisAttackAcrossTwoType($defId, $attackerId, "elevation1")) {
                         $terrainReason .= "attack uphill ";
                         $attackUpHill = true;
                     }

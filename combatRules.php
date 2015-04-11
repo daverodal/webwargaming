@@ -601,9 +601,25 @@ class CombatRules
          *  defender is located in hexParts[0],
          * x first hexside adjacent to defender is in $hexParts[1]
          */
-        return ($this->terrain->terrainIs($hexParts[1], $type) );
+        return ($this->terrain->terrainIs($hexParts[1], $type));
 
     }
+
+    function thisAttackAcrossTwoType($defenderId, $attackerId, $type){
+        $los = new Los();
+
+        $los->setOrigin($this->force->getUnitHexagon($defenderId));
+        $los->setEndPoint($this->force->getUnitHexagon($attackerId));
+
+        $hexParts = $los->getlosList();
+        /*
+         *  defender is located in hexParts[0],
+         * x first hexside adjacent to defender is in $hexParts[1] need to check second hexside for elevations checks from behind.
+         */
+        return ($this->terrain->terrainIs($hexParts[1], $type) || $this->terrain->terrainIs($hexParts[2], $type) );
+
+    }
+
     function tthisAttackAcrossType($defenderId, $attackerId, $type)
     {
 
