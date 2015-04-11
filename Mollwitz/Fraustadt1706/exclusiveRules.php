@@ -41,15 +41,24 @@ You should have received a copy of the GNU General Public License
             </H1>
 
             <h2 class="exclusive"> EXCLUSIVE RULES </h2>
-            <div class="indent">
-                <h3>Deploy Phase</h3>
-
+            <ol>
+                <li><span class="lessBig">Deploy Phase</span>
                     <p class="indent">The <?= $deployOne?> player deploys first. The <?= $deployTwo?> player deploys Second</p>
 
-                <h3>First Player</h3>
-
+                </li>
+                <li><span class="lessBig">First Player</span>
                     <p class="indent">The <?= $playerOne?> player moves first. The  <?= $playerTwo?>  player moves second.</p>
-            </div>
+                </li>
+                <li><span class="lessBig">Movement</span>
+                    <p class="indent">The <?= $playerOne?> units receive a 1 MP bonus on turn 1 only.</p>
+                    <p class="indent"> The  <?= $playerTwo?>  Units movement rate are halved on turn 1, normal thereafter.</p>
+                </li>
+                <li><span class="lessBig">Terrain</span>
+                    <p class="indent">Swamps: The swamps were frozen over therefore will only cost one extra MP to enter and have no effect on combat.</p>
+                    <p class="indent"> Fortifications: The Fortifications had no impact on the Swedish infantry assault so have no effect on infantry and cost 1 MP for cavalry to cross halving cavalry attacking over them.</p>
+                    <p class="indent"> Ponds: The ponds were frozen, so they don't block movement. Treat them like rivers.</p>
+                </li>
+            </ol>
             <ol class="ExclusiveRules topNumbers">
                 <?php include "victoryConditions.php" ?>
             </ol>
