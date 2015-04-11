@@ -601,7 +601,7 @@ class CombatRules
          *  defender is located in hexParts[0],
          * x first hexside adjacent to defender is in $hexParts[1]
          */
-        return ($this->terrain->terrainIs($hexParts[1], $type) || $this->terrain->terrainIs($hexParts[2], $type) );
+        return ($this->terrain->terrainIs($hexParts[1], $type) );
 
     }
     function tthisAttackAcrossType($defenderId, $attackerId, $type)
