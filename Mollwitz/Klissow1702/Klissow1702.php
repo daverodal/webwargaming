@@ -79,6 +79,7 @@ class Klissow1702 extends JagCore
         $data->roadHex = $this->roadHex;
         $data->specialHexA = $this->specialHexA;
         $data->specialHexB = $this->specialHexB;
+        $data->pontoons = $this->pontoons;
 
         return $data;
     }
@@ -105,6 +106,12 @@ class Klissow1702 extends JagCore
             $this->roadHex = $data->roadHex;
             $this->specialHexA = $data->specialHexA;
             $this->specialHexB = $data->specialHexB;
+            if($data->pontoons) {
+                $this->pontoons = $data->pontoons;
+                foreach ($this->pontoons as $pontoon) {
+                    $this->terrain->changeTerrain($pontoon, HEXAGON_CENTER, "clear");
+                }
+            }
         } else {
             $this->victory = new Victory("Mollwitz/Klissow1702/klissow1702VictoryCore.php");
 

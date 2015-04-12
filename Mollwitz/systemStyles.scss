@@ -53,6 +53,24 @@ body {
     background-image: url('../../js/HQBadge.png');
     background-size: 14px;
   }
+
+  .#{$nationality}.pontoon {
+    .counterWrapper {
+      border:none;
+      .counter {
+
+        background-color: lightgreen;
+        background-image: url('../../js/AngloPontoon.png');
+        background-size: 32px;
+        width: 32px;
+        height: 32px;
+        border:none;
+      }
+    }
+    .unit-numbers {
+      display:none;
+    }
+  }
 }
 
 $austrianColor: #df5842;

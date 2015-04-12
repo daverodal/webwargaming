@@ -44,6 +44,9 @@ class klissow1702VictoryCore extends victoryCore
     {
         $unit = $args[0];
         $mult = 1;
+        if($unit->class == "pontoon"){
+            return;
+        }
         if ($unit->forceId == 1) {
             $victorId = 2;
             $this->victoryPoints[$victorId] += $unit->strength * $mult;
@@ -120,6 +123,32 @@ class klissow1702VictoryCore extends victoryCore
         return false;
     }
 
+    public function phaseChange()
+    {
+
+        /* @var $battle MartianCivilWar */
+        $battle = Battle::getBattle();
+        /* @var $gameRules GameRules */
+        $gameRules = $battle->gameRules;
+        $turn = $gameRules->turn;
+        $force = $battle->force;
+
+        if ($turn == 1 && $gameRules->phase == BLUE_MOVE_PHASE) {
+            $supply = [];
+            $units = $force->units;
+            $num = count($units);
+            for ($i = 0; $i <= $num; $i++) {
+                $unit = $units[$i];
+                if ($unit->class == "pontoon" && $unit->hexagon->parent === "gameImages") {
+                    $supply[$unit->hexagon->name] = -1;
+                    $battle->pontoons[] = $unit->hexagon->name;
+                    $force->eliminateUnit($i);
+                }
+            }
+            $battle->mapData->setSpecialHexes($supply);
+
+        }
+    }
 
     public function postRecoverUnits($args)
     {

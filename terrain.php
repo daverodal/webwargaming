@@ -264,7 +264,6 @@ class Terrain
                         unset($this->terrainArray[$y][$x]->$thisTerrainName);
                     }
                 }
-//                $this->terrainArray[$y][$x] = new stdClass();
             }
             $this->terrainArray[$y][$x]->$terrainName = $terrainName;
             if($feature->blocksRanged){
@@ -273,7 +272,57 @@ class Terrain
         }
 
     }
+    function changeTerrain($hexagonName, $hexpartType, $terrainName)
+    {
+        $hexagon = new Hexagon($hexagonName);
 
+        $x = $hexagon->getX();
+        $y = $hexagon->getY();
+        switch ($hexpartType) {
+
+            case HEXAGON_CENTER:
+
+                break;
+
+            case BOTTOM_HEXSIDE:
+
+                $y = $y + 2;
+                break;
+
+            case LOWER_LEFT_HEXSIDE:
+
+                $x = $x - 1;
+                $y = $y + 1;
+                break;
+
+            case UPPER_LEFT_HEXSIDE:
+
+                $x = $x - 1;
+                $y = $y - 1;
+                break;
+
+        }
+        if(!$this->terrainArray->$y->$x){
+            $this->terrainArray->$y->$x = new stdClass();
+        }
+        if ($feature = $this->terrainFeatures->$terrainName) {
+            /* new feature is exclusive */
+            if ($feature->isExclusive === true) {
+                $thisHexpart = $this->terrainArray->$y->$x;
+                /* reset all exclusive terrains found, leave non exclusive ones */
+                foreach($thisHexpart as $thisTerrainName => $thisTerrainValue){
+                    if($this->terrainFeatures->$thisTerrainName->isExclusive){
+                        unset($this->terrainArray->$y->$x->$thisTerrainName);
+                    }
+                }
+            }
+            $this->terrainArray->$y->$x->$terrainName = $terrainName;
+            if($feature->blocksRanged){
+                $this->terrainArray->$y->$x->blocksRanged = "blocksRanged";
+            }
+        }
+
+    }
     /*
      * public init
      */

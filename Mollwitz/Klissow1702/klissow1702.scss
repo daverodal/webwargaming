@@ -40,3 +40,13 @@ You should have received a copy of the GNU General Public License
   }
 }
 @include badge(French, Fre);
+
+.pontoon.specialHexes{
+  color:transparent;
+  background-image:url("../../js/AngloPontoon.png");
+  background-size:32px;
+  width:32px;
+  height:32px;
+  margin-top:-14px;
+  margin-left:-14px;
+}
