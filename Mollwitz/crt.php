@@ -155,7 +155,10 @@ class CombatResultsTable
             $hexpart = new Hexpart();
             $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
 
-            $attackerIsSwamp = $battle->terrain->terrainIs($hexpart, 'swamp');
+            $attackerIsSwamp = false;
+            if(!$scenario->wimpySwamps){
+                $attackerIsSwamp = $battle->terrain->terrainIs($hexpart, 'swamp');
+            }
             $attackerIsSunkenRoad = $battle->terrain->terrainIs($hexpart, 'sunkenroad');
 
             if($attackerIsSwamp){

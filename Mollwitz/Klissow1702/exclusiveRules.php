@@ -41,15 +41,22 @@ You should have received a copy of the GNU General Public License
             </H1>
 
             <h2 class="exclusive"> EXCLUSIVE RULES </h2>
-            <div class="indent">
-                <h3>Deploy Phase</h3>
-
+            <ol>
+                <li><span class="lessBig">Deploy Phase</span>
                     <p class="indent">The <?= $deployOne?> player deploys first. The <?= $deployTwo?> player deploys Second</p>
 
-                <h3>First Player</h3>
-
+                </li>
+                <li><span class="lessBig">First Player</span>
                     <p class="indent">The <?= $playerOne?> player moves first. The  <?= $playerTwo?>  player moves second.</p>
-            </div>
+                </li>
+                <li><span class="lessBig">Movement</span>
+                    <p class="indent">The <?= $playerOne?> units receive a 1 MP bonus on turn 1 only.</p>
+                    <p class="indent"> The  <?= $playerTwo?>  Units movement rate are halved on turn 1, normal thereafter.</p>
+                </li>
+                <li><span class="lessBig">Terrain</span>
+                    <p class="indent">Swamps: The Sweeds experienced very little difficulty attacking across the swamps, therefore swamps are only +2.</p>
+                </li>
+            </ol>
             <ol class="ExclusiveRules topNumbers">
                 <?php include "victoryConditions.php" ?>
             </ol>

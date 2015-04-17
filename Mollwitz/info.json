@@ -264,6 +264,9 @@
     "genre": "18'th Century Europe",
     "fileName": "Klissow1702/Klissow1702.php",
     "description":"The Battle of Klissow took place on July 8 / July 9 / July 19, 1702 ",
+    "params":{
+      "wimpySwamps": true
+    },
     "scenarios": {
       "main": {
         "description": "Standard Scenario.",
