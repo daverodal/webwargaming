@@ -64,6 +64,7 @@ class Klissow1702 extends JagCore
 
         parent::terrainGen($mapDoc, $terrainDoc);
         $this->terrain->addTerrainFeature("swamp", "swamp", "s", 3, 0, 1, true, false);
+        $this->terrain->addAltEntranceCost('swamp', 'cavalry', 4);
     }
     function save()
     {
