@@ -60,6 +60,11 @@ class Klissow1702 extends JagCore
         @include_once "view.php";
     }
 
+    function terrainGen($mapDoc, $terrainDoc){
+
+        parent::terrainGen($mapDoc, $terrainDoc);
+        $this->terrain->addTerrainFeature("swamp", "swamp", "s", 3, 0, 1, true, false);
+    }
     function save()
     {
         $data = new stdClass();
