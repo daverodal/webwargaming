@@ -63,22 +63,10 @@ class montmirail1814VictoryCore extends victoryCore
         list($mapHexName, $forceId) = $args;
         if (in_array($mapHexName, $battle->specialHexA)) {
             if ($forceId == FRENCH_FORCE) {
-                $this->victoryPoints[FRENCH_FORCE] += 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>+5 Prussian vp</span>";
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>French Control Vital Objective</span>";
             }
             if ($forceId == ALLIED_FORCE) {
-                $this->victoryPoints[FRENCH_FORCE] -= 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='allied'>-5 Prussian vp</span>";
-            }
-        }
-        if (in_array($mapHexName, $battle->specialHexB)) {
-            if ($forceId == ALLIED_FORCE) {
-                $this->victoryPoints[ALLIED_FORCE] += 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='allied'>+5 Austrian vp</span>";
-            }
-            if ($forceId == FRENCH_FORCE) {
-                $this->victoryPoints[ALLIED_FORCE] -= 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>-5 Austrian vp</span>";
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='allied'>French Lose Vital Objective</span>";
             }
         }
     }
