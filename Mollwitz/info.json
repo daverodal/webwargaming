@@ -403,13 +403,13 @@
             {"num":1,"forceId":2,"combat":4,"movement":5,"reinforce":"B","range":3,"nationality":"Russian","class":"horseartillery"},
 
 
-            {"num":3,"forceId":2,"combat":5,"movement":4,"reinforce":"B","range":1,"nationality":"Prussian","class":"infantry"},
-            {"num":2,"forceId":2,"combat":4,"movement":4,"reinforce":"B","range":1,"nationality":"Prussian","class":"infantry"},
-            {"num":1,"forceId":2,"combat":3,"movement":4,"reinforce":"B","range":1,"nationality":"Prussian","class":"infantry"},
+            {"num":3,"forceId":2,"combat":5,"movement":4,"reinforce":"C","range":1,"nationality":"Prussian","class":"infantry"},
+            {"num":2,"forceId":2,"combat":4,"movement":4,"reinforce":"C","range":1,"nationality":"Prussian","class":"infantry"},
+            {"num":1,"forceId":2,"combat":3,"movement":4,"reinforce":"C","range":1,"nationality":"Prussian","class":"infantry"},
 
-            {"num":2,"forceId":2,"combat":3,"movement":7,"reinforce":"B","range":1,"nationality":"Prussian","class":"cavalry"},
+            {"num":2,"forceId":2,"combat":3,"movement":7,"reinforce":"C","range":1,"nationality":"Prussian","class":"cavalry"},
 
-            {"num":2,"forceId":2,"combat":2,"movement":4,"reinforce":"B","range":3,"nationality":"Prussian","class":"artillery"}
+            {"num":2,"forceId":2,"combat":2,"movement":4,"reinforce":"C","range":3,"nationality":"Prussian","class":"artillery"}
           ]
         }
       }
