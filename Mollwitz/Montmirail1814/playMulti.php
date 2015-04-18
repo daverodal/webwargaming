@@ -20,12 +20,11 @@ You should have received a copy of the GNU General Public License
         body{
             background:#ccc;
             color:#333;
-            background: url("<?=base_url("js/Schlacht_von_Kesselsdorf.jpg")?>") #333 no-repeat;
+            background: url("<?=base_url("js/561px-Battle_of_Montmirail_map.jpg")?>") #333 no-repeat;
             background-position: 25% 0;
             background-size:100%;
         }
     </style>
 
 <footer class="attribution">
-    [Public domain], <a target="blank" href="https://commons.wikimedia.org/wiki/File:Schlacht_von_Kesselsdorf.jpg">via Wikimedia Commons</a>
-</footer>
+    By Gregory Fremont-Barnes (main editor) [Attribution], <a target="blank" href="https://commons.wikimedia.org/wiki/File%3ABattle_of_Montmirail_map.jpg">via Wikimedia Commons</a></footer>
