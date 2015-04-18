@@ -73,6 +73,7 @@ class montmirail1814VictoryCore extends victoryCore
 
     protected function checkVictory($attackingId, $battle)
     {
+        return false;
         $gameRules = $battle->gameRules;
         $scenario = $battle->scenario;
         $turn = $gameRules->turn;
