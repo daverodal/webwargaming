@@ -532,7 +532,7 @@ x.register("gameRules", function(gameRules,data) {
     }
 });
 x.register("vp", function(vp){
-    $("#victory").html(" Victory: <span class='"+DR.playerOne+"Face'>"+DR.playerOne+" </span>"+vp[1]+ " <span class='"+DR.playerTwo+"Face'>"+DR.playerTwo+" </span>"+vp[2]+"");
+    $("#victory").html(" Victory: <span class='playerOneFace'>"+DR.playerOne+" </span>"+vp[1]+ " <span class='playerTwoFace'>"+DR.playerTwo+" </span>"+vp[2]+"");
 
 });
 x.register("games", function(games) {
