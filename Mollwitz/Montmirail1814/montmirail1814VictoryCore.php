@@ -44,6 +44,9 @@ class montmirail1814VictoryCore extends victoryCore
     {
         $unit = $args[0];
         $mult = 1;
+        if($unit->nationality == "Guard"){
+            $mult = 1.5;
+        }
         if ($unit->forceId == 1) {
             $victorId = 2;
             $this->victoryPoints[$victorId] += $unit->strength * $mult;
@@ -59,23 +62,23 @@ class montmirail1814VictoryCore extends victoryCore
 
         list($mapHexName, $forceId) = $args;
         if (in_array($mapHexName, $battle->specialHexA)) {
-            if ($forceId == PRUSSIAN_FORCE) {
-                $this->victoryPoints[PRUSSIAN_FORCE] += 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>+5 Prussian vp</span>";
+            if ($forceId == FRENCH_FORCE) {
+                $this->victoryPoints[FRENCH_FORCE] += 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>+5 Prussian vp</span>";
             }
-            if ($forceId == AUSTRIAN_FORCE) {
-                $this->victoryPoints[PRUSSIAN_FORCE] -= 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>-5 Prussian vp</span>";
+            if ($forceId == ALLIED_FORCE) {
+                $this->victoryPoints[FRENCH_FORCE] -= 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='allied'>-5 Prussian vp</span>";
             }
         }
         if (in_array($mapHexName, $battle->specialHexB)) {
-            if ($forceId == AUSTRIAN_FORCE) {
-                $this->victoryPoints[AUSTRIAN_FORCE] += 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='austrian'>+5 Austrian vp</span>";
+            if ($forceId == ALLIED_FORCE) {
+                $this->victoryPoints[ALLIED_FORCE] += 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='allied'>+5 Austrian vp</span>";
             }
-            if ($forceId == PRUSSIAN_FORCE) {
-                $this->victoryPoints[AUSTRIAN_FORCE] -= 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>-5 Austrian vp</span>";
+            if ($forceId == FRENCH_FORCE) {
+                $this->victoryPoints[ALLIED_FORCE] -= 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>-5 Austrian vp</span>";
             }
         }
     }
@@ -85,31 +88,31 @@ class montmirail1814VictoryCore extends victoryCore
         $gameRules = $battle->gameRules;
         $scenario = $battle->scenario;
         $turn = $gameRules->turn;
-        $prussianWin = $austrianWin = $draw = false;
+        $frenchWin = $alliedWin = $draw = false;
 
         if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
             $winScore = 30;
-            if ($this->victoryPoints[PRUSSIAN_FORCE] >= $winScore) {
+            if ($this->victoryPoints[FRENCH_FORCE] >= $winScore) {
                 if ($turn <= 5) {
-                    $prussianWin = true;
+                    $frenchWin = true;
                 }
             }
-            if ($this->victoryPoints[AUSTRIAN_FORCE] >= $winScore) {
-                $austrianWin = true;
+            if ($this->victoryPoints[ALLIED_FORCE] >= $winScore) {
+                $alliedWin = true;
             }
 
-            if ($prussianWin) {
-                $this->winner = PRUSSIAN_FORCE;
+            if ($frenchWin) {
+                $this->winner = FRENCH_FORCE;
                 $gameRules->flashMessages[] = "Prussian Win";
             }
-            if ($austrianWin) {
-                $this->winner = AUSTRIAN_FORCE;
+            if ($alliedWin) {
+                $this->winner = ALLIED_FORCE;
                 $msg = "Austrian Win";
                 $gameRules->flashMessages[] = $msg;
             }
-            if ($prussianWin || $austrianWin ||  $turn == ($gameRules->maxTurn + 1)) {
-                if(!$prussianWin && !$austrianWin){
+            if ($frenchWin || $alliedWin ||  $turn == ($gameRules->maxTurn + 1)) {
+                if(!$frenchWin && !$alliedWin){
                     $gameRules->flashMessages[] = "Tie Game";
                 }
                 $gameRules->flashMessages[] = "Game Over";

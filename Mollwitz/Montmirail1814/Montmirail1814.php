@@ -17,12 +17,12 @@ You should have received a copy of the GNU General Public License
    */
 
 
-define("PRUSSIAN_FORCE", 1);
-define("AUSTRIAN_FORCE", 2);
+define("FRENCH_FORCE", 1);
+define("ALLIED_FORCE", 2);
 
 global $force_name;
-$force_name[AUSTRIAN_FORCE] = "Austrian";
-$force_name[PRUSSIAN_FORCE] = "Prussian";
+$force_name[FRENCH_FORCE] = "French";
+$force_name[ALLIED_FORCE] = "Prussian/Russian Allies";
 
 require_once "JagCore.php";
 
@@ -49,8 +49,8 @@ class Montmirail1814 extends JagCore
 
     static function playMulti($name, $wargame, $arg = false)
     {
-        $deployTwo = $playerOne = "Prussian";
-        $deployOne = $playerTwo = "Austrian";
+        $deployTwo = $playerOne = "French";
+        $deployOne = $playerTwo = "Prussian/Russian Allies";
         @include_once "playMulti.php";
     }
 
@@ -58,8 +58,8 @@ class Montmirail1814 extends JagCore
     {
         global $force_name;
         $youAre = $force_name[$player];
-        $deployTwo = $playerOne = "Prussian";
-        $deployOne = $playerTwo = "Austrian";
+        $deployTwo = $playerOne = "French";
+        $deployOne = $playerTwo = "Prussian/Russian Allies";
         @include_once "view.php";
     }
 
@@ -124,7 +124,7 @@ class Montmirail1814 extends JagCore
 
             // game data
 
-            $this->gameRules->setMaxTurn(8);
+            $this->gameRules->setMaxTurn(7);
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
             $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */

@@ -48,6 +48,10 @@ body {
     background-image: url('../../js/#{$shortName}ArtBadge.png');
     background-size: 14px;
   }
+  .#{$nationality}.horseartillery .counterWrapper .counter {
+    background-image: url('../../js/#{$shortName}HorArtBadge.png');
+    background-size: 14px;
+  }
   .#{$nationality}.hq .counterWrapper .counter {
     background-color:lightgreen;
     background-image: url('../../js/HQBadge.png');
@@ -383,4 +387,7 @@ p.forceMarch {
       color: transparent;
     }
   }
+}
+.guard-unit{
+  display:none;
 }

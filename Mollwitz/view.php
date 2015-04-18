@@ -284,6 +284,7 @@
                     <div class="unit {class} {type}" id="{id}" alt="0">
                         <div class="shadow-mask"></div>
                         <div class="counterWrapper">
+                            <div class="guard-unit">GD</div>
                             <div class="counter"></div>
                         </div>
                         <p class="range">{range}</p>

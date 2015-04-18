@@ -19,8 +19,10 @@ You should have received a copy of the GNU General Public License
 #tecImage{
   width:500px;
 }
-@include player(Prussian,One , $prussianColor, $prussianWrapperColor, $prussianWrapperColor);
-@include player(Austrian, Two, $austrianColor, $austrianWrapperColor);
+@include player(French,One , $frenchColor, #0003b4, $frenchColor);
+@include player(Prussian, Two, $prussianColor, $prussianWrapperColor, $prussianWrapperColor);
+@include player(Russian, Three, $russianColor, $russianWrapperColor);
+@include player(Guard,Four , $frenchColor, #0003b4, $frenchWrapperColor);
 
 .french.specialHexes{
   background-color: $frenchColor;
@@ -32,9 +34,25 @@ You should have received a copy of the GNU General Public License
 .french.specialHexes, .anglo.specialHexes{
   color:white;
 }
-.French, .AngloAllied {
+.French, .AngloAllied, .Guard {
   p.forceMarch, p.range{
     color:white;
   }
 }
-@include badge(French, Fre);
+
+.French.unit .unit-numbers, .Guard.unit .unit-numbers{
+  color:red;
+}
+
+@include badge(French, FrenchNap);
+@include badge(Guard, FrenchNap);
+.Guard.unit .guard-unit{
+  display:block;
+  position:absolute;
+  width:14px;
+  right:1px;
+  background:yellow;
+  color:black;
+  font-size:10px;
+  top:-10px;
+}

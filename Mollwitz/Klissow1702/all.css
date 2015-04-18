@@ -918,6 +918,10 @@ svg marker#head {
   background-image: url("../../js/SikhArtBadge.png");
   background-size: 14px; }
 
+.Sikh.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/SikhHorArtBadge.png");
+  background-size: 14px; }
+
 .Sikh.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
@@ -945,6 +949,10 @@ svg marker#head {
 
 .Beluchi.artillery .counterWrapper .counter {
   background-image: url("../../js/SikhArtBadge.png");
+  background-size: 14px; }
+
+.Beluchi.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/SikhHorArtBadge.png");
   background-size: 14px; }
 
 .Beluchi.hq .counterWrapper .counter {
@@ -976,6 +984,10 @@ svg marker#head {
   background-image: url("../../js/BritArtBadge.png");
   background-size: 14px; }
 
+.British.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/BritHorArtBadge.png");
+  background-size: 14px; }
+
 .British.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
@@ -1003,6 +1015,10 @@ svg marker#head {
 
 .SaxonPolish.artillery .counterWrapper .counter {
   background-image: url("../../js/RusArtBadge.png");
+  background-size: 14px; }
+
+.SaxonPolish.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/RusHorArtBadge.png");
   background-size: 14px; }
 
 .SaxonPolish.hq .counterWrapper .counter {
@@ -1038,6 +1054,10 @@ svg marker#head {
   background-image: url("../../js/NativeArtBadge.png");
   background-size: 14px; }
 
+.Native.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/NativeHorArtBadge.png");
+  background-size: 14px; }
+
 .Native.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
@@ -1065,6 +1085,10 @@ svg marker#head {
 
 .Austrian.artillery .counterWrapper .counter {
   background-image: url("../../js/AusArtBadge.png");
+  background-size: 14px; }
+
+.Austrian.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/AusHorArtBadge.png");
   background-size: 14px; }
 
 .Austrian.hq .counterWrapper .counter {
@@ -1096,6 +1120,10 @@ svg marker#head {
   background-image: url("../../js/PruArtBadge.png");
   background-size: 14px; }
 
+.Prussian.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/PruHorArtBadge.png");
+  background-size: 14px; }
+
 .Prussian.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
@@ -1123,6 +1151,10 @@ svg marker#head {
 
 .Russian.artillery .counterWrapper .counter {
   background-image: url("../../js/RusArtBadge.png");
+  background-size: 14px; }
+
+.Russian.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/RusHorArtBadge.png");
   background-size: 14px; }
 
 .Russian.hq .counterWrapper .counter {
@@ -1154,6 +1186,10 @@ svg marker#head {
   background-image: url("../../js/FrenchArtBadge.png");
   background-size: 14px; }
 
+.French.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/FrenchHorArtBadge.png");
+  background-size: 14px; }
+
 .French.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
@@ -1181,6 +1217,10 @@ svg marker#head {
 
 .AngloAllied.artillery .counterWrapper .counter {
   background-image: url("../../js/AngArtBadge.png");
+  background-size: 14px; }
+
+.AngloAllied.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/AngHorArtBadge.png");
   background-size: 14px; }
 
 .AngloAllied.hq .counterWrapper .counter {
@@ -1212,6 +1252,10 @@ svg marker#head {
   background-image: url("../../js/AngArtBadge.png");
   background-size: 14px; }
 
+.Anglo.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/AngHorArtBadge.png");
+  background-size: 14px; }
+
 .Anglo.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
@@ -1239,6 +1283,10 @@ svg marker#head {
 
 .Allied.artillery .counterWrapper .counter {
   background-image: url("../../js/AngArtBadge.png");
+  background-size: 14px; }
+
+.Allied.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/AngHorArtBadge.png");
   background-size: 14px; }
 
 .Allied.hq .counterWrapper .counter {
@@ -1454,6 +1502,9 @@ p.forceMarch {
     background: transparent;
     color: transparent; }
 
+.guard-unit {
+  display: none; }
+
 /*
 Copyright 2012-2015 David Rodal
 
@@ -1505,6 +1556,10 @@ You should have received a copy of the GNU General Public License
   background-image: url("../../js/PruArtBadge.png");
   background-size: 14px; }
 
+.Swedish.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/PruHorArtBadge.png");
+  background-size: 14px; }
+
 .Swedish.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
@@ -1544,6 +1599,10 @@ You should have received a copy of the GNU General Public License
 
 .French.artillery .counterWrapper .counter {
   background-image: url("../../js/FreArtBadge.png");
+  background-size: 14px; }
+
+.French.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/FreHorArtBadge.png");
   background-size: 14px; }
 
 .French.hq .counterWrapper .counter {
