@@ -19,8 +19,9 @@ You should have received a copy of the GNU General Public License
 #tecImage{
   width:500px;
 }
+$prussianNapColor: #003AF3;
 @include player(French,One , $frenchColor, #0003b4, $frenchColor);
-@include player(Prussian, Two, $prussianColor, $prussianWrapperColor, $russianWrapperColor);
+@include player(Prussian, Two, $prussianColor, $prussianNapColor, $russianWrapperColor);
 @include player(Russian, Three, $russianColor, $russianWrapperColor);
 @include player(Guard,Four , $frenchColor, #0003b4, $frenchWrapperColor);
 
@@ -64,6 +65,7 @@ You should have received a copy of the GNU General Public License
 //}
 @include badge(French, FrenchNap);
 @include badge(Guard, FrenchNap);
+@include badge(Prussian, PruNap);
 .Guard.unit .guard-unit{
   display:block;
   position:absolute;

@@ -1542,7 +1542,7 @@ You should have received a copy of the GNU General Public License
   color: #009c1d; }
 
 .Prussian .counterWrapper {
-  background-color: #0117de; }
+  background-color: #003AF3; }
 
 .playerThree {
   background: #4cb800;
@@ -1643,6 +1643,39 @@ You should have received a copy of the GNU General Public License
     height: 32px;
     border: none; }
 .Guard.pontoon .unit-numbers {
+  display: none; }
+
+.Prussian.infantry .counterWrapper .counter {
+  background-image: url("../../js/PruNapInfBadge.png");
+  background-size: 14px; }
+
+.Prussian.cavalry .counterWrapper .counter {
+  background-image: url("../../js/PruNapCavBadge.png");
+  background-size: 14px; }
+
+.Prussian.artillery .counterWrapper .counter {
+  background-image: url("../../js/PruNapArtBadge.png");
+  background-size: 14px; }
+
+.Prussian.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/PruNapHorArtBadge.png");
+  background-size: 14px; }
+
+.Prussian.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Prussian.pontoon .counterWrapper {
+  border: none; }
+  .Prussian.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/AngloPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Prussian.pontoon .unit-numbers {
   display: none; }
 
 .Guard.unit .guard-unit {
