@@ -25,6 +25,9 @@ You should have received a copy of the GNU General Public License
  */
 ?>
 <style type="text/css">
+    #pontoon-image{
+        width:32px;
+    }
 
         /*#GR ol.ExclusiveRules{*/
             /*counter-reset: item 6;*/
@@ -54,7 +57,16 @@ You should have received a copy of the GNU General Public License
                     <p class="indent"> The  <?= $playerTwo?>  Units movement rate are halved on turn 1, normal thereafter.</p>
                 </li>
                 <li><span class="lessBig">Terrain</span>
-                    <p class="indent">Swamps: The Sweeds experienced very little difficulty attacking across the swamps, therefore swamps are only +2.</p>
+                    <p class="indent">Marsh: The Swedes experienced very little difficulty attacking across the marshes, therefore marshes are only +2 MP's to enter.
+                        In addition, during combat only attacks into a marsh are halved. Not attacks out of them, like the TEC states.</p>
+                </li>
+                <li><span class="lessBig">Pontoons</span>
+                    <p class="indent">
+                        <img id="pontoon-image" src="<?=base_url("js/AngloPontoon.png")?>">
+                        Each side during their deployment may place one Pontoon marker on any swamp hex within 3 hexes of a friendly deploy hex.
+                        This changes the hex to clear terrain for the remainder of the game. Pontoons may be used by either side. And may not be destroyed.
+                    </p>
+
                 </li>
             </ol>
             <ol class="ExclusiveRules topNumbers">

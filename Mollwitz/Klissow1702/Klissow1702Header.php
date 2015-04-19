@@ -24,7 +24,6 @@ include "all.css";?>
     x.register("specialHexes", function(specialHexes, data) {
         var lab = ['pontoon','<?=strtolower($force_name[1])?>','<?=strtolower($force_name[2])?>'];
         for(var i in specialHexes){
-            debugger;
             var newHtml = lab[specialHexes[i]];
             var curHtml = $("#special"+i).html();
 
