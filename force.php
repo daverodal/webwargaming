@@ -364,7 +364,7 @@ class unit implements JsonSerializable
 
         $this->hexagon = $hexagon;
         $this->dirty = true;
-        $mapData->breadcrumb($this->id, $gameRules->turn, $gameRules->phase, $gameRules->mode, $fromHex, $toHex);
+        $mapData->breadcrumbMove($this->id, $gameRules->turn, $gameRules->phase, $gameRules->mode, $fromHex, $toHex);
         $mapHex = $mapData->getHex($this->hexagon->getName());
         if ($mapHex) {
             $mapHex->setUnit($this->forceId, $this->id);
@@ -790,6 +790,10 @@ class Force
                 $this->units[$attacker]->moveCount = 0;
             }
         }
+        $gameRules = $battle->gameRules;
+        $mapData = $battle->mapData;
+        $mapData->breadcrumbCombat($this->id, $gameRules->turn, $gameRules->phase, $gameRules->mode, $combatResults, $dieRoll);
+
         $battle->victory->postCombatResults($defenderId, $attackers, $combatResults, $dieRoll);
 
         $this->removeEliminatingUnits();
