@@ -20,9 +20,8 @@ You should have received a copy of the GNU General Public License
   width:500px;
 }
 
-@include player(Swedish, One , $prussianColor, $prussianWrapperColor, $prussianWrapperColor);
+@include player(Swedish, One , $swedishColor, $swedishWrapperColor, $swedishWrapperColor);
 @include player(SaxonPolish, Two, $russianColor, $russianWrapperColor);
-@include badge(Swedish, Pru);
 
 .french.specialHexes{
   background-color: $frenchColor;

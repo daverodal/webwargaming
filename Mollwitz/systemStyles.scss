@@ -99,6 +99,9 @@ $russianWrapperColor: #009c1d;
 $beluchiColor: #c68100;
 $beluchiWrapperColor: #c6c102;
 
+$swedishColor: #FECC00;
+$swedishWrapperColor: #006AA7;
+
 #map {
 }
 
@@ -133,6 +136,7 @@ $beluchiWrapperColor: #c6c102;
 @include badge(AngloAllied, Ang);
 @include badge(Anglo, Ang);
 @include badge(Allied, Ang);
+@include badge(Swedish, Swe);
 
 #header #GR a {
   color: black;

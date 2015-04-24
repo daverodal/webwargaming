@@ -1306,6 +1306,39 @@ svg marker#head {
 .Allied.pontoon .unit-numbers {
   display: none; }
 
+.Swedish.infantry .counterWrapper .counter {
+  background-image: url("../../js/SweInfBadge.png");
+  background-size: 14px; }
+
+.Swedish.cavalry .counterWrapper .counter {
+  background-image: url("../../js/SweCavBadge.png");
+  background-size: 14px; }
+
+.Swedish.artillery .counterWrapper .counter {
+  background-image: url("../../js/SweArtBadge.png");
+  background-size: 14px; }
+
+.Swedish.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/SweHorArtBadge.png");
+  background-size: 14px; }
+
+.Swedish.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Swedish.pontoon .counterWrapper {
+  border: none; }
+  .Swedish.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/AngloPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Swedish.pontoon .unit-numbers {
+  display: none; }
+
 #header #GR a {
   color: black; }
 
