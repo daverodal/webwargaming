@@ -31,6 +31,9 @@ x.register("sentBreadcrumbs", function(breadcrumbs,data) {
             }else{
                 path += "<path marker-end='url(#head)' stroke-width='15'";
             }
+            if(typeof breadcrumbs[unitId][moves].fromX == "undefined"){
+                continue;
+            }
             var d = 'M'+breadcrumbs[unitId][moves].fromX+','+breadcrumbs[unitId][moves].fromY;
             d += ' L'+breadcrumbs[unitId][moves].toX+','+breadcrumbs[unitId][moves].toY;
             path += ' d="' + d + '"/>';
