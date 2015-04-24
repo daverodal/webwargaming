@@ -792,7 +792,7 @@ class Force
         }
         $gameRules = $battle->gameRules;
         $mapData = $battle->mapData;
-        $mapData->breadcrumbCombat($this->id, $gameRules->turn, $gameRules->phase, $gameRules->mode, $combatResults, $dieRoll);
+//        $mapData->breadcrumbCombat($this->id, $gameRules->turn, $gameRules->phase, $gameRules->mode, $combatResults, $dieRoll);
 
         $battle->victory->postCombatResults($defenderId, $attackers, $combatResults, $dieRoll);
 
