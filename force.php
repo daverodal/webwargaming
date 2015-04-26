@@ -353,6 +353,7 @@ class unit implements JsonSerializable
         $battle = Battle::getBattle();
         $gameRules = $battle->gameRules;
         $mapData = $battle->mapData;
+        $attackingForceId = $battle->force->attackingForceId;
 //        $mapData = MapData::getInstance();
         /* @var MapHex $mapHex */
         $fromHex = $this->hexagon->getName();
@@ -364,7 +365,7 @@ class unit implements JsonSerializable
 
         $this->hexagon = $hexagon;
         $this->dirty = true;
-        $mapData->breadcrumbMove($this->id, $gameRules->turn, $gameRules->phase, $gameRules->mode, $fromHex, $toHex);
+        $mapData->breadcrumbMove($this->id, $attackingForceId, $gameRules->turn, $gameRules->phase, $gameRules->mode, $fromHex, $toHex);
         $mapHex = $mapData->getHex($this->hexagon->getName());
         if ($mapHex) {
             $mapHex->setUnit($this->forceId, $this->id);
@@ -792,7 +793,7 @@ class Force
         }
         $gameRules = $battle->gameRules;
         $mapData = $battle->mapData;
-        $mapData->breadcrumbCombat($defenderId, $gameRules->turn, $gameRules->phase, $gameRules->mode, $combatResults, $dieRoll);
+        $mapData->breadcrumbCombat($defenderId,$this->attackingForceId, $gameRules->turn, $gameRules->phase, $gameRules->mode, $combatResults, $dieRoll, $this->getUnitHexagon($defenderId)->name);
 
         $battle->victory->postCombatResults($defenderId, $attackers, $combatResults, $dieRoll);
 

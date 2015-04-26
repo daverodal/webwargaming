@@ -202,9 +202,9 @@ class MapData implements JsonSerializable
         return $this;
     }
 
-    public function breadcrumbMove($id,$turn, $phase, $mode, $fromHex, $toHex){
+    public function breadcrumbMove($id,$attackingForceId, $turn, $phase, $mode, $fromHex, $toHex){
 
-        $index = $turn.'t'.$phase.'p'.$mode.'m'.$id;
+        $index = $turn.'t'.$attackingForceId.'a'.$phase.'p'.$mode.'m'.$id;
         if(!isset($this->breadcrumbs)){
             $this->breadcrumbs = new stdClass();
         }
@@ -213,15 +213,17 @@ class MapData implements JsonSerializable
         }
         $crumbs = $this->breadcrumbs->$index;
         $crumb = new stdClass();
+        $crumb->type = "move";
         $crumb->fromHex = $fromHex;
         $crumb->toHex = $toHex;
         $crumbs[] = $crumb;
         $this->breadcrumbs->$index = $crumbs;
 }
 
-    public function breadcrumbCombat($id,$turn, $phase, $mode, $result, $dieRoll){
+    public function breadcrumbCombat($id, $attackingForceId, $turn, $phase, $mode, $result, $dieRoll, $hex){
+        global $results_name;
 
-        $index = $turn.'t'.$phase.'p'.$mode.'m'.$id;
+        $index = $turn.'t'.$attackingForceId.'a'.$phase.'p'.$mode.'m'.$id;
         if(!isset($this->breadcrumbs)){
             $this->breadcrumbs = new stdClass();
         }
@@ -230,8 +232,10 @@ class MapData implements JsonSerializable
         }
         $crumbs = $this->breadcrumbs->$index;
         $crumb = new stdClass();
-        $crumb->result = $result;
-        $crumb->dieRoll = $dieRoll;
+        $crumb->type = "combatResult";
+        $crumb->result = $results_name[$result];
+        $crumb->dieRoll = $dieRoll + 1;
+        $crumb->hex = $hex;
         $crumbs[] = $crumb;
         $this->breadcrumbs->$index = $crumbs;
     }

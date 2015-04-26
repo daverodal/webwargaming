@@ -101,17 +101,20 @@ class kesselsdorf1745VictoryCore extends victoryCore
 
             if ($prussianWin) {
                 $this->winner = PRUSSIAN_FORCE;
-                $gameRules->flashMessages[] = "Prussian Win";
+                $msg = "Prussian Win";
             }
             if ($austrianWin) {
                 $this->winner = AUSTRIAN_FORCE;
                 $msg = "Austrian Win";
-                $gameRules->flashMessages[] = $msg;
             }
             if ($prussianWin || $austrianWin ||  $turn == ($gameRules->maxTurn + 1)) {
                 if(!$prussianWin && !$austrianWin){
-                    $gameRules->flashMessages[] = "Tie Game";
+                    $msg = "Tie Game";
                 }
+                if($prussianWin && $austrianWin){
+                    $msg = "Tie Game";
+                }
+                $gameRules->flashMessages[] = $msg;
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
                 return true;

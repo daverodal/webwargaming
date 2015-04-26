@@ -199,7 +199,7 @@ class amphVictoryCore extends victoryCore
             $battle->gameRules->flashMessages[] = "Loyalist Player Wins";
             $this->winner = LOYALIST_FORCE;
         }
-        if ($this->victoryPoints[LOYALIST_FORCE] > $this->victoryPoints[REBEL_FORCE]) {
+        if ($this->victoryPoints[REBEL_FORCE] > $this->victoryPoints[LOYALIST_FORCE]) {
             $battle->gameRules->flashMessages[] = "Rebel Player Wins";
             $this->winner = REBEL_FORCE;
         }
