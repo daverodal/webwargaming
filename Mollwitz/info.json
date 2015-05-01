@@ -465,7 +465,7 @@
         },
         "frenchBack": {
           "description": "French Deploy Back.",
-          "longDescription":"The french had eaten bad food the previous nights and they all had to spend extra time in the out house. So they got to the battle later.",
+          "longDescription":"The french had eaten bad food the previous night and they all had to spend extra time in the out house. So they got to the battle later.",
           "units":[
             {"num":4,"forceId":1,"combat":8,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"},
             {"num":3,"forceId":1,"combat":7,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"},
