@@ -411,6 +411,108 @@
 
             {"num":2,"forceId":2,"combat":2,"movement":4,"reinforce":"C","range":4,"nationality":"Prussian","class":"artillery"}
           ]
+        },
+        "russianForward": {
+          "description": "Russian deploys forward.",
+          "longDescription":"On the morning of the battle, the russian ate oatmeal, and not the instant kind, the kind you cook for 45 minutes. This scenario assumes the russian had pop tarts, cold. So they got to the battle quicker.",
+          "units":[
+            {"num":4,"forceId":1,"combat":8,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"},
+            {"num":3,"forceId":1,"combat":7,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"},
+            {"num":1,"forceId":1,"combat":6,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"},
+
+            {"num":2,"forceId":1,"combat":8,"movement":6,"reinforce":"A","range":1,"nationality":"Guard","class":"cavalry"},
+            {"num":2,"forceId":1,"combat":6,"movement":7,"reinforce":"A","range":1,"nationality":"Guard","class":"cavalry"},
+            {"num":1,"forceId":1,"combat":6,"movement":6,"reinforce":"A","range":1,"nationality":"Guard","class":"cavalry"},
+
+            {"num":3,"forceId":1,"combat":6,"movement":4,"reinforce":"A","range":4,"nationality":"Guard","class":"artillery"},
+            {"num":1,"forceId":1,"combat":3,"movement":4,"reinforce":"A","range":4,"nationality":"Guard","class":"artillery"},
+
+            {"num":2,"forceId":1,"combat":4,"movement":5,"reinforce":"A","range":4,"nationality":"Guard","class":"horseartillery"},
+
+            {"num":4,"forceId":1,"combat":4,"movement":4,"reinforce":"A","range":1,"nationality":"French","class":"infantry"},
+            {"num":2,"forceId":1,"combat":3,"movement":4,"reinforce":"A","range":1,"nationality":"French","class":"infantry"},
+
+            {"num":1,"forceId":1,"combat":4,"movement":6,"reinforce":"A","range":1,"nationality":"French","class":"cavalry"},
+            {"num":1,"forceId":1,"combat":3,"movement":6,"reinforce":"A","range":1,"nationality":"French","class":"cavalry"},
+
+            {"num":1,"forceId":1,"combat":1,"movement":3,"reinforce":"A","range":4,"nationality":"French","class":"artillery"},
+
+
+            {"num":3,"forceId":2,"combat":5,"movement":4,"reinforce":"B","range":1,"nationality":"Russian","class":"infantry"},
+            {"num":7,"forceId":2,"combat":4,"movement":4,"reinforce":"B","range":1,"nationality":"Russian","class":"infantry"},
+            {"num":2,"forceId":2,"combat":3,"movement":4,"reinforce":"B","range":1,"nationality":"Russian","class":"infantry"},
+
+            {"num":1,"forceId":2,"combat":5,"movement":6,"reinforce":"B","range":1,"nationality":"Russian","class":"cavalry"},
+            {"num":1,"forceId":2,"combat":3,"movement":7,"reinforce":"B","range":1,"nationality":"Russian","class":"cavalry"},
+            {"num":2,"forceId":2,"combat":3,"movement":6,"reinforce":"B","range":1,"nationality":"Russian","class":"cavalry"},
+            {"num":3,"forceId":2,"combat":2,"movement":7,"reinforce":"B","range":1,"nationality":"Russian","class":"cavalry"},
+
+            {"num":3,"forceId":2,"combat":4,"movement":3,"reinforce":"B","range":4,"nationality":"Russian","class":"artillery"},
+            {"num":1,"forceId":2,"combat":2,"movement":3,"reinforce":"B","range":4,"nationality":"Russian","class":"artillery"},
+            {"num":4,"forceId":2,"combat":3,"movement":4,"reinforce":"B","range":4,"nationality":"Russian","class":"artillery"},
+
+            {"num":1,"forceId":2,"combat":4,"movement":5,"reinforce":"B","range":4,"nationality":"Russian","class":"horseartillery"},
+
+
+            {"num":3,"forceId":2,"combat":5,"movement":4,"reinforce":"C","range":1,"nationality":"Prussian","class":"infantry"},
+            {"num":2,"forceId":2,"combat":4,"movement":4,"reinforce":"C","range":1,"nationality":"Prussian","class":"infantry"},
+            {"num":1,"forceId":2,"combat":3,"movement":4,"reinforce":"C","range":1,"nationality":"Prussian","class":"infantry"},
+
+            {"num":2,"forceId":2,"combat":3,"movement":7,"reinforce":"C","range":1,"nationality":"Prussian","class":"cavalry"},
+
+            {"num":2,"forceId":2,"combat":2,"movement":4,"reinforce":"C","range":4,"nationality":"Prussian","class":"artillery"}
+          ]
+        },
+        "frenchBack": {
+          "description": "French Deploy Back.",
+          "longDescription":"The french had eaten bad food the previous nights and they all had to spend extra time in the out house. So they got to the battle later.",
+          "units":[
+            {"num":4,"forceId":1,"combat":8,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"},
+            {"num":3,"forceId":1,"combat":7,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"},
+            {"num":1,"forceId":1,"combat":6,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"},
+
+            {"num":2,"forceId":1,"combat":8,"movement":6,"reinforce":"A","range":1,"nationality":"Guard","class":"cavalry"},
+            {"num":2,"forceId":1,"combat":6,"movement":7,"reinforce":"A","range":1,"nationality":"Guard","class":"cavalry"},
+            {"num":1,"forceId":1,"combat":6,"movement":6,"reinforce":"A","range":1,"nationality":"Guard","class":"cavalry"},
+
+            {"num":3,"forceId":1,"combat":6,"movement":4,"reinforce":"A","range":4,"nationality":"Guard","class":"artillery"},
+            {"num":1,"forceId":1,"combat":3,"movement":4,"reinforce":"A","range":4,"nationality":"Guard","class":"artillery"},
+
+            {"num":2,"forceId":1,"combat":4,"movement":5,"reinforce":"A","range":4,"nationality":"Guard","class":"horseartillery"},
+
+            {"num":4,"forceId":1,"combat":4,"movement":4,"reinforce":"A","range":1,"nationality":"French","class":"infantry"},
+            {"num":2,"forceId":1,"combat":3,"movement":4,"reinforce":"A","range":1,"nationality":"French","class":"infantry"},
+
+            {"num":1,"forceId":1,"combat":4,"movement":6,"reinforce":"A","range":1,"nationality":"French","class":"cavalry"},
+            {"num":1,"forceId":1,"combat":3,"movement":6,"reinforce":"A","range":1,"nationality":"French","class":"cavalry"},
+
+            {"num":1,"forceId":1,"combat":1,"movement":3,"reinforce":"A","range":4,"nationality":"French","class":"artillery"},
+
+
+            {"num":3,"forceId":2,"combat":5,"movement":4,"reinforce":"B","range":1,"nationality":"Russian","class":"infantry"},
+            {"num":7,"forceId":2,"combat":4,"movement":4,"reinforce":"B","range":1,"nationality":"Russian","class":"infantry"},
+            {"num":2,"forceId":2,"combat":3,"movement":4,"reinforce":"B","range":1,"nationality":"Russian","class":"infantry"},
+
+            {"num":1,"forceId":2,"combat":5,"movement":6,"reinforce":"B","range":1,"nationality":"Russian","class":"cavalry"},
+            {"num":1,"forceId":2,"combat":3,"movement":7,"reinforce":"B","range":1,"nationality":"Russian","class":"cavalry"},
+            {"num":2,"forceId":2,"combat":3,"movement":6,"reinforce":"B","range":1,"nationality":"Russian","class":"cavalry"},
+            {"num":3,"forceId":2,"combat":2,"movement":7,"reinforce":"B","range":1,"nationality":"Russian","class":"cavalry"},
+
+            {"num":3,"forceId":2,"combat":4,"movement":3,"reinforce":"B","range":4,"nationality":"Russian","class":"artillery"},
+            {"num":1,"forceId":2,"combat":2,"movement":3,"reinforce":"B","range":4,"nationality":"Russian","class":"artillery"},
+            {"num":4,"forceId":2,"combat":3,"movement":4,"reinforce":"B","range":4,"nationality":"Russian","class":"artillery"},
+
+            {"num":1,"forceId":2,"combat":4,"movement":5,"reinforce":"B","range":4,"nationality":"Russian","class":"horseartillery"},
+
+
+            {"num":3,"forceId":2,"combat":5,"movement":4,"reinforce":"C","range":1,"nationality":"Prussian","class":"infantry"},
+            {"num":2,"forceId":2,"combat":4,"movement":4,"reinforce":"C","range":1,"nationality":"Prussian","class":"infantry"},
+            {"num":1,"forceId":2,"combat":3,"movement":4,"reinforce":"C","range":1,"nationality":"Prussian","class":"infantry"},
+
+            {"num":2,"forceId":2,"combat":3,"movement":7,"reinforce":"C","range":1,"nationality":"Prussian","class":"cavalry"},
+
+            {"num":2,"forceId":2,"combat":2,"movement":4,"reinforce":"C","range":4,"nationality":"Prussian","class":"artillery"}
+          ]
         }
       }
     },
