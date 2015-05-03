@@ -840,7 +840,7 @@ svg {
         background-color: #666;
         color: white; }
 
-#timeMachine, #timeSurge {
+#timeMachine, #timeSurge, .time-button {
   font-size: 22px;
   width: 22px; }
 

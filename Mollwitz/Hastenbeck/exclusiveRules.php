@@ -36,31 +36,50 @@ You should have received a copy of the GNU General Public License
             </H1>
             <h2 class="exclusive"> EXCLUSIVE RULES
             </h2>
-            <ul>
-                <?php if($scenario->angloCavBonus){?>
+            <ol class="topNumbers">
                 <li>
-                    <h4>Terrain Effects on Combat</h4>
-                    <ul>
-                        <li >Anglo Allied Cavalry units are +1 to their combat factor when Attacking into
-                            clear, unless they are attacking across a creek or bridge or redoubt.
+                    <span class="lessBig">Setting Up</span>
+                <ol>
+                    <li>The <?= $playerTwo ?> player sets up first. The <?= $playerOne ?> Setup second.</li>
+                    <?php if(!$scenario->redux && !$scenario->hastenbeck2){?>
+                    <li>When the <?= $playerOne ?> player starts deploying their units. There is a %50 chance they can
+                        deploy in the F2 hexes, and %50 they
+                        have to deploy in the F1 Hexes.
+                    </li>
+                    <?php } ?>
+                    <li> <?= $playerOne ?> moves first. <?= $playerTwo ?> moves second.</li>
+
+                    </li>
+                </ol>
+                <li><span class="lessBig">Terrain</span>
+                    <ol>
+                        <li>
+                            Streams are +2 MP's to cross
                         </li>
-                    </ul>
+                        <li>
+                            Major Rivers (dark thick blue) are impassable
+                        </li>
+                        <li>
+                            HAMELN Is a Major Fortification Garrisoned by the Allies No French unit may ever enter it.
+                        </li>
+                    </ol>
+
                 </li>
-                <?php } ?>
 
-
-            </ul>
-            <?php include "victoryConditions.php"?>
+                    <?php include "victoryConditions.php"?>
+            </ol>
             <div id="credits">
                 <h2><cite><?=$name?></cite></h2>
                 <h4>Design Credits</h4>
 
-                <h4>Game Design:</h4>
-                Lance Runolfsson
-                <h4>Graphics and Rules:</h4>
-                <site>Lance Runolfsson</site>
-                <h4>HTML 5 Version:</h4>
-                David M. Rodal
+                <div class="indent">
+                    <h4>Game Design:</h4>
+                    <cite>Lance Runolfsson</cite>
+                    <h4>Graphics and Rules:</h4>
+                    <cite>Lance Runolfsson</cite>
+                    <h4>HTML 5 Version:</h4>
+                    <cite>David M. Rodal</cite>
+                </div>
             </div>
         </div>
     </div>

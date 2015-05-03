@@ -840,7 +840,7 @@ svg {
         background-color: #666;
         color: white; }
 
-#timeMachine, #timeSurge {
+#timeMachine, #timeSurge, .time-button {
   font-size: 22px;
   width: 22px; }
 
@@ -1584,5 +1584,10 @@ You should have received a copy of the GNU General Public License
 .allied.specialHexes {
   background-color: #df5842;
   color: white; }
+
+#credits {
+  font-size: 15px; }
+  #credits cite {
+    color: #338833; }
 
 /*# sourceMappingURL=all.css.map */

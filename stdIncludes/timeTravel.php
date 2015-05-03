@@ -29,6 +29,8 @@
         <button id="timeLive">Go to present - cancel</button><br>
         <button id="timeBranch">Branch viewed time to present</button><br>
         <button id="timeMachine">&lsaquo;</button>
+        <button id="turnMachine" class="time-button">&laquo;</button>
+        <button id="turnSurge" class="time-button">&raquo;</button>
         <button id="timeSurge">&rsaquo;</button><br>
         <div id="phaseClicks"></div><br>
     </div>

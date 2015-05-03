@@ -109,26 +109,35 @@ class hastenbeckVictoryCore extends victoryCore
     protected function checkVictory($attackingId,$battle){
         $gameRules = $battle->gameRules;
         $turn = $gameRules->turn;
-        $frenchWin = $angloMalplaquet =  $angloCities = $angloWing = false;
+        $frenchLateWin = $frenchWin = $frenchThreeObjectives = $angloWin = false;
+        $specialHexes = $battle->mapData->specialHexes;
+        $objectiveHexes = array_merge($battle->specialHexesB, $battle->specialHexesC);
+
+        $alliedVictoryPointsNeeded = 45;
+        $frenchVictoryPointsNeeded = 60;
+        $lead = 10;
 
         if(!$this->gameOver){
-            $specialHexes = $battle->mapData->specialHexes;
-            if($attackingId == ALLIED_FORCE){
-                $otherCities = $battle->loc;
-                $frenchCities = 0;
-                if($specialHexes->$malplaquet == FRENCH_FORCE){
-                    foreach($otherCities as $city){
-                        if($specialHexes->$city == FRENCH_FORCE){
-                            $frenchCities++;
-                        }
-                    }
+            $frenchObjectives = 0;
+            foreach($objectiveHexes as $objectiveHex){
+                if($specialHexes->$objectiveHex == FRENCH_FORCE){
+                    $frenchObjectives++;
                 }
             }
-            if($this->victoryPoints[ALLIED_FORCE] >= 45){
+            if($frenchObjectives >= 3){
+                $frenchThreeObjectives = true;
+            }
+
+
+            if($this->victoryPoints[ALLIED_FORCE] >= $alliedVictoryPointsNeeded){
                 $angloWin = true;
             }
-            if($frenchCities >= 3 && ($this->victoryPoints[FRENCH_FORCE] >= 60) && $turn <= 10){
-                $frenchWin = true;
+            if($frenchThreeObjectives && ($this->victoryPoints[FRENCH_FORCE] >= $frenchVictoryPointsNeeded)){
+                if($turn <= 10) {
+                    $frenchWin = true;
+                }else{
+                    $frenchLateWin = true;
+                }
             }
             if($turn == $gameRules->maxTurn+1){
                 if($angloWin && !$frenchWin){
@@ -144,7 +153,17 @@ class hastenbeckVictoryCore extends victoryCore
                     return true;
                 }
                 if(!$angloWin && !$frenchWin){
-                    $angloWin = true;
+                    if(!$frenchLateWin){
+                        $angloWin = true;
+                        $gameRules->flashMessages[] = "French Fail to Win";
+                    }else{
+                        $this->winner = 0;
+                        $gameRules->flashMessages[] = "Tie Game";
+                        $gameRules->flashMessages[] = "Game Over";
+                        $this->gameOver = true;
+                        return true;
+                    }
+
                 }
             }
 
@@ -155,7 +174,7 @@ class hastenbeckVictoryCore extends victoryCore
             }
             if($frenchWin){
                 $this->winner = FRENCH_FORCE;
-                $msg = "French Win Allies hold no cities";
+                $msg = "French Win";
                 $gameRules->flashMessages[] = $msg;
             }
             if($angloWin || $frenchWin){

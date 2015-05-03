@@ -126,11 +126,57 @@ You should have received a copy of the GNU General Public License
             click--;
             x.fetch(click);
         });
+        $("#turnMachine").click(function(){
+            x.timeTravel = true;
+            if (x.current) {
+                x.current.abort();
+            }
+            var click = DR.currentClick - 0;
+            var clicks = DR.clicks;
+            var backSearch = clicks.length - 1;
+            while(backSearch >= 0){
+                if(clicks[backSearch] <= click){
+                    break;
+                }
+                backSearch--;
+            }
+            var gotoClick = clicks[backSearch] - 1;
+            if(gotoClick < 2){
+                gotoClick = 2;
+            }
+            x.fetch(gotoClick);
+
+        });
+
+        $("#turnSurge").click(function(){
+            x.timeTravel = true;
+            if (x.current) {
+                x.current.abort();
+            }
+            var click = DR.currentClick - 0;
+            var clicks = DR.clicks;
+            var forwardSearch = 0;
+
+            while(forwardSearch < clicks.length){
+                if(clicks[forwardSearch] > (click + 1)){
+                    break;
+                }
+                forwardSearch++;
+            }
+            var gotoClick = clicks[forwardSearch] - 1;
+            if(gotoClick < 2){
+                gotoClick = 2;
+            }
+            x.fetch(gotoClick);
+
+        });
+
         $("#timeSurge").click(function () {
             var click = DR.currentClick;
             click++;
             x.fetch(click);
         });
+
         $("#timeBranch").click(function () {
             x.timeTravel = true;
             x.timeBranch = true;
