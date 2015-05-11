@@ -28,12 +28,12 @@
 <br>
         <button id="timeLive">Go to present - cancel</button><br>
         <button id="timeBranch">Branch viewed time to present</button><br>
-        <button id="click-back">&lsaquo;</button>
-        <button id="phase-back" class="time-button">&laquo;</button>
-        <button id="player-turn-back" class="time-button">&laquo;&lsaquo;</button>
-        <button id="player-turn-surge" class="time-button">&raquo;&rsaquo;</button>
-        <button id="phase-surge" class="time-button">&raquo;</button>
-        <button id="click-surge">&rsaquo;</button><br>
+        <button title="back one click" id="click-back">&lsaquo;</button>
+        <button title="back to end of previous phase" id="phase-back" class="time-button">&laquo;</button>
+        <button title="back to end of previous player turn" id="player-turn-back" class="time-button">&laquo;&lsaquo;</button>
+        <button title="forward to end of next player turn" id="player-turn-surge" class="time-button">&raquo;&rsaquo;</button>
+        <button title="forward to end of next phase" id="phase-surge" class="time-button">&raquo;</button>
+        <button title="forward one click"  id="click-surge">&rsaquo;</button><br>
         <div id="phaseClicks"></div><br>
     </div>
 </div>
