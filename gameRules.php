@@ -72,6 +72,7 @@ class GameRules
     public $turnChange;
     public $phaseClicks;
     public $phaseClickNames;
+    public $playTurnClicks;
     public $legacyExchangeRule;
 
     function save()
@@ -121,6 +122,7 @@ class GameRules
             $this->defendingForceId = RED_FORCE;
             $this->interactions = array();
             $this->phaseClicks = array();
+            $this->playTurnClicks = array();
 
             $this->force->setAttackingForceId($this->attackingForceId);
         }
@@ -652,6 +654,7 @@ class GameRules
                     if ($this->attackingForceId != $this->phaseChanges[$i]->nextAttackerId) {
                         $battle = Battle::getBattle();
                         $players = $battle->players;
+                        $this->playTurnClicks[] = $click + 1;
                         if ($players[1] != $players[2]) {
                             Battle::pokePlayer($players[$this->phaseChanges[$i]->nextAttackerId]);
                         }

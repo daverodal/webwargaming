@@ -399,7 +399,7 @@ x.register("chats", function(chats) {
 });
 x.register("phaseClicks",function(clicks, data){
     var str = "";
-    var phaseClickNames = data.gameRules.phaseClickNames
+    var phaseClickNames = data.gameRules.phaseClickNames;
     if(x.timeTravel){
         clicks = DR.clicks;
         phaseClickNames = DR.phaseClickNames;
@@ -407,6 +407,7 @@ x.register("phaseClicks",function(clicks, data){
         DR.phaseClickNames = phaseClickNames;
         DR.clicks = clicks;
         DR.maxClick = data.click;
+        DR.playTurnClicks = data.gameRules.playTurnClicks;
     }
     var maxClick = DR.maxClick;
 

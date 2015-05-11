@@ -117,7 +117,7 @@ You should have received a copy of the GNU General Public License
             DR.currentClick = click;
             x.fetch(click);
         });
-        $("#timeMachine").click(function () {
+        $("#click-back").click(function () {
             x.timeTravel = true;
             if (x.current) {
                 x.current.abort();
@@ -126,7 +126,7 @@ You should have received a copy of the GNU General Public License
             click--;
             x.fetch(click);
         });
-        $("#turnMachine").click(function(){
+        $("#phase-back").click(function(){
             x.timeTravel = true;
             if (x.current) {
                 x.current.abort();
@@ -148,7 +148,7 @@ You should have received a copy of the GNU General Public License
 
         });
 
-        $("#turnSurge").click(function(){
+        $("#phase-surge").click(function(){
             x.timeTravel = true;
             if (x.current) {
                 x.current.abort();
@@ -171,7 +171,52 @@ You should have received a copy of the GNU General Public License
 
         });
 
-        $("#timeSurge").click(function () {
+        $("#player-turn-back").click(function(){
+            x.timeTravel = true;
+            if (x.current) {
+                x.current.abort();
+            }
+            var click = DR.currentClick - 0;
+            var clicks = DR.playTurnClicks;
+            var backSearch = clicks.length - 1;
+            while(backSearch >= 0){
+                if(clicks[backSearch] <= click){
+                    break;
+                }
+                backSearch--;
+            }
+            var gotoClick = clicks[backSearch] - 1;
+            if(gotoClick < 2){
+                gotoClick = 2;
+            }
+            x.fetch(gotoClick);
+
+        });
+
+        $("#player-turn-surge").click(function(){
+            x.timeTravel = true;
+            if (x.current) {
+                x.current.abort();
+            }
+            var click = DR.currentClick - 0;
+            var clicks = DR.playTurnClicks;
+            var forwardSearch = 0;
+
+            while(forwardSearch < clicks.length){
+                if(clicks[forwardSearch] > (click + 1)){
+                    break;
+                }
+                forwardSearch++;
+            }
+            var gotoClick = clicks[forwardSearch] - 1;
+            if(gotoClick < 2){
+                gotoClick = 2;
+            }
+            x.fetch(gotoClick);
+
+        });
+
+        $("#click-surge").click(function () {
             var click = DR.currentClick;
             click++;
             x.fetch(click);
