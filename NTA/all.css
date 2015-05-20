@@ -844,9 +844,9 @@ svg {
         background-color: #666;
         color: white; }
 
-#timeMachine, #timeSurge, .time-button {
+#click-back, #click-surge, .time-button {
   font-size: 22px;
-  width: 22px; }
+  letter-spacing: -3px; }
 
 svg g {
   opacity: .6;
@@ -877,7 +877,7 @@ svg marker#head {
   .desktop {
     display: none; }
 
-  #timeMachine, #timeSurge {
+  #click-back, #click-surge {
     font-size: 45px;
     width: 45px; } }
 /**
