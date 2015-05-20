@@ -663,6 +663,17 @@ function initialize() {
         $('body').height($(window).height());
     }
     // setup events --------------------------------------------
+
+//check if the image is already on cache
+
+    if($('#image_id').prop('complete')){
+        var width = $("#gameImages #map").width();
+        var height = $("#gameImages #map").height();
+        $('#arrow-svg').width(width);
+        $('#arrow-svg').height(height);
+        $('#arrow-svg').attr('viewBox', "0 0 " + width + " " + height);
+    }
+
     $("#map").load(function () {
         var width = $("#gameImages #map").width();
         var height = $("#gameImages #map").height();
