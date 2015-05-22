@@ -232,6 +232,18 @@ You should have received a copy of the GNU General Public License
             x.fetch(click);
             $("#TimeWrapper .WrapperLabel").click();
         });
+
+        $("#timeFork").click(function () {
+            x.timeTravel = true;
+            x.timeFork = true;
+            if (x.current) {
+                x.current.abort();
+            }
+            var click = DR.currentClick;
+            x.fetch(click);
+            $("#TimeWrapper .WrapperLabel").click();
+        });
+
         $("#phaseClicks").on("click", ".realtime", function () {
             x.timeTravel = false;
             x.fetch(0);

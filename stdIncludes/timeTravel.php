@@ -28,6 +28,7 @@
 <br>
         <button id="timeLive">Go to present - cancel</button><br>
         <button id="timeBranch">Branch viewed time to present</button><br>
+        <button id="timeFork">Fork New Game from here</button><br>
         <button title="back one click" id="click-back">&lsaquo;</button>
         <button title="back to end of previous phase" id="phase-back" class="time-button">&laquo;</button>
         <button title="back to end of previous player turn" id="player-turn-back" class="time-button">&laquo;&lsaquo;</button>
