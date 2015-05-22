@@ -231,13 +231,19 @@
     "params":{
       "weakRedoubts": true
     },
+    "options":[
+      {
+        "name": "Swedish units have step reduction and can be reduced to half strength in an exchange.",
+        "keyName":"stepReduction",
+        "value": true
+      }],
     "scenarios": {
       "main": {
         "description": "Standard Scenario.",
         "longDescription":"Original",
         "units":[
-          {"num":4,"forceId":1,"combat":6,"movement":3,"reinforce":"A","range":1,"nationality":"Swedish","class":"infantry"},
-          {"num":6,"forceId":1,"combat":6,"movement":5,"reinforce":"A","range":1,"nationality":"Swedish","class":"cavalry"},
+          {"num":4,"forceId":1,"combat":6,"reduced": 3,"movement":3,"reinforce":"A","range":1,"nationality":"Swedish","class":"infantry"},
+          {"num":6,"forceId":1,"combat":6,"reduced": 3,"movement":5,"reinforce":"A","range":1,"nationality":"Swedish","class":"cavalry"},
 
           {"num":10,"forceId":2,"combat":3,"movement":3,"reinforce":"B","range":1,"nationality":"Saxon","class":"infantry"},
           {"num":5,"forceId":2,"combat":2,"movement":3,"reinforce":"B","range":1,"nationality":"Russian","class":"infantry"},
@@ -249,8 +255,8 @@
         "longDescription":"Original",
         "noMovementFirstTurn":true,
         "units":[
-          {"num":4,"forceId":1,"combat":6,"movement":3,"reinforce":"A","range":1,"nationality":"Swedish","class":"infantry"},
-          {"num":6,"forceId":1,"combat":6,"movement":5,"reinforce":"A","range":1,"nationality":"Swedish","class":"cavalry"},
+          {"num":4,"forceId":1,"combat":6,"reduced": 3,"movement":3,"reinforce":"A","range":1,"nationality":"Swedish","class":"infantry"},
+          {"num":6,"forceId":1,"combat":6,"reduced": 3,"movement":5,"reinforce":"A","range":1,"nationality":"Swedish","class":"cavalry"},
 
           {"num":10,"forceId":2,"combat":3,"movement":3,"reinforce":"B","range":1,"nationality":"Saxon","class":"infantry"},
           {"num":5,"forceId":2,"combat":2,"movement":3,"reinforce":"B","range":1,"nationality":"Russian","class":"infantry"},
@@ -267,15 +273,21 @@
     "params":{
       "wimpySwamps": true
     },
+    "options":[
+      {
+        "name": "Swedish units have step reduction and can be reduced to half strength in an exchange.",
+        "keyName":"stepReduction",
+        "value": true
+      }],
     "scenarios": {
       "main": {
         "description": "Standard Scenario.",
         "longDescription":"Original",
         "units":[
-          {"num":1,"forceId":1,"combat":8,"movement":3,"reinforce":"A","range":1,"nationality":"Swedish","class":"infantry"},
-          {"num":5,"forceId":1,"combat":6,"movement":3,"reinforce":"A","range":1,"nationality":"Swedish","class":"infantry"},
-          {"num":1,"forceId":1,"combat":8,"movement":5,"reinforce":"A","range":1,"nationality":"Swedish","class":"cavalry"},
-          {"num":5,"forceId":1,"combat":6,"movement":5,"reinforce":"A","range":1,"nationality":"Swedish","class":"cavalry"},
+          {"num":1,"forceId":1,"combat":8,"reduced":4,"movement":3,"reinforce":"A","range":1,"nationality":"Swedish","class":"infantry"},
+          {"num":5,"forceId":1,"combat":6,"reduced":3,"movement":3,"reinforce":"A","range":1,"nationality":"Swedish","class":"infantry"},
+          {"num":1,"forceId":1,"combat":8,"reduced":4,"movement":5,"reinforce":"A","range":1,"nationality":"Swedish","class":"cavalry"},
+          {"num":5,"forceId":1,"combat":6,"reduced":3,"movement":5,"reinforce":"A","range":1,"nationality":"Swedish","class":"cavalry"},
           {"num":1,"forceId":1,"combat":0,"movement":0,"reinforce":"C","range":1,"nationality":"Swedish","class":"pontoon"},
 
           {"num":1,"forceId":2,"combat":5,"movement":3,"reinforce":"B","range":1,"nationality":"SaxonPolish","class":"infantry"},
@@ -287,6 +299,7 @@
         ]
       }
     }
+
   },
 
   "Lobositz": {

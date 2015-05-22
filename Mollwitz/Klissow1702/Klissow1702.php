@@ -99,7 +99,11 @@ class Klissow1702 extends JagCore
 
         foreach($unitSets as $unitSet) {
             for ($i = 0; $i < $unitSet->num; $i++) {
-                $this->force->addUnit("infantry-1", $unitSet->forceId, "deployBox", "", $unitSet->combat, $unitSet->combat, $unitSet->movement, true, STATUS_CAN_DEPLOY, $unitSet->reinforce, 1, $unitSet->range, $unitSet->nationality, false, $unitSet->class);
+                if($scenario->stepReduction && isset($unitSet->reduced)){
+                    $this->force->addUnit("infantry-1", $unitSet->forceId, "deployBox", "", $unitSet->combat, $unitSet->reduced, $unitSet->movement, false, STATUS_CAN_DEPLOY, $unitSet->reinforce, 1, $unitSet->range, $unitSet->nationality, false, $unitSet->class);
+                }else{
+                    $this->force->addUnit("infantry-1", $unitSet->forceId, "deployBox", "", $unitSet->combat, $unitSet->combat, $unitSet->movement, true, STATUS_CAN_DEPLOY, $unitSet->reinforce, 1, $unitSet->range, $unitSet->nationality, false, $unitSet->class);
+                }
             }
         }
     }
