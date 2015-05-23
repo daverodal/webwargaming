@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 }
 
 @include player(Swedish, One , $swedishColor, $swedishWrapperColor, $swedishWrapperColor);
-@include player(SaxonPolish, Two, $russianColor, $russianWrapperColor);
+@include player(SaxonPolish, Two, $saxonColor, $saxonColor);
 
 .french.specialHexes{
   background-color: $frenchColor;
@@ -33,12 +33,13 @@ You should have received a copy of the GNU General Public License
 .french.specialHexes, .anglo.specialHexes{
   color:white;
 }
+@include badge(SaxonPolish, Saxon);
+
 .Swedish, .SaxonPolish {
   p.forceMarch, p.range{
     color:white;
   }
 }
-@include badge(French, Fre);
 
 .pontoon.specialHexes{
   color:transparent;

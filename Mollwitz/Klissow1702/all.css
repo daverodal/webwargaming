@@ -1568,14 +1568,14 @@ You should have received a copy of the GNU General Public License
   background-color: #006AA7; }
 
 .playerTwo {
-  background: #4cb800;
-  border-color: #4cb800 !important; }
+  background: #FD4223;
+  border-color: #FD4223 !important; }
 
 .SaxonPolishFace, .playerTwoFace {
-  color: #4cb800; }
+  color: #FD4223; }
 
 .SaxonPolish .counterWrapper {
-  background-color: #009c1d; }
+  background-color: #FD4223; }
 
 .french.specialHexes {
   background-color: #84b5ff; }
@@ -1586,41 +1586,41 @@ You should have received a copy of the GNU General Public License
 .french.specialHexes, .anglo.specialHexes {
   color: white; }
 
-.Swedish p.forceMarch, .Swedish p.range, .SaxonPolish p.forceMarch, .SaxonPolish p.range {
-  color: white; }
-
-.French.infantry .counterWrapper .counter {
-  background-image: url("../../js/FreInfBadge.png");
+.SaxonPolish.infantry .counterWrapper .counter {
+  background-image: url("../../js/SaxonInfBadge.png");
   background-size: 14px; }
 
-.French.cavalry .counterWrapper .counter {
-  background-image: url("../../js/FreCavBadge.png");
+.SaxonPolish.cavalry .counterWrapper .counter {
+  background-image: url("../../js/SaxonCavBadge.png");
   background-size: 14px; }
 
-.French.artillery .counterWrapper .counter {
-  background-image: url("../../js/FreArtBadge.png");
+.SaxonPolish.artillery .counterWrapper .counter {
+  background-image: url("../../js/SaxonArtBadge.png");
   background-size: 14px; }
 
-.French.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/FreHorArtBadge.png");
+.SaxonPolish.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/SaxonHorArtBadge.png");
   background-size: 14px; }
 
-.French.hq .counterWrapper .counter {
+.SaxonPolish.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
-.French.pontoon .counterWrapper {
+.SaxonPolish.pontoon .counterWrapper {
   border: none; }
-  .French.pontoon .counterWrapper .counter {
+  .SaxonPolish.pontoon .counterWrapper .counter {
     background-color: lightgreen;
     background-image: url("../../js/AngloPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
     border: none; }
-.French.pontoon .unit-numbers {
+.SaxonPolish.pontoon .unit-numbers {
   display: none; }
+
+.Swedish p.forceMarch, .Swedish p.range, .SaxonPolish p.forceMarch, .SaxonPolish p.range {
+  color: white; }
 
 .pontoon.specialHexes {
   color: transparent;
