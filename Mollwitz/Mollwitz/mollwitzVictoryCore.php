@@ -56,18 +56,6 @@ class mollwitzVictoryCore extends victoryCore
         return $ret;
     }
 
-    public function reduceUnit($args)
-    {
-        $unit = $args[0];
-        if($unit->forceId == 1) {
-            $victorId = 2;
-            $this->victoryPoints[$victorId] += $unit->strength;
-        } else {
-            $victorId = 1;
-            $this->victoryPoints[$victorId] += $unit->strength;
-        }
-    }
-
     public function phaseChange()
     {
     }

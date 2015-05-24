@@ -80,6 +80,7 @@ class JagCore extends LandBattle{
             $this->display = new Display();
             $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
             $this->force = new Force();
+            $this->force->exchangesKill = true;
             $this->terrain = new Terrain();
 
             $this->moveRules = new MoveRules($this->force, $this->terrain);

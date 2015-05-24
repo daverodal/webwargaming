@@ -39,4 +39,14 @@ class indiaVictoryCore extends victoryCore
             $battle->moveRules->zocBlocksRetreat = false;
         }
     }
+
+    public function reduceUnit($args)
+    {
+        $unit = $args[0];
+        $mult = 1;
+        if ($unit->nationality == "British") {
+            $mult = 2;
+        }
+        $this->scoreKills($unit, $mult);
+    }
 }

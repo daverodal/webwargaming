@@ -423,13 +423,13 @@ class unit implements JsonSerializable
         $this->unitDesig = $unitDesig;
     }
 
-    function damageUnit()
+    function damageUnit($kill = false)
     {
         $battle = Battle::getBattle();
 
-        if ($this->isReduced) {
+        if ($this->isReduced || $kill) {
             $this->status = STATUS_ELIMINATING;
-            $this->exchangeAmount = $this->minStrength;
+            $this->exchangeAmount = $this->getUnmodifiedStrength();
             return true;
         } else {
             $this->damage = $this->maxStrength - $this->minStrength;
@@ -475,6 +475,7 @@ class Force
     public $requiredAttacks;
     public $requiredDefenses;
     public $combatRequired;
+    public $exchangesKill = false;
 
     function __construct($data = null)
     {
@@ -627,7 +628,7 @@ class Force
             case EX2:
                 $distance = 2;
             case EX:
-                $eliminated = $defUnit->damageUnit();
+                $eliminated = $defUnit->damageUnit($this->exchangesKill);
                 if (!$eliminated){
                     if($distance) {
                         $defUnit->status = STATUS_CAN_RETREAT;

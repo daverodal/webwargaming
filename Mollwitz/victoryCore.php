@@ -62,14 +62,19 @@ class victoryCore
     public function reduceUnit($args)
     {
         $unit = $args[0];
-        if($unit->forceId == 1) {
+        $this->scoreKills($unit, 1);
+    }
+
+    public function scoreKills($unit, $mult = 1){
+        if ($unit->forceId == 1) {
             $victorId = 2;
-            $this->victoryPoints[$victorId] += $unit->strength;
+            $this->victoryPoints[$victorId] += $unit->damage * $mult;
         } else {
             $victorId = 1;
-            $this->victoryPoints[$victorId] += $unit->strength;
+            $this->victoryPoints[$victorId] += $unit->damage * $mult;
         }
     }
+
 
     public function phaseChange()
     {

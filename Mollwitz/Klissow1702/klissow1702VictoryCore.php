@@ -43,17 +43,10 @@ class klissow1702VictoryCore extends victoryCore
     public function reduceUnit($args)
     {
         $unit = $args[0];
-        $mult = 1;
         if($unit->class == "pontoon"){
             return;
         }
-        if ($unit->forceId == 1) {
-            $victorId = 2;
-            $this->victoryPoints[$victorId] += $unit->strength * $mult;
-        } else {
-            $victorId = 1;
-            $this->victoryPoints[$victorId] += $unit->strength * $mult;
-        }
+        $this->scoreKills($unit);
     }
 
     public function specialHexChange($args)

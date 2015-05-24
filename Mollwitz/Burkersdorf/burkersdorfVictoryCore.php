@@ -51,13 +51,7 @@ class burkersdorfVictoryCore extends victoryCore
         if ($unit->class == "cavalry" || $unit->class == "artillery") {
             $mult = 2;
         }
-        if ($unit->forceId == 1) {
-            $victorId = 2;
-            $this->victoryPoints[$victorId] += $unit->strength * $mult;
-        } else {
-            $victorId = 1;
-            $this->victoryPoints[$victorId] += $unit->strength * $mult;
-        }
+        $this->scoreKills($unit, $mult);
     }
 
     public function specialHexChange($args)

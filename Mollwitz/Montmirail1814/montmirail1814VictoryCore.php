@@ -58,13 +58,7 @@ class montmirail1814VictoryCore extends victoryCore
                 $this->deadGuardInf = true;
             }
         }
-        if ($unit->forceId == 1) {
-            $victorId = 2;
-            $this->victoryPoints[$victorId] += $unit->strength * $mult;
-        } else {
-            $victorId = 1;
-            $this->victoryPoints[$victorId] += $unit->strength * $mult;
-        }
+        $this->scoreKills($unit, $mult);
     }
 
     public function specialHexChange($args)
