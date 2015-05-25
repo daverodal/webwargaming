@@ -381,38 +381,38 @@
             {"num":4,"forceId":1,"combat":8,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"},
             {"num":3,"forceId":1,"combat":7,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"},
             {"num":1,"forceId":1,"combat":6,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"},
-            
+
             {"num":2,"forceId":1,"combat":8,"movement":6,"reinforce":"A","range":1,"nationality":"Guard","class":"cavalry"},
             {"num":2,"forceId":1,"combat":6,"movement":7,"reinforce":"A","range":1,"nationality":"Guard","class":"cavalry"},
             {"num":1,"forceId":1,"combat":6,"movement":6,"reinforce":"A","range":1,"nationality":"Guard","class":"cavalry"},
-            
+
             {"num":3,"forceId":1,"combat":6,"movement":4,"reinforce":"A","range":4,"nationality":"Guard","class":"artillery"},
             {"num":1,"forceId":1,"combat":3,"movement":4,"reinforce":"A","range":4,"nationality":"Guard","class":"artillery"},
-            
+
             {"num":2,"forceId":1,"combat":4,"movement":5,"reinforce":"A","range":4,"nationality":"Guard","class":"horseartillery"},
 
             {"num":4,"forceId":1,"combat":4,"movement":4,"reinforce":"A","range":1,"nationality":"French","class":"infantry"},
             {"num":2,"forceId":1,"combat":3,"movement":4,"reinforce":"A","range":1,"nationality":"French","class":"infantry"},
-            
+
             {"num":1,"forceId":1,"combat":4,"movement":6,"reinforce":"A","range":1,"nationality":"French","class":"cavalry"},
             {"num":1,"forceId":1,"combat":3,"movement":6,"reinforce":"A","range":1,"nationality":"French","class":"cavalry"},
-            
+
             {"num":1,"forceId":1,"combat":1,"movement":3,"reinforce":"A","range":4,"nationality":"French","class":"artillery"},
 
 
             {"num":3,"forceId":2,"combat":5,"movement":4,"reinforce":"B","range":1,"nationality":"Russian","class":"infantry"},
             {"num":7,"forceId":2,"combat":4,"movement":4,"reinforce":"B","range":1,"nationality":"Russian","class":"infantry"},
             {"num":2,"forceId":2,"combat":3,"movement":4,"reinforce":"B","range":1,"nationality":"Russian","class":"infantry"},
-            
+
             {"num":1,"forceId":2,"combat":5,"movement":6,"reinforce":"B","range":1,"nationality":"Russian","class":"cavalry"},
             {"num":1,"forceId":2,"combat":3,"movement":7,"reinforce":"B","range":1,"nationality":"Russian","class":"cavalry"},
             {"num":2,"forceId":2,"combat":3,"movement":6,"reinforce":"B","range":1,"nationality":"Russian","class":"cavalry"},
             {"num":3,"forceId":2,"combat":2,"movement":7,"reinforce":"B","range":1,"nationality":"Russian","class":"cavalry"},
-            
+
             {"num":3,"forceId":2,"combat":4,"movement":3,"reinforce":"B","range":4,"nationality":"Russian","class":"artillery"},
             {"num":1,"forceId":2,"combat":2,"movement":3,"reinforce":"B","range":4,"nationality":"Russian","class":"artillery"},
             {"num":4,"forceId":2,"combat":3,"movement":4,"reinforce":"B","range":4,"nationality":"Russian","class":"artillery"},
-            
+
             {"num":1,"forceId":2,"combat":4,"movement":5,"reinforce":"B","range":4,"nationality":"Russian","class":"horseartillery"},
 
 
@@ -529,6 +529,74 @@
         }
       }
     },
+  "Hanau1813": {
+    "name": "The Battle of Hanau 1813",
+    "path": "Mollwitz",
+    "genre": "19'th Century Europe",
+    "fileName": "Hanau1813/Hanau1813.php",
+    "description":"The Battle of Hanau 1813 between the French and Austro-Bavarian-Russian allies. ",
+    "params":{
+      "units":[
+        {"num":2,"forceId":1,"combat":9,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"},
+        {"num":2,"forceId":1,"combat":8,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"},
+        {"num":2,"forceId":1,"combat":7,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"},
+
+        {"num":2,"forceId":1,"combat":8,"movement":6,"reinforce":"A","range":1,"nationality":"Guard","class":"cavalry"},
+        {"num":3,"forceId":1,"combat":6,"movement":6,"reinforce":"A","range":1,"nationality":"Guard","class":"cavalry"},
+        {"num":1,"forceId":1,"combat":5,"movement":7,"reinforce":"A","range":1,"nationality":"Guard","class":"cavalry"},
+
+        {"num":4,"forceId":1,"combat":5,"movement":4,"reinforce":"A","range":4,"nationality":"Guard","class":"artillery"},
+        {"num":2,"forceId":1,"combat":3,"movement":5,"reinforce":"A","range":4,"nationality":"Guard","class":"horseartillery"},
+
+        {"num":4,"forceId":1,"combat":4,"movement":4,"reinforce":"A","range":1,"nationality":"French","class":"infantry"},
+        {"num":4,"forceId":1,"combat":3,"movement":4,"reinforce":"A","range":1,"nationality":"French","class":"infantry"},
+
+        {"num":2,"forceId":1,"combat":3,"movement":6,"reinforce":"A","range":1,"nationality":"French","class":"cavalry"},
+        {"num":1,"forceId":1,"combat":2,"movement":6,"reinforce":"A","range":1,"nationality":"French","class":"cavalry"},
+
+        {"num":1,"forceId":1,"combat":1,"movement":3,"reinforce":"A","range":4,"nationality":"French","class":"artillery"},
+
+
+        {"num":3,"forceId":2,"combat":5,"movement":4,"reinforce":"B","range":1,"nationality":"Austrian","class":"infantry"},
+        {"num":12,"forceId":2,"combat":4,"movement":4,"reinforce":"B","range":1,"nationality":"Austrian","class":"infantry"},
+        {"num":3,"forceId":2,"combat":3,"movement":4,"reinforce":"B","range":1,"nationality":"Austrian","class":"infantry"},
+
+        {"num":1,"forceId":2,"combat":5,"movement":6,"reinforce":"B","range":1,"nationality":"Austrian","class":"cavalry"},
+        {"num":2,"forceId":2,"combat":4,"movement":6,"reinforce":"B","range":1,"nationality":"Austrian","class":"cavalry"},
+        {"num":2,"forceId":2,"combat":3,"movement":6,"reinforce":"B","range":1,"nationality":"Austrian","class":"cavalry"},
+        {"num":1,"forceId":2,"combat":3,"movement":7,"reinforce":"B","range":1,"nationality":"Austrian","class":"cavalry"},
+
+        {"num":2,"forceId":2,"combat":2,"movement":3,"reinforce":"B","range":4,"nationality":"Austrian","class":"artillery"},
+
+        {"num":1,"forceId":2,"combat":5,"movement":4,"reinforce":"C","range":1,"nationality":"Bavarian","class":"infantry"},
+        {"num":9,"forceId":2,"combat":4,"movement":4,"reinforce":"C","range":1,"nationality":"Bavarian","class":"infantry"},
+        {"num":4,"forceId":2,"combat":3,"movement":4,"reinforce":"C","range":1,"nationality":"Bavarian","class":"infantry"},
+
+        {"num":4,"forceId":2,"combat":3,"movement":6,"reinforce":"C","range":1,"nationality":"Bavarian","class":"cavalry"},
+
+        {"num":2,"forceId":2,"combat":2,"movement":3,"reinforce":"C","range":4,"nationality":"Bavarian","class":"artillery"},
+        {"num":2,"forceId":2,"combat":4,"movement":3,"reinforce":"C","range":4,"nationality":"Bavarian","class":"artillery"},
+
+        {"num":2,"forceId":2,"combat":3,"movement":5,"reinforce":"C","range":4,"nationality":"Bavarian","class":"horseartillery"},
+
+
+        {"num":2,"forceId":2,"combat":2,"movement":7,"reinforce":"B","range":1,"nationality":"Russian","class":"cavalry"}
+      ]
+    },
+    "scenarios": {
+      "main": {
+        "description": "Standard Scenario.",
+        "longDescription":"Original"
+      },
+      "alt": {
+        "description": "Standard Alt ! Scenario.",
+        "longDescription":"Copy",
+        "units":[
+          {"num":4,"forceId":1,"combat":8,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"}
+          ]
+      }
+    }
+  },
     "Dubba1843": {
         "name": "Dubba 1843",
         "path": "Mollwitz",
