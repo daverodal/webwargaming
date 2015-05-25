@@ -580,7 +580,7 @@
         {"num":2,"forceId":2,"combat":3,"movement":5,"reinforce":"B","range":4,"nationality":"Bavarian","class":"horseartillery"},
 
 
-        {"num":2,"forceId":2,"combat":2,"movement":7,"reinforce":"C","range":1,"nationality":"Russian","class":"cavalry"}
+        {"num":2,"forceId":2,"combat":2,"movement":7,"reinforce":"B","range":1,"nationality":"Russian","class":"cavalry"}
       ]
     },
     "scenarios": {
