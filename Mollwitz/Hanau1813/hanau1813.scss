@@ -20,13 +20,15 @@ You should have received a copy of the GNU General Public License
   width:500px;
 }
 $prussianNapColor: #003AF3;
+$bavarianWrapperColor: #4287FA;
+$bavarianColor: #FD0013;
 
 @include player(Austrian,Two , $austrianColor, $austrianWrapperColor);
 @include player(French, One, $frenchColor, #0003b4, $frenchColor);
 
 @include player(Russian, Three, $russianColor, $russianWrapperColor);
 @include player(Guard,Four , $frenchColor, #0003b4, $frenchWrapperColor);
-@include player(Bavarian, Three, $saxonColor, $saxonColor);
+@include player(Bavarian, Three, $bavarianColor, $bavarianWrapperColor);
 
 .french.specialHexes{
   background-color: $frenchColor;
@@ -44,7 +46,7 @@ $prussianNapColor: #003AF3;
   }
 }
 
-@include badge(Bavarian, Saxon);
+@include badge(Bavarian, Bavarian);
 
 
 .French.unit .unit-numbers, .Guard.unit .unit-numbers{

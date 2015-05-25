@@ -1598,14 +1598,14 @@ You should have received a copy of the GNU General Public License
   background-color: #0003b4; }
 
 .playerThree {
-  background: #FD4223;
-  border-color: #FD4223 !important; }
+  background: #FD0013;
+  border-color: #FD0013 !important; }
 
 .BavarianFace, .playerThreeFace {
-  color: #FD4223; }
+  color: #FD0013; }
 
 .Bavarian .counterWrapper {
-  background-color: #FD4223; }
+  background-color: #4287FA; }
 
 .french.specialHexes {
   background-color: #84b5ff; }
@@ -1620,19 +1620,19 @@ You should have received a copy of the GNU General Public License
   color: white; }
 
 .Bavarian.infantry .counterWrapper .counter {
-  background-image: url("../../js/SaxonInfBadge.png");
+  background-image: url("../../js/BavarianInfBadge.png");
   background-size: 14px; }
 
 .Bavarian.cavalry .counterWrapper .counter {
-  background-image: url("../../js/SaxonCavBadge.png");
+  background-image: url("../../js/BavarianCavBadge.png");
   background-size: 14px; }
 
 .Bavarian.artillery .counterWrapper .counter {
-  background-image: url("../../js/SaxonArtBadge.png");
+  background-image: url("../../js/BavarianArtBadge.png");
   background-size: 14px; }
 
 .Bavarian.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/SaxonHorArtBadge.png");
+  background-image: url("../../js/BavarianHorArtBadge.png");
   background-size: 14px; }
 
 .Bavarian.hq .counterWrapper .counter {
