@@ -22,7 +22,7 @@ define("ALLIED_FORCE", 2);
 
 global $force_name;
 $force_name[FRENCH_FORCE] = "French";
-$force_name[ALLIED_FORCE] = "Austro/Bavarian/Russian Allies";
+$force_name[ALLIED_FORCE] = "Austrian/Bavarian/Russian Allies";
 
 require_once "JagCore.php";
 
@@ -49,8 +49,10 @@ class Hanau1813 extends JagCore
 
     static function playMulti($name, $wargame, $arg = false)
     {
-        $deployTwo = $playerOne = "French";
-        $deployOne = $playerTwo = "Prussian/Russian Allies";
+        global $force_name;
+
+        $deployTwo = $playerOne = $force_name[FRENCH_FORCE];
+        $deployOne = $playerTwo = $force_name[ALLIED_FORCE];
         @include_once "playMulti.php";
     }
 
@@ -58,8 +60,8 @@ class Hanau1813 extends JagCore
     {
         global $force_name;
         $youAre = $force_name[$player];
-        $deployTwo = $playerOne = "French";
-        $deployOne = $playerTwo = "Prussian/Russian Allies";
+        $deployTwo = $playerOne = $force_name[FRENCH_FORCE];
+        $deployOne = $playerTwo = $force_name[ALLIED_FORCE];
         @include_once "view.php";
     }
 

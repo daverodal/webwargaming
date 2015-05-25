@@ -156,7 +156,7 @@ class hanau1813VictoryCore extends victoryCore
                 $b->gameRules->flashMessages[] = "No Allied movement this turn.";
         }
 
-        if ($b->gameRules->turn == 2 && $b->gameRules->phase == RED_MOVE_PHASE) {
+        if (!isset($scenario->dayTwoMovement) && $b->gameRules->turn == 2 && $b->gameRules->phase == RED_MOVE_PHASE) {
             $b->gameRules->flashMessages[] = "Allies south the the river Kinzig may not move.";
         }
     }
@@ -174,7 +174,7 @@ class hanau1813VictoryCore extends victoryCore
             $unit->status = STATUS_UNAVAIL_THIS_PHASE;
         }
 
-        if ($b->gameRules->turn == 2 && $b->gameRules->phase == RED_MOVE_PHASE){
+        if (!isset($scenario->dayTwoMovement) && $b->gameRules->turn == 2 && $b->gameRules->phase == RED_MOVE_PHASE){
             $terrain = $b->terrain;
             $reinforceZones = $terrain->reinforceZones;
             $southOfTheRiver = [];

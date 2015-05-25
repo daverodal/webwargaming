@@ -585,8 +585,13 @@
     },
     "scenarios": {
       "main": {
-        "description": "Standard Scenario.",
-        "longDescription":"Original"
+        "description": "Historical Scenario.",
+        "longDescription":"French Usually win as they did historically."
+      },
+      "balance": {
+        "description": "Play Balance Scenario.",
+        "longDescription":"Allies may move on second turn, french may deploy one hex closer.",
+        "dayTwoMovement": true
       }
     }
   },
