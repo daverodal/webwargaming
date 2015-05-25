@@ -587,13 +587,6 @@
       "main": {
         "description": "Standard Scenario.",
         "longDescription":"Original"
-      },
-      "alt": {
-        "description": "Standard Alt ! Scenario.",
-        "longDescription":"Copy",
-        "units":[
-          {"num":4,"forceId":1,"combat":8,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"}
-          ]
       }
     }
   },
