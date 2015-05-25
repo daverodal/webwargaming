@@ -22,7 +22,7 @@ You should have received a copy of the GNU General Public License
 $prussianNapColor: #003AF3;
 
 @include player(Austrian,Two , $austrianColor, $austrianWrapperColor);
-@include player(French, One, $frenchColor, #0003b4, $frenchWrapperColor);
+@include player(French, One, $frenchColor, #0003b4, $frenchColor);
 
 @include player(Russian, Three, $russianColor, $russianWrapperColor);
 @include player(Guard,Four , $frenchColor, #0003b4, $frenchWrapperColor);

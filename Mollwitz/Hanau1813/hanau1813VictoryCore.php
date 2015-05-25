@@ -54,7 +54,8 @@ class hanau1813VictoryCore extends victoryCore
         $mult = 1;
         if($unit->nationality == "Guard"){
             $mult = 1.5;
-            if($unit->class == "infantry" && $unit->maxStrength == 8){
+            if($unit->class == "infantry" && $unit->maxStrength == 9){
+                $mult = 2.0;
                 $this->deadGuardInf = true;
             }
         }
