@@ -153,7 +153,11 @@ class hanau1813VictoryCore extends victoryCore
         $scenario = $b->scenario;
 
         if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE) {
+            if($scenario->earlyMovement){
+                $b->gameRules->flashMessages[] = "Allies south the the river Kinzig may not move.";
+            }else{
                 $b->gameRules->flashMessages[] = "No Allied movement this turn.";
+            }
         }
 
         if (!isset($scenario->dayTwoMovement) && $b->gameRules->turn == 2 && $b->gameRules->phase == RED_MOVE_PHASE) {
@@ -168,13 +172,7 @@ class hanau1813VictoryCore extends victoryCore
         $scenario = $b->scenario;
         $id = $unit->id;
 
-        parent::postRecoverUnit($args);
-
-        if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE && $unit->status == STATUS_READY && $unit->forceId == ALLIED_FORCE) {
-            $unit->status = STATUS_UNAVAIL_THIS_PHASE;
-        }
-
-        if (!isset($scenario->dayTwoMovement) && $b->gameRules->turn == 2 && $b->gameRules->phase == RED_MOVE_PHASE){
+        if($b->gameRules->turn <= 2 && !isset($this->southOfTheRiver)){
             $terrain = $b->terrain;
             $reinforceZones = $terrain->reinforceZones;
             $southOfTheRiver = [];
@@ -183,7 +181,20 @@ class hanau1813VictoryCore extends victoryCore
                     $southOfTheRiver[$reinforceZone->hexagon->name] = true;
                 }
             }
-          if($unit->status == STATUS_READY && $unit->forceId == ALLIED_FORCE && $southOfTheRiver[$unit->hexagon->name]) {
+            $this->southOfTheRiver = $southOfTheRiver;
+        }
+
+        parent::postRecoverUnit($args);
+
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE && $unit->status == STATUS_READY && $unit->forceId == ALLIED_FORCE) {
+            /* if early Movement set and unit is north of river they can move */
+            if(!(isset($scenario->earlyMovement) && !$this->southOfTheRiver[$unit->hexagon->name])){
+                $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+            }
+        }
+
+        if ($b->gameRules->turn == 2 && $b->gameRules->phase == RED_MOVE_PHASE){
+          if($unit->status == STATUS_READY && $unit->forceId == ALLIED_FORCE && $this->southOfTheRiver[$unit->hexagon->name]) {
               $unit->status = STATUS_UNAVAIL_THIS_PHASE;
           }
         }

@@ -76,6 +76,11 @@ You should have received a copy of the GNU General Public License
                         </li>
                     </ol>
                 </li>
+                <li><span class="lessBig">Balancing</span>
+                    The Standard scenario produces a very historical result of French victory. In the play balance
+                    scenario  the Allies north of the river may move on turn 1. But the French may deploy adjacent to the “F” line
+                    as well as on it and within it.
+                </li>
             </ol>
             <ol class="ExclusiveRules topNumbers">
                 <?php include "victoryConditions.php" ?>
