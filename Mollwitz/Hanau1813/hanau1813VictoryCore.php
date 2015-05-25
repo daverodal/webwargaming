@@ -146,4 +146,32 @@ class hanau1813VictoryCore extends victoryCore
         }
         return false;
     }
+
+    public function postRecoverUnits($args)
+    {
+        $b = Battle::getBattle();
+        $scenario = $b->scenario;
+
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE) {
+                $b->gameRules->flashMessages[] = "No Allied movement this turn.";
+        }
+
+        if ($b->gameRules->turn == 2 && $b->gameRules->phase == RED_MOVE_PHASE) {
+            $b->gameRules->flashMessages[] = "Allies south the the river Kinzig may not move.";
+        }
+    }
+
+    public function postRecoverUnit($args)
+    {
+        $unit = $args[0];
+        $b = Battle::getBattle();
+        $scenario = $b->scenario;
+        $id = $unit->id;
+
+        parent::postRecoverUnit($args);
+
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE && $unit->status == STATUS_READY && $unit->forceId == ALLIED_FORCE) {
+            $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+        }
+    }
 }
