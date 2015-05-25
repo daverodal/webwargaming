@@ -25,7 +25,7 @@ You should have received a copy of the GNU General Public License
     <style>
         body{
             background:#000;
-            background:url("<?=base_url("js/1280px-Battle_of_Montmirail_1814.jpg")?>") #333 no-repeat;
+            background:url("<?=base_url("js/1280px-Vernet-Battle_of_Hanau.jpg")?>") #333 no-repeat;
             background-position:center 0;
             background-size:100%;
 
@@ -89,5 +89,5 @@ You should have received a copy of the GNU General Public License
     <a  class="link" href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>/">Play Multi</a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a><br>
     <div class="attribution">
-        By delt. MARIN-LAVIGNE, Louis Stanislas (1797-1860), after the painting by VERNET, Horace (1789-1863) (McGill University Libraries, [1]) [Public domain], <a target="blank" href="https://commons.wikimedia.org/wiki/File%3ABattle_of_Montmirail_1814.jpg">via Wikimedia Commons</a>    </div>
+        Horace Vernet [Public domain], <a target="blank" href="http://commons.wikimedia.org/wiki/File%3AVernet-Battle_of_Hanau.jpg">via Wikimedia Commons</a>
 </fieldset>

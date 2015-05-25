@@ -20,11 +20,12 @@ You should have received a copy of the GNU General Public License
         body{
             background:#ccc;
             color:#333;
-            background: url("<?=base_url("js/561px-Battle_of_Montmirail_map.jpg")?>") #333 no-repeat;
+            background: url("<?=base_url("js/Knötel-Battle_of_Hanau.jpg")?>") #333 no-repeat;
             background-position: 25% 0;
             background-size:100%;
         }
     </style>
 
 <footer class="attribution">
-    By Gregory Fremont-Barnes (main editor) [Attribution], <a target="blank" href="https://commons.wikimedia.org/wiki/File%3ABattle_of_Montmirail_map.jpg">via Wikimedia Commons</a></footer>
+    By Richard Knötel [Public domain], <a target="blank" href="http://commons.wikimedia.org/wiki/File%3AKn%C3%B6tel-Battle_of_Hanau.jpg">via Wikimedia Commons</a>
+</footer>
