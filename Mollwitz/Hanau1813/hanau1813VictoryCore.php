@@ -173,5 +173,19 @@ class hanau1813VictoryCore extends victoryCore
         if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE && $unit->status == STATUS_READY && $unit->forceId == ALLIED_FORCE) {
             $unit->status = STATUS_UNAVAIL_THIS_PHASE;
         }
+
+        if ($b->gameRules->turn == 2 && $b->gameRules->phase == RED_MOVE_PHASE){
+            $terrain = $b->terrain;
+            $reinforceZones = $terrain->reinforceZones;
+            $southOfTheRiver = [];
+            foreach($reinforceZones as $reinforceZone){
+                if($reinforceZone->name == 'D'){
+                    $southOfTheRiver[$reinforceZone->hexagon->name] = true;
+                }
+            }
+          if($unit->status == STATUS_READY && $unit->forceId == ALLIED_FORCE && $southOfTheRiver[$unit->hexagon->name]) {
+              $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+          }
+        }
     }
 }
