@@ -79,6 +79,8 @@ class hanau1813VictoryCore extends victoryCore
 
     protected function checkVictory($attackingId, $battle)
     {
+        $battle = Battle::getBattle();
+
         $gameRules = $battle->gameRules;
         $scenario = $battle->scenario;
         $turn = $gameRules->turn;
