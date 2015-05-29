@@ -136,7 +136,7 @@ class hanau1813VictoryCore extends victoryCore
                 $this->gameOver = true;
                 return true;
             }
-            if ($turn == ($gameRules->maxTurn + 1)) {
+            if ($turn > $gameRules->maxTurn) {
                 $this->winner = ALLIED_FORCE;
                 $gameRules->flashMessages[] = "Allies Win";
                 $gameRules->flashMessages[] = "French Fail to Win";
