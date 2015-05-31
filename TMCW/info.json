@@ -83,15 +83,8 @@
         "genre": "20'th Century Games",
         "fileName": "Airborne/Airborne.php",
         "scenarios": {
-            "Main": {
-                "description": "Assault from the air",
-                "supply": true,
-                "loyalMechMove": 8,
-                "loyalExtraInf": true,
-                "hardCuneiform": true
-            },
-            "Bigger": {
-                "description": "Assault from the air, Bigger map",
+            "main": {
+                "description": "Assault from the air.",
                 "supply": true,
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
