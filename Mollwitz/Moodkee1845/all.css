@@ -900,6 +900,9 @@ svg marker#head {
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+.guard-unit {
+  display: none; }
+
 .Guard.unit .guard-unit {
   display: block;
   position: absolute;
@@ -926,16 +929,69 @@ svg marker#head {
 .unit {
   border: solid black;
   border-width: 3px; }
+  .unit .counterWrapper {
+    border: solid black 1px;
+    height: 14px; }
+    .unit .counterWrapper div.counter {
+      width: 14px;
+      height: 14px;
+      display: block;
+      border-right: 1px solid black; }
+  .unit p.forceMarch, .unit p.range {
+    position: absolute;
+    top: -19px;
+    right: 2px;
+    display: none;
+    color: black;
+    text-transform: lowercase; }
+  .unit p.range {
+    font-size: 15px;
+    top: -15px;
+    right: 5px;
+    display: block;
+    color: black; }
+  .unit .unit-numbers {
+    border: 1px solid black;
+    border-top-width: 0px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 16px !important;
+    background: white;
+    font-weight: bold;
+    font-family: serif; }
+    .unit .unit-numbers .infoLen7 {
+      font-size: 13px;
+      letter-spacing: -1px; }
+    .unit .unit-numbers .infoLen8 {
+      font-size: 12px;
+      letter-spacing: -1px; }
 
-.unit .counterWrapper div.counter {
-  width: 14px;
-  height: 14px;
-  display: block;
-  border-right: 1px solid black; }
-
-.vintage.unit .counterWrapper div.counter {
-  width: 19px;
+.vintage.unit .counterWrapper {
   height: 19px; }
+  .vintage.unit .counterWrapper div.counter {
+    width: 19px;
+    height: 19px; }
+.vintage.unit p.forceMarch {
+  right: 0px;
+  top: -17px; }
+.vintage.unit p.range {
+  right: 2px;
+  top: -13px; }
+.vintage.unit .unit-numbers {
+  border: 1px solid black;
+  border-top-width: 0px;
+  height: 10px;
+  line-height: 10px;
+  font-size: 12px !important;
+  background: white;
+  font-weight: bold;
+  font-family: serif; }
+  .vintage.unit .unit-numbers .infoLen7 {
+    font-size: 11px;
+    letter-spacing: 0px; }
+  .vintage.unit .unit-numbers .infoLen8 {
+    font-size: 9px;
+    letter-spacing: 0px; }
 
 .vintage.Sikh.infantry .counterWrapper .counter {
   background-image: url("../../js/SikhInfBadge.png");
@@ -964,10 +1020,6 @@ svg marker#head {
     border: none; }
 .vintage.Sikh.pontoon .unit-numbers {
   display: none; }
-.vintage p.forceMarch {
-  top: -17px; }
-.vintage p.range {
-  top: -13px; }
 
 .Sikh.infantry .counterWrapper .counter {
   background-image: url("../../js/SikhInfBadge.png");
@@ -1029,10 +1081,6 @@ svg marker#head {
     border: none; }
 .vintage.Beluchi.pontoon .unit-numbers {
   display: none; }
-.vintage p.forceMarch {
-  top: -17px; }
-.vintage p.range {
-  top: -13px; }
 
 .Beluchi.infantry .counterWrapper .counter {
   background-image: url("../../js/SikhInfBadge.png");
@@ -1094,10 +1142,6 @@ svg marker#head {
     border: none; }
 .vintage.British.pontoon .unit-numbers {
   display: none; }
-.vintage p.forceMarch {
-  top: -17px; }
-.vintage p.range {
-  top: -13px; }
 
 .British.infantry .counterWrapper .counter {
   background-image: url("../../js/BritInfBadge.png");
@@ -1159,10 +1203,6 @@ svg marker#head {
     border: none; }
 .vintage.SaxonPolish.pontoon .unit-numbers {
   display: none; }
-.vintage p.forceMarch {
-  top: -17px; }
-.vintage p.range {
-  top: -13px; }
 
 .SaxonPolish.infantry .counterWrapper .counter {
   background-image: url("../../js/RusInfBadge.png");
@@ -1228,10 +1268,6 @@ svg marker#head {
     border: none; }
 .vintage.Native.pontoon .unit-numbers {
   display: none; }
-.vintage p.forceMarch {
-  top: -17px; }
-.vintage p.range {
-  top: -13px; }
 
 .Native.infantry .counterWrapper .counter {
   background-image: url("../../js/NativeInfBadge.png");
@@ -1293,10 +1329,6 @@ svg marker#head {
     border: none; }
 .vintage.Austrian.pontoon .unit-numbers {
   display: none; }
-.vintage p.forceMarch {
-  top: -17px; }
-.vintage p.range {
-  top: -13px; }
 
 .Austrian.infantry .counterWrapper .counter {
   background-image: url("../../js/AusInfBadge.png");
@@ -1358,10 +1390,6 @@ svg marker#head {
     border: none; }
 .vintage.Prussian.pontoon .unit-numbers {
   display: none; }
-.vintage p.forceMarch {
-  top: -17px; }
-.vintage p.range {
-  top: -13px; }
 
 .Prussian.infantry .counterWrapper .counter {
   background-image: url("../../js/PruInfBadge.png");
@@ -1423,10 +1451,6 @@ svg marker#head {
     border: none; }
 .vintage.Russian.pontoon .unit-numbers {
   display: none; }
-.vintage p.forceMarch {
-  top: -17px; }
-.vintage p.range {
-  top: -13px; }
 
 .Russian.infantry .counterWrapper .counter {
   background-image: url("../../js/RusInfBadge.png");
@@ -1488,10 +1512,6 @@ svg marker#head {
     border: none; }
 .vintage.French.pontoon .unit-numbers {
   display: none; }
-.vintage p.forceMarch {
-  top: -17px; }
-.vintage p.range {
-  top: -13px; }
 
 .French.infantry .counterWrapper .counter {
   background-image: url("../../js/FrenchInfBadge.png");
@@ -1553,10 +1573,6 @@ svg marker#head {
     border: none; }
 .vintage.AngloAllied.pontoon .unit-numbers {
   display: none; }
-.vintage p.forceMarch {
-  top: -17px; }
-.vintage p.range {
-  top: -13px; }
 
 .AngloAllied.infantry .counterWrapper .counter {
   background-image: url("../../js/AngInfBadge.png");
@@ -1618,10 +1634,6 @@ svg marker#head {
     border: none; }
 .vintage.Anglo.pontoon .unit-numbers {
   display: none; }
-.vintage p.forceMarch {
-  top: -17px; }
-.vintage p.range {
-  top: -13px; }
 
 .Anglo.infantry .counterWrapper .counter {
   background-image: url("../../js/AngInfBadge.png");
@@ -1683,10 +1695,6 @@ svg marker#head {
     border: none; }
 .vintage.Allied.pontoon .unit-numbers {
   display: none; }
-.vintage p.forceMarch {
-  top: -17px; }
-.vintage p.range {
-  top: -13px; }
 
 .Allied.infantry .counterWrapper .counter {
   background-image: url("../../js/AngInfBadge.png");
@@ -1748,10 +1756,6 @@ svg marker#head {
     border: none; }
 .vintage.Swedish.pontoon .unit-numbers {
   display: none; }
-.vintage p.forceMarch {
-  top: -17px; }
-.vintage p.range {
-  top: -13px; }
 
 .Swedish.infantry .counterWrapper .counter {
   background-image: url("../../js/SweInfBadge.png");
@@ -1792,28 +1796,6 @@ svg marker#head {
 .indent {
   margin-left: 20px; }
 
-.unit .counterWrapper {
-  border: solid black 1px;
-  height: 14px; }
-
-.vintage.unit .counterWrapper {
-  height: 19px; }
-
-.unit .unit-numbers .infoLen7 {
-  font-size: 13px;
-  letter-spacing: -1px; }
-
-.unit .unit-numbers .infoLen8 {
-  font-size: 12px;
-  letter-spacing: -1px; }
-
-.vintage .unit .unit-numbers .infoLen7 {
-  font-size: 11px;
-  letter-spacing: 0px; }
-.vintage .unit .unit-numbers .infoLen8 {
-  font-size: 9px;
-  letter-spacing: 0px; }
-
 .RussianaVP {
   color: #84b5ff;
   background: transparent;
@@ -1822,49 +1804,6 @@ svg marker#head {
 .PrussianlVP {
   color: #ef734a;
   background: transparent; }
-
-.unit .unit-numbers {
-  border: 1px solid black;
-  border-top-width: 0px;
-  height: 16px;
-  line-height: 16px;
-  font-size: 16px !important;
-  background: white;
-  font-weight: bold;
-  font-family: serif; }
-
-.vintage.unit .unit-numbers {
-  border: 1px solid black;
-  border-top-width: 0px;
-  height: 10px;
-  line-height: 10px;
-  font-size: 12px !important;
-  background: white;
-  font-weight: bold;
-  font-family: serif; }
-
-p.forceMarch, p.range {
-  position: absolute;
-  top: -19px;
-  right: 2px;
-  display: none;
-  color: white;
-  text-transform: lowercase; }
-
-.vintage p.forceMarch {
-  right: 0px; }
-.vintage p.range {
-  right: 2px; }
-
-p.range {
-  font-size: 15px;
-  top: -15px;
-  right: 5px;
-  display: block;
-  color: black; }
-
-p.forceMarch {
-  color: black; }
 
 .Russian p.forceMarch, .Russian p.range, .Prussian p.forceMarch, .Prussian p.range {
   color: white; }
@@ -2007,9 +1946,6 @@ p.forceMarch {
   .unitOdds.pinnedColor:hover {
     background: transparent;
     color: transparent; }
-
-.guard-unit {
-  display: none; }
 
 /**
  *

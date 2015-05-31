@@ -41,7 +41,6 @@ $vintage-unit-numbers-size:10px;
 @mixin badge($nationality, $shortName) {
    .vintage{
 
-
      &.#{$nationality}.infantry .counterWrapper .counter {
        background-image: url('../../js/#{$shortName}InfBadge.png');
        background-size: $vintage-badge-size;
@@ -80,12 +79,6 @@ $vintage-unit-numbers-size:10px;
        .unit-numbers {
          display:none;
        }
-     }
-     p.forceMarch{
-       top:-17px;
-     }
-     p.range {
-        top:-13px;
      }
    }
   .#{$nationality}.infantry .counterWrapper .counter {
@@ -130,6 +123,10 @@ $vintage-unit-numbers-size:10px;
   }
 }
 
+.guard-unit{
+  display:none;
+}
+
 .Guard.unit .guard-unit{
   display:block;
   position:absolute;
@@ -161,6 +158,98 @@ $vintage-unit-numbers-size:10px;
 
 }
 
+.unit {
+  border: solid black;
+  border-width: 3px;
+  .counterWrapper{
+    border: solid black 1px;
+    height: $badge-size;
+    div.counter{
+      width: $badge-size;
+      height: $badge-size;
+      display: block;
+      border-right: 1px solid black;
+    }
+  }
+
+  p.forceMarch, p.range {
+    position: absolute;
+    top: -19px;
+    right: 2px;
+    display: none;
+    color: black;
+    text-transform: lowercase;
+  }
+
+  p.range {
+    font-size: 15px;
+    top: -15px;
+    right: 5px;
+    display: block;
+    color: black;
+  }
+
+  .unit-numbers{
+    border: 1px solid black;
+    border-top-width: 0px;
+    height: $unit-numbers-size;
+    line-height: $unit-numbers-size;;
+    font-size: $unit-numbers-size !important;
+    background: white;
+    font-weight: bold;
+    font-family: serif;
+
+    .infoLen7{
+      font-size: 13px;
+      letter-spacing: -1px;
+    }
+    .infoLen8{
+      font-size: 12px;
+      letter-spacing: -1px;
+    }
+  }
+}
+
+.vintage.unit {
+  .counterWrapper {
+    height: $vintage-badge-size;
+
+    div.counter {
+
+      width: $vintage-badge-size;
+      height: $vintage-badge-size;
+    }
+  }
+
+  p.forceMarch{
+    right: 0px;
+    top:-17px;
+  }
+  p.range {
+    right: 2px;
+    top:-13px;
+  }
+  .unit-numbers {
+    border: 1px solid black;
+    border-top-width: 0px;
+    height: $vintage-unit-numbers-size;
+    line-height: $vintage-unit-numbers-size;
+    font-size: $vintage-unit-numbers-size+2 !important;
+    background: white;
+    font-weight: bold;
+    font-family: serif;
+    .infoLen7 {
+      font-size: 11px;
+      letter-spacing: 0px;
+    }
+    .infoLen8 {
+      font-size: 9px;
+      letter-spacing: 0px;
+    }
+  }
+}
+
+
 $austrianColor: #df5842;
 $austrianWrapperColor: white;
 
@@ -187,28 +276,6 @@ $swedishColor: #FECC00;
 $swedishWrapperColor: #006AA7;
 
 $saxonColor: #FD4223;
-
-#map {
-}
-
-.unit {
-  border: solid black;
-  border-width: 3px;
-}
-
-.unit .counterWrapper div.counter {
-  width: $badge-size;
-  height: $badge-size;
-  display: block;
-  border-right: 1px solid black;
-
-}
-
-.vintage.unit .counterWrapper div.counter {
-  width: $vintage-badge-size;
-  height: $vintage-badge-size;
-}
-
 
 @include badge(Sikh, Sikh);
 @include badge(Beluchi, Sikh);
@@ -238,36 +305,7 @@ $saxonColor: #FD4223;
   margin-left: 20px;
 }
 
-.unit .counterWrapper {
-  border: solid black 1px;
-  height: $badge-size;
-}
 
-.vintage.unit .counterWrapper{
-  height: $vintage-badge-size;
-}
-
-.unit .unit-numbers .infoLen7 {
-  font-size: 13px;
-  letter-spacing: -1px;
-}
-
-.unit .unit-numbers .infoLen8 {
-  font-size: 12px;
-  letter-spacing: -1px;
-}
-
-.vintage {
-  .unit .unit-numbers .infoLen7 {
-    font-size: 11px;
-    letter-spacing: 0px;
-  }
-
-  .unit .unit-numbers .infoLen8 {
-    font-size: 9px;
-    letter-spacing: 0px;
-  }
-}
 .RussianaVP {
   color: rgb(132, 181, 255);
   background: transparent;
@@ -279,58 +317,8 @@ $saxonColor: #FD4223;
   background: transparent;
 }
 
-.unit .unit-numbers {
-  border: 1px solid black;
-  border-top-width: 0px;
-  height: $unit-numbers-size;
-  line-height: $unit-numbers-size;;
-  font-size: $unit-numbers-size !important;
-  background: white;
-  font-weight: bold;
-  font-family: serif;
-}
 
-.vintage.unit .unit-numbers {
-  border: 1px solid black;
-  border-top-width: 0px;
-  height: $vintage-unit-numbers-size;
-  line-height: $vintage-unit-numbers-size;
-  font-size: $vintage-unit-numbers-size+2 !important;
-  background: white;
-  font-weight: bold;
-  font-family: serif;
-}
 
-p.forceMarch, p.range {
-  position: absolute;
-  top: -19px;
-  right: 2px;
-  display: none;
-  color: white;
-  text-transform: lowercase;
-}
-.vintage{
-  p.forceMarch{
-    right: 0px;
-  }
-  p.range {
-    right: 2px;
-
-  }
-
-}
-
-p.range {
-  font-size: 15px;
-  top: -15px;
-  right: 5px;
-  display: block;
-  color: black;
-}
-
-p.forceMarch {
-  color: black;
-}
 
 .Russian, .Prussian {
   p.forceMarch, p.range {
@@ -520,7 +508,4 @@ p.forceMarch {
       color: transparent;
     }
   }
-}
-.guard-unit{
-  display:none;
 }
