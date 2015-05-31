@@ -22,10 +22,30 @@
 ?><link href='http://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
 <script type="text/javascript">
-$(document).ready(function(){
+
+    $(document).ready(function(){
     if(!DR){
         DR = {};
     }
+
+
+
+    DR.vintage = false;
+    $("#vintageButton").click(function () {
+        if (!DR.vintage) {
+            $("#vintageButton").html("modern");
+            $(".unit").addClass("vintage");
+            DR.vintage = true;
+
+        } else {
+            $("#vintageButton").html("vintage");
+            $(".unit").removeClass("vintage");
+            DR.vintage = false;
+        }
+        $("#menuWrapper .WrapperLabel").click()
+    });
+
+
     $("#altTable").on('click', function(){
         $(this).hide();
         $("#mainTable").show();

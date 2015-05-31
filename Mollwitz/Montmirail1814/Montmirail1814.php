@@ -22,7 +22,7 @@ define("ALLIED_FORCE", 2);
 
 global $force_name;
 $force_name[FRENCH_FORCE] = "French";
-$force_name[ALLIED_FORCE] = "Prussian/Russian Allies";
+$force_name[ALLIED_FORCE] = "Allies";
 
 require_once "JagCore.php";
 

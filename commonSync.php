@@ -141,6 +141,7 @@ x.register("mapUnits", function(mapUnits) {
         $("#"+i+" .unit-numbers").html(html);
         var len  = $("#"+i+" .unit-numbers").text().length;
         $("#"+i+" div.unit-numbers span ").addClass("infoLen"+len);
+        $("#"+i+" .counterWrapper .guard-unit ").addClass("infoLen"+len);
         $("#"+i).attr("src",img);
     }
     var dpBox = $("#deployBox").children().size();
@@ -772,6 +773,7 @@ x.register("moveRules", function(moveRules,data) {
 
                 var newLabel = label.replace(/((?:<span[^>]*>)?[-+ru](?:<\/span>)?).*/,"$1 "+moveRules.moves[i].pointsLeft);
                 secondGenClone.find('div.unit-numbers span').html(newLabel).addClass('infoLen'+newLabel.length);
+                secondGenClone.find('.counterWrapper .guard-unit').addClass('infoLen'+newLabel.length);
                 if(moveRules.moves[i].isOccupied){
                     secondGenClone.addClass("occupied");
 

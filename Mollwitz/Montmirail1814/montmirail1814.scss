@@ -44,36 +44,7 @@ $prussianNapColor: #003AF3;
 .French.unit .unit-numbers, .Guard.unit .unit-numbers{
   color:red;
 }
-//$guardColor: yellow;
-//.Guard.unit .counterWrapper{
-//  border-color: $guardColor;
-//  border-width:1px;
-//  .counter{
-//    border-color:$guardColor;
-//    border-width:1px
-//  }
-//}
-//$checkerColor:rgba(255, 255, 0, .3);
-//.Guard.unit .unit-numbers{
-//  border-color:$guardColor;
-//  border-width:1px;
-////  background-color: #eee;
-////  background-image: linear-gradient(45deg, $checkerColor 25%, transparent 25%, transparent 75%, $checkerColor 75%, $checkerColor),
-////  linear-gradient(45deg, $checkerColor 25%, transparent 25%, transparent 75%, $checkerColor 75%, $checkerColor);
-////  background-size:10px 10px;
-////  background-position:0 0, 5px 5px
-//}
+
 @include badge(French, FrenchNap);
 @include badge(Guard, FrenchNap);
 @include badge(Prussian, PruNap);
-.Guard.unit .guard-unit{
-  display:block;
-  position:absolute;
-  width:6px;
-  right:14px;
-  background:yellow;
-  color:black;
-  font-size:8px;
-  top:1px;
-  word-wrap:break-word;
-}

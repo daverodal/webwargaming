@@ -21,6 +21,10 @@
 body {
 }
 
+$badge-size: 14px;
+$vintage-badge-size:19px;
+$unit-numbers-size:16px;
+$vintage-unit-numbers-size:10px;
 @mixin player($nationality, $player, $color, $counterColor: $color, $faceColor: $color) {
   .player#{$player} {
     background: $color;
@@ -35,27 +39,76 @@ body {
 }
 
 @mixin badge($nationality, $shortName) {
+   .vintage{
+
+
+     &.#{$nationality}.infantry .counterWrapper .counter {
+       background-image: url('../../js/#{$shortName}InfBadge.png');
+       background-size: $vintage-badge-size;
+     }
+     &.#{$nationality}.cavalry .counterWrapper .counter {
+       background-image: url('../../js/#{$shortName}CavBadge.png');
+       background-size: $vintage-badge-size;
+     }
+
+     &.#{$nationality}.artillery .counterWrapper .counter {
+       background-image: url('../../js/#{$shortName}ArtBadge.png');
+       background-size: $vintage-badge-size;
+     }
+     &.#{$nationality}.horseartillery .counterWrapper .counter {
+       background-image: url('../../js/#{$shortName}HorArtBadge.png');
+       background-size: $vintage-badge-size;
+     }
+     &.#{$nationality}.hq .counterWrapper .counter {
+       background-color:lightgreen;
+       background-image: url('../../js/HQBadge.png');
+       background-size: $vintage-badge-size;
+     }
+     &.#{$nationality}.pontoon {
+       .counterWrapper {
+         border:none;
+         .counter {
+
+           background-color: lightgreen;
+           background-image: url('../../js/AngloPontoon.png');
+           background-size: 32px;
+           width: 32px;
+           height: 32px;
+           border:none;
+         }
+       }
+       .unit-numbers {
+         display:none;
+       }
+     }
+     p.forceMarch{
+       top:-17px;
+     }
+     p.range {
+        top:-13px;
+     }
+   }
   .#{$nationality}.infantry .counterWrapper .counter {
     background-image: url('../../js/#{$shortName}InfBadge.png');
-    background-size: 14px;
+    background-size: $badge-size;
   }
   .#{$nationality}.cavalry .counterWrapper .counter {
     background-image: url('../../js/#{$shortName}CavBadge.png');
-    background-size: 14px;
+    background-size: $badge-size;
   }
 
   .#{$nationality}.artillery .counterWrapper .counter {
     background-image: url('../../js/#{$shortName}ArtBadge.png');
-    background-size: 14px;
+    background-size: $badge-size;
   }
   .#{$nationality}.horseartillery .counterWrapper .counter {
     background-image: url('../../js/#{$shortName}HorArtBadge.png');
-    background-size: 14px;
+    background-size: $badge-size;
   }
   .#{$nationality}.hq .counterWrapper .counter {
     background-color:lightgreen;
     background-image: url('../../js/HQBadge.png');
-    background-size: 14px;
+    background-size: $badge-size;
   }
 
   .#{$nationality}.pontoon {
@@ -75,6 +128,37 @@ body {
       display:none;
     }
   }
+}
+
+.Guard.unit .guard-unit{
+  display:block;
+  position:absolute;
+  width:6px;
+  right:13px;
+  background:yellow;
+  color:black;
+  font-size:7px;
+  top:16px;
+  word-wrap:break-word;
+  &.infoLen7{
+    right:16px;
+  }
+}
+
+.vintage.Guard.unit{
+  p.range{
+    top:-8px;
+  }
+  p.forceMarch{
+    top: -11px;
+  }
+  .guard-unit{
+    width:12px;
+    right:0px;
+    font-size:8px;
+    top:1px;
+  }
+
 }
 
 $austrianColor: #df5842;
@@ -113,12 +197,18 @@ $saxonColor: #FD4223;
 }
 
 .unit .counterWrapper div.counter {
-  width: 14px;
-  height: 14px;
+  width: $badge-size;
+  height: $badge-size;
   display: block;
   border-right: 1px solid black;
 
 }
+
+.vintage.unit .counterWrapper div.counter {
+  width: $vintage-badge-size;
+  height: $vintage-badge-size;
+}
+
 
 @include badge(Sikh, Sikh);
 @include badge(Beluchi, Sikh);
@@ -150,17 +240,34 @@ $saxonColor: #FD4223;
 
 .unit .counterWrapper {
   border: solid black 1px;
-  height: 14px;
+  height: $badge-size;
+}
+
+.vintage.unit .counterWrapper{
+  height: $vintage-badge-size;
 }
 
 .unit .unit-numbers .infoLen7 {
   font-size: 13px;
+  letter-spacing: -1px;
 }
 
 .unit .unit-numbers .infoLen8 {
   font-size: 12px;
+  letter-spacing: -1px;
 }
 
+.vintage {
+  .unit .unit-numbers .infoLen7 {
+    font-size: 11px;
+    letter-spacing: 0px;
+  }
+
+  .unit .unit-numbers .infoLen8 {
+    font-size: 9px;
+    letter-spacing: 0px;
+  }
+}
 .RussianaVP {
   color: rgb(132, 181, 255);
   background: transparent;
@@ -175,10 +282,20 @@ $saxonColor: #FD4223;
 .unit .unit-numbers {
   border: 1px solid black;
   border-top-width: 0px;
-  height: 15px;
-  line-height: 16px;
-  font-size: 16px !important;
-  letter-spacing: -1px;
+  height: $unit-numbers-size;
+  line-height: $unit-numbers-size;;
+  font-size: $unit-numbers-size !important;
+  background: white;
+  font-weight: bold;
+  font-family: serif;
+}
+
+.vintage.unit .unit-numbers {
+  border: 1px solid black;
+  border-top-width: 0px;
+  height: $vintage-unit-numbers-size;
+  line-height: $vintage-unit-numbers-size;
+  font-size: $vintage-unit-numbers-size+2 !important;
   background: white;
   font-weight: bold;
   font-family: serif;
@@ -191,6 +308,16 @@ p.forceMarch, p.range {
   display: none;
   color: white;
   text-transform: lowercase;
+}
+.vintage{
+  p.forceMarch{
+    right: 0px;
+  }
+  p.range {
+    right: 2px;
+
+  }
+
 }
 
 p.range {

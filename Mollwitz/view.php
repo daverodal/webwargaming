@@ -40,7 +40,7 @@
                         <ul>
                             <li><a id="muteButton">mute</a></li>
                             <li><a href="<?= site_url("wargame/leaveGame"); ?>">Go To Lobby</a></li>
-                            <li><a href="<?= site_url("users/logout"); ?>">logout</a></li>
+                            <li><a id="vintageButton">vintage</a></li>
                             <li><a id="arrowButton">show arrows</a></li>
                             <li><a href="#" onclick="seeUnits();return false;">See Units</a></li>
                             <li><a href="#" onclick="seeBoth();return false;">See Both</a></li>
@@ -284,7 +284,7 @@
                     <div class="unit {class} {type}" id="{id}" alt="0">
                         <div class="shadow-mask"></div>
                         <div class="counterWrapper">
-                            <div class="guard-unit">G</div>
+                            <div class="guard-unit">GD</div>
                             <div class="counter"></div>
                         </div>
                         <p class="range">{range}</p>
