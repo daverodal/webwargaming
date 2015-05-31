@@ -86,6 +86,7 @@
         "scenarios": {
             "main": {
                 "description": "Assault from the air.",
+                "longDescription":"first attempt at this game",
                 "supply": true,
                 "loyalMechMove": 8,
                 "loyalExtraInf": true,
