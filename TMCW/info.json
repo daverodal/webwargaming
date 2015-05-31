@@ -82,6 +82,7 @@
         "path": "TMCW",
         "genre": "20'th Century Games",
         "fileName": "Airborne/Airborne.php",
+        "description": "Airborne Assault Game",
         "scenarios": {
             "main": {
                 "description": "Assault from the air.",
