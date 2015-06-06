@@ -300,6 +300,7 @@ You should have received a copy of the GNU General Public License
             mapHeight = winHeight;
         }
         $("#gameImages, #gameContainer").height(mapHeight).width(mapWidth);
+        $("#arrow-svg").height(mapHeight).width(mapWidth);
         DR.$panzoom.panzoom('resetDimensions');
 
         height = $("#crtWrapper h4").height();

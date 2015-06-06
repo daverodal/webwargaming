@@ -53,7 +53,9 @@ include "all.css";?>
 
                 }else{
                     if(specialHexes[i] === -1){
-                        $("#gameImages").append('<div id="special'+i+'" class="specialHexes pontoon"></div>');
+                        $("#gameImages").append('<div id="special'+i+'" class="specialHexes swedish pontoon"></div>');
+                    }else if(specialHexes[i] === -2){
+                        $("#gameImages").append('<div id="special'+i+'" class="specialHexes saxon pontoon"></div>');
                     }else{
                         $("#gameImages").append('<div id="special'+i+'" class="specialHexes">'+lab[specialHexes[i]]+'</div>');
                     }

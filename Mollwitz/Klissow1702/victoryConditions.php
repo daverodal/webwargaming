@@ -28,14 +28,13 @@ You should have received a copy of the GNU General Public License
             </p>
             </li>
 
-        <li>Swedish wins: At the end of any turn prior to turn 5 that they have scored 40 or more
+        <li>Swedish wins: At the end of any turn on or before the end of turn 5 that they have scored 35 or more
+        points. Or they win if they score 40 points or more on or before the end of turn 8.</li>
 
-        points.</li>
+        <li>Saxon Polish Wins: At the end of any turn on or before the end of turn 8 that they have scored 40 or
 
-        <li>Saxon Polish Wins: At the end of any turn prior to turn 8 that they have scored 40 or
+        more points, Or if the Swedish player fails to win by the end of the game.</li>
 
-        more points.</li>
-
-        <li>A Draw Occurs: If neither side has won by the end of turn 8.</li>
+        <li>A Draw Occurs: If both sides meet their victory requirements at the end of the same turn.</li>
     </ol>
 </li>

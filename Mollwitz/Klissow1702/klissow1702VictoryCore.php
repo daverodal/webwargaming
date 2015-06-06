@@ -85,31 +85,44 @@ class klissow1702VictoryCore extends victoryCore
 
         if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
+            $earlyWinScore = 35;
             $winScore = 40;
-            if ($this->victoryPoints[SWEDISH_FORCE] >= $winScore) {
+            if ($this->victoryPoints[SWEDISH_FORCE] >= $earlyWinScore) {
                 if ($turn <= 5) {
                     $swedishWin = true;
                 }
+            }
+            if ($this->victoryPoints[SWEDISH_FORCE] >= $winScore) {
+                    $swedishWin = true;
+
             }
             if ($this->victoryPoints[SAXON_POLISH_FORCE] >= $winScore) {
                 $saxonPolishWin = true;
             }
 
-            if ($swedishWin) {
+            if ($swedishWin && !$saxonPolishWin) {
                 $this->winner = SWEDISH_FORCE;
                 $gameRules->flashMessages[] = "Swedish Win";
-            }
-            if ($saxonPolishWin) {
-                $this->winner = SAXON_POLISH_FORCE;
-                $msg = "Saxon Polish Win";
-                $gameRules->flashMessages[] = $msg;
-            }
-            if ($swedishWin || $saxonPolishWin ||  $turn == ($gameRules->maxTurn + 1)) {
-                if(!$swedishWin && !$saxonPolishWin){
-                    $gameRules->flashMessages[] = "Tie Game";
-                }
-                $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
+            }
+            if ($saxonPolishWin && !$swedishWin) {
+                $this->winner = SAXON_POLISH_FORCE;
+                $gameRules->flashMessages[] = "Saxon Polish Win";
+                $this->gameOver = true;
+            }
+            if($swedishWin && $saxonPolishWin){
+                $gameRules->flashMessages[] = "Tie Game";
+                $this->gameOver = true;
+            }
+            if ($turn == ($gameRules->maxTurn + 1)) {
+                $this->gameOver = true;
+                if(!$saxonPolishWin && !$swedishWin){
+                    $this->winner = SAXON_POLISH_FORCE;
+                    $gameRules->flashMessages[] = "Saxon Polish Win";
+                }
+            }
+            if($this->gameOver){
+                $gameRules->flashMessages[] = "Game Over";
                 return true;
             }
         }
@@ -133,7 +146,7 @@ class klissow1702VictoryCore extends victoryCore
             for ($i = 0; $i <= $num; $i++) {
                 $unit = $units[$i];
                 if ($unit->class == "pontoon" && $unit->hexagon->parent === "gameImages") {
-                    $supply[$unit->hexagon->name] = -1;
+                    $supply[$unit->hexagon->name] = 0 - $unit->forceId;
                     $battle->pontoons[] = $unit->hexagon->name;
                     $force->eliminateUnit($i);
                 }

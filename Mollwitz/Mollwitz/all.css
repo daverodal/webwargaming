@@ -1013,7 +1013,7 @@ svg marker#head {
   border: none; }
   .vintage.Sikh.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/SikhPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1046,7 +1046,7 @@ svg marker#head {
   border: none; }
   .Sikh.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/SikhPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1074,7 +1074,7 @@ svg marker#head {
   border: none; }
   .vintage.Beluchi.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/SikhPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1107,7 +1107,7 @@ svg marker#head {
   border: none; }
   .Beluchi.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/SikhPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1135,7 +1135,7 @@ svg marker#head {
   border: none; }
   .vintage.British.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/BritPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1168,7 +1168,7 @@ svg marker#head {
   border: none; }
   .British.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/BritPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1196,7 +1196,7 @@ svg marker#head {
   border: none; }
   .vintage.SaxonPolish.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/RusPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1229,7 +1229,7 @@ svg marker#head {
   border: none; }
   .SaxonPolish.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/RusPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1261,7 +1261,7 @@ svg marker#head {
   border: none; }
   .vintage.Native.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/NativePontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1294,7 +1294,7 @@ svg marker#head {
   border: none; }
   .Native.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/NativePontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1322,7 +1322,7 @@ svg marker#head {
   border: none; }
   .vintage.Austrian.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/AusPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1355,7 +1355,7 @@ svg marker#head {
   border: none; }
   .Austrian.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/AusPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1383,7 +1383,7 @@ svg marker#head {
   border: none; }
   .vintage.Prussian.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/PruPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1416,7 +1416,7 @@ svg marker#head {
   border: none; }
   .Prussian.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/PruPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1444,7 +1444,7 @@ svg marker#head {
   border: none; }
   .vintage.Russian.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/RusPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1477,7 +1477,7 @@ svg marker#head {
   border: none; }
   .Russian.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/RusPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1505,7 +1505,7 @@ svg marker#head {
   border: none; }
   .vintage.French.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/FrenchPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1538,7 +1538,7 @@ svg marker#head {
   border: none; }
   .French.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/FrenchPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1566,7 +1566,7 @@ svg marker#head {
   border: none; }
   .vintage.AngloAllied.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/AngPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1599,7 +1599,7 @@ svg marker#head {
   border: none; }
   .AngloAllied.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/AngPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1627,7 +1627,7 @@ svg marker#head {
   border: none; }
   .vintage.Anglo.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/AngPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1660,7 +1660,7 @@ svg marker#head {
   border: none; }
   .Anglo.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/AngPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1688,7 +1688,7 @@ svg marker#head {
   border: none; }
   .vintage.Allied.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/AngPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1721,7 +1721,7 @@ svg marker#head {
   border: none; }
   .Allied.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/AngPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1749,7 +1749,7 @@ svg marker#head {
   border: none; }
   .vintage.Swedish.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/SwePontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -1782,7 +1782,7 @@ svg marker#head {
   border: none; }
   .Swedish.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/AngloPontoon.png");
+    background-image: url("../../js/SwePontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;

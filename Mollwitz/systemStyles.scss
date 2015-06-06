@@ -69,7 +69,7 @@ $vintage-unit-numbers-size:10px;
          .counter {
 
            background-color: lightgreen;
-           background-image: url('../../js/AngloPontoon.png');
+           background-image: url('../../js/#{$shortName}Pontoon.png');
            background-size: 32px;
            width: 32px;
            height: 32px;
@@ -110,7 +110,7 @@ $vintage-unit-numbers-size:10px;
       .counter {
 
         background-color: lightgreen;
-        background-image: url('../../js/AngloPontoon.png');
+        background-image: url('../../js/#{$shortName}Pontoon.png');
         background-size: 32px;
         width: 32px;
         height: 32px;
