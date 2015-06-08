@@ -177,7 +177,7 @@ class Ferozesha extends IndiaCore
             if ($scenario->dayTwo) {
                 $this->gameRules->setMaxTurn(14);
             } else {
-                $this->gameRules->setMaxTurn(12);
+                $this->gameRules->setMaxTurn(11);
             }
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
