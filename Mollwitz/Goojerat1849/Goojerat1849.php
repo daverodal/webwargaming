@@ -198,7 +198,7 @@ class Goojerat1849 extends IndiaCore
 
             // game data
 
-            $this->gameRules->setMaxTurn(12);
+            $this->gameRules->setMaxTurn(10);
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
             $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */
