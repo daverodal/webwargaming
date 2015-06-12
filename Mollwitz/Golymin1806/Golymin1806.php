@@ -126,7 +126,7 @@ class Golymin1806 extends JagCore
 
             // game data
 
-            $this->gameRules->setMaxTurn(7);
+            $this->gameRules->setMaxTurn(9);
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
             $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */
