@@ -1963,14 +1963,14 @@ You should have received a copy of the GNU General Public License
   width: 500px; }
 
 .playerTwo {
-  background: #df5842;
-  border-color: #df5842 !important; }
+  background: #4cb800;
+  border-color: #4cb800 !important; }
 
-.AustrianFace, .playerTwoFace {
-  color: #df5842; }
+.RussianFace, .playerTwoFace {
+  color: #4cb800; }
 
-.Austrian .counterWrapper {
-  background-color: white; }
+.Russian .counterWrapper {
+  background-color: #009c1d; }
 
 .playerOne {
   background: #84b5ff;
@@ -1981,36 +1981,6 @@ You should have received a copy of the GNU General Public License
 
 .French .counterWrapper {
   background-color: #0003b4; }
-
-.playerThree {
-  background: #4cb800;
-  border-color: #4cb800 !important; }
-
-.RussianFace, .playerThreeFace {
-  color: #4cb800; }
-
-.Russian .counterWrapper {
-  background-color: #009c1d; }
-
-.playerFour {
-  background: #84b5ff;
-  border-color: #84b5ff !important; }
-
-.GuardFace, .playerFourFace {
-  color: white; }
-
-.Guard .counterWrapper {
-  background-color: #0003b4; }
-
-.playerThree {
-  background: #FD0013;
-  border-color: #FD0013 !important; }
-
-.BavarianFace, .playerThreeFace {
-  color: #FD0013; }
-
-.Bavarian .counterWrapper {
-  background-color: #4287FA; }
 
 .french.specialHexes {
   background-color: #84b5ff; }

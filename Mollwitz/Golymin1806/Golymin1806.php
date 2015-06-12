@@ -146,6 +146,5 @@ class Golymin1806 extends JagCore
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
 
         }
-        echo "consteructed ";
     }
 }
