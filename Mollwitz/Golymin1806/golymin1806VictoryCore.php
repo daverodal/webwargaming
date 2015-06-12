@@ -69,10 +69,23 @@ class golymin1806VictoryCore extends victoryCore
         list($mapHexName, $forceId) = $args;
         if (in_array($mapHexName, $battle->specialHexA)) {
             if ($forceId == FRENCH_FORCE) {
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>French Control Vital Objective</span>";
+                $this->victoryPoints[FRENCH_FORCE]  += 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>+5 French vp</span>";
             }
-            if ($forceId == ALLIED_FORCE) {
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='prussian'>French Lose Vital Objective</span>";
+            if ($forceId == RUSSIAN_FORCE) {
+                $this->victoryPoints[RUSSIAN_FORCE]  -= 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='russian'>-5 French vp</span>";
+            }
+        }
+
+        if (in_array($mapHexName, $battle->specialHexB)) {
+            if ($forceId == FRENCH_FORCE) {
+                $this->victoryPoints[FRENCH_FORCE]  += 15;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>+15 French vp</span>";
+            }
+            if ($forceId == RUSSIAN_FORCE) {
+                $this->victoryPoints[RUSSIAN_FORCE]  -= 15;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='russian'>-15 French vp</span>";
             }
         }
     }
@@ -84,38 +97,25 @@ class golymin1806VictoryCore extends victoryCore
         $gameRules = $battle->gameRules;
         $scenario = $battle->scenario;
         $turn = $gameRules->turn;
-        $frenchWin = $alliedWin = $draw = false;
+        $frenchWin = $RussianWin = $draw = false;
 
         $victoryReason = "";
 
         if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
-            $alliedWinScore = 55;
-            $frenchLowWinScore = 60;
-            $frenchHighWinScore = 70;
-            /* end of allied turn */
-            if($gameRules->attackingForceId === ALLIED_FORCE && !$this->deadGuardInf){
-                foreach($specialHexes as $specialHex){
-                    if($specialHex === FRENCH_FORCE){
-                        $frenchWin = true;
-                        $victoryReason .= "Occupy vital objective ";
-                    }
-                }
-            }
-            if ($this->victoryPoints[FRENCH_FORCE] >= $frenchLowWinScore && $turn <= 5) {
-                    $frenchWin = true;
-                $victoryReason .= "Over $frenchLowWinScore on or before turn 5 ";
-            }
-            if($this->victoryPoints[FRENCH_FORCE] >= $frenchHighWinScore){
+            $RussianWinScore = 30;
+            $frenchWinScore = 40;
+
+            if($this->victoryPoints[FRENCH_FORCE] >= $frenchWinScore){
                 $frenchWin = true;
-                $victoryReason .= "Over $frenchHighWinScore ";
+                $victoryReason .= "Over $frenchWinScore ";
             }
-            if ($this->victoryPoints[ALLIED_FORCE] >= $alliedWinScore) {
-                $alliedWin = true;
-                $victoryReason .= "Over $alliedWinScore ";
+            if ($this->victoryPoints[RUSSIAN_FORCE] >= $RussianWinScore) {
+                $RussianWin = true;
+                $victoryReason .= "Over $RussianWinScore ";
             }
 
-            if ($frenchWin && !$alliedWin) {
+            if ($frenchWin && !$RussianWin) {
                 $this->winner = FRENCH_FORCE;
                 $gameRules->flashMessages[] = "French Win";
                 $gameRules->flashMessages[] = $victoryReason;
@@ -123,15 +123,15 @@ class golymin1806VictoryCore extends victoryCore
                 $this->gameOver = true;
                 return true;
             }
-            if ($alliedWin && !$frenchWin) {
-                $this->winner = ALLIED_FORCE;
+            if ($RussianWin && !$frenchWin) {
+                $this->winner = RUSSIAN_FORCE;
                 $gameRules->flashMessages[] = "Allies Win";
                 $gameRules->flashMessages[] = $victoryReason;
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
                 return true;
             }
-            if($frenchWin && $alliedWin){
+            if($frenchWin && $RussianWin){
                 $gameRules->flashMessages[] = "Tie Game";
                 $gameRules->flashMessages[] = $victoryReason;
                 $gameRules->flashMessages[] = "Game Over";
@@ -139,7 +139,7 @@ class golymin1806VictoryCore extends victoryCore
                 return true;
             }
             if ($turn > $gameRules->maxTurn) {
-                $this->winner = ALLIED_FORCE;
+                $this->winner = RUSSIAN_FORCE;
                 $gameRules->flashMessages[] = "Allies Win";
                 $gameRules->flashMessages[] = "French Fail to Win";
                 $this->gameOver = true;
@@ -151,20 +151,7 @@ class golymin1806VictoryCore extends victoryCore
 
     public function postRecoverUnits($args)
     {
-        $b = Battle::getBattle();
-        $scenario = $b->scenario;
 
-        if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE) {
-            if($scenario->earlyMovement){
-                $b->gameRules->flashMessages[] = "Allies south the the river Kinzig may not move.";
-            }else{
-                $b->gameRules->flashMessages[] = "No Allied movement this turn.";
-            }
-        }
-
-        if (!isset($scenario->dayTwoMovement) && $b->gameRules->turn == 2 && $b->gameRules->phase == RED_MOVE_PHASE) {
-            $b->gameRules->flashMessages[] = "Allies south the the river Kinzig may not move.";
-        }
     }
 
     public function postRecoverUnit($args)
@@ -174,31 +161,8 @@ class golymin1806VictoryCore extends victoryCore
         $scenario = $b->scenario;
         $id = $unit->id;
 
-        if($b->gameRules->turn <= 2 && !isset($this->southOfTheRiver)){
-            $terrain = $b->terrain;
-            $reinforceZones = $terrain->reinforceZones;
-            $southOfTheRiver = [];
-            foreach($reinforceZones as $reinforceZone){
-                if($reinforceZone->name == 'D'){
-                    $southOfTheRiver[$reinforceZone->hexagon->name] = true;
-                }
-            }
-            $this->southOfTheRiver = $southOfTheRiver;
-        }
 
         parent::postRecoverUnit($args);
 
-        if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE && $unit->status == STATUS_READY && $unit->forceId == ALLIED_FORCE) {
-            /* if early Movement set and unit is north of river they can move */
-            if(!(isset($scenario->earlyMovement) && !$this->southOfTheRiver[$unit->hexagon->name])){
-                $unit->status = STATUS_UNAVAIL_THIS_PHASE;
-            }
-        }
-
-        if ($b->gameRules->turn == 2 && $b->gameRules->phase == RED_MOVE_PHASE){
-          if($unit->status == STATUS_READY && $unit->forceId == ALLIED_FORCE && $this->southOfTheRiver[$unit->hexagon->name]) {
-              $unit->status = STATUS_UNAVAIL_THIS_PHASE;
-          }
-        }
     }
 }

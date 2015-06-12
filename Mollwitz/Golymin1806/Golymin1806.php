@@ -18,11 +18,11 @@ You should have received a copy of the GNU General Public License
 
 
 define("FRENCH_FORCE", 1);
-define("ALLIED_FORCE", 2);
+define("RUSSIAN_FORCE", 2);
 
 global $force_name;
 $force_name[FRENCH_FORCE] = "French";
-$force_name[ALLIED_FORCE] = "Allied";
+$force_name[RUSSIAN_FORCE] = "Russian";
 
 require_once "JagCore.php";
 
@@ -52,7 +52,7 @@ class Golymin1806 extends JagCore
         global $force_name;
 
         $deployTwo = $playerOne = $force_name[FRENCH_FORCE];
-        $deployOne = $playerTwo = $force_name[ALLIED_FORCE];
+        $deployOne = $playerTwo = $force_name[RUSSIAN_FORCE];
         @include_once "playMulti.php";
     }
 
@@ -61,7 +61,7 @@ class Golymin1806 extends JagCore
         global $force_name;
         $youAre = $force_name[$player];
         $deployTwo = $playerOne = $force_name[FRENCH_FORCE];
-        $deployOne = $playerTwo = $force_name[ALLIED_FORCE];
+        $deployOne = $playerTwo = $force_name[RUSSIAN_FORCE];
         @include_once "view.php";
     }
 
