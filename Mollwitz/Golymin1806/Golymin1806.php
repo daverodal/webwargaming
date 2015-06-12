@@ -30,7 +30,7 @@ require_once "JagCore.php";
 
 class Golymin1806 extends JagCore
 {
-    public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>1, 'SpecialHexC'=>0];
+    public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>2, 'SpecialHexC'=>0];
 
     public
     static function getHeader($name, $playerData, $arg = false)
