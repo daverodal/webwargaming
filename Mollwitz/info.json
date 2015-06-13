@@ -635,7 +635,6 @@
         {"num":1,"forceId":2,"combat":6,"movement":6,"reinforce":"D","range":1,"nationality":"Russian","class":"cavalry"},
         {"num":2,"forceId":2,"combat":4,"movement":7,"reinforce":"D","range":1,"nationality":"Russian","class":"cavalry"},
         {"num":4,"forceId":2,"combat":4,"movement":6,"reinforce":"D","range":1,"nationality":"Russian","class":"cavalry"},
-        {"num":1,"forceId":2,"combat":3,"movement":7,"reinforce":"D","range":1,"nationality":"Russian","class":"cavalry"},
 
         {"num":1,"forceId":2,"combat":2,"movement":4,"reinforce":"E","range":4,"nationality":"Russian","class":"artillery"},
         {"num":2,"forceId":2,"combat":3,"movement":3,"reinforce":"E","range":4,"nationality":"Russian","class":"artillery"},
