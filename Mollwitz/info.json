@@ -645,12 +645,12 @@
     "scenarios": {
       "main": {
         "description": "Historical Scenario.",
-        "longDescription":"French Usually win as they did historically."
+        "longDescription":"Mud Rule in effect. Clear/Trail 2 mp's.",
+        "mudMovement": true
       },
       "balance": {
         "description": "Play Balance Scenario.",
-        "longDescription":"Allies may move on second turn, french may deploy one hex closer.",
-        "earlyMovement": true
+        "longDescription":"Twas a clear day that."
       }
     }
   },

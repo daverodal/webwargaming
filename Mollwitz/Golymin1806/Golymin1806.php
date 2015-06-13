@@ -88,6 +88,17 @@ class Golymin1806 extends JagCore
         return $data;
     }
 
+
+    function terrainGen($mapDoc, $terrainDoc){
+
+        parent::terrainGen($mapDoc, $terrainDoc);
+        if($this->scenario->mudMovement){
+            $this->terrain->addTerrainFeature("clear", "", "c", 2, 0, 0, true);
+            $this->terrain->addTerrainFeature("road", "road", "r", 2, 0, 0, false);
+        }
+
+    }
+
     public function init()
     {
 
