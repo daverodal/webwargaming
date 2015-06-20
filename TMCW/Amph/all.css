@@ -1155,14 +1155,14 @@ svg marker#head {
     color: white; }
 
 .playerTwo {
-  background: #C5BF44;
-  border-color: #C5BF44 !important; }
+  background: #84b5ff;
+  border-color: #84b5ff !important; }
 
 .loyalistFace, .playerTwoFace {
-  color: #C5BF44; }
+  color: #84b5ff; }
 
 .loyalist {
-  background-color: #C5BF44; }
+  background-color: #84b5ff; }
   .loyalist .unit-desig {
     color: white; }
 
