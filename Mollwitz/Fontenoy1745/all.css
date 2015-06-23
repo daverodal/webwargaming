@@ -2011,7 +2011,7 @@ You should have received a copy of the GNU General Public License
 .french.specialHexes, .anglo.specialHexes {
   color: white; }
 
-.French p.forceMarch, .French p.range, .AngloAllied p.forceMarch, .AngloAllied p.range, .Dutch p.forceMarch, .Dutch p.range, .Guard p.forceMarch, .Guard p.range {
+.AngloAllied p.forceMarch, .AngloAllied p.range, .Dutch p.forceMarch, .Dutch p.range, .Guard p.forceMarch, .Guard p.range {
   color: white; }
 
 .vintage.Dutch.infantry .counterWrapper .counter {
