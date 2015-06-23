@@ -24,7 +24,7 @@ $bavarianWrapperColor: #4287FA;
 $bavarianColor: #FD0013;
 
 @include player(Anglo ,One , $angloAlliedColor, $angloAlliedWrapperColor);
-@include player(French, Two, $frenchColor, #0003b4, $frenchColor);
+@include player(French, Two, $frenchColor, $frenchWrapperColor);
 @include player(Austrian, Three, $austrianColor, $austrianWrapperColor, $austrianWrapperColor);
 @include player(Dutch, Four, $prussianColor, $prussianWrapperColor);
 
@@ -46,12 +46,6 @@ $bavarianColor: #FD0013;
 }
 
 @include badge(Dutch, Pru);
-
-
-.French.unit .unit-numbers, .Guard.unit .unit-numbers{
-  color:red;
-}
-
-@include badge(French, FrenchNap);
+@include badge(French, French);
 @include badge(Guard, FrenchNap);
 @include badge(Prussian, PruNap);
