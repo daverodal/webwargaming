@@ -72,8 +72,8 @@ class fontenoy1745VictoryCore extends victoryCore
                 $this->victoryPoints[FRENCH_FORCE]  += 5;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>+5 French vp</span>";
             }
-            if ($forceId == RUSSIAN_FORCE) {
-                $this->victoryPoints[RUSSIAN_FORCE]  -= 5;
+            if ($forceId == ALLIED_FORCE) {
+                $this->victoryPoints[ALLIED_FORCE]  -= 5;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='russian'>-5 French vp</span>";
             }
         }
@@ -83,8 +83,8 @@ class fontenoy1745VictoryCore extends victoryCore
                 $this->victoryPoints[FRENCH_FORCE]  += 15;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>+15 French vp</span>";
             }
-            if ($forceId == RUSSIAN_FORCE) {
-                $this->victoryPoints[RUSSIAN_FORCE]  -= 15;
+            if ($forceId == ALLIED_FORCE) {
+                $this->victoryPoints[ALLIED_FORCE]  -= 15;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='russian'>-15 French vp</span>";
             }
         }
@@ -110,7 +110,7 @@ class fontenoy1745VictoryCore extends victoryCore
                 $frenchWin = true;
                 $victoryReason .= "Over $frenchWinScore ";
             }
-            if ($this->victoryPoints[RUSSIAN_FORCE] >= $RussianWinScore) {
+            if ($this->victoryPoints[ALLIED_FORCE] >= $RussianWinScore) {
                 $RussianWin = true;
                 $victoryReason .= "Over $RussianWinScore ";
             }
@@ -124,7 +124,7 @@ class fontenoy1745VictoryCore extends victoryCore
                 return true;
             }
             if ($RussianWin && !$frenchWin) {
-                $this->winner = RUSSIAN_FORCE;
+                $this->winner = ALLIED_FORCE;
                 $gameRules->flashMessages[] = "Allies Win";
                 $gameRules->flashMessages[] = $victoryReason;
                 $gameRules->flashMessages[] = "Game Over";
@@ -139,7 +139,7 @@ class fontenoy1745VictoryCore extends victoryCore
                 return true;
             }
             if ($turn > $gameRules->maxTurn) {
-                $this->winner = RUSSIAN_FORCE;
+                $this->winner = ALLIED_FORCE;
                 $gameRules->flashMessages[] = "Allies Win";
                 $gameRules->flashMessages[] = "French Fail to Win";
                 $this->gameOver = true;
