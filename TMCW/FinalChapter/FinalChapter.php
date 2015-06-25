@@ -261,7 +261,7 @@ class Finalchapter extends ModernLandBattle
         if ($data) {
             $this->specialHexA = $data->specialHexA;
         } else {
-            $this->victory = new Victory("TMCW/Finalchapter/finalChapterVictoryCore.php");
+            $this->victory = new Victory("TMCW/FinalChapter/finalChapterVictoryCore.php");
 
             $this->moveRules->noZocZocOneHex = true;
             $this->moveRules->blockedRetreatDamages = false;
