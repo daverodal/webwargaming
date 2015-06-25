@@ -185,6 +185,119 @@ trait divCombatHalfDoubleTerrain
     }
 }
 
+trait divCombatDoubleMultipleTerrain
+{
+    function setCombatIndex($defenderId)
+    {
+        $combatLog = "";
+
+        $battle = Battle::getBattle();
+        $combatRules = $battle->combatRules;
+        $combats = $battle->combatRules->combats->$defenderId;
+        /* @var Force $force */
+        $force = $battle->force;
+        $hexagon = $battle->force->units[$defenderId]->hexagon;
+        $hexpart = new Hexpart();
+        $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
+
+        if (count((array)$combats->attackers) == 0) {
+            $combats->index = null;
+            $combats->attackStrength = null;
+            $combats->defenseStrength = null;
+            $combats->terrainCombatEffect = null;
+            return;
+        }
+
+
+        $defenders = $combats->defenders;
+        $isTown = $isHill = $isForest = $isSwamp = $attackerIsSunkenRoad = $isRedoubt = $isElevated = false;
+
+        $totalDefense = 1;
+        $terrain = $battle->terrain;
+        $defCombatLog = "";
+        foreach ($defenders as $defId => $defender) {
+            $hexagon = $battle->force->units[$defId]->hexagon;
+            $hexpart = new Hexpart();
+            $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
+            $thisHex = [];
+            $thisLog = "";
+            if($terrain->terrainIs($hexpart, 'forta'))
+            {
+                $thisHex['forta'] = 2;
+                $thisLog .= "2x defend in fort ";
+            }
+            if($terrain->terrainIs($hexpart, 'roughone'))
+            {
+                $thisHex['roughone'] = 2;
+                $thisLog .= "2x defend in rough ";
+            }
+            if($terrain->terrainIs($hexpart, 'roughtwo'))
+            {
+                $thisHex['roughtwo'] = 3;
+                $thisLog .= "3x defend in mountain ";
+            }
+            if($battle->combatRules->allAreAttackingAcrossRiver($defId))
+            {
+                $thisHex['river'] = 2;
+                $thisLog .= "2x defend behind river ";
+            }
+            $multiple = count($thisHex);
+            $defense = array_sum($thisHex);
+            if($multiple > 1){
+                $defense--;
+            }
+            if($defense > $totalDefense){
+                $totalDefense = $defense;
+                $defCombatLog = $thisLog."<br>total def ${defense}x";
+            }
+        }
+
+        $attackStrength = 0;
+        $combatLog .= "Attackers<br>";
+
+        foreach ($combats->attackers as $attackerId => $v) {
+            $unit = $force->units[$attackerId];
+            $combatLog .= $unit->strength." ".$unit->class."<br>";
+            $strength = $unit->strength;
+            $attackStrength += $strength;
+        }
+        $defenseStrength = 0;
+        $combatLog .= " = $attackStrength<br>Defenders<br> ";
+
+        $unitDefenseStrength = 0;
+        foreach ($defenders as $defId => $defender) {
+            $unit = $battle->force->units[$defId];
+            $combatLog .= $force->getDefenderStrength($defId). " " .$unit->class." ";
+
+            $unitDefenseStrength += $force->getDefenderStrength($defId);
+            $defenseStrength += $force->getDefenderStrength($defId) * $totalDefense;
+            $combatLog .= "<br>";
+        }
+        $combatLog .= "= $unitDefenseStrength<br>";
+        $combatLog .= $defCombatLog;
+
+        $combatLog .= " = $defenseStrength";
+        $combatIndex = $this->getCombatIndex($attackStrength, $defenseStrength);
+        /* Do this before terrain effects */
+        if ($combatIndex >= $this->maxCombatIndex) {
+            $combatIndex = $this->maxCombatIndex;
+        }
+
+
+        /* @var $combatRules CombatRules */
+//        $terrainCombatEffect = $combatRules->getDefenderTerrainCombatEffect($defenderId);
+
+//        $combatIndex -= $terrainCombatEffect;
+
+        $combats->attackStrength = $attackStrength;
+        $combats->defenseStrength = $defenseStrength;
+        $combats->terrainCombatEffect = 0;
+        $combats->index = $combatIndex;
+        $combats->combatLog = $combatLog;
+    }
+}
+
+
 trait divMCWCombatShiftTerrain
 {
     function setCombatIndex($defenderId)
@@ -248,7 +361,7 @@ trait divMCWCombatShiftTerrain
         $defenseStrength = 0;
         foreach ($defenders as $defId => $defender) {
             $unit = $battle->force->units[$defId];
-            $combatLog .= $unit->strength. " " .$unit->class." ";
+            $combatLog .= $unit->defStrength. " " .$unit->class." ";
             $combatLog .= "<br>";
             $defenseStrength += $force->getDefenderStrength($defId);
         }

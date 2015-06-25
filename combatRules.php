@@ -638,10 +638,8 @@ class CombatRules
         $hexside = new Hexpart($hexsideX, $hexsideY);
 
         if ($this->terrain->terrainIs($hexside, $type) === false) {
-            echo " FALSE!!! ";
             return false;
         }
-        echo "TRUE !!! ";
         return true;
     }
 

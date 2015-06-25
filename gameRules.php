@@ -665,7 +665,7 @@ class GameRules
                     $victory->phaseChange();
                     $this->defendingForceId = $this->phaseChanges[$i]->nextDefenderId;
 
-                    $this->force->setAttackingForceId($this->attackingForceId);
+                    $this->force->setAttackingForceId($this->attackingForceId, $this->defendingForceId);
 
                     $this->force->recoverUnits($this->phase, $this->moveRules, $this->mode);
 

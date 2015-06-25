@@ -407,7 +407,7 @@ class MoveRules
             /* @var MapHex $mapHex */
             $mapHex = $this->mapData->getHex($hexNum);
 
-            if ($mapHex->isOccupied($this->force->attackingForceId, $this->stacking)) {
+            if ($mapHex->isOccupied($this->force->attackingForceId, $this->stacking, $unit)) {
                 $this->moves->$hexNum->isOccupied = true;
             }
             if ($mapHex->isOccupied($this->force->defendingForceId)) {
@@ -555,7 +555,7 @@ class MoveRules
             /* @var MapHex $mapHex */
             $mapHex = $this->mapData->getHex($hexNum);
 
-            if ($mapHex->isOccupied($attackingForceId, $this->stacking)) {
+            if ($mapHex->isOccupied($attackingForceId, $this->stacking, $unit)) {
                 $this->moves->$hexNum->isOccupied = true;
             }
             if ($mapHex->isOccupied($defendingForceId)) {
@@ -900,7 +900,7 @@ class MoveRules
         $victory->postStartMovingUnit($unit);
     }
 
-    function move(unit $movingUnit, $hexagon)
+    function move(BaseUnit $movingUnit, $hexagon)
     {
         if ($movingUnit->unitIsMoving()
             && $this->moveIsValid($movingUnit, $hexagon)
@@ -909,7 +909,7 @@ class MoveRules
         }
     }
 
-    function stopMove(unit $movingUnit)
+    function stopMove(BaseUnit $movingUnit)
     {
         $battle = Battle::getBattle();
         $victory = $battle->victory;
@@ -957,7 +957,7 @@ class MoveRules
     }
 
 
-    function moveIsValid(unit $movingUnit, $hexagon, $startHex = false, $firstHex = false)
+    function moveIsValid(BaseUnit $movingUnit, $hexagon, $startHex = false, $firstHex = false)
     {
         // all 4 conditions must be true, so any one that is false
         //    will make the move invalid
@@ -1002,7 +1002,7 @@ class MoveRules
         return $isValid;
     }
 
-    function updateMoveData(unit $movingUnit, $hexagon)
+    function updateMoveData(BaseUnit $movingUnit, $hexagon)
     {
         $battle = Battle::getBattle();
         /* @var MapData $mapData */
@@ -1074,7 +1074,7 @@ class MoveRules
                 $zones = $this->terrain->getReinforceZonesByName($zoneName);
                 list($zones) = $battle->victory->postReinforceZones($zones, $unit);
                 foreach ($zones as $zone) {
-                    if ($this->force->hexagonIsOccupied($zone->hexagon, $this->stacking)) {
+                    if ($this->force->hexagonIsOccupied($zone->hexagon, $this->stacking, $unit)) {
                         continue;
                     }
                     $startHex = $zone->hexagon->name;
@@ -1105,7 +1105,7 @@ class MoveRules
                 list($zones) = $battle->victory->postDeployZones($zones, $unit);
                 foreach ($zones as $zone) {
                     $startHex = $zone->hexagon->name;
-                    if ($this->force->hexagonIsOccupied($zone->hexagon, $this->stacking)) {
+                    if ($this->force->hexagonIsOccupied($zone->hexagon, $this->stacking, $unit)) {
                         continue;
                     }
                     $hexPath = new HexPath();
@@ -1131,7 +1131,7 @@ class MoveRules
             $zones = $this->terrain->getReinforceZonesByName($this->force->getUnitReinforceZone($id));
             list($zones) = $battle->victory->postReinforceZones($zones, $unit);
             foreach ($zones as $zone) {
-                if ($this->force->hexagonIsOccupied($zone->hexagon, $this->stacking)) {
+                if ($this->force->hexagonIsOccupied($zone->hexagon, $this->stacking, $unit)) {
                     continue;
                 }
                 $startHex = $zone->hexagon->name;
@@ -1361,7 +1361,7 @@ class MoveRules
         if ($this->zocBlocksRetreat === true && $this->force->mapHexIsZOC($mapHex, $this->force->enemy($unit->forceId))){
             $isBlocked = true;
             if($this->friendlyAllowsRetreat && $mapHex->isOccupied($forceId)){
-                if(!$mapHex->isOccupied($forceId,$this->stacking)){
+                if(!$mapHex->isOccupied($forceId,$this->stacking, $unit)){
                     $isBlocked = false;
                 }
             }
@@ -1398,7 +1398,7 @@ class MoveRules
         ) {
             $this->force->addToRetreatHexagonList($id, $movingUnit->getUnitHexagon());
             // set move amount to 0
-            $occupied = $this->force->hexagonIsOccupiedForce($hexagon, $movingUnit->forceId, $this->stacking);
+            $occupied = $this->force->hexagonIsOccupiedForce($hexagon, $movingUnit->forceId, $this->stacking, $movingUnit);
             $movingUnit->updateMoveStatus($hexagon, 0);
 
             // check crt retreat count required to how far the unit has retreated

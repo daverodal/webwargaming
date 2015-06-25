@@ -137,7 +137,9 @@ x.register("mapUnits", function(mapUnits) {
             reduceDisp = "<span class='reduced'>";
         }
         var symb = mapUnits[i].supplied !== false ? " - " : " <span class='reduced'>u</span> ";
-        var html = reduceDisp + str + symb + move + "</span>"
+//        symb = "-"+mapUnits[i].defStrength+"-";
+        var html = reduceDisp + str + symb + move + "</span>";
+        html = renderUnitNumbers(mapUnits[i]);
         $("#"+i+" .unit-numbers").html(html);
         var len  = $("#"+i+" .unit-numbers").text().length;
         $("#"+i+" div.unit-numbers span ").addClass("infoLen"+len);
@@ -155,6 +157,26 @@ x.register("mapUnits", function(mapUnits) {
     }
 
 });
+function renderUnitNumbers(unit, moveAmountUsed){
+
+    var  move = unit.maxMove - unit.moveAmountUsed;
+    move = move.toFixed(2);
+    move = move.replace(/\.00$/,'');
+    move = move.replace(/(\.[1-9])0$/,'$1');
+    var str = unit.strength;
+    var reduced = unit.isReduced;
+    var reduceDisp = "<span>";
+    if(reduced){
+        reduceDisp = "<span class='reduced'>";
+    }
+    var symb = unit.supplied !== false ? " - " : " <span class='reduced'>u</span> ";
+//        symb = "-"+unit.defStrength+"-";
+    var html = reduceDisp + str + symb + move + "</span>";
+    return html;
+
+
+
+}
 
 x.register("force", function(force,data) {
 
@@ -484,25 +506,37 @@ x.register("gameRules", function(gameRules,data) {
     }
 
     var pix = turn  + (turn - 1) * 36 + 1;
-    if(gameRules.attackingForceId == 1){
-        $("#header").removeClass(DR.playerTwo).addClass(DR.playerOne).removeClass('playerTwo').addClass('playerOne');
-        $("#turnCounter").css("background","rgb(0,128,0)");
-        $("#turnCounter").css("color","white");
-        $("#crt").removeClass(DR.playerTwo).addClass(DR.playerOne).removeClass('playerTwo').addClass('playerOne');
-        $(".row1,.row3,.row5").removeClass(DR.playerTwo).addClass(DR.playerOne).removeClass('playerTwo').addClass('playerOne');
-    }else{
-        $("#header").removeClass(DR.playerOne).removeClass('playerOne').addClass(DR.playerTwo).addClass('playerTwo');
-        $(".row1,.row3,.row5").removeClass(DR.playerOne).removeClass('playerOne').addClass(DR.playerTwo).addClass('playerTwo');
-        $("#crt").removeClass(DR.playerOne).removeClass('playerOne').addClass(DR.playerTwo).addClass('playerTwo');
-        $("#turnCounter").css("background","rgb(0,128,255)");
-        $("#turnCounter").css("color","white");
+    var playerNameMap = ["Zero", "One", "Two", "Three", "Four"];
+    var playerName = "player"+playerNameMap[gameRules.attackingForceId];
+    var removeThese = "playerOne playerTwo playerThree playerFour";
+    $("#header").removeClass(removeThese).addClass(playerName);
+    $("#turnCounter").css("background","rgb(0,128,0)");
+    $("#turnCounter").css("color","white");
 
-    }
+    $("#crt").removeClass(removeThese).addClass(playerName);
+    $(".row1,.row3,.row5").removeClass(removeThese).addClass(playerName);
+
+//    if(gameRules.attackingForceId == 1){
+//        $("#header").removeClass(DR.playerTwo).addClass(DR.playerOne).removeClass('playerTwo').addClass('playerOne');
+//        $("#turnCounter").css("background","rgb(0,128,0)");
+//        $("#turnCounter").css("color","white");
+//        $("#crt").removeClass(DR.playerTwo).addClass(DR.playerOne).removeClass('playerTwo').addClass('playerOne');
+//        $(".row1,.row3,.row5").removeClass(DR.playerTwo).addClass(DR.playerOne).removeClass('playerTwo').addClass('playerOne');
+//    }else{
+//        $("#header").removeClass(DR.playerOne).removeClass('playerOne').addClass(DR.playerTwo).addClass('playerTwo');
+//        $(".row1,.row3,.row5").removeClass(DR.playerOne).removeClass('playerOne').addClass(DR.playerTwo).addClass('playerTwo');
+//        $("#crt").removeClass(DR.playerOne).removeClass('playerOne').addClass(DR.playerTwo).addClass('playerTwo');
+//        $("#turnCounter").css("background","rgb(0,128,255)");
+//        $("#turnCounter").css("color","white");
+//
+//    }
 
     var html = "<span id='turn'>Turn "+turn+" of "+maxTurn+"</span> ";
     var phase = gameRules.phase_name[gameRules.phase];
     phase = phase.replace(/fNameOne/,DR.playerOne);
     phase = phase.replace(/fNameTwo/,DR.playerTwo);
+    phase = phase.replace(/fNameThree/,DR.playerThree);
+    phase = phase.replace(/fNameFour/,DR.playerFour);
     html += "<span id='phase'>"+phase;
     if(gameRules.mode_name[gameRules.mode]){
         html += " "+gameRules.mode_name[gameRules.mode];
@@ -512,6 +546,8 @@ x.register("gameRules", function(gameRules,data) {
     switch(gameRules.phase){
         case <?=BLUE_REPLACEMENT_PHASE?>:
         case <?=RED_REPLACEMENT_PHASE?>:
+        case <?=TEAL_REPLACEMENT_PHASE?>:
+        case <?=PURPLE_REPLACEMENT_PHASE?>:
             if(gameRules.replacementsAvail !== false && gameRules.replacementsAvail != null){
                 status = "There are "+gameRules.replacementsAvail+" available";
             }
@@ -734,7 +770,7 @@ x.register("moveRules", function(moveRules,data) {
                 });
 
             var label = MYCLONE.find("div.unit-numbers span").html();
-            if(data.gameRules.phase == <?=RED_COMBAT_PHASE;?> || data.gameRules.phase == <?=BLUE_COMBAT_PHASE;?>){
+            if(data.gameRules.phase == <?=RED_COMBAT_PHASE;?> || data.gameRules.phase == <?=BLUE_COMBAT_PHASE;?> || data.gameRules.phase == <?=TEAL_COMBAT_PHASE;?> || data.gameRules.phase == <?=PURPLE_COMBAT_PHASE;?>){
                 if(data.gameRules.mode == <?=ADVANCING_MODE;?>){
                     var unit = moveRules.movingUnitId;
 
@@ -772,6 +808,7 @@ x.register("moveRules", function(moveRules,data) {
                 );
 
                 var newLabel = label.replace(/((?:<span[^>]*>)?[-+ru](?:<\/span>)?).*/,"$1 "+moveRules.moves[i].pointsLeft);
+                newLabel = renderUnitNumbers(data.mapUnits[id], moveRules.moves[i].pointsLeft);
                 secondGenClone.find('div.unit-numbers span').html(newLabel).addClass('infoLen'+newLabel.length);
                 secondGenClone.find('.counterWrapper .guard-unit').addClass('infoLen'+newLabel.length);
                 if(moveRules.moves[i].isOccupied){

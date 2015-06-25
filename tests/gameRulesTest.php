@@ -12,11 +12,7 @@ class GameRulesTest extends PHPUnit_Framework_TestCase
         $klissow->gameRules->turn = 1;
         $klissow->victory->victoryPoints[1] = 35;
         $klissow->victory->victoryPoints[2] = 40;
-        var_dump($klissow->victory->victoryPoints);
         $klissow->victory->playerTurnChange(2);
-        var_dump($klissow->victory->postRecoverUnits());
-        var_dump($klissow->gameRules->flashMessages);
-        echo "dude "; var_dump($klissow->victory->gameOver);
         $this->assertEquals(is_object($mapViewer), true);
         $this->assertEquals(is_object($klissow), true);
         $mapViewer->setData(1,2,3,4,5,6);

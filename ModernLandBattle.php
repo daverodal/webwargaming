@@ -31,6 +31,7 @@ require_once "terrain.php";
 require_once "display.php";
 require_once "victory.php";
 require_once "victoryCore.php";
+require_once "UnitFactory.php";
 
 class ModernLandBattle extends LandBattle
 {

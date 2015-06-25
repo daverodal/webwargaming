@@ -506,7 +506,7 @@ class Terrain
     /*
      * can be private
      */
-    private function getTerrainEntranceMoveCost($hexagon, unit $unit)
+    private function getTerrainEntranceMoveCost($hexagon, BaseUnit $unit)
     {
 
         $entranceCost = 0;
@@ -593,7 +593,7 @@ class Terrain
         return $moveCost;
 
     }
-    function getTerrainAdditionalCost($startHexagon, $endHexagon, unit $unit){
+    function getTerrainAdditionalCost($startHexagon, $endHexagon, BaseUnit $unit){
         $moveCost = 0;
         list($startX, $startY) = Hexagon::getHexPartXY($startHexagon);
         list($endX, $endY) = Hexagon::getHexPartXY($endHexagon);
@@ -612,7 +612,7 @@ class Terrain
       * very public
       * used in moveRules
       */
-    function getTerrainMoveCost($startHexagon, $endHexagon, $railMove, unit $unit)
+    function getTerrainMoveCost($startHexagon, $endHexagon, $railMove, BaseUnit $unit)
     {
         if(is_object($startHexagon)){
             $startHexagon = $startHexagon->name;

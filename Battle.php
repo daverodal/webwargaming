@@ -64,7 +64,7 @@ class LandBattle extends Battle{
         $units = $force->units;
         $attackingId = $doc->wargame->gameRules->attackingForceId;
         foreach ($units as $unit) {
-            $unit = new unit($unit);
+            $unit = UnitFactory::build($unit);
             if (is_object($unit->hexagon)) {
 //                $unit->hexagon->parent = $unit->parent;
             } else {
@@ -72,16 +72,10 @@ class LandBattle extends Battle{
             }
 //            $unit->hexagon->parent = $unit->parent;
             $mapGrid->setHexagonXY($unit->hexagon->x, $unit->hexagon->y);
-            $mapUnit = new StdClass();
-            $mapUnit->isReduced = $unit->isReduced;
+            $mapUnit = $unit->fetchData();
+
             $mapUnit->x = $mapGrid->getPixelX();
             $mapUnit->y = $mapGrid->getPixelY();
-            $mapUnit->parent = $unit->hexagon->parent;
-            $mapUnit->moveAmountUsed = $unit->moveAmountUsed;
-            $mapUnit->maxMove = $unit->maxMove;
-            $mapUnit->strength = $unit->strength;
-            $mapUnit->supplied = $unit->supplied;
-            $mapUnit->reinforceZone = $unit->reinforceZone;
             $mapUnits[] = $mapUnit;
         }
         $turn = $doc->wargame->gameRules->turn;

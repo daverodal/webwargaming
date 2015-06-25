@@ -94,6 +94,23 @@
             }
         }
     },
+  "FinalChapter": {
+    "name": "The Final Chapter",
+    "path": "TMCW",
+    "genre": "20'th Century Games",
+    "fileName": "FinalChapter/FinalChapter.php",
+    "description": "Final Chapter",
+    "scenarios": {
+      "main": {
+        "description": "Final Chapter.",
+        "longDescription":"first attempt at this game",
+        "supply": true,
+        "loyalMechMove": 8,
+        "loyalExtraInf": true,
+        "hardCuneiform": true
+      }
+    }
+  },
 
     "Moskow": {
         "name": "Moskow...",

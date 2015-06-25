@@ -23,6 +23,8 @@
 <script type="text/javascript">
     DR.playerOne = "<?=$playerOne?>";
     DR.playerTwo = "<?=$playerTwo?>";
+    DR.playerThree = "<?=$playerThree?>";
+    DR.playerFour = "<?=$playerFour?>";
 </script>
 <link rel="stylesheet" href="<?= base_url("js/font-awesome-4.2.0/css/font-awesome.min.css"); ?>">
 <body xmlns="http://www.w3.org/1999/html">

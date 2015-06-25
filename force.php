@@ -44,9 +44,7 @@ class RetreatStep
         }
     }
 }
-
-class unit implements JsonSerializable
-{
+class BaseUnit{
 
     public $id;
     public $forceId;
@@ -54,10 +52,6 @@ class unit implements JsonSerializable
     /* @var Hexagon */
     public $hexagon;
     public $image;
-//    public $strength;
-    public $maxStrength;
-    public $minStrength;
-    public $isReduced;
     public $maxMove;
     public $status;
     public $moveAmountUsed;
@@ -74,17 +68,17 @@ class unit implements JsonSerializable
     public $nationality;
     public $forceMarch = false;
     public $class;
-    public $supplied = true;
     public $dirty;
     public $adjustments;
     public $unitDesig;
-    public $isDisrupted = false;
     public $moveAmountUnused;
+
     /* damage is related to exchangeAmount, damage is always strength points, for victory points,
      * exchangeAmount may be in steps or strength points
      */
     public $damage;
     public $exchangeAmount;
+
 
     public function jsonSerialize()
     {
@@ -107,40 +101,6 @@ class unit implements JsonSerializable
             $canMove = false;
         }
         return $canMove;
-    }
-
-    public function getUnmodifiedStrength(){
-        if ($this->isReduced) {
-            $strength = $this->minStrength;
-        } else {
-            $strength = $this->maxStrength;
-        }
-        return $strength;
-    }
-    public function __get($name)
-    {
-        if ($name !== "strength") {
-            throw new Exception("Bad __get for unit $name ");
-        }
-        if ($this->isReduced) {
-            $strength = $this->minStrength;
-        } else {
-            $strength = $this->maxStrength;
-        }
-        foreach ($this->adjustments as $adjustment) {
-            switch ($adjustment) {
-                case 'floorHalf':
-                    $strength = floor($strength / 2);
-                    break;
-                case 'half':
-                    $strength = $strength / 2;
-                    break;
-                case 'double':
-                    $strength = $strength * 2;
-                    break;
-            }
-        }
-        return $strength;
     }
 
     function addAdjustment($name, $adjustment)
@@ -384,6 +344,65 @@ class unit implements JsonSerializable
     }
 
 
+}
+
+class unit extends BaseUnit implements JsonSerializable
+{
+
+//    public $strength;
+    public $maxStrength;
+    public $minStrength;
+    public $isReduced;
+
+
+
+    public $isDisrupted = false;
+    public $supplied = true;
+
+
+
+
+    public function getUnmodifiedStrength(){
+        if ($this->isReduced) {
+            $strength = $this->minStrength;
+        } else {
+            $strength = $this->maxStrength;
+        }
+        return $strength;
+    }
+
+    public function getUnmodifiedDefStrength(){
+        return  $this->unitDefStrength;
+    }
+
+    public function __get($name)
+    {
+        if ($name !== "strength" && $name !== "defStrength" && $name !== "attStrength") {
+            return false;
+        }
+        if ($this->isReduced) {
+            $strength = $this->minStrength;
+        } else {
+            $strength = $this->maxStrength;
+        }
+        foreach ($this->adjustments as $adjustment) {
+            switch ($adjustment) {
+                case 'floorHalf':
+                    $strength = floor($strength / 2);
+                    break;
+                case 'half':
+                    $strength = $strength / 2;
+                    break;
+                case 'double':
+                    $strength = $strength * 2;
+                    break;
+            }
+        }
+        return $strength;
+    }
+
+
+
     function set($unitId, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral", $forceMarch, $class, $unitDesig)
     {
         $this->dirty = true;
@@ -430,12 +449,14 @@ class unit implements JsonSerializable
         if ($this->isReduced || $kill) {
             $this->status = STATUS_ELIMINATING;
             $this->exchangeAmount = $this->getUnmodifiedStrength();
+            $this->defExchangeAmount = $this->getUnmodifiedDefStrength();
             return true;
         } else {
             $this->damage = $this->maxStrength - $this->minStrength;
             $battle->victory->reduceUnit($this);
             $this->isReduced = true;
             $this->exchangeAmount = $this->damage;
+            $this->defExchangeAmount = $this->damage;
         }
         return false;
     }
@@ -455,6 +476,19 @@ class unit implements JsonSerializable
         } else {
             $this->adjustments = new stdClass();
         }
+    }
+
+    public function fetchData(){
+        $mapUnit = new StdClass();
+        $mapUnit->isReduced = $this->isReduced;
+        $mapUnit->parent = $this->hexagon->parent;
+        $mapUnit->moveAmountUsed = $this->moveAmountUsed;
+        $mapUnit->maxMove = $this->maxMove;
+        $mapUnit->strength = $this->strength;
+        $mapUnit->supplied = $this->supplied;
+        $mapUnit->reinforceZone = $this->reinforceZone;
+        $mapUnit->defStrength = $this->unitDefStrength;
+        return $mapUnit;
     }
 }
 
@@ -484,7 +518,7 @@ class Force
                 if ($k == "units") {
                     $this->units = array();
                     foreach ($v as $unit) {
-                        $this->units[] = new unit($unit);
+                        $this->units[] = UnitFactory::build($unit);
                     }
                     continue;
                 }
@@ -552,9 +586,26 @@ class Force
             $this->reinforceTurns->$unitReinforceTurn->$unitForceId++;
         }
         $id = count($this->units);
-        $unit = new unit();
+        $unit = UnitFactory::build();
         $unit->set($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range, $nationality, $forceMarch, $class, $unitDesig);
 
+        array_push($this->units, $unit);
+        return $id;
+    }
+
+    function injectUnit($unit)
+    {
+        $unitStatus = $unit->status;
+        $unitReinforceTurn = $unit->reinforceTurn;
+        $unitForceId = $unit->forceId;
+        if ($unitStatus == STATUS_CAN_REINFORCE) {
+            if (!$this->reinforceTurns->$unitReinforceTurn) {
+                $this->reinforceTurns->$unitReinforceTurn = new stdClass();
+            }
+            $this->reinforceTurns->$unitReinforceTurn->$unitForceId++;
+        }
+        $id = count($this->units);
+        $unit->id = $id;
         array_push($this->units, $unit);
         return $id;
     }
@@ -641,7 +692,7 @@ class Force
                     $defUnit->moveCount = 0;
                     $this->addToRetreatHexagonList($defenderId, $this->getUnitHexagon($defenderId));
                 }
-                $this->exchangeAmount += $defUnit->exchangeAmount * $exchangeMultiplier;
+                $this->exchangeAmount += $defUnit->defExchangeAmount * $exchangeMultiplier;
                 $defUnit->moveCount = 0;
                 break;
 
@@ -892,7 +943,7 @@ class Force
     function getDefenderStrength($defenderId)
     {
         $defenderStrength = 0;
-        $defenderStrength += $this->units[$defenderId]->strength;
+        $defenderStrength += $this->units[$defenderId]->defStrength;
         return $defenderStrength;
     }
 
@@ -1038,13 +1089,6 @@ class Force
         return $isZOC;
     }
 
-    function mapHexIsOccupiedFriendly(MapHex $mapHex)
-    {
-        if ($mapHex->isOccupied($this->attackingForceId)) {
-            return true;
-        }
-        return false;
-    }
 
     function mapHexIsZoc(MapHex $mapHex, $defendingForceId = false)
     {
@@ -1066,15 +1110,15 @@ class Force
         return false;
     }
 
-    function hexagonIsOccupiedForce($hexagon, $forceId, $stacking = 1)
+    function hexagonIsOccupiedForce($hexagon, $forceId, $stacking = 1, $unit = false)
     {
         $battle = Battle::getBattle();
         $mapData = $battle->mapData;
         $mapHex = $mapData->getHex($hexagon->getName());
-        return $mapHex->isOccupied($forceId, $stacking);
+        return $mapHex->isOccupied($forceId, $stacking, $unit);
     }
 
-    function hexagonIsOccupied($hexagon, $stacking = 1)
+    function hexagonIsOccupied($hexagon, $stacking = 1, $unit = false)
     {
         $battle = Battle::getBattle();
         $mapData = $battle->mapData;
@@ -1082,27 +1126,8 @@ class Force
         if ($mapHex->isOccupied($this->defendingForceId)) {
             return true;
         }
-        return $mapHex->isOccupied($this->attackingForceId, $stacking);
+        return $mapHex->isOccupied($this->attackingForceId, $stacking, $unit);
 
-    }
-
-    function mapHexIsOccupiedEnemy(MapHex $mapHex)
-    {
-        return $mapHex->isOccupied($this->defendingForceId);
-        $isOccupied = false;
-        $friendlyId = $this->attackingForceId;
-
-        if ($mapHex->forces) {
-            foreach ($mapHex->forces as $forceId => $force) {
-                if ($friendlyId == $forceId) {
-                    continue;
-                }
-                if (count((array)$force) > 0) {
-                    $isOccupied = true;
-                }
-            }
-        }
-        return $isOccupied;
     }
 
     function hexagonIsOccupiedEnemy($hexagon, $id)
@@ -1111,7 +1136,6 @@ class Force
         $friendlyId = $this->units[$id]->forceId;
         $battle = Battle::getBattle();
         $mapData = $battle->mapData;
-//        $mapData = MapData::getInstance();
         $mapHex = $mapData->getHex($hexagon->getName());
         foreach ($mapHex->forces as $forceId => $force) {
             if ($friendlyId == $forceId) {
@@ -1237,7 +1261,7 @@ class Force
                     if ($phase == RED_MECH_PHASE && $this->units[$id]->forceId == RED_FORCE && $this->units[$id]->class != "mech") {
                         $status = STATUS_STOPPED;
                     }
-                    if ($phase == BLUE_REPLACEMENT_PHASE || $phase == RED_REPLACEMENT_PHASE) {
+                    if ($phase == BLUE_REPLACEMENT_PHASE || $phase == RED_REPLACEMENT_PHASE || $phase == TEAL_REPLACEMENT_PHASE || $phase == PURPLE_REPLACEMENT_PHASE) {
                         $status = STATUS_STOPPED;
                         /* TODO Hack Hack Hack better answer is not isReduced, but canReduce */
                         if ($this->units[$id]->forceId == $this->attackingForceId &&
@@ -1246,7 +1270,7 @@ class Force
                             $status = STATUS_CAN_UPGRADE;
                         }
                     }
-                    if ($phase == BLUE_COMBAT_PHASE || $phase == RED_COMBAT_PHASE) {
+                    if ($phase == BLUE_COMBAT_PHASE || $phase == RED_COMBAT_PHASE || $phase == TEAL_COMBAT_PHASE || $phase == PURPLE_COMBAT_PHASE) {
                         if ($mode == COMBAT_SETUP_MODE) {
                             $status = STATUS_UNAVAIL_THIS_PHASE;
                             /* unitIsZoc has Side Effect */
@@ -1292,7 +1316,7 @@ class Force
                 default:
                     break;
             }
-            if($phase === BLUE_MOVE_PHASE || $phase === RED_MOVE_PHASE){
+            if($phase === BLUE_MOVE_PHASE || $phase === RED_MOVE_PHASE || $phase == TEAL_MOVE_PHASE || $phase == PURPLE_MOVE_PHASE){
                 $this->units[$id]->moveAmountUnused = $this->units[$id]->maxMove;
             }
             $this->units[$id]->combatIndex = 0;
@@ -1332,14 +1356,19 @@ class Force
         }
     }
 
-    function setAttackingForceId($forceId)
+    function setAttackingForceId($forceId, $defId = false)
     {
+        $this->attackingForceId = $forceId;
+
         if ($forceId == BLUE_FORCE) {
-            $this->attackingForceId = BLUE_FORCE;
             $this->defendingForceId = RED_FORCE;
+
         } else {
-            $this->attackingForceId = RED_FORCE;
             $this->defendingForceId = BLUE_FORCE;
+        }
+
+        if($defId !== false){
+            $this->defendingForceId = $defId;
         }
     }
 
@@ -1594,11 +1623,12 @@ class Force
 
     function enemy($forceId)
     {
-        if ($forceId == BLUE_FORCE) {
-            return RED_FORCE;
+
+        if ($forceId == $this->attackingForceId) {
+            return $this->defendingForceId;
         }
-        if ($forceId == RED_FORCE) {
-            return BLUE_FORCE;
+        if ($forceId == $this->defendingForceId) {
+            return $this->attackingForceId;
         }
         throw new Exception("Enemy Unknown $forceId");
     }

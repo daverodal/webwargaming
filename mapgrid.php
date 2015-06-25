@@ -50,19 +50,19 @@ class MapHex
             $this->dirty = true;
             $this->forces = $forces;
         } else {
-            $this->forces = array(new stdClass(), new stdClass(), new stdClass());
+            $this->forces = array(new stdClass(), new stdClass(), new stdClass(), new stdClass(), new stdClass());
         }
         if ($zocs !== false) {
             $this->dirty = true;
             $this->zocs = $zocs;
         } else {
-            $this->zocs = array(new stdClass(), new stdClass(), new stdClass());
+            $this->zocs = array(new stdClass(), new stdClass(), new stdClass(), new stdClass(), new stdClass());
         }
         if ($adjacent !== false) {
             $this->dirty = true;
             $this->adjacent = $adjacent;
         } else {
-            $this->adjacent = array(new stdClass(), new stdClass(), new stdClass());
+            $this->adjacent = array(new stdClass(), new stdClass(), new stdClass(), new stdClass(), new stdClass());
         }
     }
 
@@ -88,7 +88,7 @@ class MapHex
     {
         $battle = Battle::getBattle();
         if (!$this->forces) {
-            $this->forces = array(new stdClass(), new stdClass(), new stdClass());
+            $this->forces = array(new stdClass(), new stdClass(), new stdClass(), new stdClass(), new stdClass());
         }
         if (!$this->forces[$forceId]) {
             $this->forces[$forceId] = new stdClass();
@@ -107,7 +107,7 @@ class MapHex
 
             if ($hex) {
                 if (!$hex->adjacent) {
-                    $hex->adjacent = array(new stdClass(), new stdClass(), new stdClass());
+                    $hex->adjacent = array(new stdClass(), new stdClass(), new stdClass(), new stdClass(), new stdClass());
                 }
 
                 if (!$hex->adjacent[$forceId]) {
@@ -120,7 +120,7 @@ class MapHex
             }
             if ($hex) {
                 if (!$hex->zocs) {
-                    $hex->zocs = array(new stdClass(), new stdClass(), new stdClass());
+                    $hex->zocs = array(new stdClass(), new stdClass(), new stdClass(), new stdClass(), new stdClass());
                 }
 
                 if (!$hex->zocs[$forceId]) {
@@ -153,8 +153,12 @@ class MapHex
         return count((array)$this->adjacent[$forceId]);
     }
 
-    public function isOccupied($forceId, $num = 1)
+    public function isOccupied($forceId, $num = 1, $unit = false)
     {
+        if(is_callable($num)){
+            $closure = $num;
+            return $closure($this, $forceId, $unit);
+        }
         return count((array)$this->forces[$forceId]) >= $num;
     }
 
@@ -189,7 +193,10 @@ class MapData implements JsonSerializable
 
             $f1 = count((array)$hex->forces[1]) + count((array)$hex->zocs[1]) + count((array)$hex->adjacent[1]);
             $f2 = count((array)$hex->forces[2]) + count((array)$hex->zocs[2]) + count((array)$hex->adjacent[2]);
-            if (!$f1 && !$f2) {
+            $f3 = count((array)$hex->forces[3]) + count((array)$hex->zocs[3]) + count((array)$hex->adjacent[3]);
+            $f4 = count((array)$hex->forces[4]) + count((array)$hex->zocs[4]) + count((array)$hex->adjacent[4]);
+
+            if (!$f1 && !$f2 && !$f3 && !$f4) {
                 unset($this->hexes->$k);
                 continue;
             }
