@@ -175,11 +175,11 @@ class finalChapterVictoryCore extends victoryCore
             $force = $battle->force;
             $this->restoreAllCombatEffects($force);
         }
-        if ($gameRules->phase == BLUE_REPLACEMENT_PHASE || $gameRules->phase == RED_REPLACEMENT_PHASE) {
+        if ($gameRules->mode === REPLACING_MODE) {
             $gameRules->flashMessages[] = "@show deadpile";
             $forceId = $gameRules->attackingForceId;
         }
-        if ($gameRules->phase == BLUE_MOVE_PHASE || $gameRules->phase == RED_MOVE_PHASE) {
+        if ($gameRules->mode === MOVING_MODE) {
             $gameRules->flashMessages[] = "@hide deadpile";
             if ($battle->force->reinforceTurns->$turn->$forceId) {
                 $gameRules->flashMessages[] = "@show deployWrapper";
@@ -223,6 +223,23 @@ class finalChapterVictoryCore extends victoryCore
 
     }
 
+    public function postEliminated($arg){
+        $unit = $arg[0];
+        switch($unit->forceId){
+            case WESTERN_FORCE:
+                $unit->hexagon->parent .= " #western";
+                break;
+            case EASTERN_EMPIRE_FORCE:
+                $unit->hexagon->parent .= " #eastGerman";
+                break;
+            case WESTERN_EMPIRE_FORCE:
+                $unit->hexagon->parent .= " #westGerman";
+                break;
+            case EASTERN_FORCE:
+                $unit->hexagon->parent .= " #eastern";
+                break;
+        }
+    }
     public function preStartMovingUnit($arg)
     {
         $unit = $arg[0];

@@ -202,7 +202,7 @@
                         <div class="dropDown" id="closeAllUnits">Close All</div>
                         <div class="dropDown" id="hideShow">Retired Units</div>
                         <div class="dropDown" id="showDeploy">Deploy/Staging Box</div>
-                        <div class="dropDown" id="showExited">Exited Units</div>
+                        <div class="dropDown" id="showExited">Not Used</div>
                     </div>
                 </div>
                 <?php include_once "commonRules.php"; ?>
@@ -226,14 +226,24 @@
 <div id="content">
     <div id="rightCol">
         <div id="deployWrapper">
+            <div class="close">X</div>
             <div style="margin-right:3px;" class="left">deploy on turn one</div>
             <div id="deployBox"></div>
             <div style="clear:both;"></div>
         </div>
         <div style="display:none;" id="deadpile">
+            <div class="close">X</div>
             <div style="right:10px;font-size:50px;font-family:sans-serif;bottom:10px;position:absolute;color:#666;">
                 Retired Units
             </div>
+        </div>
+        <div ></div>
+        <div style="display:none;" id="exitWrapper">
+            <div class="close">X</div>
+            <div style="margin-right:3px;" class="left">Units not used.</div>
+            <div id="not-used"></div>
+            <div style="clear:both;"></div>
+
         </div>
         <div id="gameViewer">
             <div id="gameContainer">

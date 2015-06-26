@@ -69,7 +69,7 @@ x.register("sentBreadcrumbs", function(breadcrumbs,data) {
     $('#svgWrapper').html(svgHtml);
 });
 
-x.register("mapUnits", function(mapUnits) {
+x.register("mapUnits", function(mapUnits, data) {
     var str;
     var fudge;
     var x,y;
@@ -77,7 +77,14 @@ x.register("mapUnits", function(mapUnits) {
     DR.stackModel = {};
     DR.stackModel.ids = {};
 
+    var phasingForceId = data.gameRules.attackingForceId;
+
+    var phasingUnitsLeft = 0;
+
     for (i in mapUnits) {
+        if(mapUnits[i].forceId === phasingForceId && mapUnits[i].parent === "deployBox"){
+            phasingUnitsLeft++;
+        }
         width = $("#"+i).width();
         height = $("#"+i).height();
         x =  mapUnits[i].x;
@@ -152,14 +159,17 @@ x.register("mapUnits", function(mapUnits) {
         beforeDeploy = dpBox;
 
     }
-    if(dpBox == 0 && $("#deployBox").is(":visible")){
+    if((dpBox == 0 || (phasingUnitsLeft === 0 && data.gameRules.mode !== <?= DEPLOY_MODE?>)) && $("#deployBox").is(":visible")){
         $("#deployWrapper").hide({effect:"blind",direction:"up",complete:fixHeader});
     }
 
 });
-function renderUnitNumbers(unit, moveAmountUsed){
+function renderUnitNumbers(unit, moveAmount){
 
     var  move = unit.maxMove - unit.moveAmountUsed;
+    if(moveAmount !== undefined){
+        move = moveAmount-0;
+    }
     move = move.toFixed(2);
     move = move.replace(/\.00$/,'');
     move = move.replace(/(\.[1-9])0$/,'$1');

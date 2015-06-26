@@ -314,6 +314,9 @@ class victoryCore
         if($b->scenario->commandControl){
             $this->checkCommand($unit);
         }
-
+        if($unit->hexagon->parent === 'deployBox' && $b->gameRules->mode !== DEPLOY_MODE){
+            $unit->hexagon->parent = "not-used";
+            echo "CHanged ";
+        }
     }
 }

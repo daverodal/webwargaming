@@ -25,6 +25,25 @@
 @include player(western,Two,$rebelColor);
 @include player(easternEmpire,Four, #afa2b3);
 
+.dead-country{
+  height:100%;
+  width:24%;
+  background:#333;
+  border: #999 solid;
+  border-width: 0 0 0 3px;
+  float:left;
+  min-height:76px;
+  .dead-country-label{
+    font-size:20px;
+    font-family:sans-serif;
+    float:right;
+    color:#aaa;
+    height:38px;
+  }
+}
+#deadpile{
+  height:auto;
+}
 #map {
 }
 

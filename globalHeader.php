@@ -933,6 +933,7 @@ function initialize() {
     $("#hideShow").click(function () {
         up ^= 1;
         $("#deadpile").toggle({effect: "blind", direction: "up", complete: fixHeader});
+        $(this).parent().parent('#unitsWrapper').find(".WrapperLabel").click();
         fixHeader();
         return;
         var howFar;
@@ -948,12 +949,14 @@ function initialize() {
     $("#showExited").click(function () {
         up ^= 1;
         $("#exitWrapper").toggle({effect: "blind", direction: "up", complete: fixHeader});
+        $(this).parent().parent().find(".WrapperLabel").click();
         fixHeader();
         return;
     });
     $("#showDeploy").click(function () {
         up ^= 1;
         $("#deployWrapper").toggle({effect: "blind", direction: "up", complete: fixHeader});
+        $(this).parent().parent().find(".WrapperLabel").click();
         fixHeader();
         return;
     });

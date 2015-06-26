@@ -488,6 +488,7 @@ class unit extends BaseUnit implements JsonSerializable
         $mapUnit->supplied = $this->supplied;
         $mapUnit->reinforceZone = $this->reinforceZone;
         $mapUnit->defStrength = $this->unitDefStrength;
+        $mapUnit->forceId = $this->forceId;
         return $mapUnit;
     }
 }
@@ -888,8 +889,6 @@ class Force
             $mapHex->unsetUnit($forceId, $id);
         }
         $unit->status = STATUS_ELIMINATED;
-        $unit->isReduced = true;
-        $unit->supplied = true;
         $col = 0;
         $unit->hexagon = new Hexagon($col + $id % 10);
 

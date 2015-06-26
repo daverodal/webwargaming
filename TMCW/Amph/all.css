@@ -718,8 +718,9 @@ fieldset {
   color: white;
   border-radius: 10px;
   border: 10px solid #555;
-  background: #aaa;
-  margin-bottom: 5px; }
+  background: #999;
+  margin-bottom: 5px;
+  position: relative; }
 
 #deployWrapper .unit {
   margin-right: 5px; }
