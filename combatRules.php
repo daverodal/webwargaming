@@ -294,24 +294,41 @@ class CombatRules
                             if ($this->terrain->terrainIs($target, "elevation1")) {
                                 $targetElevated = true;
                             }
+                            $hasElevated1 = $hasElevated2 = false;
                             foreach ($hexParts as $hexPart) {
                                 if ($this->terrain->terrainIs($hexPart, "blocksRanged") && (!$srcElevated2 || !$targetElevated2)) {
                                     $good = false;
                                     break;
                                 }
-                                if ($this->terrain->terrainIs($hexPart, "elevation2") && (!$srcElevated2 || !$targetElevated2)) {
-                                    $good = false;
+                                if ($this->terrain->terrainIs($hexPart, "elevation2")) {
+                                    $hasElevated2 = true;
+                                    continue;
+                                }
+
+                                if ($this->terrain->terrainIs($hexPart, "elevation1")) {
+                                    $hasElevated1 = true;
                                     break;
                                 }
+                            }
+                            /* don't do elevation check if non elevation (1) set. This deals with case of coming up
+                             * back side of not circular hill
+                             */
+                            if($hasElevated1 || $targetElevated || $srcElevated){
+
                                 /*
                                  * Ugly if statement. If elevation1 both src and target MUST be elevation1 OR either src or target can be elevation2.
                                  * otherwise, blocked.
                                  */
-                                if ($this->terrain->terrainIs($hexPart, "elevation1") && !(($srcElevated && $targetElevated) || ($targetElevated2 || $srcElevated2))) {
+                                if(!(($srcElevated && $targetElevated) || ($targetElevated2 || $srcElevated2))){
                                     $good = false;
-                                    break;
                                 }
+                                if ($hasElevated2 && (!$srcElevated2 || !$targetElevated2)) {
+                                    $good = false;
+                                }
+
+
                             }
+
                             if ($good === false) {
                                 break;
                             }
