@@ -302,11 +302,11 @@ class Finalchapter extends ModernLandBattle
         }
 
         if($this->players){
-            if($this->players[1] && !isset($this->players[3])){
+            if($this->players[1]){
                 $this->players[3] = $this->players[1];
             }
-            if($this->players[2] && !isset($this->players[4])) {
-                $this->players[4] = "Markarian";
+            if($this->players[2]) {
+                $this->players[4] = $this->players[2];
             }
         }
 
