@@ -201,7 +201,7 @@
                     <div id="units" class="subMenu">
                         <div class="dropDown" id="closeAllUnits">Close All</div>
                         <div class="dropDown" id="hideShow">Retired Units</div>
-                        <div class="dropDown" id="showDeploy">Deploy/Staging Box</div>
+                        <div class="dropDown" id="showDeploy">Deploy Box</div>
                         <div class="dropDown" id="showExited">Not Used</div>
                     </div>
                 </div>
