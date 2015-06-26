@@ -149,6 +149,9 @@ class ModernLandBattle extends LandBattle
         $this->terrain->addTerrainFeature("swamp", "swamp", "s", 3, 0, 1, true);
         $this->terrain->addTerrainFeature("mountain", "mountain", "g", 3, 0, 2, true);
         $this->terrain->addTerrainFeature("river", "river", "v", 0, 1, 1, true);
+        $this->terrain->addTerrainFeature("roughone", "roughone", "g", 2, 0, 2, true);
+        $this->terrain->addTerrainFeature("roughtwo", "roughtwo", "g", 4, 0, 2, true);
+
 
         /* handle fort's in crtTraits */
         $this->terrain->addTerrainFeature("forta", "forta", "f", 1, 0, 0, true);

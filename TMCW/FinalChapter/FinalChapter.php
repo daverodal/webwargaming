@@ -36,7 +36,7 @@ $force_name[4] = "Germany (east)";
 require_once "constants.php";
 require_once "ModernLandBattle.php";
 
-class Finalchapter extends ModernLandBattle
+class FinalChapter extends ModernLandBattle
 {
 
     public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>2, 'SpecialHexC'=>1];
@@ -63,9 +63,7 @@ class Finalchapter extends ModernLandBattle
 
     function terrainGen($mapDoc, $terrainDoc)
     {
-        $this->terrain->addTerrainFeature("roughone", "roughone", "r", 3, 0, 1, true);
         parent::terrainGen($mapDoc, $terrainDoc);
-        $this->terrain->addTerrainFeature("town", "town", "t", 0, 0, 1, false);
     }
 
     function save()
