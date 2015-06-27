@@ -73,8 +73,16 @@ class finalChapterVictoryCore extends victoryCore
     public function specialHexChange($args)
     {
         $battle = Battle::getBattle();
-
         list($mapHexName, $forceId) = $args;
+        if(in_array($mapHexName, $battle->specialHexA)){
+            $vp = 1;
+        }
+        if(in_array($mapHexName, $battle->specialHexB)){
+            $vp = 2;
+        }
+        if(in_array($mapHexName, $battle->specialHexC)){
+            $vp = 10;
+        }
 
 //        if ($mapHexName == 1807 && $forceId == EASTERN_FORCE) {
 //            $this->scienceCenterDestroyed;
@@ -107,26 +115,6 @@ class finalChapterVictoryCore extends victoryCore
 
     }
 
-    public function reduceUnit($args)
-    {
-        $unit = $args[0];
-
-        $vp = $unit->damage;
-
-        if ($unit->forceId == 1) {
-            $victorId = 2;
-            $this->victoryPoints[$victorId] += $vp;
-            $hex = $unit->hexagon;
-            $battle = Battle::getBattle();
-            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='loyalistVictoryPoints'>+$vp vp</span>";
-        } else {
-            $victorId = 1;
-            $hex  = $unit->hexagon;
-            $battle = Battle::getBattle();
-            $battle->mapData->specialHexesVictory->{$hex->name} = "+$vp vp";
-            $this->victoryPoints[$victorId] += $vp;
-        }
-    }
 
     public function incrementTurn()
     {

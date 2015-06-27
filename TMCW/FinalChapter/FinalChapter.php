@@ -39,7 +39,7 @@ require_once "ModernLandBattle.php";
 class FinalChapter extends ModernLandBattle
 {
 
-    public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>2, 'SpecialHexC'=>1];
+    public $specialHexesMap = ['SpecialHexA'=>3, 'SpecialHexB'=>3, 'SpecialHexC'=>3];
 
     static function getHeader($name, $playerData, $arg = false)
     {
@@ -70,6 +70,8 @@ class FinalChapter extends ModernLandBattle
     {
         $data = parent::save();
         $data->specialHexA = $this->specialHexA;
+        $data->specialHexB = $this->specialHexB;
+        $data->specialHexC = $this->specialHexC;
         return $data;
     }
 
@@ -258,6 +260,8 @@ class FinalChapter extends ModernLandBattle
 
         if ($data) {
             $this->specialHexA = $data->specialHexA;
+            $this->specialHexB = $data->specialHexB;
+            $this->specialHexC = $data->specialHexC;
         } else {
             $this->victory = new Victory("TMCW/FinalChapter/finalChapterVictoryCore.php");
 

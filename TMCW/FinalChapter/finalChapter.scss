@@ -79,6 +79,11 @@
  @include victoryPoints(#666);
 }
 
+.specialHexes.germany {
+  color: white;
+  background-color: #666;
+}
+
 .unit .unit-numbers{
   font-family: sans-serif;
   letter-spacing: normal;

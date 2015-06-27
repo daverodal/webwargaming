@@ -955,7 +955,9 @@ svg marker#head {
     font-size: 16px !important;
     background: white;
     font-weight: bold;
-    font-family: serif; }
+    font-family: 'Droid Serif', serif; }
+    .unit .unit-numbers .infoLen5 {
+      font-size: 15px; }
     .unit .unit-numbers .infoLen7 {
       font-size: 13px;
       letter-spacing: -1px; }

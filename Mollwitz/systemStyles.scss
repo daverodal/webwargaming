@@ -197,8 +197,11 @@ $vintage-unit-numbers-size:10px;
     font-size: $unit-numbers-size !important;
     background: white;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Droid Serif', serif;
 
+    .infoLen5{
+      font-size:15px;
+    }
     .infoLen7{
       font-size: 13px;
       letter-spacing: -1px;
