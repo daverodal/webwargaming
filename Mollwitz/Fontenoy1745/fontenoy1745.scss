@@ -33,10 +33,10 @@ $bavarianColor: #FD0013;
 }
 
 
-.anglo {
+.allies.specialHexes {
   background-color: $angloAlliedColor;
 }
-.french.specialHexes, .anglo.specialHexes{
+.french.specialHexes, .allies.specialHexes{
   color:white;
 }
 .AngloAllied, .Dutch, .Guard {
