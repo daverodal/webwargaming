@@ -319,7 +319,7 @@ class CombatRules
                                  * Ugly if statement. If elevation1 both src and target MUST be elevation1 OR either src or target can be elevation2.
                                  * otherwise, blocked.
                                  */
-                                if(!(($srcElevated && $targetElevated) || ($targetElevated2 || $srcElevated2))){
+                                if($hasElevated1 && !(($srcElevated && $targetElevated) || ($targetElevated2 || $srcElevated2))){
                                     $good = false;
                                 }
                                 if ($hasElevated2 && (!$srcElevated2 || !$targetElevated2)) {
