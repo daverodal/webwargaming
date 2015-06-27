@@ -696,8 +696,7 @@
     "scenarios": {
       "main": {
         "description": "Historical Scenario.",
-        "longDescription":"Mud Rule in effect. Clear/Trail 2 mp's.",
-        "mudMovement": true
+        "longDescription":"The Battle of Fontenoy, 11 May 1745, was a major engagement of the War of the Austrian Succession"
       }
     }
   },
