@@ -660,7 +660,7 @@ function flashMessage(playerStatus){
     }
 }
 x.register("specialHexes", function(specialHexes, data) {
-    var lab = ['unowned','<?=strtolower($force_name[1])?>','<?=strtolower($force_name[2])?>'];
+    var lab = ['unowned','<?=strtolower($force_name[1])?>','<?=strtolower($force_name[2])?>','<?=strtolower($force_name[3])?>','<?=strtolower($force_name[4])?>'];
     for(var i in specialHexes){
         var newHtml = lab[specialHexes[i]];
         var curHtml = $("#special"+i).html();
@@ -819,7 +819,8 @@ x.register("moveRules", function(moveRules,data) {
 
                 var newLabel = label.replace(/((?:<span[^>]*>)?[-+ru](?:<\/span>)?).*/,"$1 "+moveRules.moves[i].pointsLeft);
                 newLabel = renderUnitNumbers(data.mapUnits[id], moveRules.moves[i].pointsLeft);
-                secondGenClone.find('div.unit-numbers span').html(newLabel).addClass('infoLen'+newLabel.length);
+                var txt = secondGenClone.find('div.unit-numbers span').html(newLabel).text();
+                secondGenClone.find('div.unit-numbers span').addClass('infoLen'+txt.length);
                 secondGenClone.find('.counterWrapper .guard-unit').addClass('infoLen'+newLabel.length);
                 if(moveRules.moves[i].isOccupied){
                     secondGenClone.addClass("occupied");
