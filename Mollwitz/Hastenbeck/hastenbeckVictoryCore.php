@@ -105,7 +105,7 @@ class hastenbeckVictoryCore extends victoryCore
         $turn = $gameRules->turn;
         $frenchLateWin = $frenchWin = $frenchThreeObjectives = $angloWin = false;
         $specialHexes = $battle->mapData->specialHexes;
-        $objectiveHexes = array_merge($battle->specialHexesB, $battle->specialHexesC);
+        $objectiveHexes = array_merge($battle->specialHexB, $battle->specialHexC);
 
         $alliedVictoryPointsNeeded = 45;
         $frenchVictoryPointsNeeded = 60;
