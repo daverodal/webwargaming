@@ -29,11 +29,13 @@
             in each of those hexes when they occupy or where last to move through any of those hexes.
         </li>
 
+        <li>French receive 10 points each for being the last to occupy or move through hexes marked with a Blue “10”.</li>
 
-        <li>French Win: If their total points reach 40 or more before the end of turn 9.</li>
+        <li>Allies receive 10 points each for being the last to occupy or move through hexes marked with a Red “10”.</li>
 
-        <li>Russian Win: If their total points reach 30 or more or the French do not win by the end of turn 9.
-        </li>
+        <li>EITHER SIDE WINS: At the end of any turn that they have accumulated at least 50 points before the end of turn 10.</li>
+
+        <li>French Win: If the Allies have not won by the end of turn 10 and the French have at least 25 points.</li>
 
         <li>If at the end of any player turn both sides have somehow met their victory conditions above, the result is
             a draw.
