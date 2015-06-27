@@ -30,7 +30,7 @@ require_once "JagCore.php";
 
 class Fontenoy1745 extends JagCore
 {
-    public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>2, 'SpecialHexC'=>0];
+    public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>2, 'SpecialHexC'=>0];
 
     public
     static function getHeader($name, $playerData, $arg = false)
