@@ -66,6 +66,14 @@ class FinalChapter extends ModernLandBattle
         parent::terrainGen($mapDoc, $terrainDoc);
     }
 
+    function terrainInit($terrainDoc){
+        parent::terrainInit($terrainDoc);
+        $this->mapData->alterSpecialHex(211, WESTERN_FORCE);
+        $this->mapData->alterSpecialHex(414, WESTERN_FORCE);
+        $this->mapData->alterSpecialHex(515, WESTERN_FORCE);
+        $this->mapData->alterSpecialHex(615, WESTERN_FORCE);
+    }
+
     function save()
     {
         $data = parent::save();
@@ -301,13 +309,14 @@ class FinalChapter extends ModernLandBattle
             $this->gameRules->addPhaseChange(PURPLE_COMBAT_PHASE, BLUE_REPLACEMENT_PHASE, REPLACING_MODE, EASTERN_FORCE, EASTERN_EMPIRE_FORCE, true);
 
 
+            $this->victory->victoryPoints[WESTERN_FORCE] = 4;
         }
 
         if($this->players){
-            if($this->players[1]){
+            if(!isset($this->players[3]) && $this->players[1]){
                 $this->players[3] = $this->players[1];
             }
-            if($this->players[2]) {
+            if(!isset($this->players[4]) && $this->players[2]) {
                 $this->players[4] = $this->players[2];
             }
         }

@@ -89,30 +89,16 @@ class finalChapterVictoryCore extends victoryCore
 //            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>Marine Science Facility Destroyed</span>";
 //            $battle->gameRules->flashMessages[] = "Rebel units may now withdraw from beachheads";
 //        }
-        if ($forceId == WESTERN_EMPIRE_FORCE) {
-            $newLandings = [];
-            foreach ($this->landingZones as $landingZone) {
-                if ($landingZone == $mapHexName) {
-                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>Beachhead Destroyed</span>";
-                    continue;
-                }
-                $newLandings[] = $landingZone;
-            }
-            $this->landingZones = $newLandings;
 
-            $newAirdrops = [];
-            foreach ($this->airdropZones as $airdropZone) {
-                if ($airdropZone == $mapHexName) {
-                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>Airdrop zone Destroyed</span>";
-                    continue;
-                }
-                $newAirdrops[] = $airdropZone;
-            }
-            $this->airdropZones = $newAirdrops;
 
-            $battle->mapData->removeSpecialHex($mapHexName);
+        if($forceId == WESTERN_FORCE || $forceId == EASTERN_FORCE){
+            $this->victoryPoints[$forceId] += $vp;
+            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>+$vp</span>";
+        }else{
+            $previousOwner = $battle->mapData->specialHexes->$mapHexName;
+            $this->victoryPoints[$previousOwner] -= $vp;
+            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>-$vp</span>";
         }
-
     }
 
 

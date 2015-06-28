@@ -52,9 +52,9 @@ class LandBattle extends Battle{
         Battle::loadGame($gameName, $doc->wargame->arg);
 //Battle::getHeader();
         if (isset($doc->wargame->mapViewer)) {
-            $playerData = $doc->wargame->mapViewer[$player];
+            $playerData = $doc->wargame->mapViewer[0];
         } else {
-            $playerData = $doc->wargame->mapData[$player];
+            $playerData = $doc->wargame->mapData[0];
         }
         $mapGrid = new MapGrid($playerData);
         $mapUnits = array();
@@ -258,7 +258,7 @@ class LandBattle extends Battle{
 
         switch ($event) {
             case SELECT_MAP_EVENT:
-                $mapGrid = new MapGrid($this->mapViewer[$playerId]);
+                $mapGrid = new MapGrid($this->mapViewer[0]);
                 $mapGrid->setPixels($x, $y);
                 return $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon(), $click);
                 break;
