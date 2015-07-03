@@ -72,6 +72,7 @@ class FinalChapter extends ModernLandBattle
         $this->mapData->alterSpecialHex(414, WESTERN_FORCE);
         $this->mapData->alterSpecialHex(515, WESTERN_FORCE);
         $this->mapData->alterSpecialHex(615, WESTERN_FORCE);
+        $this->mapData->alterSpecialHex(2408, EASTERN_FORCE);
     }
 
     function save()
@@ -302,7 +303,7 @@ class FinalChapter extends ModernLandBattle
 
             $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_MOVE_PHASE, MOVING_MODE, WESTERN_FORCE, WESTERN_EMPIRE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, WESTERN_FORCE, WESTERN_EMPIRE_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, PURPLE_REPLACEMENT_PHASE, REPLACING_MODE, EASTERN_EMPIRE_FORCE, EASTERN_FORCE, true);
+            $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, PURPLE_REPLACEMENT_PHASE, REPLACING_MODE, EASTERN_EMPIRE_FORCE, EASTERN_FORCE, false);
 
             $this->gameRules->addPhaseChange(PURPLE_REPLACEMENT_PHASE, PURPLE_MOVE_PHASE, MOVING_MODE, EASTERN_EMPIRE_FORCE, EASTERN_FORCE, false);
             $this->gameRules->addPhaseChange(PURPLE_MOVE_PHASE, PURPLE_COMBAT_PHASE, COMBAT_SETUP_MODE, EASTERN_EMPIRE_FORCE, EASTERN_FORCE, false);
@@ -310,6 +311,7 @@ class FinalChapter extends ModernLandBattle
 
 
             $this->victory->victoryPoints[WESTERN_FORCE] = 4;
+            $this->victory->victoryPoints[EASTERN_FORCE] = 1;
         }
 
         if($this->players){
