@@ -210,15 +210,15 @@ class FinalChapter extends ModernLandBattle
         UnitFactory::create("xxx", WESTERN_FORCE, 620, "multiMech.png", 6, 6, 7, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
         UnitFactory::create("xxx", WESTERN_FORCE, 620, "multiInf.png", 4,8, 6, STATUS_READY, "C", 1, 1, "western",  'inf', $unitNum++);
 
-        UnitFactory::create("xxx", WESTERN_FORCE, 1132, "multiInf.png", 4,8, 6, STATUS_READY, "D", 1, 1, "western",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 1030, "multiInf.png", 4,8, 6, STATUS_READY, "D", 1, 1, "western",  'inf', $unitNum++);
 
-        UnitFactory::create("xxx", WESTERN_FORCE, 1231, "multiMech.png", 6, 6, 7, STATUS_READY, "D", 1, 1, "western", 'mech', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 1130, "multiMech.png", 6, 6, 7, STATUS_READY, "D", 1, 1, "western", 'mech', $unitNum++);
 
-        UnitFactory::create("xxx", WESTERN_FORCE, 1331, "multiInf.png", 4,8, 6, STATUS_READY, "D", 1, 1, "western",  'inf', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_FORCE, 1331, "multiInf.png", 4,8, 6, STATUS_READY, "D", 1, 1, "western",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 1229, "multiInf.png", 4,8, 6, STATUS_READY, "D", 1, 1, "western",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 1229, "multiInf.png", 4,8, 6, STATUS_READY, "D", 1, 1, "western",  'inf', $unitNum++);
 
-        UnitFactory::create("xxx", WESTERN_FORCE, 1430, "multiInf.png", 4,8, 6, STATUS_READY, "D", 1, 1, "western",  'inf', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_FORCE, 1430, "multiInf.png", 4,8, 6, STATUS_READY, "D", 1, 1, "western",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 1329, "multiInf.png", 4,8, 6, STATUS_READY, "D", 1, 1, "western",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 1329, "multiInf.png", 4,8, 6, STATUS_READY, "D", 1, 1, "western",  'inf', $unitNum++);
 
 
 
