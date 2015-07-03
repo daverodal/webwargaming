@@ -68,11 +68,9 @@ class FinalChapter extends ModernLandBattle
 
     function terrainInit($terrainDoc){
         parent::terrainInit($terrainDoc);
-        $this->mapData->alterSpecialHex(211, WESTERN_FORCE);
-        $this->mapData->alterSpecialHex(414, WESTERN_FORCE);
-        $this->mapData->alterSpecialHex(515, WESTERN_FORCE);
-        $this->mapData->alterSpecialHex(615, WESTERN_FORCE);
-        $this->mapData->alterSpecialHex(2408, EASTERN_FORCE);
+        $this->mapData->alterSpecialHex(112, WESTERN_FORCE);
+        $this->mapData->alterSpecialHex(517, WESTERN_FORCE);
+        $this->mapData->alterSpecialHex(618, WESTERN_FORCE);
     }
 
     function save()
@@ -151,62 +149,66 @@ class FinalChapter extends ModernLandBattle
 
 
         UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 210, "multiPara.png", 5,11, 4, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 411, "multiArmor.png", 6,5, 6, STATUS_READY, "A", 1, 1, "westernEmpire",  'mech', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 412, "multiArmor.png", 6,5, 6, STATUS_READY, "A", 1, 1, "westernEmpire",  'mech', $unitNum++);
 
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 611, "multiInf.png", 4,5, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 611, "multiInf.png", 5,6, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 613, "multiInf.png", 4,5, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 613, "multiInf.png", 5,6, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
 
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 513, "multiArmor.png", 6,5, 8, STATUS_READY, "A", 1, 1, "westernEmpire",  'mech', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 513, "multiArmor.png", 6,5, 8, STATUS_READY, "A", 1, 1, "westernEmpire",  'mech', $unitNum++);
-
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 614, "multiArmor.png", 5,3, 6, STATUS_READY, "A", 1, 1, "westernEmpire",  'mech', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 614, "multiArmor.png", 6,5, 6, STATUS_READY, "A", 1, 1, "westernEmpire",  'mech', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 714, "multiInf.png", 4,5, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 514, "multiInf.png", 3,5, 4, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
 
 
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 716, "multiInf.png", 6,7, 6, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 716, "multiInf.png", 4,5, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 615, "multiArmor.png", 6,5, 8, STATUS_READY, "A", 1, 1, "westernEmpire",  'mech', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 615, "multiArmor.png", 6,5, 8, STATUS_READY, "A", 1, 1, "westernEmpire",  'mech', $unitNum++);
+
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 516, "multiArmor.png", 5,3, 6, STATUS_READY, "A", 1, 1, "westernEmpire",  'mech', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 516, "multiArmor.png", 6,5, 6, STATUS_READY, "A", 1, 1, "westernEmpire",  'mech', $unitNum++);
+
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 717, "multiInf.png", 4,5, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
 
 
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 717, "multiInf.png", 2,3, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 717, "multiInf.png", 2,3, 4, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
-
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 718, "multiInf.png", 2,3, 4, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
-
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 1030, "multiInf.png", 2,4, 4, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 1131, "multiPara.png", 3,5, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 1230, "multiInf.png", 4,6, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 1330, "multiInf.png", 1,3, 4, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 1330, "multiArmor.png", 3,5, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'mech', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 718, "multiInf.png", 6,7, 6, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 718, "multiInf.png", 4,5, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
 
 
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 715, "multiInf.png", 2,4, 4, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 715, "multiInf.png", 4,5, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 719, "multiInf.png", 2,3, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 719, "multiInf.png", 2,3, 4, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
+
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 720, "multiInf.png", 2,3, 4, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
+
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 930, "multiInf.png", 2,4, 4, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 1029, "multiPara.png", 3,5, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 1129, "multiInf.png", 4,6, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 1228, "multiInf.png", 1,3, 4, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 1228, "multiArmor.png", 3,5, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'mech', $unitNum++);
 
 
-        UnitFactory::create("xxx", WESTERN_FORCE, 211, "multiArmor.png", 7, 4, 8, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_FORCE, 211, "multiInf.png", 4,8, 6, STATUS_READY, "C", 1, 1, "western",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 617, "multiInf.png", 2,4, 4, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_EMPIRE_FORCE, 617, "multiInf.png", 4,5, 5, STATUS_READY, "A", 1, 1, "westernEmpire",  'inf', $unitNum++);
+
+
+        UnitFactory::create("xxx", WESTERN_FORCE, 111, "multiArmor.png", 7, 4, 8, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 111, "multiInf.png", 4,8, 6, STATUS_READY, "C", 1, 1, "western",  'inf', $unitNum++);
 
         UnitFactory::create("xxx", WESTERN_FORCE, 312, "multiArmor.png", 7, 4, 8, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
         UnitFactory::create("xxx", WESTERN_FORCE, 312, "multiMech.png", 6, 6, 7, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
 
-        UnitFactory::create("xxx", WESTERN_FORCE, 412, "multiInf.png", 4,8, 6, STATUS_READY, "C", 1, 1, "western",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 413, "multiInf.png", 4,8, 6, STATUS_READY, "C", 1, 1, "western",  'inf', $unitNum++);
 
-        UnitFactory::create("xxx", WESTERN_FORCE, 512, "multiInf.png", 4,8, 6, STATUS_READY, "C", 1, 1, "western",  'inf', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_FORCE, 512, "multiMech.png", 6, 6, 7, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 513, "multiInf.png", 4,8, 6, STATUS_READY, "C", 1, 1, "western",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 513, "multiMech.png", 6, 6, 7, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
 
-        UnitFactory::create("xxx", WESTERN_FORCE, 413, "multiArmor.png", 7, 4, 8, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_FORCE, 413, "multiMech.png", 6, 6, 7, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 414, "multiArmor.png", 7, 4, 8, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 414, "multiMech.png", 6, 6, 7, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
 
-        UnitFactory::create("xxx", WESTERN_FORCE, 515, "multiInf.png", 4,8, 6, STATUS_READY, "C", 1, 1, "western",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 416, "multiInf.png", 4,8, 6, STATUS_READY, "C", 1, 1, "western",  'inf', $unitNum++);
 
-        UnitFactory::create("xxx", WESTERN_FORCE, 517, "multiArmor.png", 7, 4, 8, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_FORCE, 517, "multiMech.png", 6, 6, 7, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 518, "multiArmor.png", 7, 4, 8, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 518, "multiMech.png", 6, 6, 7, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
 
-        UnitFactory::create("xxx", WESTERN_FORCE, 615, "multiInf.png", 4,8, 6, STATUS_READY, "C", 1, 1, "western",  'inf', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_FORCE, 616, "multiInf.png", 4,8, 6, STATUS_READY, "C", 1, 1, "western",  'inf', $unitNum++);
-        UnitFactory::create("xxx", WESTERN_FORCE, 617, "multiMech.png", 6, 6, 7, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
         UnitFactory::create("xxx", WESTERN_FORCE, 618, "multiInf.png", 4,8, 6, STATUS_READY, "C", 1, 1, "western",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 619, "multiInf.png", 4,8, 6, STATUS_READY, "C", 1, 1, "western",  'inf', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 620, "multiMech.png", 6, 6, 7, STATUS_READY, "C", 1, 1, "western", 'mech', $unitNum++);
+        UnitFactory::create("xxx", WESTERN_FORCE, 620, "multiInf.png", 4,8, 6, STATUS_READY, "C", 1, 1, "western",  'inf', $unitNum++);
 
         UnitFactory::create("xxx", WESTERN_FORCE, 1132, "multiInf.png", 4,8, 6, STATUS_READY, "D", 1, 1, "western",  'inf', $unitNum++);
 
@@ -250,7 +252,7 @@ class FinalChapter extends ModernLandBattle
 
         UnitFactory::create("xxxx", BLUE_FORCE, 2515, "multiInf.png", 7, 7, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
 
-        UnitFactory::create("xxxxx", BLUE_FORCE, 2219, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
+        UnitFactory::create("xxxxx", BLUE_FORCE, 2419, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
 
 
         UnitFactory::create("xxxx", BLUE_FORCE, 2423, "multiInf.png", 2, 5, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
