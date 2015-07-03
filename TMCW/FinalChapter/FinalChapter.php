@@ -312,8 +312,7 @@ class FinalChapter extends ModernLandBattle
             $this->gameRules->addPhaseChange(PURPLE_COMBAT_PHASE, BLUE_REPLACEMENT_PHASE, REPLACING_MODE, EASTERN_FORCE, EASTERN_EMPIRE_FORCE, true);
 
 
-            $this->victory->victoryPoints[WESTERN_FORCE] = 4;
-            $this->victory->victoryPoints[EASTERN_FORCE] = 1;
+            $this->victory->victoryPoints[WESTERN_FORCE] = 3;
         }
 
         if($this->players){
