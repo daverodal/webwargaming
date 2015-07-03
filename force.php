@@ -373,7 +373,7 @@ class unit extends BaseUnit implements JsonSerializable
     }
 
     public function getUnmodifiedDefStrength(){
-        return  $this->unitDefStrength;
+        return  $this->getUnmodifiedStrength();
     }
 
     public function __get($name)
@@ -488,7 +488,6 @@ class unit extends BaseUnit implements JsonSerializable
         $mapUnit->strength = $this->strength;
         $mapUnit->supplied = $this->supplied;
         $mapUnit->reinforceZone = $this->reinforceZone;
-        $mapUnit->defStrength = $this->unitDefStrength;
         $mapUnit->forceId = $this->forceId;
         return $mapUnit;
     }
