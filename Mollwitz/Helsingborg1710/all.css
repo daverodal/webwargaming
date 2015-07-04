@@ -1,0 +1,2267 @@
+/*
+Copyright 2012-2015 David Rodal
+
+This program is free software; you can redistribute it
+and/or modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later version
+
+This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   */
+/*
+Copyright 2012-2015 David Rodal
+
+This program is free software; you can redistribute it
+and/or modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later version->
+
+This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   */
+body {
+  min-width: 675px;
+  margin: 0;
+  padding: 0; }
+
+h2 #status {
+  font-size: 16px; }
+
+h5 {
+  margin: 0px; }
+
+h4:hover {
+  text-decoration: underline; }
+
+.shadowy {
+  background-color: rgba(0, 0, 0, 0.3) !important; }
+
+.red-shadowy {
+  background-color: rgba(255, 0, 0, 0.7) !important;
+  font-size: 9px;
+  color: white; }
+
+.red-shadowy:hover {
+  background-color: rgba(255, 0, 0, 0.2) !important;
+  color: transparent; }
+
+#turn, #phase, #status, #victory {
+  background: white;
+  padding: 0 3px;
+  font-family: sans-serif; }
+
+#victory {
+  padding: 0; }
+
+#floatMessage {
+  white-space: nowrap;
+  position: absolute;
+  display: none;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  border: 2px solid black;
+  box-shadow: 10px 10px 10px rgba(30, 30, 30, 0.85);
+  z-index: 4;
+  padding: 0 5px;
+  cursor: move; }
+
+#floatMessage header {
+  font-size: 35px; }
+
+#altTable, #mainTable, #detTable {
+  position: absolute;
+  right: 18px;
+  cursor: pointer; }
+
+#comlinkWrapper {
+  border: 1px solid black;
+  border-radius: 10px;
+  background: white;
+  padding: 0 2px 0 2px;
+  font-style: italic;
+  font-size: 10px;
+  float: right; }
+
+#topStatus {
+  float: right; }
+
+.unit.pushed .shadow-mask {
+  /*color:#f3172d !important;*/
+  /*color:mediumpurple !important;*/
+  /*background-color: #858585 !important;*/
+  background-color: rgba(0, 0, 0, 0.5) !important; }
+
+#muteButton, #arrowButton {
+  cursor: pointer;
+  text-decoration: underline; }
+
+/*.embossed{*/
+/*-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -2px 0 rgba(0,0,0,.25), inset 0 -3px 0 rgba(255,255,255,.2), 0 1px 0 rgba(0,0,0,.1);*/
+/*-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -2px 0 rgba(0,0,0,.25), inset 0 -3px 0 rgba(255,255,255,.2), 0 1px 0 rgba(0,0,0,.1);*/
+/*box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -2px 0 rgba(0,0,0,.25), inset 0 -3px 0 rgba(255,255,255,.2), 0 1px 0 rgba(0,0,0,.1);*/
+/*}*/
+.specialHexes, .specialHexesVP {
+  position: absolute;
+  text-transform: capitalize;
+  background: yellow;
+  opacity: .8;
+  border-radius: 0px;
+  border: 0px;
+  font-size: 16px;
+  z-index: 0; }
+
+.specialHexesVP {
+  background: transparent !important;
+  color: white; }
+
+#display {
+  display: none;
+  position: fixed;
+  top: 25%;
+  width: 90%;
+  left: 5%;
+  padding: 30px 0;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 100px;
+  text-align: center;
+  border: #000 solid 10px;
+  border-radius: 30px;
+  z-index: 4; }
+
+.flashMessage {
+  position: fixed;
+  width: 80%;
+  background: rgba(255, 255, 255, 0.9);
+  /*background:transparent;*/
+  text-align: center;
+  border-radius: 30px;
+  border: 10px solid black;
+  /*border:none;*/
+  font-size: 100px;
+  z-index: 1000;
+  pointer-events: none; }
+
+#display button {
+  font-size: 30px; }
+
+#header {
+  position: static;
+  width: 100%;
+  padding-bottom: 0px;
+  z-index: 2000; }
+
+#mouseMove {
+  display: none; }
+
+#headerContent {
+  /*min-height:110px;*/ }
+
+#nextPhaseWrapper {
+  float: left; }
+  #nextPhaseWrapper #nextPhaseButton, #nextPhaseWrapper #fullScreenButton, #nextPhaseWrapper #forceMarchEvent, #nextPhaseWrapper #determinedAttackEvent, #nextPhaseWrapper #clearCombatEvent, #nextPhaseWrapper #shiftKey {
+    font-size: 28px;
+    position: static; }
+
+#phaseClicks a {
+  color: black; }
+
+#header a {
+  color: #333; }
+
+#header a:hover {
+  color: #999 !important; }
+
+#header h2 {
+  margin: 10px 0 5px; }
+
+#content {
+  margin-top: 140px; }
+
+.clear {
+  clear: both !important;
+  float: none !important; }
+
+/*
+Copyright 2012-2015 David Rodal
+
+This program is free software; you can redistribute it
+and/or modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later version->
+
+This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   */
+.love {
+  color: peace; }
+
+.light {
+  backgroundColor: white; }
+
+.dark {
+  background-color: #000; }
+
+.blueUnit {
+  background-color: #84b5ff; }
+
+.darkBlueUnit {
+  background-color: #6388c0; }
+
+.redUnit {
+  background-color: #ef734a; }
+
+.darkRedUnit {
+  background-color: #b35637; }
+
+.armyGreen {
+  background-color: #94bd4a; }
+
+.gold {
+  background-color: #f7ef8e; }
+
+.lightYellow {
+  background-color: #ffef9c; }
+
+.gray {
+  background-color: #b5b59c; }
+
+.oliveDrab {
+  background-color: #739c73; }
+
+.kaki {
+  background-color: #dec684; }
+
+.lightGreen {
+  background-color: #b5ce73; }
+
+.lightBlue {
+  background-color: #c4d8e4; }
+
+.lightGray {
+  background-color: #d8dad6; }
+
+.brightGreen {
+  background-color: #7bde52; }
+
+.flesh {
+  background-color: #efc69c; }
+
+.brightRed {
+  background-color: #df5842; }
+
+.unit-desig {
+  font-size: 7px;
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  -webkit-transform: rotate(-90deg);
+  -webkit-transform-origin: center;
+  width: 30px;
+  text-align: center; }
+
+#header, #content, #theDiv, #gameViewer {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.dropDown, #zoomWrapper {
+  font-size: 30px;
+  float: left;
+  margin-right: 10px;
+  border-right: 1px solid black;
+  padding-right: 10px; }
+  .dropDown.alpha, #zoomWrapper.alpha {
+    padding-left: 10px; }
+
+#crtWrapper {
+  border-right: 1px solid black;
+  padding-right: 10px;
+  margin-right: 10px; }
+
+#zoomWrapper {
+  font-size: 30px; }
+  #zoomWrapper #zoom .defaultZoom {
+    cursor: pointer; }
+
+.dropDownSelected {
+  background: white; }
+
+.dropDown .WrapperLabel {
+  margin: 0;
+  border: none;
+  cursor: pointer; }
+
+.dropDown .dropDownContent {
+  background: white;
+  position: absolute;
+  z-index: 30;
+  display: none; }
+
+#infoWrapper, #menuWrapper {
+  -webkit-touch-callout: none; }
+  #infoWrapper .WrapperLabel, #menuWrapper .WrapperLabel {
+    font-size: 30px;
+    margin: 0;
+    border: none;
+    -webkit-touch-callout: none;
+    cursor: pointer;
+    /*width:3em;*/ }
+  #infoWrapper li, #menuWrapper li {
+    list-style-type: none;
+    padding: 5px 10px 5px 10px;
+    border: 0 solid black;
+    border-width: 1px 1px 0 1px; }
+    #infoWrapper li a, #infoWrapper li a:visited, #menuWrapper li a, #menuWrapper li a:visited {
+      color: #333;
+      text-decoration: none; }
+
+#menu {
+  background: white;
+  color: #333; }
+  #menu ul {
+    margin: 0;
+    padding: 0; }
+
+#phaseDiv, #statusDiv, #chatsDiv, #victoryDiv {
+  display: inline;
+  vertical-align: top;
+  /*float:left;*/ }
+
+#TimeWrapper {
+  float: left;
+  -webkit-touch-callout: none; }
+  #TimeWrapper .WrapperLabel {
+    font-size: 30px;
+    margin: 0;
+    border: none;
+    -webkit-touch-callout: none;
+    cursor: pointer;
+    /*width:3em;*/ }
+    #TimeWrapper .WrapperLabel .small {
+      font-size: 10px; }
+
+.dropDown .subMenu {
+  font-size: 20px;
+  position: absolute;
+  z-index: 30;
+  display: none;
+  background: #ccc;
+  /* .dropDowns may not exist inside a ul */ }
+  .dropDown .subMenu > ul {
+    margin: 0;
+    padding: 0;
+    z-index: 30;
+    font-size: 50px; }
+    .dropDown .subMenu > ul > li {
+      background: white;
+      border: 1px solid #333; }
+  .dropDown .subMenu .dropDown {
+    border: none; }
+  .dropDown .subMenu .dropDown {
+    float: none;
+    font-size: 24px;
+    cursor: pointer;
+    position: static;
+    font-weight: bold;
+    display: inline-block; }
+
+#gameRules h4:hover {
+  text-decoration: none; }
+
+#GR {
+  background: white;
+  max-height: 500px;
+  min-height: 100px;
+  overflow-y: auto;
+  padding: 0 20px 10px; }
+  #GR ol {
+    counter-reset: item;
+    padding-left: 10px; }
+  #GR li {
+    margin: 3px 0;
+    display: block;
+    font-size: 16px !important;
+    font-weight: normal !important; }
+    #GR li:before {
+      content: "[" counters(item,".") "] ";
+      counter-increment: item;
+      font-weight: bold; }
+  #GR .topNumbers {
+    counter-reset: item -1; }
+    #GR .topNumbers > li {
+      border-top: silver 2px solid;
+      padding-top: 10px;
+      margin-top: 30px; }
+      #GR .topNumbers > li:before {
+        content: "[" counters(item,".") ".0] ";
+        font-size: 19px; }
+      #GR .topNumbers > li li {
+        margin-top: 20px; }
+        #GR .topNumbers > li li:before {
+          font-size: 18px; }
+        #GR .topNumbers > li li li {
+          margin-top: 15px;
+          padding-top: 0px;
+          border: none; }
+          #GR .topNumbers > li li li:before {
+            font-size: 16px; }
+          #GR .topNumbers > li li li li {
+            margin-top: 10px; }
+            #GR .topNumbers > li li li li:before {
+              font-size: 14px; }
+  #GR h4 {
+    margin-bottom: 5px; }
+  #GR #credits h2 {
+    color: #338833; }
+  #GR #credits h4 {
+    margin-bottom: 0px; }
+
+#statusWrapper {
+  float: right; }
+
+#crtWrapper {
+  float: left;
+  -webkit-touch-callout: none; }
+  #crtWrapper .WrapperLabel {
+    font-size: 30px;
+    margin: 0;
+    border: none;
+    -webkit-touch-callout: none;
+    cursor: pointer;
+    /*width:3em;*/ }
+
+#crt {
+  width: 308px; }
+
+#crtWrapper h4 .goLeft, #crtWrapper h4 .goRight {
+  font-size: 22px;
+  padding: 0 10px; }
+
+#TEC ul {
+  margin: 0;
+  padding: 0; }
+
+#Time ul {
+  margin: 0;
+  padding: 0; }
+
+#info ul {
+  margin: 0;
+  padding: 0; }
+
+#info {
+  background: white;
+  color: #333;
+  width: 10em; }
+
+.close {
+  position: absolute;
+  border: 1px solid #ccc;
+  right: 3px;
+  top: 3px;
+  color: #ccc;
+  font-size: 11px;
+  line-height: 12px;
+  cursor: pointer; }
+
+#VC ul {
+  margin: 0;
+  padding: 0; }
+
+#OBC {
+  background: white;
+  width: 514px; }
+
+#OBC .unit {
+  margin-top: 10px; }
+
+#OBC .unit .shadow-mask {
+  /*background-color:rgba(0,0,0,.3);*/ }
+
+#Time {
+  background: white;
+  width: 600px;
+  cursor: move;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  border: 2px solid black;
+  box-shadow: 10px 10px 10px rgba(30, 30, 30, 0.85);
+  padding: 0 5px; }
+
+#TEC {
+  background: white;
+  width: 579px; }
+
+#VC {
+  background: white;
+  width: 579px;
+  left: -230px; }
+
+#clickCnt {
+  display: inline-block;
+  padding: 3px; }
+
+#OBCWrapper h4 {
+  /*width:2em;*/ }
+
+#OBC, #crt, #TEC, #VC, #jump, #menu, #info, #GR, #Time {
+  position: absolute;
+  z-index: 30;
+  display: none; }
+
+#TEC, #menu, #info {
+  font-size: 20px !important; }
+
+.closer {
+  height: 0px;
+  padding: 0px !important; }
+
+#crt {
+  z-index: 40; }
+
+body {
+  background: #eee;
+  color: #333; }
+
+#status {
+  /*height:70px;*/
+  /*overflow-y:scroll;*/
+  /*text-align:right;*/ }
+
+#status legend {
+  /*text-align:left;*/ }
+
+fieldset {
+  background: white;
+  border-radius: 9px; }
+
+#OBC fieldset {
+  float: left;
+  min-height: 100px; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+#crt {
+  border-radius: 15px;
+  border-width: 10px;
+  border-style: solid;
+  /*border:10px solid rgb(132,181,255);*/
+  background: #fff;
+  color: black;
+  font-weight: bold;
+  padding: 1px 5px 10px 15px;
+  box-shadow: 10px 10px 10px rgba(30, 30, 30, 0.85); }
+
+#crt h3 {
+  height: 40px;
+  margin-bottom: 5px;
+  vertical-align: bottom; }
+
+#crt span {
+  width: 32px; }
+
+.col1 {
+  left: 20px; }
+
+.col2 {
+  left: 60px; }
+
+.col3 {
+  left: 100px; }
+
+.col4 {
+  left: 140px; }
+
+.col5 {
+  left: 180px; }
+
+.col6 {
+  left: 220px; }
+
+.roll, #odds {
+  height: 20px;
+  /*background :#1af;*/
+  background: #84b5ff;
+  margin-right: 14px; }
+
+#odds {
+  background: white; }
+
+.even {
+  color: black; }
+
+.odd {
+  color: black; }
+
+.row1 {
+  top: 80px; }
+
+.row2 {
+  top: 100px;
+  background: white; }
+
+.row3 {
+  top: 120px; }
+
+.row4 {
+  top: 140px;
+  background: white; }
+
+.row5 {
+  top: 160px; }
+
+.row6 {
+  top: 180px;
+  background: white; }
+
+.roll span, #odds span {
+  margin-right: 10px;
+  float: left;
+  display: block;
+  width: 32px; }
+
+#gameImages {
+  position: relative;
+  overflow: visible !important; }
+
+#gameViewer {
+  position: fixed;
+  background: #ccc;
+  margin-bottom: 5px;
+  width: 100%; }
+
+#leftcol {
+  /*float:left;
+  width:360px;*/ }
+
+#rightCol {
+  /*float:right;*/
+  overflow: hidden; }
+
+#gameturnContainer {
+  height: 38px;
+  position: relative;
+  float: left; }
+
+#gameturnContainer div {
+  float: left;
+  height: 36px;
+  width: 36px;
+  border: solid black;
+  border-width: 1px 1px 1px 0;
+  font-size: 18px;
+  text-indent: 2px; }
+
+.storm {
+  font-size: 50%; }
+
+#gameturnContainer #turn1 {
+  border-width: 1px; }
+
+#turnCounter {
+  width: 32px;
+  height: 32px;
+  font-size: 11px;
+  text-indent: 0px;
+  top: 2px;
+  left: 2px;
+  text-align: center;
+  border: 2px solid;
+  border-color: #ccc #666 #666 #ccc; }
+
+#deadpile {
+  border-radius: 10px;
+  border: 10px solid #555;
+  height: 70px;
+  background: #333;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 5px;
+  /*display:none;*/ }
+
+#deployBox {
+  position: relative;
+  font-family: serif; }
+
+#deployWrapper, #exitWrapper {
+  /*display:none;*/
+  padding: 4px 7px 4px 7px;
+  text-align: left;
+  font-family: sans-serif;
+  font-size: 1.2em;
+  color: white;
+  border-radius: 10px;
+  border: 10px solid #555;
+  background: #999;
+  margin-bottom: 5px;
+  position: relative; }
+
+#deployWrapper .unit {
+  margin-right: 5px; }
+
+.unit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  width: 32px;
+  height: 32px;
+  border: solid 3px black; }
+
+.unit .shadow-mask {
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: transparent;
+  z-index: 1; }
+
+.unit .unit-numbers {
+  text-align: center;
+  color: black; }
+
+.unit .unitSize {
+  font-size: 9px;
+  text-align: center;
+  color: black; }
+
+.unit .unit-numbers {
+  height: 12px;
+  font-size: 11px; }
+
+.arrowClone, .arrow {
+  position: absolute;
+  pointer-events: none;
+  z-index: 102;
+  top: 0px;
+  width: 100%;
+  height: 100%; }
+
+.clone {
+  /*pointer-events:none;*/ }
+
+.occupied {
+  display: none; }
+
+#TEC {
+  max-height: 500px;
+  overflow: auto; }
+
+#crtDetailsButton {
+  font-size: 20px;
+  cursor: pointer; }
+
+#crtDetails {
+  display: none; }
+
+svg {
+  z-index: 1;
+  display: none; }
+
+.unitOdds {
+  position: absolute;
+  background: white;
+  border-radius: 10px;
+  left: 15px;
+  right: -9px;
+  text-align: center;
+  letter-spacing: -1px;
+  font-size: 70%;
+  z-index: 2;
+  border: 1px solid #999; }
+  .unitOdds:hover {
+    background: transparent;
+    color: transparent;
+    border-color: transparent; }
+  .unitOdds.altColor {
+    background: #00ec00; }
+    .unitOdds.altColor:hover {
+      background: transparent; }
+  .unitOdds.determinedColor {
+    background: red;
+    color: white; }
+    .unitOdds.determinedColor:hover {
+      background: transparent;
+      color: transparent; }
+  .unitOdds.pinnedColor {
+    background: #ff00ff;
+    color: white; }
+    .unitOdds.pinnedColor:hover {
+      background: transparent;
+      color: transparent; }
+
+#phaseClicks {
+  display: none;
+  cursor: pointer; }
+  #phaseClicks .newPhase {
+    min-width: 10px;
+    height: 40px;
+    border-left: 1px solid red;
+    display: inline-block;
+    margin-bottom: 10px; }
+  #phaseClicks .newTick {
+    text-align: center;
+    margin-top: 10px;
+    width: 15px;
+    height: 10px;
+    border-left: 1px solid black;
+    display: inline-block;
+    font-size: 10px; }
+    #phaseClicks .newTick.tickShim {
+      width: 0px; }
+    #phaseClicks .newTick:hover {
+      background: #999;
+      color: #fff; }
+    #phaseClicks .newTick.activeTick {
+      background-color: #666; }
+      #phaseClicks .newTick.activeTick a {
+        background-color: #666;
+        color: white; }
+
+#click-back, #click-surge, .time-button {
+  font-size: 22px;
+  letter-spacing: -3px; }
+
+svg g {
+  opacity: .6;
+  fill: red;
+  stroke: red; }
+  svg g:hover, svg g .hover {
+    opacity: 1.0; }
+svg marker#head {
+  fill: red; }
+
+.ruleComment {
+  font-style: italic;
+  margin-left: 10px;
+  color: #999; }
+
+.big {
+  font-size: 19px;
+  font-weight: bold; }
+
+.swooshy {
+  background: black;
+  color: #eee; }
+
+@media screen and (min-width: 1281px) {
+  .tablet {
+    display: none !important; } }
+@media screen and (max-width: 1280px) {
+  .desktop {
+    display: none; }
+
+  #click-back, #click-surge {
+    font-size: 45px;
+    width: 45px; } }
+/**
+ *
+ * Copyright 2012-2015 David Rodal
+ * User: David Markarian Rodal
+ * Date: 3/8/15
+ * Time: 5:48 PM
+ *
+ *  This program is free software; you can redistribute it
+ *  and/or modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation;
+ *  either version 2 of the License, or (at your option) any later version
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+.guard-unit {
+  display: none; }
+
+.Guard.unit .guard-unit {
+  display: block;
+  position: absolute;
+  width: 6px;
+  right: 13px;
+  background: yellow;
+  color: black;
+  font-size: 7px;
+  top: 16px;
+  word-wrap: break-word; }
+  .Guard.unit .guard-unit.infoLen7 {
+    right: 16px; }
+
+.vintage.Guard.unit p.range {
+  top: -8px; }
+.vintage.Guard.unit p.forceMarch {
+  top: -11px; }
+.vintage.Guard.unit .guard-unit {
+  width: 12px;
+  right: 0px;
+  font-size: 8px;
+  top: 1px; }
+
+.unit {
+  border: solid black;
+  border-width: 3px; }
+  .unit .counterWrapper {
+    border: solid black 1px;
+    height: 14px; }
+    .unit .counterWrapper div.counter {
+      width: 14px;
+      height: 14px;
+      display: block;
+      border-right: 1px solid black; }
+  .unit p.forceMarch, .unit p.range {
+    position: absolute;
+    top: -19px;
+    right: 2px;
+    display: none;
+    color: black;
+    text-transform: lowercase; }
+  .unit p.range {
+    font-size: 15px;
+    top: -15px;
+    right: 5px;
+    display: block;
+    color: black; }
+  .unit .unit-numbers {
+    border: 1px solid black;
+    border-top-width: 0px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 16px !important;
+    background: white;
+    font-weight: bold;
+    font-family: 'Droid Serif', serif; }
+    .unit .unit-numbers .infoLen5 {
+      font-size: 14px; }
+    .unit .unit-numbers .infoLen7 {
+      font-size: 13px;
+      letter-spacing: -1px; }
+    .unit .unit-numbers .infoLen8 {
+      font-size: 12px;
+      letter-spacing: -1px; }
+
+.vintage.unit .counterWrapper {
+  height: 19px; }
+  .vintage.unit .counterWrapper div.counter {
+    width: 19px;
+    height: 19px; }
+.vintage.unit p.forceMarch {
+  right: 0px;
+  top: -17px; }
+.vintage.unit p.range {
+  right: 2px;
+  top: -13px; }
+.vintage.unit .unit-numbers {
+  border: 1px solid black;
+  border-top-width: 0px;
+  height: 10px;
+  line-height: 10px;
+  font-size: 12px !important;
+  background: white;
+  font-weight: bold;
+  font-family: serif; }
+  .vintage.unit .unit-numbers .infoLen5 {
+    font-size: 12px;
+    letter-spacing: 0px; }
+  .vintage.unit .unit-numbers .infoLen7 {
+    font-size: 11px;
+    letter-spacing: 0px; }
+  .vintage.unit .unit-numbers .infoLen8 {
+    font-size: 9px;
+    letter-spacing: 0px; }
+
+.vintage.Sikh.infantry .counterWrapper .counter {
+  background-image: url("../../js/SikhInfBadge.png");
+  background-size: 19px; }
+.vintage.Sikh.cavalry .counterWrapper .counter {
+  background-image: url("../../js/SikhCavBadge.png");
+  background-size: 19px; }
+.vintage.Sikh.artillery .counterWrapper .counter {
+  background-image: url("../../js/SikhArtBadge.png");
+  background-size: 19px; }
+.vintage.Sikh.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/SikhHorArtBadge.png");
+  background-size: 19px; }
+.vintage.Sikh.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.Sikh.pontoon .counterWrapper {
+  border: none; }
+  .vintage.Sikh.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/SikhPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.Sikh.pontoon .unit-numbers {
+  display: none; }
+
+.Sikh.infantry .counterWrapper .counter {
+  background-image: url("../../js/SikhInfBadge.png");
+  background-size: 14px; }
+
+.Sikh.cavalry .counterWrapper .counter {
+  background-image: url("../../js/SikhCavBadge.png");
+  background-size: 14px; }
+
+.Sikh.artillery .counterWrapper .counter {
+  background-image: url("../../js/SikhArtBadge.png");
+  background-size: 14px; }
+
+.Sikh.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/SikhHorArtBadge.png");
+  background-size: 14px; }
+
+.Sikh.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Sikh.pontoon .counterWrapper {
+  border: none; }
+  .Sikh.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/SikhPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Sikh.pontoon .unit-numbers {
+  display: none; }
+
+.vintage.Beluchi.infantry .counterWrapper .counter {
+  background-image: url("../../js/SikhInfBadge.png");
+  background-size: 19px; }
+.vintage.Beluchi.cavalry .counterWrapper .counter {
+  background-image: url("../../js/SikhCavBadge.png");
+  background-size: 19px; }
+.vintage.Beluchi.artillery .counterWrapper .counter {
+  background-image: url("../../js/SikhArtBadge.png");
+  background-size: 19px; }
+.vintage.Beluchi.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/SikhHorArtBadge.png");
+  background-size: 19px; }
+.vintage.Beluchi.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.Beluchi.pontoon .counterWrapper {
+  border: none; }
+  .vintage.Beluchi.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/SikhPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.Beluchi.pontoon .unit-numbers {
+  display: none; }
+
+.Beluchi.infantry .counterWrapper .counter {
+  background-image: url("../../js/SikhInfBadge.png");
+  background-size: 14px; }
+
+.Beluchi.cavalry .counterWrapper .counter {
+  background-image: url("../../js/SikhCavBadge.png");
+  background-size: 14px; }
+
+.Beluchi.artillery .counterWrapper .counter {
+  background-image: url("../../js/SikhArtBadge.png");
+  background-size: 14px; }
+
+.Beluchi.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/SikhHorArtBadge.png");
+  background-size: 14px; }
+
+.Beluchi.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Beluchi.pontoon .counterWrapper {
+  border: none; }
+  .Beluchi.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/SikhPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Beluchi.pontoon .unit-numbers {
+  display: none; }
+
+.vintage.British.infantry .counterWrapper .counter {
+  background-image: url("../../js/BritInfBadge.png");
+  background-size: 19px; }
+.vintage.British.cavalry .counterWrapper .counter {
+  background-image: url("../../js/BritCavBadge.png");
+  background-size: 19px; }
+.vintage.British.artillery .counterWrapper .counter {
+  background-image: url("../../js/BritArtBadge.png");
+  background-size: 19px; }
+.vintage.British.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/BritHorArtBadge.png");
+  background-size: 19px; }
+.vintage.British.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.British.pontoon .counterWrapper {
+  border: none; }
+  .vintage.British.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/BritPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.British.pontoon .unit-numbers {
+  display: none; }
+
+.British.infantry .counterWrapper .counter {
+  background-image: url("../../js/BritInfBadge.png");
+  background-size: 14px; }
+
+.British.cavalry .counterWrapper .counter {
+  background-image: url("../../js/BritCavBadge.png");
+  background-size: 14px; }
+
+.British.artillery .counterWrapper .counter {
+  background-image: url("../../js/BritArtBadge.png");
+  background-size: 14px; }
+
+.British.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/BritHorArtBadge.png");
+  background-size: 14px; }
+
+.British.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.British.pontoon .counterWrapper {
+  border: none; }
+  .British.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/BritPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.British.pontoon .unit-numbers {
+  display: none; }
+
+.vintage.SaxonPolish.infantry .counterWrapper .counter {
+  background-image: url("../../js/RusInfBadge.png");
+  background-size: 19px; }
+.vintage.SaxonPolish.cavalry .counterWrapper .counter {
+  background-image: url("../../js/RusCavBadge.png");
+  background-size: 19px; }
+.vintage.SaxonPolish.artillery .counterWrapper .counter {
+  background-image: url("../../js/RusArtBadge.png");
+  background-size: 19px; }
+.vintage.SaxonPolish.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/RusHorArtBadge.png");
+  background-size: 19px; }
+.vintage.SaxonPolish.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.SaxonPolish.pontoon .counterWrapper {
+  border: none; }
+  .vintage.SaxonPolish.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/RusPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.SaxonPolish.pontoon .unit-numbers {
+  display: none; }
+
+.SaxonPolish.infantry .counterWrapper .counter {
+  background-image: url("../../js/RusInfBadge.png");
+  background-size: 14px; }
+
+.SaxonPolish.cavalry .counterWrapper .counter {
+  background-image: url("../../js/RusCavBadge.png");
+  background-size: 14px; }
+
+.SaxonPolish.artillery .counterWrapper .counter {
+  background-image: url("../../js/RusArtBadge.png");
+  background-size: 14px; }
+
+.SaxonPolish.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/RusHorArtBadge.png");
+  background-size: 14px; }
+
+.SaxonPolish.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.SaxonPolish.pontoon .counterWrapper {
+  border: none; }
+  .SaxonPolish.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/RusPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.SaxonPolish.pontoon .unit-numbers {
+  display: none; }
+
+.British.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/BritHorArtBadge.png");
+  background-size: 14px; }
+
+.vintage.Native.infantry .counterWrapper .counter {
+  background-image: url("../../js/NativeInfBadge.png");
+  background-size: 19px; }
+.vintage.Native.cavalry .counterWrapper .counter {
+  background-image: url("../../js/NativeCavBadge.png");
+  background-size: 19px; }
+.vintage.Native.artillery .counterWrapper .counter {
+  background-image: url("../../js/NativeArtBadge.png");
+  background-size: 19px; }
+.vintage.Native.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/NativeHorArtBadge.png");
+  background-size: 19px; }
+.vintage.Native.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.Native.pontoon .counterWrapper {
+  border: none; }
+  .vintage.Native.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/NativePontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.Native.pontoon .unit-numbers {
+  display: none; }
+
+.Native.infantry .counterWrapper .counter {
+  background-image: url("../../js/NativeInfBadge.png");
+  background-size: 14px; }
+
+.Native.cavalry .counterWrapper .counter {
+  background-image: url("../../js/NativeCavBadge.png");
+  background-size: 14px; }
+
+.Native.artillery .counterWrapper .counter {
+  background-image: url("../../js/NativeArtBadge.png");
+  background-size: 14px; }
+
+.Native.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/NativeHorArtBadge.png");
+  background-size: 14px; }
+
+.Native.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Native.pontoon .counterWrapper {
+  border: none; }
+  .Native.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/NativePontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Native.pontoon .unit-numbers {
+  display: none; }
+
+.vintage.Austrian.infantry .counterWrapper .counter {
+  background-image: url("../../js/AusInfBadge.png");
+  background-size: 19px; }
+.vintage.Austrian.cavalry .counterWrapper .counter {
+  background-image: url("../../js/AusCavBadge.png");
+  background-size: 19px; }
+.vintage.Austrian.artillery .counterWrapper .counter {
+  background-image: url("../../js/AusArtBadge.png");
+  background-size: 19px; }
+.vintage.Austrian.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/AusHorArtBadge.png");
+  background-size: 19px; }
+.vintage.Austrian.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.Austrian.pontoon .counterWrapper {
+  border: none; }
+  .vintage.Austrian.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/AusPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.Austrian.pontoon .unit-numbers {
+  display: none; }
+
+.Austrian.infantry .counterWrapper .counter {
+  background-image: url("../../js/AusInfBadge.png");
+  background-size: 14px; }
+
+.Austrian.cavalry .counterWrapper .counter {
+  background-image: url("../../js/AusCavBadge.png");
+  background-size: 14px; }
+
+.Austrian.artillery .counterWrapper .counter {
+  background-image: url("../../js/AusArtBadge.png");
+  background-size: 14px; }
+
+.Austrian.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/AusHorArtBadge.png");
+  background-size: 14px; }
+
+.Austrian.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Austrian.pontoon .counterWrapper {
+  border: none; }
+  .Austrian.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/AusPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Austrian.pontoon .unit-numbers {
+  display: none; }
+
+.vintage.Prussian.infantry .counterWrapper .counter {
+  background-image: url("../../js/PruInfBadge.png");
+  background-size: 19px; }
+.vintage.Prussian.cavalry .counterWrapper .counter {
+  background-image: url("../../js/PruCavBadge.png");
+  background-size: 19px; }
+.vintage.Prussian.artillery .counterWrapper .counter {
+  background-image: url("../../js/PruArtBadge.png");
+  background-size: 19px; }
+.vintage.Prussian.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/PruHorArtBadge.png");
+  background-size: 19px; }
+.vintage.Prussian.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.Prussian.pontoon .counterWrapper {
+  border: none; }
+  .vintage.Prussian.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/PruPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.Prussian.pontoon .unit-numbers {
+  display: none; }
+
+.Prussian.infantry .counterWrapper .counter {
+  background-image: url("../../js/PruInfBadge.png");
+  background-size: 14px; }
+
+.Prussian.cavalry .counterWrapper .counter {
+  background-image: url("../../js/PruCavBadge.png");
+  background-size: 14px; }
+
+.Prussian.artillery .counterWrapper .counter {
+  background-image: url("../../js/PruArtBadge.png");
+  background-size: 14px; }
+
+.Prussian.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/PruHorArtBadge.png");
+  background-size: 14px; }
+
+.Prussian.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Prussian.pontoon .counterWrapper {
+  border: none; }
+  .Prussian.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/PruPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Prussian.pontoon .unit-numbers {
+  display: none; }
+
+.vintage.Russian.infantry .counterWrapper .counter {
+  background-image: url("../../js/RusInfBadge.png");
+  background-size: 19px; }
+.vintage.Russian.cavalry .counterWrapper .counter {
+  background-image: url("../../js/RusCavBadge.png");
+  background-size: 19px; }
+.vintage.Russian.artillery .counterWrapper .counter {
+  background-image: url("../../js/RusArtBadge.png");
+  background-size: 19px; }
+.vintage.Russian.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/RusHorArtBadge.png");
+  background-size: 19px; }
+.vintage.Russian.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.Russian.pontoon .counterWrapper {
+  border: none; }
+  .vintage.Russian.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/RusPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.Russian.pontoon .unit-numbers {
+  display: none; }
+
+.Russian.infantry .counterWrapper .counter {
+  background-image: url("../../js/RusInfBadge.png");
+  background-size: 14px; }
+
+.Russian.cavalry .counterWrapper .counter {
+  background-image: url("../../js/RusCavBadge.png");
+  background-size: 14px; }
+
+.Russian.artillery .counterWrapper .counter {
+  background-image: url("../../js/RusArtBadge.png");
+  background-size: 14px; }
+
+.Russian.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/RusHorArtBadge.png");
+  background-size: 14px; }
+
+.Russian.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Russian.pontoon .counterWrapper {
+  border: none; }
+  .Russian.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/RusPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Russian.pontoon .unit-numbers {
+  display: none; }
+
+.vintage.French.infantry .counterWrapper .counter {
+  background-image: url("../../js/FrenchInfBadge.png");
+  background-size: 19px; }
+.vintage.French.cavalry .counterWrapper .counter {
+  background-image: url("../../js/FrenchCavBadge.png");
+  background-size: 19px; }
+.vintage.French.artillery .counterWrapper .counter {
+  background-image: url("../../js/FrenchArtBadge.png");
+  background-size: 19px; }
+.vintage.French.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/FrenchHorArtBadge.png");
+  background-size: 19px; }
+.vintage.French.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.French.pontoon .counterWrapper {
+  border: none; }
+  .vintage.French.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/FrenchPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.French.pontoon .unit-numbers {
+  display: none; }
+
+.French.infantry .counterWrapper .counter {
+  background-image: url("../../js/FrenchInfBadge.png");
+  background-size: 14px; }
+
+.French.cavalry .counterWrapper .counter {
+  background-image: url("../../js/FrenchCavBadge.png");
+  background-size: 14px; }
+
+.French.artillery .counterWrapper .counter {
+  background-image: url("../../js/FrenchArtBadge.png");
+  background-size: 14px; }
+
+.French.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/FrenchHorArtBadge.png");
+  background-size: 14px; }
+
+.French.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.French.pontoon .counterWrapper {
+  border: none; }
+  .French.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/FrenchPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.French.pontoon .unit-numbers {
+  display: none; }
+
+.vintage.AngloAllied.infantry .counterWrapper .counter {
+  background-image: url("../../js/AngInfBadge.png");
+  background-size: 19px; }
+.vintage.AngloAllied.cavalry .counterWrapper .counter {
+  background-image: url("../../js/AngCavBadge.png");
+  background-size: 19px; }
+.vintage.AngloAllied.artillery .counterWrapper .counter {
+  background-image: url("../../js/AngArtBadge.png");
+  background-size: 19px; }
+.vintage.AngloAllied.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/AngHorArtBadge.png");
+  background-size: 19px; }
+.vintage.AngloAllied.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.AngloAllied.pontoon .counterWrapper {
+  border: none; }
+  .vintage.AngloAllied.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/AngPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.AngloAllied.pontoon .unit-numbers {
+  display: none; }
+
+.AngloAllied.infantry .counterWrapper .counter {
+  background-image: url("../../js/AngInfBadge.png");
+  background-size: 14px; }
+
+.AngloAllied.cavalry .counterWrapper .counter {
+  background-image: url("../../js/AngCavBadge.png");
+  background-size: 14px; }
+
+.AngloAllied.artillery .counterWrapper .counter {
+  background-image: url("../../js/AngArtBadge.png");
+  background-size: 14px; }
+
+.AngloAllied.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/AngHorArtBadge.png");
+  background-size: 14px; }
+
+.AngloAllied.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.AngloAllied.pontoon .counterWrapper {
+  border: none; }
+  .AngloAllied.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/AngPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.AngloAllied.pontoon .unit-numbers {
+  display: none; }
+
+.vintage.Anglo.infantry .counterWrapper .counter {
+  background-image: url("../../js/AngInfBadge.png");
+  background-size: 19px; }
+.vintage.Anglo.cavalry .counterWrapper .counter {
+  background-image: url("../../js/AngCavBadge.png");
+  background-size: 19px; }
+.vintage.Anglo.artillery .counterWrapper .counter {
+  background-image: url("../../js/AngArtBadge.png");
+  background-size: 19px; }
+.vintage.Anglo.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/AngHorArtBadge.png");
+  background-size: 19px; }
+.vintage.Anglo.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.Anglo.pontoon .counterWrapper {
+  border: none; }
+  .vintage.Anglo.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/AngPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.Anglo.pontoon .unit-numbers {
+  display: none; }
+
+.Anglo.infantry .counterWrapper .counter {
+  background-image: url("../../js/AngInfBadge.png");
+  background-size: 14px; }
+
+.Anglo.cavalry .counterWrapper .counter {
+  background-image: url("../../js/AngCavBadge.png");
+  background-size: 14px; }
+
+.Anglo.artillery .counterWrapper .counter {
+  background-image: url("../../js/AngArtBadge.png");
+  background-size: 14px; }
+
+.Anglo.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/AngHorArtBadge.png");
+  background-size: 14px; }
+
+.Anglo.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Anglo.pontoon .counterWrapper {
+  border: none; }
+  .Anglo.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/AngPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Anglo.pontoon .unit-numbers {
+  display: none; }
+
+.vintage.Allied.infantry .counterWrapper .counter {
+  background-image: url("../../js/AngInfBadge.png");
+  background-size: 19px; }
+.vintage.Allied.cavalry .counterWrapper .counter {
+  background-image: url("../../js/AngCavBadge.png");
+  background-size: 19px; }
+.vintage.Allied.artillery .counterWrapper .counter {
+  background-image: url("../../js/AngArtBadge.png");
+  background-size: 19px; }
+.vintage.Allied.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/AngHorArtBadge.png");
+  background-size: 19px; }
+.vintage.Allied.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.Allied.pontoon .counterWrapper {
+  border: none; }
+  .vintage.Allied.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/AngPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.Allied.pontoon .unit-numbers {
+  display: none; }
+
+.Allied.infantry .counterWrapper .counter {
+  background-image: url("../../js/AngInfBadge.png");
+  background-size: 14px; }
+
+.Allied.cavalry .counterWrapper .counter {
+  background-image: url("../../js/AngCavBadge.png");
+  background-size: 14px; }
+
+.Allied.artillery .counterWrapper .counter {
+  background-image: url("../../js/AngArtBadge.png");
+  background-size: 14px; }
+
+.Allied.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/AngHorArtBadge.png");
+  background-size: 14px; }
+
+.Allied.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Allied.pontoon .counterWrapper {
+  border: none; }
+  .Allied.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/AngPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Allied.pontoon .unit-numbers {
+  display: none; }
+
+.vintage.Swedish.infantry .counterWrapper .counter {
+  background-image: url("../../js/SweInfBadge.png");
+  background-size: 19px; }
+.vintage.Swedish.cavalry .counterWrapper .counter {
+  background-image: url("../../js/SweCavBadge.png");
+  background-size: 19px; }
+.vintage.Swedish.artillery .counterWrapper .counter {
+  background-image: url("../../js/SweArtBadge.png");
+  background-size: 19px; }
+.vintage.Swedish.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/SweHorArtBadge.png");
+  background-size: 19px; }
+.vintage.Swedish.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.Swedish.pontoon .counterWrapper {
+  border: none; }
+  .vintage.Swedish.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/SwePontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.Swedish.pontoon .unit-numbers {
+  display: none; }
+
+.Swedish.infantry .counterWrapper .counter {
+  background-image: url("../../js/SweInfBadge.png");
+  background-size: 14px; }
+
+.Swedish.cavalry .counterWrapper .counter {
+  background-image: url("../../js/SweCavBadge.png");
+  background-size: 14px; }
+
+.Swedish.artillery .counterWrapper .counter {
+  background-image: url("../../js/SweArtBadge.png");
+  background-size: 14px; }
+
+.Swedish.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/SweHorArtBadge.png");
+  background-size: 14px; }
+
+.Swedish.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Swedish.pontoon .counterWrapper {
+  border: none; }
+  .Swedish.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/SwePontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Swedish.pontoon .unit-numbers {
+  display: none; }
+
+#header #GR a {
+  color: black; }
+
+.indent {
+  margin-left: 20px; }
+
+.RussianaVP {
+  color: #84b5ff;
+  background: transparent;
+  opacity: 1.0; }
+
+.PrussianlVP {
+  color: #ef734a;
+  background: transparent; }
+
+.Russian p.forceMarch, .Russian p.range, .Prussian p.forceMarch, .Prussian p.range {
+  color: white; }
+
+#OBC {
+  background: white;
+  width: 514px; }
+
+#TEC {
+  background: white;
+  width: 779px; }
+
+#crt {
+  width: 476px; }
+
+.tableWrapper.alt {
+  display: none; }
+
+.alt {
+  display: none;
+  width: 476px; }
+
+.Prussian div {
+  color: black; }
+
+.russian div {
+  color: black; }
+
+#clock {
+  margin-left: 0; }
+
+.dropDownSelected {
+  background: white;
+  color: black; }
+
+#tecImage {
+  width: 500px; }
+
+#TEC {
+  width: 520px; }
+
+#TECWrapper .closer {
+  height: 0px;
+  padding: 0px; }
+
+#VCWrapper .closer {
+  height: 0px;
+  padding: 0px; }
+
+#GR {
+  width: 600px; }
+
+.game-name {
+  font-family: 'Berkshire Swash'; }
+
+#altTable, #mainTable {
+  position: absolute;
+  right: 18px; }
+
+#crtDetailsButton {
+  font-size: 20px;
+  cursor: pointer; }
+
+#crtDetails {
+  display: none; }
+
+.specialHexes.russian {
+  color: white;
+  background-color: #4cb800; }
+
+.specialHexes.saxon.polish {
+  color: white;
+  background-color: #4cb800; }
+
+#CombatLog {
+  width: 300px; }
+
+.specialHexesVP .austrian, .specialHexesVP .anglo {
+  background: transparent;
+  text-shadow: 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842; }
+
+.specialHexesVP .prussian {
+  color: black;
+  background: transparent;
+  text-shadow: 0px 0px 1px #fffd7f, 0px 0px 1px #fffd7f, 0px 0px 1px #fffd7f, 0px 0px 2px #fffd7f, 0px 0px 2px #fffd7f, 0px 0px 2px #fffd7f, 0px 0px 3px #fffd7f, 0px 0px 3px #fffd7f, 0px 0px 3px #fffd7f, 0px 0px 4px #fffd7f, 0px 0px 4px #fffd7f, 0px 0px 4px #fffd7f, 0px 0px 5px #fffd7f, 0px 0px 5px #fffd7f, 0px 0px 5px #fffd7f, 0px 0px 6px #fffd7f, 0px 0px 6px #fffd7f, 0px 0px 6px #fffd7f, 0px 0px 7px #fffd7f, 0px 0px 7px #fffd7f, 0px 0px 7px #fffd7f, 0px 0px 8px #fffd7f, 0px 0px 8px #fffd7f, 0px 0px 8px #fffd7f, 0px 0px 9px #fffd7f, 0px 0px 9px #fffd7f, 0px 0px 9px #fffd7f, 0px 0px 10px #fffd7f, 0px 0px 10px #fffd7f, 0px 0px 10px #fffd7f, 0px 0px 1px #fffd7f, 0px 0px 1px #fffd7f, 0px 0px 1px #fffd7f, 0px 0px 2px #fffd7f, 0px 0px 2px #fffd7f, 0px 0px 2px #fffd7f, 0px 0px 3px #fffd7f, 0px 0px 3px #fffd7f, 0px 0px 3px #fffd7f, 0px 0px 4px #fffd7f, 0px 0px 4px #fffd7f, 0px 0px 4px #fffd7f, 0px 0px 5px #fffd7f, 0px 0px 5px #fffd7f, 0px 0px 5px #fffd7f, 0px 0px 6px #fffd7f, 0px 0px 6px #fffd7f, 0px 0px 6px #fffd7f, 0px 0px 7px #fffd7f, 0px 0px 7px #fffd7f, 0px 0px 7px #fffd7f, 0px 0px 8px #fffd7f, 0px 0px 8px #fffd7f, 0px 0px 8px #fffd7f, 0px 0px 9px #fffd7f, 0px 0px 9px #fffd7f, 0px 0px 9px #fffd7f, 0px 0px 10px #fffd7f, 0px 0px 10px #fffd7f, 0px 0px 10px #fffd7f; }
+
+.specialHexesVP .british {
+  color: black;
+  background: transparent;
+  text-shadow: 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842; }
+
+.specialHexesVP .russian {
+  color: white;
+  background: transparent;
+  text-shadow: 0px 0px 1px #4cb800, 0px 0px 1px #4cb800, 0px 0px 1px #4cb800, 0px 0px 2px #4cb800, 0px 0px 2px #4cb800, 0px 0px 2px #4cb800, 0px 0px 3px #4cb800, 0px 0px 3px #4cb800, 0px 0px 3px #4cb800, 0px 0px 4px #4cb800, 0px 0px 4px #4cb800, 0px 0px 4px #4cb800, 0px 0px 5px #4cb800, 0px 0px 5px #4cb800, 0px 0px 5px #4cb800, 0px 0px 6px #4cb800, 0px 0px 6px #4cb800, 0px 0px 6px #4cb800, 0px 0px 7px #4cb800, 0px 0px 7px #4cb800, 0px 0px 7px #4cb800, 0px 0px 8px #4cb800, 0px 0px 8px #4cb800, 0px 0px 8px #4cb800, 0px 0px 9px #4cb800, 0px 0px 9px #4cb800, 0px 0px 9px #4cb800, 0px 0px 10px #4cb800, 0px 0px 10px #4cb800, 0px 0px 10px #4cb800, 0px 0px 1px #4cb800, 0px 0px 1px #4cb800, 0px 0px 1px #4cb800, 0px 0px 2px #4cb800, 0px 0px 2px #4cb800, 0px 0px 2px #4cb800, 0px 0px 3px #4cb800, 0px 0px 3px #4cb800, 0px 0px 3px #4cb800, 0px 0px 4px #4cb800, 0px 0px 4px #4cb800, 0px 0px 4px #4cb800, 0px 0px 5px #4cb800, 0px 0px 5px #4cb800, 0px 0px 5px #4cb800, 0px 0px 6px #4cb800, 0px 0px 6px #4cb800, 0px 0px 6px #4cb800, 0px 0px 7px #4cb800, 0px 0px 7px #4cb800, 0px 0px 7px #4cb800, 0px 0px 8px #4cb800, 0px 0px 8px #4cb800, 0px 0px 8px #4cb800, 0px 0px 9px #4cb800, 0px 0px 9px #4cb800, 0px 0px 9px #4cb800, 0px 0px 10px #4cb800, 0px 0px 10px #4cb800, 0px 0px 10px #4cb800; }
+
+.specialHexesVP .french {
+  color: white;
+  background: transparent;
+  text-shadow: 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff; }
+
+.specialHexesVP .beluchi {
+  color: white;
+  background: transparent;
+  text-shadow: 0px 0px 1px #c6c102, 0px 0px 1px #c6c102, 0px 0px 1px #c6c102, 0px 0px 2px #c6c102, 0px 0px 2px #c6c102, 0px 0px 2px #c6c102, 0px 0px 3px #c6c102, 0px 0px 3px #c6c102, 0px 0px 3px #c6c102, 0px 0px 4px #c6c102, 0px 0px 4px #c6c102, 0px 0px 4px #c6c102, 0px 0px 5px #c6c102, 0px 0px 5px #c6c102, 0px 0px 5px #c6c102, 0px 0px 6px #c6c102, 0px 0px 6px #c6c102, 0px 0px 6px #c6c102, 0px 0px 7px #c6c102, 0px 0px 7px #c6c102, 0px 0px 7px #c6c102, 0px 0px 8px #c6c102, 0px 0px 8px #c6c102, 0px 0px 8px #c6c102, 0px 0px 9px #c6c102, 0px 0px 9px #c6c102, 0px 0px 9px #c6c102, 0px 0px 10px #c6c102, 0px 0px 10px #c6c102, 0px 0px 10px #c6c102, 0px 0px 1px #c6c102, 0px 0px 1px #c6c102, 0px 0px 1px #c6c102, 0px 0px 2px #c6c102, 0px 0px 2px #c6c102, 0px 0px 2px #c6c102, 0px 0px 3px #c6c102, 0px 0px 3px #c6c102, 0px 0px 3px #c6c102, 0px 0px 4px #c6c102, 0px 0px 4px #c6c102, 0px 0px 4px #c6c102, 0px 0px 5px #c6c102, 0px 0px 5px #c6c102, 0px 0px 5px #c6c102, 0px 0px 6px #c6c102, 0px 0px 6px #c6c102, 0px 0px 6px #c6c102, 0px 0px 7px #c6c102, 0px 0px 7px #c6c102, 0px 0px 7px #c6c102, 0px 0px 8px #c6c102, 0px 0px 8px #c6c102, 0px 0px 8px #c6c102, 0px 0px 9px #c6c102, 0px 0px 9px #c6c102, 0px 0px 9px #c6c102, 0px 0px 10px #c6c102, 0px 0px 10px #c6c102, 0px 0px 10px #c6c102; }
+
+.ruleComment {
+  font-style: italic;
+  margin-left: 10px;
+  color: #999; }
+
+#GR ol.ExclusiveRules {
+  counter-reset: item 6; }
+
+.left {
+  float: left;
+  margin-right: 15px; }
+
+.austrian.specialHexes {
+  background-color: #df5842;
+  color: white; }
+
+.prussian.specialHexes, .swedish.specialHexes {
+  background-color: #fffd7f;
+  color: black; }
+
+.unitOdds.altColor {
+  background: #00ec00; }
+  .unitOdds.altColor:hover {
+    background: transparent; }
+.unitOdds.determinedColor {
+  background: red;
+  color: white; }
+  .unitOdds.determinedColor:hover {
+    background: transparent;
+    color: transparent; }
+.unitOdds.pinnedColor {
+  background: #ff00ff;
+  color: white; }
+  .unitOdds.pinnedColor:hover {
+    background: transparent;
+    color: transparent; }
+
+/*
+Copyright 2012-2015 David Rodal
+
+This program is free software; you can redistribute it
+and/or modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later version
+
+This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   */
+#tecImage {
+  width: 500px; }
+
+.playerOne {
+  background: #df5842;
+  border-color: #df5842 !important; }
+
+.AngloFace, .playerOneFace {
+  color: #df5842; }
+
+.Anglo .counterWrapper {
+  background-color: #f00; }
+
+.playerTwo {
+  background: #84b5ff;
+  border-color: #84b5ff !important; }
+
+.FrenchFace, .playerTwoFace {
+  color: #84b5ff; }
+
+.French .counterWrapper {
+  background-color: white; }
+
+.playerThree {
+  background: #df5842;
+  border-color: #df5842 !important; }
+
+.AustrianFace, .playerThreeFace {
+  color: white; }
+
+.Austrian .counterWrapper {
+  background-color: white; }
+
+.playerFour {
+  background: #fffd7f;
+  border-color: #fffd7f !important; }
+
+.DutchFace, .playerFourFace {
+  color: #fffd7f; }
+
+.Dutch .counterWrapper {
+  background-color: #0117de; }
+
+.french.specialHexes {
+  background-color: #84b5ff; }
+
+.allies.specialHexes {
+  background-color: #df5842; }
+
+.french.specialHexes, .allies.specialHexes {
+  color: white; }
+
+.AngloAllied p.forceMarch, .AngloAllied p.range, .Dutch p.forceMarch, .Dutch p.range, .Guard p.forceMarch, .Guard p.range {
+  color: white; }
+
+.vintage.Dutch.infantry .counterWrapper .counter {
+  background-image: url("../../js/PruInfBadge.png");
+  background-size: 19px; }
+.vintage.Dutch.cavalry .counterWrapper .counter {
+  background-image: url("../../js/PruCavBadge.png");
+  background-size: 19px; }
+.vintage.Dutch.artillery .counterWrapper .counter {
+  background-image: url("../../js/PruArtBadge.png");
+  background-size: 19px; }
+.vintage.Dutch.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/PruHorArtBadge.png");
+  background-size: 19px; }
+.vintage.Dutch.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.Dutch.pontoon .counterWrapper {
+  border: none; }
+  .vintage.Dutch.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/PruPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.Dutch.pontoon .unit-numbers {
+  display: none; }
+
+.Dutch.infantry .counterWrapper .counter {
+  background-image: url("../../js/PruInfBadge.png");
+  background-size: 14px; }
+
+.Dutch.cavalry .counterWrapper .counter {
+  background-image: url("../../js/PruCavBadge.png");
+  background-size: 14px; }
+
+.Dutch.artillery .counterWrapper .counter {
+  background-image: url("../../js/PruArtBadge.png");
+  background-size: 14px; }
+
+.Dutch.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/PruHorArtBadge.png");
+  background-size: 14px; }
+
+.Dutch.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Dutch.pontoon .counterWrapper {
+  border: none; }
+  .Dutch.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/PruPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Dutch.pontoon .unit-numbers {
+  display: none; }
+
+.vintage.French.infantry .counterWrapper .counter {
+  background-image: url("../../js/FrenchInfBadge.png");
+  background-size: 19px; }
+.vintage.French.cavalry .counterWrapper .counter {
+  background-image: url("../../js/FrenchCavBadge.png");
+  background-size: 19px; }
+.vintage.French.artillery .counterWrapper .counter {
+  background-image: url("../../js/FrenchArtBadge.png");
+  background-size: 19px; }
+.vintage.French.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/FrenchHorArtBadge.png");
+  background-size: 19px; }
+.vintage.French.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.French.pontoon .counterWrapper {
+  border: none; }
+  .vintage.French.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/FrenchPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.French.pontoon .unit-numbers {
+  display: none; }
+
+.French.infantry .counterWrapper .counter {
+  background-image: url("../../js/FrenchInfBadge.png");
+  background-size: 14px; }
+
+.French.cavalry .counterWrapper .counter {
+  background-image: url("../../js/FrenchCavBadge.png");
+  background-size: 14px; }
+
+.French.artillery .counterWrapper .counter {
+  background-image: url("../../js/FrenchArtBadge.png");
+  background-size: 14px; }
+
+.French.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/FrenchHorArtBadge.png");
+  background-size: 14px; }
+
+.French.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.French.pontoon .counterWrapper {
+  border: none; }
+  .French.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/FrenchPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.French.pontoon .unit-numbers {
+  display: none; }
+
+.vintage.Guard.infantry .counterWrapper .counter {
+  background-image: url("../../js/FrenchNapInfBadge.png");
+  background-size: 19px; }
+.vintage.Guard.cavalry .counterWrapper .counter {
+  background-image: url("../../js/FrenchNapCavBadge.png");
+  background-size: 19px; }
+.vintage.Guard.artillery .counterWrapper .counter {
+  background-image: url("../../js/FrenchNapArtBadge.png");
+  background-size: 19px; }
+.vintage.Guard.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/FrenchNapHorArtBadge.png");
+  background-size: 19px; }
+.vintage.Guard.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.Guard.pontoon .counterWrapper {
+  border: none; }
+  .vintage.Guard.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/FrenchNapPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.Guard.pontoon .unit-numbers {
+  display: none; }
+
+.Guard.infantry .counterWrapper .counter {
+  background-image: url("../../js/FrenchNapInfBadge.png");
+  background-size: 14px; }
+
+.Guard.cavalry .counterWrapper .counter {
+  background-image: url("../../js/FrenchNapCavBadge.png");
+  background-size: 14px; }
+
+.Guard.artillery .counterWrapper .counter {
+  background-image: url("../../js/FrenchNapArtBadge.png");
+  background-size: 14px; }
+
+.Guard.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/FrenchNapHorArtBadge.png");
+  background-size: 14px; }
+
+.Guard.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Guard.pontoon .counterWrapper {
+  border: none; }
+  .Guard.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/FrenchNapPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Guard.pontoon .unit-numbers {
+  display: none; }
+
+.vintage.Prussian.infantry .counterWrapper .counter {
+  background-image: url("../../js/PruNapInfBadge.png");
+  background-size: 19px; }
+.vintage.Prussian.cavalry .counterWrapper .counter {
+  background-image: url("../../js/PruNapCavBadge.png");
+  background-size: 19px; }
+.vintage.Prussian.artillery .counterWrapper .counter {
+  background-image: url("../../js/PruNapArtBadge.png");
+  background-size: 19px; }
+.vintage.Prussian.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/PruNapHorArtBadge.png");
+  background-size: 19px; }
+.vintage.Prussian.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.Prussian.pontoon .counterWrapper {
+  border: none; }
+  .vintage.Prussian.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/PruNapPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.Prussian.pontoon .unit-numbers {
+  display: none; }
+
+.Prussian.infantry .counterWrapper .counter {
+  background-image: url("../../js/PruNapInfBadge.png");
+  background-size: 14px; }
+
+.Prussian.cavalry .counterWrapper .counter {
+  background-image: url("../../js/PruNapCavBadge.png");
+  background-size: 14px; }
+
+.Prussian.artillery .counterWrapper .counter {
+  background-image: url("../../js/PruNapArtBadge.png");
+  background-size: 14px; }
+
+.Prussian.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/PruNapHorArtBadge.png");
+  background-size: 14px; }
+
+.Prussian.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Prussian.pontoon .counterWrapper {
+  border: none; }
+  .Prussian.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/PruNapPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Prussian.pontoon .unit-numbers {
+  display: none; }
+
+/*# sourceMappingURL=all.css.map */

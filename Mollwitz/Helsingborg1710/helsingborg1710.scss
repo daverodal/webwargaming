@@ -1,0 +1,51 @@
+/*
+Copyright 2012-2015 David Rodal
+
+This program is free software; you can redistribute it
+and/or modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later version
+
+This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   */
+#map{
+}
+#tecImage{
+  width:500px;
+}
+$prussianNapColor: #003AF3;
+$bavarianWrapperColor: #4287FA;
+$bavarianColor: #FD0013;
+
+@include player(Anglo ,One , $angloAlliedColor, $angloAlliedWrapperColor);
+@include player(French, Two, $frenchColor, $frenchWrapperColor);
+@include player(Austrian, Three, $austrianColor, $austrianWrapperColor, $austrianWrapperColor);
+@include player(Dutch, Four, $prussianColor, $prussianWrapperColor);
+
+.french.specialHexes{
+  background-color: $frenchColor;
+}
+
+
+.allies.specialHexes {
+  background-color: $angloAlliedColor;
+}
+.french.specialHexes, .allies.specialHexes{
+  color:white;
+}
+.AngloAllied, .Dutch, .Guard {
+  p.forceMarch, p.range{
+    color:white;
+  }
+}
+
+@include badge(Dutch, Pru);
+@include badge(French, French);
+@include badge(Guard, FrenchNap);
+@include badge(Prussian, PruNap);
