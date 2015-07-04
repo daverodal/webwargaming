@@ -338,11 +338,7 @@ class CombatResultsTable
 
             $clearHex = !$notClearHex;
             if(($unit->class == 'artillery' || $unit->class == 'horseartillery') && !$isTown){
-                if($scenario->doubleArt){
-                    $combatLog .= "doubled for defending in non town ";
-                }else{
-                    $combatLog .= "1.5x for defending in non town ";
-                }
+                $combatLog .= "doubled for defending in non town ";
                 $artInNonTown = true;
             }
 
@@ -367,10 +363,7 @@ class CombatResultsTable
 
             $defMultiplier = 1;
             if(($isTown && $class !== 'cavalry') || $artInNonTown || $isHill){
-                $defMultiplier = 1.5;
-                if($artInNonTown && $scenario->doubleArt){
-                    $defMultiplier = 2;
-                }
+                $defMultiplier = 2.0;
                 if(($isTown && $class !== 'cavalry') || $isHill){
                     $defMultiplier = 2;
                     $combatLog .= "defender doubled for terrain ";
