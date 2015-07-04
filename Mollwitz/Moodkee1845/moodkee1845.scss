@@ -21,7 +21,7 @@
 #map{
 }
 #tecImage{
-  width:800px;
+  width:750px;
 }
 @include player(British, One, $angloAlliedColor, $angloAlliedWrapperColor);
 @include player(Sikh, Two, $beluchiColor, $beluchiWrapperColor, $beluchiWrapperColor);

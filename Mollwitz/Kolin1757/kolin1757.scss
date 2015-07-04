@@ -16,9 +16,7 @@ You should have received a copy of the GNU General Public License
    */
 #map{
 }
-#tecImage{
-  width:500px;
-}
+
 @include player(Prussian, One, $prussianColor, $prussianWrapperColor, $prussianWrapperColor);
 @include player(Austrian, Two, $austrianColor, $austrianWrapperColor);
 

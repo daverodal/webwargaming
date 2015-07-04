@@ -1816,7 +1816,7 @@ svg marker#head {
 
 #TEC {
   background: white;
-  width: 779px; }
+  width: 780px; }
 
 #crt {
   width: 476px; }
@@ -1842,10 +1842,7 @@ svg marker#head {
   color: black; }
 
 #tecImage {
-  width: 500px; }
-
-#TEC {
-  width: 520px; }
+  width: 760px; }
 
 #TECWrapper .closer {
   height: 0px;
@@ -1966,7 +1963,7 @@ You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
    */
 #tecImage {
-  width: 800px; }
+  width: 750px; }
 
 .playerOne {
   background: #c68100;

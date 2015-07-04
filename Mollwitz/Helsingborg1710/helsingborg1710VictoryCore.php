@@ -154,8 +154,12 @@ class helsingborg1710VictoryCore extends victoryCore
         $b = Battle::getBattle();
         $scenario = $b->scenario;
 
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE) {
+            $b->gameRules->flashMessages[] = "Swedish Movement alowance +1 this turn.";
+        }
+
         if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE) {
-            $b->gameRules->flashMessages[] = "Danish Movement 1 hex this turn.";
+            $b->gameRules->flashMessages[] = "No Danish Movement this turn.";
         }
     }
 
@@ -167,14 +171,18 @@ class helsingborg1710VictoryCore extends victoryCore
         $id = $unit->id;
 
         parent::postRecoverUnit($args);
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE && $unit->status == STATUS_READY) {
+            $this->movementCache->$id = $unit->maxMove;
+            $unit->maxMove = $unit->maxMove+1;
+        }
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_COMBAT_PHASE && isset($this->movementCache->$id)) {
+            $unit->maxMove = $this->movementCache->$id;
+            unset($this->movementCache->$id);
+        }
 
         if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE && $unit->status == STATUS_READY) {
             $this->movementCache->$id = $unit->maxMove;
-            $unit->maxMove = 1;
-        }
-        if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_COMBAT_PHASE && isset($this->movementCache->$id)) {
-            $unit->maxMove = $this->movementCache->$id;
-            unset($this->movementCache->$id);
+            $unit->status = STATUS_UNAVAIL_THIS_PHASE;
         }
     }
 }

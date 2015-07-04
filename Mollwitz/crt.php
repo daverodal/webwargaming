@@ -82,8 +82,15 @@ class CombatResultsTable
         $this->setCombatOddsTable();
     }
 
-    function getCombatResults($Die, $index, $combat)
+    function getCombatResults(&$Die, $index, $combat)
     {
+        $Die += $combat->dieShift;
+        if($Die < 0){
+            $Die = 0;
+        }
+        if($Die > 5){
+            $Die = 5;
+        }
         if ($combat->useAlt) {
             return $this->combatResultsTableCav[$Die][$index];
         } else {
@@ -107,6 +114,7 @@ class CombatResultsTable
         $battle = Battle::getBattle();
         $scenario = $battle->scenario;
         $combats = $battle->combatRules->combats->$defenderId;
+        $combats->dieShift = 0;
 
         if (count((array)$combats->attackers) == 0) {
             $combats->index = null;
@@ -234,8 +242,9 @@ class CombatResultsTable
                         $terrainReason = " terrain ";
                     }
                     if($attackUpHill && !($isSwamp || $attackerIsSwamp || $acrossRiver || $attackerIsSunkenRoad || $acrossRedoubt)){
-                        $unitStrength *= .75;
-                        $combatLog .= "attacker 3/4 for $terrainReason ";
+//                        $unitStrength *= .75;
+                        $combats->dieShift = -1;
+                        $combatLog .= "die -1  for $terrainReason ";
                     }else{
                         if(!$scenario->weakRedoubts){
                             $unitStrength /= 2;
@@ -262,8 +271,9 @@ class CombatResultsTable
 
                 }elseif ( $attackUpHill ) {
 
-                    $unitStrength *= .75;
-                    $combatLog .= "attacker 3/4 for attacking uphill ";
+//                    $unitStrength *= .75;
+                    $combats->dieShift = -1;
+                    $combatLog .= "die -1 for attacking uphill ";
                     if($unit->nationality != "Beluchi" && $unit->nationality != "Sikh"){
                         $combinedArms[$battle->force->units[$attackerId]->class]++;
                     }else{
@@ -285,8 +295,9 @@ class CombatResultsTable
                 $combatLog .= "$unitStrength ".ucfirst($unit->class)." ";
                 if($isSwamp || $acrossRedoubt || $attackUpHill){
                     if($attackUpHill){
-                        $unitStrength *= .75;
-                        $combatLog .= "attacker 3/4 for $terrainReason ";
+//                        $unitStrength *= .75;
+                        $combats->dieShift = -1;
+                        $combatLog .= "Die -1 for $terrainReason ";
                     }else{
                         $unitStrength /= 2;
                         $combatLog .= "attacker halved for $terrainReason ";

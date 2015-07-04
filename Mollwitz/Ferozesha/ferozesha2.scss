@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 #map{
 }
 #tecImage{
-  width:800px;
+  width:750px;
 }
 @include player(Sikh, One, $beluchiColor, $beluchiWrapperColor, $beluchiWrapperColor);
 @include player(British, Two, $angloAlliedColor, $angloAlliedWrapperColor);

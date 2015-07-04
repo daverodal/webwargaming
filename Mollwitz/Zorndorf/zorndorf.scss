@@ -23,12 +23,6 @@
 @include player(Prussian, One, $prussianColor, $prussianWrapperColor, $prussianWrapperColor);
 @include player(Russian, Two, $russianColor, $russianWrapperColor);
 
-#TEC{
-  width:430px;
-}
-#TEC img{
-  width:400px;
-}
 #GR{
   left:-200px;
 }

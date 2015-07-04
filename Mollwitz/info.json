@@ -388,7 +388,7 @@
     "Montmirail1814": {
       "name": "The Battle of Montmirail 1814",
       "path": "Mollwitz",
-      "genre": "19'th Century Europe",
+      "genre": "Napoleonic",
       "fileName": "Montmirail1814/Montmirail1814.php",
       "description":"The Battle of Montmirail 1814 between the French and Prussian-Russian allies. ",
       "scenarios": {
@@ -550,7 +550,7 @@
   "Hanau1813": {
     "name": "The Battle of Hanau 1813",
     "path": "Mollwitz",
-    "genre": "19'th Century Europe",
+    "genre": "Napoleonic",
     "fileName": "Hanau1813/Hanau1813.php",
     "description":"The Battle of Hanau 1813 between the French and Austro-Bavarian-Russian allies. ",
     "params":{
@@ -616,7 +616,7 @@
   "Golymin1806": {
     "name": "The Battle of Golymin 1806",
     "path": "Mollwitz",
-    "genre": "19'th Century Europe",
+    "genre": "Napoleonic",
     "fileName": "Golymin1806/Golymin1806.php",
     "description":"The Battle of Golymin 1806 between the French and Russian. ",
     "params":{

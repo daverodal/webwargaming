@@ -32,6 +32,7 @@ Class Combat
     public $useDetermined = false;
     public $isBombardment = false;
     public $pinCRT = false;
+    public $dieShift = 0;
 
     public function __construct()
     {

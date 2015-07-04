@@ -16,9 +16,7 @@ You should have received a copy of the GNU General Public License
    */
 #map{
 }
-#tecImage{
-  width:500px;
-}
+
 @include player(AngloAllied,One , $angloAlliedColor, $angloAlliedWrapperColor);
 @include player(French, Two, $frenchColor, $frenchSaxonWrapperColor);
 
