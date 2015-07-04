@@ -1969,299 +1969,95 @@ You should have received a copy of the GNU General Public License
   width: 500px; }
 
 .playerOne {
-  background: #df5842;
-  border-color: #df5842 !important; }
+  background: #FECC00;
+  border-color: #FECC00 !important; }
 
-.AngloFace, .playerOneFace {
-  color: #df5842; }
+.SwedishFace, .playerOneFace {
+  color: #FECC00; }
 
-.Anglo .counterWrapper {
-  background-color: #f00; }
+.Swedish .counterWrapper {
+  background-color: #006AA7; }
 
 .playerTwo {
-  background: #84b5ff;
-  border-color: #84b5ff !important; }
+  background: #ff3f1f;
+  border-color: #ff3f1f !important; }
 
-.FrenchFace, .playerTwoFace {
-  color: #84b5ff; }
+.DanishFace, .playerTwoFace {
+  color: #ff3f1f; }
 
-.French .counterWrapper {
-  background-color: white; }
+.Danish .counterWrapper {
+  background-color: #bfbfbf; }
 
-.playerThree {
-  background: #df5842;
-  border-color: #df5842 !important; }
+.vintage.Danish.infantry .counterWrapper .counter {
+  background-image: url("../../js/DanishInfBadge.png");
+  background-size: 19px; }
+.vintage.Danish.cavalry .counterWrapper .counter {
+  background-image: url("../../js/DanishCavBadge.png");
+  background-size: 19px; }
+.vintage.Danish.artillery .counterWrapper .counter {
+  background-image: url("../../js/DanishArtBadge.png");
+  background-size: 19px; }
+.vintage.Danish.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/DanishHorArtBadge.png");
+  background-size: 19px; }
+.vintage.Danish.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.Danish.pontoon .counterWrapper {
+  border: none; }
+  .vintage.Danish.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/DanishPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.Danish.pontoon .unit-numbers {
+  display: none; }
 
-.AustrianFace, .playerThreeFace {
+.Danish.infantry .counterWrapper .counter {
+  background-image: url("../../js/DanishInfBadge.png");
+  background-size: 14px; }
+
+.Danish.cavalry .counterWrapper .counter {
+  background-image: url("../../js/DanishCavBadge.png");
+  background-size: 14px; }
+
+.Danish.artillery .counterWrapper .counter {
+  background-image: url("../../js/DanishArtBadge.png");
+  background-size: 14px; }
+
+.Danish.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/DanishHorArtBadge.png");
+  background-size: 14px; }
+
+.Danish.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Danish.pontoon .counterWrapper {
+  border: none; }
+  .Danish.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/DanishPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Danish.pontoon .unit-numbers {
+  display: none; }
+
+.swedes.specialHexes {
+  background-color: #006AA7;
   color: white; }
 
-.Austrian .counterWrapper {
-  background-color: white; }
-
-.playerFour {
-  background: #fffd7f;
-  border-color: #fffd7f !important; }
-
-.DutchFace, .playerFourFace {
-  color: #fffd7f; }
-
-.Dutch .counterWrapper {
-  background-color: #0117de; }
-
-.french.specialHexes {
-  background-color: #84b5ff; }
-
-.allies.specialHexes {
-  background-color: #df5842; }
-
-.french.specialHexes, .allies.specialHexes {
+.danes.specialHexes {
+  background-color: #ff3f1f;
   color: white; }
 
-.AngloAllied p.forceMarch, .AngloAllied p.range, .Dutch p.forceMarch, .Dutch p.range, .Guard p.forceMarch, .Guard p.range {
+.Swedish p.forceMarch, .Swedish p.range {
   color: white; }
-
-.vintage.Dutch.infantry .counterWrapper .counter {
-  background-image: url("../../js/PruInfBadge.png");
-  background-size: 19px; }
-.vintage.Dutch.cavalry .counterWrapper .counter {
-  background-image: url("../../js/PruCavBadge.png");
-  background-size: 19px; }
-.vintage.Dutch.artillery .counterWrapper .counter {
-  background-image: url("../../js/PruArtBadge.png");
-  background-size: 19px; }
-.vintage.Dutch.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/PruHorArtBadge.png");
-  background-size: 19px; }
-.vintage.Dutch.hq .counterWrapper .counter {
-  background-color: lightgreen;
-  background-image: url("../../js/HQBadge.png");
-  background-size: 19px; }
-.vintage.Dutch.pontoon .counterWrapper {
-  border: none; }
-  .vintage.Dutch.pontoon .counterWrapper .counter {
-    background-color: lightgreen;
-    background-image: url("../../js/PruPontoon.png");
-    background-size: 32px;
-    width: 32px;
-    height: 32px;
-    border: none; }
-.vintage.Dutch.pontoon .unit-numbers {
-  display: none; }
-
-.Dutch.infantry .counterWrapper .counter {
-  background-image: url("../../js/PruInfBadge.png");
-  background-size: 14px; }
-
-.Dutch.cavalry .counterWrapper .counter {
-  background-image: url("../../js/PruCavBadge.png");
-  background-size: 14px; }
-
-.Dutch.artillery .counterWrapper .counter {
-  background-image: url("../../js/PruArtBadge.png");
-  background-size: 14px; }
-
-.Dutch.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/PruHorArtBadge.png");
-  background-size: 14px; }
-
-.Dutch.hq .counterWrapper .counter {
-  background-color: lightgreen;
-  background-image: url("../../js/HQBadge.png");
-  background-size: 14px; }
-
-.Dutch.pontoon .counterWrapper {
-  border: none; }
-  .Dutch.pontoon .counterWrapper .counter {
-    background-color: lightgreen;
-    background-image: url("../../js/PruPontoon.png");
-    background-size: 32px;
-    width: 32px;
-    height: 32px;
-    border: none; }
-.Dutch.pontoon .unit-numbers {
-  display: none; }
-
-.vintage.French.infantry .counterWrapper .counter {
-  background-image: url("../../js/FrenchInfBadge.png");
-  background-size: 19px; }
-.vintage.French.cavalry .counterWrapper .counter {
-  background-image: url("../../js/FrenchCavBadge.png");
-  background-size: 19px; }
-.vintage.French.artillery .counterWrapper .counter {
-  background-image: url("../../js/FrenchArtBadge.png");
-  background-size: 19px; }
-.vintage.French.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/FrenchHorArtBadge.png");
-  background-size: 19px; }
-.vintage.French.hq .counterWrapper .counter {
-  background-color: lightgreen;
-  background-image: url("../../js/HQBadge.png");
-  background-size: 19px; }
-.vintage.French.pontoon .counterWrapper {
-  border: none; }
-  .vintage.French.pontoon .counterWrapper .counter {
-    background-color: lightgreen;
-    background-image: url("../../js/FrenchPontoon.png");
-    background-size: 32px;
-    width: 32px;
-    height: 32px;
-    border: none; }
-.vintage.French.pontoon .unit-numbers {
-  display: none; }
-
-.French.infantry .counterWrapper .counter {
-  background-image: url("../../js/FrenchInfBadge.png");
-  background-size: 14px; }
-
-.French.cavalry .counterWrapper .counter {
-  background-image: url("../../js/FrenchCavBadge.png");
-  background-size: 14px; }
-
-.French.artillery .counterWrapper .counter {
-  background-image: url("../../js/FrenchArtBadge.png");
-  background-size: 14px; }
-
-.French.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/FrenchHorArtBadge.png");
-  background-size: 14px; }
-
-.French.hq .counterWrapper .counter {
-  background-color: lightgreen;
-  background-image: url("../../js/HQBadge.png");
-  background-size: 14px; }
-
-.French.pontoon .counterWrapper {
-  border: none; }
-  .French.pontoon .counterWrapper .counter {
-    background-color: lightgreen;
-    background-image: url("../../js/FrenchPontoon.png");
-    background-size: 32px;
-    width: 32px;
-    height: 32px;
-    border: none; }
-.French.pontoon .unit-numbers {
-  display: none; }
-
-.vintage.Guard.infantry .counterWrapper .counter {
-  background-image: url("../../js/FrenchNapInfBadge.png");
-  background-size: 19px; }
-.vintage.Guard.cavalry .counterWrapper .counter {
-  background-image: url("../../js/FrenchNapCavBadge.png");
-  background-size: 19px; }
-.vintage.Guard.artillery .counterWrapper .counter {
-  background-image: url("../../js/FrenchNapArtBadge.png");
-  background-size: 19px; }
-.vintage.Guard.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/FrenchNapHorArtBadge.png");
-  background-size: 19px; }
-.vintage.Guard.hq .counterWrapper .counter {
-  background-color: lightgreen;
-  background-image: url("../../js/HQBadge.png");
-  background-size: 19px; }
-.vintage.Guard.pontoon .counterWrapper {
-  border: none; }
-  .vintage.Guard.pontoon .counterWrapper .counter {
-    background-color: lightgreen;
-    background-image: url("../../js/FrenchNapPontoon.png");
-    background-size: 32px;
-    width: 32px;
-    height: 32px;
-    border: none; }
-.vintage.Guard.pontoon .unit-numbers {
-  display: none; }
-
-.Guard.infantry .counterWrapper .counter {
-  background-image: url("../../js/FrenchNapInfBadge.png");
-  background-size: 14px; }
-
-.Guard.cavalry .counterWrapper .counter {
-  background-image: url("../../js/FrenchNapCavBadge.png");
-  background-size: 14px; }
-
-.Guard.artillery .counterWrapper .counter {
-  background-image: url("../../js/FrenchNapArtBadge.png");
-  background-size: 14px; }
-
-.Guard.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/FrenchNapHorArtBadge.png");
-  background-size: 14px; }
-
-.Guard.hq .counterWrapper .counter {
-  background-color: lightgreen;
-  background-image: url("../../js/HQBadge.png");
-  background-size: 14px; }
-
-.Guard.pontoon .counterWrapper {
-  border: none; }
-  .Guard.pontoon .counterWrapper .counter {
-    background-color: lightgreen;
-    background-image: url("../../js/FrenchNapPontoon.png");
-    background-size: 32px;
-    width: 32px;
-    height: 32px;
-    border: none; }
-.Guard.pontoon .unit-numbers {
-  display: none; }
-
-.vintage.Prussian.infantry .counterWrapper .counter {
-  background-image: url("../../js/PruNapInfBadge.png");
-  background-size: 19px; }
-.vintage.Prussian.cavalry .counterWrapper .counter {
-  background-image: url("../../js/PruNapCavBadge.png");
-  background-size: 19px; }
-.vintage.Prussian.artillery .counterWrapper .counter {
-  background-image: url("../../js/PruNapArtBadge.png");
-  background-size: 19px; }
-.vintage.Prussian.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/PruNapHorArtBadge.png");
-  background-size: 19px; }
-.vintage.Prussian.hq .counterWrapper .counter {
-  background-color: lightgreen;
-  background-image: url("../../js/HQBadge.png");
-  background-size: 19px; }
-.vintage.Prussian.pontoon .counterWrapper {
-  border: none; }
-  .vintage.Prussian.pontoon .counterWrapper .counter {
-    background-color: lightgreen;
-    background-image: url("../../js/PruNapPontoon.png");
-    background-size: 32px;
-    width: 32px;
-    height: 32px;
-    border: none; }
-.vintage.Prussian.pontoon .unit-numbers {
-  display: none; }
-
-.Prussian.infantry .counterWrapper .counter {
-  background-image: url("../../js/PruNapInfBadge.png");
-  background-size: 14px; }
-
-.Prussian.cavalry .counterWrapper .counter {
-  background-image: url("../../js/PruNapCavBadge.png");
-  background-size: 14px; }
-
-.Prussian.artillery .counterWrapper .counter {
-  background-image: url("../../js/PruNapArtBadge.png");
-  background-size: 14px; }
-
-.Prussian.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/PruNapHorArtBadge.png");
-  background-size: 14px; }
-
-.Prussian.hq .counterWrapper .counter {
-  background-color: lightgreen;
-  background-image: url("../../js/HQBadge.png");
-  background-size: 14px; }
-
-.Prussian.pontoon .counterWrapper {
-  border: none; }
-  .Prussian.pontoon .counterWrapper .counter {
-    background-color: lightgreen;
-    background-image: url("../../js/PruNapPontoon.png");
-    background-size: 32px;
-    width: 32px;
-    height: 32px;
-    border: none; }
-.Prussian.pontoon .unit-numbers {
-  display: none; }
 
 /*# sourceMappingURL=all.css.map */

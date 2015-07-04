@@ -68,24 +68,24 @@ class helsingborg1710VictoryCore extends victoryCore
 
         list($mapHexName, $forceId) = $args;
         if (in_array($mapHexName, $battle->specialHexA)) {
-            if ($forceId == FRENCH_FORCE) {
-                $this->victoryPoints[FRENCH_FORCE]  += 10;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>+10 French vp</span>";
+            if ($forceId == DANISH_FORCE) {
+                $this->victoryPoints[DANISH_FORCE]  += 10;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='danish'>+10 Danish vp</span>";
             }
-            if ($forceId == ALLIED_FORCE) {
-                $this->victoryPoints[FRENCH_FORCE]  -= 10;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='allies'>-10 French vp</span>";
+            if ($forceId == SWEDISH_FORCE) {
+                $this->victoryPoints[DANISH_FORCE]  -= 10;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='swedish'>-10 Danish vp</span>";
             }
         }
 
         if (in_array($mapHexName, $battle->specialHexB)) {
-            if ($forceId == ALLIED_FORCE) {
-                $this->victoryPoints[ALLIED_FORCE]  += 10;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='allies'>+10 Allied vp</span>";
+            if ($forceId == SWEDISH_FORCE) {
+                $this->victoryPoints[SWEDISH_FORCE]  += 10;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='swedish'>+10 Swedish vp</span>";
             }
-            if ($forceId == FRENCH_FORCE) {
-                $this->victoryPoints[ALLIED_FORCE]  -= 10;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='french'>-10 Allied vp</span>";
+            if ($forceId == DANISH_FORCE) {
+                $this->victoryPoints[SWEDISH_FORCE]  -= 10;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='danish'>-10 Swedish vp</span>";
             }
         }
     }
@@ -97,40 +97,40 @@ class helsingborg1710VictoryCore extends victoryCore
         $gameRules = $battle->gameRules;
         $scenario = $battle->scenario;
         $turn = $gameRules->turn;
-        $frenchWin = $alliesWin = $draw = false;
+        $danishWin = $swedishWin = $draw = false;
 
         $victoryReason = "";
 
         if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
-            $winScore = 50;
+            $winScore = 25;
 
-            if($this->victoryPoints[FRENCH_FORCE] >= $winScore){
-                $frenchWin = true;
+            if($this->victoryPoints[DANISH_FORCE] >= $winScore && ($this->victoryPoints[DANISH_FORCE] > $this->victoryPoints[SWEDISH_FORCE] + 5)){
+                $danishWin = true;
                 $victoryReason .= "Over $winScore ";
             }
-            if ($this->victoryPoints[ALLIED_FORCE] >= $winScore) {
-                $alliesWin = true;
+            if ($this->victoryPoints[SWEDISH_FORCE] >= $winScore && ($this->victoryPoints[SWEDISH_FORCE] > $this->victoryPoints[DANISH_FORCE] + 5)) {
+                $swedishWin = true;
                 $victoryReason .= "Over $winScore ";
             }
 
-            if ($frenchWin && !$alliesWin) {
-                $this->winner = FRENCH_FORCE;
-                $gameRules->flashMessages[] = "French Win";
+            if ($danishWin && !$swedishWin) {
+                $this->winner = DANISH_FORCE;
+                $gameRules->flashMessages[] = "Danish Win";
                 $gameRules->flashMessages[] = $victoryReason;
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
                 return true;
             }
-            if ($alliesWin && !$frenchWin) {
-                $this->winner = ALLIED_FORCE;
-                $gameRules->flashMessages[] = "Allies Win";
+            if ($swedishWin && !$danishWin) {
+                $this->winner = SWEDISH_FORCE;
+                $gameRules->flashMessages[] = "Swedish Win";
                 $gameRules->flashMessages[] = $victoryReason;
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
                 return true;
             }
-            if($frenchWin && $alliesWin){
+            if($danishWin && $swedishWin){
                 $gameRules->flashMessages[] = "Tie Game";
                 $gameRules->flashMessages[] = $victoryReason;
                 $gameRules->flashMessages[] = "Game Over";
@@ -138,15 +138,9 @@ class helsingborg1710VictoryCore extends victoryCore
                 return true;
             }
             if ($turn > $gameRules->maxTurn) {
-                if($this->victoryPoints[FRENCH_FORCE] >= 25){
-                    $this->winner = ALLIED_FORCE;
-                    $gameRules->flashMessages[] = "French Win";
-                    $gameRules->flashMessages[] = "Allies Fail to Win";
-                }else{
-                    $gameRules->flashMessages[] = "Tie Game";
-                    $gameRules->flashMessages[] = "Game Over";
-                }
-
+                $this->winner = SWEDISH_FORCE;
+                $gameRules->flashMessages[] = "Danish Win";
+                $gameRules->flashMessages[] = "Swedes Fail to Win";
                 $this->gameOver = true;
                 return true;
             }
@@ -154,9 +148,15 @@ class helsingborg1710VictoryCore extends victoryCore
         return false;
     }
 
+
     public function postRecoverUnits($args)
     {
+        $b = Battle::getBattle();
+        $scenario = $b->scenario;
 
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE) {
+            $b->gameRules->flashMessages[] = "Danish Movement 1 hex this turn.";
+        }
     }
 
     public function postRecoverUnit($args)
@@ -166,8 +166,15 @@ class helsingborg1710VictoryCore extends victoryCore
         $scenario = $b->scenario;
         $id = $unit->id;
 
-
         parent::postRecoverUnit($args);
 
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE && $unit->status == STATUS_READY) {
+            $this->movementCache->$id = $unit->maxMove;
+            $unit->maxMove = 1;
+        }
+        if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_COMBAT_PHASE && isset($this->movementCache->$id)) {
+            $unit->maxMove = $this->movementCache->$id;
+            unset($this->movementCache->$id);
+        }
     }
 }

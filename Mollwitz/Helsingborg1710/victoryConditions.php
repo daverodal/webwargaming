@@ -21,24 +21,21 @@
  */
 ?><li class="exclusive">
     <span class="lessBig">Victory Conditions</span>
-    <h4>The Game ends instantly at the end of any Player Turn when one or more of the following conditions applies. Mutual
-        victories are a Draw</h4>
+    <h4>The Game ends at the end of any Player Turn when one or more of the following conditions applies.</h4>
     <ol>
-        <li>Each side gains 1 victory point for each hostile combat factor destroyed.
-            Some hexes contain a blue number the French receive victory points = to the number
-            in each of those hexes when they occupy or where last to move through any of those hexes.
+        <li>Each side gains 1 point for each hostile combat strength point destroyed.
+        </li>
+        <li>
+            Each Side Gains 10 Victory Points for occupying or being the last to move through their respective Victory Point hex.
+            Light Blue for Swedes Red for Danes.
+            <p class="ruleComment">The Swedish Victory Objective is originally occupied by the Danes, hence it's red until the Swedish play occupies it.
+            The same is true for the Danish objective, and hence it start the game blue.</p>
         </li>
 
-        <li>French receive 10 points each for being the last to occupy or move through hexes marked with a Blue “10”.</li>
+        <li>Swedes Win: If they score 25 Victory Points with a lead of 5 before the end of turn 6.
+        </li>
 
-        <li>Allies receive 10 points each for being the last to occupy or move through hexes marked with a Red “10”.</li>
-
-        <li>EITHER SIDE WINS: At the end of any turn that they have accumulated at least 50 points before the end of turn 10.</li>
-
-        <li>French Win: If the Allies have not won by the end of turn 10 and the French have at least 25 points.</li>
-
-        <li>If at the end of any player turn both sides have somehow met their victory conditions above, the result is
-            a draw.
+        <li>Danes Win: If they If they score 25 points with a lead of 5 or if the Swedes do not win by the end of turn 6.
         </li>
     </ol>
 </li>

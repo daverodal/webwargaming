@@ -709,35 +709,24 @@
     "params":{
       "units":[
 
-        {"num":6,"forceId":2,"combat":6,"movement":3,"reinforce":"B","range":1,"nationality":"French","class":"infantry"},
-        {"num":20,"forceId":2,"combat":4,"movement":3,"reinforce":"B","range":1,"nationality":"French","class":"infantry"},
+        {"num":2,"forceId":2,"combat":6,"movement":3,"reinforce":"B","range":1,"nationality":"Danish","class":"infantry"},
+        {"num":8,"forceId":2,"combat":4,"movement":3,"reinforce":"B","range":1,"nationality":"Danish","class":"infantry"},
 
-        {"num":6,"forceId":2,"combat":6,"movement":5,"reinforce":"B","range":1,"nationality":"French","class":"cavalry"},
-        {"num":3,"forceId":2,"combat":4,"movement":5,"reinforce":"B","range":1,"nationality":"French","class":"cavalry"},
+        {"num":1,"forceId":2,"combat":6,"movement":5,"reinforce":"B","range":1,"nationality":"Danish","class":"cavalry"},
+        {"num":3,"forceId":2,"combat":4,"movement":5,"reinforce":"B","range":1,"nationality":"Danish","class":"cavalry"},
 
-        {"num":1,"forceId":2,"combat":6,"movement":2,"reinforce":"B","range":3,"nationality":"French","class":"artillery"},
-        {"num":1,"forceId":2,"combat":3,"movement":2,"reinforce":"B","range":3,"nationality":"French","class":"artillery"},
-        {"num":4,"forceId":2,"combat":2,"movement":3,"reinforce":"B","range":2,"nationality":"French","class":"artillery"},
+        {"num":1,"forceId":2,"combat":3,"movement":2,"reinforce":"B","range":3,"nationality":"Danish","class":"artillery"},
+        {"num":2,"forceId":2,"combat":2,"movement":3,"reinforce":"B","range":2,"nationality":"Danish","class":"artillery"},
 
-        {"num":8,"forceId":1,"combat":6,"movement":3,"reinforce":"A","range":1,"nationality":"Anglo","class":"infantry"},
-        {"num":4,"forceId":1,"combat":4,"movement":3,"reinforce":"A","range":1,"nationality":"Anglo","class":"infantry"},
+        {"num":8,"forceId":1,"combat":6,"movement":3,"reinforce":"A","range":1,"nationality":"Swedish","class":"infantry"},
 
-        {"num":4,"forceId":1,"combat":6,"movement":5,"reinforce":"A","range":1,"nationality":"Anglo","class":"cavalry"},
+        {"num":2,"forceId":1,"combat":8,"reduced":4, "movement":5,"reinforce":"A","range":1,"nationality":"Swedish","class":"cavalry"},
+        {"num":4,"forceId":1,"combat":6,"movement":5,"reinforce":"A","range":1,"nationality":"Swedish","class":"cavalry"},
 
-        {"num":2,"forceId":1,"combat":3,"movement":2,"reinforce":"A","range":3,"nationality":"Anglo","class":"artillery"},
-        {"num":1,"forceId":1,"combat":2,"movement":3,"reinforce":"A","range":2,"nationality":"Anglo","class":"artillery"},
-
-        {"num":1,"forceId":1,"combat":4,"movement":5,"reinforce":"A","range":1,"nationality":"Austrian","class":"cavalry"},
-        {"num":1,"forceId":1,"combat":2,"movement":6,"reinforce":"A","range":1,"nationality":"Austrian","class":"cavalry"},
+        {"num":1,"forceId":1,"combat":4,"movement":2,"reinforce":"A","range":3,"nationality":"Swedish","class":"artillery"},
+        {"num":2,"forceId":1,"combat":2,"movement":3,"reinforce":"A","range":2,"nationality":"Swedish","class":"artillery"}
 
 
-        {"num":7,"forceId":1,"combat":6,"movement":3,"reinforce":"A","range":1,"nationality":"Dutch","class":"infantry"},
-        {"num":3,"forceId":1,"combat":4,"movement":3,"reinforce":"A","range":1,"nationality":"Dutch","class":"infantry"},
-
-        {"num":3,"forceId":1,"combat":6,"movement":5,"reinforce":"A","range":1,"nationality":"Dutch","class":"cavalry"},
-
-        {"num":1,"forceId":1,"combat":3,"movement":2,"reinforce":"A","range":3,"nationality":"Dutch","class":"artillery"},
-        {"num":1,"forceId":1,"combat":2,"movement":3,"reinforce":"A","range":2,"nationality":"Dutch","class":"artillery"}
       ]
     },
     "scenarios": {

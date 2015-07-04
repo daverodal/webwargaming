@@ -17,12 +17,12 @@ You should have received a copy of the GNU General Public License
    */
 
 
-define("FRENCH_FORCE", 2);
-define("ALLIED_FORCE", 1);
+define("SWEDISH_FORCE", 1);
+define("DANISH_FORCE", 2);
 
 global $force_name;
-$force_name[FRENCH_FORCE] = "French";
-$force_name[ALLIED_FORCE] = "Allies";
+$force_name[SWEDISH_FORCE] = "Swedes";
+$force_name[DANISH_FORCE] = "Danes";
 
 require_once "JagCore.php";
 
@@ -51,8 +51,8 @@ class Helsingborg1710 extends JagCore
     {
         global $force_name;
 
-        $deployTwo = $playerOne = $force_name[ALLIED_FORCE];
-        $deployOne = $playerTwo = $force_name[FRENCH_FORCE];
+        $deployTwo = $playerOne = $force_name[SWEDISH_FORCE];
+        $deployOne = $playerTwo = $force_name[DANISH_FORCE];
         @include_once "playMulti.php";
     }
 
@@ -60,8 +60,8 @@ class Helsingborg1710 extends JagCore
     {
         global $force_name;
         $youAre = $force_name[$player];
-        $deployTwo = $playerOne = $force_name[ALLIED_FORCE];
-        $deployOne = $playerTwo = $force_name[FRENCH_FORCE];
+        $deployTwo = $playerOne = $force_name[SWEDISH_FORCE];
+        $deployOne = $playerTwo = $force_name[DANISH_FORCE];
         @include_once "view.php";
     }
 
@@ -126,7 +126,7 @@ class Helsingborg1710 extends JagCore
 
             // game data
 
-            $this->gameRules->setMaxTurn(10);
+            $this->gameRules->setMaxTurn(6);
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
             $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */

@@ -19,33 +19,28 @@ You should have received a copy of the GNU General Public License
 #tecImage{
   width:500px;
 }
-$prussianNapColor: #003AF3;
-$bavarianWrapperColor: #4287FA;
-$bavarianColor: #FD0013;
 
-@include player(Anglo ,One , $angloAlliedColor, $angloAlliedWrapperColor);
-@include player(French, Two, $frenchColor, $frenchWrapperColor);
-@include player(Austrian, Three, $austrianColor, $austrianWrapperColor, $austrianWrapperColor);
-@include player(Dutch, Four, $prussianColor, $prussianWrapperColor);
+$danishColor: #ff3f1f;
+$danishWrapperColor: #bfbfbf;
+@include player(Swedish ,One , $swedishColor, $swedishWrapperColor);
+@include player(Danish, Two, $danishColor, $danishWrapperColor);
+@include badge(Danish, Danish);
 
-.french.specialHexes{
-  background-color: $frenchColor;
-}
-
-
-.allies.specialHexes {
-  background-color: $angloAlliedColor;
-}
-.french.specialHexes, .allies.specialHexes{
+.swedes.specialHexes{
+  background-color: $swedishWrapperColor;
   color:white;
 }
-.AngloAllied, .Dutch, .Guard {
+
+
+.danes.specialHexes {
+  background-color: $danishColor;
+  color:white;
+}
+
+
+.Swedish {
   p.forceMarch, p.range{
     color:white;
   }
 }
 
-@include badge(Dutch, Pru);
-@include badge(French, French);
-@include badge(Guard, FrenchNap);
-@include badge(Prussian, PruNap);
