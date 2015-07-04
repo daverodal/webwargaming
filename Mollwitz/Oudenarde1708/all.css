@@ -1816,7 +1816,8 @@ svg marker#head {
 
 #TEC {
   background: white;
-  width: 780px; }
+  width: 780px;
+  margin-left: -400px; }
 
 #crt {
   width: 476px; }
@@ -1841,7 +1842,8 @@ svg marker#head {
   background: white;
   color: black; }
 
-
+#tecImage {
+  width: 760px; }
 
 #TECWrapper .closer {
   height: 0px;

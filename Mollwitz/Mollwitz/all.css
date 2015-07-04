@@ -1820,7 +1820,8 @@ svg marker#head {
 
 #TEC {
   background: white;
-  width: 780px; }
+  width: 780px;
+  margin-left: -400px; }
 
 #crt {
   width: 476px; }
