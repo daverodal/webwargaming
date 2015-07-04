@@ -25,7 +25,7 @@ You should have received a copy of the GNU General Public License
     <style>
         body{
             background:#000;
-            background:url("<?=base_url("js/The_Battle_of_Fontenoy,_11th_May_1745.png")?>") #333 no-repeat;
+            background:url("<?=base_url("js/886px-Magnus_Stenbock_vid_Helsingborg.jpg")?>") #333 no-repeat;
             background-position:center 0;
             background-size:100%;
 
@@ -81,7 +81,7 @@ You should have received a copy of the GNU General Public License
 
 <div class="backBox">
 <h2 style="text-align:center;font-size:30px;font-family:'Monsieur La Doulaise'"> Welcome to</h2>
-    <h1 style=""><span>Fontenoy 1745</span></h1>
+    <h1 style=""><span>Helsingborg 1710</span></h1>
 </div>
 <div style="clear:both"></div>
 <fieldset ><Legend>Play As </Legend>
@@ -89,6 +89,6 @@ You should have received a copy of the GNU General Public License
     <a  class="link" href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>/">Play Multi</a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a><br>
     <div class="attribution">
-        Horace Vernet [Public domain], <a target="blank" href="https://commons.wikimedia.org/wiki/File%3AThe_Battle_of_Fontenoy%2C_11th_May_1745.png">via Wikimedia Commons</a>
+        Gustaf Cederström [Public domain], <a target="_blank" href="https://commons.wikimedia.org/wiki/File%3AMagnus_Stenbock_vid_Helsingborg.jpg">via Wikimedia Commons</a>
     </div>
 </fieldset>

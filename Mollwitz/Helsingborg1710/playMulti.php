@@ -20,11 +20,12 @@ You should have received a copy of the GNU General Public License
         body{
             background:#ccc;
             color:#333;
-            background: url("<?=base_url("js/The_Battle_of_Fontenoy,_11th_May_1745.png")?>") #333 no-repeat;
+            background: url("<?=base_url("js/886px-Magnus_Stenbock_vid_Helsingborg.jpg")?>") #333 no-repeat;
             background-position: 25% 0;
             background-size:100%;
         }
     </style>
 
 <footer class="attribution">
-    Horace Vernet [Public domain], <a target="blank" href="https://commons.wikimedia.org/wiki/File%3AThe_Battle_of_Fontenoy%2C_11th_May_1745.png">via Wikimedia Commons</a></footer>
+    Gustaf Cederström [Public domain], <a target="_blank" href="https://commons.wikimedia.org/wiki/File%3AMagnus_Stenbock_vid_Helsingborg.jpg">via Wikimedia Commons</a>
+</footer>
