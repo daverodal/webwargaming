@@ -82,7 +82,7 @@ x.register("mapUnits", function(mapUnits, data) {
     var phasingUnitsLeft = 0;
 
     for (i in mapUnits) {
-        if(typeof mapUnits[i].forceId == "undefined"){
+        if(typeof mapUnits[i].parent == "undefined"){
             $('#'+i).hide();
             continue;
         }else{

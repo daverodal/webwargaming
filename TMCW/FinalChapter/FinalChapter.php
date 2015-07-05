@@ -316,6 +316,13 @@ class FinalChapter extends ModernLandBattle
         }
 
         if($this->players){
+            /*
+             * if player 3 set, they become player 3 and four
+             * if 3 and 4 not set 3 becomes 1 and 4 becomes 2
+             */
+            if(!isset($this->players[4]) && $this->players[3]) {
+                $this->players[4] = $this->players[3];
+            }
             if(!isset($this->players[3]) && $this->players[1]){
                 $this->players[3] = $this->players[1];
             }
