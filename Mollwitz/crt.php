@@ -243,8 +243,9 @@ class CombatResultsTable
                     }
                     if($attackUpHill && !($isSwamp || $attackerIsSwamp || $acrossRiver || $attackerIsSunkenRoad || $acrossRedoubt)){
 //                        $unitStrength *= .75;
-                        $combats->dieShift = -1;
-                        $combatLog .= "die -1  for $terrainReason ";
+//                        $combats->dieShift = -1;
+                          $unitStrength -= 1;
+                        $combatLog .= "unit strength -1  for $terrainReason ";
                     }else{
                         if(!$scenario->weakRedoubts){
                             $unitStrength /= 2;
@@ -272,8 +273,9 @@ class CombatResultsTable
                 }elseif ( $attackUpHill ) {
 
 //                    $unitStrength *= .75;
-                    $combats->dieShift = -1;
-                    $combatLog .= "die -1 for attacking uphill ";
+//                    $combats->dieShift = -1;
+                    $unitStrength -= 1;
+                    $combatLog .= "unit strength -1 for attacking uphill ";
                     if($unit->nationality != "Beluchi" && $unit->nationality != "Sikh"){
                         $combinedArms[$battle->force->units[$attackerId]->class]++;
                     }else{
@@ -296,8 +298,9 @@ class CombatResultsTable
                 if($isSwamp || $acrossRedoubt || $attackUpHill){
                     if($attackUpHill){
 //                        $unitStrength *= .75;
-                        $combats->dieShift = -1;
-                        $combatLog .= "Die -1 for $terrainReason ";
+//                        $combats->dieShift = -1;
+                        $unitStrength -= 1;
+                        $combatLog .= "unit strength -1 for $terrainReason ";
                     }else{
                         $unitStrength /= 2;
                         $combatLog .= "attacker halved for $terrainReason ";
