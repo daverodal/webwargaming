@@ -236,6 +236,11 @@
         "name": "Swedish units have step reduction and can be reduced to half strength in an exchange.",
         "keyName":"stepReduction",
         "value": true
+      },
+      {
+        "name": "For of war during Deployment. Enemy units remain hidden until movement phase..",
+        "keyName":"fogDeploy",
+        "value": false
       }],
     "scenarios": {
       "main": {

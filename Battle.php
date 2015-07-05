@@ -47,6 +47,11 @@ class LandBattle extends Battle{
         $force = $doc->wargame->force;
         $wargame = $doc->wargame;
         $gameName = $doc->gameName;
+        $gameRules = $wargame->gameRules;
+        $fogDeploy = false;
+        if($wargame->scenario->fogDeploy && $doc->playerStatus == "multi"){
+            $fogDeploy = true;
+        }
 
 //        $revs = $doc->_revs_info;
         Battle::loadGame($gameName, $doc->wargame->arg);
@@ -76,6 +81,12 @@ class LandBattle extends Battle{
 
             $mapUnit->x = $mapGrid->getPixelX();
             $mapUnit->y = $mapGrid->getPixelY();
+
+            if($fogDeploy && ($gameRules->phase == RED_DEPLOY_PHASE || $gameRules->phase == BLUE_DEPLOY_PHASE) &&  $unit->forceId !== $player){
+                if($unit->hexagon->parent == "gameImages"){
+                    $mapUnit = new stdClass();
+                }
+            }
             $mapUnits[] = $mapUnit;
         }
         $turn = $doc->wargame->gameRules->turn;
@@ -91,6 +102,14 @@ class LandBattle extends Battle{
                 $u->reinforceTurn = $unit->reinforceTurn;
             }
             $units[$i] = $u;
+        }
+        if($fogDeploy) {
+            if ($gameRules->phase == BLUE_DEPLOY_PHASE && $player === RED_FORCE) {
+                $moveRules->moves = new stdClass();
+            }
+            if ($gameRules->phase == RED_DEPLOY_PHASE && $player === BLUE_FORCE) {
+                $moveRules->moves = new stdClass();
+            }
         }
         if ($moveRules->moves) {
             foreach ($moveRules->moves as $k => $move) {

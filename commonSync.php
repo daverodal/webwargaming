@@ -82,6 +82,12 @@ x.register("mapUnits", function(mapUnits, data) {
     var phasingUnitsLeft = 0;
 
     for (i in mapUnits) {
+        if(typeof mapUnits[i].forceId == "undefined"){
+            $('#'+i).hide();
+            continue;
+        }else{
+            $('#'+i).show();
+        }
         if(mapUnits[i].forceId === phasingForceId && mapUnits[i].parent === "deployBox"){
             phasingUnitsLeft++;
         }
