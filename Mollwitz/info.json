@@ -711,6 +711,17 @@
     "genre": "18'th Century Europe",
     "fileName": "Helsingborg1710/Helsingborg1710.php",
     "description":"The Battle of Helsingborg 1710 between the Swedish and the Danes . ",
+    "options":[
+      {
+        "name": "Swedish 8-5 cavalry have step reduction and can be reduced to half strength in an exchange.",
+        "keyName":"stepReduction",
+        "value": true
+      },
+      {
+        "name": "For of war during Deployment. Enemy units remain hidden until movement phase..",
+        "keyName":"fogDeploy",
+        "value": false
+      }],
     "params":{
       "units":[
 
