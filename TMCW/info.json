@@ -44,6 +44,13 @@
         "genre": "20'th Century Games",
         "fileName": "Amph/Amph.php",
         "description": "Hypothetical amphibious invasion. The goal is the castle town, Chateau Sur Mer.",
+        "options":[
+          {
+            "name": "For of war during Deployment. Enemy units remain hidden until movement phase..",
+            "keyName":"fogDeploy",
+            "value": false
+          }
+        ],
         "scenarios": {
             "Main": {
                 "description": "Standard",
