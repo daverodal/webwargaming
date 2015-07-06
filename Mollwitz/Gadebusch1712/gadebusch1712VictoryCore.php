@@ -154,8 +154,8 @@ class gadebusch1712VictoryCore extends victoryCore
         return false;
     }
 
-    public function preRecoverUnits($args){
-        parent::postRecoverUnit($args);
+    public function preRecoverUnits(){
+        parent::preRecoverUnits();
 
         if($this->wasIndecisive){
             return;
