@@ -55,6 +55,17 @@ You should have received a copy of the GNU General Public License
 
                     </ol>
                 </li>
+                <li><span class="lessBig">Terrain</span>
+                    <ol>
+                        <li>Swamps: The Swedes were able to get their guns over these swamps with little difficulty.
+                            In this game they will cause only  -1 MP to enter and -1 Combat factor to any unit attacking into or out of.</li>
+                        <li>
+                            Sunken Road / Ravine. These were actually narrow ravines that these roads ran through in this game deduct 1 strength point from units attacking out.
+                            Artillery can only attack in or out to adjacent hexes.
+
+                        </li>
+                    </ol>
+                </li>
             </ol>
             <ol class="ExclusiveRules topNumbers">
                 <?php include "victoryConditions.php" ?>

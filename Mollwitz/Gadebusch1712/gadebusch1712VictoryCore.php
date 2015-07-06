@@ -155,6 +155,7 @@ class gadebusch1712VictoryCore extends victoryCore
     }
 
     public function preRecoverUnits(){
+        echo "PRE! ";
         parent::preRecoverUnits();
 
         if($this->wasIndecisive){
@@ -162,24 +163,27 @@ class gadebusch1712VictoryCore extends victoryCore
         }
         $b = Battle::getBattle();
         $turn = $b->gameRules->turn;
-        if($turn <= 3) {
-            $Die = floor($this->crt->dieSideCount * (rand() / getrandmax()));
+        if($turn <= 3 && $this->wasIndecisive === false && $b->gameRules->phase == RED_MOVE_PHASE) {
+            $Die = floor(6 * (rand() / getrandmax()));
             /* 1 or 2 is 0 or 1 */
             if ($Die < 2) {
 
                 $this->isIndecisive = true;
-                $b->gameRules->flashMessages[] = "No Danish Movement this turn.";
+                $this->wasIndecisive = true;
+                $b->gameRules->flashMessages[] = "$Die No Danish Movement this turn.";
 
+                return;
             }
         }
-        if($turn == 4 && $this->wasIndecisive === false){
+        if($turn == 4 && $this->wasIndecisive === false && $b->gameRules->phase == RED_MOVE_PHASE){
             $this->isIndecisive = true;
+            $this->wasIndecisive = true;
         }
     }
 
     public function postRecoverUnits($args)
     {
-        parent::postRecoverUnits($args);
+//        parent::postRecoverUnits($args);
         $this->isIndecisive = false;
     }
 
