@@ -1155,6 +1155,8 @@ svg marker#head {
 
 #crt {
   width: 308px; }
+  #crt .crt-table-name {
+    display: none; }
 
 .reduced {
   color: white; }
