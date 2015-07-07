@@ -881,6 +881,17 @@ svg marker#head {
   .tablet {
     display: none !important; } }
 @media screen and (max-width: 1280px) {
+  #nextPhaseWrapper button, .dropDown, #zoomWrapper {
+    height: 66px;
+    line-height: 66px; }
+    #nextPhaseWrapper button#fullScreenButton, .dropDown#fullScreenButton, #zoomWrapper#fullScreenButton {
+      min-width: 66px; }
+
+  #crtWrapper {
+    height: 66px; }
+    #crtWrapper .WrapperLabel {
+      line-height: 66px; }
+
   .desktop {
     display: none; }
 

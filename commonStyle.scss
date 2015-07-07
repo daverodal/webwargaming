@@ -1025,6 +1025,19 @@ svg {
   .tablet {
 
   }
+  #nextPhaseWrapper button, .dropDown,#zoomWrapper{
+    &#fullScreenButton i{
+      min-width:66px;
+    }
+    height:66px;
+    line-height: 66px;
+  }
+  #crtWrapper{
+    height:66px;
+    .WrapperLabel{
+      line-height: 66px;
+    }
+  }
   .desktop {
     display: none;
   }
