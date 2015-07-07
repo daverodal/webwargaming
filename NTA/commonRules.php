@@ -71,12 +71,12 @@
 <div class="close">X</div>
 <div id="gameRules">
 <H1>
-   Napoleons Training Academy 
+   Napoleons Training Academy
 </H1>
 
 <h3> Quick Start Guide #3</h3>
 <header>
-    
+
 </header>
 <h2></h2>
 <ol>
@@ -93,7 +93,7 @@
     <li>Blue Combat Setup Phase (Bravo)</li>
 
     <li>Blue Combat Resolution Phase (Bravo)</li>
-    
+
     <li>Turn End</li>
 </ol>
 <h2>Movement</h2>
@@ -143,101 +143,50 @@ be moved into that hex. This must be done before the next attack is resolved. Ar
 <h2>Combat Results</h2>
 
 <h4>Combat Results Table (CRT) (No Attack at less than 1-4 is allowed)</h4>
+    <ul>
+    <li>Combat Results Table<br><br>
+        <?php                 $crt = new CombatResultsTable();
+        foreach($crt->crts as $crtName => $crtValue){
+            echo "<br><br>$crtName";
+            ?>
+            <div class="clear">&nbsp;</div>
 
-<table>
-    <tr>
-        <td>Die
-        <td>1-4<br>1-3</td>
+            <div class="left">
+                <div id="odds">
+                    <span class="col0">&nbsp;</span>
+                    <?php
 
-        <td>1-2</td>
+                    $i = 1;
+                    foreach ($crt->combatResultsHeader as $odds) {
+                        ?>
+                        <span class="col<?= $i++ ?>"><?= $odds ?></span>
+                    <?php } ?>
+                </div>
+                <?php
+                $rowNum = 1;
+                $odd = ($rowNum & 1) ? "odd" : "even";
+                foreach ($crt->crts->normal as $row) {
+                    ?>
+                    <div class="roll <?= "row$rowNum $odd" ?>">
+                        <span class="col0"><?= $rowNum++ ?></span>
+                        <?php $col = 1;
+                        foreach ($row as $cell) {
+                            ?>
+                            <span class="col<?= $col++ ?>"><?= $results_name[$cell] ?></span>
 
-        <td>1-1</td>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
+            </div>
 
-        <td>1.5-1</td>
 
-        <td>2-1</td>
 
-        <td>3-1</td>
 
-        <td>4-1</td>
+            <div class="clear"></div>
+        <?php }?>
+    </li>
+        </ul>
 
-        <td>5-1</td>
-
-        <td>6-1 or more</td>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>A-E</td>
-        <td>A-E</td>
-        <td>A-E</td>
-        <td>A-R</td>
-        <td>A-R</td>
-        <td>D-R</td>
-        <td>D-R</td>
-        <td>D-R</td>
-        <td>D-R</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>A-E</td>
-        <td>A-E</td>
-        <td>A-R</td>
-        <td>A-R</td>
-        <td>A-R</td>
-        <td>D-R</td>
-        <td>D-R</td>
-        <td>D-R</td>
-        <td>D-R</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>A-E</td>
-        <td>A-E</td>
-        <td>A-R</td>
-        <td>A-R</td>
-        <td>D-R</td>
-        <td>EX</td>
-        <td>D-R</td>
-        <td>D-E</td>
-        <td>D-E</td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td>A-E</td>
-        <td>A-R</td>
-        <td>A-R</td>
-        <td>D-R</td>
-        <td>D-R</td>
-        <td>EX</td>
-        <td>D-E</td>
-        <td>D-E</td>
-        <td>D-E</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>A-E</td>
-        <td>A-R</td>
-        <td>A-R</td>
-        <td>D-R</td>
-        <td>EX</td>
-        <td>D-E</td>
-        <td>D-E</td>
-        <td>D-E</td>
-        <td>D-E</td>
-    </tr>
-    <tr>
-        <td>6</td>
-        <td>A-R</td>
-        <td>A-R</td>
-        <td>D-R</td>
-        <td>EX</td>
-        <td>EX</td>
-        <td>D-E</td>
-        <td>D-E</td>
-        <td>D-E</td>
-        <td>D-E</td>
-    </tr>
-</table>
 <ul>
 
     <li>

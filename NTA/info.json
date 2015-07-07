@@ -2,7 +2,7 @@
   "NapoleonsTrainingAcademy": {
     "name": "Napoleon's Training Academy",
     "path": "NTA",
-    "genre": "Training (close for renovation)",
+    "genre": "Training",
     "fileName": "NapoleonsTrainingAcademy.php",
     "scenarios": {
       "main": {

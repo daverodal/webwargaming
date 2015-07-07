@@ -39,7 +39,8 @@ class CombatResultsTable extends ModernCombatResultsTable
 
     function __construct(){
         $this->combatResultsHeader = array("1:4","1:3","1:2","1:1","2:1","3:1","4:1","5:1","6:1","7:1");
-        $this->combatResultsTable = array(
+        $this->crts = new stdClass();
+        $this->crts->normal = array(
             array(AR, DR, DR, EX, EX, DE, DE, DE, DE, DE),
             array(AR, AR, DR, DR, EX, EX, DE, DE, DE, DE),
             array(AR, AR, AR, DR, DR, EX, EX, DE, DE, DE),

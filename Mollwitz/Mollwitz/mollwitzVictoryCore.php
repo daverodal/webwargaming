@@ -60,7 +60,7 @@ class mollwitzVictoryCore extends victoryCore
     {
     }
 
-    protected function checkVictory($attackingId, $battle){
+    protected function checkVictory( $battle){
         global $force_name;
         $gameRules = $battle->gameRules;
         $turn = $gameRules->turn;
@@ -146,7 +146,7 @@ class mollwitzVictoryCore extends victoryCore
         $turn = $gameRules->turn;
         $gameRules->flashMessages[] = "@hide crt";
 
-        if($this->checkVictory($attackingId,$battle)){
+        if($this->checkVictory($battle)){
             return;
         }
 

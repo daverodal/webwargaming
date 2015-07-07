@@ -45,9 +45,6 @@ h2 #status {
 h5 {
   margin: 0px; }
 
-h4:hover {
-  text-decoration: underline; }
-
 .shadowy {
   background-color: rgba(0, 0, 0, 0.3) !important; }
 
@@ -577,10 +574,19 @@ fieldset {
   font-weight: bold;
   padding: 1px 5px 10px 15px;
   box-shadow: 10px 10px 10px rgba(30, 30, 30, 0.85); }
+  #crt .crt-table-name {
+    color: #aaa;
+    font-style: italic;
+    margin-top: -15px;
+    font-size: 13px; }
+  #crt #crt-buttons {
+    cursor: pointer; }
+    #crt #crt-buttons .switch-crt {
+      position: absolute;
+      right: 19px;
+      top: 3px; }
 
 #crt h3 {
-  height: 40px;
-  margin-bottom: 5px;
   vertical-align: bottom; }
 
 #crt span {

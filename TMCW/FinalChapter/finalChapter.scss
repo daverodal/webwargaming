@@ -25,6 +25,7 @@
 @include player(western,Two,$rebelColor);
 @include player(easternEmpire,Four, #afa2b3);
 
+
 .dead-country{
   height:100%;
   width:24%;
@@ -49,6 +50,9 @@
 
 #crt {
   width: 480px;
+  .crt-table-name{
+    display:none;
+  }
 }
 
 .reduced {

@@ -59,7 +59,7 @@ class aliwal1845VictoryCore extends indiaVictoryCore
         }
     }
 
-    protected function checkVictory($attackingId, $battle)
+    protected function checkVictory( $battle)
     {
         $gameRules = $battle->gameRules;
         $scenario = $battle->scenario;

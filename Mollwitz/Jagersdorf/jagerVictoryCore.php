@@ -46,7 +46,7 @@ class jagerVictoryCore extends victoryCore
     {
     }
 
-    protected function checkVictory($attackingId, $battle){
+    protected function checkVictory( $battle){
         global $force_name;
         $gameRules = $battle->gameRules;
         $turn = $gameRules->turn;

@@ -80,80 +80,17 @@ class victoryCore
     {
     }
 
-    protected function checkVictory($attackingId, $battle){
-        global $force_name;
-        $gameRules = $battle->gameRules;
-        $turn = $gameRules->turn;
-        if(!$this->gameOver){
-            $prussianWin = $austrianWin = false;
-            if($this->victoryPoints[AUSTRIAN_FORCE] >= 35){
-                $austrianWin = true;
-                $reason = "Win on kills";
-            }
-            if($this->victoryPoints[PRUSSIAN_FORCE] >= 35){
-                $prussianWin = true;
-                $reason = "Win on kills";
-            }
-            if($turn > 1){
-                if($attackingId == PRUSSIAN_FORCE &&  $this->isMollwitz()){
-                    $prussianWin = true;
-                    $reason = " Occupy Mollwitz";
-                }
-                if($attackingId == AUSTRIAN_FORCE &&  $this->isNeudorf()){
-                    $austrianWin = true;
-                    $reason = " Occupy Neudorf";
-                }
-            }
-            if($austrianWin && $prussianWin){
-                $this->winner = 0;
-                $austrianWin = $prussianWin = false;
-                $this->gameOver = true;
-                $gameRules->flashMessages[] = "Tie Game";
-            }
-            if($austrianWin){
-                $this->winner = AUSTRIAN_FORCE;
-                $gameRules->flashMessages[] = $force_name[AUSTRIAN_FORCE]." $reason";
-            }
-            if($prussianWin){
-                $this->winner = PRUSSIAN_FORCE;
-                $gameRules->flashMessages[] = $force_name[PRUSSIAN_FORCE]. " $reason";
-            }
-            if($austrianWin || $prussianWin){
-                $gameRules->flashMessages[] = "Game Over";
-                $this->gameOver = true;
-                return true;
-            }
-            if($turn > $gameRules->maxTurn){
-                $this->gameOver = true;
-                $gameRules->flashMessages[] = "Tie Game";
-                return true;
-            }
-        }
+    protected function checkVictory( $battle){
         return false;
     }
-    private function isMollwitz(){
-        $mollwitz = [602,702];
-        $b = Battle::getBattle();
-        $force = $b->force;
-        $units = $force->units;
-        foreach($units as $unit){
-            if($unit->forceId == PRUSSIAN_FORCE && in_array($unit->hexagon->name, $mollwitz) ){
-                return true;
-            }
+
+
+    public function gameEnded(){
+        if($this->gameOver){
+            return true;
         }
-        return false;
-    }
-    private function isNeudorf(){
-        $neudorf = [911];
-        $b = Battle::getBattle();
-        $force = $b->force;
-        $units = $force->units;
-        foreach($units as $unit){
-            if($unit->forceId == AUSTRIAN_FORCE && in_array($unit->hexagon->name, $neudorf) ){
-                return true;
-            }
-        }
-        return false;
+        $battle = Battle::getBattle();
+        $this->checkVictory($battle);
     }
 
     public function playerTurnChange($arg){
@@ -166,14 +103,13 @@ class victoryCore
         $turn = $gameRules->turn;
         $gameRules->flashMessages[] = "@hide crt";
 
-        if($this->checkVictory($attackingId,$battle)){
+        if($this->checkVictory($battle)){
             return;
         }
 
-            $gameRules->flashMessages[] = $force_name[$attackingId]." Player Turn";
-
-
+        $gameRules->flashMessages[] = $force_name[$attackingId]." Player Turn";
     }
+
     public function postCombatResults($args){
         list($defenderId, $attackers, $combatResults, $dieRoll) = $args;
         $b = Battle::getBattle();
@@ -184,6 +120,7 @@ class victoryCore
             }
         }
     }
+
     public function calcFromAttackers(){
         $mapData = MapData::getInstance();
 
@@ -284,19 +221,7 @@ class victoryCore
             $unit->status = STATUS_UNAVAIL_THIS_PHASE;
             return;
         }
-//        if(($b->gameRules->phase == RED_COMBAT_PHASE || $b->gameRules->phase == BLUE_COMBAT_PHASE)){
-//            foreach($this->headQuarters as $hq){
-//                $los = new Los();
-//
-//                $los->setOrigin($b->force->getUnitHexagon($id));
-//                $los->setEndPoint($b->force->getUnitHexagon($hq));
-//                $range = $los->getRange();
-//                if($range <= $cmdRange){
-//                    return;
-//                }
-//            }
-//            $unit->status = STATUS_UNAVAIL_THIS_PHASE;
-//        }
+
     }
 
     public function postRecoverUnit($args)
@@ -316,7 +241,6 @@ class victoryCore
         }
         if($unit->hexagon->parent === 'deployBox' && $b->gameRules->mode !== DEPLOY_MODE){
             $unit->hexagon->parent = "not-used";
-            echo "CHanged ";
         }
     }
 }

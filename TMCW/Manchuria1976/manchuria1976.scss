@@ -22,6 +22,11 @@
 @include player(soviet, One, rgb(223, 88, 66));
 @include player(prc, Two, rgb(247, 206, 0));
 
+#crt{
+  .crt-table-name{
+    display:none;
+  }
+}
 .prcVictoryPoints{
   color:black;
 }
@@ -38,7 +43,7 @@
   word-break: break-all;
   font-family: 'Nosifer';
 }
-@import "../commonPlay";
+//@import "../commonPlay";
 
 
 

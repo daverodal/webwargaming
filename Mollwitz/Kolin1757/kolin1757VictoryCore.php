@@ -78,7 +78,7 @@ class kolin1757VictoryCore extends victoryCore
         }
     }
 
-    protected function checkVictory($attackingId, $battle)
+    protected function checkVictory( $battle)
     {
         $gameRules = $battle->gameRules;
         $scenario = $battle->scenario;

@@ -69,7 +69,6 @@ class GameRules
     public $interactions;
     public $replacementsAvail;
     public $currentReplacement;
-    public $turnChange;
     public $phaseClicks;
     public $phaseClickNames;
     public $playTurnClicks;
@@ -181,7 +180,6 @@ class GameRules
         //TODO Ugly Ugly Ugly Ugly
 
         $this->flashMessages = array();
-        $this->turnChange = false;
 
         switch ($this->mode) {
 
@@ -648,9 +646,7 @@ class GameRules
                     $this->replacementsAvail = false;
                     $this->phaseClicks[] = $click + 1;
                     $this->phaseClickNames[] = $phase_name[$this->phase];
-                    if ($this->phaseChanges[$i]->phaseWillIncrementTurn == true) {
-                        $this->incrementTurn();
-                    }
+
                     if ($this->attackingForceId != $this->phaseChanges[$i]->nextAttackerId) {
                         $battle = Battle::getBattle();
                         $players = $battle->players;
@@ -659,23 +655,25 @@ class GameRules
                             Battle::pokePlayer($players[$this->phaseChanges[$i]->nextAttackerId]);
                         }
                         $victory->playerTurnChange($this->phaseChanges[$i]->nextAttackerId);
-                        $this->turnChange = true;
+                    }
+                    if ($this->phaseChanges[$i]->phaseWillIncrementTurn == true) {
+                        $this->incrementTurn();
                     }
                     $this->attackingForceId = $this->phaseChanges[$i]->nextAttackerId;
-                    $victory->phaseChange();
                     $this->defendingForceId = $this->phaseChanges[$i]->nextDefenderId;
 
                     $this->force->setAttackingForceId($this->attackingForceId, $this->defendingForceId);
 
+                    $victory->phaseChange();
                     $this->force->recoverUnits($this->phase, $this->moveRules, $this->mode);
 
                     if ($this->turn > $this->maxTurn) {
-                        $victory->gameOver();
+                        $victory->gameEnded();
                         $this->flashMessages[] = "@gameover";
                     }
 
 
-                    return true;;
+                    return true;
                 }
             }
         }
@@ -688,14 +686,6 @@ class GameRules
         $battle = Battle::getBattle();
         $victory = $battle->victory;
         $victory->incrementTurn();
-        $theUnits = $this->force->units;
-        foreach ($theUnits as $id => $unit) {
-
-            if ($unit->status == STATUS_CAN_REINFORCE && $unit->reinforceTurn <= $this->turn && $unit->hexagon->parent != "deployBox") {
-//                $theUnits[$id]->status = STATUS_ELIMINATED;
-//                $theUnits[$id]->hexagon->parent = "deployBox";
-            }
-        }
     }
 
     function getInfo()

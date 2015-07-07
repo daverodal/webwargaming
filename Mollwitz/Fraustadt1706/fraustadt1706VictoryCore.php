@@ -67,7 +67,7 @@ class fraustadt1706VictoryCore extends victoryCore
         }
     }
 
-    protected function checkVictory($attackingId, $battle)
+    protected function checkVictory( $battle)
     {
         $gameRules = $battle->gameRules;
         $scenario = $battle->scenario;
@@ -84,9 +84,7 @@ class fraustadt1706VictoryCore extends victoryCore
                 }
             }
             if ($this->victoryPoints[SWEDISH_FORCE] >= $highWinScore) {
-                if ($turn <= 6) {
                     $swedishWin = true;
-                }
             }
             if ($this->victoryPoints[SAXON_POLISH_FORCE] >= $highWinScore) {
                 $saxonPolishWin = true;

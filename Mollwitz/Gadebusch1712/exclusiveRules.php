@@ -66,6 +66,18 @@ You should have received a copy of the GNU General Public License
                         </li>
                     </ol>
                 </li>
+                <li><span class="lessBig">Danish Indecision</span>
+                    <ol>
+                        <li>Historically the Danes allowed the Swedes to advance over the swamps and on to their right flank with no intervention.</li>
+                        <li>
+                            At the beginning of the Danish movement phase turns 1-3 inclusive, the Danish player will roll 1d6.
+                            If the roll is 2 or less the Danish player may move no units that turn. They can stop rolling once the effect has occurred.
+                            If this effect does not happen by turn 4 the Danes may not move any units on turn 4. (the computer does this for you)
+
+
+                        </li>
+                    </ol>
+                </li>
             </ol>
             <ol class="ExclusiveRules topNumbers">
                 <?php include "victoryConditions.php" ?>

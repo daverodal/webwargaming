@@ -84,7 +84,7 @@ class burkersdorfVictoryCore extends victoryCore
         }
     }
 
-    protected function checkVictory($attackingId, $battle)
+    protected function checkVictory( $battle)
     {
         $gameRules = $battle->gameRules;
         $turn = $gameRules->turn;

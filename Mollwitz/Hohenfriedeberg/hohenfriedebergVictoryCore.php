@@ -80,7 +80,7 @@ class hohenfriedebergVictoryCore extends victoryCore
             }
         }
     }
-    protected function checkVictory($attackingId,$battle){
+    protected function checkVictory($battle){
         $prussianWinTurn = 12;
         if($battle->scenario->deployForward){
             $prussianWinTurn = 11;

@@ -24,6 +24,9 @@
 @include player(loyalist,Two,$loyalistColor);
 @include player(loyalGuards,Three,$loyalistGuardColor);
 
+.crt-table-name{
+  display:none;
+}
 #map {
 }
 

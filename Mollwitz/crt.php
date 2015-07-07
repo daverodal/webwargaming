@@ -41,7 +41,8 @@ class CombatResultsTable
     function __construct()
     {
         $this->combatResultsHeader = array("1:4", "1:3", "1:2", "1:1", "1.5:1", "2:1", "3:1", "4:1", "5:1", "6:1");
-        $this->combatResultsTable = array(
+        $this->crts = new stdClass();
+        $this->crts->normal = array(
             array(AE, AE, AE, AR, AR, AR, DR, DR, DR, DR),
             array(AE, AE, AR, AR, AR, DR, DR, DR, DR, DE),
             array(AE, AE, AR, AR, DR, DR, DR, DR, DE, DE),
@@ -49,7 +50,7 @@ class CombatResultsTable
             array(AE, AR, NE, DR, DR, EX, DE, DE, DE, DE),
             array(AR, AR, DR, DR, EX, DE, DE, DE, DE, DE),
         );
-        $this->combatResultsTableDetermined = array(
+        $this->crts->determined = array(
             array(AE, AE, AE, AR, AR, AR, DR, DR, DR, EX),
             array(AE, AE, AR, AR, AR, DR, DR, DR, EX, DE),
             array(AE, AE, AR, AR, DR, DR, EX, EX, DE, DE),
@@ -57,7 +58,7 @@ class CombatResultsTable
             array(AE, AR, NE, DR, EX, EX, DE, DE, DE, DE),
             array(AR, AR, DR, EX, EX, DE, DE, DE, DE, DE),
         );
-        $this->combatResultsTableCav = array(
+        $this->crts->cavalry = array(
             array(AE, AE, AE, AR, AR, AR, DR, DR, DR, DR),
             array(AE, AE, AR, AR, AR, DR, DR, DR, DR, DR),
             array(AE, AE, AR, AR, DR, DR, DR, DR, DR, DR),
@@ -92,12 +93,12 @@ class CombatResultsTable
             $Die = 5;
         }
         if ($combat->useAlt) {
-            return $this->combatResultsTableCav[$Die][$index];
+            return $this->crts->cavalry[$Die][$index];
         } else {
             if($combat->useDetermined){
-                return $this->combatResultsTableDetermined[$Die][$index];
+                return $this->crts->determined[$Die][$index];
             }
-            return $this->combatResultsTable[$Die][$index];
+            return $this->crts->normal[$Die][$index];
         }
     }
 

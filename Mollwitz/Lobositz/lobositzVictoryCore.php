@@ -52,7 +52,7 @@ class lobositzVictoryCore extends victoryCore
     public function specialHexChange($args)
     {
     }
-    protected function checkVictory($attackingId,$battle){
+    protected function checkVictory($battle){
         $gameRules = $battle->gameRules;
         $turn = $gameRules->turn;
         $reason = "";

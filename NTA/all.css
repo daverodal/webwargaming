@@ -45,9 +45,6 @@ h2 #status {
 h5 {
   margin: 0px; }
 
-h4:hover {
-  text-decoration: underline; }
-
 .shadowy {
   background-color: rgba(0, 0, 0, 0.3) !important; }
 
@@ -577,10 +574,19 @@ fieldset {
   font-weight: bold;
   padding: 1px 5px 10px 15px;
   box-shadow: 10px 10px 10px rgba(30, 30, 30, 0.85); }
+  #crt .crt-table-name {
+    color: #aaa;
+    font-style: italic;
+    margin-top: -15px;
+    font-size: 13px; }
+  #crt #crt-buttons {
+    cursor: pointer; }
+    #crt #crt-buttons .switch-crt {
+      position: absolute;
+      right: 19px;
+      top: 3px; }
 
 #crt h3 {
-  height: 40px;
-  margin-bottom: 5px;
   vertical-align: bottom; }
 
 #crt span {
@@ -901,6 +907,9 @@ svg marker#head {
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#unitsWrapper {
+  display: none; }
+
 .blueUnit, .blue, .playerTwo {
   background-color: #84b5ff;
   border-color: #84b5ff; }
@@ -935,7 +944,8 @@ svg marker#head {
   border-color: #df5842; }
 
 .unit .counterWrapper {
-  height: 16px; }
+  height: 16px;
+  margin-top: -5px; }
 
 .unit .counter {
   width: 32px;
@@ -943,7 +953,8 @@ svg marker#head {
 
 .unit .unit-numbers {
   font-size: 12px;
-  font-weight: bold; }
+  font-weight: bold;
+  margin-top: -3px; }
 
 #OBC {
   background: white;

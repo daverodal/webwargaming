@@ -18,6 +18,9 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#unitsWrapper{
+  display:none;
+}
 .blueUnit, .blue, .playerTwo {
   background-color: rgb(132, 181, 255);
   border-color: rgb(132, 181, 255);
@@ -61,6 +64,7 @@
 }
 .unit .counterWrapper{
   height:16px;
+  margin-top:-5px
 }
 .unit .counter{
   width:32px;
@@ -69,7 +73,7 @@
 .unit .unit-numbers{
   font-size:12px;
   font-weight:bold;
-
+  margin-top:-3px;
 }
 #OBC {
 }

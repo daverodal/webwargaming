@@ -21,14 +21,6 @@
 @include player(japanese, One, orange);
 @include player(soviet, Two, rgb(223,88,66));
 
-.unit .counter {
-  margin-top:1px;
-}
-.unit .unit-numbers{
-  margin-top:-23px;
-}
-#map{
-}
 
 #crt{
   width:308px;

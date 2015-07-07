@@ -266,24 +266,6 @@ You should have received a copy of the GNU General Public License
         });
         fixHeader();
         $(window).resize(fixItAll);
-
-        $("#mainTable").on('click', function () {
-            $(this).hide();
-            $("#detTable").show();
-            $('.tableWrapper.determined').hide();
-            $('.tableWrapper.main').show();
-        });
-        $("#detTable").on('click', function () {
-            $(this).hide();
-            $("#mainTable").show();
-            $('.tableWrapper.main').hide();
-            $('.tableWrapper.determined').show();
-        });
-        $("#mainTable").hide();
-        $("#detTable").show();
-        $('.tableWrapper.determined').hide();
-        $(".tableWrapper.main").show();
-
     });
     function fixItAll() {
         fixHeader();
@@ -715,6 +697,21 @@ function playAudioBuzz() {
 
 }
 
+function showCrtTable(mySelf){
+    if($("#crt .switch-crt").length <= 1){
+        return;
+    }
+    $("#crt .tableWrapper").hide();
+    $("#crt .switch-crt").hide();
+    var id = $(mySelf).attr('id');
+    $('#crt .'+id).show();
+    var next = $(mySelf).next();
+    if(next.length){
+        $(next).show();
+    }else{
+        $('#crt .switch-crt').first().show();
+    }
+}
 
 function initialize() {
 
@@ -725,6 +722,18 @@ function initialize() {
     // setup events --------------------------------------------
 
 //check if the image is already on cache
+
+    $(".switch-crt").on('click', function(){
+        showCrtTable(this);
+    });
+
+
+
+    $('#crt .tableWrapper').hide();
+    $('#crt .tableWrapper').first().show();
+    $('#crt .switch-crt').hide();
+    $('#crt .switch-crt').first().next().show();
+
 
     if($('#image_id').prop('complete')){
         var width = $("#gameImages #map").width();

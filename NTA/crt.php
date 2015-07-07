@@ -44,7 +44,8 @@ class CombatResultsTable
     
     function __construct(){
         $this->combatResultsHeader = array("1:5","1:4","1:3","1:2","1:1","2:1","3:1","4:1","5:1","6:1");
-	    $this->combatResultsTable = array(
+	    $this->crts = new stdClass();
+        $this->crts->normal = array(
             array(AE, AR, AR, DR, DR, DR, DE, DE, DE, DE),
             array(AE, AE, AR, AR, DR, DR, DR, DE, DE, DE),
             array(AE, AE, AE, AR, DR, DR, DR, DR, DE, DE),
@@ -52,7 +53,7 @@ class CombatResultsTable
             array(AE, AE, AE, AR, AR, EX, DR, EX, EX, DE),
             array(AE, AE, AE, AE, AR, AR, EX, EX, EX, DE),
         );
-        $this->combatResultsTableCav = array(
+        $this->crts->cavalry = array(
             array(AE, AR, AR, DR, DR, DR, DR, DR, DR, DR),
             array(AE, AE, AR, AR, DR, DR, DR, DR, DR, DR),
             array(AE, AE, AE, AR, DR, DR, DR, DR, DR, DR),
@@ -80,9 +81,9 @@ class CombatResultsTable
         function getCombatResults($Die, $index, $combat)
         {
             if($combat->useAlt){
-                return $this->combatResultsTableCav[$Die][$index];
+                return $this->crts->cavalry[$Die][$index];
             }else{
-                return $this->combatResultsTable[$Die][$index];
+                return $this->crts->normal[$Die][$index];
             }
         }
 

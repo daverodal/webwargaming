@@ -73,98 +73,51 @@
 
                     <div id="crt">
                         <div class="close">X</div>
-                        <div id="altTable">show cavalry table</div>
-                        <div id="mainTable">show normal table</div>
-                        <div id="detTable">show determined table</div>
+
                         <h3>Combat Odds</h3>
-
-                        <div class="tableWrapper main">
-                            <div id="odds">
-                                <span class="col0">&nbsp;</span>
-                                <?php
-                                $crt = new CombatResultsTable();
-
-                                $i = 1;
-                                foreach ($crt->combatResultsHeader as $odds) {
-                                    ?>
-                                    <span class="col<?= $i++ ?>"><?= $odds ?></span>
-                                <?php } ?>
-                            </div>
+                        <?php
+                        $topCrt = new CombatResultsTable();
+                        $crts = $topCrt->crts;
+                        ?>
+                        <div id="crt-buttons">
                             <?php
-                            $rowNum = 1;
-                            $odd = ($rowNum & 1) ? "odd" : "even";
-                            foreach ($crt->combatResultsTable as $row) {
-                                ?>
-                                <div class="roll <?= "row$rowNum $odd" ?>">
-                                    <span class="col0"><?= $rowNum++ ?></span>
-                                    <?php $col = 1;
-                                    foreach ($row as $cell) {
-                                        ?>
-                                        <span class="col<?= $col++ ?>"><?= $results_name[$cell] ?></span>
-
-                                    <?php } ?>
-                                </div>
-                            <?php } ?>
+                        foreach($crts as $crtName => $crt){?>
+                            <div class="switch-crt" id="<?=$crtName?>Table">show <?=$crtName?> table</div>
+                        <?php
+                        }?>
                         </div>
-                        <div class="tableWrapper alt">
-                            <div id="odds">
-                                <span class="col0">&nbsp;</span>
-                                <?php
-                                $crt = new CombatResultsTable();
+                        <?php
+                            foreach($crts as $crtName => $crt){?>
+                                                    <div class="tableWrapper <?=$crtName?>Table">
+                                                    <h4 class="crt-table-name"><?=$crtName?> combat table.</h4>
 
-                                $i = 1;
-                                foreach ($crt->combatResultsHeader as $odds) {
-                                    ?>
-                                    <span class="col<?= $i++ ?>"><?= $odds ?></span>
-                                <?php } ?>
-                            </div>
-                            <?php
-                            $rowNum = 1;
-                            $odd = ($rowNum & 1) ? "odd" : "even";
-                            foreach ($crt->combatResultsTableCav as $row) {
-                                ?>
-                                <div class="roll <?= "row$rowNum $odd" ?>">
-                                    <span class="col0"><?= $rowNum++ ?></span>
-                                    <?php $col = 1;
-                                    foreach ($row as $cell) {
-                                        ?>
-                                        <span class="col<?= $col++ ?>"><?= $results_name[$cell] ?></span>
+                                                            <div id="odds">
+                                                                <span class="col0">&nbsp;</span>
+                                                                <?php
+                                                                $i = 1;
+                                                                foreach ($topCrt->combatResultsHeader as $odds) {
+                                                                    ?>
+                                                                    <span class="col<?= $i++ ?>"><?= $odds ?></span>
+                                                                <?php } ?>
+                                                            </div>
+                                                            <?php
+                                                            $rowNum = 1;
+                                                            $odd = ($rowNum & 1) ? "odd" : "even";
+                                                            foreach ($crt as $row) {
+                                                                ?>
+                                                                <div class="roll <?= "row$rowNum $odd" ?>">
+                                                                    <span class="col0"><?= $rowNum++ ?></span>
+                                                                    <?php $col = 1;
+                                                                    foreach ($row as $cell) {
+                                                                        ?>
+                                                                        <span class="col<?= $col++ ?>"><?= $results_name[$cell] ?></span>
 
-                                    <?php } ?>
-                                </div>
-                            <?php } ?>
-                        </div>
-                        <?php if($crt->combatResultsTableDetermined){?>
+                                                                    <?php } ?>
+                                                                </div>
+                                                            <?php } ?>
+                                                        </div>
 
-                            <div class="tableWrapper determined">
-                                <div id="odds">
-                                    <span class="col0">&nbsp;</span>
-                                    <?php
-                                    $crt = new CombatResultsTable();
-
-                                    $i = 1;
-                                    foreach ($crt->combatResultsHeader as $odds) {
-                                        ?>
-                                        <span class="col<?= $i++ ?>"><?= $odds ?></span>
-                                    <?php } ?>
-                                </div>
-                                <?php
-                                $rowNum = 1;
-                                $odd = ($rowNum & 1) ? "odd" : "even";
-                                foreach ($crt->combatResultsTableDetermined as $row) {
-                                    ?>
-                                    <div class="roll <?= "row$rowNum $odd" ?>">
-                                        <span class="col0"><?= $rowNum++ ?></span>
-                                        <?php $col = 1;
-                                        foreach ($row as $cell) {
-                                            ?>
-                                            <span class="col<?= $col++ ?>"><?= $results_name[$cell] ?></span>
-
-                                        <?php } ?>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                        <?php }?>
+                                                        <?php }?>
 
                         <div id="crtDetailsButton">details</div>
                         <div id="crtOddsExp"></div>

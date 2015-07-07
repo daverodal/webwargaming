@@ -75,7 +75,7 @@ class mindenVictoryCore extends victoryCore
             $battle->mapData->specialHexesVictory->$mapHexName = "<span class='anglo'>-10 Anglo Allied vp</span>";
         }
     }
-    protected function checkVictory($attackingId,$battle){
+    protected function checkVictory($battle){
         $gameRules = $battle->gameRules;
         $turn = $gameRules->turn;
         if(!$this->gameOver){

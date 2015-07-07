@@ -28,6 +28,7 @@ class gadebusch1712VictoryCore extends victoryCore
 {
     public $wasIndecisive;
     public $isIndecisive;
+
     function __construct($data)
     {
         if ($data) {
@@ -54,13 +55,14 @@ class gadebusch1712VictoryCore extends victoryCore
         $ret->isIndecisive = $this->isIndecisive;
         return $ret;
     }
+
     public function reduceUnit($args)
     {
         $unit = $args[0];
         $mult = 1;
-        if($unit->nationality == "Guard"){
+        if ($unit->nationality == "Guard") {
             $mult = 1.5;
-            if($unit->class == "infantry" && $unit->maxStrength == 9){
+            if ($unit->class == "infantry" && $unit->maxStrength == 9) {
                 $mult = 2.0;
                 $this->deadGuardInf = true;
             }
@@ -75,28 +77,28 @@ class gadebusch1712VictoryCore extends victoryCore
         list($mapHexName, $forceId) = $args;
         if (in_array($mapHexName, $battle->specialHexA)) {
             if ($forceId == DANISH_FORCE) {
-                $this->victoryPoints[DANISH_FORCE]  += 10;
+                $this->victoryPoints[DANISH_FORCE] += 10;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='danish'>+10 Danish vp</span>";
             }
             if ($forceId == SWEDISH_FORCE) {
-                $this->victoryPoints[DANISH_FORCE]  -= 10;
+                $this->victoryPoints[DANISH_FORCE] -= 10;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='swedish'>-10 Danish vp</span>";
             }
         }
 
         if (in_array($mapHexName, $battle->specialHexB)) {
             if ($forceId == SWEDISH_FORCE) {
-                $this->victoryPoints[SWEDISH_FORCE]  += 10;
+                $this->victoryPoints[SWEDISH_FORCE] += 10;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='swedish'>+10 Swedish vp</span>";
             }
             if ($forceId == DANISH_FORCE) {
-                $this->victoryPoints[SWEDISH_FORCE]  -= 10;
+                $this->victoryPoints[SWEDISH_FORCE] -= 10;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='danish'>-10 Swedish vp</span>";
             }
         }
     }
 
-    protected function checkVictory($attackingId, $battle)
+    protected function checkVictory( $battle)
     {
         $battle = Battle::getBattle();
 
@@ -108,16 +110,23 @@ class gadebusch1712VictoryCore extends victoryCore
         $victoryReason = "";
 
         if (!$this->gameOver) {
-            $specialHexes = $battle->mapData->specialHexes;
-            $winScore = 25;
-
-            if($this->victoryPoints[DANISH_FORCE] >= $winScore && ($this->victoryPoints[DANISH_FORCE] > $this->victoryPoints[SWEDISH_FORCE] + 5)){
+            $winScore = 35;
+            $highWinScore = 42;
+            if ($this->victoryPoints[DANISH_FORCE] >= $winScore && $turn <= 5) {
                 $danishWin = true;
-                $victoryReason .= "Over $winScore ";
+                $victoryReason .= "Over $winScore on or before turn 5";
             }
-            if ($this->victoryPoints[SWEDISH_FORCE] >= $winScore && ($this->victoryPoints[SWEDISH_FORCE] > $this->victoryPoints[DANISH_FORCE] + 5)) {
+            if ($this->victoryPoints[DANISH_FORCE] >= $highWinScore) {
+                $danishWin = true;
+                $victoryReason .= "Over $highWinScore ";
+            }
+            if ($this->victoryPoints[SWEDISH_FORCE] >= $winScore && $turn <= 5) {
                 $swedishWin = true;
-                $victoryReason .= "Over $winScore ";
+                $victoryReason .= "Over $winScore on or before turn 5 ";
+            }
+            if ($this->victoryPoints[SWEDISH_FORCE] >= $highWinScore) {
+                $swedishWin = true;
+                $victoryReason .= "Over $highWinScore ";
             }
 
             if ($danishWin && !$swedishWin) {
@@ -136,15 +145,17 @@ class gadebusch1712VictoryCore extends victoryCore
                 $this->gameOver = true;
                 return true;
             }
-            if($danishWin && $swedishWin){
+            if ($danishWin && $swedishWin) {
                 $gameRules->flashMessages[] = "Tie Game";
                 $gameRules->flashMessages[] = $victoryReason;
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
                 return true;
             }
+            echo "$turn ";
+            echo $gameRules->maxTurn;
             if ($turn > $gameRules->maxTurn) {
-                $this->winner = SWEDISH_FORCE;
+                $this->winner = DANISH_FORCE;
                 $gameRules->flashMessages[] = "Danish Win";
                 $gameRules->flashMessages[] = "Swedes Fail to Win";
                 $this->gameOver = true;
@@ -154,16 +165,16 @@ class gadebusch1712VictoryCore extends victoryCore
         return false;
     }
 
-    public function preRecoverUnits(){
-        echo "PRE! ";
+    public function preRecoverUnits()
+    {
         parent::preRecoverUnits();
 
-        if($this->wasIndecisive){
+        if ($this->wasIndecisive) {
             return;
         }
         $b = Battle::getBattle();
         $turn = $b->gameRules->turn;
-        if($turn <= 3 && $this->wasIndecisive === false && $b->gameRules->phase == RED_MOVE_PHASE) {
+        if ($turn <= 3 && $this->wasIndecisive === false && $b->gameRules->phase == RED_MOVE_PHASE) {
             $Die = floor(6 * (rand() / getrandmax()));
             /* 1 or 2 is 0 or 1 */
             if ($Die < 2) {
@@ -175,7 +186,7 @@ class gadebusch1712VictoryCore extends victoryCore
                 return;
             }
         }
-        if($turn == 4 && $this->wasIndecisive === false && $b->gameRules->phase == RED_MOVE_PHASE){
+        if ($turn == 4 && $this->wasIndecisive === false && $b->gameRules->phase == RED_MOVE_PHASE) {
             $this->isIndecisive = true;
             $this->wasIndecisive = true;
         }

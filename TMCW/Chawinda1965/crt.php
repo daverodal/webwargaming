@@ -29,7 +29,8 @@ class CombatResultsTable extends ModernCombatResultsTable
 
     function __construct(){
         $this->combatResultsHeader = array("1:1","2:1","3:1","4:1","5:1","6:1");
-        $this->combatResultsTable = array(
+        $this->crts = new stdClass();
+        $this->crts->normal = array(
             array(AL, AL, AR, DR, DR, DR),
             array(AL, AR, DR, DR, DE, DE),
             array(AR, AR, DR, DE, DE, DE),
@@ -38,7 +39,7 @@ class CombatResultsTable extends ModernCombatResultsTable
             array(NE, EX0, EX0, EX0, EX0, DE),
         );
 
-        $this->combatResultsTableDetermined = array(
+        $this->crts->determined = array(
             array(AL,   AL,   AR,   DR,    DE,  DE),
             array(AL,   AR,   DR,   DE,    DE,  DE),
             array(AR,   DR,   DE,   DE,    DE,  DE),
@@ -72,8 +73,8 @@ class CombatResultsTable extends ModernCombatResultsTable
     function getCombatResults($Die, $index, $combat)
     {
         if($combat->useDetermined){
-            return $this->combatResultsTableDetermined[$Die][$index];
+            return $this->crts->determined[$Die][$index];
         }
-        return $this->combatResultsTable[$Die][$index];
+        return $this->crts->normal[$Die][$index];
     }
 }

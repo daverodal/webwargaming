@@ -90,7 +90,7 @@ class golymin1806VictoryCore extends victoryCore
         }
     }
 
-    protected function checkVictory($attackingId, $battle)
+    protected function checkVictory( $battle)
     {
         $battle = Battle::getBattle();
 

@@ -100,7 +100,7 @@ class hastenbeckVictoryCore extends victoryCore
         }
     }
 
-    protected function checkVictory($attackingId,$battle){
+    protected function checkVictory($battle){
         $gameRules = $battle->gameRules;
         $turn = $gameRules->turn;
         $frenchLateWin = $frenchWin = $frenchThreeObjectives = $angloWin = false;

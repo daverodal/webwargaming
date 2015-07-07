@@ -46,7 +46,8 @@ class ModernCombatResultsTable
 
     function __construct(){
         $this->combatResultsHeader = array("1:1","2:1","3:1","4:1","5:1","6:1");
-        $this->combatResultsTable = array(
+        $this->crts = new stdClass();
+        $this->crts->normal = array(
             array(DR2, DRL2, DE, DE, DE, DE),
             array(DR2, EX2, DRL2, DE, DE, DE),
             array(EX2, EX2, DRL2, DRL2, DE, DE),
@@ -74,7 +75,7 @@ class ModernCombatResultsTable
 
     function getCombatResults($Die, $index, $combat)
     {
-        return $this->combatResultsTable[$Die][$index];
+        return $this->crts->normal[$Die][$index];
     }
     
     function getCombatIndex($attackStrength, $defenseStrength){
@@ -107,7 +108,7 @@ class ModernCombatResultsTable
 
             for( $Die = 0; $Die < $this->dieSideCount; $Die++ )
             {
-                $combatResultIndex = $this->combatResultsTable[$Die][$combatIndex];
+                $combatResultIndex = $this->crts->normal[$Die][$combatIndex];
                 $odds[$combatResultIndex] = $odds[$combatResultIndex] + 1;
             }
 

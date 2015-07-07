@@ -35,7 +35,8 @@ class CombatResultsTable
     
     function __construct(){
         $this->combatResultsHeader = array("1:1","2:1","3:1","4:1","5:1","6:1");
-	    $this->combatResultsTable = array(
+	    $this->crts = new stdClass();
+        $this->crts->normal = array(
             array(DR, DRL, DE, DE, DE, DE),
             array(DR, EX, DRL, DE, DE, DE),
             array(EX, EX, DRL, DRL, DE, DE),

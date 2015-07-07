@@ -274,7 +274,7 @@
         }
     },
     "Nomonhan": {
-        "disabled": true,
+        "disabled": false,
         "name": "The Nomonhan Incident",
         "path": "TMCW",
         "fileName": "Nomonhan/Nomonhan.php",

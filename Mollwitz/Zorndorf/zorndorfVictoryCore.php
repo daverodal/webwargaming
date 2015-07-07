@@ -68,7 +68,7 @@ class zorndorfVictoryCore extends victoryCore
             $battle->mapData->specialHexesVictory->$mapHexName = "<span class='russian'>-5 Prussian vp</span>";
         }
     }
-    protected function checkVictory($attackingId,$battle){
+    protected function checkVictory($battle){
         $gameRules = $battle->gameRules;
         $turn = $gameRules->turn;
         if(!$this->gameOver){

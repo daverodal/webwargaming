@@ -28,22 +28,10 @@ require_once "constants.php";
 
 global $phase_name,$mode_name, $event_name, $status_name, $results_name,$combatRatio_name;
 
-require_once "crtTraits.php";
-require_once "combatRules.php";
-require_once "crt.php";
-require_once "force.php";
-require_once "gameRules.php";
-require_once "hexagon.php";
-require_once "hexpart.php";
-require_once "los.php";
-require_once "mapgrid.php";
-require_once "moveRules.php";
-require_once "display.php";
-require_once "terrain.php";
-require_once "victory.php";
+require_once "ModernLandBattle.php";
 
 
-class NapoleonsTrainingAcademy extends Battle {
+class NapoleonsTrainingAcademy extends ModernLandBattle{
 
     /* @var Mapdata */
     public $mapData;
@@ -59,16 +47,9 @@ class NapoleonsTrainingAcademy extends Battle {
 
 
     public $players;
-    static function getHeader($name, $playerData){
+    static function getHeader($name, $playerData, $arg = false){
         @include_once "globalHeader.php";
         @include_once "header.php";
-    }
-    static function playAs($name, $wargame){
-        @include_once "playAs.php";
-    }
-
-    static function playMulti($name, $wargame){
-        @include_once "playMulti.php";
     }
 
     static function getView($name, $mapUrl,$player = 0, $arg = false, $argTwo = false){

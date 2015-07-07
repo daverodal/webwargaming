@@ -126,7 +126,7 @@ class Gadebusch1712 extends JagCore
 
             // game data
 
-            $this->gameRules->setMaxTurn(6);
+            $this->gameRules->setMaxTurn(8);
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
             $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */
