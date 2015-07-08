@@ -20,12 +20,11 @@ You should have received a copy of the GNU General Public License
         body{
             background:#ccc;
             color:#333;
-            background: url("<?=base_url("js/886px-Magnus_Stenbock_vid_Helsingborg.jpg")?>") #333 no-repeat;
+            background: url("<?=base_url("js/BattleofGadebusch.jpg")?>") #333 no-repeat;
             background-position: 25% 0;
             background-size:100%;
         }
     </style>
 
 <footer class="attribution">
-    Gustaf Cederström [Public domain], <a target="_blank" href="https://commons.wikimedia.org/wiki/File%3AMagnus_Stenbock_vid_Helsingborg.jpg">via Wikimedia Commons</a>
-</footer>
+    See page for author [Public domain], <a target="_blank" href="https://commons.wikimedia.org/wiki/File%3ABattleofGadebusch.jpg">via Wikimedia Commons</a></footer>

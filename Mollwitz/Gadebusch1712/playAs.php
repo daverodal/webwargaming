@@ -25,7 +25,7 @@ You should have received a copy of the GNU General Public License
     <style>
         body{
             background:#000;
-            background:url("<?=base_url("js/886px-Magnus_Stenbock_vid_Helsingborg.jpg")?>") #333 no-repeat;
+            background:url("<?=base_url("js/BattleofGadebusch.jpg")?>") #333 no-repeat;
             background-position:center 0;
             background-size:100%;
 
@@ -89,6 +89,5 @@ You should have received a copy of the GNU General Public License
     <a  class="link" href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>/">Play Multi</a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a><br>
     <div class="attribution">
-        Gustaf Cederström [Public domain], <a target="_blank" href="https://commons.wikimedia.org/wiki/File%3AMagnus_Stenbock_vid_Helsingborg.jpg">via Wikimedia Commons</a>
-    </div>
+        See page for author [Public domain], <a target="_blank" href="https://commons.wikimedia.org/wiki/File%3ABattleofGadebusch.jpg">via Wikimedia Commons</a>    </div>
 </fieldset>

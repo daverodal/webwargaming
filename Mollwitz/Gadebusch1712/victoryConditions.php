@@ -26,16 +26,12 @@
         <li>Each side gains 1 point for each hostile combat strength point destroyed.
         </li>
         <li>
-            Each Side Gains 10 Victory Points for occupying or being the last to move through their respective Victory Point hex.
-            Light Blue for Swedes Red for Danes.
-            <p class="ruleComment">The Swedish Victory Objective is originally occupied by the Danes, hence it's red until the Swedish play occupies it.
-            The same is true for the Danish objective, and hence it start the game blue.</p>
+            Swedish Victory: By turn 5 inclusive at the end of any Game turn that the Swedes have 35 points. By turn 8 inclusive at the end of any turn that the Swedes have 42 points.
         </li>
 
-        <li>Swedes Win: If they score 25 Victory Points with a lead of 5 before the end of turn 6.
-        </li>
+        <li>By turn 5 inclusive at the end of any Game turn that the Danes have 35 points.
+            By turn 8 inclusive at the end of any turn that the Danes have 42 points. Or if the Swedes have not won by the conclusion of turn 8.
 
-        <li>Danes Win: If they If they score 25 points with a lead of 5 or if the Swedes do not win by the end of turn 6.
         </li>
     </ol>
 </li>
