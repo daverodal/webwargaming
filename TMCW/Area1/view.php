@@ -227,10 +227,10 @@
                         </div>
                         <div id="map">
                             <div class="provence" id="a">
-                                <div class="area" id="a1">
+                                <div class="area" id="a1"><span class="area-name">A 1</span>
 
                                 </div>
-                                <div class="area" id="a2">
+                                <div class="area" id="a2"><span class="area-name">A 2 </span>
 
                                 </div>
                             </div>

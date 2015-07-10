@@ -1199,15 +1199,34 @@ svg marker#head {
 #map {
   height: 900px;
   background: teal; }
+  #map .provence {
+    border: 10px double black; }
+  #map .area {
+    position: relative; }
+    #map .area .area-name {
+      color: white;
+      font-size: 30px;
+      position: absolute;
+      right: 0px;
+      top: 0px; }
   #map #a {
     height: 400px;
-    width: 300px; }
+    width: 300px;
+    background: purple; }
     #map #a .area {
       height: 50%; }
     #map #a #a1 {
+      border-bottom: 1px solid white;
       background: purple; }
     #map #a #a2 {
-      background: mediumpurple; }
+      background: #9a0099; }
+  #map #b {
+    height: 300px;
+    width: 400px;
+    top: 0px;
+    left: 320px;
+    background: orangered;
+    position: absolute; }
 
 #crt {
   width: 308px; }
