@@ -713,7 +713,7 @@
     "description":"The Battle of Gadebusch 1712 between the Swedish and the Danes . ",
     "options":[
       {
-        "name": "For of war during Deployment. Enemy units remain hidden until movement phase..",
+        "name": "Fog of war during Deployment. Enemy units remain hidden until movement phase..",
         "keyName":"fogDeploy",
         "value": false
       }],
