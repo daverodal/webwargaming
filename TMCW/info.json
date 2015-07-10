@@ -121,6 +121,22 @@
       }
     }
   },
+  "Area1": {
+    "name": "Area 1",
+    "path": "TMCW",
+    "genre": "20'th Century Games",
+    "fileName": "Area1/Area1.php",
+    "description": "Area 1",
+    "params":{
+      "maxPlayers":3
+    },
+    "scenarios": {
+      "main": {
+        "description": "Area 1",
+        "longDescription":"Area 1, the game."
+      }
+    }
+  },
 
     "Moskow": {
         "name": "Moskow...",
