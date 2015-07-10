@@ -126,7 +126,7 @@ class CombatResultsTable
         }
 
         $defenders = $combats->defenders;
-        $isTown = $isHill = $isForest = $isSwamp = $attackerIsSunkenRoad = $isRedoubt = $isElevated = false;
+        $isFrozenSwamp = $isTown = $isHill = $isForest = $isSwamp = $attackerIsSunkenRoad = $isRedoubt = $isElevated = false;
 
 
         foreach ($defenders as $defId => $defender) {
@@ -137,6 +137,12 @@ class CombatResultsTable
             $isHill |= $battle->terrain->terrainIs($hexpart, 'hill');
             $isForest |= $battle->terrain->terrainIs($hexpart, 'forest');
             $isSwamp |= $battle->terrain->terrainIs($hexpart, 'swamp');
+                if($battle->terrain->terrainIs($hexpart, 'frozenswamp')){
+                   if($battle->terrain->getDefenderTerrainCombatEffect($hexagon)){
+                       $isFrozenSwamp |= true;
+                   }
+                }
+
             if($battle->terrain->terrainIs($hexpart, 'elevation1')){
                 $isElevated = 1;
             }
@@ -145,7 +151,7 @@ class CombatResultsTable
             }
         }
         $isClear = true;
-        if ($isTown || $isForest || $isHill || $isSwamp) {
+        if ($isTown || $isForest || $isHill || $isSwamp || $isFrozenSwamp) {
             $isClear = false;
         }
 
@@ -168,6 +174,8 @@ class CombatResultsTable
             if(!$scenario->wimpySwamps){
                 $attackerIsSwamp = $battle->terrain->terrainIs($hexpart, 'swamp');
             }
+            $attackerIsFrozenSwamp = $battle->terrain->terrainIs($hexpart, 'frozenswamp');
+
             $attackerIsSunkenRoad = $battle->terrain->terrainIs($hexpart, 'sunkenroad');
 
             if($attackerIsSwamp){
@@ -177,6 +185,13 @@ class CombatResultsTable
                 $terrainReason .= "attacker is in sunken road ";
             }
 
+            if($attackerIsFrozenSwamp){
+                $terrainReason .= "attacker is frozen swamp ";
+            }
+
+            if($isFrozenSwamp){
+                $terrainReason .= "Frozen Swamp ";
+            }
             $attackerIsElevated = false;
             if($battle->terrain->terrainIs($hexpart, 'elevation1')){
                 $attackerIsElevated = 1;
@@ -238,11 +253,11 @@ class CombatResultsTable
                     $unitStrength++;
                     $combatLog .= "+1 for attack into town or forest ";
                 }
-                if ($isSwamp || $attackerIsSwamp || $acrossRiver || $attackerIsSunkenRoad || $acrossRedoubt || $attackUpHill) {
+                if ($isSwamp || $isFrozenSwamp || $attackerIsFrozenSwamp ||  $attackerIsSwamp || $acrossRiver || $attackerIsSunkenRoad || $acrossRedoubt || $attackUpHill) {
                     if(!$terrainReason){
                         $terrainReason = " terrain ";
                     }
-                    if($attackUpHill && !($isSwamp || $attackerIsSwamp || $acrossRiver || $attackerIsSunkenRoad || $acrossRedoubt)){
+                    if(($attackUpHill || $isFrozenSwamp || $attackerIsFrozenSwamp) && !($isSwamp || $attackerIsSwamp || $acrossRiver || $attackerIsSunkenRoad || $acrossRedoubt)){
 //                        $unitStrength *= .75;
 //                        $combats->dieShift = -1;
                           $unitStrength -= 1;
@@ -271,12 +286,12 @@ class CombatResultsTable
                     $combatLog .= "attacker halved for $terrainReason ";
 
 
-                }elseif ( $attackUpHill ) {
+                }elseif ( $attackUpHill || $attackerIsFrozenSwamp ) {
 
 //                    $unitStrength *= .75;
 //                    $combats->dieShift = -1;
                     $unitStrength -= 1;
-                    $combatLog .= "unit strength -1 for attacking uphill ";
+                    $combatLog .= "unit strength -1 for $terrainReason ";
                     if($unit->nationality != "Beluchi" && $unit->nationality != "Sikh"){
                         $combinedArms[$battle->force->units[$attackerId]->class]++;
                     }else{
@@ -296,8 +311,8 @@ class CombatResultsTable
             }
             if ($unit->class == "artillery" || $unit->class == "horseartillery") {
                 $combatLog .= "$unitStrength ".ucfirst($unit->class)." ";
-                if($isSwamp || $acrossRedoubt || $attackUpHill){
-                    if($attackUpHill){
+                if($isSwamp || $acrossRedoubt || $attackUpHill || $isFrozenSwamp || $attackerIsFrozenSwamp){
+                    if($attackUpHill || $isFrozenSwamp || $attackerIsFrozenSwamp){
 //                        $unitStrength *= .75;
 //                        $combats->dieShift = -1;
                         $unitStrength -= 1;

@@ -677,7 +677,7 @@ class Terrain
     /*
      * public used in combatRules
      */
-    function getDefenderTerrainCombatEffect($hexagon, $attackingForceId)
+    function getDefenderTerrainCombatEffect($hexagon)
     {
         $combatEffect = 0;
 
@@ -690,19 +690,6 @@ class Terrain
         }
         return $combatEffect;
 
-
-        for ($i = 0; $i < count($this->terrainFeatures); $i++) {
-            if ($this->terrainFeatures->$i->name == "fortified" && $attackingForceId == 2) {
-                /* German don't benefit from fortificatons */
-                continue;
-            }
-            if ($this->terrainIs($hexpart, $this->terrainFeatures->$i->name)) {
-                if ($this->terrainFeatures->$i->combatEffect > $combatEffect) {
-                    $combatEffect = $this->terrainFeatures->$i->combatEffect;
-                }
-            }
-        }
-        return $combatEffect;
     }
 
     /*
@@ -773,8 +760,8 @@ class Terrain
     }
 
     /*
-  * public moveRules
-  */
+    * public moveRules
+    */
     function getReinforceZonesByName($name)
     {
         $zones = array();
@@ -787,21 +774,5 @@ class Terrain
 
         return $zones;
     }
-    /*
-     * can be removed
-     */
-    /*
-function isOnMap($hexagon)
-{
-    $isOnMap = true;
 
-    $hexpart = new Hexpart($hexagon->getX(), $hexagon->getY());
-
-    if ($this->terrainIs($hexpart, "offmap") == true)
-    {
-       $isOnMap = false;
-    }
-
-   return $isOnMap;
-}*/
 }

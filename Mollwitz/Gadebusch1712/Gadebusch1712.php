@@ -89,7 +89,7 @@ class Gadebusch1712 extends JagCore
     }
 
     function terrainGen($mapDoc, $terrainDoc){
-        $this->terrain->addTerrainFeature("frozenswamp", "frozenswamp", "s", 2, 1, 0, true, false);
+        $this->terrain->addTerrainFeature("frozenswamp", "frozenswamp", "s", 2, 0, 1, true, false);
         parent::terrainGen($mapDoc, $terrainDoc);
     }
 

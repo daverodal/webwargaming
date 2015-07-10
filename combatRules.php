@@ -448,7 +448,7 @@ class CombatRules
         $defenders = $this->combats->$defenderId->defenders;
         $bestDefenderTerrainEffect = 0;
         foreach ($defenders as $defId => $def) {
-            $terrainCombatEffect = $this->terrain->getDefenderTerrainCombatEffect($this->force->getCombatHexagon($defId), $this->force->attackingForceId);
+            $terrainCombatEffect = $this->terrain->getDefenderTerrainCombatEffect($this->force->getCombatHexagon($defId));
             if ($this->allAreAttackingAcrossRiver($defId)) {
                 $riverCombatEffect = $this->terrain->getAllAreAttackingAcrossRiverCombatEffect();
                 if ($riverCombatEffect > $terrainCombatEffect) {
