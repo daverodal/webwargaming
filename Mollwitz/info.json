@@ -238,7 +238,7 @@
         "value": true
       },
       {
-        "name": "For of war during Deployment. Enemy units remain hidden until movement phase..",
+        "name": "Fog of war during Deployment. Enemy units remain hidden until movement phase..",
         "keyName":"fogDeploy",
         "value": false
       }],
@@ -740,7 +740,7 @@
     "scenarios": {
       "main": {
         "description": "Historical Scenario.",
-        "longDescription":"The Battle of Helsingborg (February 28, 1710) was Denmark's failed and final attempt to regain the Scanian lands, lost to Sweden in 1658."
+        "longDescription":"The Battle of Gadebusch 1712 Swedish vs Danish"
       }
     }
   },
@@ -758,7 +758,7 @@
         "value": true
       },
       {
-        "name": "For of war during Deployment. Enemy units remain hidden until movement phase..",
+        "name": "Fog of war during Deployment. Enemy units remain hidden until movement phase..",
         "keyName":"fogDeploy",
         "value": false
       }],
