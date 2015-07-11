@@ -75,16 +75,6 @@ class gadebusch1712VictoryCore extends victoryCore
         $battle = Battle::getBattle();
 
         list($mapHexName, $forceId) = $args;
-        if (in_array($mapHexName, $battle->specialHexA)) {
-            if ($forceId == DANISH_FORCE) {
-                $this->victoryPoints[DANISH_FORCE] += 10;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='danish'>+10 Danish vp</span>";
-            }
-            if ($forceId == SWEDISH_FORCE) {
-                $this->victoryPoints[DANISH_FORCE] -= 10;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='swedish'>-10 Danish vp</span>";
-            }
-        }
 
         if (in_array($mapHexName, $battle->specialHexB)) {
             if ($forceId == SWEDISH_FORCE) {
