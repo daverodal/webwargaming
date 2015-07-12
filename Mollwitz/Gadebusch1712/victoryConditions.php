@@ -29,8 +29,9 @@
             Swedish Victory: By turn 5 inclusive at the end of any Game turn that the Swedes have 35 points. By turn 8 inclusive at the end of any turn that the Swedes have 42 points.
         </li>
 
-        <li>By turn 5 inclusive at the end of any Game turn that the Danes have 35 points.
-            By turn 8 inclusive at the end of any turn that the Danes have 42 points. Or if the Swedes have not won by the conclusion of turn 8.
+        <li>Danish Victory: By turn 5 inclusive at the end of any Game turn that the Danes have 35 points.
+            Or if the Swedes have not won by the conclusion of turn 8 and the Danes Occupy or were the last
+            to move through Wakenstadt or have scored at least 15 points.
 
         </li>
     </ol>
