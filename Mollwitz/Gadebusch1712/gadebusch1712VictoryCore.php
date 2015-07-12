@@ -145,7 +145,7 @@ class gadebusch1712VictoryCore extends victoryCore
             echo "$turn ";
             echo $gameRules->maxTurn;
             if ($turn > $gameRules->maxTurn) {
-                if($battle->mapData->getSpecialHex(1113) || $this->victoryPoints[DANISH_FORCE] >= 15){
+                if($battle->mapData->getSpecialHex(1113)  == DANISH_FORCE || $this->victoryPoints[DANISH_FORCE] >= 15){
                     $this->winner = DANISH_FORCE;
                     $gameRules->flashMessages[] = "Danish Win";
                     $gameRules->flashMessages[] = "Swedes Fail to Win";
