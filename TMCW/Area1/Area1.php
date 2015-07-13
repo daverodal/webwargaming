@@ -179,26 +179,32 @@ class Area1
     {
         return compact("last_seq");
     }
-        function __construct($data = null, $arg = false, $scenario = false, $game = false)
+
+    function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
 
 
 
 
 
-
+        echo "Construct_ ";
+echo "constructing ";
         $this->mapData = MapData::getInstance();
         if ($data) {
             echo " is Data ";
-            $this->arg = $data->arg;
-            $this->scenario = $data->scenario;
-            $this->terrainName = $data->terrainName;
-            $this->game = $data->game;
-            $this->display = new Display($data->display);
-            $this->mapData->init($data->mapData);
-            $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
-            $this->force = new Force($data->force);
-            $this->terrain = new Terrain($data->terrain);
+//            $this->arg = $data->arg;
+//            $this->scenario = $data->scenario;
+//            $this->terrainName = $data->terrainName;
+//            $this->game = $data->game;
+//            $this->display = new Display($data->display);
+//            $this->mapData->init($data->mapData);
+//            $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
+//            $this->force = new Force($data->force);
+            $this->terrain = new AreaTerrain($data->terrain);
+
+//            var_dump($this->terrain->areas);
+//
+            var_dump($this->terrain->getRoutes("a1"));
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
