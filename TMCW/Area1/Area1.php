@@ -20,7 +20,6 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 //set_include_path(dirname(__DIR__) . "/Area1" . PATH_SEPARATOR . get_include_path());
-
 define("REBEL_FORCE", 1);
 define("LOYALIST_FORCE", 2);
 
@@ -44,18 +43,282 @@ require_once "gameRules.php";
 require_once "hexagon.php";
 require_once "hexpart.php";
 require_once "los.php";
-require_once "mapgrid.php";
+require_once "AreaData.php";
+require_once "AreaTerrain.php";
 require_once "moveRules.php";
-require_once "areaTerrain.php";
+require_once "AreaTerrain.php";
 require_once "display.php";
 require_once "victory.php";
 require_once "victoryCore.php";
 require_once "UnitFactory.php";
+require_once "AreaMoveRules.php";
+
 
 
 
 class Area1
 {
+    public function poke($event, $id, $x, $y, $user, $click)
+    {
+
+        echo "A ";
+        $playerId = $this->gameRules->attackingForceId;
+        if ($this->players[$this->gameRules->attackingForceId] != $user) {
+            return false;
+        }
+
+        echo "B";
+        switch ($event) {
+            case SELECT_MAP_EVENT:
+                $mapGrid = new MapGrid($this->mapViewer[0]);
+                $mapGrid->setPixels($x, $y);
+                return $this->gameRules->processEvent(SELECT_MAP_EVENT, MAP, $mapGrid->getHexagon(), $click);
+                break;
+
+            case SELECT_COUNTER_EVENT:
+                /* fall through */
+            case SELECT_SHIFT_COUNTER_EVENT:
+                /* fall through */
+            case COMBAT_PIN_EVENT:
+
+                return $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id), $click);
+
+                break;
+
+            case SELECT_BUTTON_EVENT:
+                echo "C" ;
+                $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0, $click);
+                echo "D";
+                break;
+
+            case KEYPRESS_EVENT:
+                $this->gameRules->processEvent(KEYPRESS_EVENT, $id, null, $click);
+                break;
+
+        }
+        return true;
+    }
+
+
+    static function transformChanges($doc, $last_seq, $user){
+        global $mode_name, $phase_name;
+
+        $chatsIndex = 0;/* remove me */
+        $click = $doc->_rev;
+        $matches = array();
+        preg_match("/^([0-9]+)-/", $click, $matches);
+        $click = $matches[1];
+        $games = $doc->games;
+        $chats = array_slice($doc->chats, $chatsIndex);
+        $chatsIndex = count($doc->chats);
+        $users = $doc->users;
+        $clock = $doc->clock;
+        $players = $doc->wargame->players;
+        $player = array_search($user, $players);
+        if ($player === false) {
+            $player = 0;
+        }
+        $force = $doc->wargame->force;
+        $wargame = $doc->wargame;
+        $gameName = $doc->gameName;
+        $gameRules = $wargame->gameRules;
+        $fogDeploy = false;
+        if($wargame->scenario->fogDeploy && $doc->playerStatus == "multi"){
+            $fogDeploy = true;
+        }
+
+//        $revs = $doc->_revs_info;
+        Battle::loadGame($gameName, $doc->wargame->arg);
+//Battle::getHeader();
+        if (isset($doc->wargame->mapViewer)) {
+            $playerData = $doc->wargame->mapViewer[0];
+        } else {
+            $playerData = $doc->wargame->mapData[0];
+        }
+        $mapUnits = array();
+        $moveRules = $doc->wargame->moveRules;
+        $combatRules = $doc->wargame->combatRules;
+        $display = $doc->wargame->display;
+        $units = $force->units;
+        $units = new stdClass();
+        $attackingId = $doc->wargame->gameRules->attackingForceId;
+        foreach ($units as $unit) {
+            $unit = UnitFactory::build($unit);
+            if (is_object($unit->hexagon)) {
+//                $unit->hexagon->parent = $unit->parent;
+            } else {
+                $unit->hexagon = new Hexagon($unit->hexagon);
+            }
+//            $unit->hexagon->parent = $unit->parent;
+            $mapUnit = $unit->fetchData();
+
+            if($fogDeploy && ($gameRules->phase == RED_DEPLOY_PHASE || $gameRules->phase == BLUE_DEPLOY_PHASE) &&  $unit->forceId !== $player){
+                if($unit->hexagon->parent == "gameImages"){
+                    $mapUnit = new stdClass();
+                }
+            }
+            $mapUnits[] = $mapUnit;
+        }
+        $turn = $doc->wargame->gameRules->turn;
+        foreach ($units as $i => $unit) {
+            $u = new StdClass();
+            $u->status = $unit->status;
+            $u->moveAmountUsed = $unit->moveAmountUsed;
+            $u->maxMove = $unit->maxMove;
+            $u->forceId = $unit->forceId;
+            $u->forceMarch = $unit->forceMarch;
+            $u->isDisrupted = $unit->isDisrupted;
+            if ($unit->reinforceTurn > $turn) {
+                $u->reinforceTurn = $unit->reinforceTurn;
+            }
+            $units[$i] = $u;
+        }
+        if($fogDeploy) {
+            if ($gameRules->phase == BLUE_DEPLOY_PHASE && $player === RED_FORCE) {
+                $moveRules->moves = new stdClass();
+            }
+            if ($gameRules->phase == RED_DEPLOY_PHASE && $player === BLUE_FORCE) {
+                $moveRules->moves = new stdClass();
+            }
+        }
+        if ($moveRules->moves) {
+            foreach ($moveRules->moves as $k => $move) {
+                $hex = new Hexagon($k);
+                $mapGrid->setHexagonXY($hex->getX(), $hex->getY());
+                $n = new stdClass();
+                $moveRules->moves->{$k}->pixX = $mapGrid->getPixelX();
+                $moveRules->moves->{$k}->pixY = $mapGrid->getPixelY();
+                $pointsLeft = sprintf("%.2f",$moveRules->moves->{$k}->pointsLeft);
+                $pointsLeft = preg_replace("/\.0*$/",'',$pointsLeft);
+                $pointsLeft = preg_replace("/(\.[1-9]*)0*/","$1",$pointsLeft);
+                $moveRules->moves->{$k}->pointsLeft = $pointsLeft;
+                unset($moveRules->moves->$k->isValid);
+            }
+            if (false && $moveRules->path) {
+                foreach ($moveRules->path as $hexName) {
+                    $hex = new Hexagon($hexName);
+                    $mapGrid->setHexagonXY($hex->x, $hex->y);
+
+                    $path = new stdClass();
+                    $path->pixX = $mapGrid->getPixelX();
+                    $path->pixY = $mapGrid->getPixelY();
+                    $moveRules->hexPath[] = $path;
+                }
+            }
+        }
+//        $force->units = $units;
+        $gameRules = $wargame->gameRules;
+        $gameRules->display = $display;
+        $gameRules->phase_name = $phase_name;
+        $gameRules->mode_name = $mode_name;
+        $gameRules->exchangeAmount = $force->exchangeAmount;
+        $newSpecialHexes = new stdClass();
+        $phaseClicks = $gameRules->phaseClicks;
+        if ($doc->wargame->mapData->specialHexes) {
+            $specialHexes = $doc->wargame->mapData->specialHexes;
+            foreach ($specialHexes as $k => $v) {
+                $hex = new Hexagon($k);
+                $mapGrid->setHexagonXY($hex->x, $hex->y);
+
+                $path = new stdClass();
+                $newSpecialHexes->{"x" . intval($mapGrid->getPixelX()) . "y" . intval($mapGrid->getPixelY())} = $v;
+            }
+        }
+        $sentBreadcrumbs = new stdClass();
+        if ($doc->wargame->mapData->breadcrumbs) {
+            $breadcrumbs = $doc->wargame->mapData->breadcrumbs;
+            $breadcrumbKey = "/$turn"."t".$attackingId."a/";
+
+            foreach($breadcrumbs as $key => $crumbs){
+                if(!preg_match($breadcrumbKey, $key)){
+                    continue;
+                }
+                $matches = array();
+                preg_match("/m(\d*)$/",$key,$matches);
+                if(strlen($matches[1]) < 1){
+                    continue;
+                }
+                $unitId = $matches[1];
+                if(!isset($sentBreadcrumbs->$unitId)){
+                    $sentBreadcrumbs->$unitId = [];
+                }
+                $sentMoves = $sentBreadcrumbs->$unitId;
+                foreach($crumbs as $crumb){
+                    if(!isset($crumb->type)){
+                        $type = "move";
+                    }else{
+                        $type = $crumb->type;
+                    }
+                    switch($type){
+                        case "move":
+                            if($crumb->fromHex === "0000"){
+                                continue;
+                            }
+                            $fromHex = new Hexagon($crumb->fromHex);
+                            $mapGrid->setHexagonXY($fromHex->x, $fromHex->y);
+                            $crumb->fromX = intval($mapGrid->getPixelX());
+                            $crumb->fromY = intval($mapGrid->getPixelY());
+
+                            $toHex = new Hexagon($crumb->toHex);
+                            $mapGrid->setHexagonXY($toHex->x, $toHex->y);
+                            $crumb->toX = intval($mapGrid->getPixelX());
+                            $crumb->toY = intval($mapGrid->getPixelY());
+                            break;
+                        case "combatResult":
+                            if($crumb->hex){
+                                $hex = new Hexagon($crumb->hex);
+                                $mapGrid->setHexagonXY($hex->x, $hex->y);
+                                $crumb->hexX = intval($mapGrid->getPixelX());
+                                $crumb->hexY = intval($mapGrid->getPixelY());
+                            }
+
+                            break;
+                    }
+
+
+                    $sentMoves[] = $crumb;
+                }
+                $sentBreadcrumbs->$unitId = $sentMoves;
+            }
+        }
+        $specialHexes = $newSpecialHexes;
+        $newSpecialHexesChanges = new stdClass();
+        if ($doc->wargame->mapData->specialHexesChanges) {
+            $specialHexesChanges = $doc->wargame->mapData->specialHexesChanges;
+            foreach ($specialHexesChanges as $k => $v) {
+                $hex = new Hexagon($k);
+                $mapGrid->setHexagonXY($hex->x, $hex->y);
+
+                $path = new stdClass();
+                $newSpecialHexesChanges->{"x" . intval($mapGrid->getPixelX()) . "y" . intval($mapGrid->getPixelY())} = $v;
+            }
+        }
+        $newSpecialHexesVictory = new stdClass();
+
+        if ($doc->wargame->mapData->specialHexesVictory) {
+            $specialHexesVictory = $doc->wargame->mapData->specialHexesVictory;
+            foreach ($specialHexesVictory as $k => $v) {
+                $hex = new Hexagon($k);
+                $mapGrid->setHexagonXY($hex->x, $hex->y);
+
+                $path = new stdClass();
+                $newSpecialHexesVictory->{"x" . intval($mapGrid->getPixelX()) . "y" . intval($mapGrid->getPixelY())} = $v;
+            }
+        }
+        $vp = $doc->wargame->victory->victoryPoints;
+        $flashMessages = $gameRules->flashMessages;
+        if (count($flashMessages)) {
+
+        }
+//        $flashMessages = array("Victory","Is","Mine");
+        $specialHexesChanges = $newSpecialHexesChanges;
+        $specialHexesVictory = $newSpecialHexesVictory;
+        $gameRules->playerStatus = $doc->playerStatus;
+        $clock = "The turn is " . $gameRules->turn . ". The Phase is " . $phase_name[$gameRules->phase] . ". The mode is " . $mode_name[$gameRules->mode];
+        return compact("sentBreadcrumbs", "phaseClicks", "click", "revs", "vp", "flashMessages", "specialHexesVictory", "specialHexes", "specialHexesChanges", "combatRules", 'force', 'seq', 'chats', 'chatsIndex', 'last_seq', 'users', 'games', 'clock', 'mapUnits', 'moveRules', 'gameRules');
+
+    }
+
     /* a comment */
 
     public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>2, 'SpecialHexC'=>1];
@@ -80,8 +343,7 @@ class Area1
 
     static function playAs($name, $wargame, $arg = false)
     {
-        echo " jejej ";
-        echo "play As ";
+;
         @include_once "playAs.php";
     }
 
@@ -91,6 +353,14 @@ class Area1
     }
 
     function terrainInit($terrainDoc ){
+//        var_dump($terrainDoc->terrain->areas);die('love');
+        $areas = $terrainDoc->terrain->areas;
+        $this->players = array("", "", "");
+
+        foreach($areas as $aName => $aValue){
+            $this->areaData->addArea($aName);
+        }
+//        $this->areaData->addArea($name);
 
     }
 
@@ -106,6 +376,12 @@ class Area1
         $data->specialHexA = $this->specialHexA;
         $data->arg = 'main';
         $data->terrainName = "terrain-Area1";
+        $data->terrain = $this->terrain;
+        $data->areaData = $this->areaData;
+        $data->display = $this->display;
+        $data->moveRules = $this->moveRules->save();
+        $data->gameRules = $this->gameRules->save();
+        $data->players = $this->players;
         return $data;
     }
 
@@ -175,10 +451,7 @@ class Area1
 //        $this->force->addUnit("lll", BLUE_FORCE, "gameTurn7", "multiInf.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 7, 1, "rebel", true, "inf");
     }
 
-    static function transformChanges($doc, $last_seq, $user)
-    {
-        return compact("last_seq");
-    }
+
 
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
@@ -187,11 +460,9 @@ class Area1
 
 
 
-        echo "Construct_ ";
-echo "constructing ";
-        $this->mapData = MapData::getInstance();
+        $this->areaData = AreaData::getInstance();
+        $this->mapData = $this->areaData;
         if ($data) {
-            echo " is Data ";
 //            $this->arg = $data->arg;
 //            $this->scenario = $data->scenario;
 //            $this->terrainName = $data->terrainName;
@@ -199,14 +470,16 @@ echo "constructing ";
 //            $this->display = new Display($data->display);
 //            $this->mapData->init($data->mapData);
 //            $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
-//            $this->force = new Force($data->force);
+            $this->force = new Force($data->force);
             $this->terrain = new AreaTerrain($data->terrain);
+
 
 //            var_dump($this->terrain->areas);
 //
-            var_dump($this->terrain->getRoutes("a1"));
-            $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
+//            $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
+            $this->moveRules = new stdClass();
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
+            $this->moveRules = new AreaMoveRules($data);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
             $this->victory = new Victory($data);
 
@@ -215,15 +488,17 @@ echo "constructing ";
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->game = $game;
+            $this->display = new stdClass();
 
 //            $this->display = new Display();
 //            $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
-//            $this->force = new Force();
+            $this->force = new Force();
             $this->terrain = new areaTerrain();
 //            $this->moveRules = new MoveRules($this->force, $this->terrain);
-//
-//            $this->combatRules = new CombatRules($this->force, $this->terrain);
-//            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
+            $this->moveRules = new AreaMoveRules();
+
+            $this->combatRules = new CombatRules($this->force, $this->terrain);
+            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
         }
 
 
@@ -260,20 +535,20 @@ echo "constructing ";
 //                $this->moveRules->exitZoc = 0;
 //                $this->moveRules->noZocZocOneHex = false;
 //            }
-//            // game data
-//            $this->gameRules->setMaxTurn(7);
-//            $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
-//            $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
-//            $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */
-//            $this->force->setAttackingForceId($this->gameRules->attackingForceId); /* so object oriented */
-//
-//            $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_DEPLOY_PHASE, DEPLOY_MODE, BLUE_FORCE, RED_FORCE, false);
-//            $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
-//            $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
-//            $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
-//            $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
-//            $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MECH_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
-//            $this->gameRules->addPhaseChange(RED_MECH_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
-        }
+            // game data
+            $this->gameRules->setMaxTurn(7);
+            $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
+            $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
+            $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */
+            $this->force->setAttackingForceId($this->gameRules->attackingForceId); /* so object oriented */
+
+            $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_DEPLOY_PHASE, DEPLOY_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MECH_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_MECH_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
+    }
     }
 }

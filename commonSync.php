@@ -509,10 +509,12 @@ x.register("gameRules", function(gameRules,data) {
     if(gameRules.mode === <?= COMBAT_SETUP_MODE?>){
         $(".combatButton").show();
     }
-    if(gameRules.display.currentMessage){
-        $("#display").html(gameRules.display.currentMessage+"<button onclick='doitNext()'>Next</button>").show();
-    }else{
-        $("#display").html("").hide();
+    if(gameRules.display) {
+        if(gameRules.display.currentMessage){
+            $("#display").html(gameRules.display.currentMessage+"<button onclick='doitNext()'>Next</button>").show();
+        }else{
+            $("#display").html("").hide();
+        }
     }
     var status = "";
     var turn = gameRules.turn;

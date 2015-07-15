@@ -24,42 +24,23 @@ You should have received a copy of the GNU General Public License
 class AreaData implements JsonSerializable
 {
 
-    public $hexes;
-    public $maxX;
-    public $maxY;
-    public $specialHexes;
+    public $areas;
+
     private static $instance;
     public $mapUrl;
-    public $vp;
-    public $blocksZoc;
-    public $breadcrumbs;
 
-    private function __construct()
+    private function __construct($data = false)
     {
-        $this->vp = array(0, 0, 0);
-        $this->blocksZoc = new stdClass();
-        $this->breadcrumbs = new stdClass();
+        if($data){
+
+        }else{
+            $this->areas = new stdClass();
+        }
+
     }
 
     function jsonSerialize()
     {
-        foreach ($this->hexes as $k => $hex) {
-
-            $f1 = count((array)$hex->forces[1]) + count((array)$hex->zocs[1]) + count((array)$hex->adjacent[1]);
-            $f2 = count((array)$hex->forces[2]) + count((array)$hex->zocs[2]) + count((array)$hex->adjacent[2]);
-            $f3 = count((array)$hex->forces[3]) + count((array)$hex->zocs[3]) + count((array)$hex->adjacent[3]);
-            $f4 = count((array)$hex->forces[4]) + count((array)$hex->zocs[4]) + count((array)$hex->adjacent[4]);
-
-            if (!$f1 && !$f2 && !$f3 && !$f4) {
-                unset($this->hexes->$k);
-                continue;
-            }
-//            if(!$hex->dirty){
-//                continue;
-//            }
-            unset($this->hexes->$k->dirty);
-            unset($this->hexes->$k->neighbors);
-        }
         return $this;
     }
 
@@ -103,109 +84,25 @@ class AreaData implements JsonSerializable
 
     public static function getInstance()
     {
-//        if (!MapData::$instance) {
-//            MapData::$instance = new MapData();
-//        }
-//        return MapData::$instance;
+        if (!AreaData::$instance) {
+            AreaData::$instance = new AreaData();
+        }
+        return AreaData::$instance;
     }
 
     public function init($data)
     {
-        $hexes = $data->hexes;
-        unset($data->hexes);
 
-        foreach ($data as $k => $v) {
-            if ($k == "hexes") {
-//                $this->hexes = new stdClass();
-//                foreach($v as $hexName => $hex){
-//                    $this->hexes->$hexName = new MapHex($hex->name,$hex->forces);
-//                }
-            } else {
-                $this->$k = $v;
-            }
-        }
-        $this->hexes = new stdClass();
-        for ($i = 1; $i <= $this->maxX + 1; $i++) {
-            for ($j = 1; $j <= $this->maxY + 1; $j++) {
-                $name = sprintf("%02d%02d", $i, $j);
-                if (isset($hexes->$name) && $hexes->$name) {
-                    $x = new MapHex($name, $hexes->$name->forces, $hexes->$name->zocs, $hexes->$name->adjacent);
-                    $this->hexes->$name = $x;
-                } else {
-//                    $x = new MapHex($name);
-                }
-
-            }
-        }
     }
 
-    function removeSpecialHex($hex)
-    {
-        if (!$this->specialHexes) {
-            return;
-        }
-        $k = sprintf("%04d", "0000" . $hex);
-        unset($this->specialHexes->$k);
-    }
-
-    function setSpecialHexes($hexes)
-    {
-        if (!$this->specialHexes) {
-            $this->specialHexes = new stdClass();
-        }
-        foreach ($hexes as $k => $v) {
-            $k = sprintf("%04d", "0000" . $k);
-            $this->specialHexes->$k = $v;
-        }
+    function addArea($name){
+        $this->areas->$name = new stdClass();
     }
 
 
-    /* Only change special Hex if it still exists */
-    function alterSpecialHex($hex, $v)
+    function getArea($name)
     {
-        if (!$this->specialHexes) {
-            return;
-        }
-        $hex = sprintf("%04d", "0000" . $hex);
-        if(isset($this->specialHexes->$hex)){
-            $this->specialHexes->$hex = $v;
-        }
-    }
-
-    function getSpecialHex($name)
-    {
-        $name = sprintf("%04d", "0000" . $name);
-
-        if (!$this->specialHexes) {
-            return false;
-        }
-        if (!$this->specialHexes->$name) {
-            return false;
-        }
-        return $this->specialHexes->$name;
-    }
-
-    function setData($maxRight, $maxBottom, $map)
-    {
-        $this->mapUrl = $map;
-        $this->maxY = $maxBottom;
-        $this->maxX = $maxRight;
-        $this->hexes = new stdClass();
-        for ($i = 1; $i <= $maxRight + 1; $i++) {
-            for ($j = 1; $j <= $maxBottom + 1; $j++) {
-                $name = sprintf("%02d%02d", $i, $j);
-                $this->hexes->$name = new MapHex($name);
-            }
-        }
-    }
-
-    function getHex($name)
-    {
-        $name = sprintf("%04d", $name);
-        if (!isset($this->hexes->$name)) {
-            $this->hexes->$name = new MapHex($name);
-        }
-        return $this->hexes->$name;
+        return $this->areas->$name;
     }
 }
 
