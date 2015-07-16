@@ -1652,31 +1652,6 @@ class Force
         $this->requiredDefenses->$id = true;
     }
 
-    function hexIsZOC($hexagon, $range = 1)
-    {
-
-        $isZOC = false;
-
-        if ($this->ZOCrule == true) {
-            $los = new Los();
-            $los->setOrigin($hexagon);
-
-            for ($i = 0; $i < count($this->units); $i++) {
-                $los->setEndPoint($this->units[$i]->hexagon);
-                if ($los->getRange() == $range
-                    && $this->units[$i]->forceId != $this->attackingForceId
-                    && $this->units[$i]->status != STATUS_CAN_REINFORCE
-                    && $this->units[$i]->status != STATUS_ELIMINATED
-                ) {
-                    $isZOC = true;
-                    break;
-                }
-            }
-        }
-
-        return $isZOC;
-    }
-
     function unitWillUseMaxMove($id, $moveAmount)
     {
         if ($this->units[$id]->moveAmountUsed + $moveAmount >= $this->units[$id]->maxMove) {
