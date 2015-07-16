@@ -140,16 +140,9 @@ class Area1
         $combatRules = $doc->wargame->combatRules;
         $display = $doc->wargame->display;
         $units = $force->units;
-        $units = new stdClass();
         $attackingId = $doc->wargame->gameRules->attackingForceId;
         foreach ($units as $unit) {
             $unit = UnitFactory::build($unit);
-            if (is_object($unit->hexagon)) {
-//                $unit->hexagon->parent = $unit->parent;
-            } else {
-                $unit->hexagon = new Hexagon($unit->hexagon);
-            }
-//            $unit->hexagon->parent = $unit->parent;
             $mapUnit = $unit->fetchData();
 
             if($fogDeploy && ($gameRules->phase == RED_DEPLOY_PHASE || $gameRules->phase == BLUE_DEPLOY_PHASE) &&  $unit->forceId !== $player){
@@ -181,32 +174,32 @@ class Area1
                 $moveRules->moves = new stdClass();
             }
         }
-        if ($moveRules->moves) {
-            foreach ($moveRules->moves as $k => $move) {
-                $hex = new Hexagon($k);
-                $mapGrid->setHexagonXY($hex->getX(), $hex->getY());
-                $n = new stdClass();
-                $moveRules->moves->{$k}->pixX = $mapGrid->getPixelX();
-                $moveRules->moves->{$k}->pixY = $mapGrid->getPixelY();
-                $pointsLeft = sprintf("%.2f",$moveRules->moves->{$k}->pointsLeft);
-                $pointsLeft = preg_replace("/\.0*$/",'',$pointsLeft);
-                $pointsLeft = preg_replace("/(\.[1-9]*)0*/","$1",$pointsLeft);
-                $moveRules->moves->{$k}->pointsLeft = $pointsLeft;
-                unset($moveRules->moves->$k->isValid);
-            }
-            if (false && $moveRules->path) {
-                foreach ($moveRules->path as $hexName) {
-                    $hex = new Hexagon($hexName);
-                    $mapGrid->setHexagonXY($hex->x, $hex->y);
-
-                    $path = new stdClass();
-                    $path->pixX = $mapGrid->getPixelX();
-                    $path->pixY = $mapGrid->getPixelY();
-                    $moveRules->hexPath[] = $path;
-                }
-            }
-        }
-//        $force->units = $units;
+//        if ($moveRules->moves) {
+//            foreach ($moveRules->moves as $k => $move) {
+//                $hex = new Hexagon($k);
+//                $mapGrid->setHexagonXY($hex->getX(), $hex->getY());
+//                $n = new stdClass();
+//                $moveRules->moves->{$k}->pixX = $mapGrid->getPixelX();
+//                $moveRules->moves->{$k}->pixY = $mapGrid->getPixelY();
+//                $pointsLeft = sprintf("%.2f",$moveRules->moves->{$k}->pointsLeft);
+//                $pointsLeft = preg_replace("/\.0*$/",'',$pointsLeft);
+//                $pointsLeft = preg_replace("/(\.[1-9]*)0*/","$1",$pointsLeft);
+//                $moveRules->moves->{$k}->pointsLeft = $pointsLeft;
+//                unset($moveRules->moves->$k->isValid);
+//            }
+//            if (false && $moveRules->path) {
+//                foreach ($moveRules->path as $hexName) {
+//                    $hex = new Hexagon($hexName);
+//                    $mapGrid->setHexagonXY($hex->x, $hex->y);
+//
+//                    $path = new stdClass();
+//                    $path->pixX = $mapGrid->getPixelX();
+//                    $path->pixY = $mapGrid->getPixelY();
+//                    $moveRules->hexPath[] = $path;
+//                }
+//            }
+//        }
+        $force->units = $units;
         $gameRules = $wargame->gameRules;
         $gameRules->display = $display;
         $gameRules->phase_name = $phase_name;
@@ -381,6 +374,7 @@ class Area1
         $data->display = $this->display;
         $data->moveRules = $this->moveRules->save();
         $data->gameRules = $this->gameRules->save();
+        $data->force = $this->force;
         $data->players = $this->players;
         return $data;
     }
@@ -400,6 +394,12 @@ class Area1
             $baseValue = 7;
         }
         /* Loyalists units */
+
+        $unitNum = 1;
+        UnitFactory::$injector = $this->force;
+        UnitFactory::create("xxx", LOYALIST_FORCE, "a1", "multiInf.png", 4,5, 5, STATUS_READY, "A", 1, 1, "loyalist",  'inf', $unitNum++);
+        UnitFactory::create("xxx", LOYALIST_FORCE, "a2", "multiInf.png", 4,5, 5, STATUS_READY, "A", 1, 1, "loyalist",  'inf', $unitNum++);
+        UnitFactory::create("xxx", LOYALIST_FORCE, "b1", "multiInf.png", 4,5, 5, STATUS_READY, "A", 1, 1, "loyalist",  'inf', $unitNum++);
 
 //        echo " about to ";
 //        $this->force->addUnit("lll", LOYALIST_FORCE, "a1", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
