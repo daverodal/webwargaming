@@ -345,6 +345,15 @@ class BaseUnit{
     }
 
 
+    function getEliminated( $hexagon)
+    {
+        if ($this->status == STATUS_CAN_REPLACE) {
+            $this->status = STATUS_REPLACED;
+            $this->updateMoveStatus($hexagon, 0);
+            return $this->id;
+        }
+        return false;
+    }
 }
 
 class unit extends BaseUnit implements JsonSerializable
@@ -904,24 +913,6 @@ class Force
         return $defenderStrength;
     }
 
-//function getRetreatHexagonList() {
-//
-//    $retreatHexagonList = "advance hexagon list: ";
-//
-//    for ($i = 0; $i < 6; $i++) {
-//
-//        if ($retreatHexpartX[$i] > 0 || $retreatHexpartY[$i] > 0) {
-//            $hexagon = new hexagon($retreatHexpartX[$i], $retreatHexpartY[$i]);
-//            $retreatHexagonList = $retreatHexagonList + " " + $hexagon->getHexagonName();
-//        }
-//        //retreatHexagonList += " | " + retreatHexpartX[i] + ", " + retreatHexpartY[i];
-//    }
-//
-//    //retreatHexagonList = retreatHexpartX[0] + ", " + retreatHexpartY[0];
-//
-//    return ($retreatHexagonList);
-//}
-
     function getUnitBeingEliminatedId()
     {
 
@@ -1311,18 +1302,6 @@ class Force
         if ($this->combatRequired && isset($this->requiredDefenses->$id)) {
             $this->requiredDefenses->$id = false;
         }
-    }
-
-    function getEliminated($id, $hexagon)
-    {
-        if ($this->units[$id]->status == STATUS_CAN_REPLACE) {
-            $this->units[$id]->status = STATUS_REPLACED;
-//                $this->units[$id]->isReduced = true;
-            $this->units[$id]->updateMoveStatus($hexagon, 0);
-            return $id;
-        }
-
-        return false;
     }
 
     function storeCombatIndex($combatNumber, $combatIndex)

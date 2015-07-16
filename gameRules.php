@@ -206,7 +206,8 @@ class GameRules
                                 }
                             }
                             if ($canReplace) {
-                                if ($this->force->getEliminated($this->currentReplacement, $hexagon) !== false) {
+                                $unit = $this->force->getUnit($this->currentReplacement);
+                                if ($unit->getEliminated($hexagon) !== false) {
                                     $this->moveRules->stopReplacing($id);
 
                                     $this->currentReplacement = false;
@@ -226,8 +227,9 @@ class GameRules
                             preg_match("/Hex(.*)/", $id, $matchHex);
                             $id = $matchId[0];
                             $hexagon = new Hexagon($matchHex[1]);
+                            $unit = $this->force->getUnit($this->currentReplacement);
 
-                            if ($this->force->getEliminated($this->currentReplacement, $hexagon) !== false) {
+                            if ($unit->getEliminated($hexagon) !== false) {
                                 $this->moveRules->stopReplacing($id);
                                 $this->currentReplacement = false;
                                 $this->replacementsAvail--;

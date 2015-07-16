@@ -1063,7 +1063,6 @@ class MoveRules
             /* @var Unit $unit */
             $unit = $this->force->getUnit($id);
 
-            $defendingForceId = $this->force->defendingForceId;
             $battle = Battle::getBattle();
             $victory = $battle->victory;
             /* @var Unit $unit */
@@ -1075,7 +1074,7 @@ class MoveRules
                 $zones = $this->terrain->getReinforceZonesByName($zoneName);
                 list($zones) = $battle->victory->postReinforceZones($zones, $unit);
                 foreach ($zones as $zone) {
-                    if ($battle->mapData->hexagonIsOccupiedForce($zone->hexagon, $defendingForceId, $this->stacking, $unit)) {
+                    if ($this->force->hexagonIsOccupied($zone->hexagon, $this->stacking, $unit)) {
                         continue;
                     }
                     $startHex = $zone->hexagon->name;
@@ -1097,7 +1096,6 @@ class MoveRules
         if ($this->force->getUnitReinforceTurn($id) <= $turn) {
             /* @var Unit $unit */
             $unit = $this->force->getUnit($id);
-            $defendingForceId = $this->force->defendingForceId;
             if ($unit->setStatus(STATUS_DEPLOYING) == true) {
                 $battle = Battle::getBattle();
                 $victory = $battle->victory;
@@ -1107,7 +1105,7 @@ class MoveRules
                 list($zones) = $battle->victory->postDeployZones($zones, $unit);
                 foreach ($zones as $zone) {
                     $startHex = $zone->hexagon->name;
-                    if ($battle->mapData->hexagonIsOccupiedForce($zone->hexagon,$defendingForceId, $this->stacking, $unit)) {
+                    if ($this->force->hexagonIsOccupied($zone->hexagon, $this->stacking, $unit)) {
                         continue;
                     }
                     $hexPath = new HexPath();
@@ -1128,13 +1126,12 @@ class MoveRules
         $battle = Battle::getBattle();
         /* @var Unit $unit */
         $unit = $this->force->getUnit($id);
-        $defendingForceId = $this->force->defendingForceId;
         if ($unit->setStatus(STATUS_CAN_REPLACE) == true) {
             $movesLeft = 0;
             $zones = $this->terrain->getReinforceZonesByName($this->force->getUnitReinforceZone($id));
             list($zones) = $battle->victory->postReinforceZones($zones, $unit);
             foreach ($zones as $zone) {
-                if ($battle->mapData->hexagonIsOccupiedForce($zone->hexagon, $defendingForceId, $this->stacking, $unit)) {
+                if ($this->force->hexagonIsOccupied($zone->hexagon, $this->stacking, $unit)) {
                     continue;
                 }
                 $startHex = $zone->hexagon->name;
