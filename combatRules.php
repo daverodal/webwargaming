@@ -448,7 +448,8 @@ class CombatRules
         $defenders = $this->combats->$defenderId->defenders;
         $bestDefenderTerrainEffect = 0;
         foreach ($defenders as $defId => $def) {
-            $terrainCombatEffect = $this->terrain->getDefenderTerrainCombatEffect($this->force->getCombatHexagon($defId));
+            $unit = $this->force->getUnit($defId);
+            $terrainCombatEffect = $this->terrain->getDefenderTerrainCombatEffect($unit->getUnitHexagon());
             if ($this->allAreAttackingAcrossRiver($defId)) {
                 $riverCombatEffect = $this->terrain->getAllAreAttackingAcrossRiverCombatEffect();
                 if ($riverCombatEffect > $terrainCombatEffect) {
@@ -564,10 +565,12 @@ class CombatRules
         $allAttackingAcrossRiver = true;
         $attackerHexagonList = $this->combats->$defenderId->attackers;
         /* @var Hexagon $defenderHexagon */
-        $defenderHexagon = $this->force->getCombatHexagon($defenderId);
+        $unit = $this->force->getUnit($defenderId);
+        $defenderHexagon = $unit->getUnitHexagon();
         foreach ($attackerHexagonList as $attackerHexagonId => $val) {
             /* @var Hexagon $attackerHexagon */
-            $attackerHexagon = $this->force->getCombatHexagon($attackerHexagonId);
+            $attackerUnit = $this->force->getUnit($attackerHexagonId);
+            $attackerHexagon = $attackerUnit->getUnitHexagon();
 
             $hexsideX = ($defenderHexagon->getX() + $attackerHexagon->getX()) / 2;
             $hexsideY = ($defenderHexagon->getY() + $attackerHexagon->getY()) / 2;
@@ -589,9 +592,11 @@ class CombatRules
 
 //     $attackerHexagonList = array();
 //    $attackerHexagonList = $this->force->getAttackerHexagonList($combatNumber);
-        $attackerHexagon = $this->force->getCombatHexagon($attackerId);
+        $attackerUnit = $this->force->getUnit($attackerId);
+        $attackerHexagon = $attackerUnit->getUnitHexagon();
         /* @var Hexagon $defenderHexagon */
-        $defenderHexagon = $this->force->getCombatHexagon($defenderId);
+        $defenderUnit = $this->force->getUnit($defenderId);
+        $defenderHexagon = $defenderUnit->getUnitHexagon();
 
 
         $hexsideX = ($defenderHexagon->getX() + $attackerHexagon->getX()) / 2;

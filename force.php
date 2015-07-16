@@ -504,8 +504,6 @@ class Force
     public $deleteCount;
     public $reinforceTurns;
     public $retreatHexagonList;
-    public $eliminationTrayHexagonX;
-    public $eliminationTrayHexagonY;
     public $exchangeAmount;
     public $requiredAttacks;
     public $requiredDefenses;
@@ -541,8 +539,6 @@ class Force
             $this->deleteCount = 0;
 
             $this->retreatHexagonList = array();
-            $this->eliminationTrayHexagonX = 1;
-            $this->eliminationTrayHexagonY = 2;
             $this->requiredAttacks = new stdClass();
             $this->requiredDefenses = new stdClass();
             $this->combatRequired = false;
@@ -853,17 +849,6 @@ class Force
         $this->removeEliminatingUnits();
     }
 
-    function checkVictoryConditions()
-    {
-        // last to occupy Marysville at 403 wins
-        $hexagon = new Hexagon(403);
-        for ($id = 0; $id < count($this->units); $id++) {
-            if ($this->units[$id]->hexagon->equals($hexagon)) {
-                $this->victor = $this->units[$id]->forceId;
-            }
-        }
-    }
-
     function clearRetreatHexagonList()
     {
 
@@ -905,33 +890,6 @@ class Force
         }
 
         return $attackerStrength;
-    }
-
-    function getAttackerHexagonList($defenderId)
-    {
-        return
-            $hexagonList = array();
-
-        for ($id = 0; $id < count($this->units); $id++) {
-            if ($this->units[$id]->status == STATUS_ATTACKING && $this->units[$id]->combatNumber == $combatNumber) {
-
-                $hexagonList[] = $this->units[$id]->hexagon;
-            }
-        }
-        return $hexagonList;
-    }
-
-    function getCombatHexagon($defenderId)
-    {
-        $hexagon = $this->units[$defenderId]->hexagon;
-        return $hexagon;
-
-        for ($id = 0; $id < count($this->units); $id++) {
-            if ($this->units[$id]->combatNumber == $combatNumber && $this->units[$id]->status == STATUS_DEFENDING) {
-                $hexagon = $this->units[$id]->hexagon;
-            }
-        }
-        return $hexagon;
     }
 
     function getCombatInfo($id)
@@ -1065,29 +1023,6 @@ class Force
         return $this->victor;
     }
 
-    function hexagonIsZOC($id, $hexagon)
-    {
-        $isZOC = false;
-
-        if ($this->ZOCrule == true) {
-            $los = new Los();
-            $los->setOrigin($hexagon);
-
-            for ($i = 0; $i < count($this->units); $i++) {
-                $los->setEndPoint($this->units[$i]->hexagon);
-                if ($los->getRange() == 1
-                    && $this->units[$i]->forceId != $this->units[$id]->forceId
-                    && $this->units[$i]->status != STATUS_CAN_REINFORCE
-                    && $this->units[$i]->status != STATUS_ELIMINATED
-                ) {
-                    $isZOC = true;
-                    break;
-                }
-            }
-        }
-        return $isZOC;
-    }
-
 
     function mapHexIsZoc(MapHex $mapHex, $defendingForceId = false)
     {
@@ -1109,14 +1044,6 @@ class Force
         return false;
     }
 
-    function hexagonIsOccupiedForce($hexagon, $forceId, $stacking = 1, $unit = false)
-    {
-        $battle = Battle::getBattle();
-        $mapData = $battle->mapData;
-        $mapHex = $mapData->getHex($hexagon->getName());
-        return $mapHex->isOccupied($forceId, $stacking, $unit);
-    }
-
     function hexagonIsOccupied($hexagon, $stacking = 1, $unit = false)
     {
         $battle = Battle::getBattle();
@@ -1129,38 +1056,8 @@ class Force
 
     }
 
-    function hexagonIsOccupiedEnemy($hexagon, $id)
-    {
-        $isOccupied = false;
-        $friendlyId = $this->units[$id]->forceId;
-        $battle = Battle::getBattle();
-        $mapData = $battle->mapData;
-        $mapHex = $mapData->getHex($hexagon->getName());
-        foreach ($mapHex->forces as $forceId => $force) {
-            if ($friendlyId == $forceId) {
-                continue;
-            }
-            if (count((array)$force) > 0) {
-                $isOccupied = true;
-            }
-        }
-        return $isOccupied;
-    }
 
-    function hexagonIsEnemyOccupied($hexagon)
-    {
-        $isOccupied = false;
-        $friendlyId = $this->attackingForceId;
-        for ($id = 0; $id < count($this->units); $id++) {
-            if ($this->units[$id]->forceId != $friendlyId) {
-                if ($this->units[$id]->hexagon->equals($hexagon)) {
-                    $isOccupied = true;
-                }
-            }
-        }
 
-        return $isOccupied;
-    }
 
 
     function isForceEliminated()
@@ -1369,13 +1266,6 @@ class Force
         if($defId !== false){
             $this->defendingForceId = $defId;
         }
-    }
-
-    function setEliminationTrayXY($hexagonNumber)
-    {
-        $hexagon = new Hexagon($hexagonNumber);
-        $this->eliminationTrayHexagonX = $hexagon->getX();
-        $this->eliminationTrayHexagonY = $hexagon->getY();
     }
 
     function setStatus($id, $status)

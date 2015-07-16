@@ -353,6 +353,29 @@ class MapData implements JsonSerializable
         }
         return $this->hexes->$name;
     }
+
+    function hexagonIsOccupiedForce($hexagon, $forceId, $stacking = 1, $unit = false)
+    {
+        $mapHex = $this->getHex($hexagon->getName());
+        return $mapHex->isOccupied($forceId, $stacking, $unit);
+    }
+
+    function hexagonIsOccupiedEnemy($hexagon, $friendlyId)
+    {
+        $isOccupied = false;
+
+        $mapHex = $this->getHex($hexagon->getName());
+        foreach ($mapHex->forces as $forceId => $force) {
+            if ($friendlyId == $forceId) {
+                continue;
+            }
+            if (count((array)$force) > 0) {
+                $isOccupied = true;
+            }
+        }
+        return $isOccupied;
+    }
+
 }
 
 class MapViewer
