@@ -152,10 +152,10 @@ class GameRules
         array_push($this->phaseChanges, $phaseChange);
     }
 
-    function processEvent($event, $id, $hexagon, $click)
+    function processEvent($event, $id, $location, $click)
     {
 
-        /* @var Hexagon $hexagon */
+        /* @var Hexagon $location */
         global $phase_name, $event_name, $mode_name;
 
         $now = time();
@@ -163,7 +163,7 @@ class GameRules
 
         $interaction->event = $event;
         $interaction->id = $id;
-        $interaction->hexagon = $hexagon;
+        $interaction->hexagon = $location;
         $interaction->time = $now;
 //        $eventname = $event_name[$event];
 //        $modename = $mode_name[$this->mode];
@@ -187,54 +187,19 @@ class GameRules
                 switch ($event) {
 
                     case SELECT_MAP_EVENT:
-                        if ($this->replacementsAvail <= 0) {
-                            break;
-                        }
-                        if ($this->currentReplacement !== false) {
-                            $hexpart = new Hexpart();
-                            $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
-                            $terrain = $this->moveRules->terrain;
-                            $canReplace = false;
-
-                            if (($terrain->terrainIs($hexpart, "newrichmond") || $terrain->terrainIs($hexpart, "town")) && $mapData->specialHexes->{$hexagon->getName()} == $this->attackingForceId) {
-                                $canReplace = true;
-                            } else {
-                                if ($this->attackingForceId == BLUE_FORCE && $terrain->terrainIs($hexpart, "westedge")) {
-                                    $canReplace = true;
-                                } else if ($this->attackingForceId == RED_FORCE && $terrain->terrainIs($hexpart, "eastedge")) {
-                                    $canReplace = true;
-                                }
-                            }
-                            if ($canReplace) {
-                                $unit = $this->force->getUnit($this->currentReplacement);
-                                if ($unit->getEliminated($hexagon) !== false) {
-                                    $this->moveRules->stopReplacing($id);
-
-                                    $this->currentReplacement = false;
-                                    $this->replacementsAvail--;
-                                }
-                            }
-                        }
-                        break;
                     case SELECT_COUNTER_EVENT:
                         if ($this->replacementsAvail <= 0) {
                             break;
                         }
-                        if (strpos($id, "Hex")) {
-                            $matchId = array();
-                            preg_match("/^[^H]*/", $id, $matchId);
-                            $matchHex = array();
-                            preg_match("/Hex(.*)/", $id, $matchHex);
-                            $id = $matchId[0];
-                            $hexagon = new Hexagon($matchHex[1]);
-                            $unit = $this->force->getUnit($this->currentReplacement);
 
-                            if ($unit->getEliminated($hexagon) !== false) {
-                                $this->moveRules->stopReplacing($id);
-                                $this->currentReplacement = false;
-                                $this->replacementsAvail--;
-                            }
+                        $unit = $this->force->getUnit($this->currentReplacement);
+
+                        if ($unit->getEliminated($location) !== false) {
+                            $this->moveRules->stopReplacing($id);
+                            $this->currentReplacement = false;
+                            $this->replacementsAvail--;
                         }
+
                         if ($this->force->attackingForceId == $this->force->units[$id]->forceId) {
                             /* @var Unit $unit */
                             $unit = $this->force->getUnit($id);
@@ -278,18 +243,9 @@ class GameRules
                 switch ($event) {
 
                     case SELECT_MAP_EVENT:
-                        return 0;
                     case SELECT_COUNTER_EVENT:
-                        if (strpos($id, "Hex")) {
-                            $matchId = array();
-                            preg_match("/^[^H]*/", $id, $matchId);
-                            $matchHex = array();
-                            preg_match("/Hex(.*)/", $id, $matchHex);
-                            $id = $matchId[0];
-                            $hexagon = $matchHex[1];
-                            $event = SELECT_MAP_EVENT;
-                        }
-                        $this->moveRules->moveUnit($event, $id, $hexagon, $this->turn);
+
+                        $this->moveRules->moveUnit($event, $id, $location, $this->turn);
                         break;
 
                     case SELECT_BUTTON_EVENT:
@@ -312,8 +268,6 @@ class GameRules
 
                 switch ($event) {
 
-                    case SELECT_MAP_EVENT:
-                        return 0;
                     case KEYPRESS_EVENT:
                         if ($this->moveRules->anyUnitIsMoving) {
                             $c = chr($id);
@@ -343,16 +297,8 @@ class GameRules
 
 //                            $this->force->units[$this->moveRules->movingUnitId]->forceMarch = $this->force->units[$this->moveRules->movingUnitId]->forceMarch^1;
                         }
+                    case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
-                        if (strpos($id, "Hex")) {
-                            $matchId = array();
-                            preg_match("/^[^H]*/", $id, $matchId);
-                            $matchHex = array();
-                            preg_match("/Hex(.*)/", $id, $matchHex);
-                            $id = $matchId[0];
-                            $hexagon = $matchHex[1];
-                            $event = SELECT_MAP_EVENT;
-                        }
                         if ($id === false) {
                             return false;
                         }
@@ -365,7 +311,7 @@ class GameRules
 //                    if($this->phase == RED_RAILROAD_PHASE){/* Love that oo design */
 //                        $this->moveRules->railMove = true;
 //                    }
-                        $ret = $this->moveRules->moveUnit($event, $id, $hexagon, $this->turn);
+                        $ret = $this->moveRules->moveUnit($event, $id, $location, $this->turn);
                         return $ret;
                         break;
 
@@ -481,53 +427,6 @@ class GameRules
                 }
                 break;
 
-            case FIRE_COMBAT_SETUP_MODE:
-
-                switch ($event) {
-
-                    case SELECT_COUNTER_EVENT:
-                        $this->combatRules->setupFireCombat($id);
-
-                        break;
-
-                    case SELECT_BUTTON_EVENT:
-                        $this->combatRules->undoDefendersWithoutAttackers();
-                        if ($this->gameHasCombatResolutionMode == true) {
-                            $this->mode = COMBAT_RESOLUTION_MODE;
-                        } else {
-                            $this->mode = COMBAT_SETUP_MODE;
-                        }
-                        break;
-                }
-                break;
-
-            case FIRE_COMBAT_RESOLUTION_MODE:
-
-                switch ($event) {
-
-                    case SELECT_COUNTER_EVENT:
-
-                        $this->combatRules->resolveFireCombat($id);
-                        if ($this->force->unitsAreBeingEliminated() == true) {
-                            $this->force->removeEliminatingUnits();
-                        }
-
-                        if ($this->force->unitsAreRetreating() == true) {
-                            $this->force->clearRetreatHexagonList();
-                            $this->mode = RETREATING_MODE;
-                        } else { // check if advancing after eliminated unit
-                            if ($this->force->unitsAreAdvancing() == true) {
-                                $this->mode = ADVANCING_MODE;
-                            }
-                        }
-                        break;
-
-                    case SELECT_BUTTON_EVENT:
-
-                        $this->selectNextPhase($click);
-                        break;
-                }
-                break;
 
             case RETREATING_MODE:
 
@@ -535,7 +434,7 @@ class GameRules
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
-                        $this->moveRules->retreatUnit($event, $id, $hexagon);
+                        $this->moveRules->retreatUnit($event, $id, $location);
                         if ($this->force->unitsAreRetreating() == false) {
                             if ($this->force->unitsAreExchanging() == true) {
                                 $this->mode = EXCHANGING_MODE;
@@ -569,16 +468,7 @@ class GameRules
 
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
-                        if (strpos($id, "Hex")) {
-                            $matchId = array();
-                            preg_match("/^[^H]*/", $id, $matchId);
-                            $matchHex = array();
-                            preg_match("/Hex(.*)/", $id, $matchHex);
-                            $id = $matchId[0];
-                            $hexagon = new Hexagon($matchHex[1]);
-                            $event = SELECT_MAP_EVENT;
-                        }
-                        $this->moveRules->advanceUnit($event, $id, $hexagon);
+                        $this->moveRules->advanceUnit($event, $id, $location);
 
                         if ($this->force->unitsAreAdvancing() == false) { // melee
                             if ($this->combatModeType == COMBAT_SETUP_MODE) {

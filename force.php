@@ -348,6 +348,7 @@ class BaseUnit{
     function getEliminated( $hexagon)
     {
         if ($this->status == STATUS_CAN_REPLACE) {
+            $hexagon = new Hexagon($hexagon);
             $this->status = STATUS_REPLACED;
             $this->updateMoveStatus($hexagon, 0);
             return $this->id;

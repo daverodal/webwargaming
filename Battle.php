@@ -283,12 +283,21 @@ class LandBattle extends Battle{
                 break;
 
             case SELECT_COUNTER_EVENT:
+                if (strpos($id, "Hex")) {
+                    $matchId = array();
+                    preg_match("/^[^H]*/", $id, $matchId);
+                    $matchHex = array();
+                    preg_match("/Hex(.*)/", $id, $matchHex);
+                    $id = $matchId[0];
+                    $hexagon = $matchHex[1];
+                    $event = SELECT_MAP_EVENT;
+                }
                 /* fall through */
             case SELECT_SHIFT_COUNTER_EVENT:
             /* fall through */
             case COMBAT_PIN_EVENT:
 
-            return $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id), $click);
+            return $this->gameRules->processEvent($event, $id, $hexagon, $click);
 
                 break;
 

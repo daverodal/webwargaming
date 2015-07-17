@@ -1223,12 +1223,6 @@ class MoveRules
 
     function retreatUnit($eventType, $id, $hexagon)
     {
-        // id will be map if map event
-        if ($eventType == SELECT_MAP_EVENT) {
-            if ($this->anyUnitIsMoving == true) {
-                $this->retreat($this->movingUnitId, $hexagon);
-            }
-        } else {
             // id will be retreating unit id if counter event
             if ($this->anyUnitIsMoving == false) {
                 if ($this->force->unitCanRetreat($id) == true) {
@@ -1238,19 +1232,14 @@ class MoveRules
                     }
                 }
             } else {
-                $matches = [];
-                $move = preg_match("/\d+Hex(\d+)/",$id,$matches);
-                if($move === 1){
-                    $finalHex = $matches[1];
+                    $finalHex = $hexagon;
                     $moves = $this->moves->$finalHex;
                     foreach ($moves->pathToHere as $move){
                         $this->retreat($this->movingUnitId, new Hexagon($move));
                     }
                     $this->retreat($this->movingUnitId, new Hexagon($finalHex));
                     $this->moves = new stdClass();
-                }
             }
-        }
     }
 
 // retreat rules
@@ -1421,7 +1410,7 @@ class MoveRules
     {
         if ($eventType == SELECT_MAP_EVENT) {
             if ($this->anyUnitIsMoving == true) {
-                //alert("advance");
+                $hexagon = new Hexagon($hexagon);
                 $this->advance($this->movingUnitId, $hexagon);
             }
         } else {
