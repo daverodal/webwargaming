@@ -488,6 +488,9 @@ class unit extends BaseUnit implements JsonSerializable
             $this->adjustments = new stdClass();
         }
     }
+    function isDeploy(){
+        return $this->hexagon->parent == "deployBox";
+    }
 
     public function fetchData(){
         $mapUnit = new StdClass();
@@ -1113,7 +1116,8 @@ class Force
                     if($mode == DEPLOY_MODE){
                         continue;
                     }
-                    if ($this->units[$id]->hexagon->parent == "deployBox") {
+                    echo "REe3cover this !' ";
+                    if ($this->units[$id]->isDeploy()) {
                         continue;
                     }
 
@@ -1135,7 +1139,8 @@ class Force
                 case STATUS_CAN_ATTACK_LOSE:
 
 
-                    $status = STATUS_READY;
+
+                $status = STATUS_READY;
                     /*
                      * Active Locking Zoc rules
                      */
@@ -1181,7 +1186,8 @@ class Force
 
                         }
                     }
-                    if ($mode == MOVING_MODE && $moveRules->stickyZOC) {
+
+                if ($mode == MOVING_MODE && $moveRules->stickyZOC) {
                         if ($this->units[$id]->forceId == $this->attackingForceId &&
                             $this->unitIsZOC($id)
                         ) {

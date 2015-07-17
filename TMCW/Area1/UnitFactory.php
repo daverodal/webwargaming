@@ -108,6 +108,9 @@ class AreaUnit extends BaseUnit implements JsonSerializable
 
     }
 
+    function isDeploy(){
+        return $this->area == "deployBox";
+    }
     function damageUnit($kill = false)
     {
         $battle = Battle::getBattle();
