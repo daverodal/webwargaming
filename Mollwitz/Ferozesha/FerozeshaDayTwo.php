@@ -122,10 +122,17 @@ class FerozeshaDayTwo extends IndiaCore
             }
         }
 
-        for ($i = 0; $i < 6; $i++) {
+        $royalInf = 6;
+        $nativeInf = 15;
+        if($scenario->weakBritish){
+            $royalInf -= 2;
+            $nativeInf -= 4;
+        }
+
+        for ($i = 0; $i < $royalInf; $i++) {
             $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 5, 5, 4, true, STATUS_CAN_DEPLOY, "A", 1, 1, "British", false, 'infantry');
         }
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i < $nativeInf; $i++) {
             $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "NativeInfBadge.png", 4, 4, 4, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Native", false, 'infantry');
         }
         for ($i = 0; $i < 1; $i++) {

@@ -900,8 +900,13 @@
                 "description": "Day Two",
                 "longDescription":"Day of two of a two day battle. Battle continued from sister game, Ferozesha Day One",
                 "dayTwo": true
-            }
-        }
+            },
+          "alternate": {
+            "description": "Less British for day two.",
+            "longDescription":"4 less Native infantry and 2 less Royal, Day of two of a two day battle. Battle continued from sister game, Ferozesha Day One",
+            "weakBritish":true,
+            "dayTwo": true
+          }        }
     },
     "Chillianwallah1849": {
         "name": "Chillianwallah 1849",
