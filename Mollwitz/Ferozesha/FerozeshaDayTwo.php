@@ -118,7 +118,7 @@ class FerozeshaDayTwo extends IndiaCore
         /* British */
         if ($scenario->commandControl) {
             for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "British", false, 'hq');
+                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "British", false, 'hq');
             }
         }
 
