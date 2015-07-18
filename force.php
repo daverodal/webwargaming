@@ -344,6 +344,9 @@ class BaseUnit{
         $this->moveAmountUsed = $this->moveAmountUsed + $moveAmount;
     }
 
+    function isDeploy(){
+        return $this->hexagon->parent == "deployBox";
+    }
 
     function getEliminated( $hexagon)
     {
@@ -488,9 +491,7 @@ class unit extends BaseUnit implements JsonSerializable
             $this->adjustments = new stdClass();
         }
     }
-    function isDeploy(){
-        return $this->hexagon->parent == "deployBox";
-    }
+
 
     public function fetchData(){
         $mapUnit = new StdClass();
@@ -1116,7 +1117,6 @@ class Force
                     if($mode == DEPLOY_MODE){
                         continue;
                     }
-                    echo "REe3cover this !' ";
                     if ($this->units[$id]->isDeploy()) {
                         continue;
                     }
