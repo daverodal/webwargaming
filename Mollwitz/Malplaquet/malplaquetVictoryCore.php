@@ -61,21 +61,21 @@ class malplaquetVictoryCore extends victoryCore
         if(!$this->gameOver){
             /* @var MapData $mapData */
             $mapData = $battle->mapData;
-            if($attackingId == ANGLO_FORCE){
-                $malplaquet = $battle->malplaquet[0];
-                $otherCities = $battle->otherCities;
-                if($mapData->getSpecialHex($malplaquet) === ANGLO_FORCE){
-                    $angloMalplaquet = true;
-                    foreach($otherCities as $city){
-                        if($mapData->getSpecialHex($city) === ANGLO_FORCE){
-                            $angloCities = true;
-                        }
+            $malplaquet = $battle->malplaquet[0];
+            $otherCities = $battle->otherCities;
+            if($mapData->getSpecialHex($malplaquet) === ANGLO_FORCE){
+                $angloMalplaquet = true;
+                foreach($otherCities as $city){
+                    if($mapData->getSpecialHex($city) === ANGLO_FORCE){
+                        $angloCities = true;
                     }
                 }
             }
+
             if($angloCities && ($this->victoryPoints[ANGLO_FORCE] - ($this->victoryPoints[FRENCH_FORCE]) > 10)){
                 $angloWin = true;
             }
+
             if($turn == $gameRules->maxTurn+1){
                 if(!$angloWin){
                     if($angloCities === false && $angloMalplaquet === false){
