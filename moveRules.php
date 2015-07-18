@@ -1134,6 +1134,9 @@ class MoveRules
                 if ($this->force->hexagonIsOccupied($zone->hexagon, $this->stacking, $unit)) {
                     continue;
                 }
+                if(!$zone->hexagon || !$zone->hexagon->name){
+                    continue;
+                }
                 $startHex = $zone->hexagon->name;
                 $hexPath = new HexPath();
                 $hexPath->name = $startHex->name;

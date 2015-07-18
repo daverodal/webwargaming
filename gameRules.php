@@ -192,13 +192,16 @@ class GameRules
                             break;
                         }
 
-                        $unit = $this->force->getUnit($this->currentReplacement);
+                        if($this->currentReplacement !== false && $location){
+                            $unit = $this->force->getUnit($this->currentReplacement);
 
-                        if ($unit->getEliminated($location) !== false) {
-                            $this->moveRules->stopReplacing($id);
-                            $this->currentReplacement = false;
-                            $this->replacementsAvail--;
+                            if ($unit->getEliminated($location) !== false) {
+                                $this->moveRules->stopReplacing($id);
+                                $this->currentReplacement = false;
+                                $this->replacementsAvail--;
+                            }
                         }
+
 
                         if ($this->force->attackingForceId == $this->force->units[$id]->forceId) {
                             /* @var Unit $unit */
