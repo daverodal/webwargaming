@@ -110,6 +110,13 @@
         "genre": "18'th Century Europe",
         "fileName": "Burkersdorf/Burkersdorf.php",
         "description":"July 21, 1762. Prussian vs Austrian. The Seven Years War.",
+        "options":[
+          {
+          "name": "Fog of war during Deployment. Enemy units remain hidden until movement phase..",
+          "keyName":"fogDeploy",
+          "value": false
+          }
+        ],
         "scenarios": {
             "main": {
                 "description": "Standard Scenario.",
