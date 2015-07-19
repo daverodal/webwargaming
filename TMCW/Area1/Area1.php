@@ -38,7 +38,7 @@ require_once "Battle.php";
 require_once "crtTraits.php";
 require_once "combatRules.php";
 require_once "crt.php";
-require_once "force.php";
+require_once "AreaForce.php";
 require_once "gameRules.php";
 require_once "hexagon.php";
 require_once "hexpart.php";
@@ -46,7 +46,6 @@ require_once "los.php";
 require_once "AreaData.php";
 require_once "AreaTerrain.php";
 require_once "moveRules.php";
-require_once "AreaTerrain.php";
 require_once "display.php";
 require_once "victory.php";
 require_once "victoryCore.php";
@@ -61,13 +60,11 @@ class Area1
     public function poke($event, $id, $x, $y, $user, $click)
     {
 
-        echo "A ";
         $playerId = $this->gameRules->attackingForceId;
         if ($this->players[$this->gameRules->attackingForceId] != $user) {
             return false;
         }
 
-        echo "B";
         switch ($event) {
             case SELECT_MAP_EVENT:
                 $mapGrid = new MapGrid($this->mapViewer[0]);
@@ -86,9 +83,7 @@ class Area1
                 break;
 
             case SELECT_BUTTON_EVENT:
-                echo "C" ;
                 $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0, $click);
-                echo "D";
                 break;
 
             case KEYPRESS_EVENT:
@@ -174,31 +169,16 @@ class Area1
                 $moveRules->moves = new stdClass();
             }
         }
-//        if ($moveRules->moves) {
-//            foreach ($moveRules->moves as $k => $move) {
-//                $hex = new Hexagon($k);
-//                $mapGrid->setHexagonXY($hex->getX(), $hex->getY());
-//                $n = new stdClass();
-//                $moveRules->moves->{$k}->pixX = $mapGrid->getPixelX();
-//                $moveRules->moves->{$k}->pixY = $mapGrid->getPixelY();
-//                $pointsLeft = sprintf("%.2f",$moveRules->moves->{$k}->pointsLeft);
-//                $pointsLeft = preg_replace("/\.0*$/",'',$pointsLeft);
-//                $pointsLeft = preg_replace("/(\.[1-9]*)0*/","$1",$pointsLeft);
-//                $moveRules->moves->{$k}->pointsLeft = $pointsLeft;
-//                unset($moveRules->moves->$k->isValid);
-//            }
-//            if (false && $moveRules->path) {
-//                foreach ($moveRules->path as $hexName) {
-//                    $hex = new Hexagon($hexName);
-//                    $mapGrid->setHexagonXY($hex->x, $hex->y);
-//
-//                    $path = new stdClass();
-//                    $path->pixX = $mapGrid->getPixelX();
-//                    $path->pixY = $mapGrid->getPixelY();
-//                    $moveRules->hexPath[] = $path;
-//                }
-//            }
-//        }
+        if ($moveRules->moves) {
+            foreach ($moveRules->moves as $k => $move) {
+                unset($moveRules->moves->$k->isValid);
+            }
+            if ($moveRules->path) {
+                foreach ($moveRules->path as $hexName) {
+                    $moveRules->hexPath[] = $path;
+                }
+            }
+        }
         $force->units = $units;
         $gameRules = $wargame->gameRules;
         $gameRules->display = $display;
@@ -462,6 +442,8 @@ class Area1
 
         $this->areaData = AreaData::getInstance();
         $this->mapData = $this->areaData;
+
+
         if ($data) {
 //            $this->arg = $data->arg;
 //            $this->scenario = $data->scenario;
@@ -470,36 +452,40 @@ class Area1
 //            $this->display = new Display($data->display);
 //            $this->mapData->init($data->mapData);
 //            $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
-            $this->force = new Force($data->force);
+            $this->force = new AreaForce($data->force);
             $this->terrain = new AreaTerrain($data->terrain);
 
 
 //            var_dump($this->terrain->areas);
 //
 //            $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
-            $this->moveRules = new stdClass();
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
-            $this->moveRules = new AreaMoveRules($data);
+            $this->moveRules = new AreaMoveRules($this->force, $this->terrain, $data->moveRules);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
             $this->victory = new Victory($data);
 
             $this->players = $data->players;
         } else {
+
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->game = $game;
             $this->display = new stdClass();
 
+
 //            $this->display = new Display();
 //            $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
-            $this->force = new Force();
-            $this->terrain = new areaTerrain();
-//            $this->moveRules = new MoveRules($this->force, $this->terrain);
-            $this->moveRules = new AreaMoveRules();
+
+            $this->force = new AreaForce();
+
+            $this->terrain = new AreaTerrain();
+            $this->moveRules = new AreaMoveRules($this->force, $this->terrain);
+
 
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
         }
+
 
 
 
@@ -550,5 +536,6 @@ class Area1
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MECH_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MECH_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
     }
+
     }
 }

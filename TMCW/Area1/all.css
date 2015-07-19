@@ -1218,8 +1218,12 @@ svg marker#head {
     #map #a #a1 {
       border-bottom: 1px solid white;
       background: purple; }
+      #map #a #a1.selected {
+        background: repeating-linear-gradient(45deg, purple, purple 10px, #4d004d 10px, #4d004d 20px) !important; }
     #map #a #a2 {
       background: #9a0099; }
+      #map #a #a2.selected {
+        background: repeating-linear-gradient(135deg, #9a0099, #9a0099 10px, #670066 10px, #670066 20px) !important; }
   #map #b {
     height: 300px;
     width: 400px;
@@ -1227,6 +1231,10 @@ svg marker#head {
     left: 320px;
     background: orangered;
     position: absolute; }
+    #map #b #b1 {
+      height: 100%; }
+      #map #b #b1.selected {
+        background: repeating-linear-gradient(135deg, orangered, orangered 10px, #cc3700 10px, #cc3700 20px) !important; }
 
 #crt {
   width: 308px; }

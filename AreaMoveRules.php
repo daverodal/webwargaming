@@ -22,12 +22,12 @@ You should have received a copy of the GNU General Public License
 $numWalks = 0;
 class AreaMoveRules
 {
-    /* @var Force */
+    /* @var AreaForce */
     public $force;
-    /* @var Terrain */
+    /* @var AreaTerrain */
     public $terrain;
 
-    /* @var MapData */
+    /* @var AreaMapData */
     public $mapData;
     // local variables
     public $movingUnitId;
@@ -60,7 +60,7 @@ class AreaMoveRules
         return $data;
     }
 
-    function __construct( $data = null)
+    function __construct(AreaForce $Force,AreaTerrain $Terrain, $data = null)
     {
         // Class references
 
@@ -68,6 +68,8 @@ class AreaMoveRules
         $this->moves = new stdClass();
         $this->path = new stdClass();
 
+        $this->force = $Force;
+        $this->terrain = $Terrain;
 
         if ($data) {
             foreach ($data as $k => $v) {
@@ -143,7 +145,7 @@ class AreaMoveRules
                 if ($id == $this->movingUnitId) {
                     $movingUnit = $this->force->units[$id];
                     // clicked on moving or reinforcing unit
-                    /* @var Unit $movingUnit */
+                    /* @var AreaUnit $movingUnit */
                     if ($movingUnit->unitIsMoving() == true) {
                         $this->stopMove($movingUnit);
                         $dirty = true;
@@ -282,7 +284,14 @@ class AreaMoveRules
         global $numBangs;
         $numWalks = 0;
         $numBangs = 0;
-        $startHex = $this->force->units[$id]->hexagon;
+        $this->moves = new stdClass();
+        $startHex = $this->force->units[$id]->area;
+        $routes = $this->terrain->getRoutes($startHex);
+
+        foreach($routes as $rKey => $route){
+            $this->moves->$rKey = $route;
+        }
+        return;
         $movesLeft = $this->force->units[$id]->maxMove - $this->force->units[$id]->moveAmountUsed;
         $this->moves = new stdClass();
         $this->moveQueue = array();
@@ -886,7 +895,7 @@ class AreaMoveRules
         /*
          * Don't think this is important test. Unit will be STATUS_STOPPED if cannot move.
          */
-        if (!$this->stickyZOC || $this->force->unitIsZOC($id) == false) {
+        if (true || !$this->stickyZOC || $this->force->unitIsZOC($id) == false) {
             if ($unit->setStatus(STATUS_MOVING) == true) {
                 $this->anyUnitIsMoving = true;
                 $this->movingUnitId = $id;
@@ -904,8 +913,9 @@ class AreaMoveRules
         }
     }
 
-    function stopMove(BaseUnit $movingUnit)
+    function stopMove(AreaUnit $movingUnit)
     {
+
         $battle = Battle::getBattle();
         $victory = $battle->victory;
         $victory->preStopMovingUnit($movingUnit);

@@ -85,4 +85,164 @@
 
 
     });
+
+
+    x.register("moveRules", function(moveRules,data) {
+        var str;
+        $(".clone").remove();
+        $('.selected').removeClass('selected');
+        if(moveRules.movingUnitId >= 0){
+            var opacity = .4;
+            var borderColor = "#ccc #333 #333 #ccc";
+            if(moveRules.moves){
+                id = moveRules.movingUnitId;
+                for(var i in moveRules.moves){
+                    debugger;
+
+                    var color = $("#"+i).css('background-color');
+                    debugger;
+
+
+
+                    $("#"+i).addClass('selected');
+
+
+                }
+                return;
+                newId = "firstclone";
+                width = $("#"+id).width();
+                height = $("#"+id).height();
+
+                var MYCLONE = $("#"+id).clone(true).detach();
+                MYCLONE.find(".arrow").hide();
+                MYCLONE.addClass("clone");
+                MYCLONE.find('.shadow-mask').css({backgroundColor:'transparent'});
+                MYCLONE.hover(function(){
+                        if(opacity != 1){
+                            $(this).css("border-color","#fff");
+                        }
+                        $(this).css("opacity",1.0).css('box-shadow','#333 5px 5px 5px');
+                        var path = $(this).attr("path");
+                        var pathes = path.split(",");
+                        for(i in pathes){
+                            $("#"+id+"Hex"+pathes[i]).css("opacity",1.0).css("border-color","#fff").css('box-shadow','#333 5px 5px 5px');
+                            $("#"+id+"Hex"+pathes[i]+".occupied").css("display","block");
+
+                        }
+                    },
+                    function(){
+                        if(opacity != 1){
+                            $(this).css("border-color","#ccc #333 #333 #ccc");
+                        }
+                        $(this).css("opacity",opacity).css('box-shadow','none');
+                        var path = $(this).attr("path");
+                        var pathes = path.split(",");
+                        for(i in pathes){
+                            $("#"+id+"Hex"+pathes[i]).css("opacity",.4).css("border-color","#ccc #333 #333 #ccc").css('box-shadow','none');
+                            $("#"+id+"Hex"+pathes[i]+".occupied").css("display","none");
+
+                        }
+
+                    });
+
+                var label = MYCLONE.find("div.unit-numbers span").html();
+                if(data.gameRules.phase == <?=RED_COMBAT_PHASE;?> || data.gameRules.phase == <?=BLUE_COMBAT_PHASE;?> || data.gameRules.phase == <?=TEAL_COMBAT_PHASE;?> || data.gameRules.phase == <?=PURPLE_COMBAT_PHASE;?>){
+                    if(data.gameRules.mode == <?=ADVANCING_MODE;?>){
+                        var unit = moveRules.movingUnitId;
+
+                        thetas = data.combatRules.resolvedCombats[data.combatRules.currentDefender].thetas[unit]
+                        for(k in thetas){
+                            $("#"+unit+ " .arrow").clone().addClass('arrowClone').addClass('arrow'+k).insertAfter("#"+unit+ " .arrow").removeClass('arrow');
+                            theta = thetas[k];
+                            theta *= 15;
+                            theta += 180;
+                            $("#"+unit+ " .arrow"+k).css({opacity: "1.0"});
+                            $("#"+unit+ " .arrow"+k).css({webkitTransform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
+                            $("#"+unit+ " .arrow"+k).css({transform: ' scale(.55,.55) rotate('+theta+"deg) translateY(45px)"});
+                        }
+                    }
+                    opacity = 1.;
+                    borderColor = "turquoise";
+                }
+                MYCLONE.css({opacity:opacity,
+                        zIndex:102,
+                        borderColor:borderColor,
+                        boxShadow:"none",
+                        position:"absolute"}
+                );
+                var diff = 0;
+                var counter = 0;
+                for( i in moveRules.moves){
+                    counter++;
+                    newId = id+"Hex"+i;
+
+                    var secondGenClone = MYCLONE.clone(true).attr(
+                        {
+                            id:newId,
+                            path:moveRules.moves[i].pathToHere
+                        }
+                    );
+
+                    var newLabel = label.replace(/((?:<span[^>]*>)?[-+ru](?:<\/span>)?).*/,"$1 "+moveRules.moves[i].pointsLeft);
+                    newLabel = renderUnitNumbers(data.mapUnits[id], moveRules.moves[i].pointsLeft);
+                    var txt = secondGenClone.find('div.unit-numbers span').html(newLabel).text();
+                    secondGenClone.find('div.unit-numbers span').addClass('infoLen'+txt.length);
+                    secondGenClone.find('.counterWrapper .guard-unit').addClass('infoLen'+newLabel.length);
+                    if(moveRules.moves[i].isOccupied){
+                        secondGenClone.addClass("occupied");
+
+
+                    }
+                    /* left and top need to be set after appendTo() */
+
+                    secondGenClone.appendTo('#gameImages').css({left:moveRules.moves[i].pixX - width/2 +"px",top:moveRules.moves[i].pixY - height/2 +"px"});
+                    /* apparently cloning attaches the mouse events */
+                }
+
+                $("#firstclone").remove();
+            }
+
+        }
+    });
+
+
+    $(document).ready(function(){
+
+        $(".area").on("click", function(){
+            console.log($(this).attr('id'));
+        });
+
+    });
+
+
+
+    function LightenDarkenColor(col, amt) {
+
+        var usePound = false;
+
+        if (col[0] == "#") {
+            col = col.slice(1);
+            usePound = true;
+        }
+
+        var num = parseInt(col,16);
+
+        var r = (num >> 16) + amt;
+
+        if (r > 255) r = 255;
+        else if  (r < 0) r = 0;
+
+        var b = ((num >> 8) & 0x00FF) + amt;
+
+        if (b > 255) b = 255;
+        else if  (b < 0) b = 0;
+
+        var g = (num & 0x0000FF) + amt;
+
+        if (g > 255) g = 255;
+        else if (g < 0) g = 0;
+
+        return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
+
+    }
 </script>
