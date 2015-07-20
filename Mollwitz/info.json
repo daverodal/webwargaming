@@ -769,19 +769,23 @@
     "params":{
       "units":[
 
-        {"num":2,"forceId":2,"combat":5,"movement":3,"reinforce":"B","range":1,"nationality":"Danish","class":"infantry"},
-        {"num":8,"forceId":2,"combat":4,"movement":3,"reinforce":"B","range":1,"nationality":"Danish","class":"infantry"},
+        {"num":1,"forceId":2,"combat":6,"movement":4,"reinforce":"B","range":1,"nationality":"Rebel","class":"infantry"},
+        {"num":2,"forceId":2,"combat":5,"movement":4,"reinforce":"B","range":1,"nationality":"Rebel","class":"infantry"},
+        {"num":2,"forceId":2,"combat":3,"movement":4,"reinforce":"B","range":1,"nationality":"Militia","class":"infantry"},
+        {"num":6,"forceId":2,"combat":4,"movement":4,"reinforce":"B","range":1,"nationality":"Rebel","class":"infantry"},
 
-        {"num":2,"forceId":2,"combat":5,"movement":5,"reinforce":"B","range":1,"nationality":"Danish","class":"cavalry"},
-        {"num":8,"forceId":2,"combat":3,"movement":5,"reinforce":"B","range":1,"nationality":"Danish","class":"cavalry"},
+        {"num":1,"forceId":2,"combat":2,"movement":2,"reinforce":"B","range":3,"nationality":"Danish","class":"artillery"},
+        {"num":3,"forceId":2,"combat":2,"movement":3,"reinforce":"B","range":2,"nationality":"Danish","class":"artillery"},
 
-        {"num":2,"forceId":2,"combat":2,"movement":2,"reinforce":"B","range":3,"nationality":"Danish","class":"artillery"},
+        {"num":1,"forceId":1,"combat":8,"movement":4,"reinforce":"A","range":1,"nationality":":Loyalist","class":"infantry"},
+        {"num":7,"forceId":1,"combat":6,"movement":4,"reinforce":"A","range":1,"nationality":":Loyalist","class":"infantry"},
+        {"num":5,"forceId":1,"combat":6,"movement":4,"reinforce":"A","range":1,"nationality":":Hessian","class":"infantry"},
 
-        {"num":8,"forceId":1,"combat":6,"movement":3,"reinforce":"A","range":1,"nationality":"Swedish","class":"infantry"},
+        {"num":1,"forceId":1,"combat":2,"movement":6,"reinforce":"A","range":1,"nationality":"Loyalist","class":"cavalry"},
 
-        {"num":8,"forceId":1,"combat":6,"movement":5,"reinforce":"A","range":1,"nationality":"Swedish","class":"cavalry"},
-
-        {"num":4,"forceId":1,"combat":2,"movement":2,"reinforce":"A","range":3,"nationality":"Swedish","class":"artillery"}
+        {"num":2,"forceId":1,"combat":2,"movement":3,"reinforce":"A","range":2,"nationality":"Loyalist","class":"artillery"}
+        {"num":1,"forceId":1,"combat":3,"movement":2,"reinforce":"A","range":3,"nationality":"Loyalist","class":"artillery"}
+        {"num":1,"forceId":1,"combat":34,"movement":2,"reinforce":"A","range":4,"nationality":"Loyalist","class":"artillery"}
 
 
       ]
