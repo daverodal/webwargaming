@@ -774,8 +774,8 @@
         {"num":2,"forceId":2,"combat":3,"movement":4,"reinforce":"B","range":1,"nationality":"Militia","class":"infantry"},
         {"num":6,"forceId":2,"combat":4,"movement":4,"reinforce":"B","range":1,"nationality":"Rebel","class":"infantry"},
 
-        {"num":1,"forceId":2,"combat":2,"movement":2,"reinforce":"B","range":3,"nationality":"Danish","class":"artillery"},
-        {"num":3,"forceId":2,"combat":2,"movement":3,"reinforce":"B","range":2,"nationality":"Danish","class":"artillery"},
+        {"num":1,"forceId":2,"combat":2,"movement":2,"reinforce":"B","range":3,"nationality":"Rebel","class":"artillery"},
+        {"num":3,"forceId":2,"combat":2,"movement":3,"reinforce":"B","range":2,"nationality":"Rebel","class":"artillery"},
 
         {"num":1,"forceId":1,"combat":8,"movement":4,"reinforce":"A","range":1,"nationality":"Loyalist","class":"infantry"},
         {"num":7,"forceId":1,"combat":6,"movement":4,"reinforce":"A","range":1,"nationality":"Loyalist","class":"infantry"},
