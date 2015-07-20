@@ -53,15 +53,15 @@
     }
     #a1{
       border-bottom: 1px solid white;
-      background: purple;
+      background-color: purple;
       &.selected{
-        background: repeating-linear-gradient(45deg,  purple,  purple 10px,  darken(purple,10%) 10px,  darken(purple, 10%) 20px) !important;
+        background-image: repeating-linear-gradient(45deg,  transparent,  transparent 10px,  rgba(white, .3) 10px,  rgba(white, .3) 20px) !important;
       }
     }
     #a2{
-      background: lighten(purple, 5%);
+      background-color: lighten(purple, 12%);
       &.selected{
-        background: repeating-linear-gradient(135deg,  lighten(purple, 5%),  lighten(purple, 5%) 10px,  darken(purple,5%) 10px,  darken(purple, 5%) 20px) !important;
+        background-image: repeating-linear-gradient(45deg,  transparent,  transparent 10px,  rgba(white, .3) 10px,  rgba(white, .3) 20px) !important;
       }
     }
   }
@@ -69,7 +69,7 @@
     #b1{
       height:100%;
       &.selected{
-        background: repeating-linear-gradient(135deg,  orangered,  orangered 10px,  darken(orangered,10%) 10px,  darken(orangered, 10%) 20px) !important;
+        background-image: repeating-linear-gradient(45deg,  transparent,  transparent 10px,  rgba(white, .3) 10px,  rgba(white, .3) 20px) !important;
       }
     }
     height: 300px;width:400px;
@@ -185,4 +185,5 @@
   border:0px;
   transform: rotate(180deg);
 }
+
 
