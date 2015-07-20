@@ -1217,13 +1217,13 @@ svg marker#head {
       height: 50%; }
     #map #a #a1 {
       border-bottom: 1px solid white;
-      background: purple; }
+      background-color: purple; }
       #map #a #a1.selected {
-        background: repeating-linear-gradient(45deg, purple, purple 10px, #4d004d 10px, #4d004d 20px) !important; }
+        background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.3) 10px, rgba(255, 255, 255, 0.3) 20px) !important; }
     #map #a #a2 {
-      background: #9a0099; }
+      background-color: #bd00bd; }
       #map #a #a2.selected {
-        background: repeating-linear-gradient(135deg, #9a0099, #9a0099 10px, #670066 10px, #670066 20px) !important; }
+        background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.3) 10px, rgba(255, 255, 255, 0.3) 20px) !important; }
   #map #b {
     height: 300px;
     width: 400px;
@@ -1234,7 +1234,7 @@ svg marker#head {
     #map #b #b1 {
       height: 100%; }
       #map #b #b1.selected {
-        background: repeating-linear-gradient(135deg, orangered, orangered 10px, #cc3700 10px, #cc3700 20px) !important; }
+        background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.3) 10px, rgba(255, 255, 255, 0.3) 20px) !important; }
 
 #crt {
   width: 308px; }
