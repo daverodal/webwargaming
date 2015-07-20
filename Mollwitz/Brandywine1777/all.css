@@ -2061,11 +2061,11 @@ You should have received a copy of the GNU General Public License
 .Rebel.pontoon .unit-numbers {
   display: none; }
 
-.playerTwo {
+.playerThree {
   background: #4cb800;
   border-color: #4cb800 !important; }
 
-.HessianFace, .playerTwoFace {
+.HessianFace, .playerThreeFace {
   color: #4cb800; }
 
 .Hessian .counterWrapper {
