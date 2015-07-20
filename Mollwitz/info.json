@@ -783,8 +783,8 @@
 
         {"num":1,"forceId":1,"combat":2,"movement":6,"reinforce":"A","range":1,"nationality":"Loyalist","class":"cavalry"},
 
-        {"num":2,"forceId":1,"combat":2,"movement":3,"reinforce":"A","range":2,"nationality":"Loyalist","class":"artillery"}
-        {"num":1,"forceId":1,"combat":3,"movement":2,"reinforce":"A","range":3,"nationality":"Loyalist","class":"artillery"}
+        {"num":2,"forceId":1,"combat":2,"movement":3,"reinforce":"A","range":2,"nationality":"Loyalist","class":"artillery"},
+        {"num":1,"forceId":1,"combat":3,"movement":2,"reinforce":"A","range":3,"nationality":"Loyalist","class":"artillery"},
         {"num":1,"forceId":1,"combat":34,"movement":2,"reinforce":"A","range":4,"nationality":"Loyalist","class":"artillery"}
 
 
