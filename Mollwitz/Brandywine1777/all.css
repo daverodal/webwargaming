@@ -2133,16 +2133,16 @@ You should have received a copy of the GNU General Public License
   display: none; }
 
 .vintage.Hessian.infantry .counterWrapper .counter {
-  background-image: url("../../js/RussianInfBadge.png");
+  background-image: url("../../js/RusInfBadge.png");
   background-size: 19px; }
 .vintage.Hessian.cavalry .counterWrapper .counter {
-  background-image: url("../../js/RussianCavBadge.png");
+  background-image: url("../../js/RusCavBadge.png");
   background-size: 19px; }
 .vintage.Hessian.artillery .counterWrapper .counter {
-  background-image: url("../../js/RussianArtBadge.png");
+  background-image: url("../../js/RusArtBadge.png");
   background-size: 19px; }
 .vintage.Hessian.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/RussianHorArtBadge.png");
+  background-image: url("../../js/RusHorArtBadge.png");
   background-size: 19px; }
 .vintage.Hessian.hq .counterWrapper .counter {
   background-color: lightgreen;
@@ -2152,7 +2152,7 @@ You should have received a copy of the GNU General Public License
   border: none; }
   .vintage.Hessian.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/RussianPontoon.png");
+    background-image: url("../../js/RusPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -2161,19 +2161,19 @@ You should have received a copy of the GNU General Public License
   display: none; }
 
 .Hessian.infantry .counterWrapper .counter {
-  background-image: url("../../js/RussianInfBadge.png");
+  background-image: url("../../js/RusInfBadge.png");
   background-size: 14px; }
 
 .Hessian.cavalry .counterWrapper .counter {
-  background-image: url("../../js/RussianCavBadge.png");
+  background-image: url("../../js/RusCavBadge.png");
   background-size: 14px; }
 
 .Hessian.artillery .counterWrapper .counter {
-  background-image: url("../../js/RussianArtBadge.png");
+  background-image: url("../../js/RusArtBadge.png");
   background-size: 14px; }
 
 .Hessian.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/RussianHorArtBadge.png");
+  background-image: url("../../js/RusHorArtBadge.png");
   background-size: 14px; }
 
 .Hessian.hq .counterWrapper .counter {
@@ -2185,7 +2185,7 @@ You should have received a copy of the GNU General Public License
   border: none; }
   .Hessian.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/RussianPontoon.png");
+    background-image: url("../../js/RusPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;

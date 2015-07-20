@@ -24,7 +24,7 @@ $danishWrapperColor: #bfbfbf;
 @include badge(Rebel, Pru);
 @include player(Hessian, Two, $russianColor, $russianWrapperColor);
 @include badge(Loyalist, Ang);
-@include badge(Hessian, Russian);
+@include badge(Hessian, Rus);
 .swedes.specialHexes{
   background-color: $swedishWrapperColor;
   color:white;
