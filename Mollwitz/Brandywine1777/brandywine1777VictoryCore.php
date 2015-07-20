@@ -95,66 +95,51 @@ class brandywine1777VictoryCore extends victoryCore
         $gameRules = $battle->gameRules;
         $scenario = $battle->scenario;
         $turn = $gameRules->turn;
-        $danishWin = $swedishWin = $draw = false;
+        $loyalWin = $rebelWin = $draw = false;
 
         $victoryReason = "";
 
         if (!$this->gameOver) {
-            $winScore = 35;
-            $highWinScore = 42;
-            if ($this->victoryPoints[DANISH_FORCE] >= $winScore && $turn <= 5) {
-                $danishWin = true;
-                $victoryReason .= "Over $winScore on or before turn 5";
-            }
-            if ($this->victoryPoints[DANISH_FORCE] >= $highWinScore) {
-                $danishWin = true;
-                $victoryReason .= "Over $highWinScore ";
-            }
-            if ($this->victoryPoints[SWEDISH_FORCE] >= $winScore && $turn <= 5) {
-                $swedishWin = true;
-                $victoryReason .= "Over $winScore on or before turn 5 ";
-            }
-            if ($this->victoryPoints[SWEDISH_FORCE] >= $highWinScore) {
-                $swedishWin = true;
-                $victoryReason .= "Over $highWinScore ";
+            $loyalScore = 40;
+            $rebelScore = 30;
+
+            if ($this->victoryPoints[LOYALIST_FORCE] >= $loyalScore) {
+                $loyalWin = true;
+                $victoryReason .= "Over $loyalScore ";
             }
 
-            if ($danishWin && !$swedishWin) {
-                $this->winner = DANISH_FORCE;
-                $gameRules->flashMessages[] = "Danish Win";
+            if ($this->victoryPoints[REBEL_FORCE] >= $rebelScore) {
+                $rebelWin = true;
+                $victoryReason .= "Over $rebelScore ";
+            }
+
+            if ($rebelWin && !$loyalWin) {
+                $this->winner = REBEL_FORCE;
+                $gameRules->flashMessages[] = "Rebel Win";
                 $gameRules->flashMessages[] = $victoryReason;
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
                 return true;
             }
-            if ($swedishWin && !$danishWin) {
-                $this->winner = SWEDISH_FORCE;
-                $gameRules->flashMessages[] = "Swedish Win";
+            if ($loyalWin && !$rebelWin) {
+                $this->winner = LOYALIST_FORCE;
+                $gameRules->flashMessages[] = "Loyal Win";
                 $gameRules->flashMessages[] = $victoryReason;
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
                 return true;
             }
-            if ($danishWin && $swedishWin) {
+            if ($loyalWin && $rebelWin) {
                 $gameRules->flashMessages[] = "Tie Game";
                 $gameRules->flashMessages[] = $victoryReason;
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
                 return true;
             }
-            echo "$turn ";
-            echo $gameRules->maxTurn;
             if ($turn > $gameRules->maxTurn) {
-                if($battle->mapData->getSpecialHex(1113)  == DANISH_FORCE || $this->victoryPoints[DANISH_FORCE] >= 15){
-                    $this->winner = DANISH_FORCE;
-                    $gameRules->flashMessages[] = "Danish Win";
-                    $gameRules->flashMessages[] = "Swedes Fail to Win";
-                    $this->gameOver = true;
-                    return true;
-                }
-                $gameRules->flashMessages[] = "Tie Game";
-                $gameRules->flashMessages[] = $victoryReason;
-                $gameRules->flashMessages[] = "Game Over";
+                $this->winner = REBEL_FORCE;
+                $gameRules->flashMessages[] = "Rebel Win";
+                $gameRules->flashMessages[] = "Loyalist Fail to Win";
                 $this->gameOver = true;
                 return true;
             }
@@ -171,22 +156,6 @@ class brandywine1777VictoryCore extends victoryCore
         }
         $b = Battle::getBattle();
         $turn = $b->gameRules->turn;
-        if ($turn <= 3 && $this->wasIndecisive === false && $b->gameRules->phase == RED_MOVE_PHASE) {
-            $Die = floor(6 * (rand() / getrandmax()));
-            /* 1 or 2 is 0 or 1 */
-            if ($Die < 2) {
-
-                $this->isIndecisive = true;
-                $this->wasIndecisive = true;
-                $b->gameRules->flashMessages[] = "$Die No Danish Movement this turn.";
-
-                return;
-            }
-        }
-        if ($turn == 4 && $this->wasIndecisive === false && $b->gameRules->phase == RED_MOVE_PHASE) {
-            $this->isIndecisive = true;
-            $this->wasIndecisive = true;
-        }
     }
 
     public function postRecoverUnits($args)
@@ -203,9 +172,5 @@ class brandywine1777VictoryCore extends victoryCore
         $id = $unit->id;
 
         parent::postRecoverUnit($args);
-
-        if ($this->isIndecisive && $unit->status == STATUS_READY) {
-            $unit->status = STATUS_UNAVAIL_THIS_PHASE;
-        }
     }
 }

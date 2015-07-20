@@ -26,13 +26,10 @@
         <li>Each side gains 1 point for each hostile combat strength point destroyed.
         </li>
         <li>
-            Swedish Victory: By turn 5 inclusive at the end of any Game turn that the Swedes have 35 points. By turn 8 inclusive at the end of any turn that the Swedes have 42 points.
+            Loyalists Win: at the end of any Loyalist turn before the end of turn 8, that they have accumulated 40 or more points with a lead of at least 10 points.
         </li>
 
-        <li>Danish Victory: By turn 5 inclusive at the end of any Game turn that the Danes have 35 points.
-            Or if the Swedes have not won by the conclusion of turn 8 and the Danes Occupy or were the last
-            to move through Wakenstadt or have scored at least 15 points.
-
+        <li>Rebels Win: If the Loyalists do not, or if they score 30 points before losing 30 of their own.
         </li>
     </ol>
 </li>

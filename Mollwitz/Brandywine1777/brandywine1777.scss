@@ -22,7 +22,7 @@ $danishWrapperColor: #bfbfbf;
 @include player(Loyalist ,One , $angloAlliedColor, $angloAlliedWrapperColor);
 @include player(Rebel, Two, $prussianColor, $prussianWrapperColor);
 @include badge(Rebel, Pru);
-@include player(Hessian, Two, $russianColor, $russianWrapperColor);
+@include player(Hessian, Three, $russianColor, $russianWrapperColor);
 @include badge(Loyalist, Ang);
 @include badge(Hessian, Rus);
 .swedes.specialHexes{
