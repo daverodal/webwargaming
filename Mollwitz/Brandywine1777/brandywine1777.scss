@@ -19,10 +19,12 @@ You should have received a copy of the GNU General Public License
 
 $danishColor: #ff3f1f;
 $danishWrapperColor: #bfbfbf;
-@include player(Swedish ,One , $swedishColor, $swedishWrapperColor);
-@include player(Danish, Two, $danishColor, $danishWrapperColor);
-@include badge(Danish, Danish);
+@include player(Loyalist ,One , $angloAlliedColor, $angloAlliedWrapperColor);
+@include player(Rebel, Two, $prussianColor, $prussianWrapperColor);
+@include badge(Rebel, Prussian);
+@include player(Hessian, Two, $russianColor, $russianWrapperColor);
 
+@include badge(Hessian, Russian);
 .swedes.specialHexes{
   background-color: $swedishWrapperColor;
   color:white;
