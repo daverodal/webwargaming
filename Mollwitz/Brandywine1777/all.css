@@ -2071,6 +2071,67 @@ You should have received a copy of the GNU General Public License
 .Hessian .counterWrapper {
   background-color: #006114; }
 
+.vintage.Loyalist.infantry .counterWrapper .counter {
+  background-image: url("../../js/AngInfBadge.png");
+  background-size: 19px; }
+.vintage.Loyalist.cavalry .counterWrapper .counter {
+  background-image: url("../../js/AngCavBadge.png");
+  background-size: 19px; }
+.vintage.Loyalist.artillery .counterWrapper .counter {
+  background-image: url("../../js/AngArtBadge.png");
+  background-size: 19px; }
+.vintage.Loyalist.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/AngHorArtBadge.png");
+  background-size: 19px; }
+.vintage.Loyalist.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.Loyalist.pontoon .counterWrapper {
+  border: none; }
+  .vintage.Loyalist.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/AngPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.Loyalist.pontoon .unit-numbers {
+  display: none; }
+
+.Loyalist.infantry .counterWrapper .counter {
+  background-image: url("../../js/AngInfBadge.png");
+  background-size: 14px; }
+
+.Loyalist.cavalry .counterWrapper .counter {
+  background-image: url("../../js/AngCavBadge.png");
+  background-size: 14px; }
+
+.Loyalist.artillery .counterWrapper .counter {
+  background-image: url("../../js/AngArtBadge.png");
+  background-size: 14px; }
+
+.Loyalist.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/AngHorArtBadge.png");
+  background-size: 14px; }
+
+.Loyalist.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Loyalist.pontoon .counterWrapper {
+  border: none; }
+  .Loyalist.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/AngPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Loyalist.pontoon .unit-numbers {
+  display: none; }
+
 .vintage.Hessian.infantry .counterWrapper .counter {
   background-image: url("../../js/RussianInfBadge.png");
   background-size: 19px; }
