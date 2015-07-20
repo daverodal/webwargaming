@@ -1981,84 +1981,155 @@ You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
    */
 .playerOne {
-  background: #FECC00;
-  border-color: #FECC00 !important; }
+  background: #df5842;
+  border-color: #df5842 !important; }
 
-.SwedishFace, .playerOneFace {
-  color: #FECC00; }
+.LoyalistFace, .playerOneFace {
+  color: #df5842; }
 
-.Swedish .counterWrapper {
-  background-color: #006AA7; }
+.Loyalist .counterWrapper {
+  background-color: #f00; }
 
 .playerTwo {
-  background: #ff3f1f;
-  border-color: #ff3f1f !important; }
+  background: #fffd7f;
+  border-color: #fffd7f !important; }
 
-.DanishFace, .playerTwoFace {
-  color: #ff3f1f; }
+.RebelFace, .playerTwoFace {
+  color: #fffd7f; }
 
-.Danish .counterWrapper {
-  background-color: #bfbfbf; }
+.Rebel .counterWrapper {
+  background-color: #0117de; }
 
-.vintage.Danish.infantry .counterWrapper .counter {
-  background-image: url("../../js/DanishInfBadge.png");
+.vintage.Rebel.infantry .counterWrapper .counter {
+  background-image: url("../../js/PrussianInfBadge.png");
   background-size: 19px; }
-.vintage.Danish.cavalry .counterWrapper .counter {
-  background-image: url("../../js/DanishCavBadge.png");
+.vintage.Rebel.cavalry .counterWrapper .counter {
+  background-image: url("../../js/PrussianCavBadge.png");
   background-size: 19px; }
-.vintage.Danish.artillery .counterWrapper .counter {
-  background-image: url("../../js/DanishArtBadge.png");
+.vintage.Rebel.artillery .counterWrapper .counter {
+  background-image: url("../../js/PrussianArtBadge.png");
   background-size: 19px; }
-.vintage.Danish.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/DanishHorArtBadge.png");
+.vintage.Rebel.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/PrussianHorArtBadge.png");
   background-size: 19px; }
-.vintage.Danish.hq .counterWrapper .counter {
+.vintage.Rebel.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
   background-size: 19px; }
-.vintage.Danish.pontoon .counterWrapper {
+.vintage.Rebel.pontoon .counterWrapper {
   border: none; }
-  .vintage.Danish.pontoon .counterWrapper .counter {
+  .vintage.Rebel.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/DanishPontoon.png");
+    background-image: url("../../js/PrussianPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
     border: none; }
-.vintage.Danish.pontoon .unit-numbers {
+.vintage.Rebel.pontoon .unit-numbers {
   display: none; }
 
-.Danish.infantry .counterWrapper .counter {
-  background-image: url("../../js/DanishInfBadge.png");
+.Rebel.infantry .counterWrapper .counter {
+  background-image: url("../../js/PrussianInfBadge.png");
   background-size: 14px; }
 
-.Danish.cavalry .counterWrapper .counter {
-  background-image: url("../../js/DanishCavBadge.png");
+.Rebel.cavalry .counterWrapper .counter {
+  background-image: url("../../js/PrussianCavBadge.png");
   background-size: 14px; }
 
-.Danish.artillery .counterWrapper .counter {
-  background-image: url("../../js/DanishArtBadge.png");
+.Rebel.artillery .counterWrapper .counter {
+  background-image: url("../../js/PrussianArtBadge.png");
   background-size: 14px; }
 
-.Danish.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/DanishHorArtBadge.png");
+.Rebel.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/PrussianHorArtBadge.png");
   background-size: 14px; }
 
-.Danish.hq .counterWrapper .counter {
+.Rebel.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
-.Danish.pontoon .counterWrapper {
+.Rebel.pontoon .counterWrapper {
   border: none; }
-  .Danish.pontoon .counterWrapper .counter {
+  .Rebel.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/DanishPontoon.png");
+    background-image: url("../../js/PrussianPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
     border: none; }
-.Danish.pontoon .unit-numbers {
+.Rebel.pontoon .unit-numbers {
+  display: none; }
+
+.playerTwo {
+  background: #4cb800;
+  border-color: #4cb800 !important; }
+
+.HessianFace, .playerTwoFace {
+  color: #4cb800; }
+
+.Hessian .counterWrapper {
+  background-color: #006114; }
+
+.vintage.Hessian.infantry .counterWrapper .counter {
+  background-image: url("../../js/RussianInfBadge.png");
+  background-size: 19px; }
+.vintage.Hessian.cavalry .counterWrapper .counter {
+  background-image: url("../../js/RussianCavBadge.png");
+  background-size: 19px; }
+.vintage.Hessian.artillery .counterWrapper .counter {
+  background-image: url("../../js/RussianArtBadge.png");
+  background-size: 19px; }
+.vintage.Hessian.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/RussianHorArtBadge.png");
+  background-size: 19px; }
+.vintage.Hessian.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.Hessian.pontoon .counterWrapper {
+  border: none; }
+  .vintage.Hessian.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/RussianPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.Hessian.pontoon .unit-numbers {
+  display: none; }
+
+.Hessian.infantry .counterWrapper .counter {
+  background-image: url("../../js/RussianInfBadge.png");
+  background-size: 14px; }
+
+.Hessian.cavalry .counterWrapper .counter {
+  background-image: url("../../js/RussianCavBadge.png");
+  background-size: 14px; }
+
+.Hessian.artillery .counterWrapper .counter {
+  background-image: url("../../js/RussianArtBadge.png");
+  background-size: 14px; }
+
+.Hessian.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/RussianHorArtBadge.png");
+  background-size: 14px; }
+
+.Hessian.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Hessian.pontoon .counterWrapper {
+  border: none; }
+  .Hessian.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/RussianPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Hessian.pontoon .unit-numbers {
   display: none; }
 
 .swedes.specialHexes {
