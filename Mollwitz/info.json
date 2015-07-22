@@ -767,6 +767,7 @@
         "value": false
       }],
     "params":{
+      "americanRevolution": true,
       "units":[
 
         {"num":1,"forceId":2,"combat":6,"movement":4,"reinforce":"B","range":1,"nationality":"Rebel","class":"infantry"},

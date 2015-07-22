@@ -249,6 +249,12 @@ class CombatResultsTable
                         $combatLog .= "+1 for attack into town or forest ";
                     }
                 }
+                if($scenario->americanRevolution){
+                    if ($unit->forceId == LOYALIST_FORCE && $isClear && !$acrossRiver) {
+                        $unitStrength++;
+                        $combatLog .= "+1 for attack into clear ";
+                    }
+                }
                 if (($unit->nationality == "Beluchi" || $unit->nationality == "Sikh") && ($isTown || $isForest) && !$acrossRiver) {
                     $unitStrength++;
                     $combatLog .= "+1 for attack into town or forest ";
@@ -382,6 +388,17 @@ class CombatResultsTable
                     $combatLog .= "+1 for defending in clear ";
                 }
                 if ($unit->forceId == RUSSIAN_FORCE && $class == "infantry" && ($isTown || $isForest)) {
+                    $unitDefense += 1;
+                    $combatLog .= "+1 for defending in town or forest ";
+                }
+            }
+            if($scenario->americanRevolution){
+                if ($unit->forceId == LOYALIST_FORCE && $class == "infantry" && $isClear) {
+                    $unitDefense += 1;
+                    $combatLog .= "+1 for defending in clear ";
+                }
+                if ($unit->forceId == REBEL_FORCE && $class == "infantry" && (!$isClear || $acrossRiver)) {
+                    $combatLog .= "Is Clear $isClear across $acrossRiver";
                     $unitDefense += 1;
                     $combatLog .= "+1 for defending in town or forest ";
                 }
