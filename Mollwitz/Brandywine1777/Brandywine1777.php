@@ -115,6 +115,7 @@ class Brandywine1777 extends JagCore
     {
 
         parent::__construct($data, $arg, $scenario, $game);
+        $this->moveRules->noZoc = true;
         if ($data) {
             $this->roadHex = $data->roadHex;
             $this->specialHexA = $data->specialHexA;

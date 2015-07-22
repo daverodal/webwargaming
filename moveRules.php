@@ -47,6 +47,7 @@ class MoveRules
     public $friendlyAllowsRetreat = false;
     public $stacking = 1;
     public $blockedRetreatDamages = false;
+    public $noZoc = false;
 
     function save()
     {
@@ -465,6 +466,9 @@ class MoveRules
                     continue;
                 }
                 $isZoc = $this->force->mapHexIsZOC($newMapHex);
+                if($isZoc && $this->noZoc){
+                    continue;
+                }
                 if ($isZoc && is_numeric($this->enterZoc)) {
                     $moveAmount += (int)$this->enterZoc;
                 }
