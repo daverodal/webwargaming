@@ -397,8 +397,7 @@ class CombatResultsTable
                     $unitDefense += 1;
                     $combatLog .= "+1 for defending in clear ";
                 }
-                if ($unit->forceId == REBEL_FORCE && $class == "infantry" && (!$isClear || $acrossRiver)) {
-                    $combatLog .= "Is Clear $isClear across $acrossRiver";
+                if ($unit->forceId == REBEL_FORCE && $class == "infantry" && (!$isClear || $battle->combatRules->allAreAttackingThisAcrossRiver($defId))) {
                     $unitDefense += 1;
                     $combatLog .= "+1 for defending in town or forest ";
                 }

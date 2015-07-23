@@ -166,6 +166,7 @@ class JagCore extends LandBattle{
         $this->terrain->addTerrainFeature("orchard", "orchard", "f", 0, 0, 0, true, true);
         $this->terrain->addTerrainFeature("hill", "hill", "h", 2, 0, 0, true, true);
         $this->terrain->addTerrainFeature("river", "river", "v", 0, 1, 0, false);
+        $this->terrain->addTerrainFeature("ford", "ford", "d", 0, 1, 0, false);
         $this->terrain->addAltEntranceCost('forest', 'cavalry', 4);
         $this->terrain->addTerrainFeature("trail", "trail", "r", 1, 0, 0, false);
         $this->terrain->addTerrainFeature("swamp", "swamp", "s", 9, 0, 1, true, false);

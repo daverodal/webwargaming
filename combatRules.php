@@ -586,6 +586,35 @@ class CombatRules
         return $allAttackingAcrossRiver;
     }
 
+
+    function allAreAttackingThisAcrossRiver($defenderId)
+    {
+
+        $combatId = $this->defenders->$defenderId;
+        $allAttackingAcrossRiver = true;
+        $attackerHexagonList = $this->combats->$combatId->attackers;
+        /* @var Hexagon $defenderHexagon */
+        $unit = $this->force->getUnit($defenderId);
+        $defenderHexagon = $unit->getUnitHexagon();
+        foreach ($attackerHexagonList as $attackerHexagonId => $val) {
+            /* @var Hexagon $attackerHexagon */
+            $attackerUnit = $this->force->getUnit($attackerHexagonId);
+            $attackerHexagon = $attackerUnit->getUnitHexagon();
+
+            $hexsideX = ($defenderHexagon->getX() + $attackerHexagon->getX()) / 2;
+            $hexsideY = ($defenderHexagon->getY() + $attackerHexagon->getY()) / 2;
+
+            $hexside = new Hexpart($hexsideX, $hexsideY);
+
+            if ($this->terrain->terrainIs($hexside, "river") === false && $this->terrain->terrainIs($hexside, "wadi") === false) {
+
+                $allAttackingAcrossRiver = false;
+            }
+        }
+
+        return $allAttackingAcrossRiver;
+    }
+
     function thisAttackAcrossRiver($defenderId, $attackerId)
     {
 

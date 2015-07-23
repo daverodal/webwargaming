@@ -631,18 +631,8 @@ class Terrain
         if($railMove && ($terrainCode->road || $terrainCode->trail || $terrainCode->ford || $terrainCode->secondaryroad)){
             $roadCost = $this->getTerrainCodeUnitCost('road',$unit);
             $trailCost = $this->getTerrainCodeUnitCost('trail',$unit);
-            $fordCost = $this->getTerrainCodeUnitCost('fordCost',$unit);
+            $fordCost = $this->getTerrainCodeUnitCost('ford',$unit);
             $secondaryroad = $this->getTerrainCodeUnitCost('secondaryroad',$unit);
-            if($roadCost == 0){
-                $roadCost = .5;/* legacy crap */
-            }
-            if($trailCost == 0){
-                $trailCost = 1;/* Legacy */
-            }
-
-            if($fordCost == 0){
-                $fordCost = 2;/* legacy */
-            }
 
             $moveCost = $roadCost;
             if($terrainCode->trail){
@@ -652,7 +642,7 @@ class Terrain
                 $moveCost = $secondaryroad;
             }
             if($terrainCode->ford){
-                $moveCost += $fordCost;
+                $moveCost = $fordCost;
             }
         }
         else
