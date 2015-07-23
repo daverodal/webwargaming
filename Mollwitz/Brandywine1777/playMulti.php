@@ -20,11 +20,11 @@ You should have received a copy of the GNU General Public License
         body{
             background:#ccc;
             color:#333;
-            background: url("<?=base_url("js/BattleofGadebusch.jpg")?>") #333 no-repeat;
+            background: url("<?=base_url("js/PhiladelCampaignHessianMap.jpg")?>") #333 no-repeat;
             background-position: 25% 0;
             background-size:100%;
         }
     </style>
 
 <footer class="attribution">
-    See page for author [Public domain], <a target="_blank" href="https://commons.wikimedia.org/wiki/File%3ABattleofGadebusch.jpg">via Wikimedia Commons</a></footer>
+    See page for author [Public domain], <a target="_blank" href="https://commons.wikimedia.org/wiki/File%3APhiladelCampaignHessianMap.jpg">via Wikimedia Commons</a></footer>

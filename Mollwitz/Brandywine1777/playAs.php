@@ -25,7 +25,7 @@ You should have received a copy of the GNU General Public License
     <style>
         body{
             background:#000;
-            background:url("<?=base_url("js/BattleofGadebusch.jpg")?>") #333 no-repeat;
+            background:url("<?=base_url("js/PhiladelCampaignHessianMap.jpg")?>") #333 no-repeat;
             background-position:center 0;
             background-size:100%;
 
@@ -81,7 +81,7 @@ You should have received a copy of the GNU General Public License
 
 <div class="backBox">
 <h2 style="text-align:center;font-size:30px;font-family:'Monsieur La Doulaise'"> Welcome to</h2>
-    <h1 style=""><span>Gadebusch 1712</span></h1>
+    <h1 style=""><span>Brandywine 1777</span></h1>
 </div>
 <div style="clear:both"></div>
 <fieldset ><Legend>Play As </Legend>
@@ -89,5 +89,6 @@ You should have received a copy of the GNU General Public License
     <a  class="link" href="<?=site_url("wargame/enterMulti");?>/<?=$wargame?>/">Play Multi</a><br>
     <a class="link" href="<?=site_url("wargame/leaveGame");?>">Go to Lobby</a><br>
     <div class="attribution">
-        See page for author [Public domain], <a target="_blank" href="https://commons.wikimedia.org/wiki/File%3ABattleofGadebusch.jpg">via Wikimedia Commons</a>    </div>
+        See page for author [Public domain], <a href="https://commons.wikimedia.org/wiki/File%3APhiladelCampaignHessianMap.jpg">via Wikimedia Commons</a>
+    </div>
 </fieldset>
