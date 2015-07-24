@@ -26,8 +26,7 @@ include "victoryCore.php";
 
 class brandywine1777VictoryCore extends victoryCore
 {
-    public $wasIndecisive;
-    public $isIndecisive;
+    public $isDemoralized = false;
 
     function __construct($data)
     {
@@ -35,9 +34,7 @@ class brandywine1777VictoryCore extends victoryCore
             $this->movementCache = $data->victory->movementCache;
             $this->victoryPoints = $data->victory->victoryPoints;
             $this->gameOver = $data->victory->gameOver;
-            $this->deadGuardInf = $data->victory->deadGuardInf;
-            $this->wasIndecisive = $data->victory->wasIndecisive;
-            $this->isIndecisive = $data->victory->isIndecisive;
+            $this->isDemoralized = $data->victory->isDemoralized;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
@@ -50,9 +47,7 @@ class brandywine1777VictoryCore extends victoryCore
     public function save()
     {
         $ret = parent::save();
-        $ret->deadGuardInf = $this->deadGuardInf;
-        $ret->wasIndecisive = $this->wasIndecisive;
-        $ret->isIndecisive = $this->isIndecisive;
+        $ret->isDemoralized = $this->isDemoralized;
         return $ret;
     }
 
@@ -60,14 +55,10 @@ class brandywine1777VictoryCore extends victoryCore
     {
         $unit = $args[0];
         $mult = 1;
-        if ($unit->nationality == "Guard") {
-            $mult = 1.5;
-            if ($unit->class == "infantry" && $unit->maxStrength == 9) {
-                $mult = 2.0;
-                $this->deadGuardInf = true;
-            }
-        }
         $this->scoreKills($unit, $mult);
+        if($this->victoryPoints[LOYALIST_FORCE] > 30){
+            $this->isDemoralized = true;
+        }
     }
 
     public function specialHexChange($args)
@@ -77,13 +68,13 @@ class brandywine1777VictoryCore extends victoryCore
         list($mapHexName, $forceId) = $args;
 
         if (in_array($mapHexName, $battle->specialHexB)) {
-            if ($forceId == SWEDISH_FORCE) {
-                $this->victoryPoints[SWEDISH_FORCE] += 10;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='swedish'>+10 Swedish vp</span>";
+            if ($forceId == LOYALIST_FORCE) {
+                $this->victoryPoints[LOYALIST_FORCE] += 10;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalist'>+10 Loyalist vp</span>";
             }
-            if ($forceId == DANISH_FORCE) {
-                $this->victoryPoints[SWEDISH_FORCE] -= 10;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='danish'>-10 Swedish vp</span>";
+            if ($forceId == REBEL_FORCE) {
+                $this->victoryPoints[LOYALIST_FORCE] -= 10;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebel'>-10 Loyalist vp</span>";
             }
         }
     }
@@ -151,17 +142,23 @@ class brandywine1777VictoryCore extends victoryCore
     {
         parent::preRecoverUnits();
 
-        if ($this->wasIndecisive) {
-            return;
-        }
-        $b = Battle::getBattle();
-        $turn = $b->gameRules->turn;
     }
 
     public function postRecoverUnits($args)
     {
 //        parent::postRecoverUnits($args);
-        $this->isIndecisive = false;
+        $b = Battle::getBattle();
+
+        if($this->isDemoralized){
+            if($b->gameRules->phase == RED_MOVE_PHASE) {
+                $b->moveRules->noZoc = true;
+            }
+            else{
+                $b->moveRules->noZoc = true;
+            }
+
+        }
+
     }
 
     public function postRecoverUnit($args)
@@ -172,5 +169,10 @@ class brandywine1777VictoryCore extends victoryCore
         $id = $unit->id;
 
         parent::postRecoverUnit($args);
+        if($this->isDemoralized){
+            if ($b->gameRules->phase == RED_COMBAT_PHASE) {
+                $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+            }
+        }
     }
 }

@@ -20,7 +20,7 @@ You should have received a copy of the GNU General Public License
 $danishColor: #ff3f1f;
 $danishWrapperColor: #bfbfbf;
 @include player(Loyalist ,One , $angloAlliedColor, $angloAlliedWrapperColor);
-@include player(Rebel, Two, $prussianColor, $prussianWrapperColor);
+@include player(Rebel, Two, $prussianColor,  $prussianWrapperColor, $prussianWrapperColor);
 @include player(Militia, Three, $prussianColor, $prussianWrapperColor);
 @include badge(Rebel, Pru);
 @include badge(Militia, Pru);
