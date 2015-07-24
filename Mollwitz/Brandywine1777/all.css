@@ -2071,6 +2071,67 @@ You should have received a copy of the GNU General Public License
 .Rebel.pontoon .unit-numbers {
   display: none; }
 
+.vintage.Militia.infantry .counterWrapper .counter {
+  background-image: url("../../js/PruInfBadge.png");
+  background-size: 19px; }
+.vintage.Militia.cavalry .counterWrapper .counter {
+  background-image: url("../../js/PruCavBadge.png");
+  background-size: 19px; }
+.vintage.Militia.artillery .counterWrapper .counter {
+  background-image: url("../../js/PruArtBadge.png");
+  background-size: 19px; }
+.vintage.Militia.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/PruHorArtBadge.png");
+  background-size: 19px; }
+.vintage.Militia.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 19px; }
+.vintage.Militia.pontoon .counterWrapper {
+  border: none; }
+  .vintage.Militia.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/PruPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.vintage.Militia.pontoon .unit-numbers {
+  display: none; }
+
+.Militia.infantry .counterWrapper .counter {
+  background-image: url("../../js/PruInfBadge.png");
+  background-size: 14px; }
+
+.Militia.cavalry .counterWrapper .counter {
+  background-image: url("../../js/PruCavBadge.png");
+  background-size: 14px; }
+
+.Militia.artillery .counterWrapper .counter {
+  background-image: url("../../js/PruArtBadge.png");
+  background-size: 14px; }
+
+.Militia.horseartillery .counterWrapper .counter {
+  background-image: url("../../js/PruHorArtBadge.png");
+  background-size: 14px; }
+
+.Militia.hq .counterWrapper .counter {
+  background-color: lightgreen;
+  background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Militia.pontoon .counterWrapper {
+  border: none; }
+  .Militia.pontoon .counterWrapper .counter {
+    background-color: lightgreen;
+    background-image: url("../../js/PruPontoon.png");
+    background-size: 32px;
+    width: 32px;
+    height: 32px;
+    border: none; }
+.Militia.pontoon .unit-numbers {
+  display: none; }
+
 .playerThree {
   background: #4cb800;
   border-color: #4cb800 !important; }
