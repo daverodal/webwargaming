@@ -2000,6 +2000,16 @@ You should have received a copy of the GNU General Public License
 .Rebel .counterWrapper {
   background-color: #0117de; }
 
+.playerThree {
+  background: #fffd7f;
+  border-color: #fffd7f !important; }
+
+.MilitiaFace, .playerThreeFace {
+  color: #fffd7f; }
+
+.Militia .counterWrapper {
+  background-color: #0117de; }
+
 .vintage.Rebel.infantry .counterWrapper .counter {
   background-image: url("../../js/PruInfBadge.png");
   background-size: 19px; }

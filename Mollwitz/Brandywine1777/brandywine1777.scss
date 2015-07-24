@@ -21,6 +21,7 @@ $danishColor: #ff3f1f;
 $danishWrapperColor: #bfbfbf;
 @include player(Loyalist ,One , $angloAlliedColor, $angloAlliedWrapperColor);
 @include player(Rebel, Two, $prussianColor, $prussianWrapperColor);
+@include player(Militia, Three, $prussianColor, $prussianWrapperColor);
 @include badge(Rebel, Pru);
 @include player(Hessian, Three, $russianColor, $russianWrapperColor);
 @include badge(Loyalist, Ang);
