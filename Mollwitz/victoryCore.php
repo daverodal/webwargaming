@@ -144,7 +144,7 @@ class victoryCore
             $neighbors = $mapHex->getZocUnits($defenderForceId);
             foreach($neighbors as $neighbor){
                 /* @var MapHex $hex */
-                $hex = $mapData->getHex($neighbor);
+                $hex = $mapData->getHex($force->getUnit($neighbor)->hexagon->name);
                 if($hex->isOccupied($defenderForceId)){
                     $units = $hex->forces[$defenderForceId];
                     foreach($units as $unitId=>$unitVal){
