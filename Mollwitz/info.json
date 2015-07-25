@@ -795,6 +795,10 @@
       "main": {
         "description": "Historical Scenario.",
         "longDescription":"The Brandywine 1777"
+      },
+      "easyfords": {
+        "description": "Fords do not affect combat..",
+        "longDescription":"The Brandywine 1777"
       }
     }
   },
