@@ -66,13 +66,21 @@ class victoryCore
     }
 
     public function scoreKills($unit, $mult = 1){
+
+        global $force_name;
+
         if ($unit->forceId == 1) {
             $victorId = 2;
-            $this->victoryPoints[$victorId] += $unit->damage * $mult;
         } else {
             $victorId = 1;
-            $this->victoryPoints[$victorId] += $unit->damage * $mult;
         }
+        $victorName = $force_name[$victorId];
+        $vp = $unit->damage * $mult;
+        $this->victoryPoints[$victorId] += $vp;
+        $hex = $unit->hexagon;
+        $battle = Battle::getBattle();
+        $class = "${victorName} victory-points";
+        $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='$class'>+$vp $victorName</span>";
     }
 
 

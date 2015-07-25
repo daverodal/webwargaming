@@ -21,8 +21,8 @@ define("SWEDISH_FORCE", 1);
 define("DANISH_FORCE", 2);
 
 global $force_name;
-$force_name[SWEDISH_FORCE] = "Swedes";
-$force_name[DANISH_FORCE] = "Danes";
+$force_name[SWEDISH_FORCE] = "Swedish";
+$force_name[DANISH_FORCE] = "Danish";
 
 require_once "JagCore.php";
 

@@ -97,10 +97,8 @@
             if(moveRules.moves){
                 id = moveRules.movingUnitId;
                 for(var i in moveRules.moves){
-                    debugger;
 
                     var color = $("#"+i).css('background-color');
-                    debugger;
 
 
 

@@ -27,6 +27,7 @@ include "victoryCore.php";
 class brandywine1777VictoryCore extends victoryCore
 {
     public $isDemoralized = false;
+    public $rebelLosses = 0;
 
     function __construct($data)
     {
@@ -35,12 +36,11 @@ class brandywine1777VictoryCore extends victoryCore
             $this->victoryPoints = $data->victory->victoryPoints;
             $this->gameOver = $data->victory->gameOver;
             $this->isDemoralized = $data->victory->isDemoralized;
+            $this->rebelLosses = $data->victory->rebelLosses;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
             $this->gameOver = false;
-            $this->deadGuardInf = false;
-            $this->wasIndecisive = $this->isIndecisive = false;
         }
     }
 
@@ -48,6 +48,7 @@ class brandywine1777VictoryCore extends victoryCore
     {
         $ret = parent::save();
         $ret->isDemoralized = $this->isDemoralized;
+        $ret->rebelLosses = $this->rebelLosses;
         return $ret;
     }
 
@@ -56,7 +57,10 @@ class brandywine1777VictoryCore extends victoryCore
         $unit = $args[0];
         $mult = 1;
         $this->scoreKills($unit, $mult);
-        if($this->victoryPoints[LOYALIST_FORCE] > 30){
+        if ($unit->forceId == REBEL_FORCE) {
+            $this->rebelLosses += $unit->damage;
+        }
+        if($this->rebelLosses > 30){
             $this->isDemoralized = true;
         }
     }
@@ -154,7 +158,7 @@ class brandywine1777VictoryCore extends victoryCore
                 $b->moveRules->noZoc = true;
             }
             else{
-                $b->moveRules->noZoc = true;
+                $b->moveRules->noZoc = false;
             }
 
         }

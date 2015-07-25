@@ -27,15 +27,19 @@ $danishWrapperColor: #bfbfbf;
 @include player(Hessian, Three, $russianColor, $russianWrapperColor);
 @include badge(Loyalist, Ang);
 @include badge(Hessian, Rus);
-.swedes.specialHexes{
-  background-color: $swedishWrapperColor;
-  color:white;
-}
 
 
 .Rebel {
   p.forceMarch, p.range{
     color:white;
   }
+}
+.specialHexes.loyalist{
+  background-color: $angloAlliedWrapperColor;
+  color:white;
+}
+.specialHexes.rebel{
+  background-color: $prussianWrapperColor;
+  color:white;
 }
 

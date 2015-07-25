@@ -998,7 +998,6 @@ x.register("moveRules", function(moveRules,data) {
                 $('.unit').removeAttr('title');
                 $('.unit .unitOdds').remove();
                 if(combatRules.lastResolvedCombat){
-                    debugger;
                     toResolveLog = "Current Combat or Last Combat<br>";
                     title += "<strong style='margin-left:20px;font-size:150%'>" + combatRules.lastResolvedCombat.Die + " " + combatRules.lastResolvedCombat.combatResult + "</strong>";
                     combatCol = combatRules.lastResolvedCombat.index + 1;
