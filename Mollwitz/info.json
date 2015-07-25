@@ -794,11 +794,11 @@
     "scenarios": {
       "main": {
         "description": "Historical Scenario.",
-        "longDescription":"The Brandywine 1777"
+        "longDescription":"Fords do not affect Combat."
       },
-      "easyfords": {
-        "description": "Fords do not affect combat..",
-        "longDescription":"The Brandywine 1777"
+      "hardfords": {
+        "description": "Optional Scenario",
+        "longDescription":"Attacks across fords are halved."
       }
     }
   },

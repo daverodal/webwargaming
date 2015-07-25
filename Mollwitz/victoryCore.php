@@ -141,7 +141,7 @@ class victoryCore
         $defenderForceId = $force->defendingForceId;
         foreach($cR->attackers as $attackId => $combatId){
             $mapHex = $mapData->getHex($force->getUnitHexagon($attackId)->name);
-            $neighbors = $mapHex->neighbors;
+            $neighbors = $mapHex->getZocUnits($defenderForceId);
             foreach($neighbors as $neighbor){
                 /* @var MapHex $hex */
                 $hex = $mapData->getHex($neighbor);

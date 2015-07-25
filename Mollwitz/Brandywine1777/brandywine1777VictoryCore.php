@@ -60,7 +60,7 @@ class brandywine1777VictoryCore extends victoryCore
         if ($unit->forceId == REBEL_FORCE) {
             $this->rebelLosses += $unit->damage;
         }
-        if($this->rebelLosses > 30){
+        if($this->rebelLosses >= 30){
             $this->isDemoralized = true;
         }
     }

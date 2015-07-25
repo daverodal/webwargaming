@@ -340,7 +340,8 @@ class CombatRules
                             }
                         }
                         if ($range == 1) {
-                            if ($this->terrain->terrainIsHexSide($this->force->getUnitHexagon($id)->name, $this->force->getUnitHexagon($defenderId)->name, "blocked")) {
+                            if ($this->terrain->terrainIsHexSide($this->force->getUnitHexagon($id)->name, $this->force->getUnitHexagon($defenderId)->name, "blocked" )
+                            && !($unit->class === "artillery" || $unit->class === "horseartillery") ) {
                                 $good = false;
                             }
                         }
