@@ -2042,8 +2042,8 @@ You should have received a copy of the GNU General Public License
   background-color: #f00; }
 
 .playerTwo {
-  background: #fffd7f;
-  border-color: #fffd7f !important; }
+  background: #d4d300;
+  border-color: #d4d300 !important; }
 
 .RebelFace, .playerTwoFace {
   color: #0117de; }
@@ -2062,16 +2062,16 @@ You should have received a copy of the GNU General Public License
   background-color: #0117de; }
 
 .vintage.Rebel.infantry .counterWrapper .counter {
-  background-image: url("../../js/PruInfBadge.png");
+  background-image: url("../../js/RebelInfBadge.png");
   background-size: 19px; }
 .vintage.Rebel.cavalry .counterWrapper .counter {
-  background-image: url("../../js/PruCavBadge.png");
+  background-image: url("../../js/RebelCavBadge.png");
   background-size: 19px; }
 .vintage.Rebel.artillery .counterWrapper .counter {
-  background-image: url("../../js/PruArtBadge.png");
+  background-image: url("../../js/RebelArtBadge.png");
   background-size: 19px; }
 .vintage.Rebel.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/PruHorArtBadge.png");
+  background-image: url("../../js/RebelHorArtBadge.png");
   background-size: 19px; }
 .vintage.Rebel.hq .counterWrapper .counter {
   background-color: lightgreen;
@@ -2081,7 +2081,7 @@ You should have received a copy of the GNU General Public License
   border: none; }
   .vintage.Rebel.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/PruPontoon.png");
+    background-image: url("../../js/RebelPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -2090,19 +2090,19 @@ You should have received a copy of the GNU General Public License
   display: none; }
 
 .Rebel.infantry .counterWrapper .counter {
-  background-image: url("../../js/PruInfBadge.png");
+  background-image: url("../../js/RebelInfBadge.png");
   background-size: 14px; }
 
 .Rebel.cavalry .counterWrapper .counter {
-  background-image: url("../../js/PruCavBadge.png");
+  background-image: url("../../js/RebelCavBadge.png");
   background-size: 14px; }
 
 .Rebel.artillery .counterWrapper .counter {
-  background-image: url("../../js/PruArtBadge.png");
+  background-image: url("../../js/RebelArtBadge.png");
   background-size: 14px; }
 
 .Rebel.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/PruHorArtBadge.png");
+  background-image: url("../../js/RebelHorArtBadge.png");
   background-size: 14px; }
 
 .Rebel.hq .counterWrapper .counter {
@@ -2114,7 +2114,7 @@ You should have received a copy of the GNU General Public License
   border: none; }
   .Rebel.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/PruPontoon.png");
+    background-image: url("../../js/RebelPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -2123,16 +2123,16 @@ You should have received a copy of the GNU General Public License
   display: none; }
 
 .vintage.Militia.infantry .counterWrapper .counter {
-  background-image: url("../../js/PruInfBadge.png");
+  background-image: url("../../js/RebelInfBadge.png");
   background-size: 19px; }
 .vintage.Militia.cavalry .counterWrapper .counter {
-  background-image: url("../../js/PruCavBadge.png");
+  background-image: url("../../js/RebelCavBadge.png");
   background-size: 19px; }
 .vintage.Militia.artillery .counterWrapper .counter {
-  background-image: url("../../js/PruArtBadge.png");
+  background-image: url("../../js/RebelArtBadge.png");
   background-size: 19px; }
 .vintage.Militia.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/PruHorArtBadge.png");
+  background-image: url("../../js/RebelHorArtBadge.png");
   background-size: 19px; }
 .vintage.Militia.hq .counterWrapper .counter {
   background-color: lightgreen;
@@ -2142,7 +2142,7 @@ You should have received a copy of the GNU General Public License
   border: none; }
   .vintage.Militia.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/PruPontoon.png");
+    background-image: url("../../js/RebelPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
@@ -2151,19 +2151,19 @@ You should have received a copy of the GNU General Public License
   display: none; }
 
 .Militia.infantry .counterWrapper .counter {
-  background-image: url("../../js/PruInfBadge.png");
+  background-image: url("../../js/RebelInfBadge.png");
   background-size: 14px; }
 
 .Militia.cavalry .counterWrapper .counter {
-  background-image: url("../../js/PruCavBadge.png");
+  background-image: url("../../js/RebelCavBadge.png");
   background-size: 14px; }
 
 .Militia.artillery .counterWrapper .counter {
-  background-image: url("../../js/PruArtBadge.png");
+  background-image: url("../../js/RebelArtBadge.png");
   background-size: 14px; }
 
 .Militia.horseartillery .counterWrapper .counter {
-  background-image: url("../../js/PruHorArtBadge.png");
+  background-image: url("../../js/RebelHorArtBadge.png");
   background-size: 14px; }
 
 .Militia.hq .counterWrapper .counter {
@@ -2175,7 +2175,7 @@ You should have received a copy of the GNU General Public License
   border: none; }
   .Militia.pontoon .counterWrapper .counter {
     background-color: lightgreen;
-    background-image: url("../../js/PruPontoon.png");
+    background-image: url("../../js/RebelPontoon.png");
     background-size: 32px;
     width: 32px;
     height: 32px;
