@@ -26,7 +26,7 @@
         <li>Each side gains 1 point for each hostile combat strength point destroyed.
         </li>
         <li>
-            Loyalists Win: at the end of any Loyalist turn before the end of turn 8, that they have accumulated 40 or more points with a lead of at least 10 points.
+            Loyalists Win: at the end of any Loyalist turn before the end of turn 6, that they have accumulated 40 or more points with a lead of at least 10 points.
         </li>
 
         <li>Rebels Win: If the Loyalists do not, or if they score 30 points before losing 30 of their own.
