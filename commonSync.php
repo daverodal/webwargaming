@@ -832,6 +832,7 @@ x.register("moveRules", function(moveRules,data) {
                 secondGenClone.find('.counterWrapper .guard-unit').addClass('infoLen'+newLabel.length);
                 if(moveRules.moves[i].isOccupied){
                     secondGenClone.addClass("occupied");
+                    secondGenClone.css('display',"");
 
 
                 }
