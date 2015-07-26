@@ -160,7 +160,7 @@ class helsingborg1710VictoryCore extends victoryCore
             }
 
             if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE) {
-                $b->gameRules->flashMessages[] = "No Danish Movement this turn.";
+                $b->gameRules->flashMessages[] = "Danish movement halved this turn.";
             }
         }
     }
