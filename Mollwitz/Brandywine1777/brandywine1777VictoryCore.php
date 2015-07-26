@@ -62,6 +62,13 @@ class brandywine1777VictoryCore extends victoryCore
         }
         if($this->rebelLosses >= 30){
             $this->isDemoralized = true;
+            $battle = Battle::getBattle();
+            global $force_name;
+            $hex = $unit->hexagon;
+            $victorName = $force_name[LOYALIST_FORCE];
+
+            $class = "${victorName} victory-points";
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='$class'>Rebel Demoralized</span>";
         }
     }
 
