@@ -134,7 +134,7 @@ class burkersdorfVictoryCore extends victoryCore
     {
         $b = Battle::getBattle();
         if ($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE) {
-            $b->gameRules->flashMessages[] = "Austrian Movement alowance 2 this turn.";
+            $b->gameRules->flashMessages[] = "Austrian Movement allowance 2 this turn.";
         }
 
     }

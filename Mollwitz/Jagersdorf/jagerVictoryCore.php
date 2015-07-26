@@ -99,7 +99,7 @@ class jagerVictoryCore extends victoryCore
     public function postRecoverUnits($args){
         $b = Battle::getBattle();
         if($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE) {
-            $b->gameRules->flashMessages[] = "Russian Movement alowance 2 this turn.";
+            $b->gameRules->flashMessages[] = "Russian Movement allowance 2 this turn.";
         }
 
     }

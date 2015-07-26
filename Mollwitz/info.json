@@ -848,7 +848,7 @@
         "description": "Historical Scenario.",
         "longDescription":"Swedish units move +1 first turn. Danish units move half first turn."
       },
-      "totalSurprise": {
+      "noSurprise": {
         "description": "Alternate Scenario",
         "longDescription":"No +1 movement for Swedish units, Danish units move full amount first turn.",
         "noSurprise":true

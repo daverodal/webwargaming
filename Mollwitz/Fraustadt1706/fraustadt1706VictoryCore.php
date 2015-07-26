@@ -121,7 +121,7 @@ class fraustadt1706VictoryCore extends victoryCore
         $b = Battle::getBattle();
         $scenario = $b->scenario;
         if ($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE) {
-            $b->gameRules->flashMessages[] = "Swedish Movement alowance +1 this turn.";
+            $b->gameRules->flashMessages[] = "Swedish Movement allowance +1 this turn.";
         }
         if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE) {
             if($scenario->noMovementFirstTurn) {
