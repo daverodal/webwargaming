@@ -80,7 +80,7 @@ class victoryCore
         $hex = $unit->hexagon;
         $battle = Battle::getBattle();
         $class = "${victorName} victory-points";
-        $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='$class'>+$vp $victorName</span>";
+        $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='$class'>+$vp VP's</span>";
     }
 
 
