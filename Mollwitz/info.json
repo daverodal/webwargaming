@@ -846,12 +846,12 @@
     "scenarios": {
       "main": {
         "description": "Historical Scenario.",
-        "longDescription":"The Battle of Helsingborg (February 28, 1710) was Denmark's failed and final attempt to regain the Scanian lands, lost to Sweden in 1658."
+        "longDescription":"Swedish units move +1 first turn. Danish units move half first turn."
       },
       "totalSurprise": {
-        "description": "Total Swedish Surprise. No movement for Danes first turn.",
-        "longDescription":"The Battle of Helsingborg (February 28, 1710) was Denmark's failed and final attempt to regain the Scanian lands, lost to Sweden in 1658.",
-        "noMovementFirstTurn":true
+        "description": "Alternate Scenario",
+        "longDescription":"No +1 movement for Swedish units, Danish units move full amount first turn.",
+        "noSurprise":true
       }
 
     }
