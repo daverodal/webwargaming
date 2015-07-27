@@ -166,10 +166,11 @@ class gadebusch1712VictoryCore extends victoryCore
     {
         parent::preRecoverUnits();
 
-        if ($this->wasIndecisive) {
+        $b = Battle::getBattle();
+        $scenario = $b->scenario;
+        if ($this->wasIndecisive || $scenario->noIndecision) {
             return;
         }
-        $b = Battle::getBattle();
         $turn = $b->gameRules->turn;
         if ($turn <= 3 && $this->wasIndecisive === false && $b->gameRules->phase == RED_MOVE_PHASE) {
             $Die = floor(6 * (rand() / getrandmax()));
@@ -178,7 +179,7 @@ class gadebusch1712VictoryCore extends victoryCore
 
                 $this->isIndecisive = true;
                 $this->wasIndecisive = true;
-                $b->gameRules->flashMessages[] = "$Die No Danish Movement this turn.";
+                $b->gameRules->flashMessages[] = "No Danish Movement this turn.";
 
                 return;
             }
