@@ -454,6 +454,7 @@ class unit extends BaseUnit implements JsonSerializable
         $this->nationality = $nationality;
         $this->forceMarch = $forceMarch;
         $this->unitDesig = $unitDesig;
+        $this->facing = 2;
     }
 
     function damageUnit($kill = false)
