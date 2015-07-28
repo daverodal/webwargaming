@@ -277,13 +277,15 @@ You should have received a copy of the GNU General Public License
         var winWidth = $(window).width();
         var mapHeight = $("#map").height();
         var mapWidth = $("#map").width();
+        var containerHeight = mapHeight;
+        var containerWidth = mapWidth;
         if(winWidth > mapWidth){
-            mapWidth = winWidth;
+            containerWidth = winWidth;
         }
         if(winHeight > mapHeight){
-            mapHeight = winHeight;
+            containerHeight = winHeight;
         }
-        $("#gameImages, #gameContainer").height(mapHeight).width(mapWidth);
+        $("#gameImages, #gameContainer").height(containerHeight).width(containerWidth);
         $("#arrow-svg").height(mapHeight).width(mapWidth);
         DR.$panzoom.panzoom('resetDimensions');
 

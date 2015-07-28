@@ -148,6 +148,11 @@ class MapHex
         return count((array)$this->zocs[$forceId]);
     }
 
+    public function getZocUnits($forceId)
+    {
+        return $this->zocs[$forceId];
+    }
+
     public function isAdjacent($forceId)
     {
         return count((array)$this->adjacent[$forceId]);

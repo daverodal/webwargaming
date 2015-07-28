@@ -152,7 +152,6 @@ class CombatRules
 
     function setupCombat($id, $shift = false)
     {
-        $mapData = MapData::getInstance();
         $battle = Battle::getBattle();
         $victory = $battle->victory;
         $unit = $battle->force->units[$id];
@@ -276,71 +275,11 @@ class CombatRules
                             break;
                         }
                         if ($range > 1) {
-                            $hexParts = $los->getlosList();
-                            // remove first and last hexPart
-
-                            $src = array_shift($hexParts);
-                            $target = array_pop($hexParts);
-                            $srcElevated = $targetElevated = $srcElevated2 = $targetElevated2 = false;
-
-                            if ($this->terrain->terrainIs($src, "elevation2")) {
-                                $srcElevated2 = true;
-                            }
-                            if ($this->terrain->terrainIs($target, "elevation2")) {
-                                $targetElevated2 = true;
-                            }
-                            if ($this->terrain->terrainIs($src, "elevation1")) {
-                                $srcElevated = true;
-                            }
-                            if ($this->terrain->terrainIs($target, "elevation1")) {
-                                $targetElevated = true;
-                            }
-                            $hasElevated1 = $hasElevated2 = false;
-                            foreach ($hexParts as $hexPart) {
-                                if ($this->terrain->terrainIs($hexPart, "blocksRanged") && (!$srcElevated2 || !$targetElevated2)) {
-                                    $good = false;
-                                    break;
-                                }
-                                if ($this->terrain->terrainIs($hexPart, "elevation2")) {
-                                    $hasElevated2 = true;
-                                    continue;
-                                }
-
-                                if ($this->terrain->terrainIs($hexPart, "elevation1")) {
-                                    $hasElevated1 = true;
-                                    break;
-                                }
-                            }
-                            /* don't do elevation check if non elevation (1) set. This deals with case of coming up
-                             * back side of not circular hill
-                             */
-                            if($hasElevated1 || $targetElevated || $srcElevated){
-
-                                /*
-                                 * Ugly if statement. If elevation1 both src and target MUST be elevation1 OR either src or target can be elevation2.
-                                 * otherwise, blocked.
-                                 */
-                                if($hasElevated1 && !(($srcElevated && $targetElevated) || ($targetElevated2 || $srcElevated2))){
-                                    $good = false;
-                                }
-                                if ($hasElevated2 && (!$srcElevated2 || !$targetElevated2)) {
-                                    $good = false;
-                                }
-
-
-                            }
-
-                            if ($good === false) {
-                                break;
-                            }
-                            $mapHex = $mapData->getHex($this->force->getUnitHexagon($id)->name);
-                            if ($this->force->mapHexIsZOC($mapHex)) {
-                                $good = false;
-                                break;
-                            }
+                            $good = $this->checkBlocked($los,$id);
                         }
                         if ($range == 1) {
-                            if ($this->terrain->terrainIsHexSide($this->force->getUnitHexagon($id)->name, $this->force->getUnitHexagon($defenderId)->name, "blocked")) {
+                            if ($this->terrain->terrainIsHexSide($this->force->getUnitHexagon($id)->name, $this->force->getUnitHexagon($defenderId)->name, "blocked" )
+                            && !($unit->class === "artillery" || $unit->class === "horseartillery") ) {
                                 $good = false;
                             }
                         }
@@ -385,6 +324,73 @@ class CombatRules
         $this->cleanUpAttacklessDefenders();
     }
 
+    function checkBlocked($los, $id){
+        $mapData = MapData::getInstance();
+
+        $good = true;
+        $hexParts = $los->getlosList();
+        // remove first and last hexPart
+
+        $src = array_shift($hexParts);
+        $target = array_pop($hexParts);
+        $srcElevated = $targetElevated = $srcElevated2 = $targetElevated2 = false;
+
+        if ($this->terrain->terrainIs($src, "elevation2")) {
+            $srcElevated2 = true;
+        }
+        if ($this->terrain->terrainIs($target, "elevation2")) {
+            $targetElevated2 = true;
+        }
+        if ($this->terrain->terrainIs($src, "elevation1")) {
+            $srcElevated = true;
+        }
+        if ($this->terrain->terrainIs($target, "elevation1")) {
+            $targetElevated = true;
+        }
+        $hasElevated1 = $hasElevated2 = false;
+        foreach ($hexParts as $hexPart) {
+            if ($this->terrain->terrainIs($hexPart, "blocksRanged") && (!$srcElevated2 || !$targetElevated2)) {
+                return false;
+
+            }
+            if ($this->terrain->terrainIs($hexPart, "elevation2")) {
+                $hasElevated2 = true;
+                continue;
+            }
+
+            if ($this->terrain->terrainIs($hexPart, "elevation1")) {
+                $hasElevated1 = true;
+                break;
+            }
+        }
+        /* don't do elevation check if non elevation (1) set. This deals with case of coming up
+         * back side of not circular hill
+         */
+        if($hasElevated1 || $targetElevated || $srcElevated){
+
+            /*
+             * Ugly if statement. If elevation1 both src and target MUST be elevation1 OR either src or target can be elevation2.
+             * otherwise, blocked.
+             */
+            if($hasElevated1 && !(($srcElevated && $targetElevated) || ($targetElevated2 || $srcElevated2))){
+                $good = false;
+            }
+            if ($hasElevated2 && (!$srcElevated2 || !$targetElevated2)) {
+                $good = false;
+            }
+
+
+        }
+
+        if ($good === false) {
+            return false;
+        }
+        $mapHex = $mapData->getHex($this->force->getUnitHexagon($id)->name);
+        if ($this->force->mapHexIsZOC($mapHex)) {
+                return false;
+        }
+        return $good;
+    }
     function checkBombardment($cd = false)
     {
         if($cd === false){

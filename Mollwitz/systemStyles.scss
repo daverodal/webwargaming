@@ -263,6 +263,9 @@ $austrianWrapperColor: white;
 $prussianColor: #fffd7f;
 $prussianWrapperColor: #0117de;
 
+$rebelColor: #d4d300;
+$rebelWrapperColor: #0117de;
+
 $angloAlliedColor: #df5842;
 $angloAlliedWrapperColor: #f00;
 
@@ -284,6 +287,10 @@ $swedishColor: #FECC00;
 $swedishWrapperColor: #006AA7;
 
 $saxonColor: #FD4223;
+
+
+$danishColor: #ff3f1f;
+$danishWrapperColor: #bfbfbf;
 
 @include badge(Sikh, Sikh);
 @include badge(Beluchi, Sikh);
@@ -517,3 +524,68 @@ $saxonColor: #FD4223;
 
 #not-used{
 }
+
+.specialHexesVP .Swedish.victory-points{
+  @include victoryPoints($swedishWrapperColor);
+}
+
+.specialHexesVP .Saxon.Russian.victory-points{
+  @include victoryPoints($russianWrapperColor);
+}
+
+.specialHexesVP .Rebel.victory-points{
+  @include victoryPoints($prussianWrapperColor);
+}
+
+.specialHexesVP .Loyalist.victory-points{
+  @include victoryPoints($angloAlliedWrapperColor);
+}
+
+.specialHexesVP .French.victory-points{
+  @include victoryPoints($frenchColor);
+}
+
+.specialHexesVP .Allied.victory-points{
+  @include victoryPoints($angloAlliedWrapperColor);
+}
+
+.specialHexesVP .Sikh.victory-points{
+  @include victoryPoints($beluchiColor);
+}
+
+.specialHexesVP .Beluchi.victory-points{
+  @include victoryPoints($beluchiColor);
+}
+
+.specialHexesVP .British.victory-points{
+  @include victoryPoints($britishWrapperColor);
+}
+
+.specialHexesVP .Prussian.victory-points{
+  @include victoryPoints($prussianWrapperColor);
+}
+
+.specialHexesVP .Austrian.victory-points{
+  @include victoryPoints($austrianColor);
+}
+
+.specialHexesVP .Allies.victory-points{
+  @include victoryPoints($angloAlliedWrapperColor);
+}
+.specialHexesVP .Allied.victory-points{
+  @include victoryPoints($angloAlliedWrapperColor);
+}
+.specialHexesVP .Russian.victory-points{
+  @include victoryPoints($russianColor);
+}
+.specialHexesVP .Danish.victory-points{
+  @include victoryPoints($danishColor);
+}
+.specialHexesVP .AngloAllied.victory-points{
+  @include victoryPoints($angloAlliedWrapperColor);
+}
+.specialHexesVP .Anglo.Allied.victory-points{
+  @include victoryPoints($angloAlliedWrapperColor);
+}
+
+.one{}

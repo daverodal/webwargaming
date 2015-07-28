@@ -1626,7 +1626,8 @@ class Force
 
     function unitIsInRange($id)
     {
-        $isZOC = false;
+        $b = Battle::getBattle();
+        $isInRange = false;
         $range = $this->units[$id]->range;
         if ($range <= 1) {
             return false;
@@ -1636,18 +1637,26 @@ class Force
             $los->setOrigin($this->units[$id]->hexagon);
 
             for ($i = 0; $i < count($this->units); $i++) {
+                /* hexagons without names are off map */
+                if(!$this->units[$i]->hexagon->name){
+                    continue;
+                }
                 $los->setEndPoint($this->units[$i]->hexagon);
-                if ($los->getRange() <= $range
+                $losRange = $los->getRange();
+                if ($losRange <= $range
                     && $this->units[$i]->forceId != $this->units[$id]->forceId
                     && $this->units[$i]->status != STATUS_CAN_REINFORCE
                     && $this->units[$i]->status != STATUS_ELIMINATED
                 ) {
-                    $isZOC = true;
-                    break;
+                    if($b->combatRules->checkBlocked($los, $id))
+                    {
+                        $isInRange = true;
+                        break;
+                    }
                 }
             }
         }
-        return $isZOC;
+        return $isInRange;
     }
 
     function markRequiredAttack($id)

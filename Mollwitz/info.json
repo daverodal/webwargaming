@@ -750,6 +750,52 @@
       "main": {
         "description": "Historical Scenario.",
         "longDescription":"The Battle of Gadebusch 1712 Swedish vs Danish"
+      },
+      "lessSwedes":{
+        "description": "Alternate Less Swedes.",
+        "longDescription":"The Swedish player has 6 infantry instead of 8. No Danish indecision either.",
+        "noIndecision": true,
+        "units":[
+
+          {"num":2,"forceId":2,"combat":5,"movement":3,"reinforce":"B","range":1,"nationality":"Danish","class":"infantry"},
+          {"num":8,"forceId":2,"combat":4,"movement":3,"reinforce":"B","range":1,"nationality":"Danish","class":"infantry"},
+
+          {"num":2,"forceId":2,"combat":5,"movement":5,"reinforce":"B","range":1,"nationality":"Danish","class":"cavalry"},
+          {"num":8,"forceId":2,"combat":3,"movement":5,"reinforce":"B","range":1,"nationality":"Danish","class":"cavalry"},
+
+          {"num":2,"forceId":2,"combat":2,"movement":2,"reinforce":"B","range":3,"nationality":"Danish","class":"artillery"},
+
+          {"num":6,"forceId":1,"combat":6,"movement":3,"reinforce":"A","range":1,"nationality":"Swedish","class":"infantry"},
+
+          {"num":8,"forceId":1,"combat":6,"movement":5,"reinforce":"A","range":1,"nationality":"Swedish","class":"cavalry"},
+
+          {"num":4,"forceId":1,"combat":2,"movement":2,"reinforce":"A","range":3,"nationality":"Swedish","class":"artillery"}
+
+
+        ]
+      },
+      "moreDanes":{
+        "description": "Alternate More Danes",
+        "longDescription":"The Danish player has 10 4-3's instead of 8. No Danish indecision either.",
+        "noIndecision": true,
+        "units":[
+
+          {"num":2,"forceId":2,"combat":5,"movement":3,"reinforce":"B","range":1,"nationality":"Danish","class":"infantry"},
+          {"num":10,"forceId":2,"combat":4,"movement":3,"reinforce":"B","range":1,"nationality":"Danish","class":"infantry"},
+
+          {"num":2,"forceId":2,"combat":5,"movement":5,"reinforce":"B","range":1,"nationality":"Danish","class":"cavalry"},
+          {"num":8,"forceId":2,"combat":3,"movement":5,"reinforce":"B","range":1,"nationality":"Danish","class":"cavalry"},
+
+          {"num":2,"forceId":2,"combat":2,"movement":2,"reinforce":"B","range":3,"nationality":"Danish","class":"artillery"},
+
+          {"num":8,"forceId":1,"combat":6,"movement":3,"reinforce":"A","range":1,"nationality":"Swedish","class":"infantry"},
+
+          {"num":8,"forceId":1,"combat":6,"movement":5,"reinforce":"A","range":1,"nationality":"Swedish","class":"cavalry"},
+
+          {"num":4,"forceId":1,"combat":2,"movement":2,"reinforce":"A","range":3,"nationality":"Swedish","class":"artillery"}
+
+
+        ]
       }
     }
   },
@@ -757,7 +803,7 @@
   "Brandywine1777": {
     "name": "The Battle of Brandywine 1777",
     "path": "Mollwitz",
-    "genre": "18'th Century Europe",
+    "genre": "Americas",
     "fileName": "Brandywine1777/Brandywine1777.php",
     "description":"The Battle of Brandywine 1777. ",
     "options":[
@@ -794,7 +840,11 @@
     "scenarios": {
       "main": {
         "description": "Historical Scenario.",
-        "longDescription":"The Brandywine 1777"
+        "longDescription":"Fords do not affect Combat."
+      },
+      "hardfords": {
+        "description": "Optional Scenario",
+        "longDescription":"Attacks across fords are halved."
       }
     }
   },
@@ -842,12 +892,12 @@
     "scenarios": {
       "main": {
         "description": "Historical Scenario.",
-        "longDescription":"The Battle of Helsingborg (February 28, 1710) was Denmark's failed and final attempt to regain the Scanian lands, lost to Sweden in 1658."
+        "longDescription":"Swedish units move +1 first turn. Danish units move half first turn."
       },
-      "totalSurprise": {
-        "description": "Total Swedish Surprise. No movement for Danes first turn.",
-        "longDescription":"The Battle of Helsingborg (February 28, 1710) was Denmark's failed and final attempt to regain the Scanian lands, lost to Sweden in 1658.",
-        "noMovementFirstTurn":true
+      "noSurprise": {
+        "description": "Alternate Scenario",
+        "longDescription":"No +1 movement for Swedish units, Danish units move full amount first turn.",
+        "noSurprise":true
       }
 
     }

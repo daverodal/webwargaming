@@ -51,8 +51,8 @@ class Brandywine1777 extends JagCore
     {
         global $force_name;
 
-        $deployTwo = $playerOne = $force_name[SWEDISH_FORCE];
-        $deployOne = $playerTwo = $force_name[DANISH_FORCE];
+        $deployTwo = $playerOne = $force_name[LOYALIST_FORCE];
+        $deployOne = $playerTwo = $force_name[REBEL_FORCE];
         @include_once "playMulti.php";
     }
 
@@ -60,8 +60,8 @@ class Brandywine1777 extends JagCore
     {
         global $force_name;
         $youAre = $force_name[$player];
-        $deployTwo = $playerOne = $force_name[SWEDISH_FORCE];
-        $deployOne = $playerTwo = $force_name[DANISH_FORCE];
+        $deployTwo = $playerOne = $force_name[LOYALIST_FORCE];
+        $deployOne = $playerTwo = $force_name[REBEL_FORCE];
         @include_once "view.php";
     }
 
@@ -133,7 +133,7 @@ class Brandywine1777 extends JagCore
 
             // game data
 
-            $this->gameRules->setMaxTurn(8);
+            $this->gameRules->setMaxTurn(6);
             $this->gameRules->setInitialPhaseMode(RED_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->attackingForceId = RED_FORCE; /* object oriented! */
             $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */

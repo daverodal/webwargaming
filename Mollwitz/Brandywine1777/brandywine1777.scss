@@ -20,20 +20,26 @@ You should have received a copy of the GNU General Public License
 $danishColor: #ff3f1f;
 $danishWrapperColor: #bfbfbf;
 @include player(Loyalist ,One , $angloAlliedColor, $angloAlliedWrapperColor);
-@include player(Rebel, Two, $prussianColor, $prussianWrapperColor);
-@include badge(Rebel, Pru);
+@include player(Rebel, Two, $rebelColor,  $rebelWrapperColor, $rebelWrapperColor);
+@include player(Militia, Three, $prussianColor, $prussianWrapperColor);
+@include badge(Rebel, Rebel);
+@include badge(Militia, Rebel);
 @include player(Hessian, Three, $russianColor, $russianWrapperColor);
 @include badge(Loyalist, Ang);
 @include badge(Hessian, Rus);
-.swedes.specialHexes{
-  background-color: $swedishWrapperColor;
-  color:white;
-}
 
 
 .Rebel {
   p.forceMarch, p.range{
     color:white;
   }
+}
+.specialHexes.loyalist{
+  background-color: $angloAlliedWrapperColor;
+  color:white;
+}
+.specialHexes.rebel{
+  background-color: $prussianWrapperColor;
+  color:white;
 }
 
