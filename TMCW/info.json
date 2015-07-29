@@ -101,6 +101,31 @@
             }
         }
     },
+    "ClashOverCrude": {
+        "name": "Clash Over Crude",
+        "path": "TMCW",
+        "genre": "20'th Century Games",
+        "fileName": "ClashOverCrude/ClashOverCrude.php",
+        "description": "Hypothetical amphibious invasion. The goal is the castle town, Chateau Sur Mer.",
+        "options":[
+            {
+                "name": "For of war during Deployment. Enemy units remain hidden until movement phase..",
+                "keyName":"fogDeploy",
+                "value": false
+            }
+        ],
+        "scenarios": {
+            "main": {
+                "description": "Standard",
+                "supply": true,
+                "loyalMechMove": 8,
+                "loyalExtraInf": true,
+                "supplyLen": 12,
+                "hardCuneiform": true,
+                "longDescription":"Standard scenario, balanced for both sides."
+            }
+        }
+    },
   "FinalChapter": {
     "name": "The Final Chapter",
     "path": "TMCW",
