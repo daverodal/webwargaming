@@ -1161,14 +1161,14 @@ svg marker#head {
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 .playerOne {
-  background: #5c5;
-  border-color: #5c5 !important; }
+  background: #99ac36;
+  border-color: #99ac36 !important; }
 
 .rebelFace, .playerOneFace {
-  color: #5c5; }
+  color: #99ac36; }
 
 .rebel {
-  background-color: #5c5; }
+  background-color: #99ac36; }
   .rebel .unit-desig {
     color: white; }
 
@@ -1194,6 +1194,30 @@ svg marker#head {
 .loyalGuards {
   background-color: #aaa; }
   .loyalGuards .unit-desig {
+    color: white; }
+
+.playerFour {
+  background: #9ebd84;
+  border-color: #9ebd84 !important; }
+
+.eecColorFace, .playerFourFace {
+  color: #9ebd84; }
+
+.eecColor {
+  background-color: #9ebd84; }
+  .eecColor .unit-desig {
+    color: white; }
+
+.playerFive {
+  background: #4fa0bb;
+  border-color: #4fa0bb !important; }
+
+.navyColorFace, .playerFiveFace {
+  color: #4fa0bb; }
+
+.navyColor {
+  background-color: #4fa0bb; }
+  .navyColor .unit-desig {
     color: white; }
 
 #crt {

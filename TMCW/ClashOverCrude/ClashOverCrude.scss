@@ -25,6 +25,8 @@
 @include player(rebel, One, $rebelColor);
 @include player(loyalist,Two,$loyalistColor);
 @include player(loyalGuards,Three,$loyalistGuardColor);
+@include player(eecColor, Four, $eecColor);
+@include player(navyColor, Five, $navyColor);
 
 #map {
 }
