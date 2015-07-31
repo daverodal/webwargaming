@@ -1197,15 +1197,15 @@ svg marker#head {
     color: white; }
 
 .playerFour {
-  background: #9ebd84;
-  border-color: #9ebd84 !important; }
+  background: #9aba7b;
+  border-color: #9aba7b !important; }
 
-.eecColorFace, .playerFourFace {
-  color: #9ebd84; }
+.eecFace, .playerFourFace {
+  color: #9aba7b; }
 
-.eecColor {
-  background-color: #9ebd84; }
-  .eecColor .unit-desig {
+.eec {
+  background-color: #9aba7b; }
+  .eec .unit-desig {
     color: white; }
 
 .playerFive {
@@ -1218,6 +1218,18 @@ svg marker#head {
 .navyColor {
   background-color: #4fa0bb; }
   .navyColor .unit-desig {
+    color: white; }
+
+.playerFive {
+  background: powderblue;
+  border-color: powderblue !important; }
+
+.israeliFace, .playerFiveFace {
+  color: powderblue; }
+
+.israeli {
+  background-color: powderblue; }
+  .israeli .unit-desig {
     color: white; }
 
 #crt {
@@ -1296,5 +1308,20 @@ svg marker#head {
   border-radius: 0px;
   border: 0px;
   transform: rotate(180deg); }
+
+.staging-area {
+  height: 100%;
+  width: 24%;
+  background: #333;
+  border: #999 solid;
+  border-width: 0 0 0 3px;
+  float: left;
+  min-height: 76px; }
+  .staging-area .staging-area-label {
+    font-size: 20px;
+    font-family: sans-serif;
+    float: right;
+    color: #aaa;
+    height: 38px; }
 
 /*# sourceMappingURL=all.css.map */

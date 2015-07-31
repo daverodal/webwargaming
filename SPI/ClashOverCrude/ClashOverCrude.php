@@ -121,15 +121,26 @@ class ClashOverCrude extends ModernLandBattle
 
         /* Rebel Units */
 
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 10, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "inf");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 10, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "inf");
 
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiPara.png", 7, 4, 10, false, STATUS_CAN_DEPLOY, "A", 1, 1, "eec", true, "para");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiPara.png", 7, 4, 10, false, STATUS_CAN_DEPLOY, "A", 1, 1, "eec", true, "para");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiPara.png", 7, 4, 10, false, STATUS_CAN_DEPLOY, "A", 1, 1, "navy", true, "para");
+        $this->force->addUnit("lll", BLUE_FORCE, "israel", "multiPara.png", 7, 4, 10, false, STATUS_CAN_DEPLOY, "A", 1, 1, "israeli", true, "para");
+        $this->force->addUnit("lll", BLUE_FORCE, "israel", "multiPara.png", 7, 4, 10, false, STATUS_CAN_DEPLOY, "A", 1, 1, "israeli", true, "para");
+        $this->force->addUnit("lll", BLUE_FORCE, "israel", "multiMech.png", 9, 5, 10, false, STATUS_CAN_REINFORCE, "A", 1, 1, "israeli", true, "mech");
 
-                $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiMech.png", 9, 5, 10, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiArmor.png", 10, 6, 10, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
+        $this->force->addUnit("lll", BLUE_FORCE, "germany", "multiPara.png", 7, 4, 10, false, STATUS_CAN_DEPLOY, "A", 1, 1, "eec", true, "para");
+        $this->force->addUnit("lll", BLUE_FORCE, "germany", "multiPara.png", 7, 4, 10, false, STATUS_CAN_DEPLOY, "A", 1, 1, "eec", true, "para");
+
+
+
+        $this->force->addUnit("lll", BLUE_FORCE, "germany", "multiPara.png", 7, 4, 10, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
+        $this->force->addUnit("lll", BLUE_FORCE, "germany", "multiPara.png", 7, 4, 10, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
+        $this->force->addUnit("lll", BLUE_FORCE, "germany", "multiPara.png", 7, 4, 10, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
+
+
+        $this->force->addUnit("lll", BLUE_FORCE, "germany", "multiInf.png", 8, 4, 10, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "inf");
+        $this->force->addUnit("lll", BLUE_FORCE, "germany", "multiInf.png", 8, 4, 10, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "inf");
+
+        $this->force->addUnit("lll", BLUE_FORCE, "germany", "multiMech.png", 9, 5, 10, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
+        $this->force->addUnit("lll", BLUE_FORCE, "germany", "multiArmor.png", 10, 6, 10, false, STATUS_CAN_REINFORCE, "A", 1, 1, "rebel", true, "mech");
 
     }
 

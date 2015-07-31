@@ -25,8 +25,9 @@
 @include player(rebel, One, $rebelColor);
 @include player(loyalist,Two,$loyalistColor);
 @include player(loyalGuards,Three,$loyalistGuardColor);
-@include player(eecColor, Four, $eecColor);
+@include player(eec, Four, $eecColor);
 @include player(navyColor, Five, $navyColor);
+@include player(israeli, Five, powderblue);
 
 #map {
 }
@@ -137,3 +138,21 @@
   transform: rotate(180deg);
 }
 
+
+
+.staging-area{
+  height:100%;
+  width:24%;
+  background:#333;
+  border: #999 solid;
+  border-width: 0 0 0 3px;
+  float:left;
+  min-height:76px;
+  .staging-area-label{
+    font-size:20px;
+    font-family:sans-serif;
+    float:right;
+    color:#aaa;
+    height:38px;
+  }
+}
