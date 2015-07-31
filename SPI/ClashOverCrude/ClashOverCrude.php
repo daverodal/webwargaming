@@ -142,7 +142,7 @@ class ClashOverCrude extends ModernLandBattle
             $this->specialHexA = $data->specialHexA;
 
         } else {
-            $this->victory = new Victory("TMCW/ClashOverCrude/ClashOverCrudeVictoryCore.php");
+            $this->victory = new Victory("SPI/ClashOverCrude/ClashOverCrudeVictoryCore.php");
             if ($scenario->supplyLen) {
                 $this->victory->setSupplyLen($scenario->supplyLen);
             }

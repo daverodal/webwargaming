@@ -24,14 +24,11 @@
     body {
         background: #ccc;
         color: #333;
-        background: url("<?=base_url("js/1280px-Amphibious_Assault_Vehicle_(AAV).jpg")?>") #333 no-repeat;
+        background: url("<?=base_url("js/CF-18_Cold_Lake_Alberta.jpg")?>") #333 no-repeat;
         background-position: 10% 0;
         background-size: 100%;
     }
 
 </style>
 <footer class="attribution">
-    By Mate 1st Class Brien Aho, U.S. Navy (http://www.navy.mil; exact Source) [Public domain], <a target="blank"
-                                                                                                   href="http://commons.wikimedia.org/wiki/File%3AAmphibious_Assault_Vehicle_(AAV).jpg">via
-        Wikimedia Commons</a>
-</footer>
+    By Camera Operator: SMSGT JOHN P. ROHRER, USAFService Depicted:Command Shown: ACC (ID:DFSD0512182 / 030917F0381R007) [Public domain], <a target="_blank" href="https://commons.wikimedia.org/wiki/File%3ACF-18_Cold_Lake_Alberta.jpg">via Wikimedia Commons</a></footer>
