@@ -274,7 +274,7 @@ class FinalChapter extends ModernLandBattle
             $this->specialHexB = $data->specialHexB;
             $this->specialHexC = $data->specialHexC;
         } else {
-            $this->victory = new Victory("TMCW/FinalChapter/finalChapterVictoryCore.php");
+            $this->victory = new Victory("SPI/FinalChapter/finalChapterVictoryCore.php");
 
             $this->moveRules->noZocZocOneHex = true;
             $this->moveRules->blockedRetreatDamages = false;
@@ -348,5 +348,6 @@ class FinalChapter extends ModernLandBattle
             }
             return count((array)$mapHex->forces[$forceId]) >= 2;
         };
+
     }
 }
