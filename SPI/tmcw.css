@@ -1,0 +1,166 @@
+/**
+ *
+ * Copyright 2012-2015 David Rodal
+ *
+ *  This program is free software; you can redistribute it
+ *  and/or modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation;
+ *  either version 2 of the License, or (at your option) any later version
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* Unit Styles */
+.playerOne {
+  background: #df5842;
+  border-color: #df5842 !important; }
+
+.rebelFace, .playerOneFace {
+  color: #df5842; }
+
+.rebel {
+  background-color: #df5842; }
+
+.playerTwo {
+  background: #84b5ff;
+  border-color: #84b5ff !important; }
+
+.loyalistFace, .playerTwoFace {
+  color: #84b5ff; }
+
+.loyalist {
+  background-color: #84b5ff; }
+
+.rebel div {
+  color: black; }
+
+.sympth div {
+  color: black; }
+
+.game-name {
+  word-break: break-all;
+  font-family: 'Nosifer'; }
+
+.reduced {
+  color: white; }
+
+.unit .unitSize {
+  height: 10px;
+  font-size: 9px;
+  text-align: center;
+  color: black; }
+
+.unit .counterWrapper {
+  height: 10px; }
+
+.unit .counter {
+  width: 32px;
+  margin-top: -4px; }
+
+.unit .unit-numbers {
+  font-size: 12px;
+  font-weight: bold; }
+
+.unit .unit-numbers .infoLen45 {
+  font-size: 11px;
+  letter-spacing: -1px; }
+
+.unit .unit-numbers .infoLen5 {
+  letter-spacing: -1px; }
+
+.unit .unit-numbers .infoLen7 {
+  font-size: 13px;
+  letter-spacing: -1px; }
+
+.unit .unit-numbers .infoLen8 {
+  letter-spacing: -1px; }
+
+/* dropdown styles */
+#OBC {
+  background: white;
+  width: 514px; }
+
+#crt {
+  width: 308px; }
+
+#TEC {
+  background: white;
+  width: 579px; }
+
+#TECWrapper .closer {
+  height: 0px;
+  padding: 0px; }
+
+#TECWrapper .colOne.riverHex {
+  background-image: url("<?=base_url()?>js/river.png");
+  background-position: 0px -26px; }
+
+#TECWrapper .colOne.bridgeHex {
+  background-image: url("<?=base_url()?>js/riverRoad.png");
+  background-position: 0px -26px; }
+
+#TECWrapper .colOne.blankHex {
+  background-image: url("<?=base_url()?>js/blank.png"); }
+
+#TECWrapper .colOne.forestHex {
+  background-image: url("<?=base_url()?>js/forest 2.png"); }
+
+#TECWrapper .colOne.mountainHex {
+  background-image: url("<?=base_url()?>js/mountain.png"); }
+
+#TECWrapper .colOne.roadHex {
+  background-image: url("<?=base_url()?>js/road.png");
+  background-position: 0px -26px; }
+
+#TECWrapper .colOne.trailHex {
+  background-image: url("<?=base_url()?>js/trail.png");
+  background-position: 0px -26px;
+  background-size: 516px;
+  /* TODO why this different from others */ }
+
+#TECWrapper .colOne {
+  background-size: 400px;
+  width: 220px;
+  height: 56px;
+  margin-left: 20px; }
+
+#TECWrapper .colTwo {
+  width: 170px;
+  padding-right: 10px; }
+
+#TECWrapper .colThree {
+  width: 136px; }
+
+#TECWrapper .colOne span {
+  margin-top: 12px;
+  margin-left: 80px;
+  display: inline-block; }
+
+#TECWrapper .colTwo, #TECWrapper .colThree {
+  margin-top: 12px; }
+
+#TECWrapper .colOne,
+#TECWrapper .colTwo,
+#TECWrapper .colThree {
+  float: left; }
+
+#TECWrapper li {
+  list-style-type: none;
+  padding: 5px 20px 5px 0px; }
+
+#GR {
+  width: 600px; }
+
+.specialHexesVP .prcVictoryPoints {
+  text-shadow: 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 10px gold, 0px 0px 10px gold, 0px 0px 10px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 2px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 3px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 4px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 5px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 6px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 7px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 8px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 9px gold, 0px 0px 10px gold, 0px 0px 10px gold, 0px 0px 10px gold; }
+
+.specialHexesVP .sovietVictoryPoints, .specialHexesVP .rebelVictoryPoints {
+  text-shadow: 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 1px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 2px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 3px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 4px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 5px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 6px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 7px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 8px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 9px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842, 0px 0px 10px #df5842; }
+
+.specialHexesVP .loyalistVictoryPoints {
+  text-shadow: 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 1px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 2px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 3px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 4px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 5px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 6px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 7px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 8px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 9px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff, 0px 0px 10px #84b5ff; }

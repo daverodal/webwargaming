@@ -1,0 +1,64 @@
+/**
+ *
+ * Copyright 2012-2015 David Rodal
+ *
+ *  This program is free software; you can redistribute it
+ *  and/or modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation;
+ *  either version 2 of the License, or (at your option) any later version
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* Unit Styles */
+@mixin player($nationality, $player, $color, $faceColor: $color, $desigColor: white){
+  .player#{$player}{
+    background:$color;
+    border-color:$color !important;
+  }
+  .#{$nationality}Face, .player#{$player}Face{
+    color:$faceColor;
+  }
+
+  .#{$nationality} {
+    background-color: $color;
+    .unit-desig{
+      color: $desigColor;
+    }
+  }
+
+}
+
+@include player(rebel, One, rgb(223, 88, 66));
+@include player(loyalist, Two, rgb(132, 181, 255));
+
+
+.rebel div {
+  color: black;
+}
+
+.sympth div {
+  color: black;
+}
+
+.game-name {
+  word-break: break-all;
+  font-family: 'Nosifer';
+}
+
+.reduced {
+  color: white;
+}
+
+@import "tmcwUnits";
+@import "tmcwBoxes";
+@import "tmcwSpecialVP";
+
+
+
+

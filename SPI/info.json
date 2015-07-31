@@ -1,0 +1,47 @@
+{
+    "ClashOverCrude": {
+        "name": "Clash Over Crude",
+        "path": "SPI",
+        "genre": "SPI Clones",
+        "fileName": "ClashOverCrude/ClashOverCrude.php",
+        "description": "Attack from above.",
+        "options":[
+            {
+                "name": "For of war during Deployment. Enemy units remain hidden until movement phase..",
+                "keyName":"fogDeploy",
+                "value": false
+            }
+        ],
+        "scenarios": {
+            "main": {
+                "description": "Standard",
+                "supply": true,
+                "loyalMechMove": 8,
+                "loyalExtraInf": true,
+                "supplyLen": 12,
+                "hardCuneiform": true,
+                "longDescription":"Standard scenario, balanced for both sides."
+            }
+        }
+    },
+  "FinalChapter": {
+    "name": "The Final Chapter",
+    "path": "SPI",
+    "genre": "SPI Clones",
+    "fileName": "FinalChapter/FinalChapter.php",
+    "description": "Final Chapter",
+    "params":{
+      "maxPlayers":3
+    },
+    "scenarios": {
+      "main": {
+        "description": "Final Chapter.",
+        "longDescription":"first attempt at this game",
+        "supply": true,
+        "loyalMechMove": 8,
+        "loyalExtraInf": true,
+        "hardCuneiform": true
+      }
+    }
+  }
+}
