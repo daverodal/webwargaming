@@ -25,6 +25,25 @@ You should have received a copy of the GNU General Public License
     var DR = {};
     var zoomed = false;
     DR.globalZoom = 1;
+
+
+
+    function rotateUnits(e, that){
+        if (e.ctrlKey) {
+            return true;
+        }
+        var id = that.id;
+        var x = DR.stackModel.ids[id].x;
+        var y = DR.stackModel.ids[id].y;
+        var units = DR.stackModel[x][y].ids;
+        for (i in units) {
+            var zindex = $("#" + i).css('z-index') - 0;
+            $("#" + i).css({zIndex: zindex + 1});
+        }
+        $(that).css({zIndex: 1});
+        return false;
+    }
+
     function toggleFullScreen() {
         var doc = window.document;
         var docEl = doc.documentElement;
@@ -649,6 +668,10 @@ function counterClick(event) {
         return;
     }
 
+    if(event.altKey){
+        rotateUnits(event, this);
+        return;
+    }
     var id;
     id = $(event.target).attr('id');
     if (!id) {
@@ -853,19 +876,8 @@ function initialize() {
 
 
     $('.unit').bind('contextmenu', function (e) {
-        if (e.ctrlKey) {
-            return true;
-        }
-        var id = this.id;
-        var x = DR.stackModel.ids[id].x;
-        var y = DR.stackModel.ids[id].y;
-        var units = DR.stackModel[x][y].ids;
-        for (i in units) {
-            var zindex = $("#" + i).css('z-index') - 0;
-            $("#" + i).css({zIndex: zindex + 1});
-        }
-        $(this).css({zIndex: 1});
-        return false;
+        return rotateUnits(e, this);
+
     });
     // end setup events ----------------------------------------
 

@@ -1013,7 +1013,6 @@ x.register("moveRules", function(moveRules,data) {
                 $('.unit').removeAttr('title');
                 $('.unit .unitOdds').remove();
                 if(combatRules.lastResolvedCombat){
-                    debugger;
                     toResolveLog = "Current Combat or Last Combat<br>";
                     title += "<strong style='margin-left:20px;font-size:150%'>" + combatRules.lastResolvedCombat.Die + " " + combatRules.lastResolvedCombat.combatResult + "</strong>";
                     combatCol = combatRules.lastResolvedCombat.index + 1;
@@ -1140,8 +1139,6 @@ x.register("moveRules", function(moveRules,data) {
                             var mapWidth = $("body").css('width').replace(/px/, "");
                         }
                         var oddsDisp = $(".col" + combatCol).html()
-
-                        debugger;
 
                         newLine += " Attack = " + atkDisp + " / Defender " + def + atk / def + "<br>odds = " + Math.floor(atk / def) + " : 1<br>Combined Arms Shift " + ter + " = " + oddsDisp + "<br>";
                         newLine += "Roll: "+combatRules.resolvedCombats[i].Die + " result: " + combatRules.resolvedCombats[i].combatResult+"<br><br>";
