@@ -194,6 +194,18 @@ function renderUnitNumbers(unit, moveAmount){
 
 }
 
+    function renderCrtDetails(combat){
+        var atk = combat.attackStrength;
+        var def = combat.defenseStrength;
+        var div = atk / def;
+        var ter = combat.terrainCombatEffect;
+        var combatCol = combat.index + 1;
+
+        var html = "<div id='crtDetails'>"+combat.combatLog+"</div><div>Attack = " + atk + " / Defender " + def + " = " + div + "<br>Combined Arms Shift  " + ter + " = " + $(".col" + combatCol).html() + "</div>"
+        /*+ atk + " - Defender " + def + " = " + diff + "</div>";*/
+        return html;
+    }
+
 x.register("force", function(force,data) {
 
     var units = force.units;
@@ -756,6 +768,7 @@ x.register("moveRules", function(moveRules,data) {
             height = $("#"+id).height();
 
             var MYCLONE = $("#"+id).clone(true).detach();
+            console.log($('MYCLONE').css('display'));
             MYCLONE.find(".arrow").hide();
             MYCLONE.addClass("clone");
             MYCLONE.find('.shadow-mask').css({backgroundColor:'transparent'});
@@ -832,7 +845,7 @@ x.register("moveRules", function(moveRules,data) {
                 secondGenClone.find('.counterWrapper .guard-unit').addClass('infoLen'+newLabel.length);
                 if(moveRules.moves[i].isOccupied){
                     secondGenClone.addClass("occupied");
-                    secondGenClone.css('display',"");
+                    secondGenClone.css('display')
 
 
                 }
@@ -852,7 +865,7 @@ x.register("moveRules", function(moveRules,data) {
 
     x.register("combatRules", function(combatRules, data){
 
-        for(var combatCol = 1; combatCol <= 10; combatCol++){
+        for(var combatCol = 1; combatCol <= 11; combatCol++){
             $(".col" + combatCol).css({background: "transparent"});
         }
         var title = "Combat Results ";
@@ -954,7 +967,8 @@ x.register("moveRules", function(moveRules,data) {
                         var currentOddsDisp = $(".col" + currentCombatCol).html();
                         $("#"+i).attr('title',currentOddsDisp).prepend('<div class="unitOdds'+useAltColor+'">'+currentOddsDisp+'</div>');;
 
-                        newLine = "<h5>odds = " + oddsDisp + " </h5><div id='crtDetails'>"+combatRules.combats[i].combatLog+"</div><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + $(".col" + combatCol).html() + "</div>";
+                        var details = renderCrtDetails(combatRules.combats[i]);
+                        newLine = "<h5>odds = " + oddsDisp + " </h5>" +details;
                         if(cD !== false && cD == i){
                             activeCombat = combatIndex;
                             activeCombatLine = newLine;
@@ -999,6 +1013,7 @@ x.register("moveRules", function(moveRules,data) {
                 $('.unit').removeAttr('title');
                 $('.unit .unitOdds').remove();
                 if(combatRules.lastResolvedCombat){
+                    debugger;
                     toResolveLog = "Current Combat or Last Combat<br>";
                     title += "<strong style='margin-left:20px;font-size:150%'>" + combatRules.lastResolvedCombat.Die + " " + combatRules.lastResolvedCombat.combatResult + "</strong>";
                     combatCol = combatRules.lastResolvedCombat.index + 1;
@@ -1030,8 +1045,10 @@ x.register("moveRules", function(moveRules,data) {
                     var ter = combatRules.lastResolvedCombat.terrainCombatEffect;
                     var idx = combatRules.lastResolvedCombat.index + 1;
                     var odds = Math.floor(atk / def);
-                    var oddsDisp = $(".col" + combatCol).html()
-                    newLine = "<h5>odds = " + oddsDisp + "</h5><div id='crtDetails'>"+combatRules.lastResolvedCombat.combatLog+"</div><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + oddsDisp + "</div>";
+                    var oddsDisp = $(".col" + combatCol).html();
+                    var details = renderCrtDetails(combatRules.lastResolvedCombat);
+
+                    newLine = "<h5>odds = " + oddsDisp + "</h5>"+details;
 
                     toResolveLog += newLine;
                     toResolveLog += "Roll: "+combatRules.lastResolvedCombat.Die + " result: " + combatRules.lastResolvedCombat.combatResult+"<br><br>";
@@ -1093,7 +1110,9 @@ x.register("moveRules", function(moveRules,data) {
                             useAltColor = " pinnedColor";
                         }
                         $("#"+i).attr('title',oddsDisp).prepend('<div class="unitOdds'+useAltColor+'">'+oddsDisp+'</div>');;
-                        newLine = "<h5>odds = " + oddsDisp + "</h5><div>Attack = " + atkDisp + " / Defender " + def + " = " + atk / def + "<br>Combined Arms Shift " + ter + " = " + oddsDisp + "</div>";
+                        var details = renderCrtDetails(combatRules.combatsToResolve[i]);
+
+                        newLine = "<h5>odds = " + oddsDisp + "</h5>" + details;
                         toResolveLog += newLine;
                     }
 
@@ -1121,6 +1140,8 @@ x.register("moveRules", function(moveRules,data) {
                             var mapWidth = $("body").css('width').replace(/px/, "");
                         }
                         var oddsDisp = $(".col" + combatCol).html()
+
+                        debugger;
 
                         newLine += " Attack = " + atkDisp + " / Defender " + def + atk / def + "<br>odds = " + Math.floor(atk / def) + " : 1<br>Combined Arms Shift " + ter + " = " + oddsDisp + "<br>";
                         newLine += "Roll: "+combatRules.resolvedCombats[i].Die + " result: " + combatRules.resolvedCombats[i].combatResult+"<br><br>";
@@ -1250,7 +1271,9 @@ x.register("combatRulez", function(combatRules,data) {
                         ratio = $(".col"+idx).html() || "No Effect";
                     }
                     $("#"+i).attr('title',ratio).prepend('<div class="unitOdds '+useAltColor+'">'+ratio+'</div>');
-                    newLine =  "<h5>odds = "+ oddsDisp +"</h5><div id='crtDetails'>"+combatRules.combats[i].combatLog+"</div><div>Attack = "+atkDisp+" / Defender "+def+ " = " + atk/def +"<br>Terrain Shift left "+ter+ " = "+ratio +"</div>";
+                    var details = renderCrtDetails(combatRules.combats[i]);
+
+                    newLine =  "<h5>odds = "+ oddsDisp +"</h5>" + details;
                     if(cD !== false && cD == i){
                         activeCombat = combatIndex;
                         activeCombatLine = newLine;

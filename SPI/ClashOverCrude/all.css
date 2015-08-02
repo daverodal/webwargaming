@@ -1164,24 +1164,24 @@ svg marker#head {
   background: #99ac36;
   border-color: #99ac36 !important; }
 
-.rebelFace, .playerOneFace {
+.usFace, .playerOneFace {
   color: #99ac36; }
 
-.rebel {
+.us {
   background-color: #99ac36; }
-  .rebel .unit-desig {
-    color: white; }
+  .us .unit-desig {
+    color: black; }
 
 .playerTwo {
-  background: #84b5ff;
-  border-color: #84b5ff !important; }
+  background: #fff871;
+  border-color: #fff871 !important; }
 
-.loyalistFace, .playerTwoFace {
-  color: #84b5ff; }
+.saudiFace, .playerTwoFace {
+  color: #fff871; }
 
-.loyalist {
-  background-color: #84b5ff; }
-  .loyalist .unit-desig {
+.saudi {
+  background-color: #fff871; }
+  .saudi .unit-desig {
     color: white; }
 
 .playerThree {
@@ -1233,7 +1233,7 @@ svg marker#head {
     color: white; }
 
 #crt {
-  width: 308px; }
+  width: 520px; }
   #crt .crt-table-name {
     display: none; }
 
@@ -1323,5 +1323,37 @@ svg marker#head {
     float: right;
     color: #aaa;
     height: 38px; }
+
+.unit .counterWrapper {
+  height: 20px; }
+  .unit .counterWrapper .counter {
+    width: 52px;
+    margin-top: -6px;
+    margin-left: -10px; }
+
+.air.unit .counterWrapper .counter {
+  width: 22px;
+  margin-top: 2px;
+  margin-left: 4px; }
+
+.rebel .unit-desig {
+  color: black; }
+
+.unit-desig {
+  font-size: 10px;
+  position: absolute;
+  left: 12px;
+  top: 3px;
+  -webkit-transform: rotate(0deg);
+  -webkit-transform-origin: center;
+  width: 30px;
+  text-align: center;
+  color: black; }
+
+.air-strength {
+  position: absolute;
+  font-size: 13px;
+  color: black;
+  font-weight: bold; }
 
 /*# sourceMappingURL=all.css.map */

@@ -20,8 +20,8 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define("PRUSSIAN_FORCE", BLUE_FORCE);
-define("RUSSIAN_FORCE", RED_FORCE);
+define("PRUSSIAN_FORCE", 1);
+define("RUSSIAN_FORCE", 2);
 
 global $force_name;
 $force_name = array();

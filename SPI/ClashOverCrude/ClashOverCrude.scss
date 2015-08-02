@@ -22,8 +22,8 @@
 
 
 
-@include player(rebel, One, $rebelColor);
-@include player(loyalist,Two,$loyalistColor);
+@include player(us, One, $rebelColor, $rebelColor, black);
+@include player(saudi,Two, #fff871);
 @include player(loyalGuards,Three,$loyalistGuardColor);
 @include player(eec, Four, $eecColor);
 @include player(navyColor, Five, $navyColor);
@@ -33,7 +33,7 @@
 }
 
 #crt {
-  width: 308px;
+  width: 520px;
   .crt-table-name{
     display:none;
   }
@@ -155,4 +155,40 @@
     color:#aaa;
     height:38px;
   }
+}
+
+.unit .counterWrapper {
+  height: 20px;
+
+
+  .counter {
+    width: 52px;
+    margin-top: -6px;
+    margin-left: -10px;
+  }
+}
+.air.unit .counterWrapper .counter{
+  width: 22px;
+  margin-top: 2px;
+  margin-left: 4px;
+}
+.rebel .unit-desig{
+  color:black;
+}
+.unit-desig {
+  font-size: 10px;
+  position: absolute;
+  left: 12px;
+  top: 3px;
+  -webkit-transform: rotate(0deg);
+  -webkit-transform-origin: center;
+  width: 30px;
+  text-align: center;
+  color:black;
+}
+.air-strength{
+  position:absolute;
+  font-size:13px;
+  color:black;
+  font-weight: bold;
 }

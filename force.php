@@ -328,7 +328,7 @@ class BaseUnit{
         $mapData->breadcrumbMove($this->id, $attackingForceId, $gameRules->turn, $gameRules->phase, $gameRules->mode, $fromHex, $toHex);
         $mapHex = $mapData->getHex($this->hexagon->getName());
         if ($mapHex) {
-            $mapHex->setUnit($this->forceId, $this->id);
+            $mapHex->setUnit($this->forceId, $this);
             $mapHexName = $mapHex->name;
             if (isset($mapData->specialHexes->$mapHexName)) {
 
@@ -431,7 +431,7 @@ class unit extends BaseUnit implements JsonSerializable
         $mapData = MapData::getInstance();
         $mapHex = $mapData->getHex($this->hexagon->getName());
         if ($mapHex) {
-            $mapHex->setUnit($this->forceId, $this->id);
+            $mapHex->setUnit($this->forceId, $this);
         }
         $this->image = $unitImage;
 //        $this->strength = $isReduced ? $unitMinStrength : $unitMaxStrength;

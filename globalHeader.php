@@ -86,7 +86,6 @@ You should have received a copy of the GNU General Public License
             }});
 
             $panzoom.parent().on('mousewheel DOMMouseScroll MozMousePixelScroll', function (e) {
-                debugger;
                 e.preventDefault();
                 var delta = e.delta || e.originalEvent.wheelDelta;
 

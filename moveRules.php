@@ -48,6 +48,11 @@ class MoveRules
     public $stacking = 1;
     public $blockedRetreatDamages = false;
     public $noZoc = false;
+    /* usually used for a closure, it's the amount of enemies or greater you CANNOT stack with
+     * so 1 means you can't stack with even 1 enemy. Use a closure here to allow for air units stacking with
+     * enemy land units only, for example. and vice a versa.
+     */
+    public $enemyStackingLimit = 1;
 
     function save()
     {
@@ -415,7 +420,8 @@ class MoveRules
             if ($mapHex->isOccupied($this->force->attackingForceId, $this->stacking, $unit)) {
                 $this->moves->$hexNum->isOccupied = true;
             }
-            if ($mapHex->isOccupied($this->force->defendingForceId)) {
+
+            if ($mapHex->isOccupied($this->force->defendingForceId,$this->enemyStackingLimit, $unit)) {
                 $this->moves->$hexNum->isValid = false;
                 continue;
             }
@@ -431,7 +437,7 @@ class MoveRules
                     $exitCost += $this->exitZoc;
                 }
                 if (!$hexPath->firstHex) {
-                    if ($this->enterZoc == 'stop') {
+                    if ($this->enterZoc === "stop") {
                         continue;
                     }
                 }
@@ -477,7 +483,8 @@ class MoveRules
                 }
                 $moveAmount += $exitCost;
                 $newMapHex = $this->mapData->getHex($newHexNum);
-                if ($newMapHex->isOccupied($this->force->defendingForceId)) {
+
+                if ($newMapHex->isOccupied($this->force->defendingForceId, $this->enemyStackingLimit, $unit)) {
                     continue;
                 }
                 $isZoc = $this->force->mapHexIsZOC($newMapHex);
@@ -1055,7 +1062,7 @@ class MoveRules
         }
 
         if ($mapHex->isZoc($this->force->defendingForceId) == true) {
-            if ($this->enterZoc == "stop") {
+            if ($this->enterZoc === "stop") {
                 $this->stopMove($movingUnit);
             }
         }

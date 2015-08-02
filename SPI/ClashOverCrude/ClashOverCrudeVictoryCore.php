@@ -116,23 +116,23 @@ class ClashOverCrudeVictoryCore extends victoryCore
             $this->airdropZones = $newAirdrops;
         }
 
-        if(in_array($mapHexName,$battle->specialHexA)){
-            $vp = 25;
-
-            $prevForceId = $battle->mapData->specialHexes->$mapHexName;
-            if ($forceId == REBEL_FORCE) {
-                $this->victoryPoints[REBEL_FORCE]  += $vp;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebel'>+$vp Rebel vp</span>";
-                $this->victoryPoints[LOYALIST_FORCE] -= $vp;
-                $battle->mapData->specialHexesVictory->$mapHexName .= "<span class='rebel'> -$vp Loyalist vp</span>";
-            }
-            if ($forceId == LOYALIST_FORCE) {
-                $this->victoryPoints[LOYALIST_FORCE]  += $vp;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalist'>+$vp Loyalist vp</span>";
-                $this->victoryPoints[REBEL_FORCE] -= $vp;
-                $battle->mapData->specialHexesVictory->$mapHexName .= "<span class='loyalist'> -$vp Rebel vp</span>";
-            }
-        }
+//        if(in_array($mapHexName,$battle->specialHexA)){
+//            $vp = 25;
+//
+//            $prevForceId = $battle->mapData->specialHexes->$mapHexName;
+//            if ($forceId == REBEL_FORCE) {
+//                $this->victoryPoints[REBEL_FORCE]  += $vp;
+//                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebel'>+$vp Rebel vp</span>";
+//                $this->victoryPoints[LOYALIST_FORCE] -= $vp;
+//                $battle->mapData->specialHexesVictory->$mapHexName .= "<span class='rebel'> -$vp Loyalist vp</span>";
+//            }
+//            if ($forceId == LOYALIST_FORCE) {
+//                $this->victoryPoints[LOYALIST_FORCE]  += $vp;
+//                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalist'>+$vp Loyalist vp</span>";
+//                $this->victoryPoints[REBEL_FORCE] -= $vp;
+//                $battle->mapData->specialHexesVictory->$mapHexName .= "<span class='loyalist'> -$vp Rebel vp</span>";
+//            }
+//        }
 
     }
 
@@ -294,6 +294,19 @@ class ClashOverCrudeVictoryCore extends victoryCore
 
         $b = Battle::getBattle();
         $id = $unit->id;
+        if($unit->class === "air" && $unit->forceId == $b->force->attackingForceId && ($b->gameRules->phase == RED_COMBAT_PHASE || $b->gameRules->phase == BLUE_COMBAT_PHASE )) {
+            if($unit->hexagon && $unit->hexagon->name){
+
+                /* Air units can only attack units in same hex */
+                $mapHex = $b->mapData->getHex($unit->hexagon->name);
+                if($mapHex->isOccupied($b->force->defendingForceId,1)){
+                    $unit->setStatus(STATUS_READY);
+                }else{
+                    $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+                }
+            }
+            /* @var MapHex $mapHex */
+        }
         if ($unit->forceId != $b->gameRules->attackingForceId) {
 //            return;
         }
@@ -313,18 +326,17 @@ class ClashOverCrudeVictoryCore extends victoryCore
     {
         $unit = $arg[0];
         $battle = Battle::getBattle();
-        if ($battle->scenario->supply === true) {
-            if ($unit->class != 'mech') {
-                $battle->moveRules->enterZoc = "stop";
-                $battle->moveRules->exitZoc = 0;
-                $battle->moveRules->noZocZoc = false;
-            } else {
-                $battle->moveRules->enterZoc = 2;
-                $battle->moveRules->exitZoc = 1;
-                $battle->moveRules->noZocZoc = false;
+        if ($unit->class != 'air') {
+            $battle->moveRules->enterZoc = "stop";
+            $battle->moveRules->exitZoc = 0;
+            $battle->moveRules->noZocZoc = true;
+        } else {
+            $battle->moveRules->enterZoc = 0;
+            $battle->moveRules->exitZoc = 0;
+            $battle->moveRules->noZocZoc = false;
 
-            }
         }
+
     }
 
     public function playerTurnChange($arg)

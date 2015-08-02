@@ -85,4 +85,45 @@
 
 
     });
+
+
+    function renderUnitNumbers(unit, moveAmount){
+
+        var  move = unit.maxMove - unit.moveAmountUsed;
+        if(moveAmount !== undefined){
+            move = moveAmount-0;
+        }
+        move = move.toFixed(2);
+        move = move.replace(/\.00$/,'');
+        move = move.replace(/(\.[1-9])0$/,'$1');
+        var str = unit.strength;
+        var reduced = unit.isReduced;
+        var reduceDisp = "<span>";
+        if(reduced){
+            reduceDisp = "<span class='reduced'>";
+        }
+        var symb = "-";
+
+        if(unit.class == 'air'){
+            $("#"+unit.id+" .air-strength").html(unit.airStrength)
+        }
+        var html = reduceDisp + str + symb + move + "</span>";
+        return html;
+
+
+
+    }
+
+
+    function renderCrtDetails(combat){
+        var atk = combat.attackStrength;
+        var def = combat.defenseStrength;
+        var div = atk - def;
+        var ter = combat.terrainCombatEffect;
+        var combatCol = combat.index + 1;
+
+        var html = "<div id='crtDetails'>"+combat.combatLog+"</div><div>Attack = " + atk + " - Defender " + def + " = " + div + "<br>Final Column  "  + $(".col" + combatCol).html() + "</div>"
+        return html;
+    }
+
 </script>

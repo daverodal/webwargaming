@@ -239,11 +239,11 @@
                         <img id="map" alt="map" src="<?php preg_match("/http/",$mapUrl) ?   $pre = '': $pre = base_url();echo "$pre$mapUrl";?>">
                         <?php $id = 0; ?>
                         {units}
-                        <div class="unit {nationality}" id="{id}" alt="0">
+                        <div class="unit {nationality} {type}" id="{id}" alt="0">
                             <div class="shadow-mask"></div>
-                            <div class="unitSize">{unitSize}</div>
                             <img class="arrow" src="<?php echo base_url(); ?>js/short-red-arrow-md.png" class="counter">
                             <div class="counterWrapper">
+                                <div class="air-strength"></div>
                                 <img src="<?php echo base_url(); ?>js/{image}" class="counter"><span class="unit-desig">{unitDesig}</span>
                             </div>
                             <div class="unit-numbers">5 - 4</div>

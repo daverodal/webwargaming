@@ -19,11 +19,11 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class SimpleUnit extends BaseUnit implements JsonSerializable
+class LandAirUnit extends BaseUnit implements JsonSerializable
 {
 
     public $origStrength;
-    public $unitDefStrength;
+    public $unitAirStrength;
 
 
     public function getUnmodifiedStrength(){
@@ -31,19 +31,19 @@ class SimpleUnit extends BaseUnit implements JsonSerializable
     }
 
 
-    public function getUnmodifiedDefStrength(){
-        return  $this->unitDefStrength;
+    public function getUnmodifiedAirStrength(){
+        return  $this->unitAirStrength;
     }
 
     public function __get($name)
     {
-        if ($name !== "strength" && $name !== "defStrength" && $name !== "attStrength") {
+        if ($name !== "strength" && $name !== "airStrength" && $name !== "attStrength" && $name !== "defStrength") {
             return false;
         }
         $strength = $this->origStrength;
 
-        if($name === "defStrength"){
-            $strength = $this->unitDefStrength;
+        if($name === "airStrength"){
+            $strength = $this->unitAirStrength;
         }
 
         foreach ($this->adjustments as $adjustment) {
@@ -63,14 +63,20 @@ class SimpleUnit extends BaseUnit implements JsonSerializable
     }
 
 
-    function set( $unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitDefStrength, $unitMaxMove, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral", $forceMarch, $class, $unitDesig)
+    function set( $unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitAirStrength, $unitMaxMove, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral", $forceMarch, $class, $unitDesig)
     {
+
         $this->dirty = true;
         $this->name = $unitName;
         $this->forceId = $unitForceId;
         $this->class = $class;
+        if($class === "air"){
+            $this->noZoc = true;
+        }
+
         $this->hexagon = new Hexagon($unitHexagon);
-        $this->unitDefStrength = $unitDefStrength;
+        $this->unitAirStrength = $unitAirStrength;
+
 
         /* blah! this can get called from the constructor of Battle. so we can't get ourselves while creating ourselves */
 //        $battle = Battle::getBattle();
@@ -114,7 +120,7 @@ class SimpleUnit extends BaseUnit implements JsonSerializable
 
         $this->status = STATUS_ELIMINATING;
         $this->exchangeAmount = $this->getUnmodifiedStrength();
-        $this->defExchangeAmount = $this->getUnmodifiedDefStrength();
+        $this->defExchangeAmount = $this->exchangeAmount;
         return true;
     }
 
@@ -142,8 +148,9 @@ class SimpleUnit extends BaseUnit implements JsonSerializable
         $mapUnit->moveAmountUsed = $this->moveAmountUsed;
         $mapUnit->maxMove = $this->maxMove;
         $mapUnit->strength = $this->strength;
-        $mapUnit->supplied = $this->supplied;
-        $mapUnit->defStrength = $this->unitDefStrength;
+        $mapUnit->airStrength = $this->unitAirStrength;
+        $mapUnit->class = $this->class;
+        $mapUnit->id = $this->id;
         return $mapUnit;
     }
 }
@@ -154,15 +161,15 @@ class UnitFactory {
     public static $injector;
     public static function build($data = false){
 
-        $sU =  new SimpleUnit($data);
+        $sU =  new LandAirUnit($data);
         if($data === false){
             $sU->id = self::$id++;
         }
         return $sU;
     }
-    public static function create( $unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitDefStrength, $unitMaxMove, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral", $class, $unitDesig = ""){
+    public static function create( $unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitAirStrength, $unitMaxMove, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral", $class, $unitDesig = ""){
         $unit = self::build();
-        $unit->set($unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitDefStrength, $unitMaxMove, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality, true, $class, $unitDesig);
+        $unit->set($unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitAirStrength, $unitMaxMove, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality, true, $class, $unitDesig);
         self::$injector->injectUnit($unit);
     }
 
