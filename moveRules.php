@@ -587,7 +587,7 @@ class MoveRules
             if ($mapHex->isOccupied($attackingForceId, $this->stacking, $unit)) {
                 $this->moves->$hexNum->isOccupied = true;
             }
-            if ($mapHex->isOccupied($defendingForceId)) {
+            if ($mapHex->isOccupied($defendingForceId,$this->enemyStackingLimit, $unit)) {
                 $this->moves->$hexNum->isValid = false;
                 continue;
             }
