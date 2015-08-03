@@ -15,11 +15,6 @@
         "scenarios": {
             "main": {
                 "description": "Standard",
-                "supply": true,
-                "loyalMechMove": 8,
-                "loyalExtraInf": true,
-                "supplyLen": 12,
-                "hardCuneiform": true,
                 "longDescription":"Standard scenario, balanced for both sides."
             }
         }
