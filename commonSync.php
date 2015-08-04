@@ -762,6 +762,7 @@ x.register("moveRules", function(moveRules,data) {
         var opacity = .4;
         var borderColor = "#ccc #333 #333 #ccc";
         if(moveRules.moves){
+            debugger;
             id = moveRules.movingUnitId;
             newId = "firstclone";
             width = $("#"+id).width();
@@ -840,6 +841,7 @@ x.register("moveRules", function(moveRules,data) {
 
                 var newLabel = label.replace(/((?:<span[^>]*>)?[-+ru](?:<\/span>)?).*/,"$1 "+moveRules.moves[i].pointsLeft);
                 newLabel = renderUnitNumbers(data.mapUnits[id], moveRules.moves[i].pointsLeft);
+                newLabel = label;
                 var txt = secondGenClone.find('div.unit-numbers span').html(newLabel).text();
                 secondGenClone.find('div.unit-numbers span').addClass('infoLen'+txt.length);
                 secondGenClone.find('.counterWrapper .guard-unit').addClass('infoLen'+newLabel.length);

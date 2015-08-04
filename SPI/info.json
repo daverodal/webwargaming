@@ -38,5 +38,25 @@
         "hardCuneiform": true
       }
     }
+  },
+  "TinCans": {
+    "name": "Tin Cans",
+    "path": "SPI",
+    "genre": "SPI Clones",
+    "fileName": "TinCans/TinCans.php",
+    "description": "Destroyers, Crusiers, Battleships.",
+    "options":[
+      {
+        "name": "For of war during Deployment. Enemy units remain hidden until movement phase..",
+        "keyName":"fogDeploy",
+        "value": false
+      }
+    ],
+    "scenarios": {
+      "main": {
+        "description": "Standard",
+        "longDescription":"Opus 1."
+      }
+    }
   }
 }

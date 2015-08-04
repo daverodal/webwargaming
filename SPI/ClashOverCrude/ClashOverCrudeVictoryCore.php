@@ -307,6 +307,14 @@ class ClashOverCrudeVictoryCore extends victoryCore
             }
             /* @var MapHex $mapHex */
         }
+
+        if($unit->class !== "air" &&  ($b->gameRules->phase == RED_AIR_COMBAT_PHASE || $b->gameRules->phase == BLUE_AIR_COMBAT_PHASE )) {
+            if($unit->hexagon && $unit->hexagon->name){
+                $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+            }
+            /* @var MapHex $mapHex */
+        }
+
         if ($unit->forceId != $b->gameRules->attackingForceId) {
 //            return;
         }

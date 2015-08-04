@@ -93,6 +93,7 @@ class MoveRules
     function moveUnit($eventType, $id, $hexagon, $turn)
     {
         $dirty = false;
+        echo "In here ?" ;
         if ($eventType == SELECT_MAP_EVENT) {
             if ($this->anyUnitIsMoving) {
                 // click on map, so try to move
@@ -108,7 +109,7 @@ class MoveRules
 
                         }
                         $movesLeft = $this->moves->$newHex->pointsLeft;
-//                        $facing = $this->moves->$newHex->facing;
+                        $facing = $this->moves->$newHex->facing;
                         $this->moves = new stdClass();
 
                         $this->move($movingUnit, $newHex);
@@ -121,8 +122,8 @@ class MoveRules
                             $hexPath->pathToHere = array();
                             $hexPath->firstHex = false;
                             $hexPath->isOccupied = true;
-//                                $hexPath->facing = $facing;
-//                            $movingUnit->facing = $facing;
+                                $hexPath->facing = $facing;
+                            $movingUnit->facing = $facing;
                             $this->moveQueue[] = $hexPath;
                             $this->bfsMoves();
 
@@ -153,6 +154,7 @@ class MoveRules
             }
         } else // click on a unit
         {
+            echo "anyhint moving? ";
             if ($this->anyUnitIsMoving == true) {
                 if ($id == $this->movingUnitId) {
                     $movingUnit = $this->force->units[$id];
@@ -214,7 +216,9 @@ class MoveRules
                 }
             } else {
                 // no one is moving, so start new move
+                echo "Can I move? ";
                 if ($this->force->unitCanMove($id) == true) {
+                    echo "I can so I shall ! ";
                     $this->startMoving($id);
 //                    $this->calcSupply($id);
                     $this->calcMove($id);
@@ -306,7 +310,7 @@ class MoveRules
         $hexPath->pathToHere = array();
         $hexPath->firstHex = true;
         $hexPath->isOccupied = true;
-//        $hexPath->facing = $this->force->units[$id]->facing;
+        $hexPath->facing = $this->force->units[$id]->facing;
         $this->moveQueue[] = $hexPath;
         $this->bfsMoves();
 
@@ -449,7 +453,7 @@ class MoveRules
 
             $neighbors = $mapHex->neighbors;
             if(isset($hexPath->facing)){
-                $neighbors = array_slice($mapHex->neighbors, ($hexPath->facing + 6 - 1)%6, 3);
+                $neighbors = array_slice(array_merge($mapHex->neighbors,$mapHex->neighbors), ($hexPath->facing + 6 - 1)%6, 3);
                 $newFacing = ($hexPath->facing + 6 - 2);
 
             }

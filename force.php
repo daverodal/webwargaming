@@ -758,6 +758,7 @@ class Force
                 break;
 
             case NE:
+            case MISS:
                 $defUnit->status = STATUS_NO_RESULT;
                 $defUnit->retreatCountRequired = 0;
                 break;
@@ -769,6 +770,19 @@ class Force
                     $defUnit->moveCount = 0;
                     $this->addToRetreatHexagonList($defenderId, $this->getUnitHexagon($defenderId));
 
+                } else {
+                    $defUnit->status = STATUS_DEFENDED;
+                    $defUnit->retreatCountRequired = 0;
+                }
+                break;
+            case P:
+            case W:
+            case PW:
+                $eliminated = $defUnit->damageUnit($combatResults);
+                if ($eliminated) {
+                    $vacated = true;
+                    $defUnit->retreatCountRequired = 0;
+                    $defUnit->moveCount = 0;
                 } else {
                     $defUnit->status = STATUS_DEFENDED;
                     $defUnit->retreatCountRequired = 0;
@@ -1352,7 +1366,10 @@ class Force
 
     function unitCanMove($id)
     {
+
+
         $canMove = false;
+        var_dump($this->units[$id]);
         if ($this->units[$id]->status == STATUS_READY && $this->units[$id]->forceId == $this->attackingForceId) {
             $canMove = true;
         }

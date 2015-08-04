@@ -65,6 +65,10 @@ define("TEAL_COMBAT_PHASE", 25);
 define("PURPLE_REPLACEMENT_PHASE", 26);
 define("PURPLE_MOVE_PHASE", 27);
 define("PURPLE_COMBAT_PHASE", 28);
+define("BLUE_AIR_COMBAT_PHASE",29);
+define("RED_AIR_COMBAT_PHASE",30);
+define("BLUE_TORP_COMBAT_PHASE", 31);
+define("RED_TORP_COMBAT_PHASE", 32);
 
 
 
@@ -126,7 +130,10 @@ $phase_name[25] = "<span class='playerOneFace'>fNameThree</span>";
 $phase_name[26] = "<span class='playerOneFace'>fNameFour</span> Replacement";
 $phase_name[27] = "<span class='playerOneFace'>fNameFour</span> Move";
 $phase_name[28] = "<span class='playerOneFace'>fNameFour</span>";
-
+$phase_name[29] = "<span class='playerOneFace'>fNameOne</span> Air ";
+$phase_name[30] = "<span class='playerOneFace'>fNameTwo</span> Air ";
+$phase_name[31] = "<span class='playerOneFace'>fNameOne</span> Torp ";
+$phase_name[32] = "<span class='playerOneFace'>fNameTwo</span> Torp ";
 
 
 // game modes
@@ -288,6 +295,10 @@ define("EX0", 12);
 define("EX02", 13);
 define("EX03", 14);
 define("DD",15);
+define("P", 16);
+define("W",17);
+define("PW", 18);
+define("MISS", 19);
 
 $results_name = array();
 //results_name[DE] = "Defender eliminated";
@@ -311,6 +322,10 @@ $results_name[EX0] = "EX";
 $results_name[EX02] = "EX2";
 $results_name[EX03] = "EX3";
 $results_name[DD] = "DD";
+$results_name[P] = "P";
+$results_name[W] = "W";
+$results_name[PW] = "PW";
+$results_name[MISS] = ".";
 
 // combat ratio
 $combatRatio_name = array();

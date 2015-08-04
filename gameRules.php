@@ -422,7 +422,9 @@ class GameRules
                         break;
 
                     case SELECT_BUTTON_EVENT:
+                        echo "Fun !";
                         if ($this->force->moreCombatToResolve() == false) {
+                            echo "done! ";
                             $this->combatRules->cleanUp();
                             $this->selectNextPhase($click);
                         }

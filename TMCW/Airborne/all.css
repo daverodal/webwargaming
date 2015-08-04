@@ -762,7 +762,7 @@ fieldset {
   height: 12px;
   font-size: 11px; }
 
-.arrowClone, .arrow {
+.arrowClone, .arrow, .heading {
   position: absolute;
   pointer-events: none;
   z-index: 102;
@@ -884,7 +884,7 @@ svg marker#head {
   #nextPhaseWrapper button, .dropDown, #zoomWrapper {
     height: 66px;
     line-height: 66px; }
-    #nextPhaseWrapper button#fullScreenButton, .dropDown#fullScreenButton, #zoomWrapper#fullScreenButton {
+    #nextPhaseWrapper button#fullScreenButton i, .dropDown#fullScreenButton i, #zoomWrapper#fullScreenButton i {
       min-width: 66px; }
 
   #crtWrapper {

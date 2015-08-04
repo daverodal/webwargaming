@@ -759,7 +759,7 @@ fieldset {
   height: 12px;
   font-size: 11px; }
 
-.arrowClone, .arrow {
+.arrowClone, .arrow, .heading {
   position: absolute;
   pointer-events: none;
   z-index: 102;

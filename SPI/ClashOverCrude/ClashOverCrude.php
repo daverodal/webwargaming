@@ -128,11 +128,13 @@ class ClashOverCrude extends ModernLandBattle
         /* Rebel Units */
 
         UnitFactory::$injector = $this->force;
-        UnitFactory::create("lll", RED_FORCE, 407, "multiPara.png", 7, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "para");
-        UnitFactory::create("lll", RED_FORCE, 313, "jetPlane4.svg", 7, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "air");
-        UnitFactory::create("lll", RED_FORCE, 212, "jetPlane4.svg", 7, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "air");
-        UnitFactory::create("lll", RED_FORCE, 111, "jetPlane4.svg", 7, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "air");
-        UnitFactory::create("lll", RED_FORCE, 123, "jetPlane3.svg", 7, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "air");
+        /* Saudi Arabian */
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiInf.png", 4, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "inf");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiInf.png", 4, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "inf");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiMech.png", 6, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "mech");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "jetPlane4.svg", 2, 2, 25,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "air", "167");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "jetPlane2.svg", 2, 3, 24,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "air", "f5");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "jetPlane2.svg", 0, 5, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "air", "Lt");
 
         UnitFactory::create("lll", BLUE_FORCE, 510, "multiPara.png", 7, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "israeli",  "para");
         UnitFactory::create("lll", BLUE_FORCE, 511, "multiPara.png", 7, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "israeli",  "para");
@@ -202,7 +204,8 @@ class ClashOverCrude extends ModernLandBattle
             $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_DEPLOY_PHASE, DEPLOY_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, BLUE_AIR_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_AIR_COMBAT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MECH_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_MECH_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);

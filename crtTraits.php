@@ -119,9 +119,10 @@ trait divCombatShiftTerrain
 
         foreach ($combats->attackers as $id => $v) {
             $unit = $force->units[$id];
-            $combatLog .= $unit->strength." ".$unit->class;
+            $strength = $unit->strength;
+            $combatLog .= $strength." ".$unit->class;
 
-            $attackStrength += $unit->strength;
+            $attackStrength += $strength;
 
         }
         $defenseStrength = 0;
