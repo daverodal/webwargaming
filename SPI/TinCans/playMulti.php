@@ -24,11 +24,12 @@
     body {
         background: #ccc;
         color: #333;
-        background: url("<?=base_url("js/CF-18_Cold_Lake_Alberta.jpg")?>") #333 no-repeat;
+        background: url("<?=base_url("js/USS_Evans_(DD-552)_in_the_Gulf_of_Mexico_1943.jpg")?>") #333 no-repeat;
         background-position: 10% 0;
         background-size: 100%;
     }
 
 </style>
 <footer class="attribution">
-    By Camera Operator: SMSGT JOHN P. ROHRER, USAFService Depicted:Command Shown: ACC (ID:DFSD0512182 / 030917F0381R007) [Public domain], <a target="_blank" href="https://commons.wikimedia.org/wiki/File%3ACF-18_Cold_Lake_Alberta.jpg">via Wikimedia Commons</a></footer>
+    By USN [Public domain], <a target="_blank" href="https://commons.wikimedia.org/wiki/File%3AUSS_Evans_(DD-552)_in_the_Gulf_of_Mexico_1943.jpg">via Wikimedia Commons</a>
+</footer>
