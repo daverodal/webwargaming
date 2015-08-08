@@ -1369,7 +1369,6 @@ class Force
 
 
         $canMove = false;
-        var_dump($this->units[$id]);
         if ($this->units[$id]->status == STATUS_READY && $this->units[$id]->forceId == $this->attackingForceId) {
             $canMove = true;
         }

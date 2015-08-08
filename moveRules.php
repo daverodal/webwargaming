@@ -93,7 +93,6 @@ class MoveRules
     function moveUnit($eventType, $id, $hexagon, $turn)
     {
         $dirty = false;
-        echo "In here ?" ;
         if ($eventType == SELECT_MAP_EVENT) {
             if ($this->anyUnitIsMoving) {
                 // click on map, so try to move
@@ -154,7 +153,6 @@ class MoveRules
             }
         } else // click on a unit
         {
-            echo "anyhint moving? ";
             if ($this->anyUnitIsMoving == true) {
                 if ($id == $this->movingUnitId) {
                     $movingUnit = $this->force->units[$id];
@@ -216,9 +214,7 @@ class MoveRules
                 }
             } else {
                 // no one is moving, so start new move
-                echo "Can I move? ";
                 if ($this->force->unitCanMove($id) == true) {
-                    echo "I can so I shall ! ";
                     $this->startMoving($id);
 //                    $this->calcSupply($id);
                     $this->calcMove($id);
