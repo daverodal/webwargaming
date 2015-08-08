@@ -343,10 +343,6 @@ class MoveRules
                     unset($moves->$key);
                     continue;
                 }
-                if($moves->$key->isOccupied === true) {
-                    unset($moves->$key);
-                    continue;
-                }
                 if($moves->$key->isOccupied === false){
                     $validCount++;
                 }
@@ -403,7 +399,7 @@ class MoveRules
         while (count($this->moveQueue) > 0) {
             $cnt++;
             $hexPath = array_shift($this->moveQueue);
-            $hexNum = $hexPath->name;
+            $hexNum = $hexPath->name . '=' . $hexPath->facing;
             $movePoints = $hexPath->pointsLeft;
             if (!$hexNum) {
                 continue;
