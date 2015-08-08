@@ -395,7 +395,7 @@ class MoveRules
         while (count($this->moveQueue) > 0) {
             $cnt++;
             $hexPath = array_shift($this->moveQueue);
-            $hexNum = $hexPath->name . '=' . $hexPath->facing;
+            $hexNum = $hexPath->name;
             $movePoints = $hexPath->pointsLeft;
             if (!$hexNum) {
                 continue;
