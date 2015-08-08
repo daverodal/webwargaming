@@ -343,6 +343,10 @@ class MoveRules
                     unset($moves->$key);
                     continue;
                 }
+                if($moves->$key->isOccupied === true) {
+                    unset($moves->$key);
+                    continue;
+                }
                 if($moves->$key->isOccupied === false){
                     $validCount++;
                 }
