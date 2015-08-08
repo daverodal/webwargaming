@@ -108,7 +108,7 @@ class MoveRules
 
                         }
                         $movesLeft = $this->moves->$newHex->pointsLeft;
-                        $facing = $this->moves->$newHex->facing;
+//                        $facing = $this->moves->$newHex->facing;
                         $this->moves = new stdClass();
 
                         $this->move($movingUnit, $newHex);
@@ -121,8 +121,8 @@ class MoveRules
                             $hexPath->pathToHere = array();
                             $hexPath->firstHex = false;
                             $hexPath->isOccupied = true;
-                                $hexPath->facing = $facing;
-                            $movingUnit->facing = $facing;
+//                                $hexPath->facing = $facing;
+//                            $movingUnit->facing = $facing;
                             $this->moveQueue[] = $hexPath;
                             $this->bfsMoves();
 
@@ -306,7 +306,7 @@ class MoveRules
         $hexPath->pathToHere = array();
         $hexPath->firstHex = true;
         $hexPath->isOccupied = true;
-        $hexPath->facing = $this->force->units[$id]->facing;
+//        $hexPath->facing = $this->force->units[$id]->facing;
         $this->moveQueue[] = $hexPath;
         $this->bfsMoves();
 
@@ -448,16 +448,16 @@ class MoveRules
 
 
             $neighbors = $mapHex->neighbors;
-            if(isset($hexPath->facing)){
-                $neighbors = array_slice(array_merge($mapHex->neighbors,$mapHex->neighbors), ($hexPath->facing + 6 - 1)%6, 3);
-                $newFacing = ($hexPath->facing + 6 - 2);
-
-            }
+//            if(isset($hexPath->facing)){
+//                $neighbors = array_slice(array_merge($mapHex->neighbors,$mapHex->neighbors), ($hexPath->facing + 6 - 1)%6, 3);
+//                $newFacing = ($hexPath->facing + 6 - 2);
+//
+//            }
             /* we pre increment, so facing should be hex to the left, -1, hex forward 0, hex to the right +1
              *  Add 6 because -1 doesn't mod well
             */
             foreach ($neighbors as $neighbor) {
-                $newFacing++;
+//                $newFacing++;
                 $newHexNum = $neighbor;
                 $gnuHex = Hexagon::getHexPartXY($newHexNum);
                 if (!$gnuHex) {
@@ -516,9 +516,9 @@ class MoveRules
                     $newPath->name = $newHexNum;
                     $newPath->pathToHere = $path;
                     $newPath->pointsLeft = $movePoints - $moveAmount;
-                    if(isset($hexPath->facing)) {
-                        $newPath->facing = $newFacing % 6;
-                    }
+//                    if(isset($hexPath->facing)) {
+//                        $newPath->facing = $newFacing % 6;
+//                    }
                     if ($newPath->pointsLeft < 0) {
                         $newPath->pointsLeft = 0;
                     }

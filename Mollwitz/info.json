@@ -234,7 +234,7 @@
     "path": "Mollwitz",
     "genre": "18'th Century Europe",
     "fileName": "Fraustadt1706/Fraustadt1706.php",
-    "description":"1706",
+    "description":"Battle of Fraustadt, 13 February 1706. Swedish vs Saxon and Russian. Great Northern War",
     "params":{
       "weakRedoubts": true
     },
@@ -672,7 +672,7 @@
     "path": "Mollwitz",
     "genre": "18'th Century Europe",
     "fileName": "Fontenoy1745/Fontenoy1745.php",
-    "description":"The Battle of Fontenoy 1745 between the French and everyone else. ",
+    "description":" Battle of Fontenoy, 11 May 1745. French vs Allies, The War for Austrian Succession ",
     "params":{
       "units":[
 
