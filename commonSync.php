@@ -838,8 +838,8 @@ x.register("moveRules", function(moveRules,data) {
                     }
                 );
 
-                var newLabel = label.replace(/((?:<span[^>]*>)?[-+ru](?:<\/span>)?).*/,"$1 "+moveRules.moves[i].pointsLeft);
-                newLabel = renderUnitNumbers(data.mapUnits[id], moveRules.moves[i].pointsLeft);
+//                var newLabel = label.replace(/((?:<span[^>]*>)?[-+ru](?:<\/span>)?).*/,"$1 "+moveRules.moves[i].pointsLeft);
+                var newLabel = renderUnitNumbers(data.mapUnits[id], moveRules.moves[i].pointsLeft);
                 var txt = secondGenClone.find('div.unit-numbers span').html(newLabel).text();
                 secondGenClone.find('div.unit-numbers span').addClass('infoLen'+txt.length);
                 secondGenClone.find('.counterWrapper .guard-unit').addClass('infoLen'+newLabel.length);

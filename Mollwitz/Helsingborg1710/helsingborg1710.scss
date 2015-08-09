@@ -23,13 +23,13 @@ $danishWrapperColor: #bfbfbf;
 @include player(Danish, Two, $danishColor, $danishWrapperColor);
 @include badge(Danish, Danish);
 
-.swedes.specialHexes{
+.swedish.specialHexes{
   background-color: $swedishWrapperColor;
   color:white;
 }
 
 
-.danes.specialHexes {
+.danish.specialHexes {
   background-color: $danishColor;
   color:white;
 }
