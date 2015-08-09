@@ -40,6 +40,8 @@ class ClashOverCrudeVictoryCore extends victoryCore
     public $gameOver = false;
     public $winner = false;
 
+    public $airXferPts = 30;
+
 
     function __construct($data)
     {
@@ -141,20 +143,42 @@ class ClashOverCrudeVictoryCore extends victoryCore
         list($zones, $unit) = $args;
         if ($unit->forceId == BLUE_FORCE) {
             $zone = $unit->reinforceZone;
-            $zones = [];
-            if ($zone == "A") {
-                foreach ($this->landingZones as $landingZone) {
-                    $zones[] = new ReinforceZone($landingZone, "A");
+            if ($zone == "O") {
+                $inverse = [];
+                for($row = 1; $row <= 29; $row++){
+                    for($col = 1; $col <= 21;$col++){
+                        $hexNum = sprintf("%04d", "0000" . ($col * 100 + $row));
+                        $inverse[$hexNum] = true;
+                    }
                 }
-            }
-            if ($zone == "C") {
-                foreach ($this->airdropZones as $airdropZone) {
-                    $zones[] = new ReinforceZone($airdropZone, "C");
+                foreach($zones as $zone){
+                    $hexNum = $zone->hexagon->name;
+                    $hexNum = sprintf("%04d", "0000" . $hexNum);
+                    unset($inverse[$hexNum]);
+                }
+                $zones = [];
+                foreach($inverse as $key=>$val){
+                    $zones[] = new ReinforceZone($key, "O");
                 }
             }
         }
-
         return array($zones);
+    }
+
+
+    public function postReinforceZoneNames($args)
+    {
+        list($zoneNames, $unit) = $args;
+        if ($unit->forceId == BLUE_FORCE) {
+            $zone = $unit->reinforceZone;
+            if ($zone == "O") {
+                if(in_array("O",$zoneNames)){
+                    return [];
+                }
+                return [["O"]];
+            }
+        }
+        return array($zoneNames);
     }
 
     public function reduceUnit($args)
@@ -185,9 +209,9 @@ class ClashOverCrudeVictoryCore extends victoryCore
         $theUnits = $battle->force->units;
         foreach ($theUnits as $id => $unit) {
 
-            if ($unit->status == STATUS_CAN_REINFORCE && $unit->reinforceTurn <= $battle->gameRules->turn && $unit->hexagon->parent != "deployBox") {
+            if ($unit->status == STATUS_CAN_REINFORCE && $unit->reinforceTurn <= $battle->gameRules->turn && $unit->hexagon->parent != "deployBox" && $unit->hexagon->parent != "germany" && $unit->hexagon->parent != "israel") {
 //                $theUnits[$id]->status = STATUS_ELIMINATED;
-                $theUnits[$id]->hexagon->parent = "deployBox";
+                $theUnits[$id]->hexagon->parent = "oman";
             }
         }
     }

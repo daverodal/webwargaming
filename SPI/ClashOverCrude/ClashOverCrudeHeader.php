@@ -89,6 +89,10 @@
 
     function renderUnitNumbers(unit, moveAmount){
 
+        if(unit.parent !== "deployBox" && typeof moveAmount !== "undefined"){
+            debugger;
+
+        }
         var  move = unit.maxMove - unit.moveAmountUsed;
         if(moveAmount !== undefined){
             move = moveAmount-0;
@@ -97,17 +101,17 @@
         move = move.replace(/\.00$/,'');
         move = move.replace(/(\.[1-9])0$/,'$1');
         var str = unit.strength;
-        var reduced = unit.isReduced;
         var reduceDisp = "<span>";
-        if(reduced){
-            reduceDisp = "<span class='reduced'>";
-        }
         var symb = "-";
 
+        if(move > 26){
+            move = "U";
+        }
         if(unit.class == 'air'){
-            $("#"+unit.id+" .air-strength").html(unit.airStrength)
+            $("#"+unit.id+" .air-strength").html(unit.airStrength);
         }
         var html = reduceDisp + str + symb + move + "</span>";
+        html = "<div class='unit-info'><div class='left'>"+str+"</div><div class='right'>"+move+"</div></div>";
         return html;
 
 
@@ -124,6 +128,9 @@
 
         var html = "<div id='crtDetails'>"+combat.combatLog+"</div><div>Attack = " + atk + " - Defender " + def + " = " + div + "<br>Final Column  "  + $(".col" + combatCol).html() + "</div>"
         return html;
+    }
+
+    function victoryExtend(vp, data){
     }
 
 </script>

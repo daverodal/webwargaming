@@ -181,9 +181,9 @@ function renderUnitNumbers(unit, moveAmount){
     move = move.replace(/(\.[1-9])0$/,'$1');
     var str = unit.strength;
     var reduced = unit.isReduced;
-    var reduceDisp = "<span>";
+    var reduceDisp = "<span class='unit-info'>";
     if(reduced){
-        reduceDisp = "<span class='reduced'>";
+        reduceDisp = "<span class='unit-info reduced'>";
     }
     var symb = unit.supplied !== false ? " - " : " <span class='reduced'>u</span> ";
 //        symb = "-"+unit.defStrength+"-";
@@ -623,8 +623,11 @@ x.register("gameRules", function(gameRules,data) {
 
     }
 });
-x.register("vp", function(vp){
+x.register("vp", function(vp, data){
     $("#victory").html(" Victory: <span class='playerOneFace'>"+DR.playerOne+" </span>"+vp[1]+ " <span class='playerTwoFace'>"+DR.playerTwo+" </span>"+vp[2]+"");
+    if (typeof victoryExtend === 'function') {
+        victoryExtend(vp,data);
+    }
 
 });
 x.register("games", function(games) {
@@ -840,8 +843,8 @@ x.register("moveRules", function(moveRules,data) {
 
 //                var newLabel = label.replace(/((?:<span[^>]*>)?[-+ru](?:<\/span>)?).*/,"$1 "+moveRules.moves[i].pointsLeft);
                 var newLabel = renderUnitNumbers(data.mapUnits[id], moveRules.moves[i].pointsLeft);
-                var txt = secondGenClone.find('div.unit-numbers span').html(newLabel).text();
-                secondGenClone.find('div.unit-numbers span').addClass('infoLen'+txt.length);
+                var txt = secondGenClone.find('div.unit-numbers .unit-info').html(newLabel).text();
+                secondGenClone.find('div.unit-numbers .unit-info').addClass('infoLen'+txt.length);
                 secondGenClone.find('.counterWrapper .guard-unit').addClass('infoLen'+newLabel.length);
                 if(moveRules.moves[i].isOccupied){
                     secondGenClone.addClass("occupied");

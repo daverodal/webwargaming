@@ -926,7 +926,7 @@ svg marker#head {
 .rebel {
   background-color: #df5842; }
   .rebel .unit-desig {
-    color: white; }
+    color: black; }
 
 .playerTwo {
   background: #84b5ff;
@@ -938,7 +938,7 @@ svg marker#head {
 .loyalist {
   background-color: #84b5ff; }
   .loyalist .unit-desig {
-    color: white; }
+    color: black; }
 
 .rebel div {
   color: black; }
@@ -1170,7 +1170,7 @@ svg marker#head {
 .eastern {
   background-color: #ff6c29; }
   .eastern .unit-desig {
-    color: white; }
+    color: black; }
 
 .playerThree {
   background: #ADDAD6;
@@ -1182,7 +1182,7 @@ svg marker#head {
 .westernEmpire {
   background-color: #ADDAD6; }
   .westernEmpire .unit-desig {
-    color: white; }
+    color: black; }
 
 .playerTwo {
   background: #5c5;
@@ -1194,7 +1194,7 @@ svg marker#head {
 .western {
   background-color: #5c5; }
   .western .unit-desig {
-    color: white; }
+    color: black; }
 
 .playerFour {
   background: #afa2b3;
@@ -1206,7 +1206,7 @@ svg marker#head {
 .easternEmpire {
   background-color: #afa2b3; }
   .easternEmpire .unit-desig {
-    color: white; }
+    color: black; }
 
 .dead-country {
   height: 100%;

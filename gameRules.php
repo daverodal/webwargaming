@@ -422,9 +422,7 @@ class GameRules
                         break;
 
                     case SELECT_BUTTON_EVENT:
-                        echo "Fun !";
                         if ($this->force->moreCombatToResolve() == false) {
-                            echo "done! ";
                             $this->combatRules->cleanUp();
                             $this->selectNextPhase($click);
                         }
@@ -532,6 +530,7 @@ class GameRules
             /* @var Battle $battle */
             $battle = Battle::getBattle();
             $victory = $battle->victory;
+
             for ($i = 0; $i < count($this->phaseChanges); $i++) {
                 if ($this->phaseChanges[$i]->currentPhase == $this->phase) {
                     $this->phase = $this->phaseChanges[$i]->nextPhase;
@@ -540,6 +539,7 @@ class GameRules
 //                    if($this->gameHasCombatResolutionMode === false && $this->mode == COMBAT_RESOLUTION_MODE && $prevMode == COMBAT_SETUP_MODE){
 //                        $this->combatRules->combatsToResolve = $this->combatRules->combats;
 //                    }
+
                     $this->replacementsAvail = false;
                     $this->phaseClicks[] = $click + 1;
                     $this->phaseClickNames[] = $phase_name[$this->phase];

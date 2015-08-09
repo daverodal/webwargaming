@@ -1191,8 +1191,14 @@ class MoveRules
     function reinforce($id, Hexagon $hexagon)
     {
 
+        $battle = Battle::getBattle();
+        var_dump($this->force->getUnitReinforceZone($id));
         if ($this->force->unitIsReinforcing($id) == true) {
-            if (in_array($this->force->getUnitReinforceZone($id) , $this->terrain->getReinforceZoneList($hexagon))) {
+
+            list($zones) = $battle->victory->postReinforceZoneNames($this->terrain->getReinforceZoneList($hexagon), $battle->force->units[$id]);
+
+            var_dump($zones);
+            if (in_array($this->force->getUnitReinforceZone($id) , $zones)) {
                 /* @var Unit $movingUnit */
                 $movingUnit = $this->force->getUnit($id);
                 if ($movingUnit->setStatus(STATUS_MOVING) == true) {

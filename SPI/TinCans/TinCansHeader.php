@@ -125,7 +125,7 @@
         move = move.replace(/(\.[1-9])0$/,'$1');
         var str = unit.strength;
         var reduced = unit.isReduced;
-        var reduceDisp = "<span>";
+        var reduceDisp = "<span class='unit-info'>";
 
         if(unit.class == 'air'){
             $("#"+unit.id+" .air-strength").html(unit.airStrength)

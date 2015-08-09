@@ -926,7 +926,7 @@ svg marker#head {
 .rebel {
   background-color: #df5842; }
   .rebel .unit-desig {
-    color: white; }
+    color: black; }
 
 .playerTwo {
   background: #84b5ff;
@@ -938,7 +938,7 @@ svg marker#head {
 .loyalist {
   background-color: #84b5ff; }
   .loyalist .unit-desig {
-    color: white; }
+    color: black; }
 
 .rebel div {
   color: black; }
@@ -1161,28 +1161,88 @@ svg marker#head {
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 .playerOne {
-  background: #99ac36;
-  border-color: #99ac36 !important; }
+  background: #9bac3c;
+  border-color: #9bac3c !important; }
 
 .usFace, .playerOneFace {
-  color: #99ac36; }
+  color: #9bac3c; }
 
 .us {
-  background-color: #99ac36; }
+  background-color: #9bac3c; }
   .us .unit-desig {
     color: black; }
 
 .playerTwo {
-  background: #fff871;
-  border-color: #fff871 !important; }
+  background: #f6de74;
+  border-color: #f6de74 !important; }
 
 .saudiFace, .playerTwoFace {
-  color: #fff871; }
+  color: #f6de74; }
 
 .saudi {
-  background-color: #fff871; }
+  background-color: #f6de74; }
   .saudi .unit-desig {
-    color: white; }
+    color: black; }
+
+.playerThree {
+  background: #fed81b;
+  border-color: #fed81b !important; }
+
+.iraqiFace, .playerThreeFace {
+  color: #fed81b; }
+
+.iraqi {
+  background-color: #fed81b; }
+  .iraqi .unit-desig {
+    color: black; }
+
+.playerFour {
+  background: #ba9d25;
+  border-color: #ba9d25 !important; }
+
+.iranianFace, .playerFourFace {
+  color: #ba9d25; }
+
+.iranian {
+  background-color: #ba9d25; }
+  .iranian .unit-desig {
+    color: black; }
+
+.playerFive {
+  background: #bba866;
+  border-color: #bba866 !important; }
+
+.kuwatiFace, .playerFiveFace {
+  color: #bba866; }
+
+.kuwati {
+  background-color: #bba866; }
+  .kuwati .unit-desig {
+    color: black; }
+
+.playerSix {
+  background: #bfb8b2;
+  border-color: #bfb8b2 !important; }
+
+.quatarFace, .playerSixFace {
+  color: #bfb8b2; }
+
+.quatar {
+  background-color: #bfb8b2; }
+  .quatar .unit-desig {
+    color: black; }
+
+.playerSix {
+  background: #bfb8b2;
+  border-color: #bfb8b2 !important; }
+
+.bahrainFace, .playerSixFace {
+  color: #bfb8b2; }
+
+.bahrain {
+  background-color: #bfb8b2; }
+  .bahrain .unit-desig {
+    color: black; }
 
 .playerThree {
   background: #aaa;
@@ -1194,31 +1254,31 @@ svg marker#head {
 .loyalGuards {
   background-color: #aaa; }
   .loyalGuards .unit-desig {
-    color: white; }
+    color: black; }
 
 .playerFour {
-  background: #9aba7b;
-  border-color: #9aba7b !important; }
+  background: #99b87c;
+  border-color: #99b87c !important; }
 
 .eecFace, .playerFourFace {
-  color: #9aba7b; }
+  color: #99b87c; }
 
 .eec {
-  background-color: #9aba7b; }
+  background-color: #99b87c; }
   .eec .unit-desig {
-    color: white; }
+    color: black; }
 
 .playerFive {
-  background: #4fa0bb;
-  border-color: #4fa0bb !important; }
+  background: #4a9cb2;
+  border-color: #4a9cb2 !important; }
 
-.navyColorFace, .playerFiveFace {
-  color: #4fa0bb; }
+.usnFace, .playerFiveFace {
+  color: #4a9cb2; }
 
-.navyColor {
-  background-color: #4fa0bb; }
-  .navyColor .unit-desig {
-    color: white; }
+.usn {
+  background-color: #4a9cb2; }
+  .usn .unit-desig {
+    color: black; }
 
 .playerFive {
   background: powderblue;
@@ -1230,7 +1290,7 @@ svg marker#head {
 .israeli {
   background-color: powderblue; }
   .israeli .unit-desig {
-    color: white; }
+    color: black; }
 
 #crt {
   width: 520px; }
@@ -1325,16 +1385,27 @@ svg marker#head {
     height: 38px; }
 
 .unit .counterWrapper {
-  height: 20px; }
+  height: 18px; }
+  .unit .counterWrapper .air-strength {
+    position: absolute;
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+    font-family: sans-serif; }
   .unit .counterWrapper .counter {
     width: 52px;
     margin-top: -6px;
     margin-left: -10px; }
+.unit .unit-numbers {
+  font-family: sans-serif;
+  font-size: 14px; }
 
 .air.unit .counterWrapper .counter {
-  width: 22px;
+  width: 18px;
   margin-top: 2px;
-  margin-left: 4px; }
+  margin-left: 7px; }
+.air.unit .unit-numbers {
+  font-size: 16px; }
 
 .rebel .unit-desig {
   color: black; }
@@ -1342,18 +1413,16 @@ svg marker#head {
 .unit-desig {
   font-size: 10px;
   position: absolute;
-  left: 12px;
-  top: 3px;
+  left: 21px;
+  top: 1px;
   -webkit-transform: rotate(0deg);
   -webkit-transform-origin: center;
-  width: 30px;
+  width: 10px;
   text-align: center;
-  color: black; }
-
-.air-strength {
-  position: absolute;
-  font-size: 13px;
   color: black;
-  font-weight: bold; }
+  right: -4px;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  line-height: 8px; }
 
 /*# sourceMappingURL=all.css.map */

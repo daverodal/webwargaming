@@ -22,11 +22,18 @@
 
 
 
-@include player(us, One, $rebelColor, $rebelColor, black);
-@include player(saudi,Two, #fff871);
+@include player(us, One, $usColor, $usColor, black);
+@include player(saudi,Two, $saudiColor);
+@include player(iraqi,Three, $iraqiColor);
+@include player(iranian,Four, $iranianColor);
+@include player(kuwati,Five, $kuwatiColor);
+@include player(quatar,Six, $quatarColor);
+@include player(bahrain,Six, $bahrainColor);
+
+
 @include player(loyalGuards,Three,$loyalistGuardColor);
 @include player(eec, Four, $eecColor);
-@include player(navyColor, Five, $navyColor);
+@include player(usn, Five, $navyColor);
 @include player(israeli, Five, powderblue);
 
 #map {
@@ -157,20 +164,38 @@
   }
 }
 
-.unit .counterWrapper {
-  height: 20px;
+.unit {
+  .counterWrapper {
+    height: 18px;
 
+    .air-strength{
+      position:absolute;
+      font-size:16px;
+      color:black;
+      font-weight: bold;
+      font-family: sans-serif;
+    }
 
-  .counter {
-    width: 52px;
-    margin-top: -6px;
-    margin-left: -10px;
+    .counter {
+      width: 52px;
+      margin-top: -6px;
+      margin-left: -10px;
+    }
+  }
+  .unit-numbers{
+    font-family: sans-serif;
+    font-size:14px;
   }
 }
-.air.unit .counterWrapper .counter{
-  width: 22px;
+.air.unit{
+  .counterWrapper .counter{
+  width: 18px;
   margin-top: 2px;
-  margin-left: 4px;
+  margin-left: 7px;
+}
+  .unit-numbers{
+    font-size:16px;
+  }
 }
 .rebel .unit-desig{
   color:black;
@@ -178,17 +203,15 @@
 .unit-desig {
   font-size: 10px;
   position: absolute;
-  left: 12px;
-  top: 3px;
+  left: 21px;
+  top: 1px;
   -webkit-transform: rotate(0deg);
   -webkit-transform-origin: center;
-  width: 30px;
+  width: 10px;
   text-align: center;
-  color:black;
-}
-.air-strength{
-  position:absolute;
-  font-size:13px;
-  color:black;
-  font-weight: bold;
+  color: black;
+  right: -4px;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  line-height: 8px;
 }

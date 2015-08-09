@@ -85,87 +85,104 @@ class ClashOverCrude extends ModernLandBattle
         if($scenario->strongerLoyalist){
             $baseValue = 7;
         }
-        /* Loyalists units */
-
-//        $this->force->addUnit("lll", LOYALIST_FORCE, 305, "jetPlane.svg", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf', 'air');
-//        $this->force->addUnit("lll", LOYALIST_FORCE, 803, "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-//        $this->force->addUnit("x", LOYALIST_FORCE, 907, "multiHeavy.png", 10, 5, 5, false, STATUS_UNAVAIL_THIS_PHASE, "F", 1, 1, "loyalGuards", true, 'inf');
-//        $this->force->addUnit("lll", LOYALIST_FORCE, 1205, "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-//        $this->force->addUnit("lll", LOYALIST_FORCE, 1405, "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-//
-//        $this->force->addUnit("lll", LOYALIST_FORCE, 1705, "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-//        $this->force->addUnit("lll", LOYALIST_FORCE, 1904, "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-//        $this->force->addUnit("lll", LOYALIST_FORCE, 1809, "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_UNAVAIL_THIS_PHASE, "F", 1, 1, "loyalist", true, 'inf');
-//        $this->force->addUnit("lll", LOYALIST_FORCE, 1004, "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-//        $this->force->addUnit("lll", LOYALIST_FORCE, 604, "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-//        $this->force->addUnit("x", LOYALIST_FORCE, 1810, "multiMountain.png", $baseValue+1, $reducedBaseValue+1, 5, false, STATUS_UNAVAIL_THIS_PHASE, "F", 1, 1, "loyalGuards", true, 'mountain');
-//
-//        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn2", "multiInf.png", $baseValue+1, $reducedBaseValue+1, 5, false, STATUS_CAN_REINFORCE, "B", 2, 1, "loyalist", true, 'inf');
-//        $this->force->addUnit("lll", LOYALIST_FORCE, "gameTurn2", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_REINFORCE, "D", 2, 1, "loyalist", true, 'inf');
-//        $this->force->addUnit("lll", LOYALIST_FORCE, "gameTurn2", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_REINFORCE, "D", 2, 1, "loyalist", true, 'inf');
-//        $this->force->addUnit("lll", LOYALIST_FORCE, "gameTurn2", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_REINFORCE, "E", 2, 1, "loyalist", true, 'inf');
-//        $this->force->addUnit("lll", LOYALIST_FORCE, "gameTurn2", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_REINFORCE, "E", 2, 1, "loyalist", true, 'inf');
-//        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn3", "multiMountain.png", $baseValue+1, $reducedBaseValue+1, 5, false, STATUS_CAN_REINFORCE, "B", 3, 1, "loyalGuards", true, 'mountain');
-//        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn3", "multiMountain.png", $baseValue+1, $reducedBaseValue+1, 5, false, STATUS_CAN_REINFORCE, "D", 3, 1, "loyalGuards", true, 'mountain');
-//        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn4", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 4, 1, "loyalGuards", true, 'shock');
-//        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn4", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "B", 4, 1, "loyalGuards", true, 'shock');
-//        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn4", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "E", 4, 1, "loyalGuards", true, 'shock');
-//
-//        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn5", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "B", 5, 1, "loyalGuards", true, 'mech');
-//        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn5", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "B", 5, 1, "loyalGuards", true, 'mech');
-//        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn5", "multiMech.png", 12, 6, 8, false, STATUS_CAN_REINFORCE, "B", 5, 1, "loyalGuards", true, 'mech');
-//        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn5", "multiHeavy.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "B", 5, 1, "loyalGuards", true, 'heavy');
-//
-//        if(!$scenario->weakerLoyalist) {
-//            $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn6", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "B", 6, 1, "loyalGuards", true, 'mech');
-//            $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn6", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "B", 6, 1, "loyalGuards", true, 'mech');
-//            $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn6", "multiMech.png", 12, 6, 8, false, STATUS_CAN_REINFORCE, "B", 6, 1, "loyalGuards", true, 'mech');
-//            $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn6", "multiHeavy.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "B", 6, 1, "loyalGuards", true, 'heavy');
-//        }
 
 
-
-        /* Rebel Units */
+        /* Arab Player Units */
 
         UnitFactory::$injector = $this->force;
+
+        /* Iranian */
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiInf.png", 8, false, 10,  STATUS_CAN_DEPLOY, "I", 1, 1, "iranian",  "inf");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiInf.png", 8, false, 10,  STATUS_CAN_DEPLOY, "I", 1, 1, "iranian",  "inf");
+
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiArmor.png", 7, false, 10,  STATUS_CAN_DEPLOY, "I", 1, 1, "iranian",  "inf");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiArmor.png", 7, false, 10,  STATUS_CAN_DEPLOY, "I", 1, 1, "iranian",  "inf");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiArmor.png", 7, false, 10,  STATUS_CAN_DEPLOY, "I", 1, 1, "iranian",  "inf");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiArmor.png", 7, false, 10,  STATUS_CAN_DEPLOY, "I", 1, 1, "iranian",  "inf");
+
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiInf.png", 6, false, 10,  STATUS_CAN_DEPLOY, "I", 1, 1, "iranian",  "inf");
+
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "jetPlane.svg", 6, 5, 30,  STATUS_CAN_DEPLOY, "J", 1, 1, "iranian",  "air", "f4");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "jetPlane.svg", 6, 5, 30,  STATUS_CAN_DEPLOY, "J", 1, 1, "iranian",  "air", "f4");
+
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "jetPlane4.svg", 3, 4, 24,  STATUS_CAN_DEPLOY, "J", 1, 1, "iranian",  "air", "f5");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "jetPlane4.svg", 3, 4, 24,  STATUS_CAN_DEPLOY, "J", 1, 1, "iranian",  "air", "f5");
+
+
         /* Saudi Arabian */
         UnitFactory::create("lll", RED_FORCE, "deployBox", "multiInf.png", 4, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "inf");
         UnitFactory::create("lll", RED_FORCE, "deployBox", "multiInf.png", 4, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "inf");
         UnitFactory::create("lll", RED_FORCE, "deployBox", "multiMech.png", 6, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "mech");
-        UnitFactory::create("lll", RED_FORCE, "deployBox", "jetPlane4.svg", 2, 2, 25,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "air", "167");
-        UnitFactory::create("lll", RED_FORCE, "deployBox", "jetPlane2.svg", 2, 3, 24,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "air", "f5");
-        UnitFactory::create("lll", RED_FORCE, "deployBox", "jetPlane2.svg", 0, 5, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "saudi",  "air", "Lt");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "jetPlane4.svg", 2, 2, 25,  STATUS_CAN_DEPLOY, "B", 1, 1, "saudi",  "air", "167");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "jetPlane4.svg", 2, 3, 24,  STATUS_CAN_DEPLOY, "B", 1, 1, "saudi",  "air", "f5");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "jetPlane3.svg", 0, 5, 18,  STATUS_CAN_DEPLOY, "B", 1, 1, "saudi",  "air", "lgtn");
 
-        UnitFactory::create("lll", BLUE_FORCE, 510, "multiPara.png", 7, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "israeli",  "para");
-        UnitFactory::create("lll", BLUE_FORCE, 511, "multiPara.png", 7, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "israeli",  "para");
-        UnitFactory::create("lll", BLUE_FORCE, 307, "multiMech.png", 9, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "israeli",  "mech");
+        /* Iraqi */
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiMech.png", 4, false, 10,  STATUS_CAN_DEPLOY, "C", 1, 1, "iraqi",  "mech");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiMech.png", 4, false, 10,  STATUS_CAN_DEPLOY, "C", 1, 1, "iraqi",  "mech");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiMech.png", 4, false, 10,  STATUS_CAN_DEPLOY, "C", 1, 1, "iraqi",  "mech");
 
-        UnitFactory::create("lll", BLUE_FORCE, 303, "jetPlane.svg", 7, 4, 9,  STATUS_CAN_DEPLOY, "A", 1, 1, "us",  "air", "f4");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiInf.png", 3, false, 10,  STATUS_CAN_DEPLOY, "C", 1, 1, "iraqi",  "inf");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiInf.png", 3, false, 10,  STATUS_CAN_DEPLOY, "C", 1, 1, "iraqi",  "inf");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "jetPlane.svg", 0, 5, 18,  STATUS_CAN_DEPLOY, "D", 1, 1, "iraqi",  "air", "m21");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "jetPlane3.svg", 1, 2, 14,  STATUS_CAN_DEPLOY, "D", 1, 1, "iraqi",  "air", "su7");
 
-        UnitFactory::create("lll", BLUE_FORCE, 302, "jetPlane.svg", 7, 4, 9,  STATUS_CAN_DEPLOY, "A", 1, 1, "us",  "air", "f4");
-        UnitFactory::create("lll", BLUE_FORCE, 404, "jetPlane2.svg", 6, 12, 9,  STATUS_CAN_DEPLOY, "A", 1, 1, "us",  "air", "f111");
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane2.svg", 6, 12, 8,  STATUS_CAN_DEPLOY, "A", 1, 1, "us",  "air", "a7");
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane3.svg", 6, 3, 8,  STATUS_CAN_DEPLOY, "A", 1, 1, "us",  "air", "lgtn");
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane3.svg", 6, 3, 8,  STATUS_CAN_DEPLOY, "A", 1, 1, "us",  "air", "lgtn");
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane4.svg", 6, 3, 8,  STATUS_CAN_DEPLOY, "A", 1, 1, "us",  "air", "f5");
+        /* Kuwati */
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiInf.png", 1, false, 10,  STATUS_CAN_DEPLOY, "E", 1, 1, "kuwati",  "inf");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiInf.png", 1, false, 10,  STATUS_CAN_DEPLOY, "E", 1, 1, "kuwati",  "inf");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiArmor.png", 2, false, 10,  STATUS_CAN_DEPLOY, "E", 1, 1, "kuwati",  "mech");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "jetPlane3.svg", 0, 3, 18,  STATUS_CAN_DEPLOY, "F", 1, 1, "kuwati",  "air", "lgtn");
 
+        /* Quatar and Baharain */
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiInf.png", 1, false, 10,  STATUS_CAN_DEPLOY, "G", 1, 1, "quatar",  "inf");
 
-
-        UnitFactory::create("lll", BLUE_FORCE, 412, "multiPara.png", 7, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "eec",  "para");
-        UnitFactory::create("lll", BLUE_FORCE, 413, "multiPara.png", 7, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "eec",  "para");
-
-
-
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "multiPara.png", 7, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "us",  "para");
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "multiPara.png", 7, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "us",  "para");
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "multiPara.png", 7, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "us",  "para");
+        UnitFactory::create("lll", RED_FORCE, "deployBox", "multiInf.png", 1, false, 10,  STATUS_CAN_DEPLOY, "H", 1, 1, "bahrain",  "inf");
 
 
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "multiInf.png", 8, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "us",  "inf");
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "multiInf.png", 8, false, 10,  STATUS_CAN_DEPLOY, "A", 1, 1, "us",  "inf");
+        /* American Player */
 
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "multiMech.png", 9, false, 10,  STATUS_CAN_REINFORCE, "A", 1, 1, "us",  "mech");
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "multiArmor.png", 10, false, 10,  STATUS_CAN_REINFORCE, "A", 1, 1, "us",  "mech");
+        /* Israeli */
+        UnitFactory::create("lll", BLUE_FORCE, "israel", "multiPara.png", 7, false, 10,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "para");
+        UnitFactory::create("lll", BLUE_FORCE, "israel", "multiPara.png", 7, false, 10,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "para");
+        UnitFactory::create("lll", BLUE_FORCE, "israel", "multiMech.png", 9, false, 10,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "mech");
+
+        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane.svg", 2, 6, 30,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "air", "f4");
+        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane.svg", 2, 6, 30,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "air", "f4");
+        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane.svg", 2, 6, 30,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "air", "f4");
+        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane.svg", 2, 6, 30,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "air", "f4");
+        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane2.svg", 14, 6, 30,  STATUS_CAN_REINFORCE, "O", 1, 1, "us",  "air", "f111");
+        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane2.svg", 14, 6, 30,  STATUS_CAN_REINFORCE, "O", 1, 1, "us",  "air", "f111");
+
+        /* Germany */
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "multiPara.png", 7, false, 10,  STATUS_CAN_REINFORCE, "O", 1, 1, "eec",  "para");
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "multiPara.png", 7, false, 10,  STATUS_CAN_REINFORCE, "O", 1, 1, "eec",  "para");
+
+
+
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "multiPara.png", 7, false, 10,  STATUS_CAN_REINFORCE, "O", 1, 1, "us",  "para");
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "multiPara.png", 7, false, 10,  STATUS_CAN_REINFORCE, "O", 1, 1, "us",  "para");
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "multiPara.png", 7, false, 10,  STATUS_CAN_REINFORCE, "O", 1, 1, "us",  "para");
+
+
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "multiInf.png", 8, false, 10,  STATUS_CAN_REINFORCE, "O", 1, 1, "us",  "inf");
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "multiInf.png", 8, false, 10,  STATUS_CAN_REINFORCE, "O", 1, 1, "us",  "inf");
+
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "multiMech.png", 9, false, 10,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "mech");
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "multiArmor.png", 10, false, 10,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "mech");
+
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 30,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4");
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 30,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4");
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 30,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4");
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 30,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4");
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 30,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4");
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 30,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4");
+
+        /* Gulf of Oman */
+        UnitFactory::create("lll", BLUE_FORCE, "oman", "jetPlane.svg", 7, 6, 30,  STATUS_CAN_REINFORCE, "O", 1, 1, "usn",  "air", "f4");
+        UnitFactory::create("lll", BLUE_FORCE, "oman", "jetPlane.svg", 6, 3, 15,  STATUS_CAN_REINFORCE, "O", 1, 1, "usn",  "air", "a6");
+        UnitFactory::create("lll", BLUE_FORCE, "oman", "jetPlane.svg", 5, 4, 15,  STATUS_CAN_REINFORCE, "O", 1, 1, "usn",  "air", "f4");
+
+
 
     }
 

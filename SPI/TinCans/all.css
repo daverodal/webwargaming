@@ -926,7 +926,7 @@ svg marker#head {
 .rebel {
   background-color: #df5842; }
   .rebel .unit-desig {
-    color: white; }
+    color: black; }
 
 .playerTwo {
   background: #84b5ff;
@@ -938,7 +938,7 @@ svg marker#head {
 .loyalist {
   background-color: #84b5ff; }
   .loyalist .unit-desig {
-    color: white; }
+    color: black; }
 
 .rebel div {
   color: black; }
@@ -1170,7 +1170,7 @@ svg marker#head {
 .usn {
   background-color: #2496e8; }
   .usn .unit-desig {
-    color: white; }
+    color: black; }
 
 .playerOne {
   background: #ffe128;
@@ -1182,7 +1182,7 @@ svg marker#head {
 .ijn {
   background-color: #ffe128; }
   .ijn .unit-desig {
-    color: white; }
+    color: black; }
 
 .playerThree {
   background: #aaa;
@@ -1194,7 +1194,7 @@ svg marker#head {
 .loyalGuards {
   background-color: #aaa; }
   .loyalGuards .unit-desig {
-    color: white; }
+    color: black; }
 
 .playerFour {
   background: #9aba7b;
@@ -1206,7 +1206,7 @@ svg marker#head {
 .eec {
   background-color: #9aba7b; }
   .eec .unit-desig {
-    color: white; }
+    color: black; }
 
 .playerFive {
   background: #4fa0bb;
@@ -1218,7 +1218,7 @@ svg marker#head {
 .navyColor {
   background-color: #4fa0bb; }
   .navyColor .unit-desig {
-    color: white; }
+    color: black; }
 
 .playerFive {
   background: powderblue;
@@ -1230,7 +1230,7 @@ svg marker#head {
 .israeli {
   background-color: powderblue; }
   .israeli .unit-desig {
-    color: white; }
+    color: black; }
 
 #crt {
   width: 520px; }

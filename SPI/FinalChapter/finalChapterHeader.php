@@ -36,9 +36,9 @@
         move = move.replace(/(\.[1-9])0$/,'$1');
         var str = unit.strength;
         var reduced = unit.isReduced;
-        var reduceDisp = "<span>";
+        var reduceDisp = "<span class='unit-info'>";
         if(reduced){
-            reduceDisp = "<span class='reduced'>";
+            reduceDisp = "<span class='unit-info reduced'>";
         }
         var symb = "-"+unit.defStrength+"-";
         var html = reduceDisp + str + symb + move + "</span>";

@@ -191,6 +191,11 @@
                             Israel
                         </div>
                     </div>
+                    <div class="staging-area" id="oman">
+                        <div  class="staging-area-label">
+                            Gulf of Oman
+                        </div>
+                    </div>
                 </div>
                 <div style="clear:both;"></div>
             </div>
@@ -211,6 +216,7 @@
             <div id="gameViewer">
                 <div id="gameContainer">
                     <div id="gameImages">
+
                         <div id="svgWrapper">
                             <svg id="arrow-svg" style="opacity:.6;position:absolute;" xmlns="http://www.w3.org/2000/svg">
                                 <defs>

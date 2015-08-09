@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 /* Unit Styles */
-@mixin player($nationality, $player, $color, $faceColor: $color, $desigColor: white){
+@mixin player($nationality, $player, $color, $faceColor: $color, $desigColor: black){
   .player#{$player}{
     background:$color;
     border-color:$color !important;
