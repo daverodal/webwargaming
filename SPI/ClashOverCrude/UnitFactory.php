@@ -63,7 +63,7 @@ class LandAirUnit extends BaseUnit implements JsonSerializable
     }
 
 
-    function set( $unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitAirStrength, $unitMaxMove, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral", $forceMarch, $class, $unitDesig)
+    function set( $unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitAirStrength, $unitMaxMove, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral", $forceMarch, $class, $unitDesig, $airMovement = false)
     {
 
         $this->dirty = true;
@@ -111,6 +111,7 @@ class LandAirUnit extends BaseUnit implements JsonSerializable
         $this->nationality = $nationality;
         $this->forceMarch = $forceMarch;
         $this->unitDesig = $unitDesig;
+        $this->airMovement = $airMovement;
 
     }
 
@@ -167,9 +168,9 @@ class UnitFactory {
         }
         return $sU;
     }
-    public static function create( $unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitAirStrength, $unitMaxMove, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral", $class, $unitDesig = ""){
+    public static function create( $unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitAirStrength, $unitMaxMove, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral", $class, $unitDesig = "", $airMovement = false){
         $unit = self::build();
-        $unit->set($unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitAirStrength, $unitMaxMove, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality, true, $class, $unitDesig);
+        $unit->set($unitName, $unitForceId, $unitHexagon, $unitImage, $unitStrength, $unitAirStrength, $unitMaxMove, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality, true, $class, $unitDesig, $airMovement);
         self::$injector->injectUnit($unit);
     }
 
