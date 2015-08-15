@@ -865,6 +865,16 @@
         "name": "Fog of war during Deployment. Enemy units remain hidden until movement phase..",
         "keyName":"fogDeploy",
         "value": false
+      },
+      {
+        "name": "Stronger Danish Force, upgrade 4-5 to 6-4 and 4-3 to 6-3.",
+        "keyName":"strongerDanes",
+        "value": false
+      },
+      {
+        "name": "Hasty raised Swedish Army, half the 6-3's are 5-3.",
+        "keyName":"weakerSwedes",
+        "value": false
       }],
     "params":{
       "units":[

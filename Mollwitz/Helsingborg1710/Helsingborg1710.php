@@ -97,8 +97,29 @@ class Helsingborg1710 extends JagCore
 
 
         foreach($unitSets as $unitSet) {
+            if($scenario->strongerDanes && $unitSet->forceId == DANISH_FORCE && $unitSet->class !== "artillery"){
+                /* one more 6-3 and 6-5, one less 4-3 and 4-5 */
+                if($unitSet->combat == 6){
+                    $unitSet->num++;
+                }else{
+                    $unitSet->num--;
+                }
+            }
+            /* half (round up) the Swedish Army is downgraded to 5-3 */
+            if($scenario->weakerSwedes &&  $unitSet->forceId == SWEDISH_FORCE && $unitSet->class === "infantry") {
+                $nUnits = $unitSet->num;
+                $unitSet->num = floor($nUnits / 2);
+                $nWeaker = ceil($nUnits / 2);
+                for ($i = 0; $i < $nWeaker; $i++) {
+                    $this->force->addUnit("infantry-1", $unitSet->forceId, "deployBox", "", $unitSet->combat - 1, $unitSet->combat -1 , $unitSet->movement, true, STATUS_CAN_DEPLOY, $unitSet->reinforce, 1, $unitSet->range, $unitSet->nationality, false, $unitSet->class);
+                }
+            }
             for ($i = 0; $i < $unitSet->num; $i++) {
-                $this->force->addUnit("infantry-1", $unitSet->forceId, "deployBox", "", $unitSet->combat, $unitSet->combat, $unitSet->movement, true, STATUS_CAN_DEPLOY, $unitSet->reinforce, 1, $unitSet->range, $unitSet->nationality, false, $unitSet->class);
+                if($scenario->stepReduction && isset($unitSet->reduced)){
+                    $this->force->addUnit("infantry-1", $unitSet->forceId, "deployBox", "", $unitSet->combat, $unitSet->reduced, $unitSet->movement, false, STATUS_CAN_DEPLOY, $unitSet->reinforce, 1, $unitSet->range, $unitSet->nationality, false, $unitSet->class);
+                }else{
+                    $this->force->addUnit("infantry-1", $unitSet->forceId, "deployBox", "", $unitSet->combat, $unitSet->combat, $unitSet->movement, true, STATUS_CAN_DEPLOY, $unitSet->reinforce, 1, $unitSet->range, $unitSet->nationality, false, $unitSet->class);
+                }
             }
         }
 
