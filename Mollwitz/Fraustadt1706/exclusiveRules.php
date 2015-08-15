@@ -54,9 +54,8 @@ You should have received a copy of the GNU General Public License
                     <p class="indent"> The  <?= $playerTwo?>  Units movement rate are halved on turn 1, normal thereafter.</p>
                 </li>
                 <li><span class="lessBig">Terrain</span>
-                    <p class="indent">Swamps: The swamps were frozen over therefore will only cost one extra MP to enter and have no effect on combat.</p>
+                    <p class="indent">Swamps Rivers and Ponds: Are all frozen and have no effect on movement or combat.</p>
                     <p class="indent"> Fortifications: The Fortifications had no impact on the Swedish infantry assault so have no effect on infantry and cost 1 MP for cavalry to cross halving cavalry attacking over them.</p>
-                    <p class="indent"> Ponds: The ponds were frozen, so they don't block movement. Treat them like rivers.</p>
                 </li>
             </ol>
             <ol class="ExclusiveRules topNumbers">
