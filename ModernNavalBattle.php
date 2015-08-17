@@ -26,14 +26,14 @@ require_once "hexagon.php";
 require_once "hexpart.php";
 require_once "los.php";
 require_once "mapgrid.php";
-require_once "moveRules.php";
+require_once "NavalMoveRules.php";
 require_once "terrain.php";
 require_once "display.php";
 require_once "victory.php";
 require_once "victoryCore.php";
 require_once "UnitFactory.php";
 
-class ModernLandBattle extends LandBattle
+class ModernNavalBattle extends LandBattle
 {
     public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>2, 'SpecialHexC'=>2];
 

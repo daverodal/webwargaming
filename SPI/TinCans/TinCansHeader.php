@@ -113,6 +113,8 @@
         $("#" + unit.id + " .torpedo").html(unit.torpedoStrength);
         $("#" + unit.id + " .torpedo").addClass(damage);
         $("#" + unit.id + " .ship-desig").addClass(pDamage);
+        $("#" + unit.id + " .torpedo").html(unit.torpedoStrength);
+        $("#" + unit.id + " .defense").html(unit.defenseStrength);
 
 
         return;

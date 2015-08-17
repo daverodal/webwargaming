@@ -198,7 +198,7 @@ class LandAirUnit extends BaseUnit implements JsonSerializable
         $mapUnit->airStrength = $this->unitAirStrength;
         $mapUnit->class = $this->class;
         $mapUnit->id = $this->id;
-        $mapUnit->defenseStrength = $this->defenseStrength;
+        $mapUnit->defenseStrength = $this->defStrength;
         $mapUnit->torpedoStrength = $this->torpedoStrength;
         $mapUnit->facing = $this->facing;
         $mapUnit->wDamage = $this->wDamage;

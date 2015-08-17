@@ -37,9 +37,9 @@ define("South", 3);
 define("SouthWest", 4);
 define("NorthWest", 5);
 require_once "constants.php";
-require_once "ModernLandBattle.php";
+require_once "ModernNavalBattle.php";
 
-class TinCans extends ModernLandBattle
+class TinCans extends ModernNavalBattle
 {
     /* a comment */
 

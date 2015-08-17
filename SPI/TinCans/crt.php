@@ -68,33 +68,13 @@ class CombatResultsTable extends ModernCombatResultsTable
 
     function getCombatIndex($attackStrength, $defenseStrength)
     {
-        $difference = $attackStrength - $defenseStrength;
-
-        if($difference < -1 ){
-            $difference = -1;
+        $ratio = $attackStrength / $defenseStrength;
+        if ($attackStrength >= $defenseStrength) {
+            $combatIndex = floor($ratio) - 1;
+        } else {
+            $combatindex = 0;
         }
-        if($difference  > 20){
-            $difference = 20;
-        }
-        if($difference < 4){
-            return $difference + 1;
-        }
-        if($difference >= 4 && $difference < 6){
-            return 5;
-        }
-        if($difference >= 6 && $difference < 8){
-            return 6;
-        }
-        if($difference >= 8 && $difference < 12){
-            return 7;
-        }
-        if($difference >= 12 && $difference < 16){
-            return 8;
-        }
-        if($difference >= 16 && $difference < 20){
-            return 9;
-        }
-        return 10;
+        return $combatIndex;
     }
 
 
