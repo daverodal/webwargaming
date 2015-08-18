@@ -70,7 +70,7 @@ class ModernNavalBattle extends LandBattle
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
             $this->force = new Force($data->force);
             $this->terrain = new Terrain($data->terrain);
-            $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
+            $this->moveRules = new NavalMoveRules($this->force, $this->terrain, $data->moveRules);
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
             $this->victory = new Victory($data);
@@ -85,7 +85,7 @@ class ModernNavalBattle extends LandBattle
             $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
-            $this->moveRules = new MoveRules($this->force, $this->terrain);
+            $this->moveRules = new NavalMoveRules($this->force, $this->terrain);
 
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);

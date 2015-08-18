@@ -117,7 +117,7 @@
         $("#" + unit.id + " .defense").html(unit.defenseStrength);
 
 
-        return;
+        return "";
         var  move = unit.maxMove - unit.moveAmountUsed;
         if(moveAmount !== undefined){
             move = moveAmount-0;
