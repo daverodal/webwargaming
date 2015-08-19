@@ -87,10 +87,18 @@
     });
 
 
-    function renderUnitNumbers(unit, moveAmount){
+    function renderUnitNumbers(unit, moveAmount, move, clone){
 
         debugger;
+
+        if(move){
+            theta = move.facing;
+            theta *= 60;
+            $(clone).find('.heading').css({opacity: "1.0"});
+            $(clone).find('.heading').css({webkitTransform: ' scale(.55,.55) rotate(' + theta + "deg) translateY(-45px)"});
+        }
         var theta = unit.facing;
+
         theta *= 60;
         var damage = "";
         var pDamage = "";

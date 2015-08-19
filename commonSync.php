@@ -153,7 +153,9 @@ x.register("mapUnits", function(mapUnits, data) {
 //        symb = "-"+mapUnits[i].defStrength+"-";
         var html = reduceDisp + str + symb + move + "</span>";
         html = renderUnitNumbers(mapUnits[i]);
-        $("#"+i+" .unit-numbers").html(html);
+        if(html){
+            $("#"+i+" .unit-numbers").html(html);
+        }
         var len  = $("#"+i+" .unit-numbers").text().length;
         $("#"+i+" div.unit-numbers span ").addClass("infoLen"+len);
         $("#"+i+" .counterWrapper .guard-unit ").addClass("infoLen"+len);
@@ -842,7 +844,7 @@ x.register("moveRules", function(moveRules,data) {
                 );
 
 //                var newLabel = label.replace(/((?:<span[^>]*>)?[-+ru](?:<\/span>)?).*/,"$1 "+moveRules.moves[i].pointsLeft);
-                var newLabel = renderUnitNumbers(data.mapUnits[id], moveRules.moves[i].pointsLeft);
+                var newLabel = renderUnitNumbers(data.mapUnits[id], moveRules.moves[i].pointsLeft, moveRules.moves[i], secondGenClone);
                 var txt = secondGenClone.find('div.unit-numbers .unit-info').html(newLabel).text();
                 secondGenClone.find('div.unit-numbers .unit-info').addClass('infoLen'+txt.length);
                 secondGenClone.find('.counterWrapper .guard-unit').addClass('infoLen'+newLabel.length);

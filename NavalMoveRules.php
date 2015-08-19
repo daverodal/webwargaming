@@ -241,6 +241,9 @@ class NavalMoveRules extends MoveRules
                 $this->moves->$hexNum->isZoc = $this->force->mapHexIsZOC($mapHex);
             }
             $exitCost = 0;
+            if($this->moves->$hexNum->isClone){
+                continue;
+            }
             if ($this->moves->$hexNum->isZoc) {
                 if (is_numeric($this->exitZoc)) {
                     $exitCost += $this->exitZoc;
@@ -325,6 +328,7 @@ class NavalMoveRules extends MoveRules
                     $newPath->name = $newHexNum;
                     $newPath->pathToHere = $path;
                     $newPath->pointsLeft = $movePoints - $moveAmount;
+                    $newPath->isClone = true;
                     if(isset($hexPath->facing)) {
                         $newPath->facing = $newFacing % 6;
                     }
