@@ -117,7 +117,12 @@
         if(unit.pDamage > 1){
             pDamage = "red";
         }
+        var speed = unit.maxMove;
+        if(speed <= 0){
+            speed = "";
+        }
         $("#" + unit.id + " .heading").css({opacity: "1.0"});
+        $("#" + unit.id + " .heading").attr("src", "<?php echo base_url(); ?>js/blackArrow"+speed+".svg");
         $("#" + unit.id + " .heading").css({webkitTransform: ' scale(.55,.55) rotate(' + theta + "deg) translateY(-45px)"});
 
         $("#" + unit.id + " .gunnery").html(unit.strength).addClass(damage);
