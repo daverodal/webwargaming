@@ -360,6 +360,7 @@ function doit() {
     $("#mychat").attr("value", "");
 }
 function doitKeypress(key) {
+    debugger;
     var mychat = $("#mychat").attr("value");
     playAudio();
     $('body').css({cursor: "wait"});
@@ -994,6 +995,14 @@ function initialize() {
         fixHeader();
     })
     fixHeader();
+    $("body").keydown(function (event) {
+        if(event.which == 37 || event.which == 39){
+            doitKeypress(event.which);
+            return false;
+        }
+        return true;
+    });
+
     $("body").keypress(function (event) {
         doitKeypress(event.which);
     });

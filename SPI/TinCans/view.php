@@ -246,7 +246,7 @@
                             <div class="counterWrapper">
                                 <div class="top-numbers"><span class="gunnery">{origStrength}</span> <span class="gun-range">{range}</span></div>
                                 <div class="ship-desig">{unitSize}</div>
-                                <div class="bottom-numbers unit-numbers"><span class="defense">{defenseStrength}</span> <span class="torpedo">{torpedoStrength}</span></div>
+                                <div class="bottom-numbers unit-numbers"><span class="defense">{defenseStrength}</span> <span class="mp"></span> <span class="torpedo">{torpedoStrength}</span></div>
                             </div>
                         </div>
                         {/units}

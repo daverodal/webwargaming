@@ -297,6 +297,20 @@ class GameRules
                                 }
                             }
 
+                            if($id == 37){
+                                if(method_exists($this->moveRules, 'turnLeft')){
+                                    $ret = $this->moveRules->turnLeft();
+                                    return $ret;
+                                }
+                            }
+
+
+                            if($id == 39){
+                                if(method_exists($this->moveRules, 'turnRight')){
+                                    $ret = $this->moveRules->turnRight();
+                                    return $ret;
+                                }
+                            }
 
 //                            $this->force->units[$this->moveRules->movingUnitId]->forceMarch = $this->force->units[$this->moveRules->movingUnitId]->forceMarch^1;
                         }

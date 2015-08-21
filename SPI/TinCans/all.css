@@ -1338,7 +1338,7 @@ svg marker#head {
       color: red; }
   .unit .counterWrapper .ship-desig {
     height: 10px;
-    font-size: 10px;
+    font-size: 8px;
     text-align: center;
     color: black; }
     .unit .counterWrapper .ship-desig.white {

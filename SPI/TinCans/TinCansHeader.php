@@ -91,11 +91,14 @@
 
         debugger;
 
+        var moveLeft = unit.maxMove - unit.moveAmountUsed;
+
         if(move){
             theta = move.facing;
             theta *= 60;
             $(clone).find('.heading').css({opacity: "1.0"});
             $(clone).find('.heading').css({webkitTransform: ' scale(.55,.55) rotate(' + theta + "deg) translateY(-45px)"});
+            $(clone).find('.mp').html(moveAmount);
         }
         var theta = unit.facing;
 
@@ -123,6 +126,8 @@
         $("#" + unit.id + " .ship-desig").addClass(pDamage);
         $("#" + unit.id + " .torpedo").html(unit.torpedoStrength);
         $("#" + unit.id + " .defense").html(unit.defenseStrength);
+        $("#" + unit.id + " .mp").html(moveLeft);
+
 
 
         return "";

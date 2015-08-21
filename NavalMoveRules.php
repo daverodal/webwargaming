@@ -23,7 +23,47 @@ require_once "moveRules.php";
 $numWalks = 0;
 class NavalMoveRules extends MoveRules
 {
-// id will be map if map event, id will be unit id if counter event
+    function turnLeft(){
+        if ($this->anyUnitIsMoving) {
+            $movingUnit = $this->force->units[$this->movingUnitId];
+            $movesLeft = $movingUnit->maxMove - $movingUnit->moveAmountUsed;
+            if($movesLeft > 0){
+                $movingUnit->facing--;
+                if($movingUnit->facing < 0){
+                    $movingUnit->facing += 6;
+                }
+                $movingUnit->moveAmountUsed++;
+                if($movingUnit->moveAmountUsed >= $movingUnit->maxMove){
+                    $this->stopMove($movingUnit);
+                    return;
+                }
+                $this->calcMove(0);
+            }
+        }
+
+    }
+
+    function turnRight(){
+        if ($this->anyUnitIsMoving) {
+            $movingUnit = $this->force->units[$this->movingUnitId];
+            $movesLeft = $movingUnit->maxMove - $movingUnit->moveAmountUsed;
+            if($movesLeft > 0){
+                $movingUnit->facing++;
+                if($movingUnit->facing >= 6){
+                    $movingUnit->facing -= 6;
+                }
+                $movingUnit->moveAmountUsed++;
+                if($movingUnit->moveAmountUsed >= $movingUnit->maxMove){
+                    $this->stopMove($movingUnit);
+                    return;
+                }
+                $this->calcMove(0);
+            }
+        }
+
+    }
+
+    // id will be map if map event, id will be unit id if counter event
     function moveUnit($eventType, $id, $hexagon, $turn)
     {
         $dirty = false;
