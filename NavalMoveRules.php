@@ -83,6 +83,7 @@ class NavalMoveRules extends MoveRules
                         }
                         $movesLeft = $this->moves->$newHex->pointsLeft;
                         $facing = $this->moves->$newHex->facing;
+                        $movingUnit->facing = $facing;
                         $this->moves = new stdClass();
 
                         $this->move($movingUnit, $newHex);
