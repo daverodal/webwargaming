@@ -818,6 +818,10 @@ class Force
                 $this->units[$attacker]->moveCount = 0;
             }
 
+            if($battle->gameRules->phase == BLUE_TORP_COMBAT_PHASE || $battle->gameRules->phase == RED_TORP_COMBAT_PHASE){
+                $this->units[$attacker]->torpLoad--;
+            }
+
             if ($this->units[$attacker]->status == STATUS_ATTACKING) {
                 switch ($combatResults) {
                     case EX2:
@@ -1211,6 +1215,26 @@ class Force
 
                         }
                     }
+
+
+
+                if ($phase == BLUE_TORP_COMBAT_PHASE || $phase == RED_TORP_COMBAT_PHASE) {
+                    if ($mode == COMBAT_SETUP_MODE) {
+                        $status = STATUS_UNAVAIL_THIS_PHASE;
+                        if ($this->units[$id]->torpLoad > 0) {
+                            $status = STATUS_READY;
+                        }
+                    }
+                    if ($mode == COMBAT_RESOLUTION_MODE) {
+                        $status = STATUS_UNAVAIL_THIS_PHASE;
+                        if ($this->units[$id]->status == STATUS_ATTACKING ||
+                            $this->units[$id]->status == STATUS_DEFENDING
+                        ) {
+                            $status = $this->units[$id]->status;
+                        }
+
+                    }
+                }
 
                 if ($mode == MOVING_MODE && $moveRules->stickyZOC) {
                         if ($this->units[$id]->forceId == $this->attackingForceId &&

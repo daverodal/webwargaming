@@ -128,17 +128,22 @@ trait NavalCombatTrait
             $range = $los->getRange();
             $strength = $unit->strength;
 
-            if($range > $unit->navalRange){
+            $combatLog .= $strength." ".$unit->class;
+
+            if($range > $unit->range) {
                 $strength /= 2;
+                $combatLog .= " Halved for extended Range $strength";
             }
-            $combatLog .= $strength." ".$unit->class."<br>";
+            $combatLog .= "<br>";
 
             $attackStrength += $strength;
 
         }
-        if($attackers > 1){
+        if($attackers > 1  && !($battle->gameRules->phase == BLUE_TORP_COMBAT_PHASE || $battle->gameRules->phase == RED_TORP_COMBAT_PHASE)){
+            $beforeStr = $attackStrength;
             $attackStrength /= 2;
-            $combatLog .= "Attack strength halved for multi ship attack";
+            $combatLog .= $battle->gameRules->phase." x ";
+            $combatLog .= BLUE_TORP_COMBAT_PHASE . "$beforeStr Attack strength halved fore multi ship attack $attackStrength<br>";
 
         }
         $defenseStrength = 0;
@@ -146,7 +151,7 @@ trait NavalCombatTrait
 
         foreach ($defenders as $defId => $defender) {
             $unit = $battle->force->units[$defId];
-            $combatLog .= $unit->strength. " " .$unit->class." ";
+            $combatLog .= " " .$unit->class." ";
 
             $defenseStrength += $force->getDefenderStrength($defId);
             $combatLog .= "<br>";
@@ -160,13 +165,11 @@ trait NavalCombatTrait
 
 
         /* @var $combatRules CombatRules */
-        $terrainCombatEffect = $combatRules->getDefenderTerrainCombatEffect($defenderId);
 
-        $combatIndex -= $terrainCombatEffect;
 
         $combats->attackStrength = $attackStrength;
         $combats->defenseStrength = $defenseStrength;
-        $combats->terrainCombatEffect = $terrainCombatEffect;
+        $combats->terrainCombatEffect = 0;
         $combats->index = $combatIndex;
         $combats->combatLog = $combatLog;
     }

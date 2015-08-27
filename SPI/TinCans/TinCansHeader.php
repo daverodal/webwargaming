@@ -158,13 +158,14 @@
 
 
     function renderCrtDetails(combat){
+        debugger;
         var atk = combat.attackStrength;
         var def = combat.defenseStrength;
-        var div = atk - def;
+        var div = atk / def;
         var ter = combat.terrainCombatEffect;
         var combatCol = combat.index + 1;
 
-        var html = "<div id='crtDetails'>"+combat.combatLog+"</div><div>Attack = " + atk + " - Defender " + def + " = " + div + "<br>Final Column  "  + $(".col" + combatCol).html() + "</div>"
+        var html = "<div id='crtDetails'>"+combat.combatLog+"</div><div>Attack = " + atk + " / Defender " + def + " = " + div + "<br>Final Column  "  + $(".col" + combatCol).html() + "</div>"
         return html;
     }
 

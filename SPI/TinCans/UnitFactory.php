@@ -30,6 +30,9 @@ class NavalUnit extends BaseUnit implements JsonSerializable
     public $pDamage = 0;
     public $wDamage = 0;
 
+    private $range;
+    public $gunRange;
+
 
     public function jsonSerialize()
     {
@@ -57,9 +60,6 @@ class NavalUnit extends BaseUnit implements JsonSerializable
     public function __get($name)
     {
 
-        if($name === "range"){
-        echo "Weeeee $name ";
-    }
         $b = Battle::getBattle();
         if ($name !== "range" && $name !== "strength" && $name !== "torpedoStrength" && $name !== "attStrength" && $name !== "defStrength") {
             return false;
@@ -72,7 +72,7 @@ class NavalUnit extends BaseUnit implements JsonSerializable
                     return 3;
                 }
             }else{
-                return $this->range;
+                return $this->gunRange;
             }
         }
         $strength = $this->origStrength;
@@ -147,18 +147,23 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         $this->moveCount = 0;
         $this->retreatCountRequired = 0;
         $this->combatResults = NR;
-        $this->range = $range;
+        $this->gunRange = $this->range = $range;
         $this->nationality = $nationality;
         $this->forceMarch = $forceMarch;
         $this->unitDesig = $unitDesig;
         $this->hits = 0;
         $this->wDamage = 0;
         $this->pDamage = 0;
-        if($nationality === "ijn"){
-            $this->torpLoad = 2;
+        if($torpedoStrength > 0){
+            if($nationality === "ijn"){
+                $this->torpLoad = 2;
+            }else{
+                $this->torpLoad = 1;
+            }
         }else{
-            $this->torpLoad = 1;
+            $this->torpLoad = 0;
         }
+
 
     }
 
