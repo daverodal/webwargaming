@@ -360,7 +360,6 @@ function doit() {
     $("#mychat").attr("value", "");
 }
 function doitKeypress(key) {
-    debugger;
     var mychat = $("#mychat").attr("value");
     playAudio();
     $('body').css({cursor: "wait"});

@@ -64,7 +64,6 @@ class BaseUnit{
     public $retreatCountRequired;
     public $combatResults;
     public $dieRoll;
-    public $range;
     public $nationality;
     public $forceMarch = false;
     public $class;
@@ -367,6 +366,7 @@ class unit extends BaseUnit implements JsonSerializable
     public $maxStrength;
     public $minStrength;
     public $isReduced;
+    public $range;
 
 
 
@@ -374,7 +374,18 @@ class unit extends BaseUnit implements JsonSerializable
     public $supplied = true;
 
 
+    public function jsonSerialize()
+    {
+        if (is_object($this->hexagon)) {
+            if ($this->hexagon->name) {
+                $this->hexagon = $this->hexagon->getName();
 
+            } else {
+                $this->hexagon = $this->hexagon->parent;
+            }
+        }
+        return $this;
+    }
 
     public function getUnmodifiedStrength(){
         if ($this->isReduced) {

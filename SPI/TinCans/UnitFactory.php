@@ -30,6 +30,21 @@ class NavalUnit extends BaseUnit implements JsonSerializable
     public $pDamage = 0;
     public $wDamage = 0;
 
+
+    public function jsonSerialize()
+    {
+        if (is_object($this->hexagon)) {
+            if ($this->hexagon->name) {
+                $this->hexagon = $this->hexagon->getName();
+
+            } else {
+                $this->hexagon = $this->hexagon->parent;
+            }
+        }
+        return $this;
+    }
+
+
     public function getUnmodifiedStrength(){
         return  $this->origStrength;
     }
@@ -219,6 +234,7 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         $mapUnit->torpedoStrength = $this->torpedoStrength;
         $mapUnit->facing = $this->facing;
         $mapUnit->wDamage = $this->wDamage;
+        $mapUnit->range = $this->range;
         $mapUnit->pDamage = $this->pDamage;
         return $mapUnit;
     }

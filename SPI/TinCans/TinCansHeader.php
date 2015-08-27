@@ -89,7 +89,6 @@
 
     function renderUnitNumbers(unit, moveAmount, move, clone){
 
-        debugger;
 
         var moveLeft = unit.maxMove - unit.moveAmountUsed;
 

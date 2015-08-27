@@ -90,7 +90,6 @@
     function renderUnitNumbers(unit, moveAmount){
 
         if(unit.parent !== "deployBox" && typeof moveAmount !== "undefined"){
-            debugger;
 
         }
         var  move = unit.maxMove - unit.moveAmountUsed;
