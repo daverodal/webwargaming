@@ -19,7 +19,7 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class LandAirUnit extends BaseUnit implements JsonSerializable
+class NavalUnit extends BaseUnit implements JsonSerializable
 {
 
     public $origStrength;
@@ -29,7 +29,6 @@ class LandAirUnit extends BaseUnit implements JsonSerializable
     public $hits = 0;
     public $pDamage = 0;
     public $wDamage = 0;
-
 
     public function getUnmodifiedStrength(){
         return  $this->origStrength;
@@ -42,12 +41,24 @@ class LandAirUnit extends BaseUnit implements JsonSerializable
 
     public function __get($name)
     {
+
+        if($name === "range"){
+        echo "Weeeee $name ";
+    }
         $b = Battle::getBattle();
-        if($name == "torpedoStrength"){
-            echo $name;
-        }
-        if ($name !== "strength" && $name !== "torpedoStrength" && $name !== "attStrength" && $name !== "defStrength") {
+        if ($name !== "range" && $name !== "strength" && $name !== "torpedoStrength" && $name !== "attStrength" && $name !== "defStrength") {
             return false;
+        }
+        if($name === "range") {
+            if ($b->gameRules->phase == BLUE_TORP_COMBAT_PHASE || $b->gameRules->phase == RED_TORP_COMBAT_PHASE) {
+                if ($this->nationality === "ijn") {
+                    return 7;
+                } else {
+                    return 3;
+                }
+            }else{
+                return $this->range;
+            }
         }
         $strength = $this->origStrength;
 
@@ -128,6 +139,11 @@ class LandAirUnit extends BaseUnit implements JsonSerializable
         $this->hits = 0;
         $this->wDamage = 0;
         $this->pDamage = 0;
+        if($nationality === "ijn"){
+            $this->torpLoad = 2;
+        }else{
+            $this->torpLoad = 1;
+        }
 
     }
 
@@ -167,8 +183,9 @@ class LandAirUnit extends BaseUnit implements JsonSerializable
         }
         if($this->hits >= 3){
             $this->status = STATUS_ELIMINATING;
+            return true;
         }
-        return true;
+        return false;
     }
 
     function __construct($data = null)
@@ -213,7 +230,7 @@ class UnitFactory {
     public static $injector;
     public static function build($data = false){
 
-        $sU =  new LandAirUnit($data);
+        $sU =  new NavalUnit($data);
         if($data === false){
             $sU->id = self::$id++;
         }

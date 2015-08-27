@@ -158,8 +158,8 @@
 }
 
 .unit .counterWrapper {
-  font-size:11px;
-  height: 32px;
+  font-size:9px;
+  height: 45px;
   .top-numbers{
     height:10px;
     .gun-range{
@@ -179,7 +179,7 @@
   }
   .ship-desig{
     height:10px;
-    font-size:8px;
+    font-size:10px;
     text-align: center;
     color:black;
     &.white{
@@ -191,6 +191,10 @@
   }
   .bottom-numbers{
     height:10px;
+    font-weight: normal;
+    .defense{
+      float:left;
+    }
     .torpedo{
       float:right;
       margin-right: 3px;

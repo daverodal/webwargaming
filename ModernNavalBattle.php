@@ -18,7 +18,7 @@ You should have received a copy of the GNU General Public License
 
 require_once "Battle.php";
 require_once "crtTraits.php";
-require_once "combatRules.php";
+require_once "NavalcombatRules.php";
 require_once "crt.php";
 require_once "force.php";
 require_once "gameRules.php";
@@ -71,7 +71,7 @@ class ModernNavalBattle extends LandBattle
             $this->force = new Force($data->force);
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new NavalMoveRules($this->force, $this->terrain, $data->moveRules);
-            $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
+            $this->combatRules = new NavalCombatRules($this->force, $this->terrain, $data->combatRules);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
             $this->victory = new Victory($data);
 
@@ -87,7 +87,7 @@ class ModernNavalBattle extends LandBattle
             $this->terrain = new Terrain();
             $this->moveRules = new NavalMoveRules($this->force, $this->terrain);
 
-            $this->combatRules = new CombatRules($this->force, $this->terrain);
+            $this->combatRules = new NavalCombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
         }
     }

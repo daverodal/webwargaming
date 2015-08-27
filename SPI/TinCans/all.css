@@ -1325,8 +1325,8 @@ svg marker#head {
     height: 38px; }
 
 .unit .counterWrapper {
-  font-size: 11px;
-  height: 32px; }
+  font-size: 9px;
+  height: 45px; }
   .unit .counterWrapper .top-numbers {
     height: 10px; }
     .unit .counterWrapper .top-numbers .gun-range {
@@ -1338,7 +1338,7 @@ svg marker#head {
       color: red; }
   .unit .counterWrapper .ship-desig {
     height: 10px;
-    font-size: 8px;
+    font-size: 10px;
     text-align: center;
     color: black; }
     .unit .counterWrapper .ship-desig.white {
@@ -1346,7 +1346,10 @@ svg marker#head {
     .unit .counterWrapper .ship-desig.red {
       color: red; }
   .unit .counterWrapper .bottom-numbers {
-    height: 10px; }
+    height: 10px;
+    font-weight: normal; }
+    .unit .counterWrapper .bottom-numbers .defense {
+      float: left; }
     .unit .counterWrapper .bottom-numbers .torpedo {
       float: right;
       margin-right: 3px; }

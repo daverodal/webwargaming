@@ -1297,12 +1297,10 @@ class MoveRules
     {
 
         $battle = Battle::getBattle();
-        var_dump($this->force->getUnitReinforceZone($id));
         if ($this->force->unitIsReinforcing($id) == true) {
 
             list($zones) = $battle->victory->postReinforceZoneNames($this->terrain->getReinforceZoneList($hexagon), $battle->force->units[$id]);
 
-            var_dump($zones);
             if (in_array($this->force->getUnitReinforceZone($id) , $zones)) {
                 /* @var Unit $movingUnit */
                 $movingUnit = $this->force->getUnit($id);

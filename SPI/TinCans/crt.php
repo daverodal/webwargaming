@@ -32,7 +32,7 @@ require_once "ModernCombatResultsTable.php";
 
 class CombatResultsTable extends ModernCombatResultsTable
 {
-    use divCombatShiftTerrain;
+    use NavalCombatTrait;
 
 
     public $aggressorId = EASTERN_FORCE;
