@@ -142,28 +142,7 @@
         $("#" + unit.id + " .defense").html(unit.defenseStrength);
         $("#" + unit.id + " .mp").html(unit.newSpeed);
 
-
-
         return "";
-        var  move = unit.maxMove - unit.moveAmountUsed;
-        if(moveAmount !== undefined){
-            move = moveAmount-0;
-        }
-        move = move.toFixed(2);
-        move = move.replace(/\.00$/,'');
-        move = move.replace(/(\.[1-9])0$/,'$1');
-        var str = unit.strength;
-        var reduced = unit.isReduced;
-        var reduceDisp = "<span class='unit-info'>";
-
-        if(unit.class == 'air'){
-            $("#"+unit.id+" .air-strength").html(unit.airStrength)
-        }
-        var html =  move + "</span>";
-        return html;
-
-
-
     }
 
 
