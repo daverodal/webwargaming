@@ -23,22 +23,98 @@ require_once "moveRules.php";
 $numWalks = 0;
 class NavalMoveRules extends MoveRules
 {
+    function selectUnit($eventType, $id, $hexagon, $turn){
+    // no one is moving, so start new move
+        $dirty = false;
+        if ($this->anyUnitIsMoving == true) {
+            $movingUnit = $this->force->units[$id];
+            // clicked on moving or reinforcing unit
+            /* @var Unit $movingUnit */
+            if ($movingUnit->unitIsMoving() == true) {
+                $this->stopSpeed($movingUnit);
+                $dirty = true;
+            }
+        }else{
+
+            if ($this->force->unitCanMove($id) == true) {
+                $this->startSpeeding($id);
+                $dirty = true;
+            }
+        }
+
+        return $dirty;
+
+    }
     function turnLeft(){
         if ($this->anyUnitIsMoving) {
             $movingUnit = $this->force->units[$this->movingUnitId];
             $movesLeft = $movingUnit->maxMove - $movingUnit->moveAmountUsed;
-            if($movesLeft > 0){
+            $turnCost = 1;
+            if($movingUnit->class === "cl" || $movingUnit->class === "ca" ){
+                $turnCost = 2;
+            }
+            if($movingUnit->class === "bb" || $movingUnit->class === "bc" ){
+                $turnCost = 3;
+            }
+            if($movesLeft >= $turnCost){
                 $movingUnit->facing--;
                 if($movingUnit->facing < 0){
                     $movingUnit->facing += 6;
                 }
-                $movingUnit->moveAmountUsed++;
+                $movingUnit->moveAmountUsed += $turnCost;
                 if($movingUnit->moveAmountUsed >= $movingUnit->maxMove){
                     $this->stopMove($movingUnit);
                     return;
                 }
-                $this->calcMove(0);
+                $this->calcMove($this->movingUnitId);
             }
+        }
+
+    }
+
+    function slower(){
+        if ($this->anyUnitIsMoving) {
+            $movingUnit = $this->force->units[$this->movingUnitId];
+            $movesLeft = $movingUnit->maxMove - $movingUnit->moveAmountUsed;
+            $maxChange = 3;
+            if($movingUnit->class === "cl" || $movingUnit->class === "ca" ){
+                $turnCost = 2;
+            }
+            if($movingUnit->class === "bb" || $movingUnit->class === "bc" ){
+                $turnCost = 1;
+            }
+            if($movingUnit->maxMove > 0){
+                $movingUnit->maxMove--;
+            }
+
+        }
+
+    }
+
+    function faster(){
+        if ($this->anyUnitIsMoving) {
+            $movingUnit = $this->force->units[$this->movingUnitId];
+            $movesLeft = $movingUnit->maxMove - $movingUnit->moveAmountUsed;
+            $maxChange = 3;
+            $maxSpeed = 7;
+            if($movingUnit->class === "cl" || $movingUnit->class === "ca" ){
+                $turnCost = 2;
+                $maxSpeed = 6;
+            }
+            if($movingUnit->class === "bb" || $movingUnit->class === "bc" ){
+                $turnCost = 1;
+                $maxSpeed = 6;
+            }
+            if($movingUnit->pDamage === 1){
+                $maxSpeed = floor($maxSpeed/2);
+            }
+            if($movingUnit->pDamage === 2){
+                $maxSpeed = 0;
+            }
+            if($movingUnit->maxMove < $maxSpeed){
+                $movingUnit->maxMove++;
+            }
+
         }
 
     }
@@ -47,17 +123,24 @@ class NavalMoveRules extends MoveRules
         if ($this->anyUnitIsMoving) {
             $movingUnit = $this->force->units[$this->movingUnitId];
             $movesLeft = $movingUnit->maxMove - $movingUnit->moveAmountUsed;
-            if($movesLeft > 0){
+            $turnCost = 1;
+            if($movingUnit->class === "cl" || $movingUnit->class === "ca" ){
+                $turnCost = 2;
+            }
+            if($movingUnit->class === "bb" || $movingUnit->class === "bc" ){
+                $turnCost = 3;
+            }
+            if($movesLeft >= $turnCost){
                 $movingUnit->facing++;
                 if($movingUnit->facing >= 6){
                     $movingUnit->facing -= 6;
                 }
-                $movingUnit->moveAmountUsed++;
+                $movingUnit->moveAmountUsed += $turnCost;
                 if($movingUnit->moveAmountUsed >= $movingUnit->maxMove){
                     $this->stopMove($movingUnit);
                     return;
                 }
-                $this->calcMove(0);
+                $this->calcMove($this->movingUnitId);
             }
         }
 
@@ -521,6 +604,24 @@ class NavalMoveRules extends MoveRules
         return false;
     }
 
+    function startSpeeding($id)
+    {
+        $battle = Battle::getBattle();
+        $victory = $battle->victory;
+        /* @var Unit $unit */
+        $unit = $this->force->getUnit($id);
+        $victory->preStartMovingUnit($unit);
+
+        /*
+         * Don't think this is important test. Unit will be STATUS_STOPPED if cannot move.
+         */
+        $this->anyUnitIsMoving = true;
+        $this->movingUnitId = $id;
+        if ($unit->setStatus(STATUS_MOVING) == true) {
+
+        }
+        $victory->postStartMovingUnit($unit);
+    }
     function startMoving($id)
     {
         $battle = Battle::getBattle();
@@ -548,6 +649,28 @@ class NavalMoveRules extends MoveRules
         ) {
             $this->updateMoveData($movingUnit, $hexagon);
         }
+    }
+
+    function stopSpeed(BaseUnit $movingUnit)
+    {
+        $battle = Battle::getBattle();
+        $victory = $battle->victory;
+        $victory->preStopMovingUnit($movingUnit);
+
+        $this->moves = new stdClass();
+        if ($movingUnit->unitIsMoving() == true) {
+            if ($movingUnit->unitHasNotMoved()) {
+                $movingUnit->setStatus(STATUS_READY);
+                $this->anyUnitIsMoving = false;
+                $this->movingUnitId = NONE;
+            } else {
+                if ($movingUnit->setStatus(STATUS_STOPPED) == true) {
+                    $this->anyUnitIsMoving = false;
+                    $this->movingUnitId = NONE;
+                }
+            }
+        }
+        $victory->preStopMovingUnit($movingUnit);
     }
 
     function stopMove(BaseUnit $movingUnit)

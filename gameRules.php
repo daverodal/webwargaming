@@ -340,6 +340,49 @@ class GameRules
                 break;
 
 
+            case SPEED_MODE:
+
+                switch ($event) {
+
+                    case KEYPRESS_EVENT:
+                        if ($this->moveRules->anyUnitIsMoving) {
+                            $c = chr($id);
+
+                            if($id == 37){
+                                if(method_exists($this->moveRules, 'slower')){
+                                    $ret = $this->moveRules->slower();
+                                    return $ret;
+                                }
+                            }
+
+
+                            if($id == 39){
+                                if(method_exists($this->moveRules, 'faster')){
+                                    $ret = $this->moveRules->faster();
+                                    return $ret;
+                                }
+                            }
+
+//                            $this->force->units[$this->moveRules->movingUnitId]->forceMarch = $this->force->units[$this->moveRules->movingUnitId]->forceMarch^1;
+                        }
+                    case SELECT_MAP_EVENT:
+                    case SELECT_COUNTER_EVENT:
+                        if ($id === false) {
+                            return false;
+                        }
+
+//                    }
+                        $ret = $this->moveRules->selectUnit($event, $id, $location, $this->turn);
+                        return $ret;
+                        break;
+
+                    case SELECT_BUTTON_EVENT:
+
+                        $this->selectNextPhase($click);
+                        break;
+                }
+                break;
+
             case COMBAT_SETUP_MODE:
                 $shift = false;
                 switch ($event) {

@@ -69,6 +69,8 @@ define("BLUE_AIR_COMBAT_PHASE",29);
 define("RED_AIR_COMBAT_PHASE",30);
 define("BLUE_TORP_COMBAT_PHASE", 31);
 define("RED_TORP_COMBAT_PHASE", 32);
+define("BLUE_SPEED_PHASE", 33);
+define("RED_SPEED_PHASE",34);
 
 
 
@@ -134,7 +136,8 @@ $phase_name[29] = "<span class='playerOneFace'>fNameOne</span> Air ";
 $phase_name[30] = "<span class='playerOneFace'>fNameTwo</span> Air ";
 $phase_name[31] = "<span class='playerOneFace'>fNameOne</span> Torp ";
 $phase_name[32] = "<span class='playerOneFace'>fNameTwo</span> Torp ";
-
+$phase_name[33] = "<span class='playerOneFace'>fNameOne</span> Speed ";
+$phase_name[34] = "<span class='playerOneFace'>fNameTwo</span> Speed ";
 
 // game modes
 define("SELECT_TO_MOVE_MODE",1);
@@ -158,6 +161,7 @@ define("EXCHANGING_MODE",18);
 define("REPLACING_MODE",19);
 define("ATTACKER_LOSING_MODE",20);
 define("DISPLAY_MODE",21);
+define("SPEED_MODE", 22);
 
 
 // mode names

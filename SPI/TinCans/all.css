@@ -1328,17 +1328,22 @@ svg marker#head {
   font-size: 9px;
   height: 45px; }
   .unit .counterWrapper .top-numbers {
+    font-size: 10px;
     height: 10px; }
     .unit .counterWrapper .top-numbers .gun-range {
       float: right;
-      margin-right: 3px; }
-    .unit .counterWrapper .top-numbers .gunnery.white {
-      color: white; }
-    .unit .counterWrapper .top-numbers .gunnery.red {
-      color: red; }
+      margin-right: 3px;
+      height: 10px; }
+    .unit .counterWrapper .top-numbers .gunnery {
+      height: 10px;
+      float: left; }
+      .unit .counterWrapper .top-numbers .gunnery.white {
+        color: white; }
+      .unit .counterWrapper .top-numbers .gunnery.red {
+        color: red; }
   .unit .counterWrapper .ship-desig {
     height: 10px;
-    font-size: 10px;
+    font-size: 12px;
     text-align: center;
     color: black; }
     .unit .counterWrapper .ship-desig.white {

@@ -158,7 +158,6 @@
                 <div id="units" class="subMenu">
                         <div class="dropDown" id="closeAllUnits">Close All</div>
                         <div class="dropDown" id="hideShow">Retired Units</div>
-                        <div class="dropDown" id="showDeploy">Deploy/Staging Box</div>
                         <div class="dropDown" id="showExited">Exited Units</div>
                 </div>
             </div>
@@ -181,16 +180,6 @@
                 <div class="close">X</div>
                 <div style="margin-right:3px;" class="left">Deploy/Staging area</div>
                 <div id="deployBox">
-                    <div class="staging-area" id="germany">
-                        <div  class="staging-area-label">
-                            Germany
-                        </div>
-                    </div>
-                    <div class="staging-area" id="israel">
-                        <div  class="staging-area-label">
-                            Israel
-                        </div>
-                    </div>
                 </div>
                 <div style="clear:both;"></div>
             </div>

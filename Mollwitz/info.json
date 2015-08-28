@@ -459,7 +459,7 @@
         },
         "russianForward": {
           "description": "Russian deploys forward.",
-          "longDescription":"On the morning of the battle, the russian ate oatmeal, and not the instant kind, the kind you cook for 45 minutes. This scenario assumes the russian had pop tarts, cold. So they got to the battle quicker.",
+          "longDescription":"On the morning of the battle, the Russians ate oatmeal, and not the instant kind, the kind you cook for 45 minutes. This scenario assumes the russian had pop tarts, cold. So they got to the battle quicker.",
           "units":[
             {"num":4,"forceId":1,"combat":8,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"},
             {"num":3,"forceId":1,"combat":7,"movement":4,"reinforce":"A","range":1,"nationality":"Guard","class":"infantry"},

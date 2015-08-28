@@ -174,33 +174,47 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         switch($kill){
             case P:
                 $this->pDamage++;
-
+                if($this->pDamage == 1){
+                    $this->maxMove /= 2;
+                }
+                if($this->pDamage > 1){
+                    $this->maxMove = 0;
+                }
                 $this->hits++;
                 break;
             case W:
                 $this->wDamage++;
-
+                if($this->wDamage == 1){
+                    $this->origStrength /= 2;
+                    $this->torpedoStrength /= 2;
+                }
+                if($this->wDamage > 1){
+                    $this->origStrength = 0;
+                    $this->torpedoStrength = 0;
+                }
                 $this->hits++;
                 break;
             case PW:
                 $this->wDamage++;
                 $this->pDamage++;
                 $this->hits += 2;
+                if($this->pDamage == 1){
+                    $this->maxMove /= 2;
+                }
+                if($this->pDamage > 1){
+                    $this->maxMove = 0;
+                }
+                if($this->wDamage == 1){
+                    $this->origStrength /= 2;
+                    $this->torpedoStrength /= 2;
+                }
+                if($this->wDamage > 1){
+                    $this->origStrength = 0;
+                    $this->torpedoStrength = 0;
+                }
         }
-        if($this->pDamage == 1){
-            $this->maxMove /= 2;
-        }
-        if($this->pDamage > 1){
-            $this->maxMove = 0;
-        }
-        if($this->wDamage == 1){
-            $this->origStrength /= 2;
-            $this->torpedoStrength /= 2;
-        }
-        if($this->wDamage > 1){
-            $this->origStrength = 0;
-            $this->torpedoStrength = 0;
-        }
+
+
         if($this->hits >= 3){
             $this->status = STATUS_ELIMINATING;
             return true;

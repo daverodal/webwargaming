@@ -161,14 +161,18 @@
   font-size:9px;
   height: 45px;
   .top-numbers{
+    font-size:10px;
     height:10px;
     .gun-range{
       float:right;
       margin-right:3px;
+      height:10px;
 
 
     }
     .gunnery{
+      height:10px;
+      float:left;
       &.white{
         color:white;
       }
@@ -179,7 +183,7 @@
   }
   .ship-desig{
     height:10px;
-    font-size:10px;
+    font-size:12px;
     text-align: center;
     color:black;
     &.white{

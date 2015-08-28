@@ -112,9 +112,12 @@
         }
         if(unit.pDamage == 1){
             pDamage = "white";
+            $("#" + unit.id + " .heading").css({backgroundColor: "red"});
         }
         if(unit.pDamage > 1){
             pDamage = "red";
+            $("#" + unit.id + " .heading").css({display: "none"});
+
         }
         var speed = Math.floor(unit.maxMove);
         if(speed <= 0){
@@ -137,7 +140,7 @@
         $("#" + unit.id + " .ship-desig").addClass(hits);
         $("#" + unit.id + " .torpedo").html(unit.torpedoStrength);
         $("#" + unit.id + " .defense").html(unit.defenseStrength);
-        $("#" + unit.id + " .mp").html(moveLeft);
+        $("#" + unit.id + " .mp").html('');
 
 
 
