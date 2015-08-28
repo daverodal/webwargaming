@@ -130,9 +130,20 @@ trait NavalCombatTrait
 
             $combatLog .= $strength." ".$unit->class;
 
-            if($range > $unit->range) {
-                $strength /= 2;
-                $combatLog .= " Halved for extended Range $strength";
+
+            if($battle->gameRules->phase == BLUE_TORP_COMBAT_PHASE || $battle->gameRules->phase == RED_TORP_COMBAT_PHASE){
+                if($range > (2* $unit->range)){
+                    $strength /= 3;
+                    $combatLog .= " One third for extended Range $strength";
+                }elseif($range > $unit->range) {
+                    $strength /= 2;
+                    $combatLog .= " Halved for extended Range $strength";
+                }
+            }else{
+                if($range > $unit->range) {
+                    $strength /= 2;
+                    $combatLog .= " Halved for extended Range $strength";
+                }
             }
             $combatLog .= "<br>";
 
@@ -142,8 +153,7 @@ trait NavalCombatTrait
         if($attackers > 1  && !($battle->gameRules->phase == BLUE_TORP_COMBAT_PHASE || $battle->gameRules->phase == RED_TORP_COMBAT_PHASE)){
             $beforeStr = $attackStrength;
             $attackStrength /= 2;
-            $combatLog .= $battle->gameRules->phase." x ";
-            $combatLog .= BLUE_TORP_COMBAT_PHASE . "$beforeStr Attack strength halved fore multi ship attack $attackStrength<br>";
+            $combatLog .= "$beforeStr Attack strength halved fore multi ship attack $attackStrength<br>";
 
         }
         $defenseStrength = 0;

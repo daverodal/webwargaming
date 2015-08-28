@@ -116,9 +116,16 @@
         if(unit.pDamage > 1){
             pDamage = "red";
         }
-        var speed = unit.maxMove;
+        var speed = Math.floor(unit.maxMove);
         if(speed <= 0){
             speed = "";
+        }
+        var hits = "";
+        if(unit.hits == 1){
+            hits = "white";
+        }
+        if(unit.hits == 2){
+            hits = "red";
         }
         $("#" + unit.id + " .heading").css({opacity: "1.0"});
         $("#" + unit.id + " .heading").attr("src", "<?php echo base_url(); ?>js/blackArrow"+speed+".svg");
@@ -127,7 +134,7 @@
         $("#" + unit.id + " .gunnery").html(unit.strength).addClass(damage);
         $("#" + unit.id + " .torpedo").html(unit.torpedoStrength);
         $("#" + unit.id + " .torpedo").addClass(damage);
-        $("#" + unit.id + " .ship-desig").addClass(pDamage);
+        $("#" + unit.id + " .ship-desig").addClass(hits);
         $("#" + unit.id + " .torpedo").html(unit.torpedoStrength);
         $("#" + unit.id + " .defense").html(unit.defenseStrength);
         $("#" + unit.id + " .mp").html(moveLeft);

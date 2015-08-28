@@ -20,7 +20,7 @@ require_once "Battle.php";
 require_once "crtTraits.php";
 require_once "NavalcombatRules.php";
 require_once "crt.php";
-require_once "force.php";
+require_once "NavalForce.php";
 require_once "gameRules.php";
 require_once "hexagon.php";
 require_once "hexpart.php";
@@ -68,7 +68,7 @@ class ModernNavalBattle extends LandBattle
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
-            $this->force = new Force($data->force);
+            $this->force = new NavalForce($data->force);
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new NavalMoveRules($this->force, $this->terrain, $data->moveRules);
             $this->combatRules = new NavalCombatRules($this->force, $this->terrain, $data->combatRules);
@@ -83,7 +83,7 @@ class ModernNavalBattle extends LandBattle
 
             $this->display = new Display();
             $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
-            $this->force = new Force();
+            $this->force = new NavalForce();
             $this->terrain = new Terrain();
             $this->moveRules = new NavalMoveRules($this->force, $this->terrain);
 

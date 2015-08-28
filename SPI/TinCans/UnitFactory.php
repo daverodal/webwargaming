@@ -241,6 +241,7 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         $mapUnit->wDamage = $this->wDamage;
         $mapUnit->range = $this->range;
         $mapUnit->pDamage = $this->pDamage;
+        $mapUnit->hits = $this->hits;
         return $mapUnit;
     }
 }

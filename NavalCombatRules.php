@@ -271,11 +271,15 @@ class NavalCombatRules
                         $los->setEndPoint($this->force->getUnitHexagon($defenderId));
                         $range = $los->getRange();
                         $unitRange = $this->force->getUnitRange($id) * 2;
+                        if($battle->gameRules->phase == BLUE_TORP_COMBAT_PHASE || $battle->gameRules->phase == RED_TORP_COMBAT_PHASE) {
+                            $unitRange = $this->force->getUnitRange($id) * 3;
+
+                        }
                         if ($range > $unitRange) {
                             $good = false;
                             break;
                         }
-                        if ($range > 1) {
+                        if ($range >= 1) {
                             $good = $this->checkBlocked($los,$id);
                         }
                     }
@@ -380,9 +384,7 @@ class NavalCombatRules
             return false;
         }
         $mapHex = $mapData->getHex($this->force->getUnitHexagon($id)->name);
-        if ($this->force->mapHexIsZOC($mapHex)) {
-                return false;
-        }
+
         return $good;
     }
     function checkBombardment($cd = false)
