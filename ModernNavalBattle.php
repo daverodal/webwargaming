@@ -18,7 +18,7 @@ You should have received a copy of the GNU General Public License
 
 require_once "Battle.php";
 require_once "crtTraits.php";
-require_once "NavalcombatRules.php";
+require_once "NavalCombatRules.php";
 require_once "crt.php";
 require_once "NavalForce.php";
 require_once "gameRules.php";
