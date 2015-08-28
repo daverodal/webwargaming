@@ -75,16 +75,18 @@ class NavalMoveRules extends MoveRules
     function slower(){
         if ($this->anyUnitIsMoving) {
             $movingUnit = $this->force->units[$this->movingUnitId];
-            $movesLeft = $movingUnit->maxMove - $movingUnit->moveAmountUsed;
-            $maxChange = 3;
+            if($movingUnit->newSpeed === false){
+                $movingUnit->newSpeed = $movingUnit->maxMove;
+            }
+            $maxChange = 2;
             if($movingUnit->class === "cl" || $movingUnit->class === "ca" ){
-                $turnCost = 2;
+                $maxChange = 2;
             }
             if($movingUnit->class === "bb" || $movingUnit->class === "bc" ){
-                $turnCost = 1;
+                $maxChange = 1;
             }
-            if($movingUnit->maxMove > 0){
-                $movingUnit->maxMove--;
+            if($movingUnit->maxMove > 0 && ($movingUnit->newSpeed >  ($movingUnit->maxMove - $maxChange))){
+                $movingUnit->newSpeed--;
             }
 
         }
@@ -94,16 +96,18 @@ class NavalMoveRules extends MoveRules
     function faster(){
         if ($this->anyUnitIsMoving) {
             $movingUnit = $this->force->units[$this->movingUnitId];
-            $movesLeft = $movingUnit->maxMove - $movingUnit->moveAmountUsed;
+            if($movingUnit->newSpeed === false){
+                $movingUnit->newSpeed = $movingUnit->maxMove;
+            }
             $maxChange = 3;
             $maxSpeed = 7;
             if($movingUnit->class === "cl" || $movingUnit->class === "ca" ){
-                $turnCost = 2;
                 $maxSpeed = 6;
+                $maxChange = 2;
             }
             if($movingUnit->class === "bb" || $movingUnit->class === "bc" ){
-                $turnCost = 1;
                 $maxSpeed = 6;
+                $maxChange = 1;
             }
             if($movingUnit->pDamage === 1){
                 $maxSpeed = floor($maxSpeed/2);
@@ -111,10 +115,9 @@ class NavalMoveRules extends MoveRules
             if($movingUnit->pDamage === 2){
                 $maxSpeed = 0;
             }
-            if($movingUnit->maxMove < $maxSpeed){
-                $movingUnit->maxMove++;
+            if($movingUnit->maxMove < $maxSpeed && ($movingUnit->newSpeed <  ($movingUnit->maxMove + $maxChange))){
+                $movingUnit->newSpeed++;
             }
-
         }
 
     }

@@ -154,6 +154,7 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         $this->hits = 0;
         $this->wDamage = 0;
         $this->pDamage = 0;
+        $this->newSpeed = false;
         if($torpedoStrength > 0){
             if($nationality === "ijn"){
                 $this->torpLoad = 2;
@@ -256,6 +257,7 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         $mapUnit->range = $this->range;
         $mapUnit->pDamage = $this->pDamage;
         $mapUnit->hits = $this->hits;
+        $mapUnit->newSpeed = $this->newSpeed;
         return $mapUnit;
     }
 }

@@ -100,13 +100,11 @@ class NavalForce extends Force
                         }
                     }
 
-                    if ($mode == MOVING_MODE && $moveRules->stickyZOC) {
-                        if ($this->units[$id]->forceId == $this->attackingForceId &&
-                            $this->unitIsZOC($id)
-                        ) {
-                            $status = STATUS_STOPPED;
-                        }
+                    if($this->units[$id]->newSpeed !== false){
+                        $this->units[$id]->maxMove = $this->units[$id]->newSpeed;
+                        $this->units[$id]->newSpeed = false;
                     }
+
 
                     $this->units[$id]->status = $status;
                     $this->units[$id]->moveAmountUsed = 0;

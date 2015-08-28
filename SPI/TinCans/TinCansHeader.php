@@ -140,7 +140,7 @@
         $("#" + unit.id + " .ship-desig").addClass(hits);
         $("#" + unit.id + " .torpedo").html(unit.torpedoStrength);
         $("#" + unit.id + " .defense").html(unit.defenseStrength);
-        $("#" + unit.id + " .mp").html('');
+        $("#" + unit.id + " .mp").html(unit.newSpeed);
 
 
 
