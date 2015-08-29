@@ -364,12 +364,24 @@ class NavalMoveRules extends MoveRules
             $this->moves->$hexNum->pointsLeft = $movePoints;
             $this->moves->$hexNum->pathToHere = $hexPath->pathToHere;
 
-
+            if ($this->moves->$hexNum->isZoc == NULL) {
+                $this->moves->$hexNum->isZoc = $this->force->mapHexIsZOC($mapHex);
+            }
             $exitCost = 0;
             if($this->moves->$hexNum->isClone){
                 continue;
             }
+            if ($this->moves->$hexNum->isZoc) {
+                if (is_numeric($this->exitZoc)) {
+                    $exitCost += $this->exitZoc;
+                }
+                if (!$hexPath->firstHex) {
+                    if ($this->enterZoc === "stop") {
+                        continue;
+                    }
+                }
 
+            }
             $path = $hexPath->pathToHere;
             $path[] = $hexNum;
 
@@ -414,16 +426,24 @@ class NavalMoveRules extends MoveRules
                 if ($newMapHex->isOccupied($this->force->defendingForceId, $this->enemyStackingLimit, $unit)) {
                     continue;
                 }
-
+                $isZoc = $this->force->mapHexIsZOC($newMapHex);
+                if($isZoc && $this->noZoc){
+                    continue;
+                }
+                if ($isZoc && is_numeric($this->enterZoc)) {
+                    $moveAmount += (int)$this->enterZoc;
+                }
                 if ($moveAmount <= 0) {
                     $moveAmount = 1;
                 }
-
+                if ($this->noZocZoc && $isZoc && $hexPath->isZoc) {
+                    continue;
+                }
                 /*
                  * TODO order is important in if statement check if doing zoc zoc move first then if just one hex move.
                  * Then check if oneHex and firstHex
                  */
-                if ($movePoints - $moveAmount >= 0) {
+                if ($movePoints - $moveAmount >= 0 || (($isZoc && $hexPath->isZoc && !$this->noZocZocOneHex) && $hexPath->firstHex === true) || ($hexPath->firstHex === true && $this->oneHex === true && !($isZoc && $hexPath->isZoc && !$this->noZocZoc))) {
                     $head = false;
                     if (isset($this->moves->$newHexNum)) {
                         if ($this->moves->$newHexNum->pointsLeft > ($movePoints - $moveAmount)) {
@@ -440,6 +460,9 @@ class NavalMoveRules extends MoveRules
                         $newPath->facing = $newFacing % 6;
                     }
                     if ($newPath->pointsLeft < 0) {
+                        $newPath->pointsLeft = 0;
+                    }
+                    if ($this->exitZoc === "stop" && $hexPath->isZoc) {
                         $newPath->pointsLeft = 0;
                     }
                      if ($head) {
@@ -610,6 +633,15 @@ class NavalMoveRules extends MoveRules
         $unit = $this->force->getUnit($id);
         $victory->preStartMovingUnit($unit);
 
+        /*
+         * Don't think this is important test. Unit will be STATUS_STOPPED if cannot move.
+         */
+        if (!$this->stickyZOC || $this->force->unitIsZOC($id) == false) {
+            if ($unit->setStatus(STATUS_MOVING) == true) {
+                $this->anyUnitIsMoving = true;
+                $this->movingUnitId = $id;
+            }
+        }
         $victory->postStartMovingUnit($unit);
     }
 
@@ -746,9 +778,17 @@ class NavalMoveRules extends MoveRules
         $moveAmount = $this->terrain->getTerrainMoveCost($movingUnit->getUnitHexagon()->name, $hexagon, $movingUnit->forceMarch, $movingUnit);
         /* @var MapHex $mapHex */
         $mapHex = $mapData->getHex($hexagon);
-
+        if ($mapHex->isZoc($this->force->defendingForceId) == true) {
+            if (is_numeric($this->enterZoc)) {
+                $moveAmount += $this->enterZoc;
+            }
+        }
         $fromMapHex = $mapData->getHex($fromHex->name);
-
+        if ($fromMapHex->isZoc($this->force->defendingForceId) == true) {
+            if (is_numeric($this->exitZoc)) {
+                $moveAmount += $this->exitZoc;
+            }
+        }
 
         $movingUnit->updateMoveStatus(new Hexagon($hexagon), $moveAmount);
 
@@ -759,6 +799,11 @@ class NavalMoveRules extends MoveRules
             $this->stopMove($movingUnit);
         }
 
+        if ($mapHex->isZoc($this->force->defendingForceId) == true) {
+            if ($this->enterZoc === "stop") {
+                $this->stopMove($movingUnit);
+            }
+        }
 
         if ($this->terrain->isExit($hexagon)) {
             $this->eexit($movingUnit->id);
