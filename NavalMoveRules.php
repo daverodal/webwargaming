@@ -364,24 +364,12 @@ class NavalMoveRules extends MoveRules
             $this->moves->$hexNum->pointsLeft = $movePoints;
             $this->moves->$hexNum->pathToHere = $hexPath->pathToHere;
 
-            if ($this->moves->$hexNum->isZoc == NULL) {
-                $this->moves->$hexNum->isZoc = $this->force->mapHexIsZOC($mapHex);
-            }
+
             $exitCost = 0;
             if($this->moves->$hexNum->isClone){
                 continue;
             }
-            if ($this->moves->$hexNum->isZoc) {
-                if (is_numeric($this->exitZoc)) {
-                    $exitCost += $this->exitZoc;
-                }
-                if (!$hexPath->firstHex) {
-                    if ($this->enterZoc === "stop") {
-                        continue;
-                    }
-                }
 
-            }
             $path = $hexPath->pathToHere;
             $path[] = $hexNum;
 
@@ -426,24 +414,16 @@ class NavalMoveRules extends MoveRules
                 if ($newMapHex->isOccupied($this->force->defendingForceId, $this->enemyStackingLimit, $unit)) {
                     continue;
                 }
-                $isZoc = $this->force->mapHexIsZOC($newMapHex);
-                if($isZoc && $this->noZoc){
-                    continue;
-                }
-                if ($isZoc && is_numeric($this->enterZoc)) {
-                    $moveAmount += (int)$this->enterZoc;
-                }
+
                 if ($moveAmount <= 0) {
                     $moveAmount = 1;
                 }
-                if ($this->noZocZoc && $isZoc && $hexPath->isZoc) {
-                    continue;
-                }
+
                 /*
                  * TODO order is important in if statement check if doing zoc zoc move first then if just one hex move.
                  * Then check if oneHex and firstHex
                  */
-                if ($movePoints - $moveAmount >= 0 || (($isZoc && $hexPath->isZoc && !$this->noZocZocOneHex) && $hexPath->firstHex === true) || ($hexPath->firstHex === true && $this->oneHex === true && !($isZoc && $hexPath->isZoc && !$this->noZocZoc))) {
+                if ($movePoints - $moveAmount >= 0) {
                     $head = false;
                     if (isset($this->moves->$newHexNum)) {
                         if ($this->moves->$newHexNum->pointsLeft > ($movePoints - $moveAmount)) {
@@ -460,9 +440,6 @@ class NavalMoveRules extends MoveRules
                         $newPath->facing = $newFacing % 6;
                     }
                     if ($newPath->pointsLeft < 0) {
-                        $newPath->pointsLeft = 0;
-                    }
-                    if ($this->exitZoc === "stop" && $hexPath->isZoc) {
                         $newPath->pointsLeft = 0;
                     }
                      if ($head) {
