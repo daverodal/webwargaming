@@ -49,7 +49,7 @@ class TinCansVictoryCore extends victoryCore
             $this->supplyLen = $data->victory->supplyLen;
             $this->gameOver = $data->victory->gameOver;
         } else {
-            $this->victoryPoints = array(0, 0, 25);
+            $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
             $this->combatCache = new stdClass();
 
@@ -82,10 +82,15 @@ class TinCansVictoryCore extends victoryCore
     {
         $unit = $args[0];
 
-        $vp = $unit->damage;
+        $type = $unit->class;
+        $vp = 2;
+        if($type === 'ca'){
+            $vp = 10;
+        }
 
         if ($unit->forceId == 1) {
             $victorId = 2;
+
             $this->victoryPoints[$victorId] += $vp;
             $hex = $unit->hexagon;
             $battle = Battle::getBattle();
@@ -94,7 +99,7 @@ class TinCansVictoryCore extends victoryCore
             $victorId = 1;
             $hex  = $unit->hexagon;
             $battle = Battle::getBattle();
-            $battle->mapData->specialHexesVictory->{$hex->name} = "+$vp vp";
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='rebelVictoryPoints'>+$vp vp</span>";
             $this->victoryPoints[$victorId] += $vp;
         }
     }
@@ -174,6 +179,11 @@ class TinCansVictoryCore extends victoryCore
     function isExit($args)
     {
         list($unit) = $args;
+        $hexNum = $unit->hexagon->name;
+        $hexNum = (int)floor($hexNum / 100);
+        if($hexNum === 61 || $hexNum === 1){
+            return true;
+        }
         return false;
     }
 

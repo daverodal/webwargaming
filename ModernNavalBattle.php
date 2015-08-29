@@ -140,6 +140,10 @@ class ModernNavalBattle extends LandBattle
         // code, name, displayName, letter, entranceCost, traverseCost, combatEffect, is Exclusive
 
         $this->terrain->addTerrainFeature("clear", "clear", "c", 1, 0, 0, true);
+        $this->terrain->addTerrainFeature("offmap", "offmap", "o", 1, 0, 0, true);
+        $this->terrain->addTerrainFeature("blocked", "blocked", "b", "blocked", 0, 0, true, true);
+
+        $terrainArr = json_decode($terrainDoc->hexStr->hexEncodedStr);
 
         $mapId = $terrainDoc->hexStr->map;
         $map = $mapDoc->map;
@@ -162,6 +166,9 @@ class ModernNavalBattle extends LandBattle
         $this->terrain->originX = $xOff - $map->x;
 
 
+
+
+
         for ($col = 100; $col <= $maxCol * 100; $col += 100) {
             for ($row = 1; $row <= $maxRow; $row++) {
                 $this->terrain->addTerrain($row + $col, LOWER_LEFT_HEXSIDE, "clear");
@@ -169,6 +176,20 @@ class ModernNavalBattle extends LandBattle
                 $this->terrain->addTerrain($row + $col, BOTTOM_HEXSIDE, "clear");
                 $this->terrain->addTerrain($row + $col, HEXAGON_CENTER, "clear");
 
+            }
+        }
+        foreach ($terrainArr as $terrain) {
+            foreach ($terrain->type as $terrainType) {
+                $name = $terrainType->name;
+                $matches = [];
+                if (preg_match("/SpecialHex/", $name)) {
+                    $this->terrain->addSpecialHex($terrain->number, $name);
+                } else if (preg_match("/^ReinforceZone(.*)$/", $name, $matches)) {
+                    $this->terrain->addReinforceZone($terrain->number, $matches[1]);
+                } else {
+                    $tNum = sprintf("%04d", $terrain->number);
+                    $this->terrain->addTerrain($tNum, $terrain->hexpartType, strtolower($name));
+                }
             }
         }
     }

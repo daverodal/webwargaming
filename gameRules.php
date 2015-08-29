@@ -291,9 +291,9 @@ class GameRules
                                 $unit = $this->force->getUnit($this->moveRules->movingUnitId);
 
                                 if ($unit->hexagon->parent == "gameImages") {
-                                    if($this->moveRules->exitUnit($unit->id)){
-                                        return;
-                                    }
+                                    $this->moveRules->exitUnit($unit->id);
+                                    return;
+
                                 }
                             }
 
@@ -312,22 +312,15 @@ class GameRules
                                 }
                             }
 
-//                            $this->force->units[$this->moveRules->movingUnitId]->forceMarch = $this->force->units[$this->moveRules->movingUnitId]->forceMarch^1;
                         }
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
                         if ($id === false) {
                             return false;
                         }
-//                    if($this->phase == BLUE_PANZER_PHASE){/* Love that oo design */
-//                        if($event == SELECT_COUNTER_EVENT && $this->force->getUnitMaximumMoveAmount($id) != 6){
-//                            break;
-//                        }
-//                    }
+
                         $this->moveRules->railMove = false;
-//                    if($this->phase == RED_RAILROAD_PHASE){/* Love that oo design */
-//                        $this->moveRules->railMove = true;
-//                    }
+
                         $ret = $this->moveRules->moveUnit($event, $id, $location, $this->turn);
                         return $ret;
                         break;
@@ -363,7 +356,6 @@ class GameRules
                                 }
                             }
 
-//                            $this->force->units[$this->moveRules->movingUnitId]->forceMarch = $this->force->units[$this->moveRules->movingUnitId]->forceMarch^1;
                         }
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
@@ -371,7 +363,6 @@ class GameRules
                             return false;
                         }
 
-//                    }
                         $ret = $this->moveRules->selectUnit($event, $id, $location, $this->turn);
                         return $ret;
                         break;

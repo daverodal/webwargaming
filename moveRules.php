@@ -1074,7 +1074,7 @@ class MoveRules
             $victory = $battle->victory;
             $ret = $victory->isExit($unit);
             if($ret === false){
-                return;
+                return false;
             }
             if ($unit->setStatus(STATUS_EXITED) == true) {
                 /* TODO: awful. probably don't need to set $id for Hexagon name */
@@ -1084,10 +1084,11 @@ class MoveRules
                 $this->anyUnitIsMoving = false;
                 $this->movingUnitId = NONE;
                 $this->moves = new stdClass();
+                return true;
             }
 
-            return;
         }
+        return false;
     }
 
 

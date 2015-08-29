@@ -46,16 +46,17 @@
     "fileName": "TinCans/TinCans.php",
     "description": "Destroyers, Crusiers, Battleships.",
     "options":[
-      {
-        "name": "For of war during Deployment. Enemy units remain hidden until movement phase..",
-        "keyName":"fogDeploy",
-        "value": false
-      }
     ],
     "scenarios": {
       "main": {
-        "description": "Standard",
-        "longDescription":"Opus 1."
+        "description": "Cape Esperance",
+        "longDescription":"11-12 October 1942",
+        "three": true
+      },
+      "one": {
+        "description": "South China Sea",
+        "longDescription":"10 December 1941",
+        "one": true
       }
     }
   }

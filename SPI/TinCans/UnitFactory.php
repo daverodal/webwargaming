@@ -168,11 +168,11 @@ class NavalUnit extends BaseUnit implements JsonSerializable
 
     }
 
-    function damageUnit($kill = false)
+    function damageUnit($result = false)
     {
         $battle = Battle::getBattle();
 
-        switch($kill){
+        switch($result){
             case P:
                 $this->pDamage++;
                 if($this->pDamage == 1){

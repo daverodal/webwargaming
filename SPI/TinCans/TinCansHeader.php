@@ -89,7 +89,6 @@
 
     function renderUnitNumbers(unit, moveAmount, move, clone){
 
-
         var moveLeft = unit.maxMove - unit.moveAmountUsed;
 
         if(move){
@@ -118,6 +117,9 @@
             pDamage = "red";
             $("#" + unit.id + " .heading").css({display: "none"});
 
+        }
+        if( unit.parent !== 'gameImages'){
+            $("#" + unit.id + " .heading").css({display: "none"});
         }
         var speed = Math.floor(unit.maxMove);
         if(speed <= 0){
