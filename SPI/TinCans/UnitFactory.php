@@ -141,6 +141,7 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         $this->wDamage = 0;
         $this->pDamage = 0;
         $this->newSpeed = false;
+        $this->torpReload = false;
         if($torpedoStrength > 0){
             if($nationality === "ijn"){
                 $this->torpLoad = 2;
@@ -152,6 +153,20 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         }
 
 
+    }
+
+    function torpFired(){
+        $this->torpLoad--;
+        if($this->torpLoad > 0 && $this->nationality === "ijn"){
+            $this->torpReload = 2;
+        }
+    }
+
+    function reloadTorp(){
+        $this->torpReload--;
+        if($this->torpReload === 0){
+            $this->torpReload = false;
+        }
     }
 
     function damageUnit($result = false)
@@ -242,6 +257,8 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         $mapUnit->pDamage = $this->pDamage;
         $mapUnit->hits = $this->hits;
         $mapUnit->newSpeed = $this->newSpeed;
+        $mapUnit->torpLoad = $this->torpLoad;
+        $mapUnit->torpReload = $this->torpReload;
         return $mapUnit;
     }
 }

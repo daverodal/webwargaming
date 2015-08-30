@@ -63,6 +63,10 @@ class NavalForce extends Force
 
                     if ($phase == BLUE_COMBAT_PHASE || $phase == RED_COMBAT_PHASE || $phase == TEAL_COMBAT_PHASE || $phase == PURPLE_COMBAT_PHASE) {
                         if ($mode == COMBAT_SETUP_MODE) {
+                            $unit = $this->units[$id];
+                            if($this->units[$id]->forceId == $this->attackingForceId && $unit->torpReload !== false){
+                                $unit->reloadTorp();
+                            }
                             $status = STATUS_UNAVAIL_THIS_PHASE;
                             /* unitIsZoc has Side Effect */
                             if ($this->units[$id]->forceId == $this->attackingForceId && ($this->unitIsInRange($id))) {
@@ -85,7 +89,7 @@ class NavalForce extends Force
                     if ($phase == BLUE_TORP_COMBAT_PHASE || $phase == RED_TORP_COMBAT_PHASE) {
                         if ($mode == COMBAT_SETUP_MODE) {
                             $status = STATUS_UNAVAIL_THIS_PHASE;
-                            if ($this->units[$id]->torpLoad > 0) {
+                            if ($this->units[$id]->torpLoad > 0 && $this->units[$id]->torpReload === false) {
                                 $status = STATUS_READY;
                             }
                         }

@@ -819,7 +819,7 @@ class Force
             }
 
             if($battle->gameRules->phase == BLUE_TORP_COMBAT_PHASE || $battle->gameRules->phase == RED_TORP_COMBAT_PHASE){
-                $this->units[$attacker]->torpLoad--;
+                $this->units[$attacker]->torpFired();
             }
 
             if ($this->units[$attacker]->status == STATUS_ATTACKING) {

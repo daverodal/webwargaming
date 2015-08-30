@@ -132,15 +132,21 @@
         if(unit.hits == 2){
             hits = "red";
         }
+        var torpStrength = unit.torpedoStrength;
+        if(unit.torpLoad === 0){
+            torpStrength = 'x';
+        }
+        if(unit.torpReload !== false){
+            torpStrength = 'r '+unit.torpReload;
+        }
         $("#" + unit.id + " .heading").css({opacity: "1.0"});
         $("#" + unit.id + " .heading").attr("src", "<?php echo base_url(); ?>js/blackArrow"+speed+".svg");
         $("#" + unit.id + " .heading").css({webkitTransform: ' scale(.55,.55) rotate(' + theta + "deg) translateY(-45px)"});
 
         $("#" + unit.id + " .gunnery").html(unit.strength).addClass(damage);
-        $("#" + unit.id + " .torpedo").html(unit.torpedoStrength);
+        $("#" + unit.id + " .torpedo").html(torpStrength);
         $("#" + unit.id + " .torpedo").addClass(damage);
         $("#" + unit.id + " .ship-desig").addClass(hits);
-        $("#" + unit.id + " .torpedo").html(unit.torpedoStrength);
         $("#" + unit.id + " .defense").html(unit.defenseStrength);
         $("#" + unit.id + " .mp").html(unit.newSpeed);
 
