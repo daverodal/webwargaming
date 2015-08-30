@@ -159,6 +159,9 @@ class NavalCombatRules
         $cd = $this->currentDefender;
 
         if ($this->force->unitIsEnemy($id) == true) {
+            if($unit->spotted === false){
+                return false;
+            }
             // defender is already in combatRules, so make it currently selected
 //            if(isset($this->defenders->$id)){
 //                $id = $this->defenders->$id;

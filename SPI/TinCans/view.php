@@ -233,7 +233,7 @@
                             <img class="heading" src="<?php echo base_url(); ?>js/blackArrow.svg" class="counter">
                             <img class="arrow" src="<?php echo base_url(); ?>js/short-red-arrow-md.png" class="counter">
                             <div class="counterWrapper">
-                                <div class="top-numbers"><span class="gunnery">{origStrength}</span> <span class="gun-range">{gunRange}</span></div>
+                                <div class="top-numbers"><span class="gunnery">{origStrength}</span><i class="spotted fa"></i> <span class="gun-range">{gunRange}</span></div>
                                 <div class="ship-desig">{unitSize}</div>
                                 <div class="bottom-numbers unit-numbers"><span class="defense">{defenseStrength}</span> <span class="mp"></span> <span class="torpedo">{torpedoStrength}</span></div>
                             </div>

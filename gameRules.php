@@ -327,7 +327,7 @@ class GameRules
 
                     case SELECT_BUTTON_EVENT:
 
-                        $this->selectNextPhase($click);
+                        return $this->selectNextPhase($click);
                         break;
                 }
                 break;
@@ -571,6 +571,10 @@ class GameRules
     function selectNextPhase($click)
     {
         global $phase_name;
+
+        if($this->mode == MOVING_MODE && $this->moveRules->movesLeft()){
+            return false;
+        }
         if ($this->moveRules->anyUnitIsMoving) {
             $this->moveRules->stopMove($this->force->units[$this->moveRules->movingUnitId]);
         }

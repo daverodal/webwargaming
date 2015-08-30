@@ -1336,11 +1336,14 @@ svg marker#head {
       height: 10px; }
     .unit .counterWrapper .top-numbers .gunnery {
       height: 10px;
-      float: left; }
+      display: inline-block;
+      width: 10px; }
       .unit .counterWrapper .top-numbers .gunnery.white {
         color: white; }
       .unit .counterWrapper .top-numbers .gunnery.red {
         color: red; }
+    .unit .counterWrapper .top-numbers .spotted {
+      color: red; }
   .unit .counterWrapper .ship-desig {
     height: 10px;
     font-size: 12px;

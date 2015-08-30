@@ -89,6 +89,9 @@ class MoveRules
         }
     }
 
+    public function movesLeft(){
+        return false;
+    }
 // id will be map if map event, id will be unit id if counter event
     function moveUnit($eventType, $id, $hexagon, $turn)
     {

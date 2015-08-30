@@ -139,6 +139,13 @@
         if(unit.torpReload !== false){
             torpStrength = 'r '+unit.torpReload;
         }
+        if(unit.spotted){
+            $("#" + unit.id + " .top-numbers .spotted").addClass('fa-bullseye');
+
+        }else{
+            $("#" + unit.id + " .top-numbers .spotted").removeClass('fa-bullseye');
+        }
+
         $("#" + unit.id + " .heading").css({opacity: "1.0"});
         $("#" + unit.id + " .heading").attr("src", "<?php echo base_url(); ?>js/blackArrow"+speed+".svg");
         $("#" + unit.id + " .heading").css({webkitTransform: ' scale(.55,.55) rotate(' + theta + "deg) translateY(-45px)"});
@@ -184,6 +191,7 @@
                         fontSize: '25px',
                         height: '30px'
                     }, 0);
+                    $(this).find('.top-numbers .gunnery').width(30);
                 }
             },
             function() {
@@ -201,6 +209,7 @@
                     fontSize:'',
                     height:'10px'
                 });
+                $(this).find('.top-numbers .gunnery').width('');
             });
     });
 </script>

@@ -278,53 +278,16 @@ class NavalMoveRules
                     $movingUnit = $this->force->units[$id];
                     // clicked on moving or reinforcing unit
                     /* @var Unit $movingUnit */
-                    if ($movingUnit->unitIsMoving() == true) {
-                        $this->stopMove($movingUnit);
-                        $dirty = true;
-                    }
-                    if ($this->force->unitIsReinforcing($id) == true) {
-                        $this->stopReinforcing($id);
-                        $dirty = true;
-                    }
-                    if ($this->force->unitIsDeploying($id) == true) {
-                        $this->stopDeploying($id);
-                        $dirty = true;
-                    }
                 } else {
                     /* @var Unit $movingUnit */
                     $movingUnit = $this->force->units[$this->movingUnitId];
                     $movingUnitId = $this->movingUnitId;
-                    if ($movingUnit->unitIsMoving() == true) {
-                        $this->stopMove($movingUnit);
-                        $dirty = true;
-                    }
-                    if ($this->force->unitIsReinforcing($movingUnitId) == true) {
-                        $this->stopReinforcing($movingUnitId);
-                        $dirty = true;
-                    }
-                    if ($this->force->unitIsDeploying($movingUnitId) == true) {
-                        $this->stopDeploying($movingUnitId);
-                        $dirty = true;
-                    }
+
 
                     if ($eventType == KEYPRESS_EVENT) {
                         if ($this->force->unitCanMove($movingUnitId) == true) {
                             $this->startMoving($movingUnitId);
                             $this->calcMove($movingUnitId);
-                            $dirty = true;
-                        }
-                    } else {
-                        if ($this->force->unitCanMove($id) == true) {
-                            $this->startMoving($id);
-                            $this->calcMove($id);
-                            $dirty = true;
-                        }
-                        if ($this->force->unitCanReinforce($id) == true) {
-                            $this->startReinforcing($id, $turn);
-                            $dirty = true;
-                        }
-                        if ($this->force->unitCanDeploy($id) == true) {
-                            $this->startDeploying($id, $turn);
                             $dirty = true;
                         }
                     }
@@ -513,6 +476,17 @@ class NavalMoveRules
         return;
     }
 
+    public function movesLeft(){
+        foreach($this->force->units as $unit){
+            if($unit->forceId !== $this->force->attackingForceId){
+                continue;
+            }
+            if($unit->maxMove > $unit->moveAmountUsed){
+                return true;
+            }
+        }
+        return false;
+    }
 
     function bfsCommunication($goal, $bias, $attackingForceId = false, $maxHex = false)
     {
@@ -815,11 +789,37 @@ class NavalMoveRules
             $this->stopMove($movingUnit);
         }
 
+        foreach($this->force->units as $unit){
+            if($movingUnit->forceId === $unit->forceId){
+                continue;
+            }
+            if($unit->hexagon->parent !== 'gameImages'){
+                continue;
+            }
+            if($this->inRange($movingUnit->hexagon->name, $unit->hexagon->name, 8)){
+                $movingUnit->spotted = true;
+                break;
+            }
+        }
 
         if ($this->terrain->isExit($hexagon)) {
             $this->eexit($movingUnit->id);
         }
     }
+
+
+    function inRange($startHexagon, $endHexagon, $range)
+    {
+        $los = new Los();
+        $los->setOrigin($startHexagon);
+        $los->setEndPoint($endHexagon);
+        if ($los->getRange() <= $range) {
+            return true;
+        }
+
+        return false;
+    }
+
 
     function rangeIsOneHexagon($startHexagon, $endHexagon)
     {

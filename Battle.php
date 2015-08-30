@@ -302,7 +302,7 @@ class LandBattle extends Battle{
                 break;
 
             case SELECT_BUTTON_EVENT:
-                $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0, $click);
+                return $this->gameRules->processEvent(SELECT_BUTTON_EVENT, "next_phase", 0, $click);
                 break;
 
             case KEYPRESS_EVENT:

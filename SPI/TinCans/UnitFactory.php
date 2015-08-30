@@ -31,6 +31,7 @@ class NavalUnit extends BaseUnit implements JsonSerializable
 
     private $range;
     public $gunRange;
+    public $spotted = false;
 
 
     public function jsonSerialize()
@@ -155,6 +156,14 @@ class NavalUnit extends BaseUnit implements JsonSerializable
 
     }
 
+    function firedGun(){
+        $this->spotted = true;
+    }
+
+    function removeSpotted(){
+        $this->spotted = false;
+    }
+
     function torpFired(){
         $this->torpLoad--;
         if($this->torpLoad > 0 && $this->nationality === "ijn"){
@@ -259,6 +268,7 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         $mapUnit->newSpeed = $this->newSpeed;
         $mapUnit->torpLoad = $this->torpLoad;
         $mapUnit->torpReload = $this->torpReload;
+        $mapUnit->spotted = $this->spotted;
         return $mapUnit;
     }
 }

@@ -172,13 +172,17 @@
     }
     .gunnery{
       height:10px;
-      float:left;
+      display:inline-block;
+      width:10px;
       &.white{
         color:white;
       }
       &.red{
         color:red;
       }
+    }
+    .spotted{
+      color:red;
     }
   }
   .ship-desig{
