@@ -48,15 +48,20 @@
     "options":[
     ],
     "scenarios": {
-      "main": {
-        "description": "Cape Esperance",
-        "longDescription":"11-12 October 1942",
-        "three": true
-      },
       "one": {
         "description": "South China Sea",
         "longDescription":"10 December 1941",
         "one": true
+      },
+      "two": {
+        "description": "Savo Island",
+        "longDescription":"9 August 1942",
+        "two": true
+      },
+      "main": {
+        "description": "Cape Esperance",
+        "longDescription":"11-12 October 1942",
+        "three": true
       }
     }
   }

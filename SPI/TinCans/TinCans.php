@@ -111,6 +111,43 @@ class TinCans extends ModernNavalBattle
 
         }
 
+        if($scenario->two){
+            /* IJN */
+            UnitFactory::create("CA-1", BLUE_FORCE, 5326, "multiInf.png", 9, 14, 5, 20, 6, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "ca");
+            UnitFactory::create("CA-1", BLUE_FORCE, 5624, "multiInf.png", 9, 14, 5, 20, 6, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "ca");
+            UnitFactory::create("CA-1", BLUE_FORCE, 5525, "multiInf.png", 9, 14, 5, 20, 6, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "ca");
+            UnitFactory::create("CA-1", BLUE_FORCE, 5425, "multiInf.png", 9, 14, 5, 20, 6, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "ca");
+
+            UnitFactory::create("CA-2", BLUE_FORCE, 5724, "multiInf.png", 14, 14, 7, 39, 6, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "ca");
+
+            UnitFactory::create("CL-1", BLUE_FORCE, 5226, "multiInf.png", 3, 12, 2, 15, 6, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
+            UnitFactory::create("CL-3", BLUE_FORCE, 5127, "multiInf.png", 5, 12, 2, 10, 6, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
+
+            UnitFactory::create("DD-1", BLUE_FORCE, 5027, "multiInf.png", 1, 12, 2, 20, 6, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
+
+            /* USN Groups 1 */
+
+            UnitFactory::create("CA-4", RED_FORCE, 6015, "multiInf.png", 12, 14, 6, 12, 2, SouthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
+
+            UnitFactory::create("CA-2", RED_FORCE, 6115, "multiInf.png", 13, 15, 5, 0, 2, SouthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
+
+            UnitFactory::create("DD-3", RED_FORCE, 6017, "multiInf.png", 2, 8, 2, 16, 2, SouthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-3", RED_FORCE, 6113, "multiInf.png", 2, 8, 2, 16, 2, SouthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+
+            /* USN Group 2 */
+
+            UnitFactory::create("CA-2", RED_FORCE, 4206, "multiInf.png", 13, 15, 5, 0, 2, SouthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
+            UnitFactory::create("CA-2", RED_FORCE, 4306, "multiInf.png", 13, 15, 5, 0, 2, SouthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
+            UnitFactory::create("CA-2", RED_FORCE, 4405, "multiInf.png", 13, 15, 5, 0, 2, SouthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
+
+            UnitFactory::create("DD-3", RED_FORCE, 4004, "multiInf.png", 2, 8, 2, 16, 2, SouthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-3", RED_FORCE, 4407, "multiInf.png", 2, 8, 2, 16, 2, SouthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+
+
+            UnitFactory::create("DD-3", RED_FORCE, 6119, "multiInf.png", 2, 8, 2, 16, 2, SouthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+
+        }
+
         if($scenario->three){
             UnitFactory::create("CA-1", BLUE_FORCE, 2110, "multiInf.png", 9, 14, 5, 20, 4, SouthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "ca");
             UnitFactory::create("CA-1", BLUE_FORCE, 2009, "multiInf.png", 9, 14, 5, 20, 4, SouthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "ca");
@@ -119,7 +156,7 @@ class TinCans extends ModernNavalBattle
             UnitFactory::create("DD-2", BLUE_FORCE, 2113, "multiInf.png", 3, 12, 2, 22, 4, SouthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
 
             UnitFactory::create("CA-1", RED_FORCE, 3221, "multiInf.png", 14, 15, 5, 0, 3, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
-            UnitFactory::create("CA-2", RED_FORCE, 3420, "multiInf.png", 12, 15, 5, 0, 3, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
+            UnitFactory::create("CA-2", RED_FORCE, 3420, "multiInf.png", 13, 15, 5, 0, 3, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
             UnitFactory::create("CL-3", RED_FORCE, 3321, "multiInf.png", 11, 12, 6, 0, 3, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
             UnitFactory::create("CL-3", RED_FORCE, 3122, "multiInf.png", 11, 12, 6, 0, 3, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
 
@@ -146,9 +183,6 @@ class TinCans extends ModernNavalBattle
 
         } else {
             $this->victory = new Victory("SPI/TinCans/TinCansVictoryCore.php");
-
-            $this->moveRules = new MoveRules($this->force, $this->terrain);
-
 
             // game data
             $this->gameRules->setMaxTurn(15);

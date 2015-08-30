@@ -24,7 +24,6 @@ class NavalUnit extends BaseUnit implements JsonSerializable
 
     public $origStrength;
     public $torpedoStrength;
-    public $unitAirStrength;
     public $defStrength;
     public $hits = 0;
     public $pDamage = 0;
@@ -52,10 +51,6 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         return  $this->origStrength;
     }
 
-
-    public function getUnmodifiedAirStrength(){
-        return  $this->unitAirStrength;
-    }
 
     public function __get($name)
     {
@@ -107,21 +102,13 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         $this->name = $unitName;
         $this->forceId = $unitForceId;
         $this->class = $class;
-        if($class === "air"){
-            $this->noZoc = true;
-        }
 
         $this->hexagon = new Hexagon($unitHexagon);
         $this->unitStrength  = $gunneryStrength;
 
 
-        /* blah! this can get called from the constructor of Battle. so we can't get ourselves while creating ourselves */
-//        $battle = Battle::getBattle();
-//        $mapData = $battle->mapData;
-
         $battle = Battle::getBattle();
         $mapData = $battle->mapData;
-//        $mapData = MapData::getInstance();
 
         $mapHex = $mapData->getHex($this->hexagon->getName());
         if ($mapHex) {
@@ -130,7 +117,6 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         $this->image = $unitImage;
 
 
-//        $this->strength = $isReduced ? $unitMinStrength : $unitMaxStrength;
         $this->maxMove = $unitMaxMove;
         $this->moveAmountUnused = $unitMaxMove;
         $this->origStrength = $gunneryStrength;
@@ -229,7 +215,6 @@ class NavalUnit extends BaseUnit implements JsonSerializable
             foreach ($data as $k => $v) {
                 if ($k == "hexagon") {
                     $this->hexagon = new Hexagon($v);
-//                    $this->hexagon->parent = $data->parent;
                     continue;
                 }
                 $this->$k = $v;
@@ -247,7 +232,6 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         $mapUnit->moveAmountUsed = $this->moveAmountUsed;
         $mapUnit->maxMove = $this->maxMove;
         $mapUnit->strength = $this->strength;
-        $mapUnit->airStrength = $this->unitAirStrength;
         $mapUnit->class = $this->class;
         $mapUnit->id = $this->id;
         $mapUnit->defenseStrength = $this->defStrength;

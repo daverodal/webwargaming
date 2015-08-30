@@ -21,8 +21,67 @@ You should have received a copy of the GNU General Public License
 
 require_once "moveRules.php";
 $numWalks = 0;
-class NavalMoveRules extends MoveRules
+class NavalMoveRules
 {
+
+
+    /* @var Force */
+    public $force;
+    /* @var Terrain */
+    public $terrain;
+
+    /* @var MapData */
+    public $mapData;
+    // local variables
+    public $movingUnitId;
+    public $anyUnitIsMoving;
+    protected $moves;
+    protected $path;
+    protected $moveQueue;
+
+    /* usually used for a closure, it's the amount of enemies or greater you CANNOT stack with
+     * so 1 means you can't stack with even 1 enemy. Use a closure here to allow for air units stacking with
+     * enemy land units only, for example. and vice a versa.
+     */
+    public $enemyStackingLimit = 1;
+
+    function save()
+    {
+        $data = new StdClass();
+        foreach ($this as $k => $v) {
+            if (is_object($v) && $k != "path" && $k != "moves") {
+                continue;
+            }
+            $data->$k = $v;
+        }
+        return $data;
+    }
+
+    function __construct($Force, $Terrain, $data = null)
+    {
+        // Class references
+
+        $this->mapData = MapData::getInstance();
+        $this->moves = new stdClass();
+        $this->path = new stdClass();
+        $this->force = $Force;
+        $this->terrain = $Terrain;
+
+        if ($data) {
+            foreach ($data as $k => $v) {
+                $this->$k = $v;
+            }
+        } else {
+            $this->movingUnitId = NONE;
+            $this->anyUnitIsMoving = false;
+            $this->storm = false;
+            $this->railMove = true;
+            $this->stickyZOC = false;
+        }
+    }
+
+
+
     function selectUnit($eventType, $id, $hexagon, $turn){
     // no one is moving, so start new move
         $dirty = false;
@@ -182,7 +241,7 @@ class NavalMoveRules extends MoveRules
                             $hexPath->pathToHere = array();
                             $hexPath->firstHex = false;
                             $hexPath->isOccupied = true;
-                                $hexPath->facing = $facing;
+                            $hexPath->facing = $facing;
                             $movingUnit->facing = $facing;
                             $this->moveQueue[] = $hexPath;
                             $this->bfsMoves();
@@ -364,24 +423,11 @@ class NavalMoveRules extends MoveRules
             $this->moves->$hexNum->pointsLeft = $movePoints;
             $this->moves->$hexNum->pathToHere = $hexPath->pathToHere;
 
-            if ($this->moves->$hexNum->isZoc == NULL) {
-                $this->moves->$hexNum->isZoc = $this->force->mapHexIsZOC($mapHex);
-            }
             $exitCost = 0;
             if($this->moves->$hexNum->isClone){
                 continue;
             }
-            if ($this->moves->$hexNum->isZoc) {
-                if (is_numeric($this->exitZoc)) {
-                    $exitCost += $this->exitZoc;
-                }
-                if (!$hexPath->firstHex) {
-                    if ($this->enterZoc === "stop") {
-                        continue;
-                    }
-                }
 
-            }
             $path = $hexPath->pathToHere;
             $path[] = $hexNum;
 
@@ -426,24 +472,16 @@ class NavalMoveRules extends MoveRules
                 if ($newMapHex->isOccupied($this->force->defendingForceId, $this->enemyStackingLimit, $unit)) {
                     continue;
                 }
-                $isZoc = $this->force->mapHexIsZOC($newMapHex);
-                if($isZoc && $this->noZoc){
-                    continue;
-                }
-                if ($isZoc && is_numeric($this->enterZoc)) {
-                    $moveAmount += (int)$this->enterZoc;
-                }
+
                 if ($moveAmount <= 0) {
                     $moveAmount = 1;
                 }
-                if ($this->noZocZoc && $isZoc && $hexPath->isZoc) {
-                    continue;
-                }
+
                 /*
                  * TODO order is important in if statement check if doing zoc zoc move first then if just one hex move.
                  * Then check if oneHex and firstHex
                  */
-                if ($movePoints - $moveAmount >= 0 || (($isZoc && $hexPath->isZoc && !$this->noZocZocOneHex) && $hexPath->firstHex === true) || ($hexPath->firstHex === true && $this->oneHex === true && !($isZoc && $hexPath->isZoc && !$this->noZocZoc))) {
+                if ($movePoints - $moveAmount >= 0) {
                     $head = false;
                     if (isset($this->moves->$newHexNum)) {
                         if ($this->moves->$newHexNum->pointsLeft > ($movePoints - $moveAmount)) {
@@ -460,9 +498,6 @@ class NavalMoveRules extends MoveRules
                         $newPath->facing = $newFacing % 6;
                     }
                     if ($newPath->pointsLeft < 0) {
-                        $newPath->pointsLeft = 0;
-                    }
-                    if ($this->exitZoc === "stop" && $hexPath->isZoc) {
                         $newPath->pointsLeft = 0;
                     }
                      if ($head) {
@@ -570,10 +605,6 @@ class NavalMoveRules extends MoveRules
                 if ($newMapHex->isOccupied($defendingForceId)) {
                     continue;
                 }
-                /*
-                 * TODO order is important in if statement check if doing zoc zoc move first then if just one hex move.
-                 * Then check if oneHex and firstHex
-                 */
                 if($maxHex !== false && $movePoints - 1 < 0){
                     continue;
                 }
@@ -636,11 +667,9 @@ class NavalMoveRules extends MoveRules
         /*
          * Don't think this is important test. Unit will be STATUS_STOPPED if cannot move.
          */
-        if (!$this->stickyZOC || $this->force->unitIsZOC($id) == false) {
-            if ($unit->setStatus(STATUS_MOVING) == true) {
-                $this->anyUnitIsMoving = true;
-                $this->movingUnitId = $id;
-            }
+        if ($unit->setStatus(STATUS_MOVING) == true) {
+            $this->anyUnitIsMoving = true;
+            $this->movingUnitId = $id;
         }
         $victory->postStartMovingUnit($unit);
     }
@@ -778,32 +807,14 @@ class NavalMoveRules extends MoveRules
         $moveAmount = $this->terrain->getTerrainMoveCost($movingUnit->getUnitHexagon()->name, $hexagon, $movingUnit->forceMarch, $movingUnit);
         /* @var MapHex $mapHex */
         $mapHex = $mapData->getHex($hexagon);
-        if ($mapHex->isZoc($this->force->defendingForceId) == true) {
-            if (is_numeric($this->enterZoc)) {
-                $moveAmount += $this->enterZoc;
-            }
-        }
         $fromMapHex = $mapData->getHex($fromHex->name);
-        if ($fromMapHex->isZoc($this->force->defendingForceId) == true) {
-            if (is_numeric($this->exitZoc)) {
-                $moveAmount += $this->exitZoc;
-            }
-        }
 
         $movingUnit->updateMoveStatus(new Hexagon($hexagon), $moveAmount);
 
-        if (($this->storm && !$this->railMove) && !$movingUnit->unitHasNotMoved()) {
-            $this->stopMove($movingUnit);
-        }
         if ($movingUnit->unitHasUsedMoveAmount() == true) {
             $this->stopMove($movingUnit);
         }
 
-        if ($mapHex->isZoc($this->force->defendingForceId) == true) {
-            if ($this->enterZoc === "stop") {
-                $this->stopMove($movingUnit);
-            }
-        }
 
         if ($this->terrain->isExit($hexagon)) {
             $this->eexit($movingUnit->id);
@@ -991,229 +1002,4 @@ class NavalMoveRules extends MoveRules
         }
     }
 
-// retreat rules
-
-// gameRules has cleared retreat list
-
-    function retreatUnit($eventType, $id, $hexagon)
-    {
-            // id will be retreating unit id if counter event
-            if ($this->anyUnitIsMoving == false) {
-                if ($this->force->unitCanRetreat($id) == true) {
-                    $this->startRetreating($id);
-                    if($this->anyUnitIsMoving){
-                        $this->calcRetreat($id);
-                    }
-                }
-            } else {
-                    $finalHex = $hexagon;
-                    $moves = $this->moves->$finalHex;
-                    foreach ($moves->pathToHere as $move){
-                        $this->retreat($this->movingUnitId, new Hexagon($move));
-                    }
-                    $this->retreat($this->movingUnitId, new Hexagon($finalHex));
-                    $this->moves = new stdClass();
-            }
-    }
-
-
-
-
-    function startRetreating($id)
-    {
-        $battle = Battle::getBattle();
-        $victory = $battle->victory;
-
-        /* @var Unit $movingUnit */
-        $movingUnit = $this->force->getUnit($id);
-        $victory->preStartMovingUnit($movingUnit);
-        if ($movingUnit->setStatus(STATUS_RETREATING) == true) {
-            $this->anyUnitIsMoving = true;
-            $this->movingUnitId = $id;
-        }
-        $victory->postStartMovingUnit($movingUnit);
-    }
-
-    function retreatIsBlocked($id)
-    {
-        throw new Exception("bad bad call ");
-        $isBlocked = true;
-
-        $adjacentHexagonXadjustment = array(0, 2, 2, 0, -2, -2);
-        $adjacentHexagonYadjustment = array(-4, -2, 2, 4, 2, -2);
-
-        /* @var Hexagon $hexagon */
-        /* @var Unit $unit */
-        $unit = $this->force->getUnit($id);
-        $hexagon = $unit->getUnitHexagon();
-        $hexagonX = $hexagon->getX($id);
-        $hexagonY = $hexagon->getY($id);
-        for ($eachHexagon = 0; $eachHexagon < 6; $eachHexagon++) {
-            $adjacentHexagonX = $hexagonX + $adjacentHexagonXadjustment[$eachHexagon];
-            $adjacentHexagonY = $hexagonY + $adjacentHexagonYadjustment[$eachHexagon];
-            $adjacentHexagon = new Hexagon($adjacentHexagonX, $adjacentHexagonY);
-
-            if ($this->hexagonBlocksRetreat($id, $adjacentHexagon) == false) {
-                $isBlocked = false;
-                break;
-            }
-
-        }
-
-        return $isBlocked;
-    }
-
-    function hexagonBlocksRetreat($id, Hexagon $hexagon)
-    {
-        $isBlocked = false;
-
-        if (!$hexagon->name) {
-            return true;
-            /* off map hexes have no name */
-        }
-
-
-        // make sure hexagon is not ZOC
-        $startHex = $this->force->units[$id]->hexagon;
-        $unit = $this->force->units[$id];
-        $mapHex = $this->mapData->getHex($hexagon->name);
-        $forceId = $unit->forceId;
-
-        if ($this->zocBlocksRetreat === true && $this->force->mapHexIsZOC($mapHex, $this->force->enemy($unit->forceId))){
-            $isBlocked = true;
-            if($this->friendlyAllowsRetreat && $mapHex->isOccupied($forceId)){
-                if(!$mapHex->isOccupied($forceId,$this->stacking, $unit)){
-                    $isBlocked = false;
-                }
-            }
-        }
-        if ($this->terrain->terrainIsHexSide($startHex->name, $hexagon->name, "blocked")) {
-            $isBlocked = true;
-        }
-        if ($this->terrain->getTerrainMoveCost($startHex->name, $hexagon->name, $unit->forceMarch, $unit) == "blocked") {
-            $isBlocked = true;
-        }
-
-//        if ($this->zocBlocksRetreat === true && ($this->force->hexagonIsZOC($id, $hexagon) == true)) {
-//            $isBlocked = true;
-//        }
-        // make sure hexagon is not occupied
-        if ($this->mapData->hexagonIsOccupiedEnemy($hexagon, $forceId) == true) {
-            $isBlocked = true;
-        }
-
-        if ($this->terrain->isExit($hexagon) == true) {
-            $isBlocked = true;
-        }
-        //alert(unitHexagon->getName() + " to " + hexagon->getName() + " zoc: " + $this->force->hexagonIsZOC(id, hexagon) + " occ: " + $this->force->hexagonIsOccupied(hexagon)  + " river: " + $this->terrain->terrainIs(hexpart, "river"));
-        return $isBlocked;
-    }
-
-    function retreat($id, Hexagon $hexagon)
-    {
-        /* @var  Unit $movingUnit */
-        $movingUnit = $this->force->getUnit($id);
-        $battle = Battle::getBattle();
-        $mapData = $battle->mapData;
-
-        if ($this->rangeIsOneHexagon($movingUnit->getUnitHexagon()->name, $hexagon)
-            && $this->hexagonBlocksRetreat($id, $hexagon) === false
-        ) {
-            $this->force->addToRetreatHexagonList($id, $movingUnit->getUnitHexagon());
-            // set move amount to 0
-            $occupied = $mapData->hexagonIsOccupiedForce($hexagon, $movingUnit->forceId, $this->stacking, $movingUnit);
-            $movingUnit->updateMoveStatus($hexagon, 0);
-
-            // check crt retreat count required to how far the unit has retreated
-            if ($this->force->unitHasMetRetreatCountRequired($id) && !$occupied) {
-                // stop if unit has retreated the required amount
-                if ($movingUnit->setStatus(STATUS_STOPPED) == true) {
-                    $this->anyUnitIsMoving = false;
-                    $this->movingUnitId = NONE;
-                    $this->moves = new stdClass();
-                }
-            }
-        }
-    }
-
-// advancing rules
-
-    function advanceUnit($eventType, $id, $hexagon)
-    {
-        if ($eventType == SELECT_MAP_EVENT) {
-            if ($this->anyUnitIsMoving == true) {
-                $hexagon = new Hexagon($hexagon);
-                $this->advance($this->movingUnitId, $hexagon);
-            }
-        } else {
-            if (($this->anyUnitIsMoving == true) && ($id == $this->movingUnitId)) {
-                $this->stopAdvance($this->movingUnitId);
-            } else {
-                if ($this->force->unitCanAdvance($id) == true) {
-                    $this->startAdvancing($id);
-                    $this->force->resetRemainingNonAdvancingUnits();
-                }
-            }
-        }
-    }
-
-    function startAdvancing($id)
-    {
-        /* @var Hexagon $hexagon */
-        $hexagon = $this->force->getFirstRetreatHex($id);
-        $hexes = $this->force->getAllFirstRetreatHexes($id);
-        foreach ($hexes as $hexagon) {
-            $startHex = $hexagon->name;
-            $hexPath = new HexPath();
-            $hexPath->name = $startHex;
-            $hexPath->pointsLeft = $this->force->units[$id]->maxMove;
-            $hexPath->pathToHere = array();
-            $hexPath->firstHex = true;
-            $this->moves->$startHex = $hexPath;
-        }
-
-        /* @var Unit $unit */
-        $unit = $this->force->getUnit($id);
-        if ($unit->setStatus(STATUS_ADVANCING) == true) {
-            $this->anyUnitIsMoving = true;
-            $this->movingUnitId = $id;
-        }
-    }
-
-    function advance($id, $hexagon)
-    {
-        if ($this->advanceIsValid($id, $hexagon) == true) {
-            // set move amount to 0
-
-            $this->force->updateMoveStatus($id, $hexagon, 0);
-            $this->stopAdvance($id);
-        }
-    }
-
-    function stopAdvance($id)
-    {
-        /* @var Unit $unit */
-        $unit = $this->force->getUnit($id);
-        if ($unit->setStatus(STATUS_ADVANCED) == true) {
-            $this->moves = new stdClass();
-            $this->force->resetRemainingAdvancingUnits();
-            $this->anyUnitIsMoving = false;
-            $this->movingUnitId = NONE;
-        }
-    }
-
-    function advanceIsValid($id, $hexagon)
-    {
-        $isValid = false;
-
-        /* @var Unit $unit */
-        $unit = $this->force->getUnit($id);
-        $startHexagon = $unit->getUnitHexagon();
-        if ($this->force->advanceIsOnRetreatList($id, $hexagon) == true && $this->rangeIsOneHexagon($startHexagon, $hexagon) == true) {
-            $isValid = true;
-        } else {
-        }
-
-        return $isValid;
-    }
 }

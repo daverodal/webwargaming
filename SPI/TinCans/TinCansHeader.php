@@ -149,7 +149,6 @@
 
 
     function renderCrtDetails(combat){
-        debugger;
         var atk = combat.attackStrength;
         var def = combat.defenseStrength;
         var div = atk / def;
@@ -159,5 +158,43 @@
         var html = "<div id='crtDetails'>"+combat.combatLog+"</div><div>Attack = " + atk + " / Defender " + def + " = " + div + "<br>Final Column  "  + $(".col" + combatCol).html() + "</div>"
         return html;
     }
+    $(document).ready( function() {
+        $('.unit').hover(
+            function(e) {
+                if (e.altKey) {
 
+
+                    $(this).animate({
+                        width: '90px',
+                        height: '90px',
+                        marginTop: '-30px',
+                        marginLeft: '-30px',
+                        zIndex: 1000
+                    }, 0);
+                    $(this).find('.heading').animate({
+                        opacity: 0.0
+                    }, 0);
+                    $(this).find('.top-numbers, .ship-desig, .bottom-numbers').animate({
+                        fontSize: '25px',
+                        height: '30px'
+                    }, 0);
+                }
+            },
+            function() {
+                $(this).animate({
+                    width:'32px',
+                    height: '32px',
+                    marginTop: '',
+                    marginLeft: '',
+                    zIndex: ''
+                }, 0);
+                $(this).find('.heading').animate({
+                    opacity:1.0
+                }, 0);
+                $(this).find('.top-numbers, .ship-desig, .bottom-numbers').css({
+                    fontSize:'',
+                    height:'10px'
+                });
+            });
+    });
 </script>
