@@ -180,6 +180,11 @@ class TinCansVictoryCore extends victoryCore
     {
         list($unit) = $args;
         $hexNum = $unit->hexagon->name;
+        $row = $unit->hexagon->name;
+        $row = $row%100;
+        if($row === 1 || $row === 34){
+            return true;
+        }
         $hexNum = (int)floor($hexNum / 100);
         if($hexNum === 61 || $hexNum === 1){
             return true;
