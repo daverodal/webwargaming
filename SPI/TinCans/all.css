@@ -1185,14 +1185,14 @@ svg marker#head {
     color: black; }
 
 .playerIJN {
-  background: #69e26a;
-  border-color: #69e26a !important; }
+  background: #ffcd00;
+  border-color: #ffcd00 !important; }
 
 .ijnFace, .playerIJNFace {
-  color: #69e26a; }
+  color: #ffcd00; }
 
 .ijn {
-  background-color: #69e26a; }
+  background-color: #ffcd00; }
   .ijn .unit-desig {
     color: black; }
 
