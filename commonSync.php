@@ -538,10 +538,9 @@ x.register("gameRules", function(gameRules,data) {
     }
 
     var pix = turn  + (turn - 1) * 36 + 1;
-    var playerNameMap = ["Zero", "One", "Two", "Three", "Four"];
-    var playerName = "player"+playerNameMap[gameRules.attackingForceId];
+    var playerName = "player"+DR.playerNameMap[gameRules.attackingForceId]+" player"+DR.players[gameRules.attackingForceId];
     var removeThese = "playerOne playerTwo playerThree playerFour";
-    $("#header").removeClass(removeThese).addClass(playerName);
+    $("#header").removeClass().addClass(playerName);
     $("#turnCounter").css("background","rgb(0,128,0)");
     $("#turnCounter").css("color","white");
 
@@ -566,6 +565,9 @@ x.register("gameRules", function(gameRules,data) {
     var html = "<span id='turn'>Turn "+turn+" of "+maxTurn+"</span> ";
     var phase = gameRules.phase_name[gameRules.phase];
     phase = phase.replace(/fNameOne/,DR.playerOne);
+    phase = phase.replace(/playerOneFace/,"player"+DR.playerOne+"Face");
+    phase = phase.replace(/playerTwoFace/,"player"+DR.playerTwo+"Face");
+
     phase = phase.replace(/fNameTwo/,DR.playerTwo);
     phase = phase.replace(/fNameThree/,DR.playerThree);
     phase = phase.replace(/fNameFour/,DR.playerFour);
@@ -626,7 +628,11 @@ x.register("gameRules", function(gameRules,data) {
     }
 });
 x.register("vp", function(vp, data){
-    $("#victory").html(" Victory: <span class='playerOneFace'>"+DR.playerOne+" </span>"+vp[1]+ " <span class='playerTwoFace'>"+DR.playerTwo+" </span>"+vp[2]+"");
+
+    var p1 = 'player'+DR.playerOne+'Face';
+    var p2 = 'player'+DR.playerTwo+'Face';
+
+    $("#victory").html(" Victory: <span class='playerOneFace "+p1+"'>"+DR.playerOne+" </span>"+vp[1]+ " <span class='playerTwoFace "+p2+"'>"+DR.playerTwo+" </span>"+vp[2]+"");
     if (typeof victoryExtend === 'function') {
         victoryExtend(vp,data);
     }

@@ -33,6 +33,7 @@ Class Combat
     public $isBombardment = false;
     public $pinCRT = false;
     public $dieShift = 0;
+    public $dayTime = false;
 
     public function __construct()
     {
@@ -159,7 +160,7 @@ class NavalCombatRules
         $cd = $this->currentDefender;
 
         if ($this->force->unitIsEnemy($id) == true) {
-            if($unit->spotted === false){
+            if(!$this->dayTime && $unit->spotted === false){
                 return false;
             }
             // defender is already in combatRules, so make it currently selected

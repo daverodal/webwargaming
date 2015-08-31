@@ -56,6 +56,14 @@ class TinCans extends ModernNavalBattle
     static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false)
     {
         global $force_name;
+        if($scenario->one){
+            $force_name[1] = "RN";
+            $force_name[2] = "IJN";
+        }
+        if($scenario->eight){
+            $force_name[1] = "USN";
+            $force_name[2] = "IJN";
+        }
         $player = $force_name[$player];
         $youAre = $force_name[$player];
         $deployTwo = $playerOne = $force_name[1];
@@ -95,19 +103,19 @@ class TinCans extends ModernNavalBattle
         UnitFactory::$injector = $this->force;
 
         if($scenario->one){
-            UnitFactory::create("BB-5", RED_FORCE, 4404, "multiInf.png", 30, 17, 23, 0, 3, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "bb");
-            UnitFactory::create("BC-w", RED_FORCE, 4505, "multiInf.png", 22, 15, 17, 0, 3, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "bc");
-            UnitFactory::create("DD-5", RED_FORCE, 4708, "multiInf.png", 2, 8, 2, 5, 3, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
-            UnitFactory::create("DD-5", RED_FORCE, 4808, "multiInf.png", 2, 8, 2, 5, 3, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
-            UnitFactory::create("DD-5", RED_FORCE, 4909, "multiInf.png", 2, 8, 2, 5, 3, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("BB-5", BLUE_FORCE, 4404, "multiInf.png", 30, 17, 23, 0, 3, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "rn",  "bb");
+            UnitFactory::create("BC-w", BLUE_FORCE, 4505, "multiInf.png", 22, 15, 17, 0, 3, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "rn",  "bc");
+            UnitFactory::create("DD-5", BLUE_FORCE, 4708, "multiInf.png", 2, 8, 2, 5, 3, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "rn",  "dd");
+            UnitFactory::create("DD-5", BLUE_FORCE, 4808, "multiInf.png", 2, 8, 2, 5, 3, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "rn",  "dd");
+            UnitFactory::create("DD-5", BLUE_FORCE, 4909, "multiInf.png", 2, 8, 2, 5, 3, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "rn",  "dd");
 
-            UnitFactory::create("BC-2", BLUE_FORCE, 716, "multiInf.png", 23, 20, 18, 0, 2, North,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "bc");
-            UnitFactory::create("BC-2", BLUE_FORCE, 717, "multiInf.png", 23, 20, 18, 0, 2, North,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "bc");
+            UnitFactory::create("BC-2", RED_FORCE, 716, "multiInf.png", 23, 20, 18, 0, 2, North,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "bc");
+            UnitFactory::create("BC-2", RED_FORCE, 717, "multiInf.png", 23, 20, 18, 0, 2, North,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "bc");
 
-            UnitFactory::create("DD-2", BLUE_FORCE, 710, "multiInf.png", 3, 12, 2, 22, 2, North,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
-            UnitFactory::create("DD-2", BLUE_FORCE, 1209, "multiInf.png", 3, 12, 2, 22, 2, North,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
-            UnitFactory::create("DD-2", BLUE_FORCE, 1022, "multiInf.png", 3, 12, 2, 22, 2, North,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
-            UnitFactory::create("DD-2", BLUE_FORCE, 316, "multiInf.png", 3, 12, 2, 22, 2, North,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
+            UnitFactory::create("DD-2", RED_FORCE, 710, "multiInf.png", 3, 12, 2, 22, 2, North,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
+            UnitFactory::create("DD-2", RED_FORCE, 1209, "multiInf.png", 3, 12, 2, 22, 2, North,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
+            UnitFactory::create("DD-2", RED_FORCE, 1022, "multiInf.png", 3, 12, 2, 22, 2, North,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
+            UnitFactory::create("DD-2", RED_FORCE, 316, "multiInf.png", 3, 12, 2, 22, 2, North,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
 
         }
 
@@ -187,6 +195,7 @@ class TinCans extends ModernNavalBattle
             UnitFactory::create("DD-4", RED_FORCE, 1812, "multiInf.png", 3, 12, 2, 20, 5, SouthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
 
             /* USN forces */
+
             UnitFactory::create("CL-5", BLUE_FORCE, 3925, "multiInf.png", 9, 12, 6, 0, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
             UnitFactory::create("CL-5", BLUE_FORCE, 3922, "multiInf.png", 9, 12, 6, 0, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
             UnitFactory::create("CL-5", BLUE_FORCE, 3923, "multiInf.png", 9, 12, 6, 0, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
@@ -236,7 +245,11 @@ class TinCans extends ModernNavalBattle
             $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_SPEED_PHASE, SPEED_MODE, RED_FORCE, BLUE_FORCE, false);
             $this->gameRules->addPhaseChange(RED_SPEED_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, true);
 
+            if($scenario->one){
+                $this->combatRules->dayTime = true;
+            }
         }
+
         $this->moveRules->stacking = function($mapHex, $forceId, $unit){
             $land = $air = 0;
             if($unit->class === "air"){

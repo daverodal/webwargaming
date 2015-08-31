@@ -135,9 +135,9 @@ $phase_name[28] = "<span class='playerOneFace'>fNameFour</span>";
 $phase_name[29] = "<span class='playerOneFace'>fNameOne</span> Air ";
 $phase_name[30] = "<span class='playerOneFace'>fNameTwo</span> Air ";
 $phase_name[31] = "<span class='playerOneFace'>fNameOne</span> Torp ";
-$phase_name[32] = "<span class='playerOneFace'>fNameTwo</span> Torp ";
+$phase_name[32] = "<span class='playerTwoFace'>fNameTwo</span> Torp ";
 $phase_name[33] = "<span class='playerOneFace'>fNameOne</span> Speed ";
-$phase_name[34] = "<span class='playerOneFace'>fNameTwo</span> Speed ";
+$phase_name[34] = "<span class='playerTwoFace'>fNameTwo</span> Speed ";
 
 // game modes
 define("SELECT_TO_MOVE_MODE",1);

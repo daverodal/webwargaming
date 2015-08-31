@@ -22,8 +22,9 @@
 
 
 
-@include player(usn, Two, $rebelColor);
-@include player(ijn,One, #ffe128);
+@include player(usn, USN, $rebelColor);
+@include player(rn, RN, $rebelColor);
+@include player(ijn,IJN, #69e26a, #69e26a);
 @include player(loyalGuards,Three,$loyalistGuardColor);
 @include player(eec, Four, $eecColor);
 @include player(navyColor, Five, $navyColor);

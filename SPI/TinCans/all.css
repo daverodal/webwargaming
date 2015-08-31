@@ -1160,11 +1160,11 @@ svg marker#head {
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-.playerTwo {
+.playerUSN {
   background: #2496e8;
   border-color: #2496e8 !important; }
 
-.usnFace, .playerTwoFace {
+.usnFace, .playerUSNFace {
   color: #2496e8; }
 
 .usn {
@@ -1172,15 +1172,27 @@ svg marker#head {
   .usn .unit-desig {
     color: black; }
 
-.playerOne {
-  background: #ffe128;
-  border-color: #ffe128 !important; }
+.playerRN {
+  background: #2496e8;
+  border-color: #2496e8 !important; }
 
-.ijnFace, .playerOneFace {
-  color: #ffe128; }
+.rnFace, .playerRNFace {
+  color: #2496e8; }
+
+.rn {
+  background-color: #2496e8; }
+  .rn .unit-desig {
+    color: black; }
+
+.playerIJN {
+  background: #69e26a;
+  border-color: #69e26a !important; }
+
+.ijnFace, .playerIJNFace {
+  color: #69e26a; }
 
 .ijn {
-  background-color: #ffe128; }
+  background-color: #69e26a; }
   .ijn .unit-desig {
     color: black; }
 

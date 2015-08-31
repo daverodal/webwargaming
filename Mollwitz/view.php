@@ -23,6 +23,7 @@
 <script type="text/javascript">
     DR.playerOne = "<?=$playerOne?>";
     DR.playerTwo = "<?=$playerTwo?>";
+    DR.players = ["observer", "<?=$playerOne?>","<?=$playerTwo?>"];
 </script>
 <link rel="stylesheet" href="<?= base_url("js/font-awesome-4.2.0/css/font-awesome.min.css"); ?>">
 
