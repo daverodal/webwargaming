@@ -62,6 +62,11 @@
         "description": "Cape Esperance",
         "longDescription":"11-12 October 1942",
         "three": true
+      },
+      "eight": {
+        "description": "Empress Augusta Bay",
+        "longDescription":"2 November 1943",
+        "eight": true
       }
     }
   }
