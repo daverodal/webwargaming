@@ -18,7 +18,7 @@ You should have received a copy of the GNU General Public License
 }
 
 @include player(Swedish, One , $swedishColor, $swedishWrapperColor, $swedishWrapperColor);
-@include player(Saxon, Two, #FD4223, #FD4223);
+@include player(Saxon, Saxon-Russian, #FD4223, #FD4223);
 @include player(Russian, Three, $russianColor, $russianWrapperColor);
 @include badge(Saxon, Saxon);
 

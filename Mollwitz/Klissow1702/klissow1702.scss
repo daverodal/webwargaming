@@ -17,8 +17,8 @@ You should have received a copy of the GNU General Public License
 #map{
 }
 
-@include player(Swedish, One , $swedishColor, $swedishWrapperColor, $swedishWrapperColor);
-@include player(SaxonPolish, Two, $saxonColor, $saxonColor);
+@include player(Swedish, Swedish , $swedishColor, $swedishWrapperColor, $swedishWrapperColor);
+@include player(SaxonPolish, Saxon-Polish, $saxonColor, $saxonColor);
 
 .french.specialHexes{
   background-color: $frenchColor;

@@ -2039,21 +2039,21 @@ svg marker#head {
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-.playerOne {
+.playerFrench {
   background: #84b5ff;
   border-color: #84b5ff !important; }
 
-.FrenchFace, .playerOneFace {
+.FrenchFace, .playerFrenchFace {
   color: #84b5ff; }
 
 .French .counterWrapper {
   background-color: white; }
 
-.playerTwo {
+.playerAnglo-Allied {
   background: #df5842;
   border-color: #df5842 !important; }
 
-.AngloAlliedFace, .playerTwoFace {
+.AngloAlliedFace, .playerAnglo-AlliedFace {
   color: #df5842; }
 
 .AngloAllied .counterWrapper {

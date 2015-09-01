@@ -17,8 +17,8 @@ You should have received a copy of the GNU General Public License
 #map{
 }
 
-@include player(AngloAllied,One , $angloAlliedColor, $angloAlliedWrapperColor);
-@include player(French, Two, $frenchColor, $frenchSaxonWrapperColor);
+@include player(AngloAllied,Anglo-Allied , $angloAlliedColor, $angloAlliedWrapperColor);
+@include player(French, French, $frenchColor, $frenchSaxonWrapperColor);
 
 .french.specialHexes{
   background-color: $frenchColor;

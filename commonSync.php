@@ -538,7 +538,7 @@ x.register("gameRules", function(gameRules,data) {
     }
 
     var pix = turn  + (turn - 1) * 36 + 1;
-    var playerName = "player"+DR.playerNameMap[gameRules.attackingForceId]+" player"+DR.players[gameRules.attackingForceId];
+    var playerName = "player"+DR.playerNameMap[gameRules.attackingForceId]+" player"+(DR.players[gameRules.attackingForceId].replace(/ /,'-'));
     var removeThese = "playerOne playerTwo playerThree playerFour";
     $("#header").removeClass().addClass(playerName);
     $("#turnCounter").css("background","rgb(0,128,0)");
@@ -565,8 +565,8 @@ x.register("gameRules", function(gameRules,data) {
     var html = "<span id='turn'>Turn "+turn+" of "+maxTurn+"</span> ";
     var phase = gameRules.phase_name[gameRules.phase];
     phase = phase.replace(/fNameOne/,DR.playerOne);
-    phase = phase.replace(/playerOneFace/,"player"+DR.playerOne+"Face");
-    phase = phase.replace(/playerTwoFace/,"player"+DR.playerTwo+"Face");
+    phase = phase.replace(/playerOneFace/,"player"+DR.playerOne.replace(/ /,'-')+"Face");
+    phase = phase.replace(/playerTwoFace/,"player"+DR.playerTwo.replace(/ /,'-')+"Face");
 
     phase = phase.replace(/fNameTwo/,DR.playerTwo);
     phase = phase.replace(/fNameThree/,DR.playerThree);
@@ -629,8 +629,8 @@ x.register("gameRules", function(gameRules,data) {
 });
 x.register("vp", function(vp, data){
 
-    var p1 = 'player'+DR.playerOne+'Face';
-    var p2 = 'player'+DR.playerTwo+'Face';
+    var p1 = 'player'+DR.playerOne.replace(/ /,'-')+'Face';
+    var p2 = 'player'+DR.playerTwo.replace(/ /,'-')+'Face';
 
     $("#victory").html(" Victory: <span class='playerOneFace "+p1+"'>"+DR.playerOne+" </span>"+vp[1]+ " <span class='playerTwoFace "+p2+"'>"+DR.playerTwo+" </span>"+vp[2]+"");
     if (typeof victoryExtend === 'function') {

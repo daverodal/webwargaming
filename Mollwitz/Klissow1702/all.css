@@ -2031,21 +2031,21 @@ This program is distributed in the hope that it will be useful,
 You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
    */
-.playerOne {
+.playerSwedish {
   background: #FECC00;
   border-color: #FECC00 !important; }
 
-.SwedishFace, .playerOneFace {
+.SwedishFace, .playerSwedishFace {
   color: #006AA7; }
 
 .Swedish .counterWrapper {
   background-color: #006AA7; }
 
-.playerTwo {
+.playerSaxon-Polish {
   background: #FD4223;
   border-color: #FD4223 !important; }
 
-.SaxonPolishFace, .playerTwoFace {
+.SaxonPolishFace, .playerSaxon-PolishFace {
   color: #FD4223; }
 
 .SaxonPolish .counterWrapper {

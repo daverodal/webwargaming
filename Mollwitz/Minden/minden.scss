@@ -20,8 +20,8 @@
  */
 #map{
 }
-@include player(French, One, $frenchColor, $frenchWrapperColor);
-@include player(AngloAllied, Two, $angloAlliedColor, $angloAlliedWrapperColor);
+@include player(French, French, $frenchColor, $frenchWrapperColor);
+@include player(AngloAllied, Anglo-Allied, $angloAlliedColor, $angloAlliedWrapperColor);
 
 .anglo.specialHexes{
   background-color: $angloAlliedColor;

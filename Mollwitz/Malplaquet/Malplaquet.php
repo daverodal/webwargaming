@@ -20,7 +20,7 @@ define("ANGLO_FORCE", 1);
 define("FRENCH_FORCE", 2);
 
 global $force_name;
-$force_name[ANGLO_FORCE] = "AngloAllied";
+$force_name[ANGLO_FORCE] = "Anglo Allied";
 $force_name[FRENCH_FORCE] = "French";
 
 require_once "JagCore.php";
@@ -64,7 +64,7 @@ class Malplaquet extends JagCore
     {
         global $force_name;
         $youAre = $force_name[$player];
-        $deployTwo = $playerOne = "AngloAllied";
+        $deployTwo = $playerOne = "Anglo Allied";
         $deployOne = $playerTwo = "French";
         @include_once "view.php";
     }

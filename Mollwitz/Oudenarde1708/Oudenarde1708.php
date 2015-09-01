@@ -47,7 +47,7 @@ class Oudenarde1708 extends JagCore
 
     static function playMulti($name, $wargame, $arg = false)
     {
-        $deployTwo = $playerOne = "AngloAllied";
+        $deployTwo = $playerOne = "Anglo Allied";
         $deployOne = $playerTwo = "French";
         @include_once "playMulti.php";
     }
@@ -56,7 +56,7 @@ class Oudenarde1708 extends JagCore
     {
         global $force_name;
         $youAre = $force_name[$player];
-        $deployTwo = $playerOne = "AngloAllied";
+        $deployTwo = $playerOne = "Anglo Allied";
         $deployOne = $playerTwo = "French";
         @include_once "view.php";
     }
