@@ -201,14 +201,14 @@ class TinCans extends ModernNavalBattle
             UnitFactory::create("CL-5", BLUE_FORCE, 3923, "multiInf.png", 9, 12, 6, 0, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
             UnitFactory::create("CL-5", BLUE_FORCE, 3924, "multiInf.png", 9, 12, 6, 0, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
 
-            UnitFactory::create("DD-6", RED_FORCE, 3822, "multiInf.png", 3, 8, 2, 10, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
-            UnitFactory::create("DD-6", RED_FORCE, 3823, "multiInf.png", 3, 8, 2, 10, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
-            UnitFactory::create("DD-6", RED_FORCE, 3825, "multiInf.png", 3, 8, 2, 10, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
-            UnitFactory::create("DD-6", RED_FORCE, 3824, "multiInf.png", 3, 8, 2, 10, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
-            UnitFactory::create("DD-6", RED_FORCE, 4022, "multiInf.png", 3, 8, 2, 10, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
-            UnitFactory::create("DD-6", RED_FORCE, 4023, "multiInf.png", 3, 8, 2, 10, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
-            UnitFactory::create("DD-6", RED_FORCE, 4024, "multiInf.png", 3, 8, 2, 10, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
-            UnitFactory::create("DD-6", RED_FORCE, 4025, "multiInf.png", 3, 8, 2, 10, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-6", BLUE_FORCE, 3822, "multiInf.png", 3, 8, 2, 10, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-6", BLUE_FORCE, 3823, "multiInf.png", 3, 8, 2, 10, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-6", BLUE_FORCE, 3825, "multiInf.png", 3, 8, 2, 10, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-6", BLUE_FORCE, 3824, "multiInf.png", 3, 8, 2, 10, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-6", BLUE_FORCE, 4022, "multiInf.png", 3, 8, 2, 10, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-6", BLUE_FORCE, 4023, "multiInf.png", 3, 8, 2, 10, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-6", BLUE_FORCE, 4024, "multiInf.png", 3, 8, 2, 10, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-6", BLUE_FORCE, 4025, "multiInf.png", 3, 8, 2, 10, 3, North,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
 
         }
 
