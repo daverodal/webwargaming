@@ -19,6 +19,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+
 ?><span class="big">Exclusive Rules</span>
     <ol>
         <li class="big"><span> Setting Up</span>
@@ -34,31 +36,86 @@
             </ol>
 
         </li>
-        <li><span class="big">Victory Conditions</span>
-            <ol>
-                <li>    <span class="big">The Game lasts 7 turns. Victory is determined at the end of the game. The player with the most victory points wins.</span>
-                </li>
-                <li >
-                    The player that currently holds "Chateau sur Mer" has 25 victory assigned to them.
-                    <ol>
-                        <li>
-                            The loyalists start with it, and has 25 victory points at the start of the game.
+        <?php if($scenario->two){?>
+            <li><span class="big">Victory Conditions</span>
+                <ol>
+                    <li>    <span class="big">The Game lasts 15 turns. </span>
+                    </li>
+                    <li>
+                        Victory points are awarded by the following schedule:
+                        <ol>
+                            <li>
+                                CA - Sunk 10
+                            </li>
+                            <li>
+                                CA - Dead in Water 5
+                            </li>
+                            <li>
+                                CA - Damaged 2
+                            </li>
+                            <li>
+                                CL or DD Sunk or Dead in Water 2
+                            </li>
+                            <li>
+                                CL or DD damaged 1
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        Victory is awarded in levels depending up the ratio of victory points.
+                        <ol>
+                            <li>
+                                Major IJN Victory 8.0 or more to 1
+                            </li>
+                            <li>
+                                Minor IJN Victory 5.0 through 7.99 to 1
+                            </li>
+                            <li>
+                                Draw 2.0 through 4.99 to 1
+                            </li>
+                        </ol>
+                    </li>
+                    <li >
+                        The USN Player must prevent the IJN player from exiting any ships off the east edge of the map without power damage.
+                    </li>
+                    <li>
+                        The IJN player must exit two ships off the east edge without power damage.
+                    </li>
+                    <li>Any other result is a draw.</li>
+                </ol>
+            </li>
+        <? }?>
+        <?php if($scenario->eight){?>
+            <li><span class="big">Victory Conditions</span>
+                <ol>
+                    <li>    <span class="big">The Game lasts 20 turns. </span>
+                    </li>
+                    <li >
+                       The USN Player must prevent the IJN player from exiting any ships off the east edge of the map without power damage.
                         </li>
                         <li>
-                            If a player has it, and loses it, they will lose 25 victory points, and the opposing player will receive 25 points.
+                            The IJN player must exit two ships off the east edge without power damage.
                         </li>
-                        <li>
-                            Holding "Chateau sur Mer" is vital.
-                        </li>
-                    </ol>
+                    <li>Any other result is a draw.</li>
+                </ol>
+            </li>
+       <? }?>
 
-
-                </li>
-                <li>
-                    1 victory points is assigned to each play for destroying one strength point of the enemy.
-                </li>
-            </ol>
-        </li>
+        <?php if($scenario->seven){?>
+            <li><span class="big">Victory Conditions</span>
+                <ol>
+                    <li>    <span class="big">The Game lasts 15 turns. </span>
+                    </li>
+                    <li >
+                        The IJN Player must prevent the USN player from exiting any ships off the west edge of the map without power damage.
+                    </li>
+                    <li>
+                        The USN player must 1 CL and 2 other ships  off the west edge without power damage.
+                    </li>
+                    <li>Any other result is a draw.</li>
+                </ol>
+            </li>
+        <? }?>
         <li>
             <span class="big">Design Credits</span>
             <h2><cite><?=$name?></cite></h2>
