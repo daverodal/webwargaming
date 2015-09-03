@@ -175,6 +175,45 @@ class TinCans extends ModernNavalBattle
             UnitFactory::create("DD-5", RED_FORCE, 3022, "multiInf.png", 2, 8, 2, 5, 3, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
         }
 
+        if($scenario->seven){
+
+            /* IJN froces */
+            UnitFactory::create("CL-2", BLUE_FORCE, 3116, "multiInf.png", 5, 12, 3, 20, 4, SouthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "cl");
+
+            UnitFactory::create("DD-1", BLUE_FORCE, 3216, "multiInf.png", 1, 12, 2, 20, 4, SouthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
+
+            UnitFactory::create("DD-4", BLUE_FORCE, 3015, "multiInf.png", 3, 12, 2, 20, 4, SouthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
+            UnitFactory::create("DD-4", BLUE_FORCE, 2915, "multiInf.png", 3, 12, 2, 20, 4, SouthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
+            UnitFactory::create("DD-4", BLUE_FORCE, 2814, "multiInf.png", 3, 12, 2, 20, 4, SouthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
+
+            UnitFactory::create("DD-2", BLUE_FORCE, 2714, "multiInf.png", 3, 12, 2, 22, 4, SouthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
+
+            /* USN forces */
+
+
+            UnitFactory::create("CL-3", RED_FORCE, 4725, "multiInf.png", 11, 12, 6, 0, 3, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
+            UnitFactory::create("CL-3", RED_FORCE, 4926, "multiInf.png", 11, 12, 6, 0, 3, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
+
+            UnitFactory::create("CL-6", RED_FORCE, 4825, "multiInf.png", 6, 12, 4, 12, 3, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
+
+            UnitFactory::create("DD-6", RED_FORCE, 4222, "multiInf.png", 3, 8, 2, 10, 2, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-6", RED_FORCE, 4323, "multiInf.png", 3, 8, 2, 10, 2, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-6", RED_FORCE, 4423, "multiInf.png", 3, 8, 2, 10, 2, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-6", RED_FORCE, 4524, "multiInf.png", 3, 8, 2, 10, 2, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-6", RED_FORCE, 4624, "multiInf.png", 3, 8, 2, 10, 2, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+
+            UnitFactory::create("DD-3", RED_FORCE, 5026, "multiInf.png", 2, 8, 2, 16, 2, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-3", RED_FORCE, 5127, "multiInf.png", 2, 8, 2, 16, 2, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-3", RED_FORCE, 5227, "multiInf.png", 2, 8, 2, 16, 2, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+
+            UnitFactory::create("DD-5", RED_FORCE, 5529, "multiInf.png", 2, 8, 2, 5, 2, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-5", RED_FORCE, 5328, "multiInf.png", 2, 8, 2, 5, 2, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+            UnitFactory::create("DD-5", RED_FORCE, 5428, "multiInf.png", 2, 8, 2, 5, 2, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
+
+
+        }
+
+
         if($scenario->eight){
 
             /* IJN froces */

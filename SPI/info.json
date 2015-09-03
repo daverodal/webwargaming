@@ -63,6 +63,11 @@
         "longDescription":"11-12 October 1942",
         "three": true
       },
+      "seven": {
+        "description": "Kolombangara",
+        "longDescription":"13 July 1943",
+        "seven": true
+      },
       "eight": {
         "description": "Empress Augusta Bay",
         "longDescription":"2 November 1943",
