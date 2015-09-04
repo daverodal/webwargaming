@@ -22,112 +22,152 @@
 
 
 ?><span class="big">Exclusive Rules</span>
-    <ol>
-        <li class="big"><span> Setting Up</span>
-            <ol>
-                <li> The Loyalist players units are already setup.</li>
-                <li>The Rebel Player places their units on the first turn. They will appear in a box labeled Deploy/Staging.
-                    The placement of the non airborne unit will determine where the beachheads appear. Beachhead hexes are
-                    where supply and non airborne reinforcements appear.</li>
-                <li>
-                    Airborne units once places will create a air landing zone. Air landing zones are where airborne supply and
-                    reinforcements appear.
-                </li>
-            </ol>
+<ol>
+    <li class="big"><span> Setting Up</span>
+        The units are pre deployed
 
-        </li>
-        <?php if($scenario->two){?>
-            <li><span class="big">Victory Conditions</span>
-                <ol>
-                    <li>    <span class="big">The Game lasts 15 turns. </span>
-                    </li>
-                    <li>
-                        Victory points are awarded by the following schedule:
-                        <ol>
-                            <li>
-                                CA - Sunk 10
-                            </li>
-                            <li>
-                                CA - Dead in Water 5
-                            </li>
-                            <li>
-                                CA - Damaged 2
-                            </li>
-                            <li>
-                                CL or DD Sunk or Dead in Water 2
-                            </li>
-                            <li>
-                                CL or DD damaged 1
-                            </li>
-                        </ol>
-                    </li>
-                    <li>
-                        Victory is awarded in levels depending up the ratio of victory points.
-                        <ol>
-                            <li>
-                                Major IJN Victory 8.0 or more to 1
-                            </li>
-                            <li>
-                                Minor IJN Victory 5.0 through 7.99 to 1
-                            </li>
-                            <li>
-                                Draw 2.0 through 4.99 to 1
-                            </li>
-                        </ol>
-                    </li>
-                    <li >
-                        The USN Player must prevent the IJN player from exiting any ships off the east edge of the map without power damage.
-                    </li>
-                    <li>
-                        The IJN player must exit two ships off the east edge without power damage.
-                    </li>
-                    <li>Any other result is a draw.</li>
-                </ol>
-            </li>
-        <? }?>
-        <?php if($scenario->eight){?>
-            <li><span class="big">Victory Conditions</span>
-                <ol>
-                    <li>    <span class="big">The Game lasts 20 turns. </span>
-                    </li>
-                    <li >
-                       The USN Player must prevent the IJN player from exiting any ships off the east edge of the map without power damage.
+    </li>
+    <li><span class="big">Victory Conditions</span>
+
+        <?php if ($scenario->two) { ?>
+            <ol>
+                <li><span class="big">The Game lasts 15 turns. </span>
+                </li>
+                <li>Special Rules: No USN ship of one group may spot for a ship in the other group.(movement spotting only)</li>
+                <li>
+                    Victory points are awarded by the following schedule:
+                    <ol>
+                        <li>
+                            CA - Sunk 10
                         </li>
                         <li>
-                            The IJN player must exit two ships off the east edge without power damage.
+                            CA - Dead in Water 5
                         </li>
-                    <li>Any other result is a draw.</li>
-                </ol>
-            </li>
-       <? }?>
+                        <li>
+                            CA - Damaged 2
+                        </li>
+                        <li>
+                            CL or DD Sunk or Dead in Water 2
+                        </li>
+                        <li>
+                            CL or DD damaged 1
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    Victory is awarded in levels depending up the ratio of victory points.
+                    <ol>
+                        <li>
+                            Major IJN Victory 8.0 or more to 1
+                        </li>
+                        <li>
+                            Minor IJN Victory 5.0 through 7.99 to 1
+                        </li>
+                        <li>
+                            Draw 2.0 through 4.99 to 1
+                        </li>
+                        <li>
+                            Minor USN Victory 1 through 1.99 to 1
+                        </li>
+                        <li>
+                            Major USN Victory less than 1 to 1
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+        <? } ?>
+        <?php if ($scenario->three) { ?>
+            <ol>
 
-        <?php if($scenario->seven){?>
-            <li><span class="big">Victory Conditions</span>
-                <ol>
-                    <li>    <span class="big">The Game lasts 15 turns. </span>
-                    </li>
-                    <li >
-                        The IJN Player must prevent the USN player from exiting any ships off the west edge of the map without power damage.
-                    </li>
-                    <li>
-                        The USN player must 1 CL and 2 other ships  off the west edge without power damage.
-                    </li>
-                    <li>Any other result is a draw.</li>
-                </ol>
-            </li>
-        <? }?>
-        <li>
-            <span class="big">Design Credits</span>
-            <h2><cite><?=$name?></cite></h2>
+                <li><span class="big">The Game lasts 15 turns. </span>
+                </li>
+                <li>No ship may change heading until the first spotting occurs.</li>
+                <li>Any IJN ship not exited off the south map edge my the end of game turn 15 is considered sunk.</li>
+                <li>The IJN player can score an automatic victory if one undamaged CA is exited off the east map edge.
+                    If this does not occur victory is by the rules below.
+                </li>
+                <li>
+                    Victory points are awarded by the following schedule:
+                    <ol>
+                        <li>
+                            CA - Sunk 10
+                        </li>
+                        <li>
+                            CA - Dead in Water 5
+                        </li>
+                        <li>
+                            CA - Damaged 2
+                        </li>
+                        <li>
+                            CL or DD Sunk or Dead in Water 2
+                        </li>
+                        <li>
+                            CL or DD damaged 1
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    Victory is awarded in levels depending up the ratio of victory points.
+                    <ol>
+                        <li>
+                            Major IJN Victory 3.0 or more to 1
+                        </li>
+                        <li>
+                            Minor IJN Victory 1.5 through 2.99 to 1
+                        </li>
+                        <li>
+                            Draw .75 through 1.49 to 1
+                        </li>
+                        <li>
+                            Minor USN victory .25 through .74 to 1
+                        </li>
+                        <li>
+                            Major USN victory less than .25 to 1
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+        <? } ?>
+        <?php if ($scenario->eight) { ?>
+            <ol>
+                <li><span class="big">The Game lasts 20 turns. </span>
+                </li>
+                <li>
+                    The USN Player must prevent the IJN player from exiting any ships off the east edge of the map
+                    without
+                    power damage.
+                </li>
+                <li>
+                    The IJN player must exit two ships off the east edge without power damage.
+                </li>
+                <li>Any other result is a draw.</li>
+            </ol>
+        <? } ?>
 
-            <h4>Game Design:</h4>
-            David M. Rodal
-            <h4>Graphics and Rules:</h4>
-            <site>David M. Rodal</site>
-            <h4>HTML 5 Version:</h4>
-            David M. Rodal
-        </li>
-    </ol>
+        <?php if ($scenario->seven) { ?>
+            <ol>
+                <li><span class="big">The Game lasts 15 turns. </span>
+                </li>
+                <li>
+                    The IJN Player must prevent the USN player from exiting any ships off the west edge of the map
+                    without
+                    power damage.
+                </li>
+                <li>
+                    The USN player must 1 CL and 2 other ships off the west edge without power damage.
+                </li>
+                <li>Any other result is a draw.</li>
+            </ol>
+        <? } ?>
+    </li>
+    <li>
+        <span class="big">Design Credits</span>
+
+        <h2><cite><?= $name ?></cite></h2>
+        <h4>HTML 5 Version:</h4>
+        David M. Rodal
+    </li>
+</ol>
 
 
 
