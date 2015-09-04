@@ -75,7 +75,7 @@
                     </ol>
                 </li>
             </ol>
-        <? } ?>
+        <?php } ?>
         <?php if ($scenario->three) { ?>
             <ol>
 
@@ -127,7 +127,7 @@
                     </ol>
                 </li>
             </ol>
-        <? } ?>
+        <?php } ?>
         <?php if ($scenario->eight) { ?>
             <ol>
                 <li><span class="big">The Game lasts 20 turns. </span>
@@ -142,7 +142,7 @@
                 </li>
                 <li>Any other result is a draw.</li>
             </ol>
-        <? } ?>
+        <?php } ?>
 
         <?php if ($scenario->seven) { ?>
             <ol>
@@ -168,6 +168,3 @@
         David M. Rodal
     </li>
 </ol>
-
-
-
