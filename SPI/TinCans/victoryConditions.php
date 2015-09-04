@@ -158,7 +158,7 @@
                 </li>
                 <li>Any other result is a draw.</li>
             </ol>
-        <? } ?>
+        <?php } ?>
     </li>
     <li>
         <span class="big">Design Credits</span>
