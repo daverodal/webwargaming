@@ -1244,10 +1244,22 @@ svg marker#head {
   .israeli .unit-desig {
     color: black; }
 
+.fa-fire {
+  animation: pulsate .6s linear infinite;
+  color: red;
+  animation-direction: alternate; }
+
+@keyframes pulsate {
+  0% {
+    color: red; }
+  100% {
+    color: coral; } }
 #crt {
   width: 520px; }
-  #crt .crt-table-name {
-    display: none; }
+  #crt #odds span {
+    width: 39px; }
+  #crt span {
+    width: 39px; }
 
 .reduced {
   color: white; }

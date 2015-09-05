@@ -254,9 +254,6 @@ class NavalMoveRules
                                 $movesAvail++;
                             }
 
-                            if ($movesAvail === 0) {
-                                $this->stopMove($movingUnit);
-                            }
                         }
                         $dirty = true;
                     }

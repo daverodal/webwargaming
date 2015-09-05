@@ -788,6 +788,8 @@ class Force
             case P:
             case W:
             case PW:
+            case P2:
+            case S:
                 $eliminated = $defUnit->damageUnit($combatResults);
                 if ($eliminated) {
                     $vacated = true;

@@ -33,10 +33,27 @@
 #map {
 }
 
+.fa-fire {
+  animation: pulsate .6s linear infinite;
+  color:red;
+  animation-direction: alternate;
+}
+
+@keyframes pulsate {
+  0% {color: red}
+
+  100% {color: coral;  }
+}
+
 #crt {
   width: 520px;
   .crt-table-name{
-    display:none;
+  }
+  #odds span{
+    width:39px;
+  }
+  span{
+    width:39px;
   }
 }
 

@@ -303,6 +303,11 @@ define("P", 16);
 define("W",17);
 define("PW", 18);
 define("MISS", 19);
+define("H", 20);
+define("HH", 21);
+define("S", 22);
+define("P2", 23);
+define("S2", 24);
 
 $results_name = array();
 //results_name[DE] = "Defender eliminated";
@@ -330,6 +335,10 @@ $results_name[P] = "P";
 $results_name[W] = "W";
 $results_name[PW] = "PW";
 $results_name[MISS] = ".";
+$results_name[H] = 'H';
+$results_name[HH] = '2H';
+$results_name[S] = 'S';
+$results_name[P2] = '2P';
 
 // combat ratio
 $combatRatio_name = array();

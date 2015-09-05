@@ -83,25 +83,80 @@ class TinCansVictoryCore extends victoryCore
         $unit = $args[0];
 
         $type = $unit->class;
-        $vp = 2;
+        $vp = 0;
         if($type === 'ca'){
-            $vp = 10;
+            $vp = 10 - $unit->vp;
+        }
+        if($type === 'dd' || $type === 'cl'){
+            $vp = 2 - $unit->vp;
         }
 
-        if ($unit->forceId == 1) {
-            $victorId = 2;
+        if($vp) {
+            if ($unit->forceId == 1) {
+                $victorId = 2;
 
-            $this->victoryPoints[$victorId] += $vp;
-            $hex = $unit->hexagon;
-            $battle = Battle::getBattle();
-            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='loyalistVictoryPoints'>+$vp vp</span>";
-        } else {
-            $victorId = 1;
-            $hex  = $unit->hexagon;
-            $battle = Battle::getBattle();
-            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='rebelVictoryPoints'>+$vp vp</span>";
-            $this->victoryPoints[$victorId] += $vp;
+                $this->victoryPoints[$victorId] += $vp;
+                $hex = $unit->hexagon;
+                $battle = Battle::getBattle();
+                $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='loyalistVictoryPoints'>+$vp vp</span>";
+            } else {
+                $victorId = 1;
+                $hex = $unit->hexagon;
+                $battle = Battle::getBattle();
+                $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='rebelVictoryPoints'>+$vp vp</span>";
+                $this->victoryPoints[$victorId] += $vp;
+            }
         }
+    }
+
+    public function scoreHit($args){
+        $unit = $args[0];
+        $vp = $unit->vp;
+        $newVp = 0;
+        switch($unit->class){
+            case 'ca':
+                if($unit->hits > 0){
+                    if($vp == 0){
+                        $newVp = 2;
+                    }
+                }
+                if($unit->pDamage > 1){
+                    $newVp = 5 - $vp;
+                }
+
+                break;
+
+            case 'cl':
+            case 'dd':
+            if($unit->hits){
+                if($vp == 0){
+                    $newVp = 1;
+                }
+            }
+            if($unit->pDamage > 1){
+                    $newVp = 2 - $vp;
+                }
+
+                break;
+        }
+        if($newVp) {
+            $unit->vp += $newVp;
+            if ($unit->forceId == 1) {
+                $victorId = 2;
+
+                $this->victoryPoints[$victorId] += $newVp;
+                $hex = $unit->hexagon;
+                $battle = Battle::getBattle();
+                $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='loyalistVictoryPoints'>+$newVp vp</span>";
+            } else {
+                $victorId = 1;
+                $hex = $unit->hexagon;
+                $battle = Battle::getBattle();
+                $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='rebelVictoryPoints'>+$newVp vp</span>";
+                $this->victoryPoints[$victorId] += $newVp;
+            }
+        }
+
     }
 
     public function incrementTurn()

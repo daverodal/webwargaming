@@ -152,8 +152,7 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         }else{
             $this->torpLoad = 0;
         }
-
-
+        $this->vp = 0;
     }
 
     function firedGun(){
@@ -223,6 +222,20 @@ class NavalUnit extends BaseUnit implements JsonSerializable
                     $this->origStrength = 0;
                     $this->torpedoStrength = 0;
                 }
+                break;
+            case P2:
+                $this->pDamage += 2;
+                $this->hits += 2;
+                if($this->pDamage == 1){
+                    $this->maxMove /= 2;
+                }
+                if($this->pDamage > 1){
+                    $this->maxMove = 0;
+                }
+                break;
+            case S:
+                $this->hits = 3;
+                break;
         }
 
 
@@ -230,6 +243,7 @@ class NavalUnit extends BaseUnit implements JsonSerializable
             $this->status = STATUS_ELIMINATING;
             return true;
         }
+        $battle->victory->scoreHit($this);
         return false;
     }
 

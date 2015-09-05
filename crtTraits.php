@@ -166,7 +166,10 @@ trait NavalCombatTrait
             $defenseStrength += $force->getDefenderStrength($defId);
             $combatLog .= "<br>";
         }
-        $combatLog .= " = $defenseStrength";
+        if($battle->gameRules->phase == BLUE_TORP_COMBAT_PHASE || $battle->gameRules->phase == RED_TORP_COMBAT_PHASE) {
+            $defenseStrength = $unit->maxMove + 1;
+        }
+            $combatLog .= " = $defenseStrength";
         $combatIndex = $this->getCombatIndex($attackStrength, $defenseStrength);
         /* Do this before terrain effects */
         if ($combatIndex >= $this->maxCombatIndex) {

@@ -900,6 +900,12 @@ x.register("moveRules", function(moveRules,data) {
                             showCrtTable($('#normalTable'));
                         }
                     }
+                    if(data.gameRules.phase == <?= BLUE_TORP_COMBAT_PHASE?> || data.gameRules.phase == <?= RED_TORP_COMBAT_PHASE?>){
+                        showCrtTable($('#torpedoTable'));
+                        $('.torpedoHitOneTable').show();
+                        $('.torpedoHitTwoTable').show();
+
+                    }
                     for(var loop in defenders){
                         $("#" + loop).css({borderColor: "yellow"});
                     }
@@ -1027,17 +1033,25 @@ x.register("moveRules", function(moveRules,data) {
                     toResolveLog = "Current Combat or Last Combat<br>";
                     title += "<strong style='margin-left:20px;font-size:150%'>" + combatRules.lastResolvedCombat.Die + " " + combatRules.lastResolvedCombat.combatResult + "</strong>";
                     combatCol = combatRules.lastResolvedCombat.index + 1;
-                    $(".col" + combatCol).css('background-color', "rgba(255,255,1,.6)");
-                    var pin = combatRules.lastResolvedCombat.pinCRT;
-                    if(pin !== false){
-                        pin++;
-                        if(pin < combatCol){
-                            combatCol = pin;
-                            $(".col" + combatCol).css('background-color', "rgba(255, 0, 255, .6)");
-                        }
-                    }
+
                     combatRoll = combatRules.lastResolvedCombat.Die;
-                    $(".row" + combatRoll + " .col" + combatCol).css('background-color', "cyan");
+                    if(data.gameRules.phase == <?= BLUE_TORP_COMBAT_PHASE?> || data.gameRules.phase == <?= RED_TORP_COMBAT_PHASE?>){
+                        $(".torpedoTable .col" + combatCol).css('background-color', "rgba(255,255,1,.6)");
+                        $(".torpedoTable .row" + combatRoll + " .col" + combatCol).css('background-color', "cyan");
+
+                    }else{
+                        $(".col" + combatCol).css('background-color', "rgba(255,255,1,.6)");
+                        var pin = combatRules.lastResolvedCombat.pinCRT;
+                        if(pin !== false){
+                            pin++;
+                            if(pin < combatCol){
+                                combatCol = pin;
+                                $(".col" + combatCol).css('background-color', "rgba(255, 0, 255, .6)");
+                            }
+                        }
+
+                        $(".row" + combatRoll + " .col" + combatCol).css('background-color', "cyan");
+                    }
                     if(combatRules.lastResolvedCombat.useAlt){
                         showCrtTable($('#cavalryTable'));
                     }else{
@@ -1045,6 +1059,22 @@ x.register("moveRules", function(moveRules,data) {
                             showCrtTable($('#determinedTable'));
                         }else{
                             showCrtTable($('#normalTable'));
+                        }
+                    }
+                    if(data.gameRules.phase == <?= BLUE_TORP_COMBAT_PHASE?> || data.gameRules.phase == <?= RED_TORP_COMBAT_PHASE?>){
+                        showCrtTable($('#torpedoTable'));
+                        var hitRoll = combatRules.lastResolvedCombat.hitDie;
+                        var hitCol = combatRules.lastResolvedCombat.hitCol;
+
+                        if(combatRules.lastResolvedCombat.hits === <?= H ?>){
+                            $('.torpedoHitOneTable').show();
+                            $(".torpedoHitOneTable .col" + hitCol).css('background-color', "rgba(255,255,1,.6)");
+                            $(".torpedoHitOneTable .row" + hitRoll + " .col" + hitCol).css('background-color', "cyan");
+                        }
+                        if(combatRules.lastResolvedCombat.hits === <?= HH ?>) {
+                            $('.torpedoHitTwoTable').show();
+                            $(".torpedoHitTwoTable .col" + hitCol).css('background-color', "rgba(255,255,1,.6)");
+                            $(".torpedoHitTwoTable .row" + hitRoll + " .col" + hitCol).css('background-color', "cyan");
                         }
                     }
                     var atk = combatRules.lastResolvedCombat.attackStrength;
