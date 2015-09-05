@@ -1221,25 +1221,6 @@ class Force
                     }
 
 
-
-                if ($phase == BLUE_TORP_COMBAT_PHASE || $phase == RED_TORP_COMBAT_PHASE) {
-                    if ($mode == COMBAT_SETUP_MODE) {
-                        $status = STATUS_UNAVAIL_THIS_PHASE;
-                        if ($this->units[$id]->torpLoad > 0) {
-                            $status = STATUS_READY;
-                        }
-                    }
-                    if ($mode == COMBAT_RESOLUTION_MODE) {
-                        $status = STATUS_UNAVAIL_THIS_PHASE;
-                        if ($this->units[$id]->status == STATUS_ATTACKING ||
-                            $this->units[$id]->status == STATUS_DEFENDING
-                        ) {
-                            $status = $this->units[$id]->status;
-                        }
-
-                    }
-                }
-
                 if ($mode == MOVING_MODE && $moveRules->stickyZOC) {
                         if ($this->units[$id]->forceId == $this->attackingForceId &&
                             $this->unitIsZOC($id)
@@ -1247,15 +1228,7 @@ class Force
                             $status = STATUS_STOPPED;
                         }
                     }
-//                    if($phase == RED_RAILROAD_PHASE) {
-//                        $status = STATUS_STOPPED;
-//                        $hexpart = new Hexpart();
-//                        $hexpart->setXYwithNameAndType($this->units[$id]->hexagon->name, HEXAGON_CENTER);
-//                        $terrain = $moveRules->terrain;
-//                        if ($terrain->terrainIs($hexpart, "fortified") || $terrain->terrainIs($hexpart, "newrichmond")) {
-//                            $status = STATUS_READY;
-//                        }
-//                    }
+
                     $this->units[$id]->status = $status;
                     $this->units[$id]->moveAmountUsed = 0;
                     break;

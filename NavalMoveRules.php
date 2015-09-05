@@ -239,7 +239,7 @@ class NavalMoveRules
                             $hexPath->name = $newHex; //$startHex->name;
                             $hexPath->pointsLeft = $movesLeft;
                             $hexPath->pathToHere = array();
-                            $hexPath->firstHex = false;
+                            $hexPath->firstHex = true;
                             $hexPath->isOccupied = true;
                             $hexPath->facing = $facing;
                             $movingUnit->facing = $facing;
@@ -278,6 +278,18 @@ class NavalMoveRules
                     $movingUnit = $this->force->units[$id];
                     // clicked on moving or reinforcing unit
                     /* @var Unit $movingUnit */
+                    if ($movingUnit->unitIsMoving() == true) {
+                        $this->stopMove($movingUnit);
+                        $dirty = true;
+                    }
+                    if ($this->force->unitIsReinforcing($id) == true) {
+                        $this->stopReinforcing($id);
+                        $dirty = true;
+                    }
+                    if ($this->force->unitIsDeploying($id) == true) {
+                        $this->stopDeploying($id);
+                        $dirty = true;
+                    }
                 } else {
                     /* @var Unit $movingUnit */
                     $movingUnit = $this->force->units[$this->movingUnitId];
@@ -346,10 +358,7 @@ class NavalMoveRules
         $hist = array();
         $cnt = 0;
         $unit = $this->force->units[$this->movingUnitId];
-        if($unit->airMovement){
-            $this->airMoves();
-            return;
-        }
+
         while (count($this->moveQueue) > 0) {
             $cnt++;
             $hexPath = array_shift($this->moveQueue);
@@ -387,19 +396,22 @@ class NavalMoveRules
             $this->moves->$hexNum->pathToHere = $hexPath->pathToHere;
 
             $exitCost = 0;
-            if($this->moves->$hexNum->isClone){
-                continue;
-            }
+//            if($this->moves->$hexNum->isClone){
+//                continue;
+//            }
 
             $path = $hexPath->pathToHere;
             $path[] = $hexNum;
 
 
             $neighbors = $mapHex->neighbors;
-            if(isset($hexPath->facing)){
+            if($hexPath->firstHex && isset($hexPath->facing)){
                 $neighbors = array_slice(array_merge($mapHex->neighbors,$mapHex->neighbors), ($hexPath->facing + 6 - 1)%6, 3);
                 $newFacing = ($hexPath->facing + 6 - 2);
 
+            }else{
+                $neighbors = [$neighbors[$hexPath->facing]];
+                $newFacing = $hexPath->facing +6 -1;
             }
             /* we pre increment, so facing should be hex to the left, -1, hex forward 0, hex to the right +1
              *  Add 6 because -1 doesn't mod well
@@ -456,10 +468,8 @@ class NavalMoveRules
                     $newPath->name = $newHexNum;
                     $newPath->pathToHere = $path;
                     $newPath->pointsLeft = $movePoints - $moveAmount;
-                    $newPath->isClone = true;
-                    if(isset($hexPath->facing)) {
+//                    $newPath->isClone = true;
                         $newPath->facing = $newFacing % 6;
-                    }
                     if ($newPath->pointsLeft < 0) {
                         $newPath->pointsLeft = 0;
                     }

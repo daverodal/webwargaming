@@ -111,6 +111,11 @@ class NavalForce extends Force
                         $this->units[$id]->newSpeed = false;
                     }
 
+                    if ($mode == MOVING_MODE ) {
+                        if ($this->units[$id]->pDamage > 1 || $this->units[$id]->maxMove == 0) {
+                            $status = STATUS_STOPPED;
+                        }
+                    }
 
                     $this->units[$id]->status = $status;
                     $this->units[$id]->moveAmountUsed = 0;
