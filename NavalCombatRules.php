@@ -34,6 +34,7 @@ Class Combat
     public $pinCRT = false;
     public $dieShift = 0;
     public $dayTime = false;
+    public $unitDefenseStrength;
 
     public function __construct()
     {

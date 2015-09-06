@@ -118,7 +118,7 @@ class CombatResultsTable extends ModernCombatResultsTable
                     $Die = floor($this->dieSideCount * (rand() / getrandmax()));
 //                    $Die = 0;
                     $combat->hitDie = $Die + 1;
-                    $defense = $combat->defenseStrength;
+                    $defense = $combat->unitDefenseStrength;
                     $col = 6; /* catch all 20+ */
                     if($defense > 0 && $defense < 11){
                         switch($defense){
@@ -155,7 +155,7 @@ class CombatResultsTable extends ModernCombatResultsTable
 //                    $Die = 2;
 
                     $combat->hitDie = $Die+1;
-                    $defense = $combat->defenseStrength;
+                    $defense = $combat->unitDefenseStrength;
                     $col = 4; /* catch all 20+ */
                     if($defense > 0 && $defense < 11){
                         switch($defense){
