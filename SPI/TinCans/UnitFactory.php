@@ -193,7 +193,7 @@ class NavalUnit extends BaseUnit implements JsonSerializable
             case P:
                 $this->pDamage++;
                 if($this->pDamage == 1){
-                    $this->maxMove /= 2;
+                    $this->maxMove = floor($this->maxMove/2);
                 }
                 if($this->pDamage > 1){
                     $this->maxMove = 0;
@@ -217,7 +217,7 @@ class NavalUnit extends BaseUnit implements JsonSerializable
                 $this->pDamage++;
                 $this->hits += 2;
                 if($this->pDamage == 1){
-                    $this->maxMove /= 2;
+                    $this->maxMove = floor($this->maxMove/2);
                 }
                 if($this->pDamage > 1){
                     $this->maxMove = 0;
@@ -234,12 +234,7 @@ class NavalUnit extends BaseUnit implements JsonSerializable
             case P2:
                 $this->pDamage += 2;
                 $this->hits += 2;
-                if($this->pDamage == 1){
-                    $this->maxMove /= 2;
-                }
-                if($this->pDamage > 1){
-                    $this->maxMove = 0;
-                }
+                 $this->maxMove = 0;
                 break;
             case S:
                 $this->hits = 3;
