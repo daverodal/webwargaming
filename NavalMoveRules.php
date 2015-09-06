@@ -488,7 +488,7 @@ class NavalMoveRules
             if($unit->forceId !== $this->force->attackingForceId){
                 continue;
             }
-            if($unit->hits < 3 && $unit->maxMove > $unit->moveAmountUsed){
+            if($unit->hexagon->parent === "gameImages" && $unit->maxMove > $unit->moveAmountUsed){
                 return true;
             }
         }
