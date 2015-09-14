@@ -1203,7 +1203,16 @@ x.register("moveRules", function(moveRules,data) {
 
 
     });
+    x.register('mapViewer', function(mapViewer){
+        var src = $('#map').attr('src');
+        src = src.replace(/Left.png$/,'.png');
+        if(mapViewer.trueRows){
+            src = src.replace(/.png$/,'Left.png');
+        }
+        $('#map').attr('src',src);
 
+
+    });
 
 x.register("combatRulez", function(combatRules,data) {
 

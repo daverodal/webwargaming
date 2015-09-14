@@ -185,8 +185,8 @@ class NapoleonsTrainingAcademy extends ModernLandBattle{
             for($player = 0;$player <= 2;$player++){
                 $this->mapViewer[$player]->setData(65,85, // originX, originY
                     27.5, 27.5, // top hexagon height, bottom hexagon height
-                    16, 32// hexagon edge width, hexagon center width
-                );
+                    16, 32,// hexagon edge width, hexagon center width
+                1070);
             }
 
 
