@@ -65,6 +65,29 @@ class LandBattle extends Battle{
         $mapUnits = array();
         $moveRules = $doc->wargame->moveRules;
         $combatRules = $doc->wargame->combatRules;
+        $combats = $combatRules->combats;
+        if(!$combats){
+            $combats = $combatRules->combatsToResolve;
+        }
+        if($playerData->trueRows && $combats) {
+            foreach ($combats as $combat) {
+                foreach ($combat->thetas as $theta) {
+                    foreach ($theta as $key => $val) {
+                        $theta->$key += 90;
+                    }
+                }
+            }
+        }
+        $combats = $combatRules->resolvedCombats;
+        if($playerData->trueRows && $combats) {
+            foreach ($combats as $combat) {
+                foreach ($combat->thetas as $theta) {
+                    foreach ($theta as $key => $val) {
+                        $theta->$key += 90;
+                    }
+                }
+            }
+        }
         $display = $doc->wargame->display;
         $units = $force->units;
         $attackingId = $doc->wargame->gameRules->attackingForceId;
