@@ -50,12 +50,12 @@
     "scenarios": {
       "one": {
         "description": "South China Sea",
-        "longDescription":"10 December 1941, Hypothetical. Daytime. 20 Turns. RN: 1 BB 1 BC 3 DD. IJN: 2 BC 4 DD. Victory: RN must exist either a BB or BC off the west edge. IJN must prevent this.",
+        "longDescription":"10 December 1941, <br>Hypothetical. <br>Daytime. 20 Turns. <br>RN: 1 BB 1 BC 3 DD. <br>IJN: 2 BC 4 DD. <br>Victory: RN must exist either a BB or BC off the west edge. IJN must prevent this.",
         "one": true
       },
       "two": {
         "description": "Savo Island",
-        "longDescription":"9 August 1942. 15 Turns Nighttime. IJN 4 CA 1 CA 1 CL 1 CL 1 DD. USN (gropu one)  1 CA 1 CA 2 DD (group two) 3 CA 2 DD. Any IJN ship not exited by end of turn 15, sunk. Victory on Points.Ω",
+        "longDescription":"9 August 1942. <br>15 Turns Nighttime. <br>IJN 4 CA 1 CA 1 CL 1 CL 1 DD. <br>USN (gropu one)  1 CA 1 CA 2 DD (group two) 3 CA 2 DD. <br>Any IJN ship not exited by end of turn 15, sunk. Victory on Points.",
         "two": true
       },
       "main": {
