@@ -57,7 +57,7 @@ class LandBattle extends Battle{
         Battle::loadGame($gameName, $doc->wargame->arg);
 //Battle::getHeader();
         if (isset($doc->wargame->mapViewer)) {
-            $playerData = $doc->wargame->mapViewer[0];
+            $playerData = $doc->wargame->mapViewer[$player];
         } else {
             $playerData = $doc->wargame->mapData[0];
         }
@@ -65,6 +65,29 @@ class LandBattle extends Battle{
         $mapUnits = array();
         $moveRules = $doc->wargame->moveRules;
         $combatRules = $doc->wargame->combatRules;
+        $combats = $combatRules->combats;
+        if(!$combats){
+            $combats = $combatRules->combatsToResolve;
+        }
+        if($playerData->trueRows && $combats) {
+            foreach ($combats as $combat) {
+                foreach ($combat->thetas as $theta) {
+                    foreach ($theta as $key => $val) {
+                        $theta->$key += 90;
+                    }
+                }
+            }
+        }
+        $combats = $combatRules->resolvedCombats;
+        if($playerData->trueRows && $combats) {
+            foreach ($combats as $combat) {
+                foreach ($combat->thetas as $theta) {
+                    foreach ($theta as $key => $val) {
+                        $theta->$key += 90;
+                    }
+                }
+            }
+        }
         $display = $doc->wargame->display;
         $units = $force->units;
         $attackingId = $doc->wargame->gameRules->attackingForceId;
@@ -244,8 +267,9 @@ class LandBattle extends Battle{
         $specialHexesChanges = $newSpecialHexesChanges;
         $specialHexesVictory = $newSpecialHexesVictory;
         $gameRules->playerStatus = $doc->playerStatus;
+        $mapViewer = $playerData;
         $clock = "The turn is " . $gameRules->turn . ". The Phase is " . $phase_name[$gameRules->phase] . ". The mode is " . $mode_name[$gameRules->mode];
-        return compact("sentBreadcrumbs", "phaseClicks", "click", "revs", "vp", "flashMessages", "specialHexesVictory", "specialHexes", "specialHexesChanges", "combatRules", 'force', 'seq', 'chats', 'chatsIndex', 'last_seq', 'users', 'games', 'clock', 'mapUnits', 'moveRules', 'gameRules');
+        return compact("mapViewer", "sentBreadcrumbs", "phaseClicks", "click", "revs", "vp", "flashMessages", "specialHexesVictory", "specialHexes", "specialHexesChanges", "combatRules", 'force', 'seq', 'chats', 'chatsIndex', 'last_seq', 'users', 'games', 'clock', 'mapUnits', 'moveRules', 'gameRules');
 
     }
 

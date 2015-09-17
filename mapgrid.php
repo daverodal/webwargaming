@@ -396,6 +396,8 @@ class MapViewer
     public $bottomHeight;
     public $hexsideWidth;
     public $centerWidth;
+    public $mapWidth;
+    public $trueRows = false;
 
     function __construct($data = null)
     {
@@ -409,7 +411,7 @@ class MapViewer
 
     function setData($originX, $originY
         , $topHeight, $bottomHeight
-        , $hexsideWidth, $centerWidth)
+        , $hexsideWidth, $centerWidth, $mapWidth)
     {
 
         $this->originX = $originX;
@@ -418,6 +420,7 @@ class MapViewer
         $this->bottomHeight = $bottomHeight;
         $this->hexsideWidth = $hexsideWidth;
         $this->centerWidth = $centerWidth;
+        $this->mapWidth = $mapWidth;
     }
 }
 
@@ -437,6 +440,7 @@ class MapGrid
     public $halfHexagonWidth;
     public $oneFourthHexagonHeight;
     public $leftMapEdge;
+    public $trueRows;
 
     // pixel info from screen
     public $mapGridX, $mapGridY;
@@ -448,6 +452,7 @@ class MapGrid
     public $hexagon;
     public $hexpart;
 
+    /* @param MapViewer $mapData */
     function __construct($mapData)
     {
         $this->originX = $mapData->originX;
@@ -456,6 +461,8 @@ class MapGrid
         $this->bottomHeight = $mapData->bottomHeight;
         $this->hexsideWidth = $mapData->hexsideWidth;
         $this->centerWidth = $mapData->centerWidth;
+        $this->mapWidth = $mapData->mapWidth;
+        $this->trueRows = $mapData->trueRows;
 
         $this->hexagonHeight = $this->topHeight + $this->bottomHeight;
         $this->hexagonWidth = $this->hexsideWidth + $this->centerWidth;
@@ -616,11 +623,17 @@ class MapGrid
 
     function getPixelX()
     {
+        if($this->trueRows){
+            return $this->mapGridY;
+        }
         return $this->mapGridX;
     }
 
     function getPixelY()
     {
+        if($this->trueRows) {
+            return $this->mapWidth - $this->mapGridX;
+        }
         return $this->mapGridY;
     }
 }

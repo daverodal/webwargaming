@@ -71,6 +71,24 @@ class TinCans extends ModernNavalBattle
         @include_once "view.php";
     }
 
+    static function playMulti($name, $wargame, $arg = false)
+    {
+        global $force_name;
+        $scenario = $arg;
+        if($arg === "one"){
+            $force_name[1] = "RN";
+            $force_name[2] = "IJN";
+        }
+        if($arg === "eight"){
+            $force_name[1] = "USN";
+            $force_name[2] = "IJN";
+        }
+
+        $deployTwo = $playerOne = $force_name[1];
+        $deployOne = $playerTwo = $force_name[2];
+        @include_once "playMulti.php";
+    }
+
     function terrainGen($mapDoc, $terrainDoc)
     {
         parent::terrainGen($mapDoc, $terrainDoc);
