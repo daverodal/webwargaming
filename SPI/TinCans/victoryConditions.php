@@ -33,7 +33,15 @@
             <ol>
                 <li><span class="big">The Game lasts 15 turns. </span>
                 </li>
-                <li>Special Rules: No USN ship of one group may spot for a ship in the other group.(movement spotting only)</li>
+                <li><span class="big">SpecialRules
+                <ol>
+                    <li>No USN ship of one group may spot for a ship in the other group.(movement spotting only)</li>
+                    <li>Any IJN ship not exited off the south map edge by turn 15 is sunk.</li>
+                    <li>Unless an IJN ship comes within 4 hexes of a USN ship on turn one, no
+                    USN ship may change course or speed or attack.(not enforced)</li>
+                </ol>
+                </li>
+
                 <li>
                     Victory points are awarded by the following schedule:
                     <ol>

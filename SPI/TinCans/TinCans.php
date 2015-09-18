@@ -285,7 +285,6 @@ class TinCans extends ModernNavalBattle
             $this->victory = new Victory("SPI/TinCans/TinCansVictoryCore.php");
 
             // game data
-            $this->gameRules->setMaxTurn(15);
             $this->gameRules->setInitialPhaseMode(BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE);
             $this->gameRules->attackingForceId = BLUE_FORCE; /* object oriented! */
             $this->gameRules->defendingForceId = RED_FORCE; /* object oriented! */
@@ -303,7 +302,21 @@ class TinCans extends ModernNavalBattle
             $this->gameRules->addPhaseChange(RED_SPEED_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, true);
 
             if($scenario->one){
+                $this->gameRules->setMaxTurn(20);
                 $this->combatRules->dayTime = true;
+            }
+
+            if($scenario->two){
+                $this->gameRules->setMaxTurn(15);
+            }
+            if($scenario->three){
+                $this->gameRules->setMaxTurn(15);
+            }
+            if($scenario->seven){
+                $this->gameRules->setMaxTurn(15);
+            }
+            if($scenario->eight){
+                $this->gameRules->setMaxTurn(20);
             }
         }
 

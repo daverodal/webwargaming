@@ -55,22 +55,20 @@
       },
       "two": {
         "description": "Savo Island",
-        "longDescription":"9 August 1942. <br>15 Turns Nighttime. <br>IJN 4 CA 1 CA 1 CL 1 CL 1 DD. <br>USN (gropu one)  1 CA 1 CA 2 DD (group two) 3 CA 2 DD. <br>Any IJN ship not exited by end of turn 15, sunk. Victory on Points.",
-        "two": true
-      },
+        "longDescription":"9 August 1942.<ol> <li><span class='big'>The Game lasts 15 turns. </span> </li> <li><span class='big'>SpecialRules <ol> <li>No USN ship of one group may spot for a ship in the other group.(movement spotting only)</li> <li>Any IJN ship not exited off the south map edge by turn 15 is sunk.</li> <li>Unless an IJN ship comes within 4 hexes of a USN ship on turn one, no USN ship may change course or speed or attack.(not enforced)</li> </ol> </li> <li> Victory points are awarded by the following schedule: <ol> <li> CA - Sunk 10 </li> <li> CA - Dead in Water 5 </li> <li> CA - Damaged 2 </li> <li> CL or DD Sunk or Dead in Water 2 </li> <li> CL or DD damaged 1 </li> </ol> </li> <li> Victory is awarded in levels depending up the ratio of victory points. <ol> <li> Major IJN Victory 8.0 or more to 1 </li> <li> Minor IJN Victory 5.0 through 7.99 to 1 </li> <li> Draw 2.0 through 4.99 to 1 </li> <li> Minor USN Victory 1 through 1.99 to 1 </li> <li> Major USN Victory less than 1 to 1 </li> </ol> </li> </ol> ",
+        "two": true },
       "main": {
         "description": "Cape Esperance",
-        "longDescription":"11-12 October 1942",
-        "three": true
+        "longDescription":"11-12 October 1942. <ol>        <li><span class='big'>The Game lasts 15 turns. </span>        </li>        <li>No ship may change heading until the first spotting occurs.</li>        <li>Any IJN ship not exited off the south map edge my the end of game turn 15 is considered sunk.</li>        <li>The IJN player can score an automatic victory if one undamaged CA is exited off the east map edge.        If this does not occur victory is by the rules below.        </li>        <li>        Victory points are awarded by the following schedule:        <ol>        <li>        CA - Sunk 10        </li>        <li>        CA - Dead in Water 5        </li>        <li>        CA - Damaged 2        </li>        <li>        CL or DD Sunk or Dead in Water 2        </li>        <li>        CL or DD damaged 1        </li>        </ol>        </li>        <li>        Victory is awarded in levels depending up the ratio of victory points.        <ol>        <li>        Major IJN Victory 3.0 or more to 1        </li>        <li>        Minor IJN Victory 1.5 through 2.99 to 1        </li>        <li>        Draw .75 through 1.49 to 1        </li>        <li>        Minor USN victory .25 through .74 to 1        </li>        <li>        Major USN victory less than .25 to 1        </li>        </ol>        </li>        </ol>",        "three": true
       },
       "seven": {
         "description": "Kolombangara",
-        "longDescription":"13 July 1943",
+        "longDescription":"13 July 1943.  <ol> <li><span class='big'>The Game lasts 15 turns. </span> </li> <li> The IJN Player must prevent the USN player from exiting any ships off the west edge of the map without power damage. </li> <li> The USN player must 1 CL and 2 other ships off the west edge without power damage. </li> <li>Any other result is a draw.</li> </ol>",
         "seven": true
       },
       "eight": {
         "description": "Empress Augusta Bay",
-        "longDescription":"2 November 1943",
+        "longDescription":"2 November 1943.<ol> <li><span class='big'>The Game lasts 20 turns. </span> </li> <li> The USN Player must prevent the IJN player from exiting any ships off the east edge of the map without power damage. </li> <li> The IJN player must exit two ships off the east edge without power damage. </li> <li>Any other result is a draw.</li> </ol>",
         "eight": true
       }
     }
