@@ -125,7 +125,7 @@ trait NavalCombatTrait
 
             $los->setOrigin($force->getUnitHexagon($id));
             $los->setEndPoint($force->getUnitHexagon($defenderId));
-            $range = $los->getRange();
+            $range = (int)$los->getRange();
             $strength = $unit->strength;
 
             $combatLog .= $strength." ".$unit->class;
@@ -139,10 +139,28 @@ trait NavalCombatTrait
                     $strength /= 2;
                     $combatLog .= " Halved for extended Range $strength";
                 }
+                if($range === 1){
+                    $strength *= 2;
+                    $combatLog .= " Doubled for close Range $strength";
+                }
+                if($range === 2 && $unit->nationality === 'ijn'){
+                    $strength *= 2;
+                    $combatLog .= " Doubled for close Range $strength";
+                }
             }else{
                 if($range > $unit->range) {
                     $strength /= 2;
                     $combatLog .= " Halved for extended Range $strength";
+                }
+                if($range <= ($unit->range/2)){
+                    if($range <= 2){
+                        $strength *= 3;
+                        $combatLog .= " Tripled for range 2 or less $strength";
+                    }else{
+                        $strength *= 2;
+                        $combatLog .= " Doubled for Range less than half normal $strength";
+                    }
+
                 }
             }
             $combatLog .= "<br>";
