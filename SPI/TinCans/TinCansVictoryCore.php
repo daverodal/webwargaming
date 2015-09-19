@@ -78,6 +78,44 @@ class TinCansVictoryCore extends victoryCore
         return array($zones);
     }
 
+    public function reduceUnit($args)
+    {
+
+        $unit = $args[0];
+
+
+
+        $type = $unit->class;
+
+        $vp = 0;
+
+        if($type === 'ca'){
+
+            $vp = 10 - $unit->vp;
+
+        }
+
+        if($type === 'dd' || $type === 'cl'){
+                $vp = 2 - $unit->vp;
+            }
+
+        if($vp) {
+               if ($unit->forceId == 1) {                $victorId = 2;
+
+                        $this->victoryPoints[$victorId] += $vp;
+                        $hex = $unit->hexagon;
+                        $battle = Battle::getBattle();
+                        $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='loyalistVictoryPoints'>+$vp vp</span>";
+                    } else {
+                        $victorId = 1;
+                        $hex = $unit->hexagon;
+                        $battle = Battle::getBattle();
+                        $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='rebelVictoryPoints'>+$vp vp</span>";
+                        $this->victoryPoints[$victorId] += $vp;
+                    }
+       }
+    }
+
     public function scoreHit($args){
         $unit = $args[0];
         $vp = $unit->vp;

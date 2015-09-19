@@ -129,15 +129,15 @@ class NavalForce extends Force
                 $unit->moveAmountUnused = $unit->maxMove;
             }
             /* Post Movement Phase, Put out fires, and mark dead in water ships sighted if within 3 hexes */
-            if($phase === BLUE_SPEED_PHASE || $phase === RED_SPEED_PHASE){
-
-                $unit->postMove();
-                if ($unit->pDamage > 1 || $unit->maxMove == 0) {
-                    if($this->unitIsInRange($id, 3)){
-                        $this->unit[$id]->spotted = true;
-                    }
-                }
-            }
+//            if($phase === BLUE_SPEED_PHASE || $phase === RED_SPEED_PHASE){
+//
+//                $unit->postMove();
+//                if ($unit->pDamage > 1 || $unit->maxMove == 0) {
+//                    if($this->unitIsInRange($id, 3)){
+//                        $this->unit[$id]->spotted = true;
+//                    }
+//                }
+//            }
             $unit->combatIndex = 0;
             $unit->combatNumber = 0;
             $unit->combatResults = NE;
