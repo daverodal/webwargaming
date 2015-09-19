@@ -1056,3 +1056,6 @@ svg {
     }
   }
 }
+@mixin victoryPoints($color) {
+  text-shadow: 0px 0px 1px $color, 0px 0px 1px $color, 0px 0px 1px $color, 0px 0px 2px $color, 0px 0px 2px $color, 0px 0px 2px $color, 0px 0px 3px $color, 0px 0px 3px $color, 0px 0px 3px $color, 0px 0px 4px $color, 0px 0px 4px $color, 0px 0px 4px $color, 0px 0px 5px $color, 0px 0px 5px $color, 0px 0px 5px $color, 0px 0px 6px $color, 0px 0px 6px $color, 0px 0px 6px $color, 0px 0px 7px $color, 0px 0px 7px $color, 0px 0px 7px $color, 0px 0px 8px $color, 0px 0px 8px $color, 0px 0px 8px $color, 0px 0px 9px $color, 0px 0px 9px $color, 0px 0px 9px $color, 0px 0px 10px $color, 0px 0px 10px $color, 0px 0px 10px $color, 0px 0px 1px $color, 0px 0px 1px $color, 0px 0px 1px $color, 0px 0px 2px $color, 0px 0px 2px $color, 0px 0px 2px $color, 0px 0px 3px $color, 0px 0px 3px $color, 0px 0px 3px $color, 0px 0px 4px $color, 0px 0px 4px $color, 0px 0px 4px $color, 0px 0px 5px $color, 0px 0px 5px $color, 0px 0px 5px $color, 0px 0px 6px $color, 0px 0px 6px $color, 0px 0px 6px $color, 0px 0px 7px $color, 0px 0px 7px $color, 0px 0px 7px $color, 0px 0px 8px $color, 0px 0px 8px $color, 0px 0px 8px $color, 0px 0px 9px $color, 0px 0px 9px $color, 0px 0px 9px $color, 0px 0px 10px $color, 0px 0px 10px $color, 0px 0px 10px $color;
+}

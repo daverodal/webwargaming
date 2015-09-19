@@ -29,14 +29,15 @@ class NavalForce extends Force
         $victory = $battle->victory;
         $victory->preRecoverUnits();
         for ($id = 0; $id < count($this->units); $id++) {
-            $victory->preRecoverUnit($this->units[$id]);
+            $unit = $this->units[$id];
+            $victory->preRecoverUnit($unit);
 
-            switch ($this->units[$id]->status) {
+            switch ($unit->status) {
                 case STATUS_CAN_DEPLOY:
                     if($mode == DEPLOY_MODE){
                         continue;
                     }
-                    if ($this->units[$id]->isDeploy()) {
+                    if ($unit->isDeploy()) {
                         continue;
                     }
 
@@ -63,24 +64,24 @@ class NavalForce extends Force
 
                     if ($phase == BLUE_COMBAT_PHASE || $phase == RED_COMBAT_PHASE || $phase == TEAL_COMBAT_PHASE || $phase == PURPLE_COMBAT_PHASE) {
                         if ($mode == COMBAT_SETUP_MODE) {
-                            $unit = $this->units[$id];
-                            if($this->units[$id]->forceId == $this->attackingForceId) {
+                            $unit = $unit;
+                            if($unit->forceId == $this->attackingForceId) {
                                 $unit->removeSpotted();
                             }
-                            if($this->units[$id]->forceId == $this->attackingForceId && $unit->torpReload !== false){
+                            if($unit->forceId == $this->attackingForceId && $unit->torpReload !== false){
                                 $unit->reloadTorp();
                             }
                             $status = STATUS_UNAVAIL_THIS_PHASE;
-                            if ($this->units[$id]->forceId == $this->attackingForceId && ($this->unitIsInRange($id))) {
+                            if ($unit->forceId == $this->attackingForceId && ($this->unitIsInRange($id))) {
                                 $status = STATUS_READY;
                             }
                         }
                         if ($mode == COMBAT_RESOLUTION_MODE) {
                             $status = STATUS_UNAVAIL_THIS_PHASE;
-                            if ($this->units[$id]->status == STATUS_ATTACKING ||
-                                $this->units[$id]->status == STATUS_DEFENDING
+                            if ($unit->status == STATUS_ATTACKING ||
+                                $unit->status == STATUS_DEFENDING
                             ) {
-                                $status = $this->units[$id]->status;
+                                $status = $unit->status;
                             }
 
                         }
@@ -91,46 +92,56 @@ class NavalForce extends Force
                     if ($phase == BLUE_TORP_COMBAT_PHASE || $phase == RED_TORP_COMBAT_PHASE) {
                         if ($mode == COMBAT_SETUP_MODE) {
                             $status = STATUS_UNAVAIL_THIS_PHASE;
-                            if ($this->units[$id]->torpLoad > 0 && $this->units[$id]->torpReload === false) {
+                            if ($unit->torpLoad > 0 && $unit->torpReload === false) {
                                 $status = STATUS_READY;
                             }
                         }
                         if ($mode == COMBAT_RESOLUTION_MODE) {
                             $status = STATUS_UNAVAIL_THIS_PHASE;
-                            if ($this->units[$id]->status == STATUS_ATTACKING ||
-                                $this->units[$id]->status == STATUS_DEFENDING
+                            if ($unit->status == STATUS_ATTACKING ||
+                                $unit->status == STATUS_DEFENDING
                             ) {
-                                $status = $this->units[$id]->status;
+                                $status = $unit->status;
                             }
 
                         }
                     }
 
-                    if($this->units[$id]->newSpeed !== false){
-                        $this->units[$id]->maxMove = $this->units[$id]->newSpeed;
-                        $this->units[$id]->newSpeed = false;
+                    if($unit->newSpeed !== false){
+                        $unit->maxMove = $unit->newSpeed;
+                        $unit->newSpeed = false;
                     }
 
                     if ($mode == MOVING_MODE ) {
-                        if ($this->units[$id]->pDamage > 1 || $this->units[$id]->maxMove == 0) {
+                        if ($unit->pDamage > 1 || $unit->maxMove == 0) {
                             $status = STATUS_STOPPED;
                         }
                     }
 
-                    $this->units[$id]->status = $status;
-                    $this->units[$id]->moveAmountUsed = 0;
+                    $unit->status = $status;
+                    $unit->moveAmountUsed = 0;
                     break;
 
                 default:
                     break;
             }
             if($phase === BLUE_MOVE_PHASE || $phase === RED_MOVE_PHASE || $phase == TEAL_MOVE_PHASE || $phase == PURPLE_MOVE_PHASE){
-                $this->units[$id]->moveAmountUnused = $this->units[$id]->maxMove;
+                $unit->moveAmountUnused = $unit->maxMove;
             }
-            $this->units[$id]->combatIndex = 0;
-            $this->units[$id]->combatNumber = 0;
-            $this->units[$id]->combatResults = NE;
-            $victory->postRecoverUnit($this->units[$id]);
+            /* Post Movement Phase, Put out fires, and mark dead in water ships sighted if within 3 hexes */
+            if($phase === BLUE_SPEED_PHASE || $phase === RED_SPEED_PHASE){
+
+                $unit->postMove();
+                if ($unit->pDamage > 1 || $unit->maxMove == 0) {
+                    if($this->unitIsInRange($id, 3)){
+                        $this->unit[$id]->spotted = true;
+                    }
+                }
+            }
+            $unit->combatIndex = 0;
+            $unit->combatNumber = 0;
+            $unit->combatResults = NE;
+            $victory->postRecoverUnit($unit);
 
         }
         $victory->postRecoverUnits();
@@ -138,11 +149,13 @@ class NavalForce extends Force
     }
 
 
-    function unitIsInRange($id)
+    function unitIsInRange($id, $range = false)
     {
         $b = Battle::getBattle();
         $isInRange = false;
-        $range = $this->units[$id]->range;
+        if($range === false){
+            $range = $this->units[$id]->range;
+        }
         $unitRange = $range * 2;
         if($b->gameRules->phase == BLUE_TORP_COMBAT_PHASE || $b->gameRules->phase == RED_TORP_COMBAT_PHASE) {
             $unitRange = $range * 3;

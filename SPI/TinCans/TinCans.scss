@@ -25,10 +25,7 @@
 @include player(usn, USN, $rebelColor);
 @include player(rn, RN, $rebelColor);
 @include player(ijn,IJN, #ffcd00, #ffcd00);
-@include player(loyalGuards,Three,$loyalistGuardColor);
-@include player(eec, Four, $eecColor);
-@include player(navyColor, Five, $navyColor);
-@include player(israeli, Five, powderblue);
+
 
 #map {
 }
@@ -37,6 +34,11 @@
   animation: pulsate .6s linear infinite;
   color:red;
   animation-direction: alternate;
+}
+
+.fire{
+  color:red;
+  @include victoryPoints(white);
 }
 
 @keyframes pulsate {

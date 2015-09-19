@@ -182,12 +182,27 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         }
     }
 
+    function fireOut(){
+        $battle = Battle::getBattle();
+        $hex = $this->hexagon;
+        $this->fire = false;
+        $this->spotted = true;
+        $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='fire'>Fire out, SPOTTED!</span><br>";
+
+    }
+    function startFire(){
+        $battle = Battle::getBattle();
+        $this->fire = true;
+        $hex = $this->hexagon;
+
+        $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='fire'>FIRE</span><br>";
+    }
     function damageUnit($result = false)
     {
         $battle = Battle::getBattle();
 
-        if($this->class === 'ca'){
-            $this->fire = true;
+        if($battle->scenario->two && $this->class === 'ca'){
+            $this->startFire();
         }
         switch($result){
             case P:
@@ -201,6 +216,10 @@ class NavalUnit extends BaseUnit implements JsonSerializable
                 $this->hits++;
                 break;
             case W:
+                $Die = rand(1,6);
+                if($Die <=2){
+                    $this->startFire();
+                }
                 $this->wDamage++;
                 if($this->wDamage == 1){
                     $this->origStrength /= 2;
@@ -266,6 +285,14 @@ class NavalUnit extends BaseUnit implements JsonSerializable
         }
     }
 
+    function postMove(){
+        if($this->fire){
+            $Die = rand(1,6);
+            if($Die === 1){
+                $this->fireOut();
+            }
+        }
+    }
 
     public function fetchData(){
         $mapUnit = new StdClass();
