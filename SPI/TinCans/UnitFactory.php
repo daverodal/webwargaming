@@ -201,7 +201,7 @@ class NavalUnit extends BaseUnit implements JsonSerializable
     {
         $battle = Battle::getBattle();
 
-        if($battle->scenario->two && $this->class === 'ca'){
+        if($battle->scenario->two && $this->class === 'ca' && $this->nationality === 'usn'){
             $this->startFire();
         }
         switch($result){
