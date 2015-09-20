@@ -326,14 +326,12 @@ class Area1
     }
 
     function terrainInit($terrainDoc ){
-//        var_dump($terrainDoc->terrain->areas);die('love');
         $areas = $terrainDoc->terrain->areas;
         $this->players = array("", "", "");
 
         foreach($areas as $aName => $aValue){
             $this->areaData->addArea($aName);
         }
-//        $this->areaData->addArea($name);
 
     }
 

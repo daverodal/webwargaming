@@ -544,6 +544,9 @@ x.register("gameRules", function(gameRules,data) {
     $("#turnCounter").css("background","rgb(0,128,0)");
     $("#turnCounter").css("color","white");
 
+    var alsoRemoveThese = DR.players.join(' ').trim();
+    alsoRemoveThese = alsoRemoveThese.replace(/([^ ]+)/g,"player$1");
+    removeThese += " "+alsoRemoveThese;
     $("#crt").removeClass(removeThese).addClass(playerName);
     $(".row1,.row3,.row5").removeClass(removeThese).addClass(playerName);
 
@@ -931,6 +934,16 @@ x.register("moveRules", function(moveRules,data) {
                             if(combatRules.combats[cD].Die !== false){
                                 $(".row" + combatRules.combats[cD].Die + " .col" + combatCol).css('font-size', "110%");
                                 $(".row" + combatRules.combats[cD].Die + " .col" + combatCol).css('background', "#eee");
+                            }
+                            $(".torpedoHitOneTable .col" + combatCol).css({background: "transparent"});
+                            $(".torpedoHitTwoTable .col" + combatCol).css({background: "transparent"});
+
+                            if(data.gameRules.phase == <?= BLUE_TORP_COMBAT_PHASE?> || data.gameRules.phase == <?= RED_TORP_COMBAT_PHASE?>){
+                                var oneHitCol = combatRules.combats[cD].oneHitCol + 1;
+                                var twoHitCol = combatRules.combats[cD].twoHitCol + 1;
+
+                                $(".torpedoHitOneTable .col" + oneHitCol).css('background-color', "rgba(255,255,1,.6)");
+                                $(".torpedoHitTwoTable .col" + twoHitCol).css('background-color', "rgba(255,255,1,.6)");
                             }
                         }
                     }

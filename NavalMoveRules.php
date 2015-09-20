@@ -655,7 +655,7 @@ class NavalMoveRules
         $victory->postStartMovingUnit($unit);
     }
 
-    function move(BaseUnit $movingUnit, $hexagon)
+    function move(MovableUnit $movingUnit, $hexagon)
     {
         if ($movingUnit->unitIsMoving()
             && $this->moveIsValid($movingUnit, $hexagon)
@@ -664,7 +664,7 @@ class NavalMoveRules
         }
     }
 
-    function stopSpeed(BaseUnit $movingUnit)
+    function stopSpeed(MovableUnit $movingUnit)
     {
         $battle = Battle::getBattle();
         $victory = $battle->victory;
@@ -686,7 +686,7 @@ class NavalMoveRules
         $victory->preStopMovingUnit($movingUnit);
     }
 
-    function stopMove(BaseUnit $movingUnit)
+    function stopMove(MovableUnit $movingUnit)
     {
         $battle = Battle::getBattle();
         $victory = $battle->victory;
@@ -734,7 +734,7 @@ class NavalMoveRules
     }
 
 
-    function moveIsValid(BaseUnit $movingUnit, $hexagon, $startHex = false, $firstHex = false)
+    function moveIsValid(MovableUnit $movingUnit, $hexagon, $startHex = false, $firstHex = false)
     {
         // all 4 conditions must be true, so any one that is false
         //    will make the move invalid
@@ -779,7 +779,7 @@ class NavalMoveRules
         return $isValid;
     }
 
-    function updateMoveData(BaseUnit $movingUnit, $hexagon)
+    function updateMoveData(MovableUnit $movingUnit, $hexagon)
     {
         $battle = Battle::getBattle();
         /* @var MapData $mapData */

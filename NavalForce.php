@@ -29,6 +29,7 @@ class NavalForce extends Force
         $victory = $battle->victory;
         $victory->preRecoverUnits();
         for ($id = 0; $id < count($this->units); $id++) {
+            /* @var $unit NavalUnit */
             $unit = $this->units[$id];
             $victory->preRecoverUnit($unit);
 
@@ -129,15 +130,14 @@ class NavalForce extends Force
                 $unit->moveAmountUnused = $unit->maxMove;
             }
             /* Post Movement Phase, Put out fires, and mark dead in water ships sighted if within 3 hexes */
-//            if($phase === BLUE_SPEED_PHASE || $phase === RED_SPEED_PHASE){
-//
-//                $unit->postMove();
-//                if ($unit->pDamage > 1 || $unit->maxMove == 0) {
-//                    if($this->unitIsInRange($id, 3)){
-//                        $this->unit[$id]->spotted = true;
-//                    }
-//                }
-//            }
+            if($phase === BLUE_SPEED_PHASE || $phase === RED_SPEED_PHASE){
+                $unit->postMove();
+                if ($unit->pDamage > 1 || $unit->maxMove == 0) {
+                    if($this->unitIsInRange($id, 3)){
+                        $unit->spotted = true;
+                    }
+                }
+            }
             $unit->combatIndex = 0;
             $unit->combatNumber = 0;
             $unit->combatResults = NE;
@@ -148,43 +148,44 @@ class NavalForce extends Force
 
     }
 
+    function eliminateUnit($id){
+        parent::eliminateUnit($id);
+        $this->units[$id]->eliminate();
+    }
 
-    function unitIsInRange($id, $range = false)
+
+    function unitIsInRange($id, $argRange = false)
     {
         $b = Battle::getBattle();
         $isInRange = false;
-        if($range === false){
-            $range = $this->units[$id]->range;
-        }
+        $range = $this->units[$id]->range;
         $unitRange = $range * 2;
         if($b->gameRules->phase == BLUE_TORP_COMBAT_PHASE || $b->gameRules->phase == RED_TORP_COMBAT_PHASE) {
             $unitRange = $range * 3;
         }
         $range = $unitRange;
-        if ($range <= 1) {
-            return false;
+        if($argRange !== false){
+            $range = $argRange;
         }
-        if ($this->ZOCrule == true) {
-            $los = new Los();
-            $los->setOrigin($this->units[$id]->hexagon);
+        $los = new Los();
+        $los->setOrigin($this->units[$id]->hexagon);
 
-            for ($i = 0; $i < count($this->units); $i++) {
-                /* hexagons without names are off map */
-                if(!$this->units[$i]->hexagon->name){
-                    continue;
-                }
-                $los->setEndPoint($this->units[$i]->hexagon);
-                $losRange = $los->getRange();
-                if ($losRange <= $range
-                    && $this->units[$i]->forceId != $this->units[$id]->forceId
-                    && $this->units[$i]->status != STATUS_CAN_REINFORCE
-                    && $this->units[$i]->status != STATUS_ELIMINATED
-                ) {
-                    if($b->combatRules->checkBlocked($los, $id))
-                    {
-                        $isInRange = true;
-                        break;
-                    }
+        for ($i = 0; $i < count($this->units); $i++) {
+            /* hexagons without names are off map */
+            if(!$this->units[$i]->hexagon->name){
+                continue;
+            }
+            $los->setEndPoint($this->units[$i]->hexagon);
+            $losRange = $los->getRange();
+            if ($losRange <= $range
+                && $this->units[$i]->forceId != $this->units[$id]->forceId
+                && $this->units[$i]->status != STATUS_CAN_REINFORCE
+                && $this->units[$i]->status != STATUS_ELIMINATED
+            ) {
+                if($b->combatRules->checkBlocked($los, $id))
+                {
+                    $isInRange = true;
+                    break;
                 }
             }
         }

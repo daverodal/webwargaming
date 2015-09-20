@@ -44,8 +44,7 @@ class RetreatStep
         }
     }
 }
-class BaseUnit{
-
+class MovableUnit{
     public $id;
     public $forceId;
     public $name;
@@ -57,40 +56,13 @@ class BaseUnit{
     public $moveAmountUsed;
     public $reinforceZone;
     public $reinforceTurn;
-    public $combatNumber;
-    public $combatIndex;
-    public $combatOdds;
-    public $moveCount;
-    public $retreatCountRequired;
-    public $combatResults;
-    public $dieRoll;
+
     public $nationality;
     public $forceMarch = false;
     public $class;
     public $dirty;
-    public $adjustments;
     public $unitDesig;
     public $moveAmountUnused;
-
-    /* damage is related to exchangeAmount, damage is always strength points, for victory points,
-     * exchangeAmount may be in steps or strength points
-     */
-    public $damage;
-    public $exchangeAmount;
-
-
-    public function jsonSerialize()
-    {
-        if (is_object($this->hexagon)) {
-            if ($this->hexagon->name) {
-                $this->hexagon = $this->hexagon->getName();
-
-            } else {
-                $this->hexagon = $this->hexagon->parent;
-            }
-        }
-        return $this;
-    }
 
     function unitHasMoveAmountAvailable($moveAmount)
     {
@@ -100,16 +72,6 @@ class BaseUnit{
             $canMove = false;
         }
         return $canMove;
-    }
-
-    function addAdjustment($name, $adjustment)
-    {
-        $this->adjustments->$name = $adjustment;
-    }
-
-    function removeAdjustment($name)
-    {
-        unset($this->adjustments->$name);
     }
 
     function unitHasNotMoved()
@@ -146,6 +108,103 @@ class BaseUnit{
     {
 
         return $this->hexagon;
+    }
+
+    function updateMoveStatus($hexagon, $moveAmount)
+    {
+
+        $battle = Battle::getBattle();
+        $gameRules = $battle->gameRules;
+        $mapData = $battle->mapData;
+        $attackingForceId = $battle->force->attackingForceId;
+//        $mapData = MapData::getInstance();
+        /* @var MapHex $mapHex */
+        $fromHex = $this->hexagon->getName();
+        $toHex = $hexagon->getName();
+        $mapHex = $mapData->getHex($this->hexagon->getName());
+        if ($mapHex) {
+            $mapHex->unsetUnit($this->forceId, $this->id);
+        }
+
+        $this->hexagon = $hexagon;
+        $this->dirty = true;
+        $mapData->breadcrumbMove($this->id, $attackingForceId, $gameRules->turn, $gameRules->phase, $gameRules->mode, $fromHex, $toHex);
+        $mapHex = $mapData->getHex($this->hexagon->getName());
+        if ($mapHex) {
+            $mapHex->setUnit($this->forceId, $this);
+            $mapHexName = $mapHex->name;
+            if (isset($mapData->specialHexes->$mapHexName)) {
+
+                if ($mapData->specialHexes->$mapHexName >= 0 && $mapData->specialHexes->$mapHexName != $this->forceId) {
+                    $victory = $battle->victory;
+                    $mapData->specialHexesChanges->$mapHexName = true;
+                    $victory->specialHexChange($mapHexName, $this->forceId);
+                    $mapData->alterSpecialHex($mapHexName, $this->forceId);
+                }
+            }
+        }
+        $this->moveCount++;
+        $this->moveAmountUsed = $this->moveAmountUsed + $moveAmount;
+    }
+
+    function isDeploy(){
+        return $this->hexagon->parent == "deployBox";
+    }
+
+    function getEliminated( $hexagon)
+    {
+        if ($this->status == STATUS_CAN_REPLACE) {
+            $hexagon = new Hexagon($hexagon);
+            $this->status = STATUS_REPLACED;
+            $this->updateMoveStatus($hexagon, 0);
+            return $this->id;
+        }
+        return false;
+    }
+
+}
+class BaseUnit extends MovableUnit{
+
+
+    public $combatNumber;
+    public $combatIndex;
+    public $combatOdds;
+    public $moveCount;
+    public $retreatCountRequired;
+    public $combatResults;
+    public $dieRoll;
+    public $adjustments;
+
+
+    /* damage is related to exchangeAmount, damage is always strength points, for victory points,
+     * exchangeAmount may be in steps or strength points
+     */
+    public $damage;
+    public $exchangeAmount;
+
+
+    public function jsonSerialize()
+    {
+        if (is_object($this->hexagon)) {
+            if ($this->hexagon->name) {
+                $this->hexagon = $this->hexagon->getName();
+
+            } else {
+                $this->hexagon = $this->hexagon->parent;
+            }
+        }
+        return $this;
+    }
+
+
+    function addAdjustment($name, $adjustment)
+    {
+        $this->adjustments->$name = $adjustment;
+    }
+
+    function removeAdjustment($name)
+    {
+        unset($this->adjustments->$name);
     }
 
     function setStatus($status)
@@ -306,57 +365,7 @@ class BaseUnit{
         return $success;
     }
 
-    function updateMoveStatus($hexagon, $moveAmount)
-    {
 
-        $battle = Battle::getBattle();
-        $gameRules = $battle->gameRules;
-        $mapData = $battle->mapData;
-        $attackingForceId = $battle->force->attackingForceId;
-//        $mapData = MapData::getInstance();
-        /* @var MapHex $mapHex */
-        $fromHex = $this->hexagon->getName();
-        $toHex = $hexagon->getName();
-        $mapHex = $mapData->getHex($this->hexagon->getName());
-        if ($mapHex) {
-            $mapHex->unsetUnit($this->forceId, $this->id);
-        }
-
-        $this->hexagon = $hexagon;
-        $this->dirty = true;
-        $mapData->breadcrumbMove($this->id, $attackingForceId, $gameRules->turn, $gameRules->phase, $gameRules->mode, $fromHex, $toHex);
-        $mapHex = $mapData->getHex($this->hexagon->getName());
-        if ($mapHex) {
-            $mapHex->setUnit($this->forceId, $this);
-            $mapHexName = $mapHex->name;
-            if (isset($mapData->specialHexes->$mapHexName)) {
-
-                if ($mapData->specialHexes->$mapHexName >= 0 && $mapData->specialHexes->$mapHexName != $this->forceId) {
-                    $victory = $battle->victory;
-                    $mapData->specialHexesChanges->$mapHexName = true;
-                    $victory->specialHexChange($mapHexName, $this->forceId);
-                    $mapData->alterSpecialHex($mapHexName, $this->forceId);
-                }
-            }
-        }
-        $this->moveCount++;
-        $this->moveAmountUsed = $this->moveAmountUsed + $moveAmount;
-    }
-
-    function isDeploy(){
-        return $this->hexagon->parent == "deployBox";
-    }
-
-    function getEliminated( $hexagon)
-    {
-        if ($this->status == STATUS_CAN_REPLACE) {
-            $hexagon = new Hexagon($hexagon);
-            $this->status = STATUS_REPLACED;
-            $this->updateMoveStatus($hexagon, 0);
-            return $this->id;
-        }
-        return false;
-    }
 }
 
 class unit extends BaseUnit implements JsonSerializable

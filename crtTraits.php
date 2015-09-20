@@ -186,6 +186,8 @@ trait NavalCombatTrait
         }
         if($battle->gameRules->phase == BLUE_TORP_COMBAT_PHASE || $battle->gameRules->phase == RED_TORP_COMBAT_PHASE) {
             $combats->unitDefenseStrength = $defenseStrength;
+            $combats->oneHitCol = $this->getOneHitColumn($defenseStrength);
+            $combats->twoHitCol = $this->getTwoHitColumn($defenseStrength);
             $defenseStrength = $unit->maxMove + 1;
         }
             $combatLog .= " = $defenseStrength";

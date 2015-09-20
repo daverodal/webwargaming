@@ -1216,6 +1216,8 @@ svg marker#head {
     width: 39px; }
   #crt span {
     width: 39px; }
+  #crt .tableWrapper {
+    margin-top: 20px; }
 
 .reduced {
   color: white; }

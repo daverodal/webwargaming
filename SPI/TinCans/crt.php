@@ -103,7 +103,63 @@ class CombatResultsTable extends ModernCombatResultsTable
         return $combatIndex;
     }
 
+    function getTwoHitColumn($defense){
+        $col = 4; /* catch all 20+ */
+        if($defense > 0 && $defense < 11){
+            switch($defense){
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    $col = 0;
+                    break;
+                case 5:
+                case 6:
+                    $col = 1;
+                    break;
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                    $col = 2;
+                    break;
+            }
+        }elseif($defense >= 11 && $defense <= 20){
+            $col = 3;
+        }
+        return $col;
+    }
 
+    function getOneHitColumn($defense){
+        $col = 6; /* catch all 20+ */
+        if($defense > 0 && $defense < 11){
+            switch($defense){
+                case 1:
+                case 2:
+                    $col = 0;
+                    break;
+                case 3:
+                    $col = 1;
+                    break;
+                case 4:
+                    $col = 2;
+                    break;
+                case 5:
+                case 6:
+                    $col = 3;
+                    break;
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                    $col = 4;
+                    break;
+            }
+        }elseif($defense >= 11 && $defense <= 20){
+            $col = 5;
+        }
+        return $col;
+    }
     function getCombatResults($Die, $index, $combat)
     {
         $battle = Battle::getBattle();
@@ -119,33 +175,7 @@ class CombatResultsTable extends ModernCombatResultsTable
 //                    $Die = 0;
                     $combat->hitDie = $Die + 1;
                     $defense = $combat->unitDefenseStrength;
-                    $col = 6; /* catch all 20+ */
-                    if($defense > 0 && $defense < 11){
-                        switch($defense){
-                            case 1:
-                            case 2:
-                                $col = 0;
-                                break;
-                            case 3:
-                                $col = 1;
-                                break;
-                            case 4:
-                                $col = 2;
-                                break;
-                            case 5:
-                            case 6:
-                                $col = 3;
-                                break;
-                            case 7:
-                            case 8:
-                            case 9:
-                            case 10:
-                                $col = 4;
-                                break;
-                        }
-                    }elseif($defense >= 11 && $defense <= 20){
-                        $col = 5;
-                    }
+                    $col = $this->getOneHitColumn($defense);
                     $combat->hitCol = $col + 1;
 
                     return $this->crts->torpedoHitOne[$Die][$col];
@@ -156,29 +186,7 @@ class CombatResultsTable extends ModernCombatResultsTable
 
                     $combat->hitDie = $Die+1;
                     $defense = $combat->unitDefenseStrength;
-                    $col = 4; /* catch all 20+ */
-                    if($defense > 0 && $defense < 11){
-                        switch($defense){
-                            case 1:
-                            case 2:
-                            case 3:
-                            case 4:
-                                $col = 0;
-                                break;
-                            case 5:
-                            case 6:
-                                $col = 1;
-                                break;
-                            case 7:
-                            case 8:
-                            case 9:
-                            case 10:
-                                $col = 2;
-                                break;
-                        }
-                    }elseif($defense >= 11 && $defense <= 20){
-                        $col = 3;
-                    }
+                    $col = $this->getTwoHitColumn($defense);
 
                     $combat->hitCol = $col + 1;
                     return $this->crts->torpedoHitTwo[$Die][$col];
