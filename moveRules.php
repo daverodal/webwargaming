@@ -388,13 +388,50 @@ class MoveRules
 
     }
 
+    function unlimitedMoves(){
+        if($this->moveQueue[0]->pointsLeft === 0){
+            return;
+        }
+        $unit = $this->force->units[$this->movingUnitId];
+
+        for($x = 1; $x <= 21; $x++){
+            for($y=1;$y <= 29;$y++){
+                $hexNum = sprintf("%02d%02d", $x, $y);
+
+                $hexPath = new HexPath();
+                $hexPath->name = $hexNum;
+                $hexPath->pathToHere = [];
+                $hexPath->pointsLeft = 0;
+
+                /* @var MapHex $mapHex */
+                $mapHex = $this->mapData->getHex($hexNum);
+
+                if ($mapHex->isOccupied($this->force->attackingForceId, $this->stacking, $unit)) {
+//                    $this->moves->$hexNum->isOccupied = true;
+                    continue;
+                }
+
+                if ($mapHex->isOccupied($this->force->defendingForceId,$this->enemyStackingLimit, $unit)) {
+//                    $this->moves->$hexNum->isValid = false;
+                    continue;
+                }
+                $this->moves->$hexNum = $hexPath;
+
+
+
+            }
+        }
+
+
+    }
     function bfsMoves()
     {
         $hist = array();
         $cnt = 0;
         $unit = $this->force->units[$this->movingUnitId];
         if($unit->airMovement){
-            $this->airMoves();
+            $this->unlimitedMoves();
+//            $this->airMoves();
             return;
         }
         while (count($this->moveQueue) > 0) {

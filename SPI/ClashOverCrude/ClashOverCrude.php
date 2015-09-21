@@ -89,6 +89,7 @@ class ClashOverCrude extends ModernLandBattle
 
         /* Arab Player Units */
 
+        /* @var UnitFactory LandAirUnit */
         UnitFactory::$injector = $this->force;
 
         /* Iranian */
@@ -146,12 +147,12 @@ class ClashOverCrude extends ModernLandBattle
         UnitFactory::create("lll", BLUE_FORCE, "israel", "multiPara.png", 7, false, 10,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "para");
         UnitFactory::create("lll", BLUE_FORCE, "israel", "multiMech.png", 9, false, 10,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "mech");
 
-        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane.svg", 2, 6, 38,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "air", "f4");
-        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane.svg", 2, 6, 38,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "air", "f4");
-        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane.svg", 2, 6, 30,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "air", "f4");
-        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane.svg", 2, 6, 30,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "air", "f4");
-        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane2.svg", 14, 6, 30,  STATUS_CAN_REINFORCE, "O", 1, 1, "us",  "air", "f111");
-        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane2.svg", 14, 6, 30,  STATUS_CAN_REINFORCE, "O", 1, 1, "us",  "air", "f111");
+        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane.svg", 2, 6, 38,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "air", "f4", true);
+        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane.svg", 2, 6, 38,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "air", "f4", true);
+        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane.svg", 2, 6, 30,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "air", "f4", true);
+        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane.svg", 2, 6, 30,  STATUS_CAN_REINFORCE, "O", 1, 1, "israeli",  "air", "f4", true);
+        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane2.svg", 14, 6, 30,  STATUS_CAN_REINFORCE, "O", 1, 1, "us",  "air", "f111", true);
+        UnitFactory::create("lll", BLUE_FORCE, "israel", "jetPlane2.svg", 14, 6, 30,  STATUS_CAN_REINFORCE, "O", 1, 1, "us",  "air", "f111", true);
 
         /* Germany */
         UnitFactory::create("lll", BLUE_FORCE, "germany", "multiPara.png", 7, false, 10,  STATUS_CAN_REINFORCE, "O", 1, 1, "eec",  "para");
@@ -170,17 +171,17 @@ class ClashOverCrude extends ModernLandBattle
         UnitFactory::create("lll", BLUE_FORCE, "germany", "multiMech.png", 9, false, 10,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "mech");
         UnitFactory::create("lll", BLUE_FORCE, "germany", "multiArmor.png", 10, false, 10,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "mech");
 
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 38,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4");
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 38,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4");
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 38,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4");
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 38,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4");
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 38,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4");
-        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 38,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4");
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 38,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4", true);
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 38,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4", true);
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 38,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4", true);
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 38,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4", true);
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 38,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4", true);
+        UnitFactory::create("lll", BLUE_FORCE, "germany", "jetPlane.svg", 7, 6, 38,  STATUS_CAN_REINFORCE, "Q", 1, 1, "us",  "air", "f4", true);
 
         /* Gulf of Oman */
-        UnitFactory::create("lll", BLUE_FORCE, "oman", "jetPlane.svg", 7, 6, 38,  STATUS_CAN_REINFORCE, "O", 1, 1, "usn",  "air", "f4");
-        UnitFactory::create("lll", BLUE_FORCE, "oman", "jetPlane.svg", 6, 3, 15,  STATUS_CAN_REINFORCE, "O", 1, 1, "usn",  "air", "a6");
-        UnitFactory::create("lll", BLUE_FORCE, "oman", "jetPlane.svg", 5, 4, 15,  STATUS_CAN_REINFORCE, "O", 1, 1, "usn",  "air", "f4");
+        UnitFactory::create("lll", BLUE_FORCE, "oman", "jetPlane.svg", 7, 6, 38,  STATUS_CAN_REINFORCE, "O", 1, 1, "usn",  "air", "f4", true);
+        UnitFactory::create("lll", BLUE_FORCE, "oman", "jetPlane.svg", 6, 3, 15,  STATUS_CAN_REINFORCE, "O", 1, 1, "usn",  "air", "a6", true);
+        UnitFactory::create("lll", BLUE_FORCE, "oman", "jetPlane.svg", 5, 4, 15,  STATUS_CAN_REINFORCE, "O", 1, 1, "usn",  "air", "f4", true);
 
 
 
