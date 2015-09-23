@@ -47,7 +47,7 @@ class Fraustadt1706 extends JagCore
     static function playMulti($name, $wargame, $arg = false)
     {
         $deployTwo = $playerOne = "Swedish";
-        $deployOne = $playerTwo = "Saxon Russian";
+        $deployOne = $playerTwo = "Saxon-Russian";
         @include_once "playMulti.php";
     }
 
@@ -56,7 +56,7 @@ class Fraustadt1706 extends JagCore
         global $force_name;
         $youAre = $force_name[$player];
         $deployTwo = $playerOne = "Swedish";
-        $deployOne = $playerTwo = "Saxon Russian";
+        $deployOne = $playerTwo = "Saxon-Russian";
         @include_once "view.php";
     }
 
