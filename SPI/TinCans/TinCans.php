@@ -209,10 +209,10 @@ class TinCans extends ModernNavalBattle
             /* USN forces */
 
 
-            UnitFactory::create("CL-3", RED_FORCE, 4725, "multiInf.png", 11, 12, 6, 0, 3, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
-            UnitFactory::create("CL-3", RED_FORCE, 4926, "multiInf.png", 11, 12, 6, 0, 3, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
+            UnitFactory::create("CL-3", RED_FORCE, 4725, "multiInf.png", 11, 12, 6, 0, 2, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
+            UnitFactory::create("CL-3", RED_FORCE, 4926, "multiInf.png", 11, 12, 6, 0, 2, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
 
-            UnitFactory::create("CL-6", RED_FORCE, 4825, "multiInf.png", 6, 12, 4, 12, 3, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
+            UnitFactory::create("CL-6", RED_FORCE, 4825, "multiInf.png", 6, 12, 4, 12, 2, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "ca");
 
             UnitFactory::create("DD-6", RED_FORCE, 4222, "multiInf.png", 3, 8, 2, 10, 2, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");
             UnitFactory::create("DD-6", RED_FORCE, 4323, "multiInf.png", 3, 8, 2, 10, 2, NorthWest,  STATUS_CAN_DEPLOY, "A", 1, "usn",  "dd");

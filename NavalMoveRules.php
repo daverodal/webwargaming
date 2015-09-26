@@ -92,6 +92,11 @@ class NavalMoveRules
             if ($movingUnit->unitIsMoving() == true) {
                 $this->stopSpeed($movingUnit);
                 $dirty = true;
+            }else{
+                $movingUnit = $this->force->units[$this->movingUnitId];
+                $this->stopSpeed($movingUnit);
+                $this->startSpeeding($id);
+                $dirty = true;
             }
         }else{
 
