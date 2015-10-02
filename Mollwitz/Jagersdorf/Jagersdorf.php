@@ -125,7 +125,7 @@ class Jagersdorf extends JagCore {
         $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png",2, 2, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian",false,'cavalry');
         $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png",1, 1, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian",false,'cavalry');
 
-        $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png",1, 1, 6, true, STATUS_CAN_DEPLOY, "AB", 1, 1, "Russian",false,'cavalry');
+        $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png",1, 1, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian",false,'cavalry');
         $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png",1, 1, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian",false,'cavalry');
         $this->force->addUnit("infantry-1", RED_FORCE, "deployBox", "RusCavBadge.png",1, 1, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian",false,'cavalry');
 
