@@ -52,11 +52,11 @@ class jagerVictoryCore extends victoryCore
         $turn = $gameRules->turn;
         if(!$this->gameOver){
             $prussianWin = $russianWin = false;
-            if($this->victoryPoints[RUSSIAN_FORCE] > 20){
+            if($this->victoryPoints[RUSSIAN_FORCE] >= 20){
                 $russianWin = true;
                 $reason = "Win on Kills";
             }
-            if($this->victoryPoints[PRUSSIAN_FORCE] > 25){
+            if($this->victoryPoints[PRUSSIAN_FORCE] >= 25){
                 $reason = "Win on Kills";
                 $prussianWin = true;
             }
