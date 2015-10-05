@@ -236,7 +236,7 @@ x.register("force", function(force,data) {
             $("#"+i+" .forceMarch").hide();
             $("#"+i+" .range").show();
         }
-        if(force.requiredDefenses[i] === true){
+        if(force.requiredDefenses && force.requiredDefenses[i] === true){
 
             color = "black";
             style = "dotted";
@@ -258,7 +258,7 @@ x.register("force", function(force,data) {
                     shadow = false;
                 }else{
                 }
-                if(force.requiredAttacks[i] === true){
+                if(force.requiredAttacks && force.requiredAttacks[i] === true){
                     color =  "black";
                     style = "dotted";
                     totalAttackers++;

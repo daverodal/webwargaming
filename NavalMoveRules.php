@@ -263,12 +263,12 @@ class NavalMoveRules
                         $dirty = true;
                     }
                 }
-                if ($this->force->unitIsReinforcing($this->movingUnitId) == true) {
+                if ($movingUnit->unitIsReinforcing() == true) {
                     $this->reinforce($this->movingUnitId, new Hexagon($hexagon));
                     $this->calcMove($id);
                     $dirty = true;
                 }
-                if ($this->force->unitIsDeploying($this->movingUnitId) == true) {
+                if ($movingUnit->unitIsDeploying() == true) {
                     $this->deploy($this->movingUnitId, new Hexagon($hexagon));
                     $dirty = true;
                 }
@@ -284,11 +284,11 @@ class NavalMoveRules
                         $this->stopMove($movingUnit);
                         $dirty = true;
                     }
-                    if ($this->force->unitIsReinforcing($id) == true) {
+                    if ($movingUnit->unitIsReinforcing() == true) {
                         $this->stopReinforcing($id);
                         $dirty = true;
                     }
-                    if ($this->force->unitIsDeploying($id) == true) {
+                    if ($movingUnit->unitIsDeploying() == true) {
                         $this->stopDeploying($id);
                         $dirty = true;
                     }
@@ -560,7 +560,8 @@ class NavalMoveRules
             $this->moves->$hexNum->pathToHere = $hexPath->pathToHere;
 
             if ($this->moves->$hexNum->isZoc == NULL) {
-                $this->moves->$hexNum->isZoc = $this->force->mapHexIsZOC($mapHex, $defendingForceId);
+                $this->moves->$hexNum->isZoc = $this->force->
+                mapHexIsZOC($mapHex, $defendingForceId);
             }
             if ($this->moves->$hexNum->isZoc) {
                 if (!$this->moves->$hexNum->isOccupied) {
@@ -849,9 +850,10 @@ class NavalMoveRules
 
     function startReinforcing($id, $turn)
     {
-        if ($this->force->getUnitReinforceTurn($id) <= $turn) {
-            /* @var Unit $unit */
-            $unit = $this->force->getUnit($id);
+        /* @var Unit $unit */
+        $unit = $this->force->getUnit($id);
+        if ($unit->getUnitReinforceTurn($id) <= $turn) {
+
 
             $battle = Battle::getBattle();
             $victory = $battle->victory;
@@ -883,9 +885,10 @@ class NavalMoveRules
 
     function startDeploying($id, $turn)
     {
-        if ($this->force->getUnitReinforceTurn($id) <= $turn) {
-            /* @var Unit $unit */
-            $unit = $this->force->getUnit($id);
+        /* @var Unit $unit */
+        $unit = $this->force->getUnit($id);
+        if ($unit->getUnitReinforceTurn($id) <= $turn) {
+
             if ($unit->setStatus(STATUS_DEPLOYING) == true) {
                 $battle = Battle::getBattle();
                 $victory = $battle->victory;
@@ -918,7 +921,7 @@ class NavalMoveRules
         $unit = $this->force->getUnit($id);
         if ($unit->setStatus(STATUS_CAN_REPLACE) == true) {
             $movesLeft = 0;
-            $zones = $this->terrain->getReinforceZonesByName($this->force->getUnitReinforceZone($id));
+            $zones = $this->terrain->getReinforceZonesByName($unit->getUnitReinforceZone($id));
             list($zones) = $battle->victory->postReinforceZones($zones, $unit);
             foreach ($zones as $zone) {
                 if ($this->force->hexagonIsOccupied($zone->hexagon, $this->stacking, $unit)) {
@@ -957,9 +960,10 @@ class NavalMoveRules
 
             list($zones) = $battle->victory->postReinforceZoneNames($this->terrain->getReinforceZoneList($hexagon), $battle->force->units[$id]);
 
-            if (in_array($this->force->getUnitReinforceZone($id) , $zones)) {
-                /* @var Unit $movingUnit */
-                $movingUnit = $this->force->getUnit($id);
+            /* @var Unit $movingUnit */
+            $movingUnit = $this->force->getUnit($id);
+            if (in_array($movingUnit->getUnitReinforceZone($id) , $zones)) {
+
                 if ($movingUnit->setStatus(STATUS_MOVING) == true) {
                     $battle = Battle::getBattle();
                     $victory = $battle->victory;
@@ -973,10 +977,11 @@ class NavalMoveRules
 
     function deploy($id, $hexagon)
     {
-        if ($this->force->unitIsDeploying($id) == true) {
-            if (in_array($this->force->getUnitReinforceZone($id), $this->terrain->getReinforceZoneList($hexagon))) {
-                /* @var Unit $movingUnit */
-                $movingUnit = $this->force->units[$id];
+        /* @var Unit $movingUnit */
+        $movingUnit = $this->force->units[$id];
+        if ($movingUnit->unitIsDeploying($id) == true) {
+            if (in_array($movingUnit->getUnitReinforceZone($id), $this->terrain->getReinforceZoneList($hexagon))) {
+
                 if ($movingUnit->setStatus(STATUS_CAN_DEPLOY) == true) {
                     $this->force->updateMoveStatus($id, $hexagon, 0);
                     $this->anyUnitIsMoving = false;
@@ -1003,8 +1008,10 @@ class NavalMoveRules
 
     function stopDeploying($id)
     {
-        if ($this->force->unitIsDeploying($id) == true) {
-            /* @var Unit $unit */
+        /* @var Unit $unit */
+        $unit = $this->force->getUnit($id);
+
+        if ($unit->unitIsDeploying() == true) {
             $unit = $this->force->getUnit($id);
             if ($unit->setStatus(STATUS_CAN_DEPLOY) == true) {
                 $this->anyUnitIsMoving = false;

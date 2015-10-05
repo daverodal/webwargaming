@@ -200,7 +200,7 @@ class AreaForce
         return $isOnList;
     }
 
-    function applyCRTresults($defenderId, $attackers, $combatResults, $dieRoll)
+    function applyCRTResults($defenderId, $attackers, $combatResults, $dieRoll)
     {
         $battle = Battle::getBattle();
 //        $this->clearRetreatHexagonList();

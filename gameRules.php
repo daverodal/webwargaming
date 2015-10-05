@@ -223,7 +223,7 @@ class GameRules
                                 $this->moveRules->startReplacing($id);
                                 break;
                             }
-                            if ($this->force->units[$id]->status != STATUS_CAN_REPLACE && $this->force->units[$id]->status != STATUS_CAN_REINFORCE && $this->force->replace($id)) {
+                            if (isset($this->force->landForce) && $this->force->landForce && $this->force->units[$id]->status != STATUS_CAN_REPLACE && $this->force->units[$id]->status != STATUS_CAN_REINFORCE && $this->force->replace($id)) {
                                 $this->replacementsAvail--;
                                 if ($this->currentReplacement !== false) {
                                     $this->force->units[$this->currentReplacement]->status = STATUS_ELIMINATED;
@@ -403,10 +403,12 @@ class GameRules
                     case SELECT_BUTTON_EVENT:
                         $this->combatRules->undoDefendersWithoutAttackers();
                         if ($this->gameHasCombatResolutionMode == true) {
-                            if (!$this->force->requiredCombats()) {
+                            if (!(isset($this->force->landForce) && $this->force->landForce && $this->force->requiredCombats())) {
                                 $this->combatRules->combatResolutionMode();
                                 $this->mode = COMBAT_RESOLUTION_MODE;
-                                $this->force->clearRequiredCombats();
+                                if(isset($this->force->landForce) && $this->force->landForce){
+                                    $this->force->clearRequiredCombats();
+                                }
                                 $this->force->recoverUnits($this->phase, $this->moveRules, $this->mode);
                                 $this->phaseClicks[] = $click + 1;
                                 $this->phaseClickNames[] = "Combat Resolution ";
@@ -451,20 +453,22 @@ class GameRules
                         if ($this->force->unitsAreBeingEliminated() == true) {
                             $this->force->removeEliminatingUnits();
                         }
-                        if ($this->force->unitsAreExchanging() == true) {
-                            $this->mode = EXCHANGING_MODE;
-                        }
+                        if(isset($this->force->landForce) && $this->force->landForce === true) {
+                            if ($this->force->unitsAreExchanging() == true) {
+                                $this->mode = EXCHANGING_MODE;
+                            }
 
-                        if ($this->force->unitsAreAttackerLosing() == true) {
-                            $this->mode = ATTACKER_LOSING_MODE;
-                        }
+                            if ($this->force->unitsAreAttackerLosing() == true) {
+                                $this->mode = ATTACKER_LOSING_MODE;
+                            }
 
-                        if ($this->force->unitsAreRetreating() == true) {
-                            $this->force->clearRetreatHexagonList();
-                            $this->mode = RETREATING_MODE;
-                        } else { // check if advancing after eliminated unit
-                            if ($this->force->unitsAreAdvancing() == true) {
-                                $this->mode = ADVANCING_MODE;
+                            if ($this->force->unitsAreRetreating() == true) {
+                                $this->force->clearRetreatHexagonList();
+                                $this->mode = RETREATING_MODE;
+                            } else { // check if advancing after eliminated unit
+                                if ($this->force->unitsAreAdvancing() == true) {
+                                    $this->mode = ADVANCING_MODE;
+                                }
                             }
                         }
                         break;
@@ -546,7 +550,9 @@ class GameRules
 
                     case SELECT_COUNTER_EVENT:
 
-                        if ($this->force->setStatus($id, STATUS_EXCHANGED)) {
+                        $unit = $this->force->getUnit($id);
+                        if ($unit->setStatus(STATUS_EXCHANGED)) {
+                            $this->force->exchangeUnit($unit);
                             if ($this->force->unitsAreBeingEliminated() == true) {
                                 $this->force->removeEliminatingUnits();
                             }
@@ -637,7 +643,7 @@ class GameRules
         $victory->incrementTurn();
     }
 
-    function getInfo()
+    function xxxgetInfo()
     {
 
         //	var info;
