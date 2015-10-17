@@ -39,8 +39,9 @@ require_once "ModernLandBattle.php";
 class FinalChapter extends ModernLandBattle
 {
 
-    public $specialHexesMap = ['SpecialHexA'=>3, 'SpecialHexB'=>3, 'SpecialHexC'=>3];
+    public $specialHexesMap = ['SpecialHexA'=>3, 'SpecialHexB'=>3, 'SpecialHexC'=>3, 'SpecialHexD'=>3];
 
+    public $specialHexD = [];
     static function getHeader($name, $playerData, $arg = false)
     {
         global $force_name;
@@ -79,6 +80,7 @@ class FinalChapter extends ModernLandBattle
         $data->specialHexA = $this->specialHexA;
         $data->specialHexB = $this->specialHexB;
         $data->specialHexC = $this->specialHexC;
+        $data->specialHexD = $this->specialHexD;
         return $data;
     }
 
@@ -272,6 +274,7 @@ class FinalChapter extends ModernLandBattle
             $this->specialHexA = $data->specialHexA;
             $this->specialHexB = $data->specialHexB;
             $this->specialHexC = $data->specialHexC;
+            $this->specialHexD = $data->specialHexD;
         } else {
             $this->victory = new Victory("SPI/FinalChapter/finalChapterVictoryCore.php");
 

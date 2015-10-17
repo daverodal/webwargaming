@@ -74,6 +74,7 @@ class finalChapterVictoryCore extends victoryCore
     {
         $battle = Battle::getBattle();
         list($mapHexName, $forceId) = $args;
+        $vp = 0;
         if(in_array($mapHexName, $battle->specialHexA)){
             $vp = 1;
         }
@@ -84,6 +85,20 @@ class finalChapterVictoryCore extends victoryCore
             $vp = 10;
         }
 
+
+        if ($forceId == WESTERN_FORCE) {
+            $newSpecialHexes = [];
+            foreach ($battle->specialHexD as $specialHex) {
+                if ($specialHex == $mapHexName) {
+                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>West Wall Destroyed</span>";
+                    $battle->mapData->removeSpecialHex($mapHexName);
+                    unset($battle->mapData->specialHexesChanges->$mapHexName);
+                    continue;
+                }
+                $newSpecialHexes[] = $specialHex;
+            }
+            $battle->specialHexD = $newSpecialHexes;
+        }
 //        if ($mapHexName == 1807 && $forceId == EASTERN_FORCE) {
 //            $this->scienceCenterDestroyed;
 //            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>Marine Science Facility Destroyed</span>";
@@ -91,13 +106,15 @@ class finalChapterVictoryCore extends victoryCore
 //        }
 
 
-        if($forceId == WESTERN_FORCE || $forceId == EASTERN_FORCE){
-            $this->victoryPoints[$forceId] += $vp;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>+$vp</span>";
-        }else{
-            $previousOwner = $battle->mapData->specialHexes->$mapHexName;
-            $this->victoryPoints[$previousOwner] -= $vp;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>-$vp</span>";
+        if($vp) {
+            if ($forceId == WESTERN_FORCE || $forceId == EASTERN_FORCE) {
+                $this->victoryPoints[$forceId] += $vp;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>+$vp</span>";
+            } else {
+                $previousOwner = $battle->mapData->specialHexes->$mapHexName;
+                $this->victoryPoints[$previousOwner] -= $vp;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>-$vp</span>";
+            }
         }
     }
 

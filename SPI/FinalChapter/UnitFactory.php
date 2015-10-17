@@ -135,6 +135,9 @@ class SimpleUnit extends BaseUnit implements JsonSerializable
         }
     }
 
+    public function getRange(){
+        return 1;
+    }
 
     public function fetchData(){
         $mapUnit = new StdClass();

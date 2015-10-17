@@ -409,11 +409,15 @@ trait divCombatDoubleMultipleTerrain
             $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
             $thisHex = [];
             $thisLog = "";
-            if($terrain->terrainIs($hexpart, 'forta'))
-            {
+            $hexName = $hexagon->name;
+            if(in_array($hexName, $battle->specialHexD)){
                 $thisHex['forta'] = 2;
                 $thisLog .= "2x defend in fort ";
             }
+//            if($battle->terrainIs($hexpart, 'forta'))
+//            {
+//
+//            }
             if($terrain->terrainIs($hexpart, 'roughone'))
             {
                 $thisHex['roughone'] = 2;
