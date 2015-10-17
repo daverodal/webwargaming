@@ -59,6 +59,7 @@
   color: white;
 }
 
+
 #infoWrapper .WrapperLabel {
   width: auto;
 }
@@ -70,6 +71,7 @@
 
 #gameTurn6 {
 }
+
 
 #gameTurn6 .unit {
   float: left;
@@ -83,7 +85,7 @@
  @include victoryPoints(#666);
 }
 
-.specialHexes.germany {
+.specialHexes.german {
   color: white;
   background-color: #666;
 }
