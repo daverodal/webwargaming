@@ -157,7 +157,7 @@ class CombatResultsTable
 //        $attackStrength = $this->force->getAttackerStrength($combats->attackers);
         $defenseStrength = 0;
         foreach ($defenders as $defId => $defender) {
-            $defenseStrength += $force->getDefenderStrength($defId);
+            $defenseStrength += $unit->defStrength;
         }
         $combatIndex = $this->getCombatIndex($attackStrength, $defenseStrength);
         /* Do this before terrain effects */

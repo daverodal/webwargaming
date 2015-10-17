@@ -274,7 +274,7 @@ class CombatRules
                         $los->setOrigin($this->force->getUnitHexagon($id));
                         $los->setEndPoint($this->force->getUnitHexagon($defenderId));
                         $range = $los->getRange();
-                        if ($range > $this->force->getUnitRange($id)) {
+                        if ($range > $unit->getRange($id)) {
                             $good = false;
                             break;
                         }
@@ -297,7 +297,7 @@ class CombatRules
                             $los->setEndPoint($this->force->getUnitHexagon($defenderId));
                             $range = $los->getRange();
                             $bearing = $los->getBearing();
-                            if ($range <= $this->force->getUnitRange($id)) {
+                            if ($range <= $unit->getRange($id)) {
                                 $this->force->setupAttacker($id, $range);
                                 if (isset($this->attackers->$id) && $this->attackers->$id !== $cd) {
                                     /* move unit to other attack */

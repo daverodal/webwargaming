@@ -276,9 +276,9 @@ class NavalCombatRules
                         $los->setOrigin($this->force->getUnitHexagon($id));
                         $los->setEndPoint($this->force->getUnitHexagon($defenderId));
                         $range = $los->getRange();
-                        $unitRange = $this->force->getUnitRange($id) * 2;
+                        $unitRange = $unit->getRange($id) * 2;
                         if($battle->gameRules->phase == BLUE_TORP_COMBAT_PHASE || $battle->gameRules->phase == RED_TORP_COMBAT_PHASE) {
-                            $unitRange = $this->force->getUnitRange($id) * 3;
+                            $unitRange = $unit->getRange($id) * 3;
 
                         }
                         if ($range > $unitRange) {
@@ -531,6 +531,7 @@ class NavalCombatRules
         foreach ($defenders as $defenderId => $defender) {
             $this->force->applyCRTresults($defenderId, $this->combatsToResolve->{$id}->attackers, $combatResults, $Die);
         }
+        /* TODO: Wack man, no need to resolve combat against other units in hex */
         /* apply combat results to other units in defending hexes */
         foreach ($others as $otherId) {
             $this->force->applyCRTresults($otherId, $this->combatsToResolve->{$id}->attackers, $combatResults, $Die);

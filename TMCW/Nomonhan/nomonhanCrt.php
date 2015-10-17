@@ -64,7 +64,7 @@ class NomonhanCombatResultsTable extends CombatResultsTable
 
         foreach ($defenders as $defId => $defender) {
             $unit = $battle->force->units[$defId];
-            $unitStr = $force->getDefenderStrength($defId);
+            $unitStr = $unit->defStrength;
             $combatLog .= $unitStr. " " .$unit->class." ";
             $unit = $force->units[$defId];
             $unitHex = $unit->hexagon;

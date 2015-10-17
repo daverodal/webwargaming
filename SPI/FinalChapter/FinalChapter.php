@@ -68,9 +68,9 @@ class FinalChapter extends ModernLandBattle
 
     function terrainInit($terrainDoc){
         parent::terrainInit($terrainDoc);
-        $this->mapData->alterSpecialHex(112, WESTERN_FORCE);
-        $this->mapData->alterSpecialHex(517, WESTERN_FORCE);
-        $this->mapData->alterSpecialHex(618, WESTERN_FORCE);
+        $this->mapData->alterSpecialHex(2302, WESTERN_FORCE);
+        $this->mapData->alterSpecialHex(1804, WESTERN_FORCE);
+        $this->mapData->alterSpecialHex(1706, WESTERN_FORCE);
     }
 
     function save()

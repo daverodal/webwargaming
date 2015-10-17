@@ -454,10 +454,7 @@ class NavalMoveRules
                     $moveAmount = 1;
                 }
 
-                /*
-                 * TODO order is important in if statement check if doing zoc zoc move first then if just one hex move.
-                 * Then check if oneHex and firstHex
-                 */
+
                 if ($movePoints - $moveAmount >= 0) {
                     $head = false;
                     if (isset($this->moves->$newHexNum)) {
@@ -470,7 +467,6 @@ class NavalMoveRules
                     $newPath->name = $newHexNum;
                     $newPath->pathToHere = $path;
                     $newPath->pointsLeft = $movePoints - $moveAmount;
-//                    $newPath->isClone = true;
                         $newPath->facing = $newFacing % 6;
                     if ($newPath->pointsLeft < 0) {
                         $newPath->pointsLeft = 0;
