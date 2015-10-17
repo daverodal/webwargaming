@@ -30,8 +30,8 @@ $force_name = array();
 $force_name[0] = "Neutral Observer";
 $force_name[1] = "Eastern";
 $force_name[2] = "Western";
-$force_name[3] = "Germany (west)";
-$force_name[4] = "Germany (east)";
+$force_name[3] = "German";
+$force_name[4] = "German";
 
 require_once "constants.php";
 require_once "ModernLandBattle.php";
