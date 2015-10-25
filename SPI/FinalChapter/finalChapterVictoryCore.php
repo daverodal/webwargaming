@@ -93,27 +93,6 @@ class finalChapterVictoryCore extends victoryCore
             }
         }
 
-
-        if ($forceId == WESTERN_FORCE) {
-            $newSpecialHexes = [];
-            foreach ($battle->specialHexD as $specialHex) {
-                if ($specialHex == $mapHexName) {
-                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>West Wall Destroyed</span>";
-                    $battle->mapData->removeSpecialHex($mapHexName);
-                    unset($battle->mapData->specialHexesChanges->$mapHexName);
-                    continue;
-                }
-                $newSpecialHexes[] = $specialHex;
-            }
-            $battle->specialHexD = $newSpecialHexes;
-        }
-//        if ($mapHexName == 1807 && $forceId == EASTERN_FORCE) {
-//            $this->scienceCenterDestroyed;
-//            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>Marine Science Facility Destroyed</span>";
-//            $battle->gameRules->flashMessages[] = "Rebel units may now withdraw from beachheads";
-//        }
-
-
         if($vp) {
             if ($forceId == WESTERN_FORCE || $forceId == EASTERN_FORCE) {
                 $this->victoryPoints[$forceId] += $vp;
