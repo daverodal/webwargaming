@@ -410,14 +410,10 @@ trait divCombatDoubleMultipleTerrain
             $thisHex = [];
             $thisLog = "";
             $hexName = $hexagon->name;
-            if(in_array($hexName, $battle->specialHexD)){
+            if($battle->mapData->getMapSymbol($hexagon->name,'westwall')){
                 $thisHex['forta'] = 2;
-                $thisLog .= "2x defend in fort ";
+                $thisLog .= "2x defend in westwall ";
             }
-//            if($battle->terrainIs($hexpart, 'forta'))
-//            {
-//
-//            }
             if($terrain->terrainIs($hexpart, 'roughone'))
             {
                 $thisHex['roughone'] = 2;

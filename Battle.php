@@ -177,6 +177,18 @@ class LandBattle extends Battle{
                 $newSpecialHexes->{"x" . intval($mapGrid->getPixelX()) . "y" . intval($mapGrid->getPixelY())} = $v;
             }
         }
+
+        $newMapSymbols = new stdClass();
+        if ($doc->wargame->mapData->mapSymbols) {
+            $mapSymbols = $doc->wargame->mapData->mapSymbols;
+            foreach ($mapSymbols as $k => $v) {
+                $hex = new Hexagon($k);
+                $mapGrid->setHexagonXY($hex->x, $hex->y);
+                $newMapSymbols->{"x" . intval($mapGrid->getPixelX()) . "y" . intval($mapGrid->getPixelY())} = $v;
+            }
+        }
+        $mapSymbols = $newMapSymbols;
+
         $sentBreadcrumbs = new stdClass();
         if ($doc->wargame->mapData->breadcrumbs) {
             $breadcrumbs = $doc->wargame->mapData->breadcrumbs;
@@ -258,6 +270,8 @@ class LandBattle extends Battle{
                 $newSpecialHexesVictory->{"x" . intval($mapGrid->getPixelX()) . "y" . intval($mapGrid->getPixelY())} = $v;
             }
         }
+        
+
         $vp = $doc->wargame->victory->victoryPoints;
         $flashMessages = $gameRules->flashMessages;
         if (count($flashMessages)) {
@@ -269,7 +283,7 @@ class LandBattle extends Battle{
         $gameRules->playerStatus = $doc->playerStatus;
         $mapViewer = $playerData;
         $clock = "The turn is " . $gameRules->turn . ". The Phase is " . $phase_name[$gameRules->phase] . ". The mode is " . $mode_name[$gameRules->mode];
-        return compact("mapViewer", "sentBreadcrumbs", "phaseClicks", "click", "revs", "vp", "flashMessages", "specialHexesVictory", "specialHexes", "specialHexesChanges", "combatRules", 'force', 'seq', 'chats', 'chatsIndex', 'last_seq', 'users', 'games', 'clock', 'mapUnits', 'moveRules', 'gameRules');
+        return compact("mapSymbols", "mapViewer", "sentBreadcrumbs", "phaseClicks", "click", "revs", "vp", "flashMessages", "specialHexesVictory", "specialHexes", "specialHexesChanges", "combatRules", 'force', 'seq', 'chats', 'chatsIndex', 'last_seq', 'users', 'games', 'clock', 'mapUnits', 'moveRules', 'gameRules');
 
     }
 

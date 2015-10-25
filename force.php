@@ -115,6 +115,7 @@ class MovableUnit{
 
         $battle = Battle::getBattle();
         $gameRules = $battle->gameRules;
+        /* @var MapData $mapData */
         $mapData = $battle->mapData;
         $attackingForceId = $battle->force->attackingForceId;
 //        $mapData = MapData::getInstance();
@@ -141,6 +142,10 @@ class MovableUnit{
                     $victory->specialHexChange($mapHexName, $this->forceId);
                     $mapData->alterSpecialHex($mapHexName, $this->forceId);
                 }
+            }
+            if ($mapData->getMapSymbols($mapHexName) !== false) {
+                 $victory = $battle->victory;
+                 $victory->enterMapSymbol($mapHexName, $this);
             }
         }
         $this->moveCount++;

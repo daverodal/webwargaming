@@ -83,6 +83,14 @@ class finalChapterVictoryCore extends victoryCore
         }
         if(in_array($mapHexName, $battle->specialHexC)){
             $vp = 10;
+            $units = $battle->force->units;
+            foreach($units as $id => $unit){
+                if($unit->forceId > 2){
+                    if($unit->status !== STATUS_ELIMINATED){
+                        $battle->force->eliminateUnit($id);
+                    }
+                }
+            }
         }
 
 
@@ -109,7 +117,14 @@ class finalChapterVictoryCore extends victoryCore
         if($vp) {
             if ($forceId == WESTERN_FORCE || $forceId == EASTERN_FORCE) {
                 $this->victoryPoints[$forceId] += $vp;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>+$vp</span>";
+                if($vp < 10){
+                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>+$vp</span>";
+
+                }else{
+                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>Berlin Falls! +10 vp</span>";
+                    $battle->gameRules->flashMessages[] = "Germany Surrenders! Victory in Europe!";
+
+                }
             } else {
                 $previousOwner = $battle->mapData->specialHexes->$mapHexName;
                 $this->victoryPoints[$previousOwner] -= $vp;
@@ -117,6 +132,29 @@ class finalChapterVictoryCore extends victoryCore
             }
         }
     }
+
+
+    public function enterMapSymbol($args)
+    {
+        $battle = Battle::getBattle();
+        /* @var $mapData MapData */
+        $mapData = $battle->mapData;
+        /* @var $unit MovableUnit */
+        list($mapHexName, $unit) = $args;
+
+        if ($unit->forceId == WESTERN_FORCE) {
+                    $mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>West Wall Destroyed</span>";
+                    $mapData->removeMapSymbol($mapHexName, "westwall");
+            }
+
+
+
+    }
+
+
+
+
+
 
 
     public function incrementTurn()

@@ -72,6 +72,13 @@ class FinalChapter extends ModernLandBattle
         $this->mapData->alterSpecialHex(2302, WESTERN_FORCE);
         $this->mapData->alterSpecialHex(1804, WESTERN_FORCE);
         $this->mapData->alterSpecialHex(1706, WESTERN_FORCE);
+        $symbol = new stdClass();
+        $symbol->type = 'WestWall';
+        $symbols = new stdClass();
+        foreach([609,610,611,712, 2404, 2304, 2105, 2005, 1905, 1805, 1806, 1707, 1606, 1506] as $id){
+            $symbols->$id = $symbol;
+        }
+        $this->mapData->setMapSymbols($symbols, "westwall");
     }
 
     function save()

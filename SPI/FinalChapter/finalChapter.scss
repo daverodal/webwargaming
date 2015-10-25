@@ -78,13 +78,23 @@
 }
 
 .specialHexesVP .rebelVictoryPoints {
-  @include victoryPoints(orange)
+  @include victoryPoints(red)
 }
 
+.col-hex{
+  width:65px;
+}
 .specialHexesVP .loyalistVictoryPoints {
  @include victoryPoints(#666);
 }
 
+.mapSymbols{
+  position:absolute;
+  color:white;
+  background-color: transparent;
+  margin-top:-33px;
+  margin-left:-28px;
+}
 .specialHexes.german {
   color: white;
   background-color: #666;

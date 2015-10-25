@@ -693,6 +693,24 @@ function flashMessage(playerStatus){
         return;
     }
 }
+    x.register("mapSymbols", function(mapSymbols, data){
+        $(".mapSymbols").remove();
+        for(var i in mapSymbols){
+            if(mapSymbols[i].westwall) {
+                var newHtml;
+                var hexPos = i.replace(/\.\d*/g, '');
+                var x = hexPos.match(/x(\d*)y/)[1];
+                var y = hexPos.match(/y(\d*)\D*/)[1];
+                $("#mapSymbol" + hexPos).remove();
+                newHtml = '<img src="<?php echo base_url(); ?>js/colHex.svg" class="col-hex">';
+                newHtml = '<img src="<?php echo base_url(); ?>js/colHex.svg" class="col-hex">';
+                $("#gameImages").append('<div id="mapSymbol' + i + '" class="mapSymbols">' + newHtml + '</div>');
+                $("#mapSymbol" + i).css({top: y + "px", left: x + "px"});
+            }
+
+        }
+    });
+
 x.register("specialHexes", function(specialHexes, data) {
     var lab = ['unowned','<?=strtolower($force_name[1])?>','<?=strtolower($force_name[2])?>','<?=strtolower($force_name[3])?>','<?=strtolower($force_name[4])?>'];
     for(var i in specialHexes){
