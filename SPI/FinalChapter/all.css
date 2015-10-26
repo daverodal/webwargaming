@@ -1208,6 +1208,18 @@ svg marker#head {
   .easternEmpire .unit-desig {
     color: black; }
 
+.playerFIve {
+  background: #ffd189;
+  border-color: #ffd189 !important; }
+
+.yugoslavianFace, .playerFIveFace {
+  color: #ffd189; }
+
+.yugoslavian {
+  background-color: #ffd189; }
+  .yugoslavian .unit-desig {
+    color: black; }
+
 .dead-country {
   height: 100%;
   width: 24%;

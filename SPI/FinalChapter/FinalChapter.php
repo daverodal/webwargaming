@@ -63,6 +63,14 @@ class FinalChapter extends ModernLandBattle
 
     function terrainGen($mapDoc, $terrainDoc)
     {
+
+        /*
+         * Usurp crest hexside for non crossable border between
+         */
+        $this->terrain->addTerrainFeature("crest", "crest", "o", 0, 0, 0, false);
+        $this->terrain->addNatAltTraverseCost('crest', 'yugoslavian', 'inf', 'blocked');
+        $this->terrain->addNatAltTraverseCost('crest', 'eastern', 'inf', 'blocked');
+
         parent::terrainGen($mapDoc, $terrainDoc);
     }
 
@@ -266,10 +274,10 @@ class FinalChapter extends ModernLandBattle
 
         UnitFactory::create("xxxx", BLUE_FORCE, 1123, "multiInf.png", 2, 5, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
 
-        UnitFactory::create("xxxx", BLUE_FORCE, 824, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 525, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 325, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 224, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
+        UnitFactory::create("xxxx", BLUE_FORCE, 824, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "yugoslavian",  "inf",13);
+        UnitFactory::create("xxxx", BLUE_FORCE, 525, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "yugoslavian",  "inf",13);
+        UnitFactory::create("xxxx", BLUE_FORCE, 325, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "yugoslavian",  "inf",13);
+        UnitFactory::create("xxxx", BLUE_FORCE, 224, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "yugoslavian",  "inf",13);
 
     }
 
