@@ -1221,26 +1221,26 @@ svg marker#head {
     color: black; }
 
 .playerSix {
-  background: #48ac4d;
-  border-color: #48ac4d !important; }
+  background: #ac7b1e;
+  border-color: #ac7b1e !important; }
 
 .polishFace, .playerSixFace {
-  color: #48ac4d; }
+  color: #ac7b1e; }
 
 .polish {
-  background-color: #48ac4d; }
+  background-color: #ac7b1e; }
   .polish .unit-desig {
     color: black; }
 
 .playerSeven {
-  background: #6dbcc1;
-  border-color: #6dbcc1 !important; }
+  background: #c16844;
+  border-color: #c16844 !important; }
 
 .bulgarianFace, .playerSevenFace {
-  color: #6dbcc1; }
+  color: #c16844; }
 
 .bulgarian {
-  background-color: #6dbcc1; }
+  background-color: #c16844; }
   .bulgarian .unit-desig {
     color: black; }
 
