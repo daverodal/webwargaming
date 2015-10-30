@@ -74,6 +74,7 @@ class finalChapterVictoryCore extends victoryCore
     {
         $battle = Battle::getBattle();
         list($mapHexName, $forceId) = $args;
+        $vp = 0;
         if(in_array($mapHexName, $battle->specialHexA)){
             $vp = 1;
         }
@@ -82,24 +83,57 @@ class finalChapterVictoryCore extends victoryCore
         }
         if(in_array($mapHexName, $battle->specialHexC)){
             $vp = 10;
+            $units = $battle->force->units;
+            foreach($units as $id => $unit){
+                if($unit->forceId > 2){
+                    if($unit->status !== STATUS_ELIMINATED){
+                        $battle->force->eliminateUnit($id);
+                    }
+                }
+            }
         }
 
-//        if ($mapHexName == 1807 && $forceId == EASTERN_FORCE) {
-//            $this->scienceCenterDestroyed;
-//            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>Marine Science Facility Destroyed</span>";
-//            $battle->gameRules->flashMessages[] = "Rebel units may now withdraw from beachheads";
-//        }
+        if($vp) {
+            if ($forceId == WESTERN_FORCE || $forceId == EASTERN_FORCE) {
+                $this->victoryPoints[$forceId] += $vp;
+                if($vp < 10){
+                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>+$vp</span>";
 
+                }else{
+                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>Berlin Falls! +10 vp</span>";
+                    $battle->gameRules->flashMessages[] = "Germany Surrenders! Victory in Europe!";
 
-        if($forceId == WESTERN_FORCE || $forceId == EASTERN_FORCE){
-            $this->victoryPoints[$forceId] += $vp;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>+$vp</span>";
-        }else{
-            $previousOwner = $battle->mapData->specialHexes->$mapHexName;
-            $this->victoryPoints[$previousOwner] -= $vp;
-            $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>-$vp</span>";
+                }
+            } else {
+                $previousOwner = $battle->mapData->specialHexes->$mapHexName;
+                $this->victoryPoints[$previousOwner] -= $vp;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>-$vp</span>";
+            }
         }
     }
+
+
+    public function enterMapSymbol($args)
+    {
+        $battle = Battle::getBattle();
+        /* @var $mapData MapData */
+        $mapData = $battle->mapData;
+        /* @var $unit MovableUnit */
+        list($mapHexName, $unit) = $args;
+
+        if ($unit->forceId == WESTERN_FORCE) {
+                    $mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>West Wall Destroyed</span>";
+                    $mapData->removeMapSymbol($mapHexName, "westwall");
+            }
+
+
+
+    }
+
+
+
+
+
 
 
     public function incrementTurn()
@@ -225,29 +259,35 @@ class finalChapterVictoryCore extends victoryCore
 
     public function playerTurnChange($arg)
     {
+        $westernReplacements = [0, 2, 2, 2, 2, 2, 2, 2, 2, 2];
+        $sovietReplacements =  [0, 2, 2, 2, 2, 1, 1, 1, 1, 1];
+        $eastGermanReplacements = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+        $westGermanReplacements = [0, 1, 0, 1, 0, 0, 1, 0, 1, 0];
         $attackingId = $arg[0];
         $battle = Battle::getBattle();
         $mapData = $battle->mapData;
         $vp = $this->victoryPoints;
         $specialHexes = $mapData->specialHexes;
         $gameRules = $battle->gameRules;
+        $turn = $gameRules->turn - 1;
 
         if ($gameRules->phase == BLUE_MECH_PHASE || $gameRules->phase == RED_MECH_PHASE) {
             $gameRules->flashMessages[] = "@hide crt";
         }
         if ($attackingId == EASTERN_FORCE) {
-            $gameRules->replacementsAvail = 2;
+            /* turn changes before soviet turn but after this check here */
+            $gameRules->replacementsAvail = $sovietReplacements[$turn + 1];
         }
         if ($attackingId == WESTERN_EMPIRE_FORCE) {
-            $gameRules->replacementsAvail = 1;
+            $gameRules->replacementsAvail = $westGermanReplacements[$turn];
         }
 
         if($attackingId == WESTERN_FORCE){
-            $gameRules->replacementsAvail = 2;
+            $gameRules->replacementsAvail = $westernReplacements[$turn];
         }
 
         if ($attackingId == EASTERN_EMPIRE_FORCE) {
-            $gameRules->replacementsAvail = 1;
+            $gameRules->replacementsAvail = $eastGermanReplacements[$turn];
         }
         global $force_name;
         $gameRules->flashMessages[] = $force_name[$attackingId]." Player Turn";

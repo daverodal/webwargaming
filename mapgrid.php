@@ -188,12 +188,14 @@ class MapData implements JsonSerializable
     public $vp;
     public $blocksZoc;
     public $breadcrumbs;
+    public $mapSymbols;
 
     private function __construct()
     {
         $this->vp = array(0, 0, 0);
         $this->blocksZoc = new stdClass();
         $this->breadcrumbs = new stdClass();
+        $this->mapSymbols = new stdClass();
     }
 
     function jsonSerialize()
@@ -293,7 +295,75 @@ class MapData implements JsonSerializable
             }
         }
     }
+    
+    function setMapSymbols($hexes, $symbol){
+        if (!$this->mapSymbols) {
+            $this->mapSymbols = new stdClass();
+        }
+        foreach ($hexes as $k => $v) {
+            $k = sprintf("%04d", "0000" . $k);
+            if(!isset($this->mapSymbols->$k)){
+                $this->mapSymbols->$k = new stdClass();
+            }
+            $this->mapSymbols->$k->$symbol = $v;
+        }
+    }
 
+
+
+    /* Only change map symbol if it still exists */
+    function alterMapSymbol($hex, $symbol, $v)
+    {
+        if (!$this->mapSymbols) {
+            return;
+        }
+        $hex = sprintf("%04d", "0000" . $hex);
+        if(isset($this->mapSymbols->$hex)){
+            if(isset($this->mapSymbols->$hex->$symbol)) {
+                $this->mapSymbols->$hex->$symbol = $v;
+            }
+        }
+    }
+
+
+    function removeMapSymbol($hex, $symbol)
+    {
+        if (!$this->mapSymbols) {
+            return;
+        }
+        $k = sprintf("%04d", "0000" . $hex);
+        unset($this->mapSymbols->$k->$symbol);
+        /* if all symbols removed, remove hexname instance */
+        if(count((array)$this->mapSymbols->$k) <= 0){
+            unset($this->mapSymbols->$k);
+        }
+    }
+    
+    function getMapSymbols($hex)
+    {
+        $name = sprintf("%04d", "0000" . $hex);
+
+        if (!$this->mapSymbols) {
+            return false;
+        }
+        if (!$this->mapSymbols->$name) {
+            return false;
+        }
+        return $this->mapSymbols->$name;
+    }
+
+    function getMapSymbol($hex, $symbol)
+    {
+        $name = sprintf("%04d", "0000" . $hex);
+
+        if (!$this->mapSymbols) {
+            return false;
+        }
+        if (!$this->mapSymbols->$name) {
+            return false;
+        }
+        return $this->mapSymbols->$name->$symbol;
+    }
     function removeSpecialHex($hex)
     {
         if (!$this->specialHexes) {

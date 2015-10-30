@@ -191,9 +191,10 @@ class NavalCombatRules
                                     $victory->postUnsetAttacker($this->units[$attackerId]);
                                 }
                                 foreach ($combats->defenders as $defenderId => $defender) {
-                                    $this->force->setStatus($defenderId, STATUS_READY);
+                                    $unit = $this->force->getUnit($defenderId);
+                                    $unit->setStatus( STATUS_READY);
                                     unset($this->defenders->$defenderId);
-                                    $victory->postUnsetDefender($this->units[$defenderId]);
+                                    $victory->postUnsetDefender($unit);
                                 }
                                 unset($this->combats->{$combatId});
                                 $this->currentDefender = false;
@@ -275,9 +276,9 @@ class NavalCombatRules
                         $los->setOrigin($this->force->getUnitHexagon($id));
                         $los->setEndPoint($this->force->getUnitHexagon($defenderId));
                         $range = $los->getRange();
-                        $unitRange = $this->force->getUnitRange($id) * 2;
+                        $unitRange = $unit->getRange($id) * 2;
                         if($battle->gameRules->phase == BLUE_TORP_COMBAT_PHASE || $battle->gameRules->phase == RED_TORP_COMBAT_PHASE) {
-                            $unitRange = $this->force->getUnitRange($id) * 3;
+                            $unitRange = $unit->getRange($id) * 3;
 
                         }
                         if ($range > $unitRange) {
@@ -422,9 +423,10 @@ class NavalCombatRules
             }
             if (count((array)$combat->attackers) == 0) {
                 foreach ($combat->defenders as $defenderId => $defender) {
-                    $this->force->setStatus($defenderId, STATUS_READY);
+                    $unit = $this->force->getUnit($defenderId);
+                    $unit->setStatus( STATUS_READY);
                     unset($this->defenders->$defenderId);
-                    $victory->postUnsetDefender($this->force->units[$defenderId]);
+                    $victory->postUnsetDefender($unit);
                 }
                 unset($this->combats->$id);
             }
@@ -503,8 +505,7 @@ class NavalCombatRules
         $combatResults = $this->crt->getCombatResults($Die, $index, $this->combatsToResolve->$id);
         $this->combatsToResolve->$id->Die = $Die + 1;
         $this->combatsToResolve->$id->combatResult = $results_name[$combatResults];
-        $this->force->clearRetreatHexagonList();
-        $this->force->clearExchangeAmount();
+
 
         /* determine which units are defending */
         $defenders = $this->combatsToResolve->{$id}->defenders;
@@ -530,6 +531,7 @@ class NavalCombatRules
         foreach ($defenders as $defenderId => $defender) {
             $this->force->applyCRTresults($defenderId, $this->combatsToResolve->{$id}->attackers, $combatResults, $Die);
         }
+        /* TODO: Wack man, no need to resolve combat against other units in hex */
         /* apply combat results to other units in defending hexes */
         foreach ($others as $otherId) {
             $this->force->applyCRTresults($otherId, $this->combatsToResolve->{$id}->attackers, $combatResults, $Die);
@@ -702,7 +704,8 @@ class NavalCombatRules
             foreach ($this->combats as $defenderId => $combat) {
                 if (count((array)$combat->attackers) == 0) {
                     foreach ($combat->defenders as $defId => $def) {
-                        $this->force->setStatus($defId, STATUS_READY);
+                        $unit = $this->force->getUnit($defId);
+                        $unit->setStatus(STATUS_READY);
                         $victory->postUnsetDefender($this->force->units[$defId]);
                     }
                     unset($this->combats->$defenderId);
@@ -711,14 +714,16 @@ class NavalCombatRules
                 if ($combat->index < 0) {
                     if ($combat->attackers) {
                         foreach ($combat->attackers as $attackerId => $attacker) {
+                            $unit = $this->force->getUnit($attackerId);
                             unset($this->attackers->$attackerId);
-                            $this->force->setStatus($attackerId, STATUS_READY);
-                            $victory->postUnsetAttacker($this->force->units[$attackerId]);
+                            $unit->setStatus( STATUS_READY);
+                            $victory->postUnsetAttacker($unit);
                         }
                     }
                     foreach ($combat->defenders as $defId => $def) {
-                        $this->force->setStatus($defId, STATUS_READY);
-                        $victory->postUnsetDefender($this->force->units[$defId]);
+                        $unit = $this->force->getUnit($defId);
+                        $unit->setStatus( STATUS_READY);
+                        $victory->postUnsetDefender($unit);
                     }
                     unset($this->combats->$defenderId);
                     continue;

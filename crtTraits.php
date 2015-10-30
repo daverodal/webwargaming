@@ -64,7 +64,7 @@ trait diffCombatShiftTerrain
             $unit = $battle->force->units[$defId];
             $combatLog .= $unit->strength. " " .$unit->class." ";
 
-            $defenseStrength += $force->getDefenderStrength($defId);
+            $defenseStrength += $unit->defStrength;
             $combatLog .= "<br>";
         }
         $combatLog .= " = $defenseStrength";
@@ -181,7 +181,7 @@ trait NavalCombatTrait
             $unit = $battle->force->units[$defId];
             $combatLog .= " " .$unit->class." ";
 
-            $defenseStrength += $force->getDefenderStrength($defId);
+            $defenseStrength += $unit->defStrength;
             $combatLog .= "<br>";
         }
         if($battle->gameRules->phase == BLUE_TORP_COMBAT_PHASE || $battle->gameRules->phase == RED_TORP_COMBAT_PHASE) {
@@ -251,7 +251,7 @@ trait divCombatShiftTerrain
             $unit = $battle->force->units[$defId];
             $combatLog .= $unit->strength. " " .$unit->class." ";
 
-            $defenseStrength += $force->getDefenderStrength($defId);
+            $defenseStrength += $unit->defStrength;
             $combatLog .= "<br>";
         }
         $combatLog .= " = $defenseStrength";
@@ -346,7 +346,7 @@ trait divCombatHalfDoubleTerrain
             $unit = $battle->force->units[$defId];
             $combatLog .= $unit->strength. " " .$unit->class." ";
 
-            $defenseStrength += $force->getDefenderStrength($defId);
+            $defenseStrength += $unit->defStrength;
             $combatLog .= "<br>";
         }
         if($isTown){
@@ -409,10 +409,10 @@ trait divCombatDoubleMultipleTerrain
             $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
             $thisHex = [];
             $thisLog = "";
-            if($terrain->terrainIs($hexpart, 'forta'))
-            {
+            $hexName = $hexagon->name;
+            if($battle->mapData->getMapSymbol($hexagon->name,'westwall')){
                 $thisHex['forta'] = 2;
-                $thisLog .= "2x defend in fort ";
+                $thisLog .= "2x defend in westwall ";
             }
             if($terrain->terrainIs($hexpart, 'roughone'))
             {
@@ -455,10 +455,10 @@ trait divCombatDoubleMultipleTerrain
         $unitDefenseStrength = 0;
         foreach ($defenders as $defId => $defender) {
             $unit = $battle->force->units[$defId];
-            $combatLog .= $force->getDefenderStrength($defId). " " .$unit->class." ";
+            $combatLog .= $unit->defStrength. " " .$unit->class." ";
 
-            $unitDefenseStrength += $force->getDefenderStrength($defId);
-            $defenseStrength += $force->getDefenderStrength($defId) * $totalDefense;
+            $unitDefenseStrength += $unit->defStrength;
+            $defenseStrength += $unit->defStrength * $totalDefense;
             $combatLog .= "<br>";
         }
         $combatLog .= "= $unitDefenseStrength<br>";
@@ -551,7 +551,7 @@ trait divMCWCombatShiftTerrain
             $unit = $battle->force->units[$defId];
             $combatLog .= $unit->defStrength. " " .$unit->class." ";
             $combatLog .= "<br>";
-            $defenseStrength += $force->getDefenderStrength($defId);
+            $defenseStrength += $unit->defStrength;
         }
         if($isHeavy){
             $combatLog .= "+1 Strength for Heavy Inf in Fortified";

@@ -236,7 +236,7 @@ x.register("force", function(force,data) {
             $("#"+i+" .forceMarch").hide();
             $("#"+i+" .range").show();
         }
-        if(force.requiredDefenses[i] === true){
+        if(force.requiredDefenses && force.requiredDefenses[i] === true){
 
             color = "black";
             style = "dotted";
@@ -258,7 +258,7 @@ x.register("force", function(force,data) {
                     shadow = false;
                 }else{
                 }
-                if(force.requiredAttacks[i] === true){
+                if(force.requiredAttacks && force.requiredAttacks[i] === true){
                     color =  "black";
                     style = "dotted";
                     totalAttackers++;
@@ -693,6 +693,27 @@ function flashMessage(playerStatus){
         return;
     }
 }
+    x.register("mapSymbols", function(mapSymbols, data){
+        $(".mapSymbols").remove();
+        for(var i in mapSymbols){
+            var hexPos = i.replace(/\.\d*/g, '');
+            var x = hexPos.match(/x(\d*)y/)[1];
+            var y = hexPos.match(/y(\d*)\D*/)[1];
+            $("#mapSymbol" + i).remove();
+
+            for(var symbolName in mapSymbols[i]) {
+                var newHtml;
+
+                $("#mapSymbol" + hexPos + " "+ mapSymbols[i][symbolName].class).remove();
+                newHtml = '<img src="<?php echo base_url(); ?>js/'+mapSymbols[i][symbolName].image+'" class="col-hex">';
+                $("#gameImages").append('<div id="mapSymbol' + i + '" class="mapSymbols">' + newHtml + '</div>');
+                $("#mapSymbol" + i).css({top: y + "px", left: x + "px"});
+
+            }
+
+        }
+    });
+
 x.register("specialHexes", function(specialHexes, data) {
     var lab = ['unowned','<?=strtolower($force_name[1])?>','<?=strtolower($force_name[2])?>','<?=strtolower($force_name[3])?>','<?=strtolower($force_name[4])?>'];
     for(var i in specialHexes){

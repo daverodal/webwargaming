@@ -148,7 +148,7 @@ class CombatResultsTable
         foreach($defenders as $defId => $defender){
             $unit = $battle->force->units[$defId];
             $class = $unit->class;
-            $unitDefense = $battle->force->getDefenderStrength($defId);
+            $unitDefense = $unit->defStrength;
             if($unit->class != 'cavalry'){
                 $defendersAllCav = false;
             }

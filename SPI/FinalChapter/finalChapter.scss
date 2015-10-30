@@ -24,6 +24,7 @@
 @include player(westernEmpire,Three,#ADDAD6);
 @include player(western,Two,$rebelColor);
 @include player(easternEmpire,Four, #afa2b3);
+@include player(yugoslavian, FIve, #ffd189);
 
 
 .dead-country{
@@ -59,6 +60,7 @@
   color: white;
 }
 
+
 #infoWrapper .WrapperLabel {
   width: auto;
 }
@@ -71,19 +73,30 @@
 #gameTurn6 {
 }
 
+
 #gameTurn6 .unit {
   float: left;
 }
 
 .specialHexesVP .rebelVictoryPoints {
-  @include victoryPoints(orange)
+  @include victoryPoints(red)
 }
 
+.col-hex{
+  width:65px;
+}
 .specialHexesVP .loyalistVictoryPoints {
  @include victoryPoints(#666);
 }
 
-.specialHexes.germany {
+.mapSymbols{
+  position:absolute;
+  color:white;
+  background-color: transparent;
+  margin-top:-33px;
+  margin-left:-28px;
+}
+.specialHexes.german {
   color: white;
   background-color: #666;
 }

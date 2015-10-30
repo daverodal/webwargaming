@@ -46,6 +46,10 @@ class LandAirUnit extends BaseUnit implements JsonSerializable
             $strength = $this->unitAirStrength;
         }
 
+        $battle = Battle::getBattle();
+        if($battle->gameRules->phase === BLUE_AIR_COMBAT_PHASE || $battle->gameRules->phase === AIR_AIR_COMBAT_PHASE){
+            $strength = $this->unitAirStrength;
+        }
         foreach ($this->adjustments as $adjustment) {
             switch ($adjustment) {
                 case 'floorHalf':

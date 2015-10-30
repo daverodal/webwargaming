@@ -353,7 +353,7 @@ class CombatResultsTable
 
             $unit = $battle->force->units[$defId];
             $class = $unit->class;
-            $unitDefense = $battle->force->getDefenderStrength($defId);
+            $unitDefense = $unit->defStrength;
             $combatLog .= "$unitDefense ".$unit->class." ";
             /* set to true to disable for not scenario->doubleArt */
             $clearHex = false;

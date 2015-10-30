@@ -114,6 +114,7 @@ class CombatResultsTable
         $battle = Battle::getBattle();
         $combatRules = $battle->combatRules;
         $combats = $battle->combatRules->combats->$defenderId;
+        /* @var $force Force */
         $force = $battle->force;
         $hexagon = $battle->force->units[$defenderId]->hexagon;
         $hexpart = new Hexpart();
@@ -137,7 +138,8 @@ class CombatResultsTable
 //        $attackStrength = $this->force->getAttackerStrength($combats->attackers);
         $defenseStrength = 0;
         foreach ($defenders as $defId => $defender) {
-            $defenseStrength += $force->getDefenderStrength($defId);
+            $unit = $force->getUnit($defId);
+            $defenseStrength += $unit->defStrength;
         }
         $combatIndex = $this->getCombatIndex($attackStrength, $defenseStrength);
         /* Do this before terrain effects */

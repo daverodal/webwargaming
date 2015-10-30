@@ -30,8 +30,8 @@ $force_name = array();
 $force_name[0] = "Neutral Observer";
 $force_name[1] = "Eastern";
 $force_name[2] = "Western";
-$force_name[3] = "Germany (west)";
-$force_name[4] = "Germany (east)";
+$force_name[3] = "German";
+$force_name[4] = "German";
 
 require_once "constants.php";
 require_once "ModernLandBattle.php";
@@ -63,14 +63,31 @@ class FinalChapter extends ModernLandBattle
 
     function terrainGen($mapDoc, $terrainDoc)
     {
+
+        /*
+         * Usurp crest hexside for non crossable border between
+         */
+        $this->terrain->addTerrainFeature("crest", "crest", "o", 0, 0, 0, false);
+        $this->terrain->addNatAltTraverseCost('crest', 'yugoslavian', 'inf', 'blocked');
+        $this->terrain->addNatAltTraverseCost('crest', 'eastern', 'inf', 'blocked');
+
         parent::terrainGen($mapDoc, $terrainDoc);
     }
 
     function terrainInit($terrainDoc){
         parent::terrainInit($terrainDoc);
-        $this->mapData->alterSpecialHex(112, WESTERN_FORCE);
-        $this->mapData->alterSpecialHex(517, WESTERN_FORCE);
-        $this->mapData->alterSpecialHex(618, WESTERN_FORCE);
+        $this->mapData->alterSpecialHex(2302, WESTERN_FORCE);
+        $this->mapData->alterSpecialHex(1804, WESTERN_FORCE);
+        $this->mapData->alterSpecialHex(1706, WESTERN_FORCE);
+        $symbol = new stdClass();
+        $symbol->type = 'WestWall';
+        $symbol->image = 'colHex.svg';
+        $symbol->class = 'col-hex';
+        $symbols = new stdClass();
+        foreach([609,610,611,712, 2404, 2304, 2105, 2005, 1905, 1805, 1806, 1707, 1606, 1506] as $id){
+            $symbols->$id = $symbol;
+        }
+        $this->mapData->setMapSymbols($symbols, "westwall");
     }
 
     function save()
@@ -79,6 +96,7 @@ class FinalChapter extends ModernLandBattle
         $data->specialHexA = $this->specialHexA;
         $data->specialHexB = $this->specialHexB;
         $data->specialHexC = $this->specialHexC;
+        $data->specialHexD = $this->specialHexD;
         return $data;
     }
 
@@ -256,10 +274,10 @@ class FinalChapter extends ModernLandBattle
 
         UnitFactory::create("xxxx", BLUE_FORCE, 1123, "multiInf.png", 2, 5, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
 
-        UnitFactory::create("xxxx", BLUE_FORCE, 824, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 525, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 325, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 224, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
+        UnitFactory::create("xxxx", BLUE_FORCE, 824, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "yugoslavian",  "inf",13);
+        UnitFactory::create("xxxx", BLUE_FORCE, 525, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "yugoslavian",  "inf",13);
+        UnitFactory::create("xxxx", BLUE_FORCE, 325, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "yugoslavian",  "inf",13);
+        UnitFactory::create("xxxx", BLUE_FORCE, 224, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "yugoslavian",  "inf",13);
 
     }
 

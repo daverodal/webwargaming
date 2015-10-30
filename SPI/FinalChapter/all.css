@@ -1208,6 +1208,18 @@ svg marker#head {
   .easternEmpire .unit-desig {
     color: black; }
 
+.playerFIve {
+  background: #ffd189;
+  border-color: #ffd189 !important; }
+
+.yugoslavianFace, .playerFIveFace {
+  color: #ffd189; }
+
+.yugoslavian {
+  background-color: #ffd189; }
+  .yugoslavian .unit-desig {
+    color: black; }
+
 .dead-country {
   height: 100%;
   width: 24%;
@@ -1245,12 +1257,22 @@ svg marker#head {
   float: left; }
 
 .specialHexesVP .rebelVictoryPoints {
-  text-shadow: 0px 0px 1px orange, 0px 0px 1px orange, 0px 0px 1px orange, 0px 0px 2px orange, 0px 0px 2px orange, 0px 0px 2px orange, 0px 0px 3px orange, 0px 0px 3px orange, 0px 0px 3px orange, 0px 0px 4px orange, 0px 0px 4px orange, 0px 0px 4px orange, 0px 0px 5px orange, 0px 0px 5px orange, 0px 0px 5px orange, 0px 0px 6px orange, 0px 0px 6px orange, 0px 0px 6px orange, 0px 0px 7px orange, 0px 0px 7px orange, 0px 0px 7px orange, 0px 0px 8px orange, 0px 0px 8px orange, 0px 0px 8px orange, 0px 0px 9px orange, 0px 0px 9px orange, 0px 0px 9px orange, 0px 0px 10px orange, 0px 0px 10px orange, 0px 0px 10px orange, 0px 0px 1px orange, 0px 0px 1px orange, 0px 0px 1px orange, 0px 0px 2px orange, 0px 0px 2px orange, 0px 0px 2px orange, 0px 0px 3px orange, 0px 0px 3px orange, 0px 0px 3px orange, 0px 0px 4px orange, 0px 0px 4px orange, 0px 0px 4px orange, 0px 0px 5px orange, 0px 0px 5px orange, 0px 0px 5px orange, 0px 0px 6px orange, 0px 0px 6px orange, 0px 0px 6px orange, 0px 0px 7px orange, 0px 0px 7px orange, 0px 0px 7px orange, 0px 0px 8px orange, 0px 0px 8px orange, 0px 0px 8px orange, 0px 0px 9px orange, 0px 0px 9px orange, 0px 0px 9px orange, 0px 0px 10px orange, 0px 0px 10px orange, 0px 0px 10px orange; }
+  text-shadow: 0px 0px 1px red, 0px 0px 1px red, 0px 0px 1px red, 0px 0px 2px red, 0px 0px 2px red, 0px 0px 2px red, 0px 0px 3px red, 0px 0px 3px red, 0px 0px 3px red, 0px 0px 4px red, 0px 0px 4px red, 0px 0px 4px red, 0px 0px 5px red, 0px 0px 5px red, 0px 0px 5px red, 0px 0px 6px red, 0px 0px 6px red, 0px 0px 6px red, 0px 0px 7px red, 0px 0px 7px red, 0px 0px 7px red, 0px 0px 8px red, 0px 0px 8px red, 0px 0px 8px red, 0px 0px 9px red, 0px 0px 9px red, 0px 0px 9px red, 0px 0px 10px red, 0px 0px 10px red, 0px 0px 10px red, 0px 0px 1px red, 0px 0px 1px red, 0px 0px 1px red, 0px 0px 2px red, 0px 0px 2px red, 0px 0px 2px red, 0px 0px 3px red, 0px 0px 3px red, 0px 0px 3px red, 0px 0px 4px red, 0px 0px 4px red, 0px 0px 4px red, 0px 0px 5px red, 0px 0px 5px red, 0px 0px 5px red, 0px 0px 6px red, 0px 0px 6px red, 0px 0px 6px red, 0px 0px 7px red, 0px 0px 7px red, 0px 0px 7px red, 0px 0px 8px red, 0px 0px 8px red, 0px 0px 8px red, 0px 0px 9px red, 0px 0px 9px red, 0px 0px 9px red, 0px 0px 10px red, 0px 0px 10px red, 0px 0px 10px red; }
+
+.col-hex {
+  width: 65px; }
 
 .specialHexesVP .loyalistVictoryPoints {
   text-shadow: 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 10px #666, 0px 0px 10px #666, 0px 0px 10px #666, 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 10px #666, 0px 0px 10px #666, 0px 0px 10px #666; }
 
-.specialHexes.germany {
+.mapSymbols {
+  position: absolute;
+  color: white;
+  background-color: transparent;
+  margin-top: -33px;
+  margin-left: -28px; }
+
+.specialHexes.german {
   color: white;
   background-color: #666; }
 
