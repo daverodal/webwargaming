@@ -240,44 +240,44 @@ class FinalChapter extends ModernLandBattle
         UnitFactory::create("xxx", WESTERN_FORCE, 612, "multiInf.png", 4,8, 6, STATUS_READY, "D", 1, 1, "western",  'inf', $unitNum++);
 
 
+        $unitNum = 0;
+        UnitFactory::create("xxxxx", BLUE_FORCE, 3524, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",$unitNum++);
+        UnitFactory::create("xxxx", BLUE_FORCE, 3325, "multiInf.png", 7, 7, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",$unitNum++);
+        UnitFactory::create("xxxx", BLUE_FORCE, 3325, "multiInf.png", 7, 7, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",$unitNum++);
+        UnitFactory::create("xxxxx", BLUE_FORCE, 3225, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",$unitNum++);
 
-        UnitFactory::create("xxxxx", BLUE_FORCE, 3524, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 3325, "multiInf.png", 7, 7, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 3325, "multiInf.png", 7, 7, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
-        UnitFactory::create("xxxxx", BLUE_FORCE, 3225, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
+        UnitFactory::create("xxxx", BLUE_FORCE, 3025, "multiInf.png", 7, 7, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",$unitNum++);
+        UnitFactory::create("xxxxx", BLUE_FORCE, 2925, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",$unitNum++);
+        UnitFactory::create("xxxx", BLUE_FORCE, 2824, "multiArmor.png", 6, 4, 6,  STATUS_READY, "B", 1, 1, "eastern",  "mech",$unitNum++);
+        UnitFactory::create("xxxx", BLUE_FORCE, 2724, "multiInf.png", 3, 3, 4,  STATUS_READY, "B", 1, 1, "polish",  "inf","pol");
+        UnitFactory::create("xxxx", BLUE_FORCE, 2624, "multiArmor.png", 6, 4, 6,  STATUS_READY, "B", 1, 1, "eastern",  "mech",$unitNum++);
+        UnitFactory::create("xxxxx", BLUE_FORCE, 2624, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",$unitNum++);
 
-        UnitFactory::create("xxxx", BLUE_FORCE, 3025, "multiInf.png", 7, 7, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
-        UnitFactory::create("xxxxx", BLUE_FORCE, 2925, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 2824, "multiArmor.png", 6, 4, 6,  STATUS_READY, "B", 1, 1, "eastern",  "mech",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 2724, "multiInf.png", 3, 3, 4,  STATUS_READY, "B", 1, 1, "polish",  "inf",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 2624, "multiArmor.png", 6, 4, 6,  STATUS_READY, "B", 1, 1, "eastern",  "mech",13);
-        UnitFactory::create("xxxxx", BLUE_FORCE, 2624, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
+        UnitFactory::create("xxxx", BLUE_FORCE, 2526, "multiArmor.png", 6, 4, 6,  STATUS_READY, "B", 1, 1, "eastern",  "mech",$unitNum++);
+        UnitFactory::create("xxxx", BLUE_FORCE, 2526, "multiInf.png", 7, 7, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",$unitNum++);
 
-        UnitFactory::create("xxxx", BLUE_FORCE, 2526, "multiArmor.png", 6, 4, 6,  STATUS_READY, "B", 1, 1, "eastern",  "mech",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 2526, "multiInf.png", 7, 7, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
+        UnitFactory::create("xxxx", BLUE_FORCE, 2425, "multiInf.png", 7, 7, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",$unitNum++);
+        UnitFactory::create("xxxx", BLUE_FORCE, 2425, "multiInf.png", 7, 7, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",$unitNum++);
 
-        UnitFactory::create("xxxx", BLUE_FORCE, 2425, "multiInf.png", 7, 7, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 2425, "multiInf.png", 7, 7, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
+        UnitFactory::create("xxxx", BLUE_FORCE, 2325, "multiArmor.png", 6, 4, 6,  STATUS_READY, "B", 1, 1, "eastern",  "mech",$unitNum++);
+        UnitFactory::create("xxxx", BLUE_FORCE, 2325, "multiArmor.png", 6, 4, 6,  STATUS_READY, "B", 1, 1, "eastern",  "mech",$unitNum++);
 
-        UnitFactory::create("xxxx", BLUE_FORCE, 2325, "multiArmor.png", 6, 4, 6,  STATUS_READY, "B", 1, 1, "eastern",  "mech",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 2325, "multiArmor.png", 6, 4, 6,  STATUS_READY, "B", 1, 1, "eastern",  "mech",13);
+        UnitFactory::create("xxxxx", BLUE_FORCE, 2224, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",$unitNum++);
+        UnitFactory::create("xxxxx", BLUE_FORCE, 1724, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",$unitNum++);
 
-        UnitFactory::create("xxxxx", BLUE_FORCE, 2224, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
-        UnitFactory::create("xxxxx", BLUE_FORCE, 1724, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
+        UnitFactory::create("xxxxx", BLUE_FORCE, 1422, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",$unitNum++);
 
-        UnitFactory::create("xxxxx", BLUE_FORCE, 1422, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
+        UnitFactory::create("xxxx", BLUE_FORCE, 1926, "multiInf.png", 7, 7, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",$unitNum++);
 
-        UnitFactory::create("xxxx", BLUE_FORCE, 1926, "multiInf.png", 7, 7, 4,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
-
-        UnitFactory::create("xxxxx", BLUE_FORCE, 1220, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",13);
+        UnitFactory::create("xxxxx", BLUE_FORCE, 1220, "multiInf.png", 8, 20, 3,  STATUS_READY, "B", 1, 1, "eastern",  "inf",$unitNum++);
 
 
-        UnitFactory::create("xxxx", BLUE_FORCE, 1123, "multiInf.png", 2, 5, 4,  STATUS_READY, "B", 1, 1, "bulgarian",  "inf",13);
+        UnitFactory::create("xxxx", BLUE_FORCE, 1123, "multiInf.png", 2, 5, 4,  STATUS_READY, "B", 1, 1, "bulgarian",  "inf","bul");
 
-        UnitFactory::create("xxxx", BLUE_FORCE, 824, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "yugoslavian",  "inf",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 525, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "yugoslavian",  "inf",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 325, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "yugoslavian",  "inf",13);
-        UnitFactory::create("xxxx", BLUE_FORCE, 224, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "yugoslavian",  "inf",13);
+        UnitFactory::create("xxxx", BLUE_FORCE, 824, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "yugoslavian",  "inf","yug");
+        UnitFactory::create("xxxx", BLUE_FORCE, 525, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "yugoslavian",  "inf","yug");
+        UnitFactory::create("xxxx", BLUE_FORCE, 325, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "yugoslavian",  "inf","yug");
+        UnitFactory::create("xxxx", BLUE_FORCE, 224, "multiInf.png", 5, 6, 4,  STATUS_READY, "B", 1, 1, "yugoslavian",  "inf","yug");
 
     }
 
