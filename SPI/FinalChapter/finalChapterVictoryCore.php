@@ -37,6 +37,7 @@ class finalChapterVictoryCore extends victoryCore
     private $airdropZones;
     private $scienceCenterDestroyed = false;
     public $gameOver = false;
+    public $germanySurrenders = false;
 
 
     function __construct($data)
@@ -49,6 +50,7 @@ class finalChapterVictoryCore extends victoryCore
             $this->airdropZones = $data->victory->airdropZones;
             $this->scienceCenterDestroyed = $data->victory->scienceCenterDestroyed;
             $this->gameOver = $data->victory->gameOver;
+            $this->germanySurrenders = $data->victory->germanySurrenders;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
@@ -67,6 +69,7 @@ class finalChapterVictoryCore extends victoryCore
         $ret->landingZones = $this->landingZones;
         $ret->airdropZones = $this->airdropZones;
         $ret->gameOver = $this->gameOver;
+        $ret->germanySurrenders = $this->germanySurrenders;
         return $ret;
     }
 
@@ -84,6 +87,7 @@ class finalChapterVictoryCore extends victoryCore
         if(in_array($mapHexName, $battle->specialHexC)){
             $vp = 10;
             $units = $battle->force->units;
+            $this->germanySurrenders = true;
             foreach($units as $id => $unit){
                 if($unit->forceId > 2){
                     if($unit->status !== STATUS_ELIMINATED){
@@ -194,6 +198,16 @@ class finalChapterVictoryCore extends victoryCore
                 $gameRules->flashMessages[] = "Reinforcements have been moved to the Deploy/Staging Area";
             }
         }
+        if($this->germanySurrenders){
+            if($forceId == WESTERN_FORCE){
+                $defenderId = EASTERN_FORCE;
+            }
+            if($forceId == EASTERN_FORCE){
+                $defenderId = WESTERN_FORCE;
+            }
+            $battle->force->setAttackingForceId($forceId, $defenderId);
+            $gameRules->defendingForceId = $defenderId;
+        }
     }
 
     public function preRecoverUnits($args)
@@ -274,11 +288,12 @@ class finalChapterVictoryCore extends victoryCore
         if ($gameRules->phase == BLUE_MECH_PHASE || $gameRules->phase == RED_MECH_PHASE) {
             $gameRules->flashMessages[] = "@hide crt";
         }
+        $gameRules->replacementsAvail = 0;
         if ($attackingId == EASTERN_FORCE) {
             /* turn changes before soviet turn but after this check here */
             $gameRules->replacementsAvail = $sovietReplacements[$turn + 1];
         }
-        if ($attackingId == WESTERN_EMPIRE_FORCE) {
+        if ($attackingId == WESTERN_EMPIRE_FORCE && !$this->germanySurrenders) {
             $gameRules->replacementsAvail = $westGermanReplacements[$turn];
         }
 
@@ -286,7 +301,7 @@ class finalChapterVictoryCore extends victoryCore
             $gameRules->replacementsAvail = $westernReplacements[$turn];
         }
 
-        if ($attackingId == EASTERN_EMPIRE_FORCE) {
+        if ($attackingId == EASTERN_EMPIRE_FORCE && !$this->germanySurrenders) {
             $gameRules->replacementsAvail = $eastGermanReplacements[$turn];
         }
         global $force_name;
