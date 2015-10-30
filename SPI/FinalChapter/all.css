@@ -1208,16 +1208,40 @@ svg marker#head {
   .easternEmpire .unit-desig {
     color: black; }
 
-.playerFIve {
+.playerFive {
   background: #ffd189;
   border-color: #ffd189 !important; }
 
-.yugoslavianFace, .playerFIveFace {
+.yugoslavianFace, .playerFiveFace {
   color: #ffd189; }
 
 .yugoslavian {
   background-color: #ffd189; }
   .yugoslavian .unit-desig {
+    color: black; }
+
+.playerSix {
+  background: #48ac4d;
+  border-color: #48ac4d !important; }
+
+.polishFace, .playerSixFace {
+  color: #48ac4d; }
+
+.polish {
+  background-color: #48ac4d; }
+  .polish .unit-desig {
+    color: black; }
+
+.playerSeven {
+  background: #c14560;
+  border-color: #c14560 !important; }
+
+.bulgarianFace, .playerSevenFace {
+  color: #c14560; }
+
+.bulgarian {
+  background-color: #c14560; }
+  .bulgarian .unit-desig {
     color: black; }
 
 .dead-country {
