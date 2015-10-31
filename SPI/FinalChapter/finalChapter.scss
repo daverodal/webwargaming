@@ -20,10 +20,10 @@
  */
 @import "finalChapterColors";
 
-@include player(eastern, One, #ff6c29);
-@include player(westernEmpire,Three,#ADDAD6);
-@include player(western,Two,$rebelColor);
-@include player(easternEmpire,Four, #afa2b3);
+@include player(eastern, One, $easternColor);
+@include player(westernGerman,Three,#ADDAD6);
+@include player(western,Two,$westernColor);
+@include player(easternGerman,Four, #afa2b3);
 @include player(yugoslavian, Five, #ffd189);
 @include player(polish, Six, #ac7b1e);
 @include player(bulgarian, Seven, #c16844);
@@ -80,14 +80,18 @@
   float: left;
 }
 
-.specialHexesVP .rebelVictoryPoints {
-  @include victoryPoints(red)
+.specialHexesVP .easternVictoryPoints {
+  @include victoryPoints($easternColor)
+}
+
+.specialHexesVP .westernVictoryPoints {
+  @include victoryPoints($westernColor)
 }
 
 .col-hex{
   width:65px;
 }
-.specialHexesVP .loyalistVictoryPoints {
+.specialHexesVP .germanVictoryPoints {
  @include victoryPoints(#666);
 }
 

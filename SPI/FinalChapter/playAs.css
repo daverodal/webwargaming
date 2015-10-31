@@ -114,13 +114,6 @@ h2 {
   color: #f66;
   text-shadow: 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white; }
 
-.rebel {
-  font-size: 40px; }
-
-.loyalist {
-  font-size: 40px;
-  color: blue; }
-
 .link {
   font-size: 40px;
   text-decoration: none;
@@ -157,3 +150,5 @@ footer.attribution {
   padding: 20px;
   margin: 20px;
   border: 3px solid gray; }
+
+/*# sourceMappingURL=playAs.css.map */

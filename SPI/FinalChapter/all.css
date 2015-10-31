@@ -1176,23 +1176,23 @@ svg marker#head {
   background: #ADDAD6;
   border-color: #ADDAD6 !important; }
 
-.westernEmpireFace, .playerThreeFace {
+.westernGermanFace, .playerThreeFace {
   color: #ADDAD6; }
 
-.westernEmpire {
+.westernGerman {
   background-color: #ADDAD6; }
-  .westernEmpire .unit-desig {
+  .westernGerman .unit-desig {
     color: black; }
 
 .playerTwo {
-  background: #5c5;
-  border-color: #5c5 !important; }
+  background: #5c4;
+  border-color: #5c4 !important; }
 
 .westernFace, .playerTwoFace {
-  color: #5c5; }
+  color: #5c4; }
 
 .western {
-  background-color: #5c5; }
+  background-color: #5c4; }
   .western .unit-desig {
     color: black; }
 
@@ -1200,12 +1200,12 @@ svg marker#head {
   background: #afa2b3;
   border-color: #afa2b3 !important; }
 
-.easternEmpireFace, .playerFourFace {
+.easternGermanFace, .playerFourFace {
   color: #afa2b3; }
 
-.easternEmpire {
+.easternGerman {
   background-color: #afa2b3; }
-  .easternEmpire .unit-desig {
+  .easternGerman .unit-desig {
     color: black; }
 
 .playerFive {
@@ -1280,13 +1280,16 @@ svg marker#head {
 #gameTurn6 .unit {
   float: left; }
 
-.specialHexesVP .rebelVictoryPoints {
-  text-shadow: 0px 0px 1px red, 0px 0px 1px red, 0px 0px 1px red, 0px 0px 2px red, 0px 0px 2px red, 0px 0px 2px red, 0px 0px 3px red, 0px 0px 3px red, 0px 0px 3px red, 0px 0px 4px red, 0px 0px 4px red, 0px 0px 4px red, 0px 0px 5px red, 0px 0px 5px red, 0px 0px 5px red, 0px 0px 6px red, 0px 0px 6px red, 0px 0px 6px red, 0px 0px 7px red, 0px 0px 7px red, 0px 0px 7px red, 0px 0px 8px red, 0px 0px 8px red, 0px 0px 8px red, 0px 0px 9px red, 0px 0px 9px red, 0px 0px 9px red, 0px 0px 10px red, 0px 0px 10px red, 0px 0px 10px red, 0px 0px 1px red, 0px 0px 1px red, 0px 0px 1px red, 0px 0px 2px red, 0px 0px 2px red, 0px 0px 2px red, 0px 0px 3px red, 0px 0px 3px red, 0px 0px 3px red, 0px 0px 4px red, 0px 0px 4px red, 0px 0px 4px red, 0px 0px 5px red, 0px 0px 5px red, 0px 0px 5px red, 0px 0px 6px red, 0px 0px 6px red, 0px 0px 6px red, 0px 0px 7px red, 0px 0px 7px red, 0px 0px 7px red, 0px 0px 8px red, 0px 0px 8px red, 0px 0px 8px red, 0px 0px 9px red, 0px 0px 9px red, 0px 0px 9px red, 0px 0px 10px red, 0px 0px 10px red, 0px 0px 10px red; }
+.specialHexesVP .easternVictoryPoints {
+  text-shadow: 0px 0px 1px #ff6c29, 0px 0px 1px #ff6c29, 0px 0px 1px #ff6c29, 0px 0px 2px #ff6c29, 0px 0px 2px #ff6c29, 0px 0px 2px #ff6c29, 0px 0px 3px #ff6c29, 0px 0px 3px #ff6c29, 0px 0px 3px #ff6c29, 0px 0px 4px #ff6c29, 0px 0px 4px #ff6c29, 0px 0px 4px #ff6c29, 0px 0px 5px #ff6c29, 0px 0px 5px #ff6c29, 0px 0px 5px #ff6c29, 0px 0px 6px #ff6c29, 0px 0px 6px #ff6c29, 0px 0px 6px #ff6c29, 0px 0px 7px #ff6c29, 0px 0px 7px #ff6c29, 0px 0px 7px #ff6c29, 0px 0px 8px #ff6c29, 0px 0px 8px #ff6c29, 0px 0px 8px #ff6c29, 0px 0px 9px #ff6c29, 0px 0px 9px #ff6c29, 0px 0px 9px #ff6c29, 0px 0px 10px #ff6c29, 0px 0px 10px #ff6c29, 0px 0px 10px #ff6c29, 0px 0px 1px #ff6c29, 0px 0px 1px #ff6c29, 0px 0px 1px #ff6c29, 0px 0px 2px #ff6c29, 0px 0px 2px #ff6c29, 0px 0px 2px #ff6c29, 0px 0px 3px #ff6c29, 0px 0px 3px #ff6c29, 0px 0px 3px #ff6c29, 0px 0px 4px #ff6c29, 0px 0px 4px #ff6c29, 0px 0px 4px #ff6c29, 0px 0px 5px #ff6c29, 0px 0px 5px #ff6c29, 0px 0px 5px #ff6c29, 0px 0px 6px #ff6c29, 0px 0px 6px #ff6c29, 0px 0px 6px #ff6c29, 0px 0px 7px #ff6c29, 0px 0px 7px #ff6c29, 0px 0px 7px #ff6c29, 0px 0px 8px #ff6c29, 0px 0px 8px #ff6c29, 0px 0px 8px #ff6c29, 0px 0px 9px #ff6c29, 0px 0px 9px #ff6c29, 0px 0px 9px #ff6c29, 0px 0px 10px #ff6c29, 0px 0px 10px #ff6c29, 0px 0px 10px #ff6c29; }
+
+.specialHexesVP .westernVictoryPoints {
+  text-shadow: 0px 0px 1px #5c4, 0px 0px 1px #5c4, 0px 0px 1px #5c4, 0px 0px 2px #5c4, 0px 0px 2px #5c4, 0px 0px 2px #5c4, 0px 0px 3px #5c4, 0px 0px 3px #5c4, 0px 0px 3px #5c4, 0px 0px 4px #5c4, 0px 0px 4px #5c4, 0px 0px 4px #5c4, 0px 0px 5px #5c4, 0px 0px 5px #5c4, 0px 0px 5px #5c4, 0px 0px 6px #5c4, 0px 0px 6px #5c4, 0px 0px 6px #5c4, 0px 0px 7px #5c4, 0px 0px 7px #5c4, 0px 0px 7px #5c4, 0px 0px 8px #5c4, 0px 0px 8px #5c4, 0px 0px 8px #5c4, 0px 0px 9px #5c4, 0px 0px 9px #5c4, 0px 0px 9px #5c4, 0px 0px 10px #5c4, 0px 0px 10px #5c4, 0px 0px 10px #5c4, 0px 0px 1px #5c4, 0px 0px 1px #5c4, 0px 0px 1px #5c4, 0px 0px 2px #5c4, 0px 0px 2px #5c4, 0px 0px 2px #5c4, 0px 0px 3px #5c4, 0px 0px 3px #5c4, 0px 0px 3px #5c4, 0px 0px 4px #5c4, 0px 0px 4px #5c4, 0px 0px 4px #5c4, 0px 0px 5px #5c4, 0px 0px 5px #5c4, 0px 0px 5px #5c4, 0px 0px 6px #5c4, 0px 0px 6px #5c4, 0px 0px 6px #5c4, 0px 0px 7px #5c4, 0px 0px 7px #5c4, 0px 0px 7px #5c4, 0px 0px 8px #5c4, 0px 0px 8px #5c4, 0px 0px 8px #5c4, 0px 0px 9px #5c4, 0px 0px 9px #5c4, 0px 0px 9px #5c4, 0px 0px 10px #5c4, 0px 0px 10px #5c4, 0px 0px 10px #5c4; }
 
 .col-hex {
   width: 65px; }
 
-.specialHexesVP .loyalistVictoryPoints {
+.specialHexesVP .germanVictoryPoints {
   text-shadow: 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 10px #666, 0px 0px 10px #666, 0px 0px 10px #666, 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 1px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 2px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 3px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 4px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 5px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 6px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 7px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 8px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 9px #666, 0px 0px 10px #666, 0px 0px 10px #666, 0px 0px 10px #666; }
 
 .mapSymbols {

@@ -100,18 +100,30 @@ class finalChapterVictoryCore extends victoryCore
         if($vp) {
             if ($forceId == WESTERN_FORCE || $forceId == EASTERN_FORCE) {
                 $this->victoryPoints[$forceId] += $vp;
+                if($forceId == EASTERN_FORCE){
+                    $class = 'easternVictoryPoints';
+                    $name = 'Eastern';
+                }else{
+                    $class = 'westernVictoryPoints';
+                    $name = "Western";
+                }
                 if($vp < 10){
-                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>+$vp</span>";
+                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='$class'>+$vp $name</span>";
 
                 }else{
-                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='rebelVictoryPoints'>Berlin Falls! +10 vp</span>";
+                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='$class'>Berlin Falls! +10 vp</span>";
                     $battle->gameRules->flashMessages[] = "Germany Surrenders! Victory in Europe!";
 
                 }
             } else {
                 $previousOwner = $battle->mapData->specialHexes->$mapHexName;
                 $this->victoryPoints[$previousOwner] -= $vp;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>-$vp</span>";
+                if($forceId == EASTERN_FORCE){
+                    $name = 'Eastern';
+                }else{
+                    $name = 'Western';
+                }
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='loyalistVictoryPoints'>-$vp $name</span>";
             }
         }
     }
@@ -238,11 +250,13 @@ class finalChapterVictoryCore extends victoryCore
         $unit = $args[0];
 
         $b = Battle::getBattle();
-        $id = $unit->id;
-        if ($unit->forceId != $b->gameRules->attackingForceId) {
-//            return;
+        if($this->germanySurrenders){
+            if($b->gameRules->mode == COMBAT_SETUP_MODE){
+                if($unit->status === STATUS_READY){
+                    $unit->status = STATUS_UNAVAIL_THIS_PHASE;
+                }
+            }
         }
-
     }
 
     public function postEliminated($arg){
@@ -285,9 +299,6 @@ class finalChapterVictoryCore extends victoryCore
         $gameRules = $battle->gameRules;
         $turn = $gameRules->turn - 1;
 
-        if ($gameRules->phase == BLUE_MECH_PHASE || $gameRules->phase == RED_MECH_PHASE) {
-            $gameRules->flashMessages[] = "@hide crt";
-        }
         $gameRules->replacementsAvail = 0;
         if ($attackingId == EASTERN_FORCE) {
             /* turn changes before soviet turn but after this check here */
