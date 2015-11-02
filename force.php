@@ -156,9 +156,9 @@ class MovableUnit{
         return $this->hexagon->parent == "deployBox";
     }
 
-    function getEliminated( $hexagon)
+    function getReplacing( $hexagon)
     {
-        if ($this->status == STATUS_CAN_REPLACE) {
+        if ($this->status == STATUS_REPLACING) {
             $hexagon = new Hexagon($hexagon);
             $this->status = STATUS_REPLACED;
             $this->updateMoveStatus($hexagon, 0);
@@ -257,22 +257,22 @@ class BaseUnit extends MovableUnit{
                 }
                 break;
 
-            case STATUS_CAN_REPLACE:
-                if ($this->status == STATUS_ELIMINATED) {
+            case STATUS_REPLACING:
+                if ($this->status == STATUS_CAN_REPLACE) {
                     $this->status = $status;
                     $success = true;
                 }
                 break;
 
             case STATUS_REPLACED:
-                if ($this->status == STATUS_CAN_REPLACE) {
+                if ($this->status == STATUS_REPLACING) {
                     $this->status = $status;
                     $success = true;
                 }
                 break;
 
-            case STATUS_ELIMINATED:
-                if ($this->status == STATUS_CAN_REPLACE) {
+            case STATUS_CAN_REPLACE:
+                if ($this->status == STATUS_REPLACING) {
                     $this->status = $status;
                     $success = true;
                 }
@@ -1097,6 +1097,13 @@ class Force extends SimpleForce
             $victory->preRecoverUnit($this->units[$id]);
 
             switch ($this->units[$id]->status) {
+                case STATUS_ELIMINATED:
+                    if($mode === REPLACING_MODE){
+                        if ($this->units[$id]->forceId == $this->attackingForceId){
+                            $this->units[$id]->status = STATUS_CAN_REPLACE;
+                        }
+                    }
+                    break;
                 case STATUS_CAN_DEPLOY:
                     if($mode == DEPLOY_MODE){
                         continue;

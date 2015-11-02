@@ -1311,7 +1311,7 @@ class MoveRules
         $battle = Battle::getBattle();
         /* @var Unit $unit */
         $unit = $this->force->getUnit($id);
-        if ($unit->setStatus(STATUS_CAN_REPLACE) == true) {
+        if ($unit->setStatus(STATUS_REPLACING) == true) {
             $movesLeft = 0;
             $zones = $this->terrain->getReinforceZonesByName($unit->getUnitReinforceZone($id));
             list($zones) = $battle->victory->postReinforceZones($zones, $unit);

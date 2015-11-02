@@ -250,6 +250,7 @@ define("STATUS_BOMBARDING",33);
 define("STATUS_UNAVAIL_THIS_PHASE",34);
 define("STATUS_CAN_DEPLOY",35);
 define("STATUS_DEPLOYING",36);
+define("STATUS_REPLACING",37);
 
 
 // unit status names

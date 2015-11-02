@@ -352,11 +352,12 @@ x.register("force", function(force,data) {
             case <?=STATUS_REPLACED?>:
                 color = "blue";
                 break;
-            case <?=STATUS_CAN_REPLACE?>:
+            case <?=STATUS_REPLACING?>:
                 color = "orange";
                 break;
             case <?=STATUS_CAN_UPGRADE?>:
             case <?=STATUS_ELIMINATED?>:
+            case <?=STATUS_CAN_REPLACE?>:
                 if(units[i].forceId === force.attackingForceId){
                     shadow = false;
                     color = "turquoise";

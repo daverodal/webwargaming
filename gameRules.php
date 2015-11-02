@@ -195,7 +195,7 @@ class GameRules
                         if($this->currentReplacement !== false && $location){
                             $unit = $this->force->getUnit($this->currentReplacement);
 
-                            if ($unit->getEliminated($location) !== false) {
+                            if ($unit->getReplacing($location) !== false) {
                                 $this->moveRules->stopReplacing($id);
                                 $this->currentReplacement = false;
                                 $this->replacementsAvail--;
@@ -206,27 +206,27 @@ class GameRules
                         if ($this->force->attackingForceId == $this->force->units[$id]->forceId) {
                             /* @var Unit $unit */
                             $unit = $this->force->getUnit($id);
-                            if ($unit->setStatus(STATUS_ELIMINATED)) {
+                            if ($unit->setStatus(STATUS_CAN_REPLACE)) {
                                 $this->currentReplacement = false;
                                 $this->moveRules->stopReplacing($id);
                                 break;
                             }
 
-                            if ($this->force->units[$id]->status == STATUS_ELIMINATED) {
+                            if ($this->force->units[$id]->status == STATUS_CAN_REPLACE) {
                                 if ($this->currentReplacement !== false && $this->currentReplacement != $id) {
                                     /* @var Unit $unit */
                                     $unit = $this->force->getUnit($this->currentReplacement);
-                                    $unit->setStatus(STATUS_ELIMINATED);
+                                    $unit->setStatus(STATUS_CAN_REPLACE);
                                 }
 //                                $this->force->units[$id]->status = STATUS_CAN_REPLACE;
                                 $this->currentReplacement = $id;
                                 $this->moveRules->startReplacing($id);
                                 break;
                             }
-                            if (isset($this->force->landForce) && $this->force->landForce && $this->force->units[$id]->status != STATUS_CAN_REPLACE && $this->force->units[$id]->status != STATUS_CAN_REINFORCE && $this->force->replace($id)) {
+                            if (isset($this->force->landForce) && $this->force->landForce && $this->force->units[$id]->status != STATUS_REPLACING && $this->force->units[$id]->status != STATUS_CAN_REINFORCE && $this->force->replace($id)) {
                                 $this->replacementsAvail--;
                                 if ($this->currentReplacement !== false) {
-                                    $this->force->units[$this->currentReplacement]->status = STATUS_ELIMINATED;
+                                    $this->force->units[$this->currentReplacement]->status = STATUS_REPLACED;
                                     $this->moveRules->stopReplacing($id);
 
                                     $this->currentReplacement = false;
