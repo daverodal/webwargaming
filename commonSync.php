@@ -356,7 +356,6 @@ x.register("force", function(force,data) {
                 color = "orange";
                 break;
             case <?=STATUS_CAN_UPGRADE?>:
-            case <?=STATUS_ELIMINATED?>:
             case <?=STATUS_CAN_REPLACE?>:
                 if(units[i].forceId === force.attackingForceId){
                     shadow = false;
@@ -364,6 +363,8 @@ x.register("force", function(force,data) {
                 }
                 break;
 
+            case <?=STATUS_ELIMINATED?>:
+                break;
 
         }
         if(status){

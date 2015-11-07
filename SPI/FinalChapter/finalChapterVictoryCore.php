@@ -259,6 +259,47 @@ class finalChapterVictoryCore extends victoryCore
         }
     }
 
+    public function postRecoverUnits()
+    {
+        $battle = Battle::getBattle();
+        $mode = $battle->gameRules->mode;
+        if($mode === REPLACING_MODE){
+
+        $westernReplacements = [0, 2, 2, 2, 2, 2, 2, 2, 2, 2];
+        $sovietReplacements =  [0, 2, 2, 2, 2, 1, 1, 1, 1, 1];
+        $eastGermanReplacements = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+        $westGermanReplacements = [0, 1, 0, 1, 0, 0, 1, 0, 1, 0];
+        $mapData = $battle->mapData;
+        $attackingId = $battle->force->attackingForceId;
+        $specialHexes = $mapData->specialHexes;
+        $gameRules = $battle->gameRules;
+        $turn = $gameRules->turn - 1;
+
+        $gameRules->replacementsAvail = 0;
+        if ($attackingId == EASTERN_FORCE) {
+            /* turn changes before soviet turn but after this check here */
+            $gameRules->replacementsAvail = $sovietReplacements[$turn];
+            $units = $this->getSovietReplacements($gameRules->replacementsAvail);
+        }
+        if ($attackingId == WESTERN_EMPIRE_FORCE && !$this->germanySurrenders) {
+            $units = $this->getLowest(WESTERN_EMPIRE_FORCE);
+            $gameRules->replacementsAvail = $westGermanReplacements[$turn];
+        }
+
+        if($attackingId == WESTERN_FORCE){
+            $gameRules->replacementsAvail = $westernReplacements[$turn];
+        }
+
+        if ($attackingId == EASTERN_EMPIRE_FORCE  && !$this->germanySurrenders) {
+            $units = $this->getLowest(EASTERN_EMPIRE_FORCE);
+            $gameRules->replacementsAvail = $eastGermanReplacements[$turn];
+        }
+
+
+        }
+    }
+
+
     public function postEliminated($arg){
         $unit = $arg[0];
         switch($unit->forceId){
@@ -287,39 +328,101 @@ class finalChapterVictoryCore extends victoryCore
 
     public function playerTurnChange($arg)
     {
-        $westernReplacements = [0, 2, 2, 2, 2, 2, 2, 2, 2, 2];
-        $sovietReplacements =  [0, 2, 2, 2, 2, 1, 1, 1, 1, 1];
-        $eastGermanReplacements = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-        $westGermanReplacements = [0, 1, 0, 1, 0, 0, 1, 0, 1, 0];
-        $attackingId = $arg[0];
         $battle = Battle::getBattle();
-        $mapData = $battle->mapData;
-        $vp = $this->victoryPoints;
-        $specialHexes = $mapData->specialHexes;
+        $attackingId = $arg[0];
         $gameRules = $battle->gameRules;
-        $turn = $gameRules->turn - 1;
-
-        $gameRules->replacementsAvail = 0;
-        if ($attackingId == EASTERN_FORCE) {
-            /* turn changes before soviet turn but after this check here */
-            $gameRules->replacementsAvail = $sovietReplacements[$turn + 1];
-        }
-        if ($attackingId == WESTERN_EMPIRE_FORCE && !$this->germanySurrenders) {
-            $gameRules->replacementsAvail = $westGermanReplacements[$turn];
-        }
-
-        if($attackingId == WESTERN_FORCE){
-            $gameRules->replacementsAvail = $westernReplacements[$turn];
-        }
-
-        if ($attackingId == EASTERN_EMPIRE_FORCE && !$this->germanySurrenders) {
-            $gameRules->replacementsAvail = $eastGermanReplacements[$turn];
-        }
         global $force_name;
         $gameRules->flashMessages[] = $force_name[$attackingId]." Player Turn";
-
-
-        /*only get special VPs' at end of first Movement Phase */
-        $this->victoryPoints = $vp;
     }
+
+    private function getLowest($forceId){
+        $battle = Battle::getBattle();
+        $units = $battle->force->units;
+        $lowest = 10;/* bigger than biggest */
+        $lowestUnits = [];
+        $rejects = [];
+        foreach($units as $unitId => $unit){
+            if($unit->forceId !== $forceId){
+                continue;
+            }
+            if($unit->status === STATUS_CAN_REPLACE){
+                $str = $unit->strength;
+                if($str < $lowest){
+                    $rejects = array_merge($rejects, $lowestUnits);
+                    $lowestUnits = [];
+                    $lowestUnits[] = $unitId;
+                    $lowest = $str;
+                    continue;
+                }
+                if($str === $lowest){
+                    $lowestUnits[] = $unitId;
+                    continue;
+                }
+                $rejects[] = $unitId;
+            }
+        }
+        foreach($rejects as $unitId){
+            $units[$unitId]->status = STATUS_ELIMINATED;
+        }
+        return $lowestUnits;
+    }
+
+    private function getSovietReplacements($numReplacements){
+        $battle = Battle::getBattle();
+        $units = $battle->force->units;
+        $lowest = 10;/* bigger than biggest */
+        $lowestUnits = [];
+        $rejects = [];
+        $secondLowest = 10;/* bigger than biggest */
+        $secondLowestUnits = [];
+        foreach($units as $unitId => $unit){
+            if($unit->forceId !== EASTERN_FORCE){
+                continue;
+            }
+            if($unit->status === STATUS_CAN_REPLACE){
+                if($unit->nationality === "yugoslavian"){
+                    $rejects[] = $unitId;
+                    continue;
+                }
+                if($unit->nationality === "bulgarian" || $unit->nationality === "polish"){
+                    continue;
+                }
+                $str = $unit->strength;
+                if($str < $lowest){
+                    $rejects = array_merge($rejects, $secondLowestUnits);
+                    $secondLowest = $lowest;
+                    $secondLowestUnits = $lowestUnits;
+                    $lowestUnits = [];
+                    $lowestUnits[] = $unitId;
+                    $lowest = $str;
+                    continue;
+                }
+                if($str === $lowest){
+                    $lowestUnits[] = $unitId;
+                    continue;
+                }
+                if($str < $secondLowest){
+                    $rejects = array_merge($rejects, $secondLowestUnits);
+                    $secondLowestUnits = [];
+                    $secondLowestUnits[] = $unitId;
+                    $secondLowest = $str;
+                    continue;
+                }
+                $rejects[] = $unitId;
+            }
+        }
+        if(count($lowestUnits) < $numReplacements){
+            if(count($secondLowestUnits) > 0){
+                $lowestUnits[] = array_shift($secondLowestUnits);
+                $rejects = array_merge($rejects, $secondLowestUnits);
+            }
+        }else{
+            $rejects = array_merge($rejects, $secondLowestUnits);
+        }
+        foreach($rejects as $unitId){
+            $units[$unitId]->status = STATUS_ELIMINATED;
+        }
+        return $lowestUnits;
+    }
+
 }
