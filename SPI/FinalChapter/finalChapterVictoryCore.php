@@ -85,13 +85,15 @@ class finalChapterVictoryCore extends victoryCore
             $vp = 2;
         }
         if(in_array($mapHexName, $battle->specialHexC)){
-            $vp = 10;
-            $units = $battle->force->units;
-            $this->germanySurrenders = true;
-            foreach($units as $id => $unit){
-                if($unit->forceId > 2){
-                    if($unit->status !== STATUS_ELIMINATED){
-                        $battle->force->eliminateUnit($id);
+            if($forceId === EASTERN_FORCE || $forceId === WESTERN_FORCE) {
+                $vp = 10;
+                $units = $battle->force->units;
+                $this->germanySurrenders = true;
+                foreach ($units as $id => $unit) {
+                    if ($unit->forceId > 2) {
+                        if ($unit->status !== STATUS_ELIMINATED) {
+                            $battle->force->eliminateUnit($id);
+                        }
                     }
                 }
             }
