@@ -70,6 +70,8 @@ class FinalChapter extends ModernLandBattle
         $this->terrain->addTerrainFeature("crest", "crest", "o", 0, 0, 0, false);
         $this->terrain->addNatAltTraverseCost('crest', 'yugoslavian', 'inf', 'blocked');
         $this->terrain->addNatAltTraverseCost('crest', 'eastern', 'inf', 'blocked');
+        $this->terrain->addNatAltTraverseCost('crest', 'Bul', 'inf', 'blocked');
+        $this->terrain->addNatAltTraverseCost('crest', 'bulgarian', 'inf', 'blocked');
 
         parent::terrainGen($mapDoc, $terrainDoc);
     }
