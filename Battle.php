@@ -121,6 +121,7 @@ class LandBattle extends Battle{
             $u->forceId = $unit->forceId;
             $u->forceMarch = $unit->forceMarch;
             $u->isDisrupted = $unit->isDisrupted;
+            $u->isImproved = $unit->isImproved;
             if ($unit->reinforceTurn > $turn) {
                 $u->reinforceTurn = $unit->reinforceTurn;
             }

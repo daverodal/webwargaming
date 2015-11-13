@@ -242,6 +242,11 @@ x.register("force", function(force,data) {
             style = "dotted";
             totalDefenders++;
         }
+        if(units[i].isImproved === true){
+            style = 'dotted';
+            color = 'black';
+            debugger;
+        }
         switch(units[i].status){
             case <?=STATUS_CAN_REINFORCE?>:
             case <?=STATUS_CAN_DEPLOY?>:

@@ -219,6 +219,7 @@ class Troops extends TroopsCore
             $this->moveRules->exitZoc = 0;
             $this->moveRules->noZocZoc = false;
             $this->moveRules->zocBlocksRetreat = false;
+            $this->moveRules->oneHex = false;
 
             $this->gameRules->gameHasCombatResolutionMode = false;
             // game data

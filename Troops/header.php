@@ -135,6 +135,9 @@ x.register("mapUnits", function(mapUnits) {
         $("#"+i+" .unitNumbers.movement").html(move);
         var len  = $("#"+i+" .unitNumbers.movement").text().length;
         $("#"+i+" unitNumbers.movement").addClass("infoLen"+len);
+        if(mapUnits[i].isImproved){
+            $("#"+i).css('border-style','dotted');
+        }
     }
     var dpBox = $("#deployBox").children().size();
     if(dpBox != beforeDeploy){

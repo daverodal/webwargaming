@@ -297,6 +297,10 @@ class CombatResultsTable
                 $terrain = "in forest ";
                 $unitStrength = 5;
             }
+            if($unit->isImproved){
+                $unitStrength *= 2;
+                $terrain .= "Improved ";
+            }
             $combatLog .= "$unitStrength ".$unit->class." $terrain";
 
 

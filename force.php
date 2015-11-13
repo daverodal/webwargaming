@@ -889,7 +889,8 @@ class Force extends SimpleForce
             case MISS:
                 $defUnit->status = STATUS_NO_RESULT;
                 $defUnit->retreatCountRequired = 0;
-                break;
+                $battle->victory->noEffectUnit($defUnit);
+            break;
             case DL:
                 $eliminated = $defUnit->damageUnit();
                 if ($eliminated) {

@@ -244,11 +244,26 @@ class GameRules
                 break;
             case DEPLOY_MODE:
                 switch ($event) {
+                    case KEYPRESS_EVENT:
+                        $c = chr($id);
 
+                        if($c == 'i' || $c == 'I'){
+                            $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+                            $unit->enterImproved(true);
+                        }
+
+                        if($c == 'u' || $c == 'U'){
+                            $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+                            $unit->exitImproved(true);
+                        }
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
 
-                        $this->moveRules->moveUnit($event, $id, $location, $this->turn);
+
+
+                    $this->moveRules->moveUnit($event, $id, $location, $this->turn);
                         break;
 
                     case SELECT_BUTTON_EVENT:
@@ -295,6 +310,18 @@ class GameRules
                                     return;
 
                                 }
+                            }
+
+                            if($c == 'i' || $c == 'I'){
+                                $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+                                $unit->enterImproved();
+                            }
+
+                            if($c == 'u' || $c == 'U'){
+                                $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+                                $unit->exitImproved();
                             }
 
                             if($id == 37){

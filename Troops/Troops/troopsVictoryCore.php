@@ -78,6 +78,22 @@ class troopsVictoryCore extends troopersVictoryCore
         }
     }
 
+    public function noEffectUnit($args){
+        list($unit) = $args;
+        $hex = $unit->hexagon;
+        $battle = Battle::getBattle();
+        $playerOne = strtolower( $battle->scenario->playerOne);
+        $playerTwo = strtolower( $battle->scenario->playerTwo);
+
+        if ($unit->forceId == 1) {
+            $victorId = 2;
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='$playerTwo'>NE</span>";
+        } else {
+            $victorId = 1;
+            $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='$playerOne'>NE</span>";
+        }
+    }
+
     public function specialHexChange($args)
     {
         $battle = Battle::getBattle();
