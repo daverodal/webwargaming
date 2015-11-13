@@ -89,43 +89,43 @@ class TacticalUnit extends BaseUnit implements JsonSerializable
 
 
     public function enterImproved($force = false){
-
-
+        if($force !== true && $this->moveAmountUsed > 0){
+            return false;
+        }
+        if($force !== true && $this->nationality !== "French" && $this->class === "artillery") {
+            return false;
+        }
+        $this->moveAmountUsed = 1;
+        $b = Battle::getBattle();
+        if($this->nationality === "British"){
+            if($this->isDisrupted === false){
+                $this->isImproved = true;
+            }else{
+                if(rand(1,6) <= 4){
+                    $this->isImproved = true;
+                }
+            }
+        }else{
+            $dieNeeded = 2;
+            if($this->nationality == "Russian"){
+                $dieNeeded = 1;
+            }
+            if($this->nationality == "French" && $this->class === "infantry"){
+                $dieNeeded = 1;
+            }
+            if(rand(1,6) <= $dieNeeded){
+                $this->isImproved = true;
+            }
+        }
         if($force === true){
             $this->isImproved = true;
-        }else {
-            if($this->moveAmountUsed > 0){
-                return false;
-            }
-            if($this->class === "artillery" && $this->nationality !== "French") {
-                return false;
-            }
-            $this->moveAmountUsed = 1;
-            $b = Battle::getBattle();
-            if ($this->nationality === "British") {
-                if ($this->isDisrupted === false) {
-                    $this->isImproved = true;
-                } else {
-                    if (rand(1, 6) <= 4) {
-                        $this->isImproved = true;
-                    }
-                }
-            } else {
-                $dieNeeded = 2;
-                if ($this->nationality == "Russian") {
-                    $dieNeeded = 1;
-                }
-                if ($this->nationality == "French" && $this->class === "infantry") {
-                    $dieNeeded = 1;
-                }
-                if (rand(1, 6) <= $dieNeeded) {
-                    $this->isImproved = true;
-                }
-            }
         }
-        if ($this->isImproved) {
+
+        if($this->isImproved){
             $this->maxMove = 0;
         }
+
+
         $b->moveRules->stopMove($this);
     }
 
