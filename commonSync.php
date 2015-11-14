@@ -245,7 +245,6 @@ x.register("force", function(force,data) {
         if(units[i].isImproved === true){
             style = 'dotted';
             color = 'black';
-            debugger;
         }
         switch(units[i].status){
             case <?=STATUS_CAN_REINFORCE?>:
@@ -810,7 +809,6 @@ x.register("moveRules", function(moveRules,data) {
             height = $("#"+id).height();
 
             var MYCLONE = $("#"+id).clone(true).detach();
-            console.log($('MYCLONE').css('display'));
             MYCLONE.find(".arrow").hide();
             MYCLONE.addClass("clone");
             MYCLONE.find('.shadow-mask').css({backgroundColor:'transparent'});

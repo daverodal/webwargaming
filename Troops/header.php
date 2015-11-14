@@ -152,7 +152,6 @@ x.register("mapUnits", function(mapUnits) {
 });
 
 x.register("moveRules", function(moveRules,data) {
-    console.log("Moving");
     var str;
     $(".clone").remove();
     if(moveRules.movingUnitId >= 0){
@@ -271,7 +270,6 @@ x.register("moveRules", function(moveRules,data) {
         }
 
     }
-    console.log("moved");
 });
 x.register("specialHexes", function(specialHexes, data) {
     $(".specialHexesVP").remove();
@@ -329,6 +327,9 @@ x.register("specialHexes", function(specialHexes, data) {
 
 
 });
+/*
+ * for now, remove this cuz it's very very slow...... (troops only!)
+ */
 x.register("sentBreadcrumbs", function(breadcrumbs,data) {
 });
 </script>
