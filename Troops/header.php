@@ -329,4 +329,6 @@ x.register("specialHexes", function(specialHexes, data) {
 
 
 });
+x.register("sentBreadcrumbs", function(breadcrumbs,data) {
+});
 </script>
