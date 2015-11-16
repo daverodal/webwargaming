@@ -36,12 +36,12 @@ h5 {
 
 }
 .red-shadowy {
-  background-color: rgba(255, 0, 0, .7) !important;
+  background-color: rgba(255, 0, 0, .2) !important;
   font-size:9px;
   color:white;
 }
 .red-shadowy:hover{
-  background-color: rgba(255, 0, 0, .2) !important;
+  background-color: transparent !important;
   color:transparent;
 }
 
@@ -899,6 +899,7 @@ svg {
 .unitOdds {
   position: absolute;
   background: white;
+  color:black;
   border-radius: 10px;
   left: 15px;
   right: -9px;

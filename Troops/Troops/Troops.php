@@ -84,7 +84,7 @@ class Troops extends TroopsCore
     public function terrainInit($terrainDoc)
     {
         parent::terrainInit($terrainDoc);
-        $this->moodkee = $this->specialHexB[0];
+
     }
 
     function save()

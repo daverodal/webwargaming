@@ -99,6 +99,26 @@
             $(clone).find('.heading').css({webkitTransform: ' scale(.55,.55) rotate(' + theta + "deg) translateY(-45px)"});
             $(clone).find('.mp').html(moveAmount);
         }
+
+
+//        var hexSideLen = 32;
+//        var b = hexSideLen * .866;
+//        unit.id = i;
+//        drawHex(hexSideLen, unit, 'short');
+//        var range = unit.gunRange;
+//        drawHex(b * (range * 2 + 1), unit);
+//        $("#"+i).hover(function(){
+//            var id = $(this).attr('id');
+//            $('#arrow-svg #rangeHex'+id).attr('fill-opacity',.1);
+//            $('#arrow-svg #rangeHex'+id+'short').attr('style','stroke:red;');
+//        }, function(){
+//            var id = $(this).attr('id');
+//            $('#arrow-svg #rangeHex'+id).attr('fill-opacity',0.0);
+//            $('#arrow-svg #rangeHex'+id+'short').attr('style','');
+//        });
+//
+
+
         var theta = unit.facing;
 
         theta *= 60;
@@ -217,4 +237,34 @@
                 $(this).find('.top-numbers .gunnery').width('');
             });
     });
+
+
+//
+//    function drawHex(hexside, unit, isShort){
+//
+//        debugger;
+//        var decoration = isShort || "";
+//        var c = hexside - 0;
+//        var a = (c / 2);
+//        var b = .866 * c;
+//        var ac = a+c;
+//        var x = unit.x;
+//        var y = unit.y;
+//        var id = unit.id+decoration;
+//        var nat = DR.players[unit.forceId];
+//
+//        x = x - b;
+//        y = y - c;
+//
+//        var path = '<path class="'+nat+' '+decoration+'" stroke="red" id="rangeHex'+id+'" fill="#000" fill-opacity="0" stroke-width="2" d="M '+x+' ' + (ac + y) + ' L ' + x + ' '+ (a + y) + ' L ' + (b + x) + ' ' + y;
+//        path += ' L ' + (2 * b + x) + ' ' + (a + y) + ' L ' + (2 * b + x) + ' ' + (ac + y) + ' L ' + (b + x) + ' '+ (2 * c + y)+' Z"></path>';
+//
+//        $('#arrow-svg').append(path);
+//        $('#arrow-svg').html($('#arrow-svg').html());
+//    }
+//
+//    function clearHexes(){
+//        $('svg path').remove();
+//    }
+
 </script>

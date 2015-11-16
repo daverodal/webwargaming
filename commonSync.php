@@ -424,9 +424,9 @@ x.register("force", function(force,data) {
         }
         if(units[i].isDisrupted){
             if(units[i].isDisrupted == 17){
-                $("#"+i+" .shadow-mask").addClass("red-shadowy").html(DR.playerOne);
+                $("#"+i+" .shadow-mask").addClass("red-shadowy").html(DR.playerOne+"<br><span class='disrupted'>D</span>");
             }else{
-                $("#"+i+" .shadow-mask").addClass("red-shadowy").html(DR.playerTwo);
+                $("#"+i+" .shadow-mask").addClass("red-shadowy").html(DR.playerTwo+"<br><span class='disrupted'>D</span>");
             }
         }else{
             $("#"+i+" .shadow-mask").removeClass("red-shadowy").html('');

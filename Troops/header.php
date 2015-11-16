@@ -67,6 +67,7 @@ x.register("mapUnits", function(mapUnits) {
     var beforeDeploy = $("#deployBox").children().size();
     DR.stackModel = {};
     DR.stackModel.ids = {};
+    clearHexes();
 
     for (i in mapUnits) {
         width = $("#"+i).width();
@@ -109,6 +110,22 @@ x.register("mapUnits", function(mapUnits) {
         if(mapUnits[i].parent == "gameImages"){
 
             $("#"+i).css({left:mapUnits[i].x-width/2-fudge+"px",top:mapUnits[i].y-height/2-fudge+"px", zIndex: zIndex});
+            var hexSideLen = 35.2;
+            var b = hexSideLen * .866;
+            var unit = mapUnits[i];
+            unit.id = i;
+            drawHex(hexSideLen, unit, 'short');
+            var range = mapUnits[i].range;
+            drawHex(b * (range * 2 + 1), unit);
+            $("#"+i).hover(function(){
+                var id = $(this).attr('id');
+                $('#arrow-svg #rangeHex'+id).attr('fill-opacity',.1);
+                $('#arrow-svg #rangeHex'+id+'short').attr('style','stroke:red;');
+            }, function(){
+                var id = $(this).attr('id');
+                $('#arrow-svg #rangeHex'+id).attr('fill-opacity',0.0);
+                $('#arrow-svg #rangeHex'+id+'short').attr('style','');
+            });
         }
         var img = $("#"+i+" img").attr("src");
 
@@ -332,4 +349,34 @@ x.register("specialHexes", function(specialHexes, data) {
  */
 x.register("sentBreadcrumbs", function(breadcrumbs,data) {
 });
+
+
+
+    function drawHex(hexside, unit, isShort){
+
+        var decoration = isShort || "";
+        var c = hexside - 0;
+        var a = (c / 2);
+        var b = .866 * c;
+        var ac = a+c;
+        var x = unit.x;
+        var y = unit.y;
+        var id = unit.id+decoration;
+        var nat = DR.players[unit.forceId];
+
+        x = x - b;
+        y = y - c;
+
+        var path = '<path class="'+nat+' '+decoration+'" stroke="transparent" id="rangeHex'+id+'" fill="#000" fill-opacity="0" stroke-width="2" d="M '+x+' ' + (ac + y) + ' L ' + x + ' '+ (a + y) + ' L ' + (b + x) + ' ' + y;
+        path += ' L ' + (2 * b + x) + ' ' + (a + y) + ' L ' + (2 * b + x) + ' ' + (ac + y) + ' L ' + (b + x) + ' '+ (2 * c + y)+' Z"></path>';
+
+        $('#arrow-svg').append(path);
+        $('#arrow-svg').html($('#arrow-svg').html());
+    }
+
+    function clearHexes(){
+        $('svg path').remove();
+    }
+
+
 </script>

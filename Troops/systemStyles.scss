@@ -45,6 +45,15 @@ body {
   #crt .roll.odd.#{$nationality}{
     background-color:$color;
   }
+  #arrow-svg path.#{$nationality}{
+    stroke: $counterColor;
+  }
+  #arrow-svg path.#{$nationality}.short{
+    stroke: transparent;
+    &.hover{
+      stroke: $counterColor;
+    }
+  }
 }
 
 @mixin badge($nationality, $shortName) {
@@ -394,4 +403,120 @@ p.forceMarch {
       color: transparent;
     }
   }
+}
+
+.disrupted{
+  font-size:18px;
+  padding-left:10px;
+}
+
+
+
+
+
+.topDiv {
+  stroke:black;
+  fill:black;
+  stroke-width:2;
+  color:black;
+  font-family:sans-serif;
+  border: 3px solid black;
+  border-color: rgb(204, 204, 204) rgb(102, 102, 102) rgb(102, 102, 102) rgb(204, 204, 204);
+  top: 400px;
+  width: 48px;
+  height: 48px;
+}
+.shadow-mask{
+  position: absolute;
+  top:0px;
+  left:0px;
+  width:48px;
+  height:48px;
+  z-index:3;
+}
+
+.counterWrapper{
+  height:16px;
+}
+.counterWrapper svg{
+  //margin: 0 auto;
+  display:block;
+}
+
+.unitNumbers{
+  font-size:13px;
+  position:absolute;
+  &.attack{
+    top:-3px;
+    left:0px;
+  }
+  &.rangewe{
+    top:-3px;
+    right:1px;
+  }
+  &.movement{
+    bottom:-2px;
+    right:1px;
+  }
+}
+.mg {
+  .unitNumbers{
+    letter-spacing: -1px;
+  }
+  .mg-svg {
+    display: block;
+    width: 10px;
+    position: absolute;
+    bottom: 2px;
+    left: 10px;
+  }
+}
+
+.artillery{
+  .unitNumbers{
+    letter-spacing: -1px;
+  }
+  .artillery-svg {
+    display: block;
+    position: absolute;
+    bottom: 2px;
+    left: 9px;
+  }
+}
+.infantry {
+  .unitNumbers {
+    font-size: 15px;
+  }
+  .infantry-svg {
+    display: block;
+    position: absolute;
+    left: 2px;
+    bottom: 2px;
+  }
+}
+.topDiv.smallUnit{
+  width:32px;
+  height:32px;
+}
+.orange{
+  background:orange;
+}
+.left{
+  float:left;
+}
+.right{
+  float:right;
+}
+.type-wrapper{
+  display:none;
+}
+
+.German{
+  background: #999;
+}
+.British{
+}
+
+svg#arrow-svg{
+  display: block;
 }

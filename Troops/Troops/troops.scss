@@ -61,3 +61,14 @@ $russianColor: #F0F4CF;
 p.forceMarch,  p.range {
   color:black;
 }
+
+.mapSymbols{
+  position:absolute;
+  color:white;
+  background-color: transparent;
+  margin-top:-33px;
+  margin-left:-28px;
+}
+.col-hex{
+  width:65px;
+}

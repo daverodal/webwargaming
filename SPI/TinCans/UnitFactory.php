@@ -326,6 +326,7 @@ class NavalUnit extends MovableUnit implements JsonSerializable
         $mapUnit->spotted = $this->spotted;
         $mapUnit->fire = $this->fire;
         $mapUnit->unitDefenseStrength = $this->unitDefenseStrength;
+        $mapUnit->gunRange = $this->gunRange;
         return $mapUnit;
     }
 

@@ -46,12 +46,12 @@ h5 {
   background-color: rgba(0, 0, 0, 0.3) !important; }
 
 .red-shadowy {
-  background-color: rgba(255, 0, 0, 0.7) !important;
+  background-color: rgba(255, 0, 0, 0.2) !important;
   font-size: 9px;
   color: white; }
 
 .red-shadowy:hover {
-  background-color: rgba(255, 0, 0, 0.2) !important;
+  background-color: transparent !important;
   color: transparent; }
 
 #turn, #phase, #status, #victory {
@@ -791,6 +791,7 @@ svg {
 .unitOdds {
   position: absolute;
   background: white;
+  color: black;
   border-radius: 10px;
   left: 15px;
   right: -9px;
@@ -1376,6 +1377,96 @@ p.forceMarch {
     background: transparent;
     color: transparent; }
 
+.disrupted {
+  font-size: 18px;
+  padding-left: 10px; }
+
+.topDiv {
+  stroke: black;
+  fill: black;
+  stroke-width: 2;
+  color: black;
+  font-family: sans-serif;
+  border: 3px solid black;
+  border-color: #cccccc #666666 #666666 #cccccc;
+  top: 400px;
+  width: 48px;
+  height: 48px; }
+
+.shadow-mask {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 48px;
+  height: 48px;
+  z-index: 3; }
+
+.counterWrapper {
+  height: 16px; }
+
+.counterWrapper svg {
+  display: block; }
+
+.unitNumbers {
+  font-size: 13px;
+  position: absolute; }
+  .unitNumbers.attack {
+    top: -3px;
+    left: 0px; }
+  .unitNumbers.rangewe {
+    top: -3px;
+    right: 1px; }
+  .unitNumbers.movement {
+    bottom: -2px;
+    right: 1px; }
+
+.mg .unitNumbers {
+  letter-spacing: -1px; }
+.mg .mg-svg {
+  display: block;
+  width: 10px;
+  position: absolute;
+  bottom: 2px;
+  left: 10px; }
+
+.artillery .unitNumbers {
+  letter-spacing: -1px; }
+.artillery .artillery-svg {
+  display: block;
+  position: absolute;
+  bottom: 2px;
+  left: 9px; }
+
+.infantry .unitNumbers {
+  font-size: 15px; }
+.infantry .infantry-svg {
+  display: block;
+  position: absolute;
+  left: 2px;
+  bottom: 2px; }
+
+.topDiv.smallUnit {
+  width: 32px;
+  height: 32px; }
+
+.orange {
+  background: orange; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+.type-wrapper {
+  display: none; }
+
+.German {
+  background: #999; }
+
+svg#arrow-svg {
+  display: block; }
+
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -1422,6 +1513,14 @@ p.forceMarch {
 #crt .roll.odd.British {
   background-color: #9ea837; }
 
+#arrow-svg path.British {
+  stroke: #9ea837; }
+
+#arrow-svg path.British.short {
+  stroke: transparent; }
+  #arrow-svg path.British.short.hover {
+    stroke: #9ea837; }
+
 .unit.German {
   background: #C7C5C6;
   color: black; }
@@ -1447,6 +1546,14 @@ p.forceMarch {
 
 #crt .roll.odd.German {
   background-color: #C7C5C6; }
+
+#arrow-svg path.German {
+  stroke: #C7C5C6; }
+
+#arrow-svg path.German.short {
+  stroke: transparent; }
+  #arrow-svg path.German.short.hover {
+    stroke: #C7C5C6; }
 
 .unit.Belgian {
   background: #ffffe3;
@@ -1474,6 +1581,14 @@ p.forceMarch {
 #crt .roll.odd.Belgian {
   background-color: #ffffe3; }
 
+#arrow-svg path.Belgian {
+  stroke: #ffffe3; }
+
+#arrow-svg path.Belgian.short {
+  stroke: transparent; }
+  #arrow-svg path.Belgian.short.hover {
+    stroke: #ffffe3; }
+
 .unit.French {
   background: #9ea837;
   color: black; }
@@ -1499,6 +1614,14 @@ p.forceMarch {
 
 #crt .roll.odd.French {
   background-color: #9ea837; }
+
+#arrow-svg path.French {
+  stroke: #9ea837; }
+
+#arrow-svg path.French.short {
+  stroke: transparent; }
+  #arrow-svg path.French.short.hover {
+    stroke: #9ea837; }
 
 .unit.Russian {
   background: #F0F4CF;
@@ -1526,6 +1649,14 @@ p.forceMarch {
 #crt .roll.odd.Russian {
   background-color: #F0F4CF; }
 
+#arrow-svg path.Russian {
+  stroke: #F0F4CF; }
+
+#arrow-svg path.Russian.short {
+  stroke: transparent; }
+  #arrow-svg path.Russian.short.hover {
+    stroke: #F0F4CF; }
+
 .unit.Native .counterWrapper {
   background-color: #f00; }
 
@@ -1540,5 +1671,15 @@ p.forceMarch {
 
 p.forceMarch, p.range {
   color: black; }
+
+.mapSymbols {
+  position: absolute;
+  color: white;
+  background-color: transparent;
+  margin-top: -33px;
+  margin-left: -28px; }
+
+.col-hex {
+  width: 65px; }
 
 /*# sourceMappingURL=all.css.map */
