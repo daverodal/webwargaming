@@ -47,6 +47,7 @@ body {
   }
   #arrow-svg path.#{$nationality}{
     stroke: $counterColor;
+    stroke-opacity:0.0;
   }
   #arrow-svg path.#{$nationality}.short{
     stroke: transparent;

@@ -993,7 +993,8 @@ function initialize() {
         $("#units").hide({effect: "blind", direction: "up", complete: fixHeader});
         $("#unitsWrapper .WrapperLabel").removeClass('dropDownSelected');
         fixHeader();
-    })
+    });
+
     fixHeader();
     $("body").keydown(function (event) {
         if(event.which == 37 || event.which == 39){

@@ -120,10 +120,12 @@ x.register("mapUnits", function(mapUnits) {
             $("#"+i).hover(function(){
                 var id = $(this).attr('id');
                 $('#arrow-svg #rangeHex'+id).attr('fill-opacity',.1);
-                $('#arrow-svg #rangeHex'+id+'short').attr('style','stroke:red;');
+                $('#arrow-svg #rangeHex'+id).attr('style', 'stroke-opacity:1');
+                $('#arrow-svg #rangeHex'+id+'short').attr('style','stroke:red;stroke-opacity:1;');
             }, function(){
                 var id = $(this).attr('id');
                 $('#arrow-svg #rangeHex'+id).attr('fill-opacity',0.0);
+                $('#arrow-svg #rangeHex'+id).attr('style','');
                 $('#arrow-svg #rangeHex'+id+'short').attr('style','');
             });
         }
@@ -363,11 +365,13 @@ x.register("sentBreadcrumbs", function(breadcrumbs,data) {
         var y = unit.y;
         var id = unit.id+decoration;
         var nat = DR.players[unit.forceId];
+        var type= nat+'-'+unit.class;
+        var cls = unit.class;
 
         x = x - b;
         y = y - c;
 
-        var path = '<path class="'+nat+' '+decoration+'" stroke="transparent" id="rangeHex'+id+'" fill="#000" fill-opacity="0" stroke-width="2" d="M '+x+' ' + (ac + y) + ' L ' + x + ' '+ (a + y) + ' L ' + (b + x) + ' ' + y;
+        var path = '<path class="range-hex '+nat+' '+decoration+' '+cls+'" stroke="transparent" id="rangeHex'+id+'" fill="#000" fill-opacity="0" stroke-width="2" d="M '+x+' ' + (ac + y) + ' L ' + x + ' '+ (a + y) + ' L ' + (b + x) + ' ' + y;
         path += ' L ' + (2 * b + x) + ' ' + (a + y) + ' L ' + (2 * b + x) + ' ' + (ac + y) + ' L ' + (b + x) + ' '+ (2 * c + y)+' Z"></path>';
 
         $('#arrow-svg').append(path);
@@ -378,5 +382,18 @@ x.register("sentBreadcrumbs", function(breadcrumbs,data) {
         $('svg path').remove();
     }
 
+    $("#all-on").click(function () {
+        $('path.range-hex').attr('style','stroke-opacity:1');
+        $(this).parent().parent().find(".WrapperLabel").click();
+        fixHeader();
+        return;
+    });
+
+    $("#all-off").click(function () {
+        $('path.range-hex').attr('style','stroke-opacity:0');
+        $(this).parent().parent().find(".WrapperLabel").click();
+        fixHeader();
+        return;
+    });
 
 </script>

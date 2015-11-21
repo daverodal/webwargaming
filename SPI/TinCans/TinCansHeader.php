@@ -242,7 +242,6 @@
 //
 //    function drawHex(hexside, unit, isShort){
 //
-//        debugger;
 //        var decoration = isShort || "";
 //        var c = hexside - 0;
 //        var a = (c / 2);

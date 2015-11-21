@@ -248,6 +248,7 @@ class TacticalUnit extends BaseUnit implements JsonSerializable
         $mapUnit->forceId = $this->forceId;
         $mapUnit->isImproved = $this->isImproved;
         $mapUnit->range = $this->range;
+        $mapUnit->class = $this->class;
         return $mapUnit;
     }
 

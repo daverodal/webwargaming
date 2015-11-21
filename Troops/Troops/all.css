@@ -1514,7 +1514,8 @@ svg#arrow-svg {
   background-color: #9ea837; }
 
 #arrow-svg path.British {
-  stroke: #9ea837; }
+  stroke: #9ea837;
+  stroke-opacity: 0.0; }
 
 #arrow-svg path.British.short {
   stroke: transparent; }
@@ -1548,7 +1549,8 @@ svg#arrow-svg {
   background-color: #C7C5C6; }
 
 #arrow-svg path.German {
-  stroke: #C7C5C6; }
+  stroke: #C7C5C6;
+  stroke-opacity: 0.0; }
 
 #arrow-svg path.German.short {
   stroke: transparent; }
@@ -1582,7 +1584,8 @@ svg#arrow-svg {
   background-color: #ffffe3; }
 
 #arrow-svg path.Belgian {
-  stroke: #ffffe3; }
+  stroke: #ffffe3;
+  stroke-opacity: 0.0; }
 
 #arrow-svg path.Belgian.short {
   stroke: transparent; }
@@ -1616,7 +1619,8 @@ svg#arrow-svg {
   background-color: #9ea837; }
 
 #arrow-svg path.French {
-  stroke: #9ea837; }
+  stroke: #9ea837;
+  stroke-opacity: 0.0; }
 
 #arrow-svg path.French.short {
   stroke: transparent; }
@@ -1650,7 +1654,8 @@ svg#arrow-svg {
   background-color: #F0F4CF; }
 
 #arrow-svg path.Russian {
-  stroke: #F0F4CF; }
+  stroke: #F0F4CF;
+  stroke-opacity: 0.0; }
 
 #arrow-svg path.Russian.short {
   stroke: transparent; }

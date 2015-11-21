@@ -144,6 +144,13 @@
                         <div class="dropDown" id="showExited">Exited Units</div>
                     </div>
                 </div>
+                <div class="dropDown" id="rangeWrapper">
+                    <h4 class="WrapperLabel" title="toggle range display">Range</h4>
+                    <div id="range-toggle" class="subMenu">
+                        <div class="dropDown" id="all-on">All On</div>
+                        <div class="dropDown" id="all-off">All Off</div>
+                    </div>
+                </div>
                 <?php include_once "commonRules.php"; ?>
                 <?php include_once "exclusiveRules.php"; ?>
                 <?php include_once "obc.php"; ?>
