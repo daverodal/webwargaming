@@ -49,6 +49,13 @@ body {
     stroke: $counterColor;
     stroke-opacity:0.0;
   }
+
+  #arrow-svg path.#{$nationality}.hovered{
+    stroke: $counterColor;
+    stroke-opacity:1.0;
+    fill-opacity:.1;
+  }
+
   #arrow-svg path.#{$nationality}.short{
     stroke: transparent;
     &.hover{

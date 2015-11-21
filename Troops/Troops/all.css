@@ -1517,6 +1517,11 @@ svg#arrow-svg {
   stroke: #9ea837;
   stroke-opacity: 0.0; }
 
+#arrow-svg path.British.hovered {
+  stroke: #9ea837;
+  stroke-opacity: 1.0;
+  fill-opacity: .1; }
+
 #arrow-svg path.British.short {
   stroke: transparent; }
   #arrow-svg path.British.short.hover {
@@ -1551,6 +1556,11 @@ svg#arrow-svg {
 #arrow-svg path.German {
   stroke: #C7C5C6;
   stroke-opacity: 0.0; }
+
+#arrow-svg path.German.hovered {
+  stroke: #C7C5C6;
+  stroke-opacity: 1.0;
+  fill-opacity: .1; }
 
 #arrow-svg path.German.short {
   stroke: transparent; }
@@ -1587,6 +1597,11 @@ svg#arrow-svg {
   stroke: #ffffe3;
   stroke-opacity: 0.0; }
 
+#arrow-svg path.Belgian.hovered {
+  stroke: #ffffe3;
+  stroke-opacity: 1.0;
+  fill-opacity: .1; }
+
 #arrow-svg path.Belgian.short {
   stroke: transparent; }
   #arrow-svg path.Belgian.short.hover {
@@ -1622,6 +1637,11 @@ svg#arrow-svg {
   stroke: #9ea837;
   stroke-opacity: 0.0; }
 
+#arrow-svg path.French.hovered {
+  stroke: #9ea837;
+  stroke-opacity: 1.0;
+  fill-opacity: .1; }
+
 #arrow-svg path.French.short {
   stroke: transparent; }
   #arrow-svg path.French.short.hover {
@@ -1656,6 +1676,11 @@ svg#arrow-svg {
 #arrow-svg path.Russian {
   stroke: #F0F4CF;
   stroke-opacity: 0.0; }
+
+#arrow-svg path.Russian.hovered {
+  stroke: #F0F4CF;
+  stroke-opacity: 1.0;
+  fill-opacity: .1; }
 
 #arrow-svg path.Russian.short {
   stroke: transparent; }

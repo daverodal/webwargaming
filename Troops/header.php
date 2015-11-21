@@ -135,13 +135,15 @@ x.register("mapUnits", function(mapUnits) {
             drawHex(b * (range * 2 + 1), unit);
             $("#"+i).hover(function(){
                 var id = $(this).attr('id');
-                $('#arrow-svg #rangeHex'+id).attr('fill-opacity',.1);
-                $('#arrow-svg #rangeHex'+id).attr('style', 'stroke-opacity:1');
+                var curClass = $('#arrow-svg #rangeHex'+id).attr('class');
+                curClass = curClass.replace(/hovered/,'');
+                $('#arrow-svg #rangeHex'+id).attr('class', curClass+' hovered');
                 $('#arrow-svg #rangeHex'+id+'short').attr('style','stroke:red;stroke-opacity:1;');
             }, function(){
                 var id = $(this).attr('id');
-                $('#arrow-svg #rangeHex'+id).attr('fill-opacity',0.0);
-                $('#arrow-svg #rangeHex'+id).attr('style','');
+                var curClass = $('#arrow-svg #rangeHex'+id).attr('class');
+                curClass = curClass.replace(/hovered/,'');
+                $('#arrow-svg #rangeHex'+id).attr('class', curClass);
                 $('#arrow-svg #rangeHex'+id+'short').attr('style','');
             });
         }
