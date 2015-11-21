@@ -59,6 +59,22 @@ $(document).ready(function(){
     $(".tableWrapper.main").show();
 
 
+
+    $("#all-on").click(function () {
+        $('path.range-hex').attr('style','stroke-opacity:1');
+        $(this).parent().parent().find(".WrapperLabel").click();
+        fixHeader();
+        return;
+    });
+
+    $("#all-off").click(function () {
+        $('path.range-hex').attr('style','stroke-opacity:0');
+        $(this).parent().parent().find(".WrapperLabel").click();
+        fixHeader();
+        return;
+    });
+
+
 });
 x.register("mapUnits", function(mapUnits) {
     var str;
@@ -382,18 +398,5 @@ x.register("sentBreadcrumbs", function(breadcrumbs,data) {
         $('svg path').remove();
     }
 
-    $("#all-on").click(function () {
-        $('path.range-hex').attr('style','stroke-opacity:1');
-        $(this).parent().parent().find(".WrapperLabel").click();
-        fixHeader();
-        return;
-    });
-
-    $("#all-off").click(function () {
-        $('path.range-hex').attr('style','stroke-opacity:0');
-        $(this).parent().parent().find(".WrapperLabel").click();
-        fixHeader();
-        return;
-    });
 
 </script>
