@@ -68,7 +68,7 @@ $(document).ready(function(){
     });
 
     $("#all-off").click(function () {
-        $('path.range-hex').attr('style','stroke-opacity:0');
+        $('path.range-hex').attr('style','');
         $(this).parent().parent().find(".WrapperLabel").click();
         fixHeader();
         return;
@@ -385,11 +385,22 @@ x.register("sentBreadcrumbs", function(breadcrumbs,data) {
         var nat = DR.players[unit.forceId];
         var type= nat+'-'+unit.class;
         var cls = unit.class;
+        var width = 2;
+        var strokeDash = "1,0";
+
+        if(unit.range > 7){
+            width = 4;
+            strokeDash = "5,5";
+        }
+        if(unit.range > 11){
+            width = 6;
+            strokeDash = "1,10";
+        }
 
         x = x - b;
         y = y - c;
 
-        var path = '<path class="range-hex '+nat+' '+decoration+' '+cls+'" stroke="transparent" id="rangeHex'+id+'" fill="#000" fill-opacity="0" stroke-width="2" d="M '+x+' ' + (ac + y) + ' L ' + x + ' '+ (a + y) + ' L ' + (b + x) + ' ' + y;
+        var path = '<path stroke-dasharray="'+strokeDash+'" class="range-hex '+nat+' '+decoration+' '+cls+'" stroke="transparent" id="rangeHex'+id+'" fill="#000" fill-opacity="0" stroke-width="'+width+'" d="M '+x+' ' + (ac + y) + ' L ' + x + ' '+ (a + y) + ' L ' + (b + x) + ' ' + y;
         path += ' L ' + (2 * b + x) + ' ' + (a + y) + ' L ' + (2 * b + x) + ' ' + (ac + y) + ' L ' + (b + x) + ' '+ (2 * c + y)+' Z"></path>';
 
         $('#arrow-svg').append(path);
