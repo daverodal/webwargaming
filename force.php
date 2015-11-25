@@ -1665,4 +1665,26 @@ class Force extends SimpleForce
         return $this->units[$id]->reinforceZone;
     }
 
+
+    public function findSimilarInHex($unit){
+        $b = Battle::getBattle();
+        /* @var mapData $mapData */
+        $mapData = $b->mapData;
+        if($unit->isReduced !== true){
+            return false;
+        }
+        $units = $mapData->getHex($unit->hexagon->name)->getForces($unit->forceId);
+        $similarUnits = [];
+        foreach($units as $k => $v){
+            if($this->units[$k]->forceId === $unit->forceId){
+                if( $this->units[$k]->class === $unit->class && $k != $unit->id){
+                    if( $this->units[$k]->isReduced === true){
+                        $similarUnits[] = $this->units[$k];
+                    }
+                }
+            }
+        }
+        return $similarUnits;
+    }
+
 }

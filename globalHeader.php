@@ -67,7 +67,7 @@ You should have received a copy of the GNU General Public License
         DR.crtDetails = false;
         DR.showArrows = false;
 
-        $("#header, #deadpile, #deployWrapper, #exitWrapper").on('touchmove', function(event){
+        $("#header, #deadpile, #deployWrapper, #exitWrapper, #combinedWrapper").on('touchmove', function(event){
             if($(event.target).parents('#crt').length > 0){
                 return;
             }
@@ -993,6 +993,14 @@ function initialize() {
         $("#units").hide({effect: "blind", direction: "up", complete: fixHeader});
         $("#unitsWrapper .WrapperLabel").removeClass('dropDownSelected');
         fixHeader();
+    });
+
+    $("#showCombined").click(function () {
+        up ^= 1;
+        $("#combinedWrapper").toggle({effect: "blind", direction: "up", complete: fixHeader});
+        $(this).parent().parent().find(".WrapperLabel").click();
+        fixHeader();
+        return;
     });
 
     fixHeader();

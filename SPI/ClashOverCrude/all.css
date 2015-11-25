@@ -715,7 +715,7 @@ fieldset {
   position: relative;
   font-family: serif; }
 
-#deployWrapper, #exitWrapper {
+#deployWrapper, #exitWrapper, #combinedWrapper {
   /*display:none;*/
   padding: 4px 7px 4px 7px;
   text-align: left;

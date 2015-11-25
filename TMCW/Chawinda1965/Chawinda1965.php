@@ -115,35 +115,44 @@ class Chawinda1965 extends ModernLandBattle
             $halfInfStrength = 2;
         }
 
+
+
+
+
+        $unitNum = 100;
+        UnitFactory::$injector = $this->force;
+
+
         for($i = 0; $i < 4;$i++){
-            $this->force->addUnit("x", PAKISTANI_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, "mech", $i+1);
+            UnitFactory::create("x", PAKISTANI_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, "mech", $i+1);
+//            $this->force->addUnit("x", PAKISTANI_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, "mech", $i+1);
         }
 
         for($i = 0; $i < $numPakistaniInf;$i++){
-            $this->force->addUnit("x", PAKISTANI_FORCE, "deployBox", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, 'inf', $i+1);
+            UnitFactory::create("x", PAKISTANI_FORCE, "deployBox", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, 'inf', $i+1);
         }
 
         for($i = 2; $i <= 8; $i++) {
-            $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "mech", "T $i 1");
-            $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 2");
+            UnitFactory::create("x", PAKISTANI_FORCE, "gameTurn$i", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "mech", "T $i 1");
+            UnitFactory::create("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 2");
             if(!$scenario->bigPakistani) {
-                $this->force->addUnit("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 3");
+                UnitFactory::create("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 3");
             }
         }
 
         for($i = 0; $i < 6;$i++) {
 
-            $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A $i");
+            UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A $i");
         }
 
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 7");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 8");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 9");
-        $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 10");
+        UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 7");
+        UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 8");
+        UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 9");
+        UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 10");
 
         for($i = 0; $i < 20;$i++) {
 
-            $this->force->addUnit("x", INDIAN_FORCE, "deployBox", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "$i");
+            UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "$i");
         }
 
     }
