@@ -136,14 +136,18 @@ x.register("mapUnits", function(mapUnits) {
             $("#"+i).hover(function(){
                 var id = $(this).attr('id');
                 var curClass = $('#arrow-svg #rangeHex'+id).attr('class');
-                curClass = curClass.replace(/hovered/,'');
-                $('#arrow-svg #rangeHex'+id).attr('class', curClass+' hovered');
+                if(curClass){
+                    curClass = curClass.replace(/hovered/,'');
+                    $('#arrow-svg #rangeHex'+id).attr('class', curClass+' hovered');
+                }
                 $('#arrow-svg #rangeHex'+id+'short').attr('style','stroke:red;stroke-opacity:1;');
             }, function(){
                 var id = $(this).attr('id');
                 var curClass = $('#arrow-svg #rangeHex'+id).attr('class');
-                curClass = curClass.replace(/hovered/,'');
-                $('#arrow-svg #rangeHex'+id).attr('class', curClass);
+                if(curClass){
+                    curClass = curClass.replace(/hovered/,'');
+                    $('#arrow-svg #rangeHex'+id).attr('class', curClass);
+                }
                 $('#arrow-svg #rangeHex'+id+'short').attr('style','');
             });
         }

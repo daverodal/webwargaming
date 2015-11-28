@@ -258,12 +258,34 @@ class GameRules
 
                             $unit->exitImproved(true);
                         }
+                        if($c == 's' || $c == 'S'){
+                            $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+
+                            if($unit->split() === false){
+                                return false;
+                            }
+                        }
+                        if($c == 'c' || $c == 'C'){
+                            $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+                            $ret = $this->force->findSimilarInHex($unit);
+
+                            if(is_array($ret) && count($ret) > 0){
+                                if($unit->combine($ret[0]) === false){
+                                    return false;
+                                }
+                            }else{
+                                return false;
+
+                            }
+                        }
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
 
 
 
-                    $this->moveRules->moveUnit($event, $id, $location, $this->turn);
+                    return $this->moveRules->moveUnit($event, $id, $location, $this->turn);
                         break;
 
                     case SELECT_BUTTON_EVENT:
@@ -336,6 +358,29 @@ class GameRules
                                 if(method_exists($this->moveRules, 'turnRight')){
                                     $ret = $this->moveRules->turnRight();
                                     return $ret;
+                                }
+                            }
+
+                            if($c == 's' || $c == 'S'){
+                                $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+
+                                if($unit->split() === false){
+                                    return false;
+                                }
+                            }
+                            if($c == 'c' || $c == 'C'){
+                                $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+                                $ret = $this->force->findSimilarInHex($unit);
+
+                                if(is_array($ret) && count($ret) > 0){
+                                    if($unit->combine($ret[0]) === false){
+                                        return false;
+                                    }
+                                }else{
+                                    return false;
+
                                 }
                             }
 

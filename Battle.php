@@ -345,7 +345,7 @@ class LandBattle extends Battle{
                 break;
 
             case KEYPRESS_EVENT:
-                $this->gameRules->processEvent(KEYPRESS_EVENT, $id, null, $click);
+                return $this->gameRules->processEvent(KEYPRESS_EVENT, $id, null, $click);
                 break;
 
         }
