@@ -50,11 +50,21 @@ class ChawindaUnit extends unit implements JsonSerializable
         if($this->isReduced === true){
             return false;
         }
+        if($this->status === STATUS_MOVING){
+            if($this->moveAmountUsed !== 0){
+                return false;
+            }
+        }
         $b = Battle::getBattle();
         $secondUnit = $b->force->getUnit($this->secondaryId);
         $this->isReduced = true;
         $secondUnit->hexagon = $this->hexagon;
         $secondUnit->status = STATUS_CAN_DEPLOY;
+        if($this->status === STATUS_MOVING){
+            $secondUnit->status = STATUS_READY;
+            $secondUnit->moveAmountUsed = $this->moveAmountUsed;
+            $secondUnit->moveAmountUnused = $this->moveAmountUnused;
+        }
         $secondUnit->isReduced = true;
         $this->secondaryId = false;
         $mapHex = $b->mapData->getHex($this->hexagon->name);

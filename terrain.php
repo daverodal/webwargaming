@@ -503,25 +503,17 @@ class Terrain
         return $traverseCost;
     }
 
-    /*
-     * can be private
-     */
-    private function getTerrainEntranceMoveCost($hexagon, MovableUnit $unit)
+    private function  getTerrainEntranceMoveCostXY($endX, $endY, MovableUnit $unit)
     {
-
-        $entranceCost = 0;
-
-        $name = $hexagon->name;
-//        $hexpart = new Hexpart($hexagon->getX(), $hexagon->getY());
-        list($endX, $endY) = Hexagon::getHexPartXY($hexagon);
-
         $terrains = $this->getTerrainCodeXY($endX, $endY);
+        $entranceCost = 0;
 
         foreach ($terrains as $terrainFeature) {
             /* @var TerrainFeature $feature */
             if ($terrainFeature == "road" || $terrainFeature == "trail" || $terrainFeature == "secondaryroad") {
                 continue;
             }
+
             $feature = $this->terrainFeatures->$terrainFeature;
             if ($unit->nationality && $unit->class && $feature->altEntranceCost->{$unit->nationality}->{$unit->class}) {
                 $cost = $feature->altEntranceCost->{$unit->nationality}->{$unit->class};
@@ -542,6 +534,17 @@ class Terrain
             $entranceCost += $cost;
         }
         return $entranceCost;
+    }
+    /*
+     * can be private
+     */
+    private function  getTerrainEntranceMoveCost($hexagon, MovableUnit $unit)
+    {
+
+        list($endX, $endY) = Hexagon::getHexPartXY($hexagon);
+        return $this->getTerrainEntranceMoveCostXY($endX, $endY, $unit);
+
+
     }
 
     private function getTerrainXYCost($x,$y){
@@ -593,10 +596,9 @@ class Terrain
         return $moveCost;
 
     }
-    function getTerrainAdditionalCost($startHexagon, $endHexagon, MovableUnit $unit){
+
+    function getTerrainAdditionalCostXY($startX, $startY, $endX, $endY, MovableUnit $unit){
         $moveCost = 0;
-        list($startX, $startY) = Hexagon::getHexPartXY($startHexagon);
-        list($endX, $endY) = Hexagon::getHexPartXY($endHexagon);
         $startTerrainCode = $this->getTerrainCodeXY($startX,$startY);
         $endTerrainCode = $this->getTerrainCodeXY($endX,$endY);
         $rules = $this->additionalRules;
@@ -608,10 +610,14 @@ class Terrain
         }
         return $moveCost;
     }
-    /*
-      * very public
-      * used in moveRules
-      */
+
+
+    function getTerrainAdditionalCost($startHexagon, $endHexagon, MovableUnit $unit){
+        $moveCost = 0;
+        list($startX, $startY) = Hexagon::getHexPartXY($startHexagon);
+        list($endX, $endY) = Hexagon::getHexPartXY($endHexagon);
+        return $this->getTerrainAdditionalCostXY($startX, $startY, $endX, $endY, $unit);
+    }
     function getTerrainMoveCost($startHexagon, $endHexagon, $railMove, MovableUnit $unit)
     {
         if(is_object($startHexagon)){
@@ -623,6 +629,14 @@ class Terrain
         $moveCost = 0;
         list($startX, $startY) = Hexagon::getHexPartXY($startHexagon);
         list($endX, $endY) = Hexagon::getHexPartXY($endHexagon);
+        return $this->getTerrainMoveCostXY($startX, $startY, $endX, $endY,$railMove, $unit);
+    }
+    /*
+      * very public
+      * used in moveRules
+      */
+    function getTerrainMoveCostXY($startX, $startY, $endX, $endY, $railMove, MovableUnit $unit)
+    {
         $hexsideX = ($startX + $endX) / 2;
         $hexsideY = ($startY + $endY) / 2;
 
@@ -649,7 +663,7 @@ class Terrain
          {
 
             //  get entrance cost
-            $moveCost = $this->getTerrainEntranceMoveCost($endHexagon, $unit);
+            $moveCost = $this->getTerrainEntranceMoveCostXY($endX, $endY, $unit);
              if($moveCost === "blocked"){
                  return "blocked";
              }
@@ -658,7 +672,7 @@ class Terrain
                  return "blocked";
              }
              $moveCost += $cost;
-             $cost = $this->getTerrainAdditionalCost($startHexagon, $endHexagon, $unit);
+             $cost = $this->getTerrainAdditionalCostXY($startX, $startY, $endX, $endY, $unit);
              $moveCost += $cost;
          }
         return $moveCost;

@@ -361,6 +361,29 @@ class GameRules
                                 }
                             }
 
+                            if($c == 's' || $c == 'S'){
+                                $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+
+                                if($unit->split() === false){
+                                    return false;
+                                }
+                            }
+                            if($c == 'c' || $c == 'C'){
+                                $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+                                $ret = $this->force->findSimilarInHex($unit);
+
+                                if(is_array($ret) && count($ret) > 0){
+                                    if($unit->combine($ret[0]) === false){
+                                        return false;
+                                    }
+                                }else{
+                                    return false;
+
+                                }
+                            }
+
                         }
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:

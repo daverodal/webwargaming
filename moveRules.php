@@ -497,6 +497,7 @@ class MoveRules
 
 
             $neighbors = $mapHex->neighbors;
+            $curHex = Hexagon::getHexPartXY($hexNum);
 
             foreach ($neighbors as $neighbor) {
                 $newHexNum = $neighbor;
@@ -518,7 +519,7 @@ class MoveRules
 
                     continue;
                 }
-                $moveAmount = $this->terrain->getTerrainMoveCost($hexNum, $newHexNum, $unit->forceMarch, $unit);
+                $moveAmount = $this->terrain->getTerrainMoveCostXY($curHex[0], $curHex[1], $gnuHex[0], $gnuHex[1], $unit->forceMarch, $unit);
                 if ($moveAmount === "blocked") {
                     continue;
                 }
