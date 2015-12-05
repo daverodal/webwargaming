@@ -180,6 +180,21 @@ class GameRules
         //TODO Ugly Ugly Ugly Ugly
 
         $this->flashMessages = array();
+//        $this->flashMessages[] = "@hex 101";
+//        $this->flashMessages[] = "@hex 202";
+
+
+        if($event === SELECT_ALT_COUNTER_EVENT){
+            if($location !== null){
+                $this->flashMessages[] = "@hex ".$location;
+            }else{
+                $hex = $battle->force->units[$id]->hexagon;
+                if($hex->parent == "gameImages"){
+                    $this->flashMessages[] = "@hex ".$hex->name;
+                }
+            }
+            return true;
+        }
 
         switch ($this->mode) {
 

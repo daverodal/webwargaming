@@ -78,6 +78,18 @@ class Chawinda1965 extends ModernLandBattle
         parent::terrainInit($terrainDoc);
         $vp = count((array)$this->specialHexA);
         $this->victory->setInitialPakistaniVP($vp * 3);
+
+
+        $symbol = new stdClass();
+        $symbol->type = 'WestWall';
+        $symbol->image = 'rowHex.svg';
+        $symbol->class = 'row-hex';
+        $symbols = new stdClass();
+//        foreach([609,610,611,712, 2404, 2304, 2105, 2005, 1905, 1805, 1806, 1707, 1606, 1506] as $id){
+//            $symbols->$id = $symbol;
+//        }
+//        $this->mapData->setMapSymbols($symbols, "westwall");
+
     }
 
     function terrainGen($mapDoc, $terrainDoc)

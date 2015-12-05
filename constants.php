@@ -198,6 +198,8 @@ define("SELECT_BUTTON_EVENT",6);
 define("SELECT_SHIFT_COUNTER_EVENT",7);
 define("KEYPRESS_EVENT",8);
 define("COMBAT_PIN_EVENT",9);
+define("SELECT_ALT_COUNTER_EVENT",10);
+
 
 // event names
 $event_name = array();

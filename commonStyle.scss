@@ -1060,3 +1060,62 @@ svg {
 @mixin victoryPoints($color) {
   text-shadow: 0px 0px 1px $color, 0px 0px 1px $color, 0px 0px 1px $color, 0px 0px 2px $color, 0px 0px 2px $color, 0px 0px 2px $color, 0px 0px 3px $color, 0px 0px 3px $color, 0px 0px 3px $color, 0px 0px 4px $color, 0px 0px 4px $color, 0px 0px 4px $color, 0px 0px 5px $color, 0px 0px 5px $color, 0px 0px 5px $color, 0px 0px 6px $color, 0px 0px 6px $color, 0px 0px 6px $color, 0px 0px 7px $color, 0px 0px 7px $color, 0px 0px 7px $color, 0px 0px 8px $color, 0px 0px 8px $color, 0px 0px 8px $color, 0px 0px 9px $color, 0px 0px 9px $color, 0px 0px 9px $color, 0px 0px 10px $color, 0px 0px 10px $color, 0px 0px 10px $color, 0px 0px 1px $color, 0px 0px 1px $color, 0px 0px 1px $color, 0px 0px 2px $color, 0px 0px 2px $color, 0px 0px 2px $color, 0px 0px 3px $color, 0px 0px 3px $color, 0px 0px 3px $color, 0px 0px 4px $color, 0px 0px 4px $color, 0px 0px 4px $color, 0px 0px 5px $color, 0px 0px 5px $color, 0px 0px 5px $color, 0px 0px 6px $color, 0px 0px 6px $color, 0px 0px 6px $color, 0px 0px 7px $color, 0px 0px 7px $color, 0px 0px 7px $color, 0px 0px 8px $color, 0px 0px 8px $color, 0px 0px 8px $color, 0px 0px 9px $color, 0px 0px 9px $color, 0px 0px 9px $color, 0px 0px 10px $color, 0px 0px 10px $color, 0px 0px 10px $color;
 }
+
+
+
+.mapSymbols{
+  position:absolute;
+  color:white;
+  background-color: transparent;
+  margin-top:-31px;
+  margin-left:-36px;
+}
+.row-hex{
+  width:71px;
+}
+.mapFlashSymbols{
+  position:absolute;
+  color:white;
+  background-color: transparent;
+  margin-top:-31px;
+  margin-left:-36px;
+}
+@keyframes fade{
+  0% {
+    width:71px;
+    opacity:.5;
+  }
+  30% {
+    width:71px;
+    margin-top:0px;
+    margin-left:0px;
+    opacity:.5;
+  }
+  100%{
+    width:261px;
+    margin-left:-95px;
+    margin-top:-95px;
+    opacity: 0.1;
+  }
+
+}
+
+@keyframes breath{
+  0% {
+    width:71px;
+  }
+  50%{
+    width:161px;
+    margin-left:-45px;
+    margin-top:-45px;
+
+  }
+  100% {
+    width:71px;
+    margin-left:0px;
+    margin-top:0px;
+  }
+}
+.row-hex{
+  //animation: fade 2s alternate infinite;
+}

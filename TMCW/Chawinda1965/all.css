@@ -899,6 +899,48 @@ svg marker#head {
   #click-back, #click-surge {
     font-size: 45px;
     width: 45px; } }
+.mapSymbols {
+  position: absolute;
+  color: white;
+  background-color: transparent;
+  margin-top: -31px;
+  margin-left: -36px; }
+
+.row-hex {
+  width: 71px; }
+
+.mapFlashSymbols {
+  position: absolute;
+  color: white;
+  background-color: transparent;
+  margin-top: -31px;
+  margin-left: -36px; }
+
+@keyframes fade {
+  0% {
+    width: 71px;
+    opacity: .5; }
+  30% {
+    width: 71px;
+    margin-top: 0px;
+    margin-left: 0px;
+    opacity: .5; }
+  100% {
+    width: 261px;
+    margin-left: -95px;
+    margin-top: -95px;
+    opacity: 0.1; } }
+@keyframes breath {
+  0% {
+    width: 71px; }
+  50% {
+    width: 161px;
+    margin-left: -45px;
+    margin-top: -45px; }
+  100% {
+    width: 71px;
+    margin-left: 0px;
+    margin-top: 0px; } }
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -1185,6 +1227,48 @@ svg marker#head {
   .pakistani .unit-desig {
     color: white; }
 
+.mapSymbols {
+  position: absolute;
+  color: white;
+  background-color: transparent;
+  margin-top: -31px;
+  margin-left: -36px; }
+
+.row-hex {
+  width: 71px; }
+
+.mapFlashSymbols {
+  position: absolute;
+  color: white;
+  background-color: transparent;
+  margin-top: -31px;
+  margin-left: -36px; }
+
+@keyframes fade {
+  0% {
+    width: 71px;
+    opacity: .5; }
+  30% {
+    width: 71px;
+    margin-top: 0px;
+    margin-left: 0px;
+    opacity: .5; }
+  100% {
+    width: 261px;
+    margin-left: -95px;
+    margin-top: -95px;
+    opacity: 0.1; } }
+@keyframes breath {
+  0% {
+    width: 71px; }
+  50% {
+    width: 161px;
+    margin-left: -45px;
+    margin-top: -45px; }
+  100% {
+    width: 71px;
+    margin-left: 0px;
+    margin-top: 0px; } }
 #crt {
   width: 320px; }
 

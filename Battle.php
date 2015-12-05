@@ -276,9 +276,16 @@ class LandBattle extends Battle{
         $vp = $doc->wargame->victory->victoryPoints;
         $flashMessages = $gameRules->flashMessages;
         if (count($flashMessages)) {
+            foreach($flashMessages as $key=>$mess){
+                $match = [];
+                if(preg_match("/@hex (\d*)/", $mess, $match)){
+                    $hex = new Hexagon($match[1]);
+                    $mapGrid->setHexagonXY($hex->x, $hex->y);
+                    $flashMessages[$key] = "@hex x" . intval($mapGrid->getPixelX()) . "y" . intval($mapGrid->getPixelY());
+                }
+            }
 
         }
-//        $flashMessages = array("Victory","Is","Mine");
         $specialHexesChanges = $newSpecialHexesChanges;
         $specialHexesVictory = $newSpecialHexesVictory;
         $gameRules->playerStatus = $doc->playerStatus;
@@ -311,7 +318,9 @@ class LandBattle extends Battle{
 
         $playerId = $this->gameRules->attackingForceId;
         if ($this->players[$this->gameRules->attackingForceId] != $user) {
-            return false;
+            if($event !== SELECT_ALT_COUNTER_EVENT){
+                return false;
+            }
         }
 
         switch ($event) {
@@ -322,14 +331,18 @@ class LandBattle extends Battle{
                 break;
 
             case SELECT_COUNTER_EVENT:
-                if (strpos($id, "Hex")) {
+            case SELECT_ALT_COUNTER_EVENT:
+
+            if (strpos($id, "Hex")) {
                     $matchId = array();
                     preg_match("/^[^H]*/", $id, $matchId);
                     $matchHex = array();
                     preg_match("/Hex(.*)/", $id, $matchHex);
                     $id = $matchId[0];
                     $hexagon = $matchHex[1];
-                    $event = SELECT_MAP_EVENT;
+                    if($event === SELECT_COUNTER_EVENT){
+                        $event = SELECT_MAP_EVENT;
+                    }
                 }
                 /* fall through */
             case SELECT_SHIFT_COUNTER_EVENT:
