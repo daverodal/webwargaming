@@ -680,19 +680,14 @@ function flashMessage(playerStatus){
                 var x = hexPos.match(/x(\d*)y/)[1] - 0;
                 var y = hexPos.match(/y(\d*)\D*/)[1] - 0;
 
-//                $("#mapFlashSymbol").remove();
-
-                    var newHtml;
-                    newHtml = '<img src="<?php echo base_url(); ?>js/rowHex.svg" class="row-hex">';
-                    $("#gameImages").append('<div id="FlashMessage" class="mapFlashSymbols">' + newHtml + '</div>');
-                    $("#FlashMessage").css({top: y + "px", left: x + "px"});
+                var newHtml;
+                newHtml = '<img src="<?php echo base_url(); ?>js/rowHex.svg" class="row-hex">';
+                $("#gameImages").append('<div id="FlashMessage" class="mapFlashSymbols">' + newHtml + '</div>');
+                $("#FlashMessage").css({top: y + "px", left: x + "px"});
                 $("#FlashMessage img").animate({opacity:0.2,width:190,marginLeft: (190 - 71)/-2 + "px", marginTop:(190 - 71)/-2 + "px"},fadeOut)
                     .animate({opacity:1, width:71,marginLeft:0,marginTop:0},0).animate({opacity:0.2,width:190,marginLeft: (190 - 71)/-2 + "px", marginTop:(190 - 71)/-2 + "px"},fadeOut)
-            .animate({opacity:1, width:71,marginLeft:0,marginTop:0},0).animate({opacity:0.2,width:190,marginLeft: (190 - 71)/-2 + "px", marginTop:(190 - 71)/-2 + "px"},fadeOut)
-            .animate({opacity:1, width:71,marginLeft:0,marginTop:0},0).animate({opacity:0.2,width:190,marginLeft: (190 - 71)/-2 + "px", marginTop:(190 - 71)/-2 + "px"},fadeOut, flashMessage);
-
-
-
+                    .animate({opacity:1, width:71,marginLeft:0,marginTop:0},0).animate({opacity:0.2,width:190,marginLeft: (190 - 71)/-2 + "px", marginTop:(190 - 71)/-2 + "px"},fadeOut)
+                    .animate({opacity:1, width:71,marginLeft:0,marginTop:0},0).animate({opacity:0.2,width:190,marginLeft: (190 - 71)/-2 + "px", marginTop:(190 - 71)/-2 + "px"},fadeOut, flashMessage);
                 return;
             }
             if(mess.match(/^@show/)){
@@ -710,13 +705,11 @@ function flashMessage(playerStatus){
             if(mess.match(/^@gameover/)){
                 $("#gameViewer").append('<div id="FlashMessage" style="top:'+y+'px;left:'+x+'px;" class="flashMessage">'+"Game Over"+'</div>');
                 $("#FlashMessage").animate({opacity:0},fadeOut,flashMessage);
-
-
                 return;
             }
         }
         $("body").append('<div id="FlashMessage" style="top:'+y+'px;left:'+x+'px;" class="flashMessage">'+mess+'</div>');
-        $("#FlashMessage").animate({opacity:0},fadeOut).animate({opacity:1}, fadeOut,flashMessage);
+        $("#FlashMessage").animate({opacity:0},fadeOut, flashMessage);
         return;
     }
 }
