@@ -36,7 +36,7 @@ class ChawindaUnit extends unit implements JsonSerializable
         }
         if($this->status === STATUS_MOVING){
             if($this->moveAmountUsed !== 0 || $secondUnit->moveAmountUsed !== 0){
-                return false;
+//                return false;
             }
         }
         $b = Battle::getBattle();
