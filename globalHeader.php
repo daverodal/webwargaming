@@ -466,7 +466,7 @@ function doitUnit(id, event) {
     $.ajax({
         url: "<?=site_url("wargame/poke");?>/",
         type: "POST",
-        data: {id: id, event: (event.metaKey || event.altKey) ? <?=SELECT_ALT_COUNTER_EVENT;?> : (event.shiftKey || DR.shiftKey) ? <?=SELECT_SHIFT_COUNTER_EVENT;?> : <?=SELECT_COUNTER_EVENT?>},
+        data: {id: id, event: (event.metaKey || event.ctrlKey) ? <?=SELECT_ALT_COUNTER_EVENT;?> : (event.shiftKey || DR.shiftKey) ? <?=SELECT_SHIFT_COUNTER_EVENT;?> : <?=SELECT_COUNTER_EVENT?>},
         error: function (data, text, third) {
             try {
                 obj = jQuery.parseJSON(data.responseText);
