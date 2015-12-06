@@ -27,6 +27,71 @@ class ChawindaUnit extends unit implements JsonSerializable
         return $this->secondaryId;
     }
 
+    public $unitDefStrength;
+    public $unitMinDefStrength;
+
+
+
+    public function getUnmodifiedDefStrength(){
+        if ($this->isReduced){
+            $strength = $this->unitMinDefStrength;
+        }else{
+            $strength = $this->unitDefStrength;
+        }
+        return  $strength;
+    }
+
+    public function __get($name)
+    {
+        if ($name !== "strength" && $name !== "defStrength" && $name !== "attStrength") {
+            return false;
+        }
+
+        if ($this->isReduced) {
+            $strength = $this->minStrength;
+        } else {
+            $strength = $this->maxStrength;
+        }
+        if($name === "defStrength"){
+            if ($this->isReduced){
+                $strength = $this->unitMinDefStrength;
+            }else{
+                $strength = $this->unitDefStrength;
+            }
+        }
+
+        foreach ($this->adjustments as $adjustment) {
+            switch ($adjustment) {
+                case 'floorHalf':
+                    $strength = floor($strength / 2);
+                    break;
+                case 'half':
+                    $strength = $strength / 2;
+                    break;
+                case 'double':
+                    $strength = $strength * 2;
+                    break;
+            }
+        }
+        return $strength;
+    }
+
+    function damageUnit($kill = false)
+    {
+        $battle = Battle::getBattle();
+
+        $this->status = STATUS_ELIMINATING;
+        $this->exchangeAmount = $this->getUnmodifiedStrength();
+        $this->defExchangeAmount = $this->getUnmodifiedDefStrength();
+        return true;
+    }
+
+    public function fetchData(){
+        $mapUnit = parent::fetchData();
+        $mapUnit->defStrength = $this->defStrength;
+        return $mapUnit;
+    }
+
     public function combine($secondUnit){
         if($this->isReduced !== true){
             return false;
@@ -36,7 +101,7 @@ class ChawindaUnit extends unit implements JsonSerializable
         }
         if($this->status === STATUS_MOVING){
             if($this->moveAmountUsed !== 0 || $secondUnit->moveAmountUsed !== 0){
-//                return false;
+                return false;
             }
         }
         $b = Battle::getBattle();
@@ -76,6 +141,12 @@ class ChawindaUnit extends unit implements JsonSerializable
         $mapHex->setUnit($secondUnit->forceId, $secondUnit);
         return true;
     }
+
+    public function mySet($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength,$unitDefMaxStrength, $unitDefMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range, $nationality, $forceMarch, $class, $unitDesig){
+        $this->set($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range, $nationality, $forceMarch, $class, $unitDesig);
+        $this->unitDefStrength = $unitDefMaxStrength;
+        $this->unitMinDefStrength = $unitDefMinStrength;
+    }
 }
 
 
@@ -90,15 +161,15 @@ class UnitFactory {
         }
         return $sU;
     }
-    public static function create( $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range = 1, $nationality = "neutral", $forceMarch = true, $class = false, $unitDesig = false){
+    public static function create( $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitDefMaxStrength, $unitDefMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range = 1, $nationality = "neutral", $forceMarch = true, $class = false, $unitDesig = false){
         $unit = self::build();
         $id = $unit->id;
-        $unit->set($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range, $nationality, $forceMarch, $class, $unitDesig);
+        $unit->mySet($id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength,$unitDefMaxStrength, $unitDefMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range, $nationality, $forceMarch, $class, $unitDesig);
         self::$injector->injectUnit($unit);
         if($isReduced === false){
             $secondUnit = self::build();
             $unit->secondaryId = $secondUnit->id;
-            $secondUnit->set($id, $unitName, $unitForceId, 'combined-box', $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, true, STATUS_COMBINED, $unitReinforceZoneName, $unitReinforceTurn, $range, $nationality, $forceMarch, $class, $unitDesig."/2");
+            $secondUnit->mySet($id, $unitName, $unitForceId, 'combined-box', $unitImage, $unitMaxStrength, $unitMinStrength,$unitDefMaxStrength, $unitDefMinStrength, $unitMaxMove, true, STATUS_COMBINED, $unitReinforceZoneName, $unitReinforceTurn, $range, $nationality, $forceMarch, $class, $unitDesig."/2");
 
             self::$injector->injectUnit($secondUnit);
         }

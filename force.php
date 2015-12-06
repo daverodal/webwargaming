@@ -1098,6 +1098,8 @@ class Force extends SimpleForce
             $victory->preRecoverUnit($this->units[$id]);
 
             switch ($this->units[$id]->status) {
+
+
                 case STATUS_ELIMINATED:
                     if($mode === REPLACING_MODE){
                         if ($this->units[$id]->forceId == $this->attackingForceId){
@@ -1129,10 +1131,18 @@ class Force extends SimpleForce
                 case STATUS_NO_RESULT:
                 case STATUS_EXCHANGED:
                 case STATUS_CAN_ATTACK_LOSE:
-
+                case STATUS_CAN_COMBINE:
 
 
                     $status = STATUS_READY;
+
+
+                    if($mode === COMBINING_MODE){
+                        $status = STATUS_UNAVAIL_THIS_PHASE;
+                        if($this->units[$id]->status === STATUS_CAN_COMBINE){
+                            $status = STATUS_READY;
+                        }
+                    }
                     /*
                      * Active Locking Zoc rules
                      */
@@ -1155,6 +1165,7 @@ class Force extends SimpleForce
                             $status = STATUS_CAN_UPGRADE;
                         }
                     }
+
                     if ($phase == BLUE_COMBAT_PHASE || $phase == RED_COMBAT_PHASE || $phase == TEAL_COMBAT_PHASE || $phase == PURPLE_COMBAT_PHASE) {
                         if ($mode == COMBAT_SETUP_MODE) {
                             $status = STATUS_UNAVAIL_THIS_PHASE;
@@ -1666,6 +1677,27 @@ class Force extends SimpleForce
     }
 
 
+    public function getCombine(){
+        $idMap = [];
+        $numCombines = 0;
+        $fId = $this->attackingForceId;
+        $units = $this->units;
+        foreach($units as $unit){
+            if($unit->forceId === $fId){
+                if(!empty($idMap[$unit->id])){
+                    continue;
+                }
+                $inHex = $this->findSimilarInHex($unit);
+                if($inHex && count($inHex) > 0){
+                    $unit->status = STATUS_CAN_COMBINE;
+                    $idMap[$inHex[0]->id] = true;
+                    $this->units[$inHex[0]->id]->status = STATUS_CAN_COMBINE;
+                    $numCombines++;
+                }
+            }
+        }
+        return $numCombines;
+    }
     public function findSimilarInHex($unit){
         $b = Battle::getBattle();
         /* @var mapData $mapData */

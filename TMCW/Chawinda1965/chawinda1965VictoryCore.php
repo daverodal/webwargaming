@@ -264,11 +264,6 @@ class chawinda1965VictoryCore extends victoryCore
             $this->unitSupplyEffects($unit, $goal, $bias, $this->supplyLen);
         }
 
-        if($b->gameRules->attackingForceId == INDIAN_FORCE && $unit->forceId == PAKISTANI_FORCE && $unit->class == "inf"){
-            $unit->addAdjustment('defense','double');
-        }else{
-            $unit->removeAdjustment('defense');
-        }
     }
 
 

@@ -71,7 +71,10 @@ define("BLUE_TORP_COMBAT_PHASE", 31);
 define("RED_TORP_COMBAT_PHASE", 32);
 define("BLUE_SPEED_PHASE", 33);
 define("RED_SPEED_PHASE",34);
-
+define("RED_COMBINE_PHASE",35);
+define("BLUE_COMBINE_PHASE",36);
+define("RED_MECH_COMBINE_PHASE",37);
+define("BLUE_MECH_COMBINE_PHASE",38);
 
 
 $phase_name = array();
@@ -138,7 +141,10 @@ $phase_name[31] = "<span class='playerOneFace'>fNameOne</span> Torp ";
 $phase_name[32] = "<span class='playerTwoFace'>fNameTwo</span> Torp ";
 $phase_name[33] = "<span class='playerOneFace'>fNameOne</span> Speed ";
 $phase_name[34] = "<span class='playerTwoFace'>fNameTwo</span> Speed ";
-
+$phase_name[35] = "<span class='playerOneFace'>fNameTwo</span> Combining ";
+$phase_name[36] = "<span class='playerTwoFace'>fNameTwo</span> Combining ";
+$phase_name[37] = "<span class='playerOneFace'>fNameTwo</span> Mech Combining ";
+$phase_name[38] = "<span class='playerTwoFace'>fNameTwo</span> Mech Combining ";
 // game modes
 define("SELECT_TO_MOVE_MODE",1);
 define("MOVING_MODE",2);
@@ -162,6 +168,7 @@ define("REPLACING_MODE",19);
 define("ATTACKER_LOSING_MODE",20);
 define("DISPLAY_MODE",21);
 define("SPEED_MODE", 22);
+define("COMBINING_MODE", 22);
 
 
 // mode names
@@ -254,6 +261,7 @@ define("STATUS_CAN_DEPLOY",35);
 define("STATUS_DEPLOYING",36);
 define("STATUS_REPLACING",37);
 define("STATUS_COMBINED",38);
+define("STATUS_CAN_COMBINE",39);
 
 
 // unit status names

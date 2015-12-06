@@ -156,7 +156,6 @@ class GameRules
     {
 
         /* @var Hexagon $location */
-        global $phase_name, $event_name, $mode_name;
 
         $now = time();
         $interaction = new StdClass();
@@ -165,14 +164,10 @@ class GameRules
         $interaction->id = $id;
         $interaction->hexagon = $location;
         $interaction->time = $now;
-//        $eventname = $event_name[$event];
-//        $modename = $mode_name[$this->mode];
-//        $phasename = $phase_name[$this->phase];
 
         /* @var $battle Battle */
         $battle = Battle::getBattle();
         $mapData = $battle->mapData;
-//        $mapData = MapData::getInstance();
 
         //TODO Ugly Ugly Ugly Ugly
         $mapData->specialHexesChanges = new stdClass();
@@ -180,8 +175,7 @@ class GameRules
         //TODO Ugly Ugly Ugly Ugly
 
         $this->flashMessages = array();
-//        $this->flashMessages[] = "@hex 101";
-//        $this->flashMessages[] = "@hex 202";
+
 
 
         if($event === SELECT_ALT_COUNTER_EVENT){
@@ -318,7 +312,53 @@ class GameRules
                     }
                 }
                 break;
+            case COMBINING_MODE:
 
+                switch ($event) {
+
+                    case KEYPRESS_EVENT:
+                        if ($this->moveRules->anyUnitIsMoving) {
+                            $c = chr($id);
+
+                            if($c == 'c' || $c == 'C'){
+                                $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+                                $ret = $this->force->findSimilarInHex($unit);
+
+                                if(is_array($ret) && count($ret) > 0){
+                                    if($unit->combine($ret[0]) === false){
+                                        return false;
+                                    }else{
+                                        $this->moveRules->stopMove($unit, true);
+                                        return true;
+                                    }
+                                }else{
+                                    return false;
+
+                                }
+                            }
+
+                        }
+                    case SELECT_MAP_EVENT:
+                    case SELECT_COUNTER_EVENT:
+                        if ($id === false) {
+                            return false;
+                        }
+
+                        $this->moveRules->railMove = false;
+
+                        $ret = $this->moveRules->selectUnit($event, $id, $location, $this->turn);
+                        return $ret;
+                        break;
+
+                    case SELECT_BUTTON_EVENT:
+
+//                        $this->force->getCombine();
+
+                        return $this->selectNextPhase($click);
+                        break;
+                }
+                break;
             case MOVING_MODE:
 
                 switch ($event) {
@@ -414,7 +454,14 @@ class GameRules
 
                     case SELECT_BUTTON_EVENT:
 
-                        return $this->selectNextPhase($click);
+                        $numCombines = $this->force->getCombine();
+
+                        $ret =  $this->selectNextPhase($click);
+                        if($ret === true && $this->mode === COMBINING_MODE && $numCombines === 0){
+                            $this->flashMessages[] = "No Combines Possible. Skipping to Next Phase.";
+                            $ret =  $this->selectNextPhase($click);
+                        }
+                        return $ret;
                         break;
                 }
                 break;

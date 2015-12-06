@@ -124,7 +124,9 @@ class Chawinda1965 extends ModernLandBattle
         if($scenario->bigPakistani){
             $numPakistaniInf += 6;
             $infStrength = 3;
-            $halfInfStrength = 2;
+            $halfInfStrength = 1;
+            $defStrength = 6;
+            $halfDefStrength = 3;
         }
 
 
@@ -136,35 +138,35 @@ class Chawinda1965 extends ModernLandBattle
 
 
         for($i = 0; $i < 4;$i++){
-            UnitFactory::create("x", PAKISTANI_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, "mech", $i+1);
+            UnitFactory::create("x", PAKISTANI_FORCE, "deployBox", "multiArmor.png", 6, 3,6, 3, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, "mech", $i+1);
 //            $this->force->addUnit("x", PAKISTANI_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, "mech", $i+1);
         }
 
         for($i = 0; $i < $numPakistaniInf;$i++){
-            UnitFactory::create("x", PAKISTANI_FORCE, "deployBox", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, 'inf', $i+1);
+            UnitFactory::create("x", PAKISTANI_FORCE, "deployBox", "multiInf.png", $infStrength, $halfInfStrength,$defStrength, $halfDefStrength, 4, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, 'inf', $i+1);
         }
 
         for($i = 2; $i <= 8; $i++) {
-            UnitFactory::create("x", PAKISTANI_FORCE, "gameTurn$i", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "mech", "T $i 1");
-            UnitFactory::create("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 2");
+            UnitFactory::create("x", PAKISTANI_FORCE, "gameTurn$i", "multiArmor.png", 6, 3,6, 3, 6, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "mech", "T $i 1");
+            UnitFactory::create("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", $infStrength, $halfInfStrength,$defStrength, $halfDefStrength, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 2");
             if(!$scenario->bigPakistani) {
-                UnitFactory::create("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 3");
+                UnitFactory::create("x", PAKISTANI_FORCE, "gameTurn$i", "multiInf.png", $infStrength, $halfInfStrength,$defStrength, $halfDefStrength, 4, false, STATUS_CAN_REINFORCE, "C", $i, 1, "pakistani", true, "inf", "T $i 3");
             }
         }
 
         for($i = 0; $i < 6;$i++) {
 
-            UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A $i");
+            UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 6, 3,6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A $i");
         }
 
-        UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 7");
-        UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 8");
-        UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 9");
-        UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 10");
+        UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 3,5, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 7");
+        UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 2,5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 8");
+        UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 3,5, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 9");
+        UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiArmor.png", 5, 2,5, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "mech", "A 10");
 
         for($i = 0; $i < 20;$i++) {
 
-            UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiInf.png", $infStrength, $halfInfStrength, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "$i");
+            UnitFactory::create("x", INDIAN_FORCE, "deployBox", "multiInf.png", $infStrength, $halfInfStrength,$infStrength, $halfInfStrength, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "indian", true, "inf", "$i");
         }
 
     }
@@ -205,13 +207,17 @@ class Chawinda1965 extends ModernLandBattle
 
 //            $this->gameRules->addPhaseChange(BLUE_REPLACEMENT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, INDIAN_FORCE, PAKISTANI_FORCE, false);
 
-            $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, INDIAN_FORCE, PAKISTANI_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_COMBINE_PHASE, COMBINING_MODE, INDIAN_FORCE, PAKISTANI_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_COMBINE_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, INDIAN_FORCE, PAKISTANI_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, BLUE_MECH_PHASE, MOVING_MODE, INDIAN_FORCE, PAKISTANI_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_MECH_PHASE, RED_MOVE_PHASE, MOVING_MODE, PAKISTANI_FORCE, INDIAN_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_MECH_PHASE, BLUE_MECH_COMBINE_PHASE, COMBINING_MODE, INDIAN_FORCE, PAKISTANI_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_MECH_COMBINE_PHASE, RED_MOVE_PHASE, MOVING_MODE, PAKISTANI_FORCE, INDIAN_FORCE, false);
 //            $this->gameRules->addPhaseChange(RED_REPLACEMENT_PHASE, RED_MOVE_PHASE, MOVING_MODE, PAKISTANI_FORCE, INDIAN_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, PAKISTANI_FORCE, INDIAN_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_MOVE_PHASE, RED_COMBINE_PHASE, COMBINING_MODE, PAKISTANI_FORCE, INDIAN_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_COMBINE_PHASE, RED_COMBAT_PHASE, COMBAT_SETUP_MODE, PAKISTANI_FORCE, INDIAN_FORCE, false);
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, RED_MECH_PHASE, MOVING_MODE, PAKISTANI_FORCE, INDIAN_FORCE, false);
-            $this->gameRules->addPhaseChange(RED_MECH_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, INDIAN_FORCE, PAKISTANI_FORCE, true);
+            $this->gameRules->addPhaseChange(RED_MECH_PHASE, RED_MECH_COMBINE_PHASE, COMBINING_MODE, PAKISTANI_FORCE, INDIAN_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_MECH_COMBINE_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, INDIAN_FORCE, PAKISTANI_FORCE, true);
         }
     }
 }

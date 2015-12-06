@@ -26,6 +26,30 @@
     DR.playerThree = "<?=$playerThree?>";
     DR.playerFour = "<?=$playerFour?>";
     DR.players = ["observer", "<?=$playerOne?>","<?=$playerTwo?>","<?=$playerThree?>","<?=$playerFour?>"];
+
+
+    function renderUnitNumbers(unit, moveAmount){
+
+        var  move = unit.maxMove - unit.moveAmountUsed;
+        if(moveAmount !== undefined){
+            move = moveAmount-0;
+        }
+        move = move.toFixed(2);
+        move = move.replace(/\.00$/,'');
+        move = move.replace(/(\.[1-9])0$/,'$1');
+        var str = unit.strength;
+        var reduced = unit.isReduced;
+        var reduceDisp = "<span class='unit-info'>";
+        if(reduced){
+            reduceDisp = "<span class='unit-info reduced'>";
+        }
+        var symb = "-"+unit.defStrength+"-";
+        var html = reduceDisp + str + symb + move + "</span>";
+        return html;
+
+
+
+    }
 </script>
 <link rel="stylesheet" href="<?= base_url("js/font-awesome-4.2.0/css/font-awesome.min.css"); ?>">
 <body xmlns="http://www.w3.org/1999/html">
