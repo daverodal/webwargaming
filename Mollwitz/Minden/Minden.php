@@ -71,7 +71,7 @@ class Minden extends JagCore
         global $force_name;
         $youAre = $force_name[$player];
         $deployTwo = $playerOne = $force_name[1];
-        $deployOne = $playerTwo = "Anglo-Allied";
+        $deployOne = $playerTwo = $force_name[2];
         @include_once "view.php";
     }
 

@@ -550,26 +550,13 @@ x.register("gameRules", function(gameRules,data) {
     $("#turnCounter").css("background","rgb(0,128,0)");
     $("#turnCounter").css("color","white");
 
-    var alsoRemoveThese = DR.players.join(' ').trim();
+    var alsoRemoveThese = DR.players.join('@@@').trim();
+    alsoRemoveThese = alsoRemoveThese.replace(/ /,'-');
+    alsoRemoveThese = alsoRemoveThese.replace(/@@@/g,' ');
     alsoRemoveThese = alsoRemoveThese.replace(/([^ ]+)/g,"player$1");
     removeThese += " "+alsoRemoveThese;
     $("#crt").removeClass(removeThese).addClass(playerName);
     $(".row1,.row3,.row5").removeClass(removeThese).addClass(playerName);
-
-//    if(gameRules.attackingForceId == 1){
-//        $("#header").removeClass(DR.playerTwo).addClass(DR.playerOne).removeClass('playerTwo').addClass('playerOne');
-//        $("#turnCounter").css("background","rgb(0,128,0)");
-//        $("#turnCounter").css("color","white");
-//        $("#crt").removeClass(DR.playerTwo).addClass(DR.playerOne).removeClass('playerTwo').addClass('playerOne');
-//        $(".row1,.row3,.row5").removeClass(DR.playerTwo).addClass(DR.playerOne).removeClass('playerTwo').addClass('playerOne');
-//    }else{
-//        $("#header").removeClass(DR.playerOne).removeClass('playerOne').addClass(DR.playerTwo).addClass('playerTwo');
-//        $(".row1,.row3,.row5").removeClass(DR.playerOne).removeClass('playerOne').addClass(DR.playerTwo).addClass('playerTwo');
-//        $("#crt").removeClass(DR.playerOne).removeClass('playerOne').addClass(DR.playerTwo).addClass('playerTwo');
-//        $("#turnCounter").css("background","rgb(0,128,255)");
-//        $("#turnCounter").css("color","white");
-//
-//    }
 
     var html = "<span id='turn'>Turn "+turn+" of "+maxTurn+"</span> ";
     var phase = gameRules.phase_name[gameRules.phase];
