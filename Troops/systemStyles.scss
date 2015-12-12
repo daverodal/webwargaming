@@ -20,7 +20,7 @@ body {
 
 @mixin player($nationality, $player, $color, $counterColor: $color, $faceColor: $color, $numbersColor: white) {
   .unit.#{$nationality}{
-    background: $color;
+    background: $counterColor;
     color:$numbersColor;
   }
   .player#{$player} {

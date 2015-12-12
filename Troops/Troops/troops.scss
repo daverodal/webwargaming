@@ -41,6 +41,7 @@ $russianColor: #F0F4CF;
 @include player(British, British, $britishColor, $britishColor, $britishColor, white);
 @include player(German, German, $germanColor, $germanColor, $germanColor, black);
 @include player(Belgian, Belgian, $belgianColor, $belgianColor, $belgianNumberColor, $belgianNumberColor);
+@include player(Austro-Hungarian, Austro-Hungarian, $germanColor, black, $germanColor, white);
 
 @include player(French, French, $frenchColor, $frenchColor, $frenchColor, black);
 @include player(Russian, Russian, $russianColor, $russianColor, $russianColor, black);

@@ -176,13 +176,13 @@ class Troops extends TroopsCore
 
             /* Austro-Hungarian */
             for ($i = 0; $i < 16; $i++) {
-                $this->force->addUnit("infantry-1", 1, "deployBox", "GermanInfBadge.png", 5, 5, 4, true, STATUS_CAN_DEPLOY, "B", 1, 4, "Austro-Hungrian", true, 'infantry');
+                $this->force->addUnit("infantry-1", 1, "deployBox", "GermanInfBadge.png", 5, 5, 4, true, STATUS_CAN_DEPLOY, "B", 1, 4, "Austro-Hungarian", true, 'infantry');
             }
             for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", 1, "deployBox", "GermanCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "B", 1, 9, "Austro-Hungrian", true, 'mg');
+                $this->force->addUnit("infantry-1", 1, "deployBox", "GermanCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "B", 1, 9, "Austro-Hungarian", true, 'mg');
             }
             for ($i = 0; $i < 3; $i++) {
-                $this->force->addUnit("infantry-1", 1, "deployBox", "GermanArtBadge.png", 10, 10, 4, true, STATUS_CAN_DEPLOY, "B", 1, 25, "Austro-Hungrian", true, 'artillery');
+                $this->force->addUnit("infantry-1", 1, "deployBox", "GermanArtBadge.png", 10, 10, 4, true, STATUS_CAN_DEPLOY, "B", 1, 25, "Austro-Hungarian", true, 'artillery');
             }
 
 

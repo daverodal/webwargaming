@@ -1649,6 +1649,46 @@ svg#arrow-svg {
   #arrow-svg path.Belgian.short.hover {
     stroke: #ffffe3; }
 
+.unit.Austro-Hungarian {
+  background: black;
+  color: white; }
+
+.playerAustro-Hungarian {
+  background: #C7C5C6;
+  border-color: #C7C5C6 !important; }
+
+.Austro-HungarianFace, .playerAustro-HungarianFace {
+  color: #C7C5C6; }
+
+.Austro-Hungarian .counterWrapper {
+  background-color: black; }
+
+#header.Austro-Hungarian {
+  background: #C7C5C6; }
+
+.unit.Austro-Hungarian svg {
+  stroke: white; }
+
+#crt.Austro-Hungarian {
+  border-color: #C7C5C6; }
+
+#crt .roll.odd.Austro-Hungarian {
+  background-color: #C7C5C6; }
+
+#arrow-svg path.Austro-Hungarian {
+  stroke: black;
+  stroke-opacity: 0.0; }
+
+#arrow-svg path.Austro-Hungarian.hovered {
+  stroke: black;
+  stroke-opacity: 1.0;
+  fill-opacity: .1; }
+
+#arrow-svg path.Austro-Hungarian.short {
+  stroke: transparent; }
+  #arrow-svg path.Austro-Hungarian.short.hover {
+    stroke: black; }
+
 .unit.French {
   background: #9ea837;
   color: black; }
