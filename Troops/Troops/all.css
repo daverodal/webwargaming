@@ -1658,7 +1658,7 @@ svg#arrow-svg {
   border-color: #C7C5C6 !important; }
 
 .Austro-HungarianFace, .playerAustro-HungarianFace {
-  color: #C7C5C6; }
+  color: #333; }
 
 .Austro-Hungarian .counterWrapper {
   background-color: black; }
@@ -1738,7 +1738,7 @@ svg#arrow-svg {
   border-color: #F0F4CF !important; }
 
 .RussianFace, .playerRussianFace {
-  color: #F0F4CF; }
+  color: #c9d753; }
 
 .Russian .counterWrapper {
   background-color: #F0F4CF; }

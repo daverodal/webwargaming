@@ -125,9 +125,9 @@ $phase_name[16] = "<span class='playerTwoFace'>fNameOne</span> Surprise";
 $phase_name[17] = "<span class='playerOneFace'>fNameOne</span> Resolution";
 $phase_name[18] = "<span class='playerTwoFace'>fNameTwo</span> Resolution";
 $phase_name[19] = "<span class='playerTwoFace'>fNameTwo</span> First ";
-$phase_name[20] = "<span class='playerTwoFace'>fNameOne</span> First ";
+$phase_name[20] = "<span class='playerOneFace'>fNameOne</span> First ";
 $phase_name[21] = "<span class='playerTwoFace'>fNameTwo</span> Second ";
-$phase_name[22] = "<span class='playerTwoFace'>fNameOne</span> Second ";
+$phase_name[22] = "<span class='playerOneFace'>fNameOne</span> Second ";
 
 $phase_name[23] = "<span class='playerOneFace'>fNameThree</span> Replacement";
 $phase_name[24] = "<span class='playerOneFace'>fNameThree</span> Move";
