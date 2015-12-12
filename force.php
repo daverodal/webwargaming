@@ -839,7 +839,7 @@ class Force extends SimpleForce
             case DD:
                 $defUnit->status = STATUS_DEFENDED;
                 $defUnit->retreatCountRequired = 0;
-                $defUnit->isDisrupted = $battle->gameRules->phase;
+                $defUnit->disruptUnit($battle->gameRules->phase);
                 $battle->victory->disruptUnit($defUnit);
                 break;
 

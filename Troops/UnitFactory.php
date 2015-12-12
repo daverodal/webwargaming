@@ -32,6 +32,7 @@ class TacticalUnit extends BaseUnit implements JsonSerializable
 
 
     public $isDisrupted = false;
+    public $disruptLen = 0;
     public $supplied = true;
 
 
@@ -88,6 +89,13 @@ class TacticalUnit extends BaseUnit implements JsonSerializable
     }
 
 
+    public function disruptUnit($phase){
+        $this->isDisrupted = $phase;
+        $this->disruptLen = 1;
+        if($this->nationality === "Russian"){
+            $this->disruptLen = 2;
+        }
+    }
     public function enterImproved($force = false){
         if($force !== true && $this->moveAmountUsed > 0){
             return false;

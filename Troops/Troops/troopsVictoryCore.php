@@ -210,10 +210,16 @@ class troopsVictoryCore extends troopersVictoryCore
             }
         }
         if($b->gameRules->phase == BLUE_FIRST_COMBAT_PHASE && $unit->isDisrupted === BLUE_COMBAT_RES_PHASE) {
-            $unit->isDisrupted = false;
+            $unit->disruptLen--;
+            if($unit->disruptLen === 0){
+                $unit->isDisrupted = false;
+            }
         }
         if($b->gameRules->phase == RED_SECOND_COMBAT_PHASE && $unit->isDisrupted === RED_COMBAT_RES_PHASE){
-            $unit->isDisrupted = false;
+            $unit->disruptLen--;
+            if($unit->disruptLen === 0) {
+                $unit->isDisrupted = false;
+            }
         }
         if($unit->isDisrupted !== false){
             $unit->status = STATUS_UNAVAIL_THIS_PHASE;

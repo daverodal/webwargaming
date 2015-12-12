@@ -423,10 +423,15 @@ x.register("force", function(force,data) {
             $("#"+i+" .shadow-mask").removeClass("shadowy");
         }
         if(units[i].isDisrupted){
+            debugger;
+            var disp = 'D';
+            if(units[i].disruptLen > 1){
+                disp = 'DD';
+            }
             if(units[i].isDisrupted == 17){
-                $("#"+i+" .shadow-mask").addClass("red-shadowy").html(DR.playerOne+"<br><span class='disrupted'>D</span>");
+                $("#"+i+" .shadow-mask").addClass("red-shadowy").html(DR.playerOne+"<br><span class='disrupted'>"+disp+"</span>");
             }else{
-                $("#"+i+" .shadow-mask").addClass("red-shadowy").html(DR.playerTwo+"<br><span class='disrupted'>D</span>");
+                $("#"+i+" .shadow-mask").addClass("red-shadowy").html(DR.playerTwo+"<br><span class='disrupted'>"+disp+"</span>");
             }
         }else{
             $("#"+i+" .shadow-mask").removeClass("red-shadowy").html('');
