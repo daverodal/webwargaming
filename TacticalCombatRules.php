@@ -17,7 +17,7 @@
 //You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-require_once "combatRules.php";
+require_once "CombatRules.php";
 class TacticalCombatRules extends CombatRules
 {
 

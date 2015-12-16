@@ -1,6 +1,6 @@
 <?php
 require_once "constants.php";
-require_once "combatRules.php";
+require_once "CombatRules.php";
 require_once "BAC/crt.php";
 require_once "force.php";
 require_once "gameRules.php";

@@ -23,7 +23,7 @@ require_once "constants.php";
 global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
 
 require_once "Battle.php";
-require_once "combatRules.php";
+require_once "CombatRules.php";
 require_once "crt.php";
 require_once "force.php";
 require_once "gameRules.php";
