@@ -199,9 +199,14 @@ class Troops extends TroopsCore
                 $this->force->addUnit("infantry-1", 2, "deployBox", "NativeInfBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 10, "Russian", true, 'mg');
             }
             for ($i = 0; $i < 4; $i++) {
+                $this->force->addUnit("infantry-1", 2, "deployBox", "BritArtBadge.png", 3, 3, 8, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", true, 'cavalry');
+            }
+            for ($i = 0; $i < 2; $i++) {
+                $this->force->addUnit("infantry-1", 2, "deployBox", "BritArtBadge.png", 2, 2, 8, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Russian", true, 'cavalry');
+            }
+            for ($i = 0; $i < 4; $i++) {
                 $this->force->addUnit("infantry-1", 2, "deployBox", "BritArtBadge.png", 11, 11, 4, true, STATUS_CAN_DEPLOY, "A", 1, 25, "Russian", true, 'artillery');
             }
-
         }else {
             /* German */
 
