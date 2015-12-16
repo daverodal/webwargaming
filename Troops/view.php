@@ -158,7 +158,6 @@
                 <div id="nextPhaseWrapper">
                     <button id="nextPhaseButton">Next Phase</button>
                     <button id="fullScreenButton"><i class="fa fa-arrows-alt"></i></button>
-                    <button class="dynamicButton combatButton" id="determinedAttackEvent">d</button>
                     <button class="dynamicButton combatButton" id="clearCombatEvent">c</button>
                     <button class="dynamicButton combatButton" id="shiftKey">+</button>
                 </div>
@@ -219,7 +218,7 @@
                                         transform="scale(0.15) rotate(180) translate(12.5,0)"/>
                                 </marker>
                             </defs>
-                        </svg>
+</svg>
                     </div>
                     <img id="map" alt="map" src="<?php preg_match("/http/", $mapUrl) ? $pre = '' : $pre = base_url();
                     echo "$pre$mapUrl"; ?>"
@@ -265,6 +264,15 @@
                                     <line x1="19" x2="19" y1="0" y2="20" stroke-width="2"></line>
                                     <line x1="0" x2="20" y1="1" y2="1" stroke-width="2"></line>
                                     <line x1="1" x2="19" y1="1" y2="19" stroke-width="2"></line>
+                                    <line x1="1" x2="19" y1="19" y2="1" stroke-width="2"></line>
+                                </svg>
+                            </div>
+                            <div class="type-wrapper cavalry-svg">
+                                <svg width="18" height="18" viewBox="0 0 20 20">
+                                    <line x1="1" x2="1" y1="0" y2="20" stroke-width="2"></line>
+                                    <line x1="0" x2="20" y1="19" y2="19" stroke-width="2"></line>
+                                    <line x1="19" x2="19" y1="0" y2="20" stroke-width="2"></line>
+                                    <line x1="0" x2="20" y1="1" y2="1" stroke-width="2"></line>
                                     <line x1="1" x2="19" y1="19" y2="1" stroke-width="2"></line>
                                 </svg>
                             </div>

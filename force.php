@@ -786,6 +786,19 @@ class Force extends SimpleForce
         return false;
     }
 
+    function getAdjacentUnits($id)
+    {
+        $battle = Battle::getBattle();
+        /* @var mapData $mapData */
+        $mapData = $battle->mapData;
+        /* @var unit $unit */
+        $unit = $this->units[$id];
+
+        $mapHex = $mapData->getHex($unit->hexagon->name);
+
+        return $mapHex->getAdjacentUnits($unit->forceId == $this->attackingForceId ? $this->defendingForceId : $this->attackingForceId);
+    }
+
 
     /*
      * Combat Rule

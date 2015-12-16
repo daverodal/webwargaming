@@ -391,14 +391,22 @@ class GameRules
 
                             if($c == 'i' || $c == 'I'){
                                 $unit = $this->force->getUnit($this->moveRules->movingUnitId);
-
-                                $unit->enterImproved();
+                                $ret = $unit->enterImproved();
+                                if($ret) {
+                                    $hexName = $unit->hexagon->name;
+                                    if ($unit->isImproved) {
+                                        $battle->mapData->specialHexesVictory->$hexName = "IP!";
+                                    } else {
+                                        $battle->mapData->specialHexesVictory->$hexName = "No IP";
+                                    }
+                                }
+                                return $ret;
                             }
 
                             if($c == 'u' || $c == 'U'){
                                 $unit = $this->force->getUnit($this->moveRules->movingUnitId);
 
-                                $unit->exitImproved();
+                                return $unit->exitImproved();
                             }
 
                             if($id == 37){

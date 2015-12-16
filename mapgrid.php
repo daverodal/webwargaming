@@ -162,6 +162,11 @@ class MapHex
         return count((array)$this->adjacent[$forceId]);
     }
 
+    public function getAdjacentUnits($forceId)
+    {
+        return $this->adjacent[$forceId];
+    }
+
     public function isOccupied($forceId, $num = 1, $unit = false)
     {
         if(is_callable($num)){

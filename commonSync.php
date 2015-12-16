@@ -245,6 +245,10 @@ x.register("force", function(force,data) {
         if(units[i].isImproved === true){
             style = 'dotted';
             color = 'black';
+            var colour = $("#"+i ).css('color');
+            if(colour === "rgb(255, 255, 255)"){
+                color='white';
+            }
         }
         switch(units[i].status){
             case <?=STATUS_CAN_REINFORCE?>:

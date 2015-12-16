@@ -103,7 +103,7 @@ class TacticalUnit extends BaseUnit implements JsonSerializable
         if($force !== true && $this->nationality !== "French" && $this->class === "artillery") {
             return false;
         }
-        $this->moveAmountUsed = 1;
+        $this->moveAmountUsed = 0;
         $b = Battle::getBattle();
         if($this->nationality === "British"){
             if($this->isDisrupted === false){
@@ -121,7 +121,8 @@ class TacticalUnit extends BaseUnit implements JsonSerializable
             if($this->nationality == "French" && $this->class === "infantry"){
                 $dieNeeded = 1;
             }
-            if(rand(1,6) <= $dieNeeded){
+            $roll = rand(1,6);
+            if($roll <= $dieNeeded){
                 $this->isImproved = true;
             }
         }
@@ -134,7 +135,8 @@ class TacticalUnit extends BaseUnit implements JsonSerializable
         }
 
 
-        $b->moveRules->stopMove($this);
+        $b->moveRules->stopMove($this, true);
+        return true;
     }
 
 
@@ -166,6 +168,7 @@ class TacticalUnit extends BaseUnit implements JsonSerializable
             $this->moveAmountUsed = 1;
             $b->moveRules->stopMove($this);
         }
+        return true;
     }
 
     function set($unitId, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral", $forceMarch, $class, $unitDesig)

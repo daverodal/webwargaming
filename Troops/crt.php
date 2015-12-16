@@ -103,23 +103,27 @@ class CombatResultsTable
         }
 
         $defenders = $combats->defenders;
-        $isTown = $isHill = $isForest = $isSwamp = $attackerIsSunkenRoad = $isRedoubt = $isElevated = false;
+        $isCavalry = $isTown = $isHill = $isForest = $isSwamp = $attackerIsSunkenRoad = $isRedoubt = $isElevated = false;
 
 
         foreach ($defenders as $defId => $defender) {
-            $hexagon = $battle->force->units[$defId]->hexagon;
+            $defUnit = $battle->force->units[$defId];
+            $hexagon = $defUnit->hexagon;
+            if($defUnit->class === 'cavalry'){
+                $isCavalry = true;
+            }
             $hexpart = new Hexpart();
             $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
             $isTown |= $battle->terrain->terrainIs($hexpart, 'town');
 //            $isHill |= $battle->terrain->terrainIs($hexpart, 'hill');
             $isForest |= $battle->terrain->terrainIs($hexpart, 'forest');
 //            $isSwamp |= $battle->terrain->terrainIs($hexpart, 'swamp');
-//            if($battle->terrain->terrainIs($hexpart, 'elevation')){
-//                $isElevated = 1;
-//            }
-//            if($battle->terrain->terrainIs($hexpart, 'elevation2')){
-//                $isElevated = 2;
-//            }
+            if($battle->terrain->terrainIs($hexpart, 'elevation')){
+                $isElevated = 1;
+            }
+            if($battle->terrain->terrainIs($hexpart, 'elevation2')){
+                $isElevated = 2;
+            }
         }
         $isClear = true;
         if ($isTown || $isForest || $isHill || $isSwamp) {
@@ -148,6 +152,10 @@ class CombatResultsTable
             $range = $los->getRange();
             $combatLog .= $unit->strength ." ".$unit->class." ";
 
+            if($isCavalry){
+                $combatLog .= "defender is cavalry, doubled ";
+                $unitStrength *= 2;
+            }
             if($unit->class === "infantry" && $range == 1){
                 $combatLog .= "infantry at range 1, doubled ";
                 $unitStrength *= 2;
@@ -174,14 +182,14 @@ class CombatResultsTable
 //                $terrainReason .= "attacker is in sunken road ";
 //            }
 
-//            $attackerIsElevated = false;
-//            if($battle->terrain->terrainIs($hexpart, 'elevation')){
-//                $attackerIsElevated = 1;
-//            }
-//
-//            if($battle->terrain->terrainIs($hexpart, 'elevation2')){
-//             $attackerIsElevated = 2;
-////            }
+            $attackerIsElevated = false;
+            if($battle->terrain->terrainIs($hexpart, 'elevation')){
+                $attackerIsElevated = 1;
+            }
+
+            if($battle->terrain->terrainIs($hexpart, 'elevation2')){
+             $attackerIsElevated = 2;
+            }
 //            $attackUpHill = false;
 //            if($isElevated && ($isElevated > $attackerIsElevated)){
 //                $terrainReason .= "attack uphill ";
@@ -289,6 +297,10 @@ class CombatResultsTable
             $isForest = $battle->terrain->terrainIs($hexpart, 'forest');
             $isSwamp = $battle->terrain->terrainIs($hexpart, 'swamp');
             $terran = "";
+            if($attackerIsElevated < $isElevated){
+                $unitStrength = 4;
+                $terrain = "uphill ";
+            }
             if($isTown){
                 $terrain = "in town ";
                 $unitStrength = 8;

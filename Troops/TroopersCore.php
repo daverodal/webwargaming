@@ -20,7 +20,7 @@ require_once "constants.php";
 global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
 
 require_once "Battle.php";
-require_once "combatRules.php";
+require_once "TacticalCombatRules.php";
 require_once "crt.php";
 require_once "force.php";
 require_once "gameRules.php";
@@ -66,7 +66,7 @@ class TroopersCore extends LandBattle{
             $this->force = new Force($data->force);
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
-            $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
+            $this->combatRules = new TacticalCombatRules($this->force, $this->terrain, $data->combatRules);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
             $this->victory = new Victory($data);
 
@@ -82,7 +82,7 @@ class TroopersCore extends LandBattle{
             $this->terrain = new Terrain();
 
             $this->moveRules = new MoveRules($this->force, $this->terrain);
-            $this->combatRules = new CombatRules($this->force, $this->terrain);
+            $this->combatRules = new TacticalCombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
         }
     }

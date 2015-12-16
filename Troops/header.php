@@ -74,6 +74,13 @@ $(document).ready(function(){
         return;
     });
 
+    $('.unit .rangewe').each(function(obj){
+        if(!$(this).html().match(/[1-9]/)){
+            debugger;
+            $(this).html('1')
+        }
+    });
+
 
 });
 x.register("mapUnits", function(mapUnits) {
@@ -412,7 +419,7 @@ x.register("sentBreadcrumbs", function(breadcrumbs,data) {
     }
 
     function clearHexes(){
-        $('svg path').remove();
+        $('#arrow-svg path').remove();
     }
 
 

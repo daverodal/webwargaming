@@ -185,7 +185,23 @@ class troopsVictoryCore extends troopersVictoryCore
         }
         return false;
     }
+public function postCombatResults($args){
+    list($defenderId, $attackers, $combatResults, $dieRoll) = $args;
 
+    $b = Battle::getBattle();
+    $cr = $b->combatRules;
+    $f = $b->force;
+    foreach($attackers as $attackId => $v){
+        $unit = $f->units[$attackId];
+
+        $hexagon = $unit->hexagon;
+        $hexpart = new Hexpart();
+        $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
+        if($b->terrain->terrainIs($hexpart, 'town') || $b->terrain->terrainIs($hexpart, 'forest')){
+           $cr->sighted($hexagon->name);
+        }
+    }
+}
     public function postRecoverUnit($args)
     {
         $unit = $args[0];
