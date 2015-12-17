@@ -245,6 +245,25 @@
                                     <line x1="9" x2="9" y1="4" y2="16"></line>
                                 </svg>
                             </div>
+                            <div class="type-wrapper howitzer-svg">
+                                <svg width="15" height="21" viewBox="0 0 10 20">
+                                    <line x1="5" x2="5" y1="0" y2="14" stroke-width="2"></line>
+                                    <line x1="0" x2="10" y1="9" y2="9"></line>
+                                    <line x1="1" x2="1" y1="4" y2="14"></line>
+                                    <line x1="9" x2="9" y1="4" y2="14"></line>
+                                    <circle r="2" cx="5" cy="17" fill="transparent"></circle>
+                                </svg>
+                            </div>
+                            <div class="type-wrapper armor-svg">
+                                <!-- <img src="<?php //echo base_url(); ?>js/A7vu_tank.svg" class="armor"> -->
+                            </div>
+                            <div class="type-wrapper aarmor-svg">
+                                <!-- By Marseille77 (the-blueprints.com) [Public domain], <a href="https://commons.wikimedia.org/wiki/File%3APanzer_IV_G.svg">via Wikimedia Commons</a> -->
+                                <!-- By Marseille77 (the-blueprints.com; Own work by Marseille77) [Public domain], <a href="https://commons.wikimedia.org/wiki/File%3APanzer_V_panther.svg">via Wikimedia Commons</a> -->
+                                <!-- By Marseille77 (Own work, Nach Vorlage [1]erstellt) [Public domain], <a href="https://commons.wikimedia.org/wiki/File%3AA7v_tank_german.svg">via Wikimedia Commons</a> -->
+                                <!-- By Marseille77 (Own work, drawn with inkscape) [Public domain], <a href="https://commons.wikimedia.org/wiki/File%3AA7vu_tank.svg">via Wikimedia Commons</a> -->
+
+                            </div>
 <!--                            <div class="type-wrapper mg-svg">-->
 <!--                                <img src="--><?php //echo base_url(); ?><!--js/mg.svg" class="col-hex">-->
 <!--                            </div>-->

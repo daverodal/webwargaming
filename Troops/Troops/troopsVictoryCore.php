@@ -47,8 +47,8 @@ class troopsVictoryCore extends troopersVictoryCore
         $unit = $args[0];
         $hex = $unit->hexagon;
         $battle = Battle::getBattle();
-        $playerOne = strtolower( $battle->scenario->playerOne);
-        $playerTwo = strtolower( $battle->scenario->playerTwo);
+        $playerOne = strtolower($battle->scenario->playerOne);
+        $playerTwo = strtolower($battle->scenario->playerTwo);
 
 
         if ($unit->forceId == 1) {
@@ -62,28 +62,28 @@ class troopsVictoryCore extends troopersVictoryCore
         }
     }
 
-    public function disruptUnit($args){
+    public function disruptUnit($args)
+    {
         list($unit) = $args;
         $hex = $unit->hexagon;
         $battle = Battle::getBattle();
-        $playerOne = strtolower( $battle->scenario->playerOne);
-        $playerTwo = strtolower( $battle->scenario->playerTwo);
+        $playerOne = strtolower($battle->scenario->playerOne);
+        $playerTwo = strtolower($battle->scenario->playerTwo);
 
         if ($unit->forceId == 1) {
-            $victorId = 2;
             $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='$playerTwo'>DD</span>";
         } else {
-            $victorId = 1;
             $battle->mapData->specialHexesVictory->{$hex->name} = "<span class='$playerOne'>DD</span>";
         }
     }
 
-    public function noEffectUnit($args){
+    public function noEffectUnit($args)
+    {
         list($unit) = $args;
         $hex = $unit->hexagon;
         $battle = Battle::getBattle();
-        $playerOne = strtolower( $battle->scenario->playerOne);
-        $playerTwo = strtolower( $battle->scenario->playerTwo);
+        $playerOne = strtolower($battle->scenario->playerOne);
+        $playerTwo = strtolower($battle->scenario->playerTwo);
 
         if ($unit->forceId == 1) {
             $victorId = 2;
@@ -96,42 +96,7 @@ class troopsVictoryCore extends troopersVictoryCore
 
     public function specialHexChange($args)
     {
-        $battle = Battle::getBattle();
-        if ($battle->scenario->dayTwo) {
-            list($mapHexName, $forceId) = $args;
 
-            if ($forceId == SIKH_FORCE) {
-                $this->victoryPoints[SIKH_FORCE] += 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='beluchi'>+5 Sikh  vp</span>";
-            }
-            if ($forceId == BRITISH_FORCE) {
-                $this->victoryPoints[SIKH_FORCE] -= 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-5 Sikh  vp</span>";
-            }
-        } else {
-
-            list($mapHexName, $forceId) = $args;
-            if ($mapHexName == $battle->moodkee) {
-                if ($forceId == SIKH_FORCE) {
-                    $this->victoryPoints[SIKH_FORCE] += 20;
-                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='beluchi'>+5 Sikh  vp</span>";
-                }
-                if ($forceId == BRITISH_FORCE) {
-                    $this->victoryPoints[SIKH_FORCE] -= 20;
-                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>-5 Sikh  vp</span>";
-                }
-
-            } else {
-                if ($forceId == BRITISH_FORCE) {
-                    $this->victoryPoints[BRITISH_FORCE] += 5;
-                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='british'>+5 British  vp</span>";
-                }
-                if ($forceId == SIKH_FORCE) {
-                    $this->victoryPoints[BRITISH_FORCE] -= 5;
-                    $battle->mapData->specialHexesVictory->$mapHexName = "<span class='beluchi'>-5 British  vp</span>";
-                }
-            }
-        }
     }
 
 
@@ -143,73 +108,34 @@ class troopsVictoryCore extends troopersVictoryCore
         $sikhWin = $britishWin = false;
 
         return false;
-        if (!$this->gameOver) {
-            $specialHexes = $battle->mapData->specialHexes;
-            $britVic = 40;
-            $lead = 15;
-            if (($this->victoryPoints[BRITISH_FORCE] >= $britVic && ($this->victoryPoints[BRITISH_FORCE] - ($this->victoryPoints[SIKH_FORCE]) >= $lead))) {
-                $britishWin = true;
-            }
-            if (($this->victoryPoints[SIKH_FORCE] >= 35)) {
-                $sikhWin = true;
-            }
-            if ($turn == $gameRules->maxTurn + 1) {
-                if (!$britishWin) {
-                    $sikhWin = true;
-                }
-                if ($sikhWin && $britishWin) {
-                    $this->winner = 0;
-                    $britishWin = $sikhWin = false;
-                    $gameRules->flashMessages[] = "Tie Game";
-                    $gameRules->flashMessages[] = "Game Over";
-                    $this->gameOver = true;
-                    return true;
-                }
-            }
+    }
 
+    public function postCombatResults($args)
+    {
+        list($defenderId, $attackers, $combatResults, $dieRoll) = $args;
+        $b = Battle::getBattle();
+        $cr = $b->combatRules;
+        $f = $b->force;
+        foreach ($attackers as $attackId => $v) {
+            $unit = $f->units[$attackId];
 
-            if ($britishWin) {
-                $this->winner = BRITISH_FORCE;
-                $gameRules->flashMessages[] = "British Win";
-            }
-            if ($sikhWin) {
-                $this->winner = SIKH_FORCE;
-                $msg = "Sikh Win";
-                $gameRules->flashMessages[] = $msg;
-            }
-            if ($britishWin || $sikhWin) {
-                $gameRules->flashMessages[] = "Game Over";
-                $this->gameOver = true;
-                return true;
+            $hexagon = $unit->hexagon;
+            $hexpart = new Hexpart();
+            $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
+            if ($b->terrain->terrainIs($hexpart, 'town') || $b->terrain->terrainIs($hexpart, 'forest')) {
+                $cr->sighted($hexagon->name);
             }
         }
-        return false;
     }
-public function postCombatResults($args){
-    list($defenderId, $attackers, $combatResults, $dieRoll) = $args;
 
-    $b = Battle::getBattle();
-    $cr = $b->combatRules;
-    $f = $b->force;
-    foreach($attackers as $attackId => $v){
-        $unit = $f->units[$attackId];
-
-        $hexagon = $unit->hexagon;
-        $hexpart = new Hexpart();
-        $hexpart->setXYwithNameAndType($hexagon->name, HEXAGON_CENTER);
-        if($b->terrain->terrainIs($hexpart, 'town') || $b->terrain->terrainIs($hexpart, 'forest')){
-           $cr->sighted($hexagon->name);
-        }
-    }
-}
     public function postRecoverUnit($args)
     {
         $unit = $args[0];
         $b = Battle::getBattle();
 
         /* Deal with Forced March */
-        if($b->gameRules->mode == COMBAT_SETUP_MODE){
-            if($unit->isImproved !== true) {
+        if ($b->gameRules->mode == COMBAT_SETUP_MODE) {
+            if ($unit->isImproved !== true) {
                 if ($unit->class === 'infantry') {
                     if ($unit->moveAmountUnused < 2) {
                         $unit->status = STATUS_UNAVAIL_THIS_PHASE;
@@ -225,19 +151,19 @@ public function postCombatResults($args){
                 }
             }
         }
-        if($b->gameRules->phase == BLUE_FIRST_COMBAT_PHASE && $unit->isDisrupted === BLUE_COMBAT_RES_PHASE) {
+        if ($b->gameRules->phase == BLUE_FIRST_COMBAT_PHASE && $unit->isDisrupted === BLUE_COMBAT_RES_PHASE) {
             $unit->disruptLen--;
-            if($unit->disruptLen === 0){
+            if ($unit->disruptLen === 0) {
                 $unit->isDisrupted = false;
             }
         }
-        if($b->gameRules->phase == RED_SECOND_COMBAT_PHASE && $unit->isDisrupted === RED_COMBAT_RES_PHASE){
+        if ($b->gameRules->phase == RED_SECOND_COMBAT_PHASE && $unit->isDisrupted === RED_COMBAT_RES_PHASE) {
             $unit->disruptLen--;
-            if($unit->disruptLen === 0) {
+            if ($unit->disruptLen === 0) {
                 $unit->isDisrupted = false;
             }
         }
-        if($unit->isDisrupted !== false){
+        if ($unit->isDisrupted !== false) {
             $unit->status = STATUS_UNAVAIL_THIS_PHASE;
         }
     }

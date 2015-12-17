@@ -906,6 +906,10 @@ svg marker#head {
 .row-hex {
   width: 71px; }
 
+.armor {
+  width: 30px;
+  margin-botton: 5px; }
+
 .mapFlashSymbols {
   position: absolute;
   color: white;
@@ -1474,6 +1478,22 @@ p.forceMarch {
 .artillery .unitNumbers {
   letter-spacing: -1px; }
 .artillery .artillery-svg {
+  display: block;
+  position: absolute;
+  bottom: 2px;
+  left: 9px; }
+
+.armor .unitNumbers {
+  letter-spacing: -1px; }
+.armor .armor-svg {
+  display: block;
+  position: absolute;
+  bottom: 2px;
+  left: 0px; }
+
+.howitzer .unitNumbers {
+  letter-spacing: -1px; }
+.howitzer .howitzer-svg {
   display: block;
   position: absolute;
   bottom: 2px;

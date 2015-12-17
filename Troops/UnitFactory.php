@@ -22,12 +22,11 @@ class TacticalUnit extends BaseUnit implements JsonSerializable
 {
 
 //    public $strength;
-    public $maxStrength;
-    public $minStrength;
-    public $isReduced;
+    public $attackStrength;
     public $range;
     public $isImproved = false;
     public $normalMoveAmount;
+    public $forceMarch = true;
 
 
 
@@ -171,11 +170,9 @@ class TacticalUnit extends BaseUnit implements JsonSerializable
         return true;
     }
 
-    function set($unitId, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral", $forceMarch, $class, $unitDesig)
+    function set($unitForceId, $unitHexagon,  $attackStrength, $range, $unitMaxMove,  $unitStatus, $unitReinforceZone, $unitReinforceTurn, $nationality = "neutral",  $class, $unitDesig)
     {
         $this->dirty = true;
-        $this->id = $unitId;
-        $this->name = $unitName;
         $this->forceId = $unitForceId;
         $this->class = $class;
         $this->hexagon = new Hexagon($unitHexagon);
@@ -187,13 +184,9 @@ class TacticalUnit extends BaseUnit implements JsonSerializable
         if ($mapHex) {
             $mapHex->setUnit($this->forceId, $this);
         }
-        $this->image = $unitImage;
-//        $this->strength = $isReduced ? $unitMinStrength : $unitMaxStrength;
         $this->maxMove = $unitMaxMove;
         $this->normalMoveAmount = $this->moveAmountUnused = $unitMaxMove;
-        $this->maxStrength = $unitMaxStrength;
-        $this->minStrength = $unitMinStrength;
-        $this->isReduced = $isReduced;
+        $this->attackStrength = $attackStrength;
         $this->status = $unitStatus;
         $this->moveAmountUsed = 0;
         $this->reinforceZone = $unitReinforceZone;
@@ -202,11 +195,10 @@ class TacticalUnit extends BaseUnit implements JsonSerializable
         $this->combatIndex = 0;
         $this->combatOdds = "";
         $this->moveCount = 0;
-        $this->retreatCountRequired = 0;
         $this->combatResults = NR;
         $this->range = $range;
         $this->nationality = $nationality;
-        $this->forceMarch = $forceMarch;
+        $this->forceMarch = true;
         $this->unitDesig = $unitDesig;
     }
 
@@ -253,7 +245,7 @@ class TacticalUnit extends BaseUnit implements JsonSerializable
         $mapUnit->parent = $this->hexagon->parent;
         $mapUnit->moveAmountUsed = $this->moveAmountUsed;
         $mapUnit->maxMove = $this->maxMove;
-        $mapUnit->strength = $this->strength;
+        $mapUnit->strength = $this->attackStrength;
         $mapUnit->supplied = $this->supplied;
         $mapUnit->reinforceZone = $this->reinforceZone;
         $mapUnit->forceId = $this->forceId;
@@ -269,7 +261,20 @@ class TacticalUnit extends BaseUnit implements JsonSerializable
 }
 
 class UnitFactory {
+    public static $id = 0;
+    public static $injector;
     public static function build($data = false){
-        return new TacticalUnit($data);
+
+        $sU =  new TacticalUnit($data);
+        if($data === false){
+            $sU->id = self::$id++;
+        }
+        return $sU;
     }
+    public static function create(  $unitForceId, $unitHexagon,  $attackStrength, $range,   $unitMaxMove,  $unitStatus, $unitReinforceZone, $unitReinforceTurn, $nationality = "neutral", $class, $unitDesig = ""){
+        $unit = self::build();
+        $unit->set($unitForceId, $unitHexagon,  $attackStrength,$range,  $unitMaxMove,  $unitStatus, $unitReinforceZone, $unitReinforceTurn,  $nationality, $class, $unitDesig);
+        self::$injector->injectUnit($unit);
+    }
+
 }
