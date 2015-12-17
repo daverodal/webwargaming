@@ -66,11 +66,8 @@ class TacticalUnit extends BaseUnit implements JsonSerializable
         if ($name !== "strength" && $name !== "defStrength" && $name !== "attStrength") {
             return false;
         }
-        if ($this->isReduced) {
-            $strength = $this->minStrength;
-        } else {
-            $strength = $this->maxStrength;
-        }
+
+        $strength = $this->attackStrength;
         foreach ($this->adjustments as $adjustment) {
             switch ($adjustment) {
                 case 'floorHalf':
