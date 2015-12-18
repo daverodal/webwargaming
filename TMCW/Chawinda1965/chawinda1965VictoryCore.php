@@ -31,7 +31,6 @@ include_once "victoryCore.php";
 class chawinda1965VictoryCore extends victoryCore
 {
     public $victoryPoints;
-    protected $movementCache;
     protected $combatCache;
     protected $supplyLen = false;
     public $pakistaniGoal;
@@ -46,7 +45,6 @@ class chawinda1965VictoryCore extends victoryCore
     {
         if ($data) {
             $this->victoryPoints = $data->victory->victoryPoints;
-            $this->movementCache = $data->victory->movementCache;
             $this->combatCache = $data->victory->combatCache;
             $this->supplyLen = $data->victory->supplyLen;
             $this->indianGoal = $data->victory->indianGoal;
@@ -54,7 +52,6 @@ class chawinda1965VictoryCore extends victoryCore
             $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = [0, 0, 0];
-            $this->movementCache = new stdClass();
             $this->combatCache = new stdClass();
             $this->indianGoal = $this->pakistaniGoal = [];
         }
@@ -74,7 +71,6 @@ class chawinda1965VictoryCore extends victoryCore
     {
         $ret = new stdClass();
         $ret->victoryPoints = $this->victoryPoints;
-        $ret->movementCache = $this->movementCache;
         $ret->combatCache = $this->combatCache;
         $ret->supplyLen = $this->supplyLen;
         $ret->indianGoal = $this->indianGoal;

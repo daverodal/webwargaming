@@ -27,8 +27,21 @@
     DR.playerFour = "<?=$playerFour?>";
     DR.players = ["observer", "<?=$playerOne?>","<?=$playerTwo?>","<?=$playerThree?>","<?=$playerFour?>"];
 
+    function renderOuterUnit(id, unit){
+        if(unit.isReduced){
+            $("#"+id+" .unitSize").html('x');
+        }else{
+            $("#"+id+" .unitSize").html('xx');
+        }
+        if(unit.supplied){
+            $("#"+id+" .unsupplied").removeClass('show');
+        }else{
+            $("#"+id+" .unsupplied").addClass('show');
+        }
+    }
 
     function renderUnitNumbers(unit, moveAmount){
+
 
         var  move = unit.maxMove - unit.moveAmountUsed;
         if(moveAmount !== undefined){
@@ -43,7 +56,9 @@
         if(reduced){
             reduceDisp = "<span class='unit-info reduced'>";
         }
-        var symb = "-"+unit.defStrength+"-";
+        var supSymb = '-';
+
+        var symb = supSymb+unit.defStrength+supSymb;
         var html = reduceDisp + str + symb + move + "</span>";
         return html;
 
@@ -269,6 +284,7 @@
                             <div class="counterWrapper">
                                 <img src="<?php echo base_url(); ?>js/{image}" class="counter"><span class="unit-desig">{unitDesig}</span>
                             </div>
+                            <div class="unsupplied">u</div>
                             <div class="unit-numbers">5 - 4</div>
                         </div>
                         {/units}

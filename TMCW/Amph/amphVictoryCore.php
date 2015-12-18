@@ -31,7 +31,6 @@ include_once "victoryCore.php";
 class amphVictoryCore extends victoryCore
 {
     public $victoryPoints;
-    protected $movementCache;
     protected $combatCache;
     protected $supplyLen = false;
     private $landingZones;
@@ -45,7 +44,6 @@ class amphVictoryCore extends victoryCore
     {
         if ($data) {
             $this->victoryPoints = $data->victory->victoryPoints;
-            $this->movementCache = $data->victory->movementCache;
             $this->combatCache = $data->victory->combatCache;
             $this->supplyLen = $data->victory->supplyLen;
             $this->landingZones = $data->victory->landingZones;
@@ -54,7 +52,6 @@ class amphVictoryCore extends victoryCore
             $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = array(0, 0, 25);
-            $this->movementCache = new stdClass();
             $this->combatCache = new stdClass();
             $this->landingZones = [];
             $this->airdropZones = [];
@@ -70,7 +67,6 @@ class amphVictoryCore extends victoryCore
     {
         $ret = new stdClass();
         $ret->victoryPoints = $this->victoryPoints;
-        $ret->movementCache = $this->movementCache;
         $ret->combatCache = $this->combatCache;
         $ret->supplyLen = $this->supplyLen;
         $ret->landingZones = $this->landingZones;

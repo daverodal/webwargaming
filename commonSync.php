@@ -152,6 +152,7 @@ x.register("mapUnits", function(mapUnits, data) {
         var symb = mapUnits[i].supplied !== false ? " - " : " <span class='reduced'>u</span> ";
 //        symb = "-"+mapUnits[i].defStrength+"-";
         var html = reduceDisp + str + symb + move + "</span>";
+        renderOuterUnit(i, mapUnits[i]);
         html = renderUnitNumbers(mapUnits[i]);
         if(html){
             $("#"+i+" .unit-numbers").html(html);
@@ -172,6 +173,9 @@ x.register("mapUnits", function(mapUnits, data) {
     }
 
 });
+    function renderOuterUnit(id, unit){
+
+    }
 function renderUnitNumbers(unit, moveAmount){
 
     var  move = unit.maxMove - unit.moveAmountUsed;
@@ -427,7 +431,6 @@ x.register("force", function(force,data) {
             $("#"+i+" .shadow-mask").removeClass("shadowy");
         }
         if(units[i].isDisrupted){
-            debugger;
             var disp = 'D';
             if(units[i].disruptLen > 1){
                 disp = 'DD';

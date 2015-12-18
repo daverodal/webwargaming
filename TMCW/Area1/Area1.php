@@ -443,20 +443,11 @@ class Area1
 
 
         if ($data) {
-//            $this->arg = $data->arg;
-//            $this->scenario = $data->scenario;
-//            $this->terrainName = $data->terrainName;
-//            $this->game = $data->game;
-//            $this->display = new Display($data->display);
-//            $this->mapData->init($data->mapData);
-//            $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
+
             $this->force = new AreaForce($data->force);
             $this->terrain = new AreaTerrain($data->terrain);
 
 
-//            var_dump($this->terrain->areas);
-//
-//            $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
             $this->moveRules = new AreaMoveRules($this->force, $this->terrain, $data->moveRules);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);

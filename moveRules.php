@@ -359,7 +359,7 @@ class MoveRules
         $numWalks = 0;
         $numBangs = 0;
         $startHex = $unit->hexagon;
-        $movesLeft = $unit->maxMove - $unit->moveAmountUsed;
+        $movesLeft = $unit->getMaxMove() - $unit->moveAmountUsed;
         $this->moves = new stdClass();
         $this->moveQueue = array();
         $hexPath = new HexPath();
@@ -1307,7 +1307,7 @@ class MoveRules
             $victory->preStartMovingUnit($unit);
 
             if ($unit->setStatus(STATUS_REINFORCING) == true) {
-                $movesLeft = $unit->maxMove;
+                $movesLeft = $unit->getMaxMove();
                 $zoneName = $unit->reinforceZone;
                 $zones = $this->terrain->getReinforceZonesByName($zoneName);
                 list($zones) = $battle->victory->postReinforceZones($zones, $unit);
@@ -1676,7 +1676,7 @@ class MoveRules
             $startHex = $hexagon->name;
             $hexPath = new HexPath();
             $hexPath->name = $startHex;
-            $hexPath->pointsLeft = $this->force->units[$id]->maxMove;
+            $hexPath->pointsLeft = $this->force->units[$id]->getMaxMove();
             $hexPath->pathToHere = array();
             $hexPath->firstHex = true;
             $this->moves->$startHex = $hexPath;

@@ -125,3 +125,30 @@
     font-size:$stdFont;
   }
 }
+
+.unit {
+  .unit-numbers{
+
+    .infoLen5{
+      letter-spacing:normal;
+    }
+   .infoLen7 {
+     letter-spacing: -1.6px;
+   }
+    .infoLen9{
+      letter-spacing: -2px;
+      font-size:12px;
+    }
+  }
+  .unsupplied{
+    position:absolute;
+    color:white;
+    top: 0px;
+    left:10px;
+    font-size:22px;
+    display:none;
+    &.show{
+      display:block;
+    }
+  }
+}

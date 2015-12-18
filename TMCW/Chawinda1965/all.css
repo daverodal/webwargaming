@@ -1305,4 +1305,21 @@ svg marker#head {
     color: #333;
     font-size: 16px; }
 
+.unit .unit-numbers .infoLen5 {
+  letter-spacing: normal; }
+.unit .unit-numbers .infoLen7 {
+  letter-spacing: -1.6px; }
+.unit .unit-numbers .infoLen9 {
+  letter-spacing: -2px;
+  font-size: 12px; }
+.unit .unsupplied {
+  position: absolute;
+  color: white;
+  top: 0px;
+  left: 10px;
+  font-size: 22px;
+  display: none; }
+  .unit .unsupplied.show {
+    display: block; }
+
 /*# sourceMappingURL=all.css.map */

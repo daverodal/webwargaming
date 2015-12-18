@@ -76,7 +76,6 @@ $(document).ready(function(){
 
     $('.unit .rangewe').each(function(obj){
         if(!$(this).html().match(/[1-9]/)){
-            debugger;
             $(this).html('1')
         }
     });

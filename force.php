@@ -66,12 +66,32 @@ class MovableUnit{
 
     function unitHasMoveAmountAvailable($moveAmount)
     {
-        if ($this->moveAmountUsed + $moveAmount <= $this->maxMove) {
+        if ($this->moveAmountUsed + $moveAmount <= $this->getMaxMove()) {
             $canMove = true;
         } else {
             $canMove = false;
         }
         return $canMove;
+    }
+
+    public function getMaxMove(){
+        $maxMove = $this->maxMove;
+        foreach ($this->adjustments as $name => $adjustment) {
+            if($name === 'movement') {
+                switch ($adjustment) {
+                    case 'floorHalfMovement':
+                        $maxMove = floor($maxMove / 2);
+                        break;
+                    case 'halfMovement':
+                        $maxMove = $maxMove / 2;
+                        break;
+                    case 'oneMovement':
+                        $maxMove = 1;
+                        break;
+                }
+            }
+        }
+        return $maxMove;
     }
 
     function unitHasNotMoved()
@@ -96,7 +116,7 @@ class MovableUnit{
     function unitHasUsedMoveAmount()
     {
         // moveRules amount used can be larger if can always moveRules at least one hexagon
-        if ($this->moveAmountUsed >= $this->maxMove) {
+        if ($this->moveAmountUsed >= $this->getMaxMove()) {
             $maxMove = true;
         } else {
             $maxMove = false;
@@ -338,7 +358,7 @@ class BaseUnit extends MovableUnit{
                     $this->status = $status;
                     $this->moveCount = 0;
                     $this->moveAmountUsed = 0;
-                    $this->moveAmountUnused = $this->maxMove;
+                    $this->moveAmountUnused = $this->getMaxMove();
                     $success = true;
                 }
                 break;
@@ -346,8 +366,8 @@ class BaseUnit extends MovableUnit{
             case STATUS_STOPPED:
                 if ($this->status == STATUS_MOVING || $this->status == STATUS_DEPLOYING) {
                     $this->status = $status;
-                    $this->moveAmountUnused = $this->maxMove - $this->moveAmountUsed;
-                    $this->moveAmountUsed = $this->maxMove;
+                    $this->moveAmountUnused = $this->getMaxMove() - $this->moveAmountUsed;
+                    $this->moveAmountUsed = $this->getMaxMove();
 
                     $success = true;
                 }
@@ -555,7 +575,7 @@ class unit extends BaseUnit implements JsonSerializable
         $mapUnit->isReduced = $this->isReduced;
         $mapUnit->parent = $this->hexagon->parent;
         $mapUnit->moveAmountUsed = $this->moveAmountUsed;
-        $mapUnit->maxMove = $this->maxMove;
+        $mapUnit->maxMove = $this->getMaxMove();
         $mapUnit->strength = $this->strength;
         $mapUnit->supplied = $this->supplied;
         $mapUnit->reinforceZone = $this->reinforceZone;
@@ -1220,7 +1240,7 @@ class Force extends SimpleForce
                     break;
             }
             if($phase === BLUE_MOVE_PHASE || $phase === RED_MOVE_PHASE || $phase == TEAL_MOVE_PHASE || $phase == PURPLE_MOVE_PHASE){
-                $this->units[$id]->moveAmountUnused = $this->units[$id]->maxMove;
+                $this->units[$id]->moveAmountUnused = $this->units[$id]->getMaxMove();
             }
             $this->units[$id]->combatIndex = 0;
             $this->units[$id]->combatNumber = 0;
@@ -1385,310 +1405,6 @@ class Force extends SimpleForce
         }
         return $areRetreating;
     }
-
-    /*
-     * Old functions
-     */
-
-
-    function xxxgetUnitBeingEliminatedId()
-    {
-
-        for ($i = 0; $i < count($this->units); $i++) {
-            if ($this->units[$i]->status == STATUS_ELIMINATING) {
-                $id = $this->units[$i]->id;
-            }
-        }
-        return $id;
-    }
-
-    function xxxgetUnitCombatIndex($id)
-    {
-        return $this->units[$id]->combatIndex;
-    }
-
-    function xxxgetUnitCombatNumber($id)
-    {
-        return $this->units[$id]->combatNumber;
-    }
-
-    function xxxgetUnitForceId($id)
-    {
-        return $this->units[$id]->forceId;
-    }
-
-
-
-    function xxxgetAttackerStrength($attackers)
-    {
-        $attackerStrength = 0;
-
-        foreach ($attackers as $id => $v) {
-            $attackerStrength += $this->units[$id]->strength;
-        }
-
-        return $attackerStrength;
-    }
-
-    function xxxgetCombatInfo($id)
-    {
-        return $this->units[$id]->combatOdds;
-    }
-
-    function xxxgetUnitInfo($id)
-    {
-        global $status_name;
-        $unitInfo = "";
-
-        if ($id >= 0) {
-            $unitInfo = $this->units[$id]->name;
-            $unitInfo += " " + $status_name[$this->units[$id]->status];
-            $unitInfo += "<br />strength: " + $this->units[$id]->strength;
-            $unitInfo += "<br />can move: " + $this->units[$id]->maxMove;
-
-            if ($this->units[$id]->status == STATUS_MOVING) {
-                $unitInfo += "<br />has moved " + $this->units[$id]->moveAmountUsed + " of " + $this->units[$id]->maxMove;
-            } else {
-                $unitInfo += "<br />&nbsp;";
-            }
-
-            if ($this->units[$id]->status == STATUS_CAN_REINFORCE) {
-                $unitInfo += "<br />can reinforce on turn " + $this->units[$id]->reinforceTurn;
-            } else {
-                $unitInfo += "<br />&nbsp;";
-            }
-
-            if ($this->units[$id]->status == STATUS_DEFENDING && $this->unitHasAttackers($id)) {
-            }
-        }
-        return $unitInfo;
-    }
-
-    function xxxgetUnitMaximumMoveAmount($id)
-    {
-        return $this->units[$id]->maxMove;
-    }
-
-    function xxxgetUnitMoveCount($id)
-    {
-        return $this->units[$id]->moveCount;
-    }
-
-    function xxxgetUnitName($id)
-    {
-        return $this->units[$id]->name;
-    }
-
-
-    function xxxgetUnitRetreatCountRequired($id)
-    {
-        return $this->units[$id]->retreatCountRequired;
-    }
-
-    function xxxgetVictorId()
-    {
-        return $this->victor;
-    }
-
-
-    function xxxisForceEliminated()
-    {
-        $isForceEliminated = false;
-        $isDefendingForceEliminated = true;
-        $isAttackingForceEliminated = true;
-
-        for ($id = 0; $id < count($this->units); $id++) {
-            if ($this->units[$id]->forceId == $this->defendingForceId && $this->units[$id]->status != STATUS_ELIMINATED) {
-                // found one alive, so make it false
-                $isDefendingForceEliminated = false;
-            }
-        }
-
-        for ($id = 0; $id < count($this->units); $id++) {
-            if ($this->units[$id]->forceId == $this->attackingForceId && $this->units[$id]->status != STATUS_ELIMINATED) {
-                // found one alive, so make it false
-                $isAttackingForceEliminated = false;
-            }
-        }
-
-        if ($isDefendingForceEliminated == true || $isAttackingForceEliminated == true) {
-            $isForceEliminated = true;
-        }
-        return $isForceEliminated;
-    }
-
-    function xxxstoreCombatIndex($combatNumber, $combatIndex)
-    {
-        for ($id = 0; $id < count($this->units); $id++) {
-            if ($this->units[$id]->combatNumber == $combatNumber) {
-                $this->units[$id]->combatIndex = $combatIndex;
-            }
-        }
-    }
-
-    function xxxstoreCombatOdds($combatNumber, $combatOdds)
-    {
-        for ($id = 0; $id < count($this->units); $id++) {
-            if ($this->units[$id]->combatNumber == $combatNumber) {
-                $this->units[$id]->combatOdds = $combatOdds;
-            }
-        }
-    }
-
-
-    function xxxunitGetAttackerList($id)
-    {
-        $attackerList = "";
-
-        for ($i = 0; $i < count($this->units); $i++) {
-            if ($this->units[$i]->forceId == $this->attackingForceId
-                && $this->units[$i]->combatNumber == $this->units[$id]->combatNumber
-            ) {
-                $attackerList += $this->units[$i]->name + " ";
-            }
-        }
-        return $attackerList;
-    }
-    function xxxunitHasMoveAmountAvailable($id, $moveAmount)
-    {
-        if ($this->units[$id]->moveAmountUsed + $moveAmount <= $this->units[$id]->maxMove) {
-            $canMove = true;
-        } else {
-            $canMove = false;
-        }
-        return $canMove;
-    }
-
-    function xxxunitMoveAmountAvailable($id)
-    {
-        return $this->units[$id]->maxMove - $this->units[$id]->moveAmountUsed;
-    }
-
-    function xxxunitHasNotMoved($id)
-    {
-        if ($this->units[$id]->moveAmountUsed == 0) {
-            $hasMoved = true;
-        } else {
-            $hasMoved = false;
-        }
-        return $hasMoved;
-    }
-
-    function xxxunitHasUsedMoveAmount($id)
-    {
-        // moveRules amount used can be larger if can always moveRules at least one hexagon
-        if ($this->units[$id]->moveAmountUsed >= $this->units[$id]->maxMove) {
-            $maxMove = true;
-        } else {
-            $maxMove = false;
-        }
-        return $maxMove;
-    }
-
-    function xxxunitIsAttacking($id)
-    {
-        $isAttacking = false;
-
-        if ($this->units[$id]->status == STATUS_ATTACKING) {
-            $isAttacking = true;
-        }
-        return $isAttacking;
-    }
-
-    function xxxunitIsDefending($id)
-    {
-        $isDefending = false;
-
-        if ($this->units[$id]->status == STATUS_DEFENDING) {
-            $isDefending = true;
-        }
-
-        return $isDefending;
-    }
-
-    function xxxunitIsEliminated($id)
-    {
-        $isEliminated = false;
-
-        if ($this->units[$id]->status == STATUS_ELIMINATED) {
-            $isEliminated = true;
-        }
-        return $isEliminated;
-    }
-
-    function xxxunitIsInCombat($id)
-    {
-        $inCombat = false;
-        if ($this->units[$id]->combatNumber > 0) {
-            $inCombat = true;
-        }
-        return $inCombat;
-    }
-
-    function xxxunitIsMoving($id)
-    {
-        $isMoving = false;
-        if ($this->units[$id]->status == STATUS_MOVING) {
-            $isMoving = true;
-        }
-        return $isMoving;
-    }
-
-    function xxxunitIsRetreating($id)
-    {
-        $isRetreating = false;
-        if ($this->units[$id]->status == STATUS_RETREATING) {
-            $isRetreating = true;
-        }
-        return $isRetreating;
-    }
-
-    function xxxunitWillUseMaxMove($id, $moveAmount)
-    {
-        if ($this->units[$id]->moveAmountUsed + $moveAmount >= $this->units[$id]->maxMove) {
-            $willStop = true;
-        } else {
-            $willStop = false;
-        }
-        return $willStop;
-    }
-
-
-
-    function xxxunitsAreDefending()
-    {
-        $areDefending = false;
-
-        for ($id = 0; $id < count($this->units); $id++) {
-            if ($this->units[$id]->status == STATUS_DEFENDING) {
-                $areDefending = true;
-                break;
-            }
-        }
-        return $areDefending;
-    }
-
-    function xxxsetStatus($id, $status)
-    {
-        /* @var unit $unit */
-        $unit = $this->units[$id];
-        $ret = $unit->setStatus($status);
-        if ($status === STATUS_EXCHANGED) {
-            $this->exchangeAmount -= $unit->exchangeAmount;
-        }
-        return $ret;
-    }
-
-    function xxxgetUnitReinforceTurn($id)
-    {
-        return $this->units[$id]->reinforceTurn;
-    }
-
-    function xxxgetUnitReinforceZone($id)
-    {
-        return $this->units[$id]->reinforceZone;
-    }
-
 
     public function getCombine(){
         $idMap = [];

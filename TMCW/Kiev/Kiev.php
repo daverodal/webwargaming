@@ -356,26 +356,6 @@ class Kiev extends ModernLandBattle
             $this->specialHexB = $data->specialHexB;
             $this->specialHexC = $data->specialHexC;
 
-//            $this->moveRules->stacking = function($mapHex, $forceId, $unit){
-//                if($unit->id == 56){
-//                    if(count((array)$mapHex->forces[$forceId]) >= 1){
-//                        return true;
-//                    }
-//                }
-//
-//                $t = false;
-//                foreach($mapHex->forces[$forceId] as $mKey => $mVal){
-//                    if($this->force->units[$mKey]->id == 56){
-//                        return true;
-//                    }
-//                    echo "mKey $mKey mVal $mVal \n";
-//                }
-//                if($t){
-//                    return true;
-//                }
-////                var_dump($unit);
-//                return count((array)$mapHex->forces[$forceId]) >= 3;
-//            };
         } else {
             $this->victory = new Victory("TMCW/Kiev/kievVictoryCore.php");
             if ($scenario->supplyLen) {
@@ -385,10 +365,7 @@ class Kiev extends ModernLandBattle
             $this->moveRules->exitZoc = 2;
             $this->moveRules->noZocZocOneHex = true;
             $this->moveRules->stacking = 3;
-//            $this->moveRules->stacking = function($that, $forceId, $num){
-//                var_dump($this->moveRules->movingUnitId);
-//                return count((array)$that->forces[$forceId]) >= 4;
-//            };
+
             $this->moveRules->friendlyAllowsRetreat = true;
             $this->moveRules->blockedRetreatDamages = true;
             $this->gameRules->legacyExchangeRule = false;

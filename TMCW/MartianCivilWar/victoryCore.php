@@ -31,7 +31,6 @@ include "supplyRulesTraits.php";
 class victoryCore
 {
     public $victoryPoints;
-    protected $movementCache;
     protected $combatCache;
     protected $supplyLen = false;
     public $gameOver = false;
@@ -42,13 +41,11 @@ class victoryCore
     {
         if ($data) {
             $this->victoryPoints = $data->victory->victoryPoints;
-            $this->movementCache = $data->victory->movementCache;
             $this->combatCache = $data->victory->combatCache;
             $this->supplyLen = $data->victory->supplyLen;
             $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = array(0, 0, 0);
-            $this->movementCache = new stdClass();
             $this->combatCache = new stdClass();
         }
     }
@@ -60,7 +57,6 @@ class victoryCore
     {
         $ret = new stdClass();
         $ret->victoryPoints = $this->victoryPoints;
-        $ret->movementCache = $this->movementCache;
         $ret->combatCache = $this->combatCache;
         $ret->supplyLen = $this->supplyLen;
         return $ret;

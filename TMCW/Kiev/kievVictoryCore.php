@@ -31,7 +31,6 @@ include_once "victoryCore.php";
 class kievVictoryCore extends victoryCore
 {
     public $victoryPoints;
-    protected $movementCache;
     protected $combatCache;
     protected $supplyLen = false;
     public $sovietGoal;
@@ -47,7 +46,6 @@ class kievVictoryCore extends victoryCore
     {
         if ($data) {
             $this->victoryPoints = $data->victory->victoryPoints;
-            $this->movementCache = $data->victory->movementCache;
             $this->combatCache = $data->victory->combatCache;
             $this->supplyLen = $data->victory->supplyLen;
             $this->germanGoal = $data->victory->germanGoal;
@@ -55,7 +53,6 @@ class kievVictoryCore extends victoryCore
             $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = [0,0,0,0];
-            $this->movementCache = new stdClass();
             $this->combatCache = new stdClass();
             $this->germanGoal = $this->sovietGoal = [];
         }
@@ -70,7 +67,6 @@ class kievVictoryCore extends victoryCore
     {
         $ret = new stdClass();
         $ret->victoryPoints = $this->victoryPoints;
-        $ret->movementCache = $this->movementCache;
         $ret->combatCache = $this->combatCache;
         $ret->supplyLen = $this->supplyLen;
         $ret->germanGoal = $this->germanGoal;

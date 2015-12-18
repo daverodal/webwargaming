@@ -31,7 +31,6 @@
 class retreatOneVictoryCore extends victoryCore
 {
     public $victoryPoints;
-    public $movementCache;
     public $combatCache;
     public $supplyLen = false;
     public $rebelGoal;
@@ -44,7 +43,6 @@ class retreatOneVictoryCore extends victoryCore
     {
         if ($data) {
             $this->victoryPoints = $data->victory->victoryPoints;
-            $this->movementCache = $data->victory->movementCache;
             $this->combatCache = $data->victory->combatCache;
             $this->supplyLen = $data->victory->supplyLen;
             $this->rebelGoal = $data->victory->rebelGoal;
@@ -54,7 +52,6 @@ class retreatOneVictoryCore extends victoryCore
 
         } else {
             $this->victoryPoints = array(0, 0, 0);
-            $this->movementCache = new stdClass();
             $this->combatCache = new stdClass();
             $this->rebelGoal = [];
             $this->loyalistGoal = [];
@@ -70,7 +67,6 @@ class retreatOneVictoryCore extends victoryCore
     {
         $ret = new stdClass();
         $ret->victoryPoints = $this->victoryPoints;
-        $ret->movementCache = $this->movementCache;
         $ret->combatCache = $this->combatCache;
         $ret->supplyLen = $this->supplyLen;
         $ret->rebelGoal = $this->rebelGoal;
