@@ -42,7 +42,7 @@ $mode_name[19] = "";
 $mode_name[1] = "";
 $mode_name[2] = "";
 
-require_once "ModernLandBattle.php";
+//require_once "ModernLandBattle.php";
 
 
 
@@ -146,6 +146,9 @@ class RetreatOne extends ModernLandBattle
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
         parent::__construct($data, $arg, $scenario, $game);
+
+        $crt = new \TMCW\CombatResultsTable();
+        $this->combatRules->injectCrt($crt);
 
         if ($data) {
 

@@ -6,7 +6,7 @@ class Battle{
     return self::$class;
     }
 }
-require_once "Battle.php";
+//require_once "Battle.php";
 set_include_path("Mollwitz". PATH_SEPARATOR .  get_include_path());
 set_include_path("Mollwitz/Klissow1702". PATH_SEPARATOR .  get_include_path());
 require_once("crtTraits.php");

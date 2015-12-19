@@ -29,7 +29,7 @@
 
 class CombatResultsTable
 {
-    use divCombatShiftTerrain;
+    use DivCombatShiftTerrain;
     	public $combatIndexCount;
     	public $maxCombatIndex;
     	public $dieSideCount;

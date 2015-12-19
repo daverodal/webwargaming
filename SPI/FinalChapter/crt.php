@@ -28,18 +28,18 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once "ModernCombatResultsTable.php";
+//require_once "ModernCombatResultsTable.php";
 
-class CombatResultsTable extends ModernCombatResultsTable
+class CombatResultsTable extends \SPI\ModernCombatResultsTable
 {
-    use divCombatDoubleMultipleTerrain;
+    use \DivCombatDoubleMultipleTerrain;
 
 
     public $aggressorId = EASTERN_FORCE;
 
     function __construct(){
         $this->combatResultsHeader = array("1:4","1:3","1:2","1:1","2:1","3:1","4:1","5:1","6:1","7:1");
-        $this->crts = new stdClass();
+        $this->crts = new \stdClass();
         $this->crts->normal = array(
             array(AR, DR, DR, EX, EX, DE, DE, DE, DE, DE),
             array(AR, AR, DR, DR, EX, EX, DE, DE, DE, DE),

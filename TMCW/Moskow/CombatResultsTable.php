@@ -1,4 +1,5 @@
 <?php
+namespace TMCW\Moskow;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -20,10 +21,10 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once "ModernCombatResultsTable.php";
+//require_once "ModernCombatResultsTable.php";
 
-class CombatResultsTable extends ModernCombatResultsTable
+class CombatResultsTable extends \TMCW\ModernCombatResultsTable
 {
-    use divMCWCombatShiftTerrain;
-    public $aggressorId = REBEL_FORCE;
+    use \DivMCWCombatShiftTerrain;
+    public $aggressorId = GERMAN_FORCE;
 }

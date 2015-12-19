@@ -117,7 +117,7 @@
                     <h3>Combat Odds</h3>
 
                     <?php
-                    $topCrt = new CombatResultsTable();
+                    $topCrt = new \TMCW\Chawinda1965\CombatResultsTable();
                     $crts = $topCrt->crts;
                     ?>
                     <div id="crt-buttons">

@@ -42,7 +42,7 @@
         "name": "Sur La Mer",
         "path": "TMCW",
         "genre": "20'th Century Games",
-        "fileName": "Amph/Amph.php",
+        "fileName": "TMCW\\Amph\\Amph.php",
         "description": "Hypothetical amphibious invasion. The goal is the castle town, Chateau Sur Mer.",
         "options":[
           {
@@ -193,7 +193,7 @@
         "name": "Chawinda 1965",
         "path": "TMCW",
         "genre": "20'th Century Games",
-        "fileName": "Chawinda1965/Chawinda1965.php",
+        "fileName": "TMCW\\Chawinda1965\\Chawinda1965.php",
         "scenarios": {
             "Main": {
                 "description": "The Battle of Chawinda 1965",

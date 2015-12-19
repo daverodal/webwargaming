@@ -106,7 +106,7 @@ class AreaData implements JsonSerializable
     }
 }
 
-class MapViewer
+class aMapViewer
 {
 
     public $originX;

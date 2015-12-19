@@ -1,14 +1,11 @@
 <?php
-// crt.js
-
-// Copyright (c) 2009-2011 Mark Butler
-// This program is free software; you can redistribute it 
-// and/or modify it under the terms of the GNU General Public License
-// as published by the Free Software Foundation;
-// either version 2 of the License, or (at your option) any later version. 
+namespace TMCW\MartianCivilWar;
 /**
  *
  * Copyright 2012-2015 David Rodal
+ * User: David Markarian Rodal
+ * Date: 3/8/15
+ * Time: 5:48 PM
  *
  *  This program is free software; you can redistribute it
  *  and/or modify it under the terms of the GNU General Public License
@@ -26,6 +23,8 @@
 
 //require_once "ModernCombatResultsTable.php";
 
-class CombatResultsTable extends \SPI\ModernCombatResultsTable
+class CombatResultsTable extends \TMCW\ModernCombatResultsTable
 {
+    use \DivMCWCombatShiftTerrain;
+    public $aggressorId = REBEL_FORCE;
 }

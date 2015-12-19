@@ -34,9 +34,11 @@ $force_name[3] = "German";
 $force_name[4] = "German";
 
 require_once "constants.php";
-require_once "ModernLandBattle.php";
+//require_once "CombatResultsTable.php";
+//require_once "ModernLandBattle.php";
+require_once "crt.php";
 
-class FinalChapter extends ModernLandBattle
+class FinalChapter extends \ModernLandBattle
 {
 
     public $specialHexesMap = ['SpecialHexA'=>3, 'SpecialHexB'=>3, 'SpecialHexC'=>3];
@@ -288,6 +290,8 @@ class FinalChapter extends ModernLandBattle
 
         parent::__construct($data, $arg, $scenario, $game);
 
+        $crt = new CombatResultsTable();
+        $this->combatRules->injectCrt($crt);
         if ($data) {
             $this->specialHexA = $data->specialHexA;
             $this->specialHexB = $data->specialHexB;

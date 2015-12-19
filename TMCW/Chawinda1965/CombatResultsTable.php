@@ -1,4 +1,5 @@
 <?php
+namespace TMCW\Chawinda1965;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -20,16 +21,16 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once "ModernCombatResultsTable.php";
+//require_once "ModernCombatResultsTable.php";
 
-class CombatResultsTable extends ModernCombatResultsTable
+class CombatResultsTable extends \TMCW\ModernCombatResultsTable
 {
-    use divCombatHalfDoubleTerrain;
+    use \DivCombatHalfDoubleTerrain;
     public $aggressorId = INDIAN_FORCE;
 
     function __construct(){
         $this->combatResultsHeader = array("1:1","2:1","3:1","4:1","5:1","6:1");
-        $this->crts = new stdClass();
+        $this->crts = new \stdClass();
         $this->crts->normal = array(
             array(AL, AL, AR, DR, DR, DR),
             array(AL, AR, DR, DR, DE, DE),

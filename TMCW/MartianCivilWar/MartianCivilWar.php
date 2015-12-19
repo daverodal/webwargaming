@@ -262,6 +262,9 @@ class MartianCivilWar extends ModernLandBattle
     {
         parent::__construct($data, $arg, $scenario, $game);
 
+        $crt = new \TMCW\MartianCivilWar\CombatResultsTable();
+        $this->combatRules->injectCrt($crt);
+
         if ($data) {
 
         } else {

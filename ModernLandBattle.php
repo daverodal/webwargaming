@@ -15,23 +15,23 @@ This program is distributed in the hope that it will be useful,
 You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
    */
-
-require_once "Battle.php";
-require_once "crtTraits.php";
-require_once "CombatRules.php";
-require_once "crt.php";
-require_once "force.php";
-require_once "gameRules.php";
-require_once "hexagon.php";
-require_once "hexpart.php";
-require_once "los.php";
-require_once "mapgrid.php";
-require_once "moveRules.php";
-require_once "terrain.php";
-require_once "display.php";
-require_once "victory.php";
-require_once "victoryCore.php";
+//
+//require_once "Battle.php";
+//require_once "crtTraits.php";
+//require_once "CombatRules.php";
+//require_once "force.php";
+//require_once "gameRules.php";
+//require_once "hexagon.php";
+//require_once "hexpart.php";
+//require_once "los.php";
+//require_once "mapgrid.php";
+//require_once "moveRules.php";
+//require_once "terrain.php";
+//require_once "display.php";
+//require_once "victory.php";
+//require_once "victoryCore.php";
 require_once "UnitFactory.php";
+require_once "crt.php";
 
 class ModernLandBattle extends LandBattle
 {

@@ -1,4 +1,6 @@
 <?php
+namespace TMCW;
+use \stdClass;
 // crt.js
 
 // Copyright (c) 2009-2011 Mark Butler
@@ -28,7 +30,7 @@
 
 class ModernCombatResultsTable
 {
-    use divMCWCombatShiftTerrain;
+    use \DivMCWCombatShiftTerrain;
 
 //    use crtTraits
     public $combatIndexCount;
@@ -46,7 +48,7 @@ class ModernCombatResultsTable
 
     function __construct(){
         $this->combatResultsHeader = array("1:1","2:1","3:1","4:1","5:1","6:1");
-        $this->crts = new stdClass();
+        $this->crts = new \stdClass();
         $this->crts->normal = array(
             array(DR2, DRL2, DE, DE, DE, DE),
             array(DR2, EX2, DRL2, DE, DE, DE),

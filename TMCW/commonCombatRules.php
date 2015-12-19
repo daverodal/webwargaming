@@ -197,7 +197,7 @@
     </li>
 
     <li>Combat Results Table<br><br>
-        <?php                 $crt = new CombatResultsTable();
+        <?php                 $crt = new \TMCW\CombatResultsTable();
         foreach($crt->crts as $crtName => $crtValue){
             echo "<br><br>$crtName";
             ?>

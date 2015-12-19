@@ -192,6 +192,8 @@ class Nomonhan extends ModernLandBattle
     {
         parent::__construct($data, $arg, $scenario, $game);
 
+        $crt = new NomonhanCombatResultsTable();
+        $this->combatRules->injectCrt($crt);
         if ($data) {
 
         } else {

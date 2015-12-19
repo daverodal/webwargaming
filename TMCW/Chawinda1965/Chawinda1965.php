@@ -1,4 +1,5 @@
 <?php
+namespace TMCW\Chawinda1965;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -31,10 +32,11 @@ $force_name[2] = "Pakistani";
 
 require_once "constants.php";
 
-require_once "ModernLandBattle.php";
+//require_once "ModernLandBattle.php";
 
+use UnitFactory;
 
-class Chawinda1965 extends ModernLandBattle
+class Chawinda1965 extends \ModernLandBattle
 {
     /* a comment */
 
@@ -80,11 +82,11 @@ class Chawinda1965 extends ModernLandBattle
         $this->victory->setInitialPakistaniVP($vp * 3);
 
 
-        $symbol = new stdClass();
+        $symbol = new \stdClass();
         $symbol->type = 'WestWall';
         $symbol->image = 'rowHex.svg';
         $symbol->class = 'row-hex';
-        $symbols = new stdClass();
+        $symbols = new \stdClass();
 //        foreach([609,610,611,712, 2404, 2304, 2105, 2005, 1905, 1805, 1806, 1707, 1606, 1506] as $id){
 //            $symbols->$id = $symbol;
 //        }
@@ -121,8 +123,8 @@ class Chawinda1965 extends ModernLandBattle
         $infStrength = 3;
         $halfInfStrength = 3;
         $numPakistaniInf = 6;
-        $defStrength = 3;
-        $halfDefStrength = 3;
+        $defStrength = 7;
+        $halfDefStrength = 7;
         if($scenario->bigPakistani){
             $numPakistaniInf += 6;
             $infStrength = 2;
@@ -177,13 +179,16 @@ class Chawinda1965 extends ModernLandBattle
     {
         parent::__construct($data, $arg, $scenario, $game);
 
-        $this->mapData = MapData::getInstance();
+        $crt = new \TMCW\Chawinda1965\CombatResultsTable();
+        $this->combatRules->injectCrt($crt);
+
+        $this->mapData = \MapData::getInstance();
         if ($data) {
             $this->specialHexA = $data->specialHexA;
             $this->specialHexB = $data->specialHexB;
             $this->specialHexC = $data->specialHexC;
         } else {
-            $this->victory = new Victory("TMCW/Chawinda1965/chawinda1965VictoryCore.php");
+            $this->victory = new \Victory("TMCW/Chawinda1965/chawinda1965VictoryCore.php");
             if ($scenario->supplyLen) {
                 $this->victory->setSupplyLen($scenario->supplyLen);
             }

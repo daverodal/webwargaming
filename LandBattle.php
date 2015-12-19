@@ -27,6 +27,8 @@ class LandBattle extends Battle{
     }
 
     static function transformChanges($doc, $last_seq, $user){
+
+
         global $mode_name, $phase_name;
 
         $chatsIndex = 0;/* remove me */

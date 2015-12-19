@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
    */
 
-require_once "Battle.php";
-require_once "crtTraits.php";
+//require_once "Battle.php";
+//require_once "crtTraits.php";
 require_once "NavalCombatRules.php";
 require_once "crt.php";
 require_once "NavalForce.php";

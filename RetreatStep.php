@@ -2,8 +2,8 @@
 /**
  * Copyright 2015 David Rodal
  * User: David Markarian Rodal
- * Date: 6/14/15
- * Time: 5:37 PM
+ * Date: 12/19/15
+ * Time: 10:22 AM
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -18,10 +18,29 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+class RetreatStep
+{
+    public $stepNumber;
+    /* @var Hexagon */
+    public $hexagon;
 
+    /* @var Hexagon $RetreatHexagon */
+    function set($RetreatStepStepNumber, $RetreatHexagon)
+    {
+        $this->stepNumber = $RetreatStepStepNumber;
+        $this->hexagon = new Hexagon($RetreatHexagon->getNumber());
+    }
 
-class UnitFactory {
-    public static function build($data = false){
-        return new Unit($data);
+    function __construct($data = null)
+    {
+        if ($data) {
+            foreach ($data as $k => $v) {
+                if ($k == "hexagon") {
+                    $this->hexagon = new Hexagon($v->name);
+                    continue;
+                }
+                $this->$k = $v;
+            }
+        }
     }
 }

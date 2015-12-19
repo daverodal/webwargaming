@@ -20,11 +20,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once "ModernCombatResultsTable.php";
+//require_once "ModernCombatResultsTable.php";
 
-class CombatResultsTable extends ModernCombatResultsTable
+class CombatResultsTable extends \TMCW\ModernCombatResultsTable
 {
-    use divMCWCombatShiftTerrain;
+    use DivMCWCombatShiftTerrain;
     public $aggressorId = GERMAN_FORCE;
 
     function __construct(){

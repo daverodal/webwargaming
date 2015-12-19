@@ -31,7 +31,7 @@ $force_name[2] = "Soviet";
 
 require_once "constants.php";
 
-require_once "ModernLandBattle.php";
+//require_once "ModernLandBattle.php";
 
 
 class Moskow extends ModernLandBattle
@@ -143,6 +143,9 @@ class Moskow extends ModernLandBattle
     {
 
         parent::__construct($data, $arg, $scenario, $game);
+
+        $crt = new \TMCW\Moskow\CombatResultsTable();
+        $this->combatRules->injectCrt($crt);
 
         if ($data) {
             $this->specialHexA = $data->specialHexA;

@@ -32,7 +32,7 @@ $force_name[2] = "Loyalist";
 require_once "constants.php";
 require_once "ModernLandBattle.php";
 
-class Airborne extends ModernLandBattle
+class Airborne extends \ModernLandBattle
 {
 
     public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>2, 'SpecialHexC'=>1];

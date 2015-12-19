@@ -22,7 +22,7 @@
 require_once "constants.php";
 global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
 
-require_once "Battle.php";
+//require_once "Battle.php";
 require_once "CombatRules.php";
 require_once "crt.php";
 require_once "force.php";
@@ -88,6 +88,8 @@ class JagCore extends LandBattle{
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
         }
+        $crt = new CombatResultsTable();
+        $this->combatRules->injectCrt($crt);
     }
 
 

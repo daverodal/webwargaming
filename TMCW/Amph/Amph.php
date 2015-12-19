@@ -1,4 +1,5 @@
 <?php
+namespace TMCW\Amph;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -33,7 +34,7 @@ $force_name[2] = "Loyalist";
 require_once "constants.php";
 require_once "ModernLandBattle.php";
 
-class Amph extends ModernLandBattle
+class Amph extends \ModernLandBattle
 {
     /* a comment */
 
@@ -161,15 +162,19 @@ class Amph extends ModernLandBattle
 
         parent::__construct($data, $arg, $scenario, $game);
 
+        $crt = new \TMCW\CombatResultsTable();
+        $this->combatRules->injectCrt($crt);
+
         if ($data) {
             $this->specialHexA = $data->specialHexA;
 
         } else {
-            $this->victory = new Victory("TMCW/Amph/amphVictoryCore.php");
+
+            $this->victory = new \Victory("TMCW/Amph/amphVictoryCore.php");
             if ($scenario->supplyLen) {
                 $this->victory->setSupplyLen($scenario->supplyLen);
             }
-            $this->moveRules = new MoveRules($this->force, $this->terrain);
+            $this->moveRules = new \MoveRules($this->force, $this->terrain);
             if ($scenario && $scenario->supply === true) {
                 $this->moveRules->enterZoc = 2;
                 $this->moveRules->exitZoc = 1;

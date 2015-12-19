@@ -34,7 +34,7 @@ require_once "constants.php";
 
 
 
-require_once "Battle.php";
+//require_once "Battle.php";
 require_once "crtTraits.php";
 require_once "CombatRules.php";
 require_once "crt.php";
