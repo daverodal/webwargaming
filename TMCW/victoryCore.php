@@ -35,7 +35,7 @@ class victoryCore
     protected $supplyLen = false;
     public $gameOver = false;
 
-    use \TMCW\modernSupplyRules;
+    use \TMCW\ModernSupplyRules;
 
     function __construct($data)
     {
