@@ -19,7 +19,7 @@ You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
    */
 
-require_once "moveRules.php";
+require_once "MoveRules.php";
 $numWalks = 0;
 class NavalMoveRules
 {

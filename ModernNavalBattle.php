@@ -21,15 +21,15 @@ You should have received a copy of the GNU General Public License
 require_once "NavalCombatRules.php";
 require_once "crt.php";
 require_once "NavalForce.php";
-require_once "gameRules.php";
-require_once "hexagon.php";
-require_once "hexpart.php";
-require_once "los.php";
-require_once "mapgrid.php";
+require_once "GameRules.php";
+require_once "Hexagon.php";
+require_once "Hexpart.php";
+require_once "Los.php";
+require_once "MapGrid.php";
 require_once "NavalMoveRules.php";
-require_once "terrain.php";
+require_once "Terrain.php";
 require_once "display.php";
-require_once "victory.php";
+require_once "Victory.php";
 require_once "victoryCore.php";
 require_once "UnitFactory.php";
 
