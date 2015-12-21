@@ -78,7 +78,7 @@
                     <h3>Combat Odds</h3>
 
                     <?php
-                    $topCrt = new \SPI\FinalChapter\CombatResultsTable();
+                    $topCrt = new \NTA\CombatResultsTable();
                     $crts = $topCrt->crts;
                     ?>
                     <div id="crt-buttons">
@@ -145,20 +145,24 @@
             </div>
             <div class="dropDown">
                 <h4 class="WrapperLabel"><span class="tablet">?</span><span class="desktop">Rules</span></h4>
-
                 <div class="subMenu">
                     <?php include_once "commonRules.php"; ?>
                     <?php include_once "exclusiveRules.php"; ?>
                     <?php include_once "obc.php"; ?>
-
                 </div>
             </div>
             <?php include_once "tec.php"; ?>
 
-            <div class="dropDown" id="hideShow">
-                <h4 class="WrapperLabel">Units</h4>
-            </div>
+            <div class="dropDown" id="unitsWrapper">
+                <h4 class="WrapperLabel" title="Offmap Units">Units</h4>
 
+                <div id="units" class="subMenu">
+                        <div class="dropDown" id="closeAllUnits">Close All</div>
+                        <div class="dropDown" id="hideShow">Retired Units</div>
+                        <div class="dropDown" id="showDeploy">Deploy/Staging Box</div>
+                        <div class="dropDown" id="showExited">Exited Units</div>
+                </div>
+            </div>
 
             <div id="nextPhaseWrapper">
                 <button id="nextPhaseButton">Next Phase</button>
@@ -174,32 +178,24 @@
     </header>
     <div id="content">
         <div id="rightCol">
+            <div id="deployWrapper">
+                <div class="close">X</div>
+                <div style="margin-right:3px;" class="left">Deploy/Staging area</div>
+                <div id="deployBox"></div>
+                <div style="clear:both;"></div>
+            </div>
             <div style="display:none;" id="deadpile">
                 <div class="close">X</div>
-                <div style="right:10px;font-size:40px;font-family:sans-serif;bottom:0px;position:absolute;color:#666;">
+                <div style="right:10px;font-size:50px;font-family:sans-serif;bottom:10px;position:absolute;color:#666;">
                     Retired Units
                 </div>
-                <div class="dead-country" id="western">
-                    <div  class="dead-country-label">
-                        Western
-                    </div>
+            </div>
+            <div style="display:none;" id="exitWrapper">
+                <div class="close">X</div>
+                <div style="margin-right:3px;" class="left">Exited Units</div>
+                <div id="exitBox">
                 </div>
-                <div class="dead-country" id="westGerman">
-                    <div  class="dead-country-label">
-                        West German
-                    </div>
-                </div>
-                <div class="dead-country"  id="eastGerman">
-                    <div  class="dead-country-label">
-                        East German
-                    </div>
-                </div>
-                <div class="dead-country"  id="eastern">
-                    <div class="dead-country-label">
-                        Eastern
-                    </div>
-                </div>
-                <div class="clear"></div>
+                <div style="clear:both;"></div>
             </div>
             <div style="display:none;" id="undeadpile"></div>
             <div id="gameViewer">

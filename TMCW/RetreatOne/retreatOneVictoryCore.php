@@ -1,4 +1,7 @@
 <?php
+namespace TMCW\RetreatOne;
+use \stdClass;
+use \Battle;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -28,7 +31,7 @@
  */
 
 
-class retreatOneVictoryCore extends victoryCore
+class retreatOneVictoryCore extends \TMCW\victoryCore
 {
     public $victoryPoints;
     public $combatCache;
@@ -92,7 +95,7 @@ class retreatOneVictoryCore extends victoryCore
     {
         list($zones, $unit) = $args;
 
-        $zones[] = new ReinforceZone(2414, 2414);
+        $zones[] = new \ReinforceZone(2414, 2414);
         return array($zones);
     }
 

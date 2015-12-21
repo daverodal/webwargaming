@@ -145,7 +145,7 @@ be moved into that hex. This must be done before the next attack is resolved. Ar
 <h4>Combat Results Table (CRT) (No Attack at less than 1-4 is allowed)</h4>
     <ul>
     <li>Combat Results Table<br><br>
-        <?php                 $crt = new CombatResultsTable();
+        <?php                 $crt = new \NTA\CombatResultsTable();
         foreach($crt->crts as $crtName => $crtValue){
             echo "<br><br>$crtName";
             ?>

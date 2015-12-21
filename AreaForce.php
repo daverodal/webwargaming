@@ -18,32 +18,32 @@ This program is distributed in the hope that it will be useful,
 You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
    */
-class RetreatStep
-{
-    public $stepNumber;
-    /* @var Hexagon */
-    public $hexagon;
-
-    /* @var Hexagon $RetreatHexagon */
-    function set($RetreatStepStepNumber, $RetreatHexagon)
-    {
-        $this->stepNumber = $RetreatStepStepNumber;
-        $this->hexagon = new Hexagon($RetreatHexagon->getNumber());
-    }
-
-    function __construct($data = null)
-    {
-        if ($data) {
-            foreach ($data as $k => $v) {
-                if ($k == "hexagon") {
-                    $this->hexagon = new Hexagon($v->name);
-                    continue;
-                }
-                $this->$k = $v;
-            }
-        }
-    }
-}
+//class RetreatStep
+//{
+//    public $stepNumber;
+//    /* @var Hexagon */
+//    public $hexagon;
+//
+//    /* @var Hexagon $RetreatHexagon */
+//    function set($RetreatStepStepNumber, $RetreatHexagon)
+//    {
+//        $this->stepNumber = $RetreatStepStepNumber;
+//        $this->hexagon = new Hexagon($RetreatHexagon->getNumber());
+//    }
+//
+//    function __construct($data = null)
+//    {
+//        if ($data) {
+//            foreach ($data as $k => $v) {
+//                if ($k == "hexagon") {
+//                    $this->hexagon = new Hexagon($v->name);
+//                    continue;
+//                }
+//                $this->$k = $v;
+//            }
+//        }
+//    }
+//}
 
 class AreaForce
 {

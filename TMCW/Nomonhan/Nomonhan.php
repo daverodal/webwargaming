@@ -197,7 +197,7 @@ class Nomonhan extends ModernLandBattle
         if ($data) {
 
         } else {
-            $this->victory = new Victory("TMCW/Nomonhan/nomonhanVictoryCore.php");
+            $this->victory = new Victory("TMCW\\Nomonhan\\nomonhanVictoryCore");
             $this->mapData->setData(40, 25, "js/Nomonhan3Small.png");
 
             $this->terrain->setMaxHex("4025");

@@ -269,7 +269,7 @@ class MartianCivilWar extends ModernLandBattle
 
         } else {
             $this->terrainName = "terrain-MartianCivilWar";
-            $this->victory = new Victory("TMCW/MartianCivilWar");
+            $this->victory = new Victory("TMCW\\MartianCivilWar\\victoryCore");
             if ($scenario->supplyLen) {
                 $this->victory->setSupplyLen($scenario->supplyLen);
             }

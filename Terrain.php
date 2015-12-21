@@ -19,51 +19,8 @@ You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
    */
 
-class ReinforceZone
-{
-    public $hexagon;
-    public $name;
-
-    function __construct($zoneHexagonName, $zoneName)
-    {
-
-        $this->hexagon = new Hexagon($zoneHexagonName);
-        $this->name = $zoneName;
-    }
-}
-
-class TerrainFeature
-{
-    public $name;
-    public $displayName;
-    public $letter;
-    public $entranceCost;
-    public $traverseCost;
-    public $combatEffect;
-    public $isExclusive;
-    public $altEntranceCost;
-    public $altTraverseCost;
-    public $blocksRanged;
-
-    function __construct($terrainFeatureName, $terrainFeatureDisplayName, $terrainFeatureLetter,
-                         $terrainFeatureEntranceCost, $terrainFeatureTraverseCost,
-                         $terrainFeatureCombatEffect, $terrainFeatureIsExclusive, $blocksRanged)
-    {
 
 
-        $this->name = $terrainFeatureName;
-        $this->displayName = $terrainFeatureDisplayName;
-        $this->letter = $terrainFeatureLetter;
-        $this->entranceCost = $terrainFeatureEntranceCost;
-        $this->traverseCost = $terrainFeatureTraverseCost;
-        $this->combatEffect = $terrainFeatureCombatEffect;
-        $this->isExclusive = $terrainFeatureIsExclusive;
-        $this->blocksRanged = $blocksRanged;
-        $this->altEntranceCost = new stdClass();
-        $this->altTraverseCost = new stdClass();
-
-    }
-}
 
 class Town
 {

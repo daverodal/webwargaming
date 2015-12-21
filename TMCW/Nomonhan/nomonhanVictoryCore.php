@@ -1,4 +1,7 @@
 <?php
+namespace TMCW\Nomonhan;
+use \stdClass;
+use \Battle;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -27,7 +30,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-include_once "supplyRulesTraits.php";
+//include_once "supplyRulesTraits.php";
 
 class nomonhanVictoryCore{
 
@@ -35,7 +38,7 @@ class nomonhanVictoryCore{
     private $movementCache;
     private $combatCache;
 
-    use modernSupplyRules;
+    use \TMCW\ModernSupplyRules;
 
     function __construct($data){
         if($data){

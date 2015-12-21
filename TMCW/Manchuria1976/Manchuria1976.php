@@ -118,7 +118,7 @@ class Manchuria1976 extends ModernLandBattle
         if ($data) {
             $this->specialHexA = $data->specialHexA;
         } else {
-            $this->victory = new Victory("TMCW/Manchuria1976");
+            $this->victory = new Victory("TMCW\\Manchuria1976\\victoryCore");
 
             if ($scenario && $scenario->supply === true) {
                 $this->moveRules->enterZoc = 2;

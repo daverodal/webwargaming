@@ -192,11 +192,14 @@ class ClashOverCrude extends ModernLandBattle
 
         parent::__construct($data, $arg, $scenario, $game);
 
+        $crt =new \SPI\ClashOverCrude\CombatResultsTable();
+        $this->combatRules->injectCrt($crt);
+
         if ($data) {
             $this->specialHexA = $data->specialHexA;
 
         } else {
-            $this->victory = new Victory("SPI/ClashOverCrude/ClashOverCrudeVictoryCore.php");
+            $this->victory = new Victory("SPI\\ClashOverCrude\\ClashOverCrudeVictoryCore");
             if ($scenario->supplyLen) {
                 $this->victory->setSupplyLen($scenario->supplyLen);
             }

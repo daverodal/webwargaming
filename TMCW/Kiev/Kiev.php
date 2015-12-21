@@ -351,13 +351,16 @@ class Kiev extends ModernLandBattle
 
         parent::__construct($data, $arg, $scenario, $game);
 
+        $crt = new \TMCW\Kiev\CombatResultsTable();
+        $this->combatRules->injectCrt($crt);
+
         if ($data) {
             $this->specialHexA = $data->specialHexA;
             $this->specialHexB = $data->specialHexB;
             $this->specialHexC = $data->specialHexC;
 
         } else {
-            $this->victory = new Victory("TMCW/Kiev/kievVictoryCore.php");
+            $this->victory = new Victory("TMCW\\Kiev\\kievVictoryCore");
             if ($scenario->supplyLen) {
                 $this->victory->setSupplyLen($scenario->supplyLen);
             }

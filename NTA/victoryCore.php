@@ -1,4 +1,7 @@
 <?php
+namespace NTA;
+use \stdClass;
+use \Battle;
 /**
  *
  * Copyright 2012-2015 David Rodal

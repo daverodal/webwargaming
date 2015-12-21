@@ -462,7 +462,10 @@ class GameRules
 
                     case SELECT_BUTTON_EVENT:
 
-                        $numCombines = $this->force->getCombine();
+                        $numCombines = 0;
+                        if(method_exists($this->force, 'getCombine')){
+                            $numCombines = $this->force->getCombine();
+                        }
 
                         $ret =  $this->selectNextPhase($click);
                         if($ret === true && $this->mode === COMBINING_MODE && $numCombines === 0){

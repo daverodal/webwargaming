@@ -144,12 +144,12 @@ class area1VictoryCore extends victoryCore
             $zones = [];
             if ($zone == "A") {
                 foreach ($this->landingZones as $landingZone) {
-                    $zones[] = new ReinforceZone($landingZone, "A");
+                    $zones[] = new \ReinforceZone($landingZone, "A");
                 }
             }
             if ($zone == "C") {
                 foreach ($this->airdropZones as $airdropZone) {
-                    $zones[] = new ReinforceZone($airdropZone, "C");
+                    $zones[] = new \ReinforceZone($airdropZone, "C");
                 }
             }
         }

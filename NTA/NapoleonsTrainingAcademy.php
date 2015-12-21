@@ -100,8 +100,21 @@ class NapoleonsTrainingAcademy extends ModernLandBattle{
             case SELECT_COUNTER_EVENT:
                 /* fall through */
             case SELECT_SHIFT_COUNTER_EVENT:
+            $hexagon = "";
+            if (strpos($id, "Hex")) {
+                $matchId = array();
+                preg_match("/^[^H]*/", $id, $matchId);
+                $matchHex = array();
+                preg_match("/Hex(.*)/", $id, $matchHex);
+                $id = $matchId[0];
+                $hexagon = $matchHex[1];
+                if($event === SELECT_COUNTER_EVENT){
+                    $event = SELECT_MAP_EVENT;
+                }
+            }
+            /* fall through */
 
-                $this->gameRules->processEvent($event, $id, $this->force->getUnitHexagon($id),$click);
+                $this->gameRules->processEvent($event, $id, $hexagon,$click);
                 break;
 
             case SELECT_BUTTON_EVENT:
@@ -151,7 +164,7 @@ class NapoleonsTrainingAcademy extends ModernLandBattle{
             $this->arg = $data->arg;
             $this->scenario = $data->scenario;
             $this->genTerrain = false;
-            $this->victory = new Victory("NTA",$data);
+            $this->victory = new Victory("NTA\\victoryCore",$data);
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]),new MapViewer($data->mapViewer[1]),new MapViewer($data->mapViewer[2]));
@@ -167,7 +180,7 @@ class NapoleonsTrainingAcademy extends ModernLandBattle{
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->genTerrain = true;
-            $this->victory = new Victory("NTA");
+            $this->victory = new Victory("NTA\\victoryCore");
 
             $this->mapData->setData(19,9,"js/centre.png");
 
@@ -235,6 +248,8 @@ class NapoleonsTrainingAcademy extends ModernLandBattle{
             // end terrain data ----------------------------------------
 
         }
+        $crt = new \NTA\CombatResultsTable();
+        $this->combatRules->injectCrt($crt);
     }
 
     /*

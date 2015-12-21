@@ -170,7 +170,7 @@ class Amph extends \ModernLandBattle
 
         } else {
 
-            $this->victory = new \Victory("TMCW/Amph/amphVictoryCore.php");
+            $this->victory = new \Victory("TMCW\\Amph\\amphVictoryCore");
             if ($scenario->supplyLen) {
                 $this->victory->setSupplyLen($scenario->supplyLen);
             }

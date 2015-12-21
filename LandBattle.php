@@ -336,6 +336,7 @@ class LandBattle extends Battle{
             case SELECT_COUNTER_EVENT:
             case SELECT_ALT_COUNTER_EVENT:
 
+                $hexagon = "";
             if (strpos($id, "Hex")) {
                     $matchId = array();
                     preg_match("/^[^H]*/", $id, $matchId);

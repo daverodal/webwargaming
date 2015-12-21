@@ -77,7 +77,7 @@
 
                         <h3>Combat Odds</h3>
                         <?php
-                        $topCrt = new CombatResultsTable();
+                        $topCrt = new \Mollwitz\CombatResultsTable();
                         $crts = $topCrt->crts;
                         ?>
                         <div id="crt-buttons">

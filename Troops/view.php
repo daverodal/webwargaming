@@ -80,7 +80,7 @@
                             <div id="odds">
                                 <span class="col0">&nbsp;</span>
                                 <?php
-                                $crt = new CombatResultsTable();
+                                $crt = new \Troops\CombatResultsTable();
 
                                 $i = 1;
                                 foreach ($crt->combatResultsHeader as $odds) {

@@ -40,11 +40,17 @@ class Victory{
             $this->coreName = $name;
         }
 
+        if(preg_match("/\\\\/", $name))
+        {
+            $this->core = new $name($data);
+            return;
+        }
         $class = __DIR__."/".$name;
         if(!strstr($class,".php")){
             $className = "victoryCore";
             $class .= "/victoryCore.php";
-        }else{
+        }
+        else{
             $matches = [];
             $className = basename($name);
             $className = preg_replace("/.php/","",$className);

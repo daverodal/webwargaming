@@ -1,4 +1,6 @@
 <?php
+namespace TMCW\Manchuria1976;
+use \Battle;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -46,15 +48,15 @@ class victoryCore
             $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = array(0, 0, 0);
-            $this->movementCache = new stdClass();
-            $this->combatCache = new stdClass();
+            $this->movementCache = new \stdClass();
+            $this->combatCache = new \stdClass();
             $this->sovietGoal = [];
         }
     }
 
     public function save()
     {
-        $ret = new stdClass();
+        $ret = new \stdClass();
         $ret->victoryPoints = $this->victoryPoints;
         $ret->movementCache = $this->movementCache;
         $ret->combatCache = $this->combatCache;
@@ -116,7 +118,7 @@ class victoryCore
             $zones = [];
             foreach ($specialHexes as $specialHex) {
                 if ($mapData->getSpecialHex($specialHex) == PRC_FORCE) {
-                    $zones[] = new ReinforceZone($specialHex, $specialHex);
+                    $zones[] = new \ReinforceZone($specialHex, $specialHex);
                 }
             }
         }

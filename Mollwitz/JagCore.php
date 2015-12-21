@@ -24,7 +24,7 @@ global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results
 
 //require_once "Battle.php";
 require_once "CombatRules.php";
-require_once "crt.php";
+require_once "CombatResultsTable.php";
 require_once "Force.php";
 require_once "GameRules.php";
 require_once "Hexagon.php";
@@ -88,7 +88,7 @@ class JagCore extends LandBattle{
             $this->combatRules = new CombatRules($this->force, $this->terrain);
             $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
         }
-        $crt = new CombatResultsTable();
+        $crt = new \Mollwitz\CombatResultsTable();
         $this->combatRules->injectCrt($crt);
     }
 

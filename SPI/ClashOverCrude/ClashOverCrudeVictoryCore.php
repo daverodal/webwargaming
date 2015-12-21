@@ -1,4 +1,7 @@
 <?php
+namespace SPI\ClashOverCrude;
+use \stdClass;
+use \Battle;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -26,9 +29,8 @@
  * Time: 7:06 PM
  * To change this template use File | Settings | File Templates.
  */
-include_once "victoryCore.php";
 
-class ClashOverCrudeVictoryCore extends victoryCore
+class ClashOverCrudeVictoryCore extends \SPI\victoryCore
 {
     public $victoryPoints;
     protected $movementCache;
@@ -158,7 +160,7 @@ class ClashOverCrudeVictoryCore extends victoryCore
                 }
                 $zones = [];
                 foreach($inverse as $key=>$val){
-                    $zones[] = new ReinforceZone($key, "O");
+                    $zones[] = new \ReinforceZone($key, "O");
                 }
             }
         }

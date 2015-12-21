@@ -1,4 +1,8 @@
 <?php
+namespace Troops\Troops;
+use \stdClass;
+use \Battle;
+use \Hexpart;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -23,10 +27,9 @@
  * Time: 7:06 PM
  * To change this template use File | Settings | File Templates.
  */
-include "victoryCore.php";
-include "troopersVictoryCore.php";
 
-class troopsVictoryCore extends troopersVictoryCore
+
+class troopsVictoryCore extends \Troops\troopersVictoryCore
 {
 
     function __construct($data)

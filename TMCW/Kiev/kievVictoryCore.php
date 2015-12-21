@@ -1,4 +1,7 @@
 <?php
+namespace TMCW\Kiev;
+use \Battle;
+use \stdClass;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -26,9 +29,8 @@
  * Time: 7:06 PM
  * To change this template use File | Settings | File Templates.
  */
-include_once "victoryCore.php";
 
-class kievVictoryCore extends victoryCore
+class kievVictoryCore extends \TMCW\victoryCore
 {
     public $victoryPoints;
     protected $combatCache;
@@ -103,7 +105,7 @@ class kievVictoryCore extends victoryCore
         }
         $reinforceZones = [];
         foreach($zones as $zone){
-            $reinforceZones[] = new ReinforceZone($zone, $zone);
+            $reinforceZones[] = new \ReinforceZone($zone, $zone);
         }
         $battle = Battle::getBattle();
 

@@ -18,31 +18,7 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-Class Combat
-{
-    public $attackers;
-    public $defenders;
-    public $index;
-    public $attackStrength;
-    public $defenseStrength;
-    public $Die;
-    public $combatResult;
-    public $thetas;
-    public $useAlt = false;
-    public $useDetermined = false;
-    public $isBombardment = false;
-    public $pinCRT = false;
-    public $dieShift = 0;
-    public $dayTime = false;
-    public $unitDefenseStrength;
 
-    public function __construct()
-    {
-        $this->attackers = new stdClass();
-        $this->defenders = new stdClass();
-        $this->thetas = new stdClass();
-    }
-}
 
 class NavalCombatRules
 {
@@ -97,7 +73,7 @@ class NavalCombatRules
             $this->defenders = new stdClass();
             $this->currentDefender = false;
         }
-        $this->crt = new CombatResultsTable();
+        $this->crt = new \SPI\TinCans\CombatResultsTable();
     }
 
     function pinCombat($pinVal)

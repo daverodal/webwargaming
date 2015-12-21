@@ -1,5 +1,6 @@
 <?php
 namespace SPI;
+use \Battle;
 // crt.js
 
 // Copyright (c) 2009-2011 Mark Butler

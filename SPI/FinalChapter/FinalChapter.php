@@ -36,7 +36,7 @@ $force_name[4] = "German";
 require_once "constants.php";
 //require_once "CombatResultsTable.php";
 //require_once "ModernLandBattle.php";
-require_once "crt.php";
+//require_once "crt.php";
 
 class FinalChapter extends \ModernLandBattle
 {
@@ -290,14 +290,14 @@ class FinalChapter extends \ModernLandBattle
 
         parent::__construct($data, $arg, $scenario, $game);
 
-        $crt = new CombatResultsTable();
+        $crt = new \SPI\FinalChapter\CombatResultsTable();
         $this->combatRules->injectCrt($crt);
         if ($data) {
             $this->specialHexA = $data->specialHexA;
             $this->specialHexB = $data->specialHexB;
             $this->specialHexC = $data->specialHexC;
         } else {
-            $this->victory = new Victory("SPI/FinalChapter/finalChapterVictoryCore.php");
+            $this->victory = new Victory("SPI\\FinalChapter\\finalChapterVictoryCore");
 
             foreach($this->mapViewer as $mapView){
                 $mapView->trueRows = true;

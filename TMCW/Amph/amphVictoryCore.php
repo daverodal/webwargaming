@@ -1,4 +1,6 @@
 <?php
+namespace TMCW\Amph;
+use \Battle;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -26,9 +28,9 @@
  * Time: 7:06 PM
  * To change this template use File | Settings | File Templates.
  */
-include_once "victoryCore.php";
+//include_once "victoryCore.php";
 
-class amphVictoryCore extends victoryCore
+class amphVictoryCore extends \TMCW\victoryCore
 {
     public $victoryPoints;
     protected $combatCache;
@@ -52,7 +54,7 @@ class amphVictoryCore extends victoryCore
             $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = array(0, 0, 25);
-            $this->combatCache = new stdClass();
+            $this->combatCache = new \stdClass();
             $this->landingZones = [];
             $this->airdropZones = [];
         }
@@ -65,7 +67,7 @@ class amphVictoryCore extends victoryCore
 
     public function save()
     {
-        $ret = new stdClass();
+        $ret = new \stdClass();
         $ret->victoryPoints = $this->victoryPoints;
         $ret->combatCache = $this->combatCache;
         $ret->supplyLen = $this->supplyLen;
@@ -140,12 +142,12 @@ class amphVictoryCore extends victoryCore
             $zones = [];
             if ($zone == "A") {
                 foreach ($this->landingZones as $landingZone) {
-                    $zones[] = new ReinforceZone($landingZone, "A");
+                    $zones[] = new \ReinforceZone($landingZone, "A");
                 }
             }
             if ($zone == "C") {
                 foreach ($this->airdropZones as $airdropZone) {
-                    $zones[] = new ReinforceZone($airdropZone, "C");
+                    $zones[] = new \ReinforceZone($airdropZone, "C");
                 }
             }
         }

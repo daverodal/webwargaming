@@ -1,4 +1,6 @@
 <?php
+namespace TMCW\Moskow;
+use \Battle;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -26,9 +28,8 @@
  * Time: 7:06 PM
  * To change this template use File | Settings | File Templates.
  */
-include_once "victoryCore.php";
 
-class moskowVictoryCore extends victoryCore
+class moskowVictoryCore extends \TMCW\victoryCore
 {
     public $victoryPoints;
     protected $movementCache;
@@ -52,8 +53,8 @@ class moskowVictoryCore extends victoryCore
             $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = "The Soviets hold Moskow";
-            $this->movementCache = new stdClass();
-            $this->combatCache = new stdClass();
+            $this->movementCache = new \stdClass();
+            $this->combatCache = new \stdClass();
             $this->germanGoal = $this->sovietGoal = [];
         }
     }
@@ -65,7 +66,7 @@ class moskowVictoryCore extends victoryCore
 
     public function save()
     {
-        $ret = new stdClass();
+        $ret = new \stdClass();
         $ret->victoryPoints = $this->victoryPoints;
         $ret->movementCache = $this->movementCache;
         $ret->combatCache = $this->combatCache;
@@ -104,14 +105,14 @@ class moskowVictoryCore extends victoryCore
         }
         $reinforceZones = [];
         foreach($zones as $zone){
-            $reinforceZones[] = new ReinforceZone($zone, $zone);
+            $reinforceZones[] = new \ReinforceZone($zone, $zone);
         }
         $battle = Battle::getBattle();
 
         $specialHexes = $battle->mapData->specialHexes;
         foreach($specialHexes as $hexNum => $specialHex){
             if($specialHex == $forceId){
-                $reinforceZones[] = new ReinforceZone($hexNum, $hexNum);
+                $reinforceZones[] = new \ReinforceZone($hexNum, $hexNum);
             }
         }
         return array($reinforceZones);

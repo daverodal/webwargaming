@@ -31,7 +31,7 @@ You should have received a copy of the GNU General Public License
 //require_once "victory.php";
 //require_once "victoryCore.php";
 require_once "UnitFactory.php";
-require_once "crt.php";
+//require_once "crt.php";
 
 class ModernLandBattle extends LandBattle
 {

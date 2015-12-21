@@ -443,7 +443,9 @@ class NavalUnit extends MovableUnit implements JsonSerializable
         $this->dirty = true;
         return $success;
     }
-
+    public function getRange(){
+        return $this->gunRange;
+    }
 }
 
 

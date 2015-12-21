@@ -78,7 +78,7 @@
                     <h3>Combat Odds</h3>
 
                     <?php
-                    $topCrt = new CombatResultsTable();
+                    $topCrt = new \SPI\TinCans\CombatResultsTable();
                     $crts = $topCrt->crts;
                     ?>
                     <div id="crt-buttons">

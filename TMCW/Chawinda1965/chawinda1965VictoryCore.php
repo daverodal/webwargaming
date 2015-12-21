@@ -1,4 +1,6 @@
 <?php
+namespace TMCW\Chawinda1965;
+use \Battle;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -26,9 +28,8 @@
  * Time: 7:06 PM
  * To change this template use File | Settings | File Templates.
  */
-include_once "victoryCore.php";
 
-class chawinda1965VictoryCore extends victoryCore
+class chawinda1965VictoryCore extends \TMCW\victoryCore
 {
     public $victoryPoints;
     protected $combatCache;
@@ -52,7 +53,7 @@ class chawinda1965VictoryCore extends victoryCore
             $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = [0, 0, 0];
-            $this->combatCache = new stdClass();
+            $this->combatCache = new \stdClass();
             $this->indianGoal = $this->pakistaniGoal = [];
         }
     }
@@ -69,7 +70,7 @@ class chawinda1965VictoryCore extends victoryCore
 
     public function save()
     {
-        $ret = new stdClass();
+        $ret = new \stdClass();
         $ret->victoryPoints = $this->victoryPoints;
         $ret->combatCache = $this->combatCache;
         $ret->supplyLen = $this->supplyLen;

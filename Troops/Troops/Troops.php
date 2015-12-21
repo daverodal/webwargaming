@@ -239,11 +239,13 @@ class Troops extends TroopsCore
     function __construct($data = null, $arg = false, $scenario = false, $game = false)
     {
         parent::__construct($data, $arg, $scenario, $game);
+        $crt = new \Troops\CombatResultsTable();
+        $this->combatRules->injectCrt($crt);
         if ($data) {
 
         } else {
 
-            $this->victory = new Victory("Troops/Troops/troopsVictoryCore.php");
+            $this->victory = new Victory("Troops\\Troops\\troopsVictoryCore");
 
             $this->mapData->blocksZoc->blocked = true;
             $this->mapData->blocksZoc->blocksnonroad = true;

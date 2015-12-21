@@ -282,7 +282,7 @@ class TinCans extends ModernNavalBattle
             $this->specialHexA = $data->specialHexA;
 
         } else {
-            $this->victory = new Victory("SPI/TinCans/TinCansVictoryCore.php");
+            $this->victory = new Victory("SPI\\TinCans\\TinCansVictoryCore");
 
             // game data
             $this->gameRules->setInitialPhaseMode(BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE);

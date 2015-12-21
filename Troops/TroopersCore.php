@@ -21,7 +21,7 @@ global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results
 
 //require_once "Battle.php";
 require_once "TacticalCombatRules.php";
-require_once "crt.php";
+//require_once "crt.php";
 require_once "force.php";
 require_once "gameRules.php";
 require_once "hexagon.php";

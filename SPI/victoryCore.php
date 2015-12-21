@@ -1,4 +1,7 @@
 <?php
+namespace SPI;
+use \stdClass;
+use \Battle;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -24,7 +27,7 @@
  * Time: 7:06 PM
  * To change this template use File | Settings | File Templates.
  */
-include "supplyRulesTraits.php";
+//include "supplyRulesTraits.php";
 
 class victoryCore
 {
@@ -34,7 +37,7 @@ class victoryCore
     protected $supplyLen = false;
     public $gameOver = false;
 
-    use modernSupplyRules;
+    use \SPI\ModernSupplyRules;
 
     function __construct($data)
     {

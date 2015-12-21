@@ -1,4 +1,7 @@
 <?php
+namespace TMCW\Airborne;
+use \stdClass;
+use \Battle;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -26,9 +29,8 @@
  * Time: 7:06 PM
  * To change this template use File | Settings | File Templates.
  */
-include_once "victoryCore.php";
 
-class airborneVictoryCore extends victoryCore
+class airborneVictoryCore extends \TMCW\victoryCore
 {
     public $victoryPoints;
     protected $combatCache;
@@ -120,7 +122,7 @@ class airborneVictoryCore extends victoryCore
 
             if ($zone == "A") {
                 foreach ($this->airdropZones as $airdropZone) {
-                    $zones[] = new ReinforceZone($airdropZone, "C");
+                    $zones[] = new \ReinforceZone($airdropZone, "C");
                 }
             }
         }

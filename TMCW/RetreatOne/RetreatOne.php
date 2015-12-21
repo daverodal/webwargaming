@@ -153,7 +153,7 @@ class RetreatOne extends ModernLandBattle
         if ($data) {
 
         } else {
-            $this->victory = new Victory("TMCW/RetreatOne/retreatOneVictoryCore.php");
+            $this->victory = new Victory("TMCW\\RetreatOne\\retreatOneVictoryCore");
 
             if ($scenario->supplyLen) {
                 $this->victory->setSupplyLen($scenario->supplyLen);

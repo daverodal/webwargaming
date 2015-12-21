@@ -1,4 +1,7 @@
 <?php
+namespace TMCW\MartianCivilWar;
+use \stdClass;
+use \Battle;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -26,7 +29,7 @@
  * Time: 7:06 PM
  * To change this template use File | Settings | File Templates.
  */
-include "supplyRulesTraits.php";
+//include "supplyRulesTraits.php";
 
 class victoryCore
 {
@@ -35,9 +38,9 @@ class victoryCore
     protected $supplyLen = false;
     public $gameOver = false;
 
-    use modernSupplyRules;
+    use \TMCW\ModernSupplyRules;
 
-    function __construct($data)
+    function __construct($data = false)
     {
         if ($data) {
             $this->victoryPoints = $data->victory->victoryPoints;
@@ -46,7 +49,7 @@ class victoryCore
             $this->gameOver = $data->victory->gameOver;
         } else {
             $this->victoryPoints = array(0, 0, 0);
-            $this->combatCache = new stdClass();
+            $this->combatCache = new \stdClass();
         }
     }
 
@@ -55,7 +58,7 @@ class victoryCore
     }
     public function save()
     {
-        $ret = new stdClass();
+        $ret = new \stdClass();
         $ret->victoryPoints = $this->victoryPoints;
         $ret->combatCache = $this->combatCache;
         $ret->supplyLen = $this->supplyLen;
@@ -64,7 +67,7 @@ class victoryCore
 
     public function specialHexChange($args)
     {
-        $battle = Battle::getBattle();
+        $battle = \Battle::getBattle();
 
         list($mapHexName, $forceId) = $args;
         if ($forceId == 1) {
@@ -78,7 +81,7 @@ class victoryCore
     {
         list($zones, $unit) = $args;
 
-        $zones[] = new ReinforceZone(2414, 2414);
+        $zones[] = new \ReinforceZone(2414, 2414);
         return array($zones);
     }
 
