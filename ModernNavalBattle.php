@@ -28,7 +28,7 @@ require_once "Los.php";
 require_once "MapGrid.php";
 require_once "NavalMoveRules.php";
 require_once "Terrain.php";
-require_once "display.php";
+require_once "Display.php";
 require_once "Victory.php";
 require_once "victoryCore.php";
 require_once "UnitFactory.php";
