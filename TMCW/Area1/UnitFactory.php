@@ -1,4 +1,5 @@
 <?php
+namespace TMCW\Area1;
 /**
  * Copyright 2015 David Rodal
  * User: David Markarian Rodal

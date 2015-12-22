@@ -1,4 +1,5 @@
 <?php
+use \UnitFactory;
 /*
 Copyright 2012-2015 David Rodal
 
@@ -22,7 +23,6 @@ define("PRUSSIAN_FORCE", 2);
 global $force_name;
 $force_name[PRUSSIAN_FORCE] = "Prussian";
 $force_name[AUSTRIAN_FORCE] = "Austrian";
-require_once "JagCore.php";
 
 class Burkersdorf extends JagCore
 {
@@ -110,53 +110,54 @@ class Burkersdorf extends JagCore
 
         $artRange = 3;
 
+        UnitFactory::$injector = $this->force;
         if($this->scenario->bigAustrian){
             for ($i = 0; $i < 6; $i++) {
-                $this->force->addUnit("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'infantry');
+                UnitFactory::create("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'infantry');
             }
             for ($i = 0; $i < 25; $i++) {
-                $this->force->addUnit("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'infantry');
+                UnitFactory::create("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'infantry');
             }
         }else{
             for ($i = 0; $i < 31; $i++) {
-                $this->force->addUnit("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'infantry');
+                UnitFactory::create("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'infantry');
             }
         }
 
         for ($i = 0; $i < 5; $i++) {
-            $this->force->addUnit("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'cavalry');
+            UnitFactory::create("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'cavalry');
         }
         for ($i = 0; $i < 2; $i++) {
-            $this->force->addUnit("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'cavalry');
+            UnitFactory::create("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'cavalry');
         }
         for ($i = 0; $i < 1; $i++) {
-            $this->force->addUnit("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusCavBadge.png", 5, 5, 6, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'cavalry');
+            UnitFactory::create("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusCavBadge.png", 5, 5, 6, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Austrian", false, 'cavalry');
         }
         for ($i = 0; $i < 8; $i++) {
-            $this->force->addUnit("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusArtBadge.png", 2, 2, 2, true, STATUS_CAN_DEPLOY, "B", 1, $artRange, "Austrian", false, 'artillery');
+            UnitFactory::create("infantry-1", AUSTRIAN_FORCE, "deployBox", "AusArtBadge.png", 2, 2, 2, true, STATUS_CAN_DEPLOY, "B", 1, $artRange, "Austrian", false, 'artillery');
         }
 
 
         for ($i = 0; $i < 14; $i++) {
-            $this->force->addUnit("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Prussian", false, 'infantry');
+            UnitFactory::create("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Prussian", false, 'infantry');
         }
         for ($i = 0; $i < 10; $i++) {
-            $this->force->addUnit("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruInfBadge.png", 6, 6, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Prussian", false, 'infantry');
+            UnitFactory::create("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruInfBadge.png", 6, 6, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Prussian", false, 'infantry');
         }
         for ($i = 0; $i < 7; $i++) {
-            $this->force->addUnit("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Prussian", false, 'cavalry');
+            UnitFactory::create("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Prussian", false, 'cavalry');
         }
         for ($i = 0; $i < 3; $i++) {
-            $this->force->addUnit("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Prussian", false, 'cavalry');
+            UnitFactory::create("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruCavBadge.png", 5, 5, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Prussian", false, 'cavalry');
         }
         for ($i = 0; $i < 3; $i++) {
-            $this->force->addUnit("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruCavBadge.png", 5, 5, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Prussian", false, 'cavalry');
+            UnitFactory::create("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruCavBadge.png", 5, 5, 6, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Prussian", false, 'cavalry');
         }
         for ($i = 0; $i < 5; $i++) {
-            $this->force->addUnit("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruArtBadge.png", 2, 2, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Prussian", false, 'artillery');
+            UnitFactory::create("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruArtBadge.png", 2, 2, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Prussian", false, 'artillery');
         }
          for ($i = 0; $i < 1; $i++) {
-            $this->force->addUnit("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruArtBadge.png", 4, 4, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Prussian", false, 'artillery');
+            UnitFactory::create("infantry-1", PRUSSIAN_FORCE, "deployBox", "PruArtBadge.png", 4, 4, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Prussian", false, 'artillery');
         }
     }
 

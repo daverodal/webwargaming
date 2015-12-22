@@ -34,12 +34,13 @@ abstract class SimpleForce{
                 if ($k == "units") {
                     $this->units = array();
                     foreach ($v as $unit) {
-                        $this->units[] = UnitFactory::build($unit);
+//                        $this->units[] = UnitFactory::build($unit);
                     }
                     continue;
                 }
                 $this->$k = $v;
             }
+            $this->units = [];
         } else {
 
             $this->reinforceTurns = new stdClass();

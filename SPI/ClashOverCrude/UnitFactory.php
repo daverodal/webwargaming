@@ -1,4 +1,9 @@
 <?php
+namespace SPI\ClashOverCrude;
+use \Battle;
+use \stdClass;
+use \Hexagon;
+
 /**
  * Copyright 2015 David Rodal
  * User: David Markarian Rodal
@@ -19,7 +24,7 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class LandAirUnit extends BaseUnit implements JsonSerializable
+class LandAirUnit extends \BaseUnit implements \JsonSerializable
 {
 
     public $origStrength;

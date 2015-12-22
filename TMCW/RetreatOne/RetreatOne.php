@@ -1,4 +1,5 @@
 <?php
+use \UnitFactory;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -19,7 +20,6 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-//set_include_path(__DIR__ . "/RetreatOne" . PATH_SEPARATOR . get_include_path());
 
 define("LACONIANS_FORCE", 1);
 define("CAPROLIANS_FORCE", 2);
@@ -30,8 +30,6 @@ $force_name[0] = "Neutral Observer";
 $force_name[1] = "Laconians";
 $force_name[2] = "Caprolians";
 
-require_once "constants.php";
-
 $mode_name[17] = "";
 
 
@@ -41,10 +39,6 @@ $mode_name[19] = "";
 
 $mode_name[1] = "";
 $mode_name[2] = "";
-
-//require_once "ModernLandBattle.php";
-
-
 
 class RetreatOne extends ModernLandBattle
 {
@@ -97,43 +91,44 @@ class RetreatOne extends ModernLandBattle
     public function init()
     {
 
+        UnitFactory::$injector = $this->force;
 
-        $this->force->addUnit("hq", CAPROLIANS_FORCE, "5015", "multiInf.png", 1, 1, 5, false, STATUS_READY, "A", 1, 1, "caprolians", true, 'hq');
+        UnitFactory::create("hq", CAPROLIANS_FORCE, "5015", "multiInf.png", 1, 1, 5, false, STATUS_READY, "A", 1, 1, "caprolians", true, 'hq');
 
-        $this->force->addUnit("hq", CAPROLIANS_FORCE, "4307", "multiInf.png", 1, 1, 5, false, STATUS_READY, "A", 1, 1, "caprolians", true, 'hq');
+        UnitFactory::create("hq", CAPROLIANS_FORCE, "4307", "multiInf.png", 1, 1, 5, false, STATUS_READY, "A", 1, 1, "caprolians", true, 'hq');
 
-        $this->force->addUnit("hq", CAPROLIANS_FORCE, "116", "multiInf.png", 1, 1, 5, false, STATUS_READY, "A", 1, 1, "caprolians", true, 'hq');
+        UnitFactory::create("hq", CAPROLIANS_FORCE, "116", "multiInf.png", 1, 1, 5, false, STATUS_READY, "A", 1, 1, "caprolians", true, 'hq');
 
         for($i = 0;$i < 16;$i++){
-            $this->force->addUnit("xx", CAPROLIANS_FORCE, "deployBox", "multiInf.png", 3, 1, 3, false, STATUS_CAN_DEPLOY, "A", 1, 1, "caprolians", true, 'inf');
+            UnitFactory::create("xx", CAPROLIANS_FORCE, "deployBox", "multiInf.png", 3, 1, 3, false, STATUS_CAN_DEPLOY, "A", 1, 1, "caprolians", true, 'inf');
         }
         for($i = 0;$i < 4;$i++){
-            $this->force->addUnit("xx", CAPROLIANS_FORCE, "deployBox", "multiMotInf.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "caprolians", true, 'mech');
+            UnitFactory::create("xx", CAPROLIANS_FORCE, "deployBox", "multiMotInf.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "caprolians", true, 'mech');
         }
         for($i = 0;$i < 4;$i++){
-            $this->force->addUnit("xx", CAPROLIANS_FORCE, "deployBox", "multiMotArt.png", 3, 1, 6, false, STATUS_CAN_DEPLOY, "A", 1, 5, "caprolians", true, 'mech');
+            UnitFactory::create("xx", CAPROLIANS_FORCE, "deployBox", "multiMotArt.png", 3, 1, 6, false, STATUS_CAN_DEPLOY, "A", 1, 5, "caprolians", true, 'mech');
         }
         for($i = 0;$i < 4;$i++){
-            $this->force->addUnit("xx", CAPROLIANS_FORCE, "deployBox", "multiArmor.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "caprolians", true, 'mech');
+            UnitFactory::create("xx", CAPROLIANS_FORCE, "deployBox", "multiArmor.png", 4, 2, 4, false, STATUS_CAN_DEPLOY, "A", 1, 1, "caprolians", true, 'mech');
         }
         for($i = 0;$i < 3;$i++){
-            $this->force->addUnit("xx", CAPROLIANS_FORCE, "deployBox", "multiRecon.png", 2, 1, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "caprolians", true, 'mech');
+            UnitFactory::create("xx", CAPROLIANS_FORCE, "deployBox", "multiRecon.png", 2, 1, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "caprolians", true, 'mech');
         }
 
         for($i = 0;$i < 12;$i++){
-            $this->force->addUnit("xx", LACONIANS_FORCE, "deployBox", "multiMotInf.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "laconians", true, "mech");
+            UnitFactory::create("xx", LACONIANS_FORCE, "deployBox", "multiMotInf.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "laconians", true, "mech");
         }
         for($i = 0;$i < 4;$i++){
-            $this->force->addUnit("xx", LACONIANS_FORCE, "deployBox", "multiMotArt.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "B", 1, 5, "laconians", true, "mech");
+            UnitFactory::create("xx", LACONIANS_FORCE, "deployBox", "multiMotArt.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "B", 1, 5, "laconians", true, "mech");
         }
         for($i = 0;$i < 4;$i++){
-            $this->force->addUnit("xx", LACONIANS_FORCE, "deployBox", "multiArmor.png", 4, 2, 5, false, STATUS_CAN_DEPLOY, "B", 1, 1, "laconians", true, "mech");
+            UnitFactory::create("xx", LACONIANS_FORCE, "deployBox", "multiArmor.png", 4, 2, 5, false, STATUS_CAN_DEPLOY, "B", 1, 1, "laconians", true, "mech");
         }
         for($i = 0;$i < 2;$i++){
-            $this->force->addUnit("xx", LACONIANS_FORCE, "deployBox", "multiArmor.png", 6, 3, 3, false, STATUS_CAN_DEPLOY, "B", 1, 1, "laconians", true, "mech");
+            UnitFactory::create("xx", LACONIANS_FORCE, "deployBox", "multiArmor.png", 6, 3, 3, false, STATUS_CAN_DEPLOY, "B", 1, 1, "laconians", true, "mech");
         }
         for($i = 0;$i < 4;$i++){
-            $this->force->addUnit("xx", LACONIANS_FORCE, "deployBox", "multiRecon.png", 2, 1, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "laconians", true, "mech");
+            UnitFactory::create("xx", LACONIANS_FORCE, "deployBox", "multiRecon.png", 2, 1, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "laconians", true, "mech");
         }
         $mapData = $this->mapData;
         /* @var MapHex $mapHex */

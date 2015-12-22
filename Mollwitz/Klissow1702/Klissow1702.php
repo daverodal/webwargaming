@@ -1,4 +1,5 @@
 <?php
+use \UnitFactory;
 /*
 Copyright 2012-2015 David Rodal
 
@@ -22,8 +23,6 @@ define("SAXON_POLISH_FORCE", 2);
 global $force_name;
 $force_name[SAXON_POLISH_FORCE] = "Saxon Polish";
 $force_name[SWEDISH_FORCE] = "Swedish";
-
-require_once "JagCore.php";
 
 class Klissow1702 extends JagCore
 {
@@ -95,14 +94,15 @@ class Klissow1702 extends JagCore
 
         $scenario = $this->scenario;
         $unitSets = $scenario->units;
+        UnitFactory::$injector = $this->force;
 
 
         foreach($unitSets as $unitSet) {
             for ($i = 0; $i < $unitSet->num; $i++) {
                 if($scenario->stepReduction && isset($unitSet->reduced)){
-                    $this->force->addUnit("infantry-1", $unitSet->forceId, "deployBox", "", $unitSet->combat, $unitSet->reduced, $unitSet->movement, false, STATUS_CAN_DEPLOY, $unitSet->reinforce, 1, $unitSet->range, $unitSet->nationality, false, $unitSet->class);
+                    UnitFactory::create("infantry-1", $unitSet->forceId, "deployBox", "", $unitSet->combat, $unitSet->reduced, $unitSet->movement, false, STATUS_CAN_DEPLOY, $unitSet->reinforce, 1, $unitSet->range, $unitSet->nationality, false, $unitSet->class);
                 }else{
-                    $this->force->addUnit("infantry-1", $unitSet->forceId, "deployBox", "", $unitSet->combat, $unitSet->combat, $unitSet->movement, true, STATUS_CAN_DEPLOY, $unitSet->reinforce, 1, $unitSet->range, $unitSet->nationality, false, $unitSet->class);
+                    UnitFactory::create("infantry-1", $unitSet->forceId, "deployBox", "", $unitSet->combat, $unitSet->combat, $unitSet->movement, true, STATUS_CAN_DEPLOY, $unitSet->reinforce, 1, $unitSet->range, $unitSet->nationality, false, $unitSet->class);
                 }
             }
         }

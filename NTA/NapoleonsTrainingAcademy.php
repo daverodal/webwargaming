@@ -1,4 +1,5 @@
 <?php
+use \UnitFactory;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -24,11 +25,9 @@ $force_name = array();
 $force_name[0] = "unknown";
 $force_name[1] = "Red";
 $force_name[2] = "Blue";
-require_once "constants.php";
 
 global $phase_name,$mode_name, $event_name, $status_name, $results_name,$combatRatio_name;
 
-require_once "ModernLandBattle.php";
 
 
 class NapoleonsTrainingAcademy extends ModernLandBattle{
@@ -128,32 +127,33 @@ class NapoleonsTrainingAcademy extends ModernLandBattle{
     public function init(){
         // unit data -----------------------------------------------
         //  ( name, force, hexagon, image, strength, maxMove, status, reinforceZone, reinforceTurn )
+        UnitFactory::$injector = $this->force;
 
 
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 204, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "red",false,"cavalry");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 205, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "red",false,"cavalry");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 206, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "red",false,"cavalry");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 104, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "red",false,"artillery");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 105, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "red",false,"artillery");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 106, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "red",false,"artillery");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 202, "multiInf.png", 4, 4, 4, true, STATUS_READY, "B", 1, 1, "red",false,"infantry");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 208, "multiInf.png", 5, 5, 4, true, STATUS_READY, "B", 1, 1, "red",false,"infantry");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 207, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "red",false,"infantry");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 203, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "red",false,"infantry");
-        $this->force->addUnit("infantry-1", BLUE_FORCE, 209, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "red",false,"infantry");
+        UnitFactory::create("infantry-1", BLUE_FORCE, 204, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "red",false,"cavalry");
+        UnitFactory::create("infantry-1", BLUE_FORCE, 205, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "red",false,"cavalry");
+        UnitFactory::create("infantry-1", BLUE_FORCE, 206, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "red",false,"cavalry");
+        UnitFactory::create("infantry-1", BLUE_FORCE, 104, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "red",false,"artillery");
+        UnitFactory::create("infantry-1", BLUE_FORCE, 105, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "red",false,"artillery");
+        UnitFactory::create("infantry-1", BLUE_FORCE, 106, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "red",false,"artillery");
+        UnitFactory::create("infantry-1", BLUE_FORCE, 202, "multiInf.png", 4, 4, 4, true, STATUS_READY, "B", 1, 1, "red",false,"infantry");
+        UnitFactory::create("infantry-1", BLUE_FORCE, 208, "multiInf.png", 5, 5, 4, true, STATUS_READY, "B", 1, 1, "red",false,"infantry");
+        UnitFactory::create("infantry-1", BLUE_FORCE, 207, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "red",false,"infantry");
+        UnitFactory::create("infantry-1", BLUE_FORCE, 203, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "red",false,"infantry");
+        UnitFactory::create("infantry-1", BLUE_FORCE, 209, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "red",false,"infantry");
 
 
-        $this->force->addUnit("infantry-1", RED_FORCE, 1804, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "blue",false,"cavalry");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1805, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "blue",false,"cavalry");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1806, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "blue",false,"cavalry");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1904, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "blue",false,"artillery");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1905, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "blue",false,"artillery");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1906, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "blue",false,"artillery");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1802, "multiInf.png", 4, 4, 4, true, STATUS_READY, "B", 1, 1, "blue",false,"infantry");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1808, "multiInf.png", 5, 5, 4, true, STATUS_READY, "B", 1, 1, "blue",false,"infantry");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1807, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "blue",false,"infantry");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1803, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "blue",false,"infantry");
-        $this->force->addUnit("infantry-1", RED_FORCE, 1809, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "blue",false,"infantry");
+        UnitFactory::create("infantry-1", RED_FORCE, 1804, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "blue",false,"cavalry");
+        UnitFactory::create("infantry-1", RED_FORCE, 1805, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "blue",false,"cavalry");
+        UnitFactory::create("infantry-1", RED_FORCE, 1806, "multiCav.png", 2, 2, 5, true, STATUS_READY, "B", 1, 1, "blue",false,"cavalry");
+        UnitFactory::create("infantry-1", RED_FORCE, 1904, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "blue",false,"artillery");
+        UnitFactory::create("infantry-1", RED_FORCE, 1905, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "blue",false,"artillery");
+        UnitFactory::create("infantry-1", RED_FORCE, 1906, "multiArt.png", 7, 7, 3, true, STATUS_READY, "B", 1, 2, "blue",false,"artillery");
+        UnitFactory::create("infantry-1", RED_FORCE, 1802, "multiInf.png", 4, 4, 4, true, STATUS_READY, "B", 1, 1, "blue",false,"infantry");
+        UnitFactory::create("infantry-1", RED_FORCE, 1808, "multiInf.png", 5, 5, 4, true, STATUS_READY, "B", 1, 1, "blue",false,"infantry");
+        UnitFactory::create("infantry-1", RED_FORCE, 1807, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "blue",false,"infantry");
+        UnitFactory::create("infantry-1", RED_FORCE, 1803, "multiInf.png", 7, 7, 4, true, STATUS_READY, "B", 1, 1, "blue",false,"infantry");
+        UnitFactory::create("infantry-1", RED_FORCE, 1809, "multiInf.png", 6, 6, 4, true, STATUS_READY, "B", 1, 1, "blue",false,"infantry");
 
     }
 
@@ -168,7 +168,12 @@ class NapoleonsTrainingAcademy extends ModernLandBattle{
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]),new MapViewer($data->mapViewer[1]),new MapViewer($data->mapViewer[2]));
+            $units = $data->force->units;
+            unset($data->force->units);
             $this->force = new Force($data->force);
+            foreach($units as $unit){
+                $this->force->injectUnit(static::buildUnit($unit));
+            }
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
             $this->moveRules->stickyZOC = true;

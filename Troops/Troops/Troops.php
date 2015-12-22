@@ -1,4 +1,5 @@
 <?php
+use \Troops\UnitFactory;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -24,7 +25,6 @@ $force_name[2] = "PlayerTwo";
 
 
 $force_name[1] = "PlayerOne";
-require_once "TroopsCore.php";
 
 class Troops extends TroopsCore
 {
@@ -62,6 +62,10 @@ class Troops extends TroopsCore
     static function enterMulti()
     {
         @include_once "enterMulti.php";
+    }
+
+    public static function buildUnit($data = false){
+        return UnitFactory::build($data);
     }
 
     static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false, $game = false)

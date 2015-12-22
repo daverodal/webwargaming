@@ -19,9 +19,6 @@ You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
    */
 
-
-require_once "SimpleForce.php";
-
 class Force extends SimpleForce
 {
     /* @var  unit $units */
@@ -44,7 +41,7 @@ class Force extends SimpleForce
                 if ($k == "units") {
                     $this->units = array();
                     foreach ($v as $unit) {
-                        $this->units[] = UnitFactory::build($unit);
+//                        $this->units[] = UnitFactory::build($unit);
                     }
                     continue;
                 }
@@ -57,6 +54,7 @@ class Force extends SimpleForce
                 }
                 $this->$k = $v;
             }
+            $this->units = [];
         } else {
 
             $this->reinforceTurns = new stdClass();
@@ -73,7 +71,7 @@ class Force extends SimpleForce
     }
 
 
-    function addUnit($unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range = 1, $nationality = "neutral", $forceMarch = true, $class = false, $unitDesig = false)
+    function xxxaddUnit($unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range = 1, $nationality = "neutral", $forceMarch = true, $class = false, $unitDesig = false)
     {
         if ($unitStatus == STATUS_CAN_REINFORCE) {
             if (!$this->reinforceTurns->$unitReinforceTurn) {

@@ -1,4 +1,9 @@
 <?php
+namespace Troops;
+use \Battle;
+use \Hexagon;
+use \stdClass;
+use \MapData;
 /**
  * Copyright 2015 David Rodal
  * User: David Markarian Rodal
@@ -18,7 +23,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-class TacticalUnit extends BaseUnit implements JsonSerializable
+class TacticalUnit extends \BaseUnit implements \JsonSerializable
 {
 
 //    public $strength;
@@ -237,7 +242,7 @@ class TacticalUnit extends BaseUnit implements JsonSerializable
 
 
     public function fetchData(){
-        $mapUnit = new StdClass();
+        $mapUnit = new stdClass();
         $mapUnit->isReduced = $this->isReduced;
         $mapUnit->parent = $this->hexagon->parent;
         $mapUnit->moveAmountUsed = $this->moveAmountUsed;

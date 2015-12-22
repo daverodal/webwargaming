@@ -1,5 +1,5 @@
 <?php
-namespace Chawinda1965 {
+namespace TMCW\Chawinda1965;
 
     use \Hexagon;
     use \stdClass;
@@ -301,9 +301,7 @@ namespace Chawinda1965 {
             return 1;
         }
     }
-}
 
-namespace {
 
     class UnitFactory
     {
@@ -313,7 +311,7 @@ namespace {
         public static function build($data = false)
         {
 
-            $sU = new \Chawinda1965\ChawindaUnit($data);
+            $sU = new \TMCW\Chawinda1965\ChawindaUnit($data);
             if ($data === false) {
                 $sU->id = self::$id++;
             }
@@ -336,4 +334,3 @@ namespace {
         }
 
     }
-}

@@ -21,7 +21,20 @@
 
 
 class UnitFactory {
+    public static $id = 0;
+    public static $injector;
+
     public static function build($data = false){
-        return new Unit($data);
+        $nUnit =  new Unit($data);
+        if ($data === false) {
+            $nUnit->id = self::$id++;
+        }
+        return $nUnit;
+    }
+
+    public static function create($unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range = 1, $nationality = "neutral", $forceMarch = true, $class = false, $unitDesig = false){
+        $unit = UnitFactory::build();
+        $unit->set($unit->id, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range, $nationality, $forceMarch, $class, $unitDesig);
+        self::$injector->injectUnit($unit);
     }
 }

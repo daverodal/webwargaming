@@ -1,4 +1,5 @@
 <?php
+use \SPI\ClashOverCrude\UnitFactory;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -29,9 +30,6 @@ $force_name[0] = "Neutral Observer";
 $force_name[1] = "US";
 $force_name[2] = "Arab";
 
-require_once "constants.php";
-require_once "ModernLandBattle.php";
-
 class ClashOverCrude extends ModernLandBattle
 {
     /* a comment */
@@ -55,6 +53,12 @@ class ClashOverCrude extends ModernLandBattle
         $deployOne = $playerTwo = $force_name[2];
         @include_once "view.php";
     }
+
+
+    public static function buildUnit($data = false){
+        return UnitFactory::build($data);
+    }
+
 
     function terrainGen($mapDoc, $terrainDoc)
     {

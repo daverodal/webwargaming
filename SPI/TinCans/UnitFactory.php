@@ -1,4 +1,9 @@
 <?php
+namespace SPI\TinCans;
+use \Hexagon;
+use \Battle;
+use \stdClass;
+
 /**
  * Copyright 2015 David Rodal
  * User: David Markarian Rodal
@@ -19,7 +24,7 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class NavalUnit extends MovableUnit implements JsonSerializable
+class NavalUnit extends \MovableUnit implements \JsonSerializable
 {
 
     public $origStrength;

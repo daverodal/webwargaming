@@ -1,4 +1,5 @@
 <?php
+use \UnitFactory;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -29,11 +30,6 @@ $force_name = array();
 $force_name[0] = "Neutral Observer";
 $force_name[1] = "Soviet";
 $force_name[2] = "PRC";
-
-require_once "constants.php";
-
-require_once "ModernLandBattle.php";
-
 
 class Manchuria1976 extends ModernLandBattle
 {
@@ -81,33 +77,35 @@ class Manchuria1976 extends ModernLandBattle
 
     public function init(){
 
+        UnitFactory::$injector = $this->force;
+
         $scenario = $this->scenario;
 
         for($i = 0; $i < 30; $i++){
-            $this->force->addUnit("xxxx", PRC_FORCE, "deployBox", "multiInf.png", 3, 1, 3, false, STATUS_CAN_DEPLOY, "A", 1, 1, "prc", true, "inf");
+            UnitFactory::create("xxxx", PRC_FORCE, "deployBox", "multiInf.png", 3, 1, 3, false, STATUS_CAN_DEPLOY, "A", 1, 1, "prc", true, "inf");
         }
-        $this->force->addUnit("xxx", PRC_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "prc", true, "mech");
+        UnitFactory::create("xxx", PRC_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "A", 1, 1, "prc", true, "mech");
         for($i = 2; $i <= 12;$i++){
-            $this->force->addUnit("x", PRC_FORCE, "gameTurn$i", "multiGor.png", 1, 1, 1, true, STATUS_CAN_REINFORCE, "A", $i, 1, "prc", true, "gorilla");
-            $this->force->addUnit("x", PRC_FORCE, "gameTurn$i", "multiGor.png", 1, 1, 1, true, STATUS_CAN_REINFORCE, "A", $i, 1, "prc", true, "gorilla");
-            $this->force->addUnit("x", PRC_FORCE, "gameTurn$i", "multiGor.png", 1, 1, 1, true, STATUS_CAN_REINFORCE, "A", $i, 1, "prc", true, "gorilla");
+            UnitFactory::create("x", PRC_FORCE, "gameTurn$i", "multiGor.png", 1, 1, 1, true, STATUS_CAN_REINFORCE, "A", $i, 1, "prc", true, "gorilla");
+            UnitFactory::create("x", PRC_FORCE, "gameTurn$i", "multiGor.png", 1, 1, 1, true, STATUS_CAN_REINFORCE, "A", $i, 1, "prc", true, "gorilla");
+            UnitFactory::create("x", PRC_FORCE, "gameTurn$i", "multiGor.png", 1, 1, 1, true, STATUS_CAN_REINFORCE, "A", $i, 1, "prc", true, "gorilla");
         }
 
 
 
 
         for($i = 0;$i < 5;$i++){
-            $this->force->addUnit("xxx", SOVIET_FORCE, "deployBox", "multiArmor.png", 9, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "soviet", true, "mech");
+            UnitFactory::create("xxx", SOVIET_FORCE, "deployBox", "multiArmor.png", 9, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "soviet", true, "mech");
         }
         for($i = 0;$i < 10;$i++){
-            $this->force->addUnit("xxx", SOVIET_FORCE, "deployBox", "multiMech.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "soviet", true, "mech");
+            UnitFactory::create("xxx", SOVIET_FORCE, "deployBox", "multiMech.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "soviet", true, "mech");
         }
         for($i = 0;$i < 15;$i++){
-            $this->force->addUnit("xxx", SOVIET_FORCE, "deployBox", "multiMotInf.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "soviet", true, "mech");
+            UnitFactory::create("xxx", SOVIET_FORCE, "deployBox", "multiMotInf.png", 4, 2, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "soviet", true, "mech");
         }
 
         for($i = 0;$i < 4;$i++){
-            $this->force->addUnit("xxx", SOVIET_FORCE, "deployBox", "multiArt.png", 3, 1, 6, false, STATUS_CAN_DEPLOY, "B", 1, 2, "soviet", true, "mech");
+            UnitFactory::create("xxx", SOVIET_FORCE, "deployBox", "multiArt.png", 3, 1, 6, false, STATUS_CAN_DEPLOY, "B", 1, 2, "soviet", true, "mech");
         }
     }
     function __construct($data = null, $arg = false, $scenario = false, $game = false)

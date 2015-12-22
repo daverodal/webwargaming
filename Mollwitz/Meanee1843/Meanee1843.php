@@ -1,4 +1,5 @@
 <?php
+use \UnitFactory;
 /*
 Copyright 2012-2015 David Rodal
 
@@ -22,8 +23,6 @@ define("BELUCHI_FORCE", 2);
 global $force_name;
 $force_name[BRITISH_FORCE] = "British";
 $force_name[BELUCHI_FORCE] = "Beluchi";
-
-require_once "IndiaCore.php";
 
 class Meanee1843 extends IndiaCore
 {
@@ -94,47 +93,48 @@ class Meanee1843 extends IndiaCore
 
         $artRange = 3;
         $sikhStrength = 2;
+        UnitFactory::$injector = $this->force;
 
 
             /* Beluchi */
         if($this->scenario->commandControl) {
             $sikhStrength = 3;
             for ($i = 0; $i < 2; $i++) {
-                $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Beluchi", false, 'hq');
+                UnitFactory::create("infantry-1", BELUCHI_FORCE, "deployBox", "SikhInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Beluchi", false, 'hq');
             }
         }
             for ($i = 0; $i < 9; $i++) {
-                $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhInfBadge.png", $sikhStrength, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Beluchi", false, 'infantry');
+                UnitFactory::create("infantry-1", BELUCHI_FORCE, "deployBox", "SikhInfBadge.png", $sikhStrength, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Beluchi", false, 'infantry');
             }
             for ($i = 0; $i < 20; $i++) {
-                $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Beluchi", false, 'cavalry');
+                UnitFactory::create("infantry-1", BELUCHI_FORCE, "deployBox", "SikhCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Beluchi", false, 'cavalry');
             }
             for ($i = 0; $i < 2; $i++) {
-                $this->force->addUnit("infantry-1", BELUCHI_FORCE, "deployBox", "SikhArtBadge.png", 2, 2, 2, true, STATUS_CAN_DEPLOY, "A", 1, 2, "Beluchi", false, 'artillery');
+                UnitFactory::create("infantry-1", BELUCHI_FORCE, "deployBox", "SikhArtBadge.png", 2, 2, 2, true, STATUS_CAN_DEPLOY, "A", 1, 2, "Beluchi", false, 'artillery');
             }
 
              /* British */
             for ($i = 0; $i < 3; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 7, 7, 4, true, STATUS_CAN_DEPLOY, "B", 1, 1, "British", false, 'infantry');
+                UnitFactory::create("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 7, 7, 4, true, STATUS_CAN_DEPLOY, "B", 1, 1, "British", false, 'infantry');
             }
             for ($i = 0; $i < 5; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "NativeInfBadge.png", 6, 6, 4, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Native", false, 'infantry');
+                UnitFactory::create("infantry-1", BRITISH_FORCE, "deployBox", "NativeInfBadge.png", 6, 6, 4, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Native", false, 'infantry');
             }
             for ($i = 0; $i < 1; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritCavBadge.png", 7, 7, 6, true, STATUS_CAN_DEPLOY, "B", 1, 1, "British", false, 'cavalry');
+                UnitFactory::create("infantry-1", BRITISH_FORCE, "deployBox", "BritCavBadge.png", 7, 7, 6, true, STATUS_CAN_DEPLOY, "B", 1, 1, "British", false, 'cavalry');
             }
             for ($i = 0; $i < 3; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "NativeCavBadge.png", 6, 6, 6, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Native", false, 'cavalry');
+                UnitFactory::create("infantry-1", BRITISH_FORCE, "deployBox", "NativeCavBadge.png", 6, 6, 6, true, STATUS_CAN_DEPLOY, "B", 1, 1, "Native", false, 'cavalry');
             }
              for ($i = 0; $i < 2; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritArtBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "B", 1, 4, "British", false, 'artillery');
+                UnitFactory::create("infantry-1", BRITISH_FORCE, "deployBox", "BritArtBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "B", 1, 4, "British", false, 'artillery');
             }
             for ($i = 0; $i < 1; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritHorArtBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "B", 1, 3, "British", false, 'horseartillery');
+                UnitFactory::create("infantry-1", BRITISH_FORCE, "deployBox", "BritHorArtBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "B", 1, 3, "British", false, 'horseartillery');
             }
         if($this->scenario->commandControl) {
             for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "British", false, 'hq');
+                UnitFactory::create("infantry-1", BRITISH_FORCE, "deployBox", "BritInfBadge.png", 1, 1, 5, true, STATUS_CAN_DEPLOY, "B", 1, 1, "British", false, 'hq');
             }
         }
 

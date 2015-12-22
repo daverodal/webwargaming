@@ -1,4 +1,5 @@
 <?php
+use \UnitFactory;
 /*
 Copyright 2012-2015 David Rodal
 
@@ -22,8 +23,6 @@ define("FRENCH_FORCE", 1);
 global $force_name;
 $force_name[FRENCH_FORCE] = "French";
 $force_name[ALLIED_FORCE] = "Allied";
-
-require_once "JagCore.php";
 
 class Hastenbeck extends JagCore
 {
@@ -111,6 +110,8 @@ class Hastenbeck extends JagCore
 
         $artRange = 3;
         $coinFlip = floor(2 * (rand() / getrandmax()));
+        UnitFactory::$injector = $this->force;
+
 
         if($this->scenario->hastenbeck2){
             $frenchDeploy = "C";
@@ -121,80 +122,80 @@ class Hastenbeck extends JagCore
         if($this->scenario->redux){
             $frenchDeploy = "B";
             for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'infantry');
+                UnitFactory::create("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'infantry');
             }
             for ($i = 0; $i < 20; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'infantry');
+                UnitFactory::create("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'infantry');
             }
 
             for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
+                UnitFactory::create("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
             }
             for ($i = 0; $i < 7; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
+                UnitFactory::create("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
             }
             for ($i = 0; $i < 1; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
+                UnitFactory::create("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
             }
             for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, $artRange, "French", false, 'artillery');
+                UnitFactory::create("infantry-1", FRENCH_FORCE, "deployBox", "FrenchArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, $artRange, "French", false, 'artillery');
             }
 
 
 
             for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", ALLIED_FORCE, "deployBox", "AngInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Allied", false, 'infantry');
+                UnitFactory::create("infantry-1", ALLIED_FORCE, "deployBox", "AngInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Allied", false, 'infantry');
             }
             for ($i = 0; $i < 17; $i++) {
-                $this->force->addUnit("infantry-1", ALLIED_FORCE, "deployBox", "AngInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Allied", false, 'infantry');
+                UnitFactory::create("infantry-1", ALLIED_FORCE, "deployBox", "AngInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Allied", false, 'infantry');
             }
             for ($i = 0; $i < 3; $i++) {
-                $this->force->addUnit("infantry-1", ALLIED_FORCE, "deployBox", "AngCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Allied", false, 'cavalry');
+                UnitFactory::create("infantry-1", ALLIED_FORCE, "deployBox", "AngCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Allied", false, 'cavalry');
             }
             for ($i = 0; $i < 6; $i++) {
-                $this->force->addUnit("infantry-1", ALLIED_FORCE, "deployBox", "AngCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Allied", false, 'cavalry');
+                UnitFactory::create("infantry-1", ALLIED_FORCE, "deployBox", "AngCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Allied", false, 'cavalry');
             }
             for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", ALLIED_FORCE, "deployBox", "AngArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Allied", false, 'artillery');
+                UnitFactory::create("infantry-1", ALLIED_FORCE, "deployBox", "AngArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Allied", false, 'artillery');
             }
 
         }else {
 
 
             for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'infantry');
+                UnitFactory::create("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'infantry');
             }
             for ($i = 0; $i < 25; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'infantry');
+                UnitFactory::create("infantry-1", FRENCH_FORCE, "deployBox", "FrenchInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'infantry');
             }
             for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
+                UnitFactory::create("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
             }
             for ($i = 0; $i < 7; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
+                UnitFactory::create("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
             }
             for ($i = 0; $i < 1; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
+                UnitFactory::create("infantry-1", FRENCH_FORCE, "deployBox", "FrenchCavBadge.png", 3, 3, 6, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, 1, "French", false, 'cavalry');
             }
             for ($i = 0; $i < 6; $i++) {
-                $this->force->addUnit("infantry-1", FRENCH_FORCE, "deployBox", "FrenchArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, $artRange, "French", false, 'artillery');
+                UnitFactory::create("infantry-1", FRENCH_FORCE, "deployBox", "FrenchArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, $frenchDeploy, 1, $artRange, "French", false, 'artillery');
             }
 
 
             for ($i = 0; $i < 4; $i++) {
-                $this->force->addUnit("infantry-1", ALLIED_FORCE, "deployBox", "AngInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Allied", false, 'infantry');
+                UnitFactory::create("infantry-1", ALLIED_FORCE, "deployBox", "AngInfBadge.png", 4, 4, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Allied", false, 'infantry');
             }
             for ($i = 0; $i < 17; $i++) {
-                $this->force->addUnit("infantry-1", ALLIED_FORCE, "deployBox", "AngInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Allied", false, 'infantry');
+                UnitFactory::create("infantry-1", ALLIED_FORCE, "deployBox", "AngInfBadge.png", 3, 3, 3, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Allied", false, 'infantry');
             }
             for ($i = 0; $i < 3; $i++) {
-                $this->force->addUnit("infantry-1", ALLIED_FORCE, "deployBox", "AngCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Allied", false, 'cavalry');
+                UnitFactory::create("infantry-1", ALLIED_FORCE, "deployBox", "AngCavBadge.png", 4, 4, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Allied", false, 'cavalry');
             }
             for ($i = 0; $i < 6; $i++) {
-                $this->force->addUnit("infantry-1", ALLIED_FORCE, "deployBox", "AngCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Allied", false, 'cavalry');
+                UnitFactory::create("infantry-1", ALLIED_FORCE, "deployBox", "AngCavBadge.png", 3, 3, 5, true, STATUS_CAN_DEPLOY, "A", 1, 1, "Allied", false, 'cavalry');
             }
             for ($i = 0; $i < 3; $i++) {
-                $this->force->addUnit("infantry-1", ALLIED_FORCE, "deployBox", "AngArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Allied", false, 'artillery');
+                UnitFactory::create("infantry-1", ALLIED_FORCE, "deployBox", "AngArtBadge.png", 3, 3, 2, true, STATUS_CAN_DEPLOY, "A", 1, $artRange, "Allied", false, 'artillery');
             }
         }
     }

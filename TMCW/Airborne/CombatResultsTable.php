@@ -29,7 +29,6 @@ namespace TMCW\Airborne;
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//require_once "ModernCombatResultsTable.php";
 
 class CombatResultsTable extends \TMCW\ModernCombatResultsTable
 {

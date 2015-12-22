@@ -1,5 +1,6 @@
 <?php
 namespace TMCW\Chawinda1965;
+use TMCW\Chawinda1965\UnitFactory;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -29,12 +30,6 @@ $force_name = array();
 $force_name[0] = "Neutral Observer";
 $force_name[1] = "Indian";
 $force_name[2] = "Pakistani";
-
-require_once "constants.php";
-
-//require_once "ModernLandBattle.php";
-
-use UnitFactory;
 
 class Chawinda1965 extends \ModernLandBattle
 {
@@ -75,6 +70,11 @@ class Chawinda1965 extends \ModernLandBattle
         @include_once "view.php";
     }
 
+    public static function buildUnit($data = false){
+
+        return UnitFactory::build($data);
+    }
+
     function terrainInit($terrainDoc)
     {
         parent::terrainInit($terrainDoc);
@@ -93,6 +93,7 @@ class Chawinda1965 extends \ModernLandBattle
 //        $this->mapData->setMapSymbols($symbols, "westwall");
 
     }
+
 
     function terrainGen($mapDoc, $terrainDoc)
     {
@@ -143,7 +144,7 @@ class Chawinda1965 extends \ModernLandBattle
 
         for($i = 0; $i < 4;$i++){
             UnitFactory::create("x", PAKISTANI_FORCE, "deployBox", "multiArmor.png", 5, 5,5, 5, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, "mech", $i+1);
-//            $this->force->addUnit("x", PAKISTANI_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, "mech", $i+1);
+//            UnitFactory::create("x", PAKISTANI_FORCE, "deployBox", "multiArmor.png", 6, 3, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "pakistani", true, "mech", $i+1);
         }
 
         for($i = 0; $i < $numPakistaniInf;$i++){

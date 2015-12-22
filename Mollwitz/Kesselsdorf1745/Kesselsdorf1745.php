@@ -1,4 +1,5 @@
 <?php
+use \UnitFactory;
 /*
 Copyright 2012-2015 David Rodal
 
@@ -23,8 +24,6 @@ define("AUSTRIAN_FORCE", 2);
 global $force_name;
 $force_name[AUSTRIAN_FORCE] = "Austrian";
 $force_name[PRUSSIAN_FORCE] = "Prussian";
-
-require_once "JagCore.php";
 
 class Kesselsdorf1745 extends JagCore
 {
@@ -87,6 +86,7 @@ class Kesselsdorf1745 extends JagCore
     public function init()
     {
 
+        UnitFactory::$injector = $this->force;
 
         $scenario = $this->scenario;
         $unitSets = $scenario->units;
@@ -94,7 +94,7 @@ class Kesselsdorf1745 extends JagCore
 
         foreach($unitSets as $unitSet) {
             for ($i = 0; $i < $unitSet->num; $i++) {
-                $this->force->addUnit("infantry-1", $unitSet->forceId, "deployBox", "", $unitSet->combat, $unitSet->combat, $unitSet->movement, true, STATUS_CAN_DEPLOY, $unitSet->reinforce, 1, $unitSet->range, $unitSet->nationality, false, $unitSet->class);
+                UnitFactory::create("infantry-1", $unitSet->forceId, "deployBox", "", $unitSet->combat, $unitSet->combat, $unitSet->movement, true, STATUS_CAN_DEPLOY, $unitSet->reinforce, 1, $unitSet->range, $unitSet->nationality, false, $unitSet->class);
             }
         }
 

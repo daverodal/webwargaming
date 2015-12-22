@@ -126,7 +126,7 @@ class AreaForce
         $this->retreatHexagonList[] = $retreatStep;
     }
 
-    function addUnit($unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range = 1, $nationality = "neutral", $forceMarch = true, $class = false, $unitDesig = false)
+    function xxaddUnit($unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZoneName, $unitReinforceTurn, $range = 1, $nationality = "neutral", $forceMarch = true, $class = false, $unitDesig = false)
     {
         if ($unitStatus == STATUS_CAN_REINFORCE) {
             if (!$this->reinforceTurns->$unitReinforceTurn) {

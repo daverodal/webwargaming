@@ -1,4 +1,5 @@
 <?php
+use \UnitFactory;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -28,9 +29,6 @@ $force_name = array();
 $force_name[0] = "Neutral Observer";
 $force_name[1] = "Rebel";
 $force_name[2] = "Loyalist";
-
-require_once "constants.php";
-require_once "ModernLandBattle.php";
 
 class Airborne extends \ModernLandBattle
 {
@@ -72,108 +70,110 @@ class Airborne extends \ModernLandBattle
     public function init()
     {
 
+        UnitFactory::$injector = $this->force;
+
         $scenario = $this->scenario;
         $baseValue = 3;
         $reducedBaseValue = 2;
 
         /* Loyalists units */
 
-        $this->force->addUnit("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
 
-        $this->force->addUnit("x", LOYALIST_FORCE, "deployBox", "multiHeavy.png", 10, 5, 5, false, STATUS_CAN_DEPLOY, "G", 1, 1, "loyalGuards", true, 'heavy');
+        UnitFactory::create("x", LOYALIST_FORCE, "deployBox", "multiHeavy.png", 10, 5, 5, false, STATUS_CAN_DEPLOY, "G", 1, 1, "loyalGuards", true, 'heavy');
 
-        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn2C", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "G", 2, 1, "loyalGuards", true, 'mech');
-        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn2C", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "G", 2, 1, "loyalGuards", true, 'mech');
-        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn3C", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_DEPLOY, "G", 3, 1, "loyalGuards", true, 'mech');
-        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn3D", "multiShock.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "G", 3, 1, "loyalGuards", true, 'shock');
+        UnitFactory::create("x", LOYALIST_FORCE, "gameTurn2C", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "G", 2, 1, "loyalGuards", true, 'mech');
+        UnitFactory::create("x", LOYALIST_FORCE, "gameTurn2C", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "G", 2, 1, "loyalGuards", true, 'mech');
+        UnitFactory::create("x", LOYALIST_FORCE, "gameTurn3C", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_DEPLOY, "G", 3, 1, "loyalGuards", true, 'mech');
+        UnitFactory::create("x", LOYALIST_FORCE, "gameTurn3D", "multiShock.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "G", 3, 1, "loyalGuards", true, 'shock');
 
-        $this->force->addUnit("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
-        $this->force->addUnit("x", LOYALIST_FORCE, "deployBox", "multiInf.png", 7, 3, 5, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalGuards", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "deployBox", "multiGor.png", $baseValue, $reducedBaseValue, 4, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalist", true, 'inf');
+        UnitFactory::create("x", LOYALIST_FORCE, "deployBox", "multiInf.png", 7, 3, 5, false, STATUS_CAN_DEPLOY, "F", 1, 1, "loyalGuards", true, 'inf');
 
-        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn2C", "multiInf.png", 7, 3, 5, false, STATUS_CAN_REINFORCE, "C", 2, 1, "loyalGuards", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "gameTurn2D", "multiInf.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "D", 2, 1, "loyalGuards", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "gameTurn2D", "multiInf.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "D", 2, 1, "loyalGuards", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "gameTurn2E", "multiInf.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "E", 2, 1, "loyalGuards", true, 'inf');
-        $this->force->addUnit("lll", LOYALIST_FORCE, "gameTurn2E", "multiInf.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "E", 2, 1, "loyalGuards", true, 'inf');
-        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn3C", "multiPara.png", 7, 3, 5, false, STATUS_CAN_REINFORCE, "C", 3, 1, "loyalGuards", true, 'inf');
-        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn3D", "multiPara.png", 7, 3, 5, false, STATUS_CAN_REINFORCE, "D", 3, 1, "loyalGuards", true, 'inf');
-        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn3D", "multiInf.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "D", 3, 1, "loyalGuards", true, 'inf');
-        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn4E", "multiInf.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "E", 4, 1, "loyalGuards", true, 'inf');
-        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn4C", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "C", 4, 1, "loyalGuards", true, 'shock');
-        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn4C", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "C", 4, 1, "loyalGuards", true, 'shock');
-        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn4E", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "E", 4, 1, "loyalGuards", true, 'shock');
+        UnitFactory::create("x", LOYALIST_FORCE, "gameTurn2C", "multiInf.png", 7, 3, 5, false, STATUS_CAN_REINFORCE, "C", 2, 1, "loyalGuards", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "gameTurn2D", "multiInf.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "D", 2, 1, "loyalGuards", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "gameTurn2D", "multiInf.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "D", 2, 1, "loyalGuards", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "gameTurn2E", "multiInf.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "E", 2, 1, "loyalGuards", true, 'inf');
+        UnitFactory::create("lll", LOYALIST_FORCE, "gameTurn2E", "multiInf.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "E", 2, 1, "loyalGuards", true, 'inf');
+        UnitFactory::create("x", LOYALIST_FORCE, "gameTurn3C", "multiPara.png", 7, 3, 5, false, STATUS_CAN_REINFORCE, "C", 3, 1, "loyalGuards", true, 'inf');
+        UnitFactory::create("x", LOYALIST_FORCE, "gameTurn3D", "multiPara.png", 7, 3, 5, false, STATUS_CAN_REINFORCE, "D", 3, 1, "loyalGuards", true, 'inf');
+        UnitFactory::create("x", LOYALIST_FORCE, "gameTurn3D", "multiInf.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "D", 3, 1, "loyalGuards", true, 'inf');
+        UnitFactory::create("x", LOYALIST_FORCE, "gameTurn4E", "multiInf.png", 6, 3, 5, false, STATUS_CAN_REINFORCE, "E", 4, 1, "loyalGuards", true, 'inf');
+        UnitFactory::create("x", LOYALIST_FORCE, "gameTurn4C", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "C", 4, 1, "loyalGuards", true, 'shock');
+        UnitFactory::create("x", LOYALIST_FORCE, "gameTurn4C", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "C", 4, 1, "loyalGuards", true, 'shock');
+        UnitFactory::create("x", LOYALIST_FORCE, "gameTurn4E", "multiShock.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "E", 4, 1, "loyalGuards", true, 'shock');
 
-        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn5C", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "C", 5, 1, "loyalGuards", true, 'mech');
-        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn5C", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "C", 5, 1, "loyalGuards", true, 'mech');
-        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn5C", "multiMech.png", 12, 6, 8, false, STATUS_CAN_REINFORCE, "C", 5, 1, "loyalGuards", true, 'mech');
-        $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn5C", "multiHeavy.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "C", 5, 1, "loyalGuards", true, 'heavy');
+        UnitFactory::create("x", LOYALIST_FORCE, "gameTurn5C", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "C", 5, 1, "loyalGuards", true, 'mech');
+        UnitFactory::create("x", LOYALIST_FORCE, "gameTurn5C", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "C", 5, 1, "loyalGuards", true, 'mech');
+        UnitFactory::create("x", LOYALIST_FORCE, "gameTurn5C", "multiMech.png", 12, 6, 8, false, STATUS_CAN_REINFORCE, "C", 5, 1, "loyalGuards", true, 'mech');
+        UnitFactory::create("x", LOYALIST_FORCE, "gameTurn5C", "multiHeavy.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "C", 5, 1, "loyalGuards", true, 'heavy');
 
         if(!$scenario->weakerLoyalist) {
-            $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn6C", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "C", 6, 1, "loyalGuards", true, 'mech');
-            $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn6C", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "C", 6, 1, "loyalGuards", true, 'mech');
-            $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn6C", "multiMech.png", 12, 6, 8, false, STATUS_CAN_REINFORCE, "C", 6, 1, "loyalGuards", true, 'mech');
-            $this->force->addUnit("x", LOYALIST_FORCE, "gameTurn6C", "multiHeavy.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "C", 6, 1, "loyalGuards", true, 'heavy');
+            UnitFactory::create("x", LOYALIST_FORCE, "gameTurn6C", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "C", 6, 1, "loyalGuards", true, 'mech');
+            UnitFactory::create("x", LOYALIST_FORCE, "gameTurn6C", "multiArmor.png", 13, 6, 8, false, STATUS_CAN_REINFORCE, "C", 6, 1, "loyalGuards", true, 'mech');
+            UnitFactory::create("x", LOYALIST_FORCE, "gameTurn6C", "multiMech.png", 12, 6, 8, false, STATUS_CAN_REINFORCE, "C", 6, 1, "loyalGuards", true, 'mech');
+            UnitFactory::create("x", LOYALIST_FORCE, "gameTurn6C", "multiHeavy.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "C", 6, 1, "loyalGuards", true, 'heavy');
         }
 
         /* Rebel Units */
 
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
 
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiPara.png", 9, 4, 5, false, STATUS_CAN_DEPLOY, "A", 1, 1, "rebel", true, "para");
 
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiArmor.png", 12, 6, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiArmor.png", 12, 6, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiArmor.png", 12, 6, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiArmor.png", 12, 6, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiArmor.png", 12, 6, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiArmor.png", 12, 6, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiArmor.png", 12, 6, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiArmor.png", 12, 6, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
 
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiMech.png", 10, 5, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiMech.png", 10, 5, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiMech.png", 10, 5, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiMech.png", 10, 5, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiMech.png", 10, 5, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
-        $this->force->addUnit("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiMech.png", 10, 5, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiMech.png", 10, 5, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiMech.png", 10, 5, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiMech.png", 10, 5, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiMech.png", 10, 5, 8, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "mech");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
+        UnitFactory::create("lll", BLUE_FORCE, "deployBox", "multiInf.png", 8, 4, 6, false, STATUS_CAN_DEPLOY, "B", 1, 1, "rebel", true, "inf");
 
-        $this->force->addUnit("lll", BLUE_FORCE, "gameTurn2", "multiGlider.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "A", 2, 1, "rebel", true, "para");
-        $this->force->addUnit("lll", BLUE_FORCE, "gameTurn2", "multiGlider.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "A", 2, 1, "rebel", true, "para");
-        $this->force->addUnit("lll", BLUE_FORCE, "gameTurn2", "multiPara.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 2, 1, "rebel", true, "para");
+        UnitFactory::create("lll", BLUE_FORCE, "gameTurn2", "multiGlider.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "A", 2, 1, "rebel", true, "para");
+        UnitFactory::create("lll", BLUE_FORCE, "gameTurn2", "multiGlider.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "A", 2, 1, "rebel", true, "para");
+        UnitFactory::create("lll", BLUE_FORCE, "gameTurn2", "multiPara.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 2, 1, "rebel", true, "para");
 
-        $this->force->addUnit("lll", BLUE_FORCE, "gameTurn3", "multiGlider.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "A", 3, 1, "rebel", true, "para");
-        $this->force->addUnit("lll", BLUE_FORCE, "gameTurn3", "multiPara.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 3, 1, "rebel", true, "para");
+        UnitFactory::create("lll", BLUE_FORCE, "gameTurn3", "multiGlider.png", 10, 5, 5, false, STATUS_CAN_REINFORCE, "A", 3, 1, "rebel", true, "para");
+        UnitFactory::create("lll", BLUE_FORCE, "gameTurn3", "multiPara.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 3, 1, "rebel", true, "para");
 
-        $this->force->addUnit("lll", BLUE_FORCE, "gameTurn4", "multiPara.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 4, 1, "rebel", true, "para");
+        UnitFactory::create("lll", BLUE_FORCE, "gameTurn4", "multiPara.png", 9, 4, 5, false, STATUS_CAN_REINFORCE, "A", 4, 1, "rebel", true, "para");
 
     }
 

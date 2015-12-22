@@ -26,6 +26,10 @@ class LandBattle extends Battle{
         @include_once "playMulti.php";
     }
 
+    public static function buildUnit($data = false){
+        return UnitFactory::build($data);
+    }
+
     static function transformChanges($doc, $last_seq, $user){
 
 
@@ -94,7 +98,7 @@ class LandBattle extends Battle{
         $units = $force->units;
         $attackingId = $doc->wargame->gameRules->attackingForceId;
         foreach ($units as $unit) {
-            $unit = UnitFactory::build($unit);
+            $unit = static::buildUnit($unit);
             if (is_object($unit->hexagon)) {
 //                $unit->hexagon->parent = $unit->parent;
             } else {

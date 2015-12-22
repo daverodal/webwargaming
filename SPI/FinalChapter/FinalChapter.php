@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -19,7 +20,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+use SPI\FinalChapter\UnitFactory;
 define("EASTERN_FORCE", 1);
 define("WESTERN_EMPIRE_FORCE", 3);
 define("WESTERN_FORCE", 2);
@@ -33,11 +34,6 @@ $force_name[2] = "Western";
 $force_name[3] = "German";
 $force_name[4] = "German";
 
-require_once "constants.php";
-//require_once "CombatResultsTable.php";
-//require_once "ModernLandBattle.php";
-//require_once "crt.php";
-
 class FinalChapter extends \ModernLandBattle
 {
 
@@ -49,6 +45,11 @@ class FinalChapter extends \ModernLandBattle
 
         @include_once "globalHeader.php";
         @include_once "finalChapterHeader.php";
+    }
+
+    public static function buildUnit($data = false){
+
+        return UnitFactory::build($data);
     }
 
     static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false)

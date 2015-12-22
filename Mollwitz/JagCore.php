@@ -19,25 +19,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-require_once "constants.php";
 global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
-
-//require_once "Battle.php";
-require_once "CombatRules.php";
-require_once "CombatResultsTable.php";
-require_once "Force.php";
-require_once "GameRules.php";
-require_once "Hexagon.php";
-require_once "Hexpart.php";
-require_once "Los.php";
-require_once "MapGrid.php";
-require_once "MoveRules.php";
-require_once "Display.php";
-require_once "Terrain.php";
-require_once "Victory.php";
-require_once "UnitFactory.php";
-
-
 
 class JagCore extends LandBattle{
 
@@ -65,7 +47,15 @@ class JagCore extends LandBattle{
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
+
+            $units = $data->force->units;
+            unset($data->force->units);
             $this->force = new Force($data->force);
+            foreach($units as $unit){
+                $this->force->injectUnit(static::buildUnit($unit));
+            }
+
+
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);

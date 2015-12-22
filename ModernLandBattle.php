@@ -15,23 +15,6 @@ This program is distributed in the hope that it will be useful,
 You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
    */
-//
-//require_once "Battle.php";
-//require_once "crtTraits.php";
-//require_once "CombatRules.php";
-//require_once "force.php";
-//require_once "gameRules.php";
-//require_once "hexagon.php";
-//require_once "hexpart.php";
-//require_once "los.php";
-//require_once "mapgrid.php";
-//require_once "moveRules.php";
-//require_once "terrain.php";
-//require_once "display.php";
-//require_once "victory.php";
-//require_once "victoryCore.php";
-require_once "UnitFactory.php";
-//require_once "crt.php";
 
 class ModernLandBattle extends LandBattle
 {
@@ -68,7 +51,12 @@ class ModernLandBattle extends LandBattle
             $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
+            $units = $data->force->units;
+            unset($data->force->units);
             $this->force = new Force($data->force);
+            foreach($units as $unit){
+                $this->force->injectUnit(static::buildUnit($unit));
+            }
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);

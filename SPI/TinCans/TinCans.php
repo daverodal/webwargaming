@@ -1,4 +1,5 @@
 <?php
+use \SPI\TinCans\UnitFactory;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -36,8 +37,6 @@ define("SouthEast", 2);
 define("South", 3);
 define("SouthWest", 4);
 define("NorthWest", 5);
-require_once "constants.php";
-require_once "ModernNavalBattle.php";
 
 class TinCans extends ModernNavalBattle
 {
@@ -69,6 +68,10 @@ class TinCans extends ModernNavalBattle
         $deployTwo = $playerOne = $force_name[1];
         $deployOne = $playerTwo = $force_name[2];
         @include_once "view.php";
+    }
+
+    public static function buildUnit($data = false){
+        return UnitFactory::build($data);
     }
 
     static function playMulti($name, $wargame, $arg = false)
