@@ -150,5 +150,19 @@ class Lesnaya1708 extends \Mollwitz\JagCore
             $this->gameRules->addPhaseChange(RED_COMBAT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, true);
 
         }
+
+        $this->moveRules->stacking = function($mapHex, $forceId, $unit){
+            $armyGroup = false;
+            if($unit->class === "wagon"){
+                return count((array)$mapHex->forces[$forceId]) >= 2;
+            }
+
+            foreach($mapHex->forces[$forceId] as $mKey => $mVal){
+                if($this->force->units[$mKey]->class === "wagon"){
+                    return count((array)$mapHex->forces[$forceId]) >= 1;
+                }
+            }
+            return count((array)$mapHex->forces[$forceId]) >= 1;
+        };
     }
 }
