@@ -15,9 +15,17 @@ This program is distributed in the hope that it will be useful,
 You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
    */
-?><div class="dropDown"  id="TECWrapper">
-    <h4 class="WrapperLabel" title='Terrain Effects Chart'>TEC</h4>
-    <DIV id="TEC" style="display:none;"><div class="close">X</div>
-        <img id="tecImage" src="<?=base_url()?>js/OudenardeTECFinal.jpg">
-    </div>
-</div>
+?><style type="text/css">
+        <?php include "playAs.css";?>
+        body{
+            background:#ccc;
+            color:#333;
+            background: url("<?=base_url("js/Regementets_Kalk.jpg")?>") #333 no-repeat;
+            background-position: 25% 0;
+            background-size:100%;
+        }
+    </style>
+
+<footer class="attribution">
+    Gustaf Cederström [Public domain], <a target="blank" href="http://commons.wikimedia.org/wiki/File%3ARegementets_Kalk.jpg">via Wikimedia Commons</a>
+</footer>
