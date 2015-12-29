@@ -1,4 +1,5 @@
 <?php
+$a = 1;
 // moveRules.js
 
 // Copyright (c) 2009-2011 Mark Butler
