@@ -159,7 +159,7 @@ class Lesnaya1708 extends \Mollwitz\JagCore
 
             foreach($mapHex->forces[$forceId] as $mKey => $mVal){
                 if($this->force->units[$mKey]->class === "wagon"){
-                    return count((array)$mapHex->forces[$forceId]) >= 1;
+                    return count((array)$mapHex->forces[$forceId]) >= 2;
                 }
             }
             return count((array)$mapHex->forces[$forceId]) >= 1;
