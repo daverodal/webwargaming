@@ -27,7 +27,7 @@ $force_name[DANISH_FORCE] = "Danes";
 
 
 
-class Gadebusch1712 extends JagCore
+class Gadebusch1712 extends \Mollwitz\JagCore
 {
     public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>2, 'SpecialHexC'=>0];
 

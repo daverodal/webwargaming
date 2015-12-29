@@ -26,7 +26,7 @@ $force_name[LOYALIST_FORCE] = "Loyalist";
 $force_name[REBEL_FORCE] = "Rebel";
 
 
-class Brandywine1777 extends JagCore
+class Brandywine1777 extends \Mollwitz\JagCore
 {
     public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>2, 'SpecialHexC'=>0];
 

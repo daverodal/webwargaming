@@ -24,7 +24,7 @@ global $force_name;
 $force_name[SIKH_FORCE] = "Sikh";
 $force_name[BRITISH_FORCE] = "British";
 
-class Goojerat1849 extends IndiaCore
+class Goojerat1849 extends \Mollwitz\IndiaCore
 {
     public $specialHexesMap = ['SpecialHexA' => 1, 'SpecialHexB' => 2, 'SpecialHexC' => 2];
 

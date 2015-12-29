@@ -24,7 +24,7 @@ global $force_name;
 $force_name[1] = "Prussian";
 $force_name[2] = "Austrian";
 
-class Lobositz extends JagCore
+class Lobositz extends \Mollwitz\JagCore
 {
 
     /* @var Mapdata */

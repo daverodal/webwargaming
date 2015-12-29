@@ -24,7 +24,7 @@ global $force_name;
 $force_name[1] = "Prussian";
 $force_name[2] = "Russian";
 
-class Jagersdorf extends JagCore {
+class Jagersdorf extends \Mollwitz\JagCore {
 
     /* @var Mapdata */
     public $mapData;

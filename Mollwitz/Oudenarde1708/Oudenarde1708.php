@@ -25,7 +25,7 @@ global $force_name;
 $force_name[ANGLO_ALLIED_FORCE] = "Anglo Allied";
 $force_name[FRENCH_FORCE] = "French";
 
-class Oudenarde1708 extends JagCore
+class Oudenarde1708 extends \Mollwitz\JagCore
 {
     public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>1, 'SpecialHexC'=>0];
 

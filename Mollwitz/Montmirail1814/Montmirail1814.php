@@ -25,7 +25,7 @@ global $force_name;
 $force_name[FRENCH_FORCE] = "French";
 $force_name[ALLIED_FORCE] = "Allies";
 
-class Montmirail1814 extends JagCore
+class Montmirail1814 extends \Mollwitz\JagCore
 {
     public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>1, 'SpecialHexC'=>0];
 

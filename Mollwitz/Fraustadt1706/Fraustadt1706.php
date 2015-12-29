@@ -24,7 +24,7 @@ global $force_name;
 $force_name[SAXON_POLISH_FORCE] = "Saxon Russian";
 $force_name[SWEDISH_FORCE] = "Swedish";
 
-class Fraustadt1706 extends JagCore
+class Fraustadt1706 extends \Mollwitz\JagCore
 {
     public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>1, 'SpecialHexC'=>0];
 

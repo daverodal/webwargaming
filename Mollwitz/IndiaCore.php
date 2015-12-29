@@ -1,4 +1,5 @@
 <?php
+namespace Mollwitz;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -20,7 +21,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class IndiaCore extends JagCore{
+class IndiaCore extends \Mollwitz\JagCore{
 
     function terrainGen($mapDoc, $terrainDoc)
     {

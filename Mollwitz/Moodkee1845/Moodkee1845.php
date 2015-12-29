@@ -28,7 +28,7 @@ $force_name = array();
 $force_name[SIKH_FORCE] = "Sikh";
 $force_name[BRITISH_FORCE] = "British";
 
-class Moodkee1845 extends IndiaCore
+class Moodkee1845 extends \Mollwitz\IndiaCore
 {
     public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>2, 'SpecialHexC'=>0];
 

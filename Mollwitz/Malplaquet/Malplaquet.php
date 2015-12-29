@@ -24,7 +24,7 @@ global $force_name;
 $force_name[ANGLO_FORCE] = "Anglo Allied";
 $force_name[FRENCH_FORCE] = "French";
 
-class Malplaquet extends JagCore
+class Malplaquet extends \Mollwitz\JagCore
 {
 
     public $specialHexesMap = ['SpecialHexA'=>FRENCH_FORCE, 'SpecialHexB'=>FRENCH_FORCE, 'SpecialHexC'=>FRENCH_FORCE];

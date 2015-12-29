@@ -24,7 +24,7 @@ global $force_name;
 $force_name[BRITISH_FORCE] = "British";
 $force_name[BELUCHI_FORCE] = "Beluchi";
 
-class Dubba1843 extends IndiaCore
+class Dubba1843 extends \Mollwitz\IndiaCore
 {
 
     /* @var Mapdata */

@@ -26,7 +26,7 @@ $force_name[FRENCH_FORCE] = "French";
 $force_name[ALLIED_FORCE] = "Allied";
 
 
-class Hanau1813 extends JagCore
+class Hanau1813 extends \Mollwitz\JagCore
 {
     public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>1, 'SpecialHexC'=>0];
 

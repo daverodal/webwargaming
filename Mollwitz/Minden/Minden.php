@@ -28,7 +28,7 @@ $force_name = array();
 $force_name[1] = "French";
 $force_name[2] = "Anglo Allied";
 
-class Minden extends JagCore
+class Minden extends \Mollwitz\JagCore
 {
     public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>1, 'SpecialHexC'=>1];
     /* @var Mapdata */

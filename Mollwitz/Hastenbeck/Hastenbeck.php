@@ -24,7 +24,7 @@ global $force_name;
 $force_name[FRENCH_FORCE] = "French";
 $force_name[ALLIED_FORCE] = "Allied";
 
-class Hastenbeck extends JagCore
+class Hastenbeck extends \Mollwitz\JagCore
 {
     public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>2, 'SpecialHexC'=>0];
 

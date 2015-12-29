@@ -29,7 +29,7 @@ $force_name = array();
 $force_name[1] = "Prussian";
 $force_name[2] = "Russian";
 
-class Zorndorf extends JagCore
+class Zorndorf extends \Mollwitz\JagCore
 {
     public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>2, 'SpecialHexC'=>2];
 

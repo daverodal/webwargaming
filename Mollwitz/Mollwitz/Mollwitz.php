@@ -28,7 +28,7 @@ $force_name = array();
 $force_name[1] = "Prussian";
 $force_name[2] = "Austrian";
 
-class Mollwitz extends JagCore
+class Mollwitz extends \Mollwitz\JagCore
 {
 
     /* @var Mapdata */

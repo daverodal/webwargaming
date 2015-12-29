@@ -24,7 +24,7 @@ global $force_name;
 $force_name[1] = "Prussian";
 $force_name[2] = "Austrian";
 
-class Hohenfriedeberg extends JagCore
+class Hohenfriedeberg extends \Mollwitz\JagCore
 {
     public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>1, 'SpecialHexC'=>1];
 

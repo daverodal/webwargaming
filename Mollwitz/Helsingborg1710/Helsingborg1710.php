@@ -25,7 +25,7 @@ global $force_name;
 $force_name[SWEDISH_FORCE] = "Swedish";
 $force_name[DANISH_FORCE] = "Danish";
 
-class Helsingborg1710 extends JagCore
+class Helsingborg1710 extends \Mollwitz\JagCore
 {
     public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>2, 'SpecialHexC'=>0];
 

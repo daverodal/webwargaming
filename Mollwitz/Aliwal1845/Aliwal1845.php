@@ -28,7 +28,7 @@ $force_name[BRITISH_FORCE] = "British";
 //require_once "IndiaCore.php";
 /* comment */
 
-class Aliwal1845 extends IndiaCore
+class Aliwal1845 extends \Mollwitz\IndiaCore
 {
     public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>2, 'SpecialHexC'=>0];
 

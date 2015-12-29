@@ -26,7 +26,7 @@ $force_name[FRENCH_FORCE] = "French";
 $force_name[RUSSIAN_FORCE] = "Russian";
 
 
-class Golymin1806 extends JagCore
+class Golymin1806 extends \Mollwitz\JagCore
 {
     public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>2, 'SpecialHexC'=>0];
 

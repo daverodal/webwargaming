@@ -25,7 +25,7 @@ global $force_name;
 $force_name[AUSTRIAN_FORCE] = "Austrian";
 $force_name[PRUSSIAN_FORCE] = "Prussian";
 
-class Kesselsdorf1745 extends JagCore
+class Kesselsdorf1745 extends \Mollwitz\JagCore
 {
     public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>1, 'SpecialHexC'=>0];
 
