@@ -1,0 +1,17 @@
+{
+  "name":"daverodal/webwargaming"
+  ,
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "": "."
+
+
+    },
+    "files":[
+      "./constants.php"
+    ]
+  }
+
+}
