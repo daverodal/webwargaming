@@ -50,7 +50,7 @@ class Lesnaya1708VictoryCore extends victoryCore
                 $this->victoryPoints[SAXON_POLISH_FORCE] += 5;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='swedish'>+5 Russian vp</span>";
             }
-            if ($forceId == SAXON_POLISH_FORCE) {
+            if ($forceId == SWEDISH_FORCE) {
                 $this->victoryPoints[SAXON_POLISH_FORCE] -= 5;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='russian'>-5 Russian vp</span>";
             }
