@@ -148,11 +148,13 @@ class NavalMoveRules
             if($movingUnit->class === "bb" || $movingUnit->class === "bc" ){
                 $maxChange = 1;
             }
-            if($movingUnit->maxMove > 0 && ($movingUnit->newSpeed >  ($movingUnit->maxMove - $maxChange))){
+            if($movingUnit->newSpeed > 0 && ($movingUnit->newSpeed >  ($movingUnit->maxMove - $maxChange))){
                 $movingUnit->newSpeed--;
+                return true;
             }
 
         }
+        return false;
 
     }
 
@@ -178,10 +180,12 @@ class NavalMoveRules
             if($movingUnit->pDamage === 2){
                 $maxSpeed = 0;
             }
-            if($movingUnit->maxMove < $maxSpeed && ($movingUnit->newSpeed <  ($movingUnit->maxMove + $maxChange))){
+            if($movingUnit->newSpeed < $maxSpeed && ($movingUnit->newSpeed <  ($movingUnit->maxMove + $maxChange))){
                 $movingUnit->newSpeed++;
+                return true;
             }
         }
+        return false;
 
     }
 

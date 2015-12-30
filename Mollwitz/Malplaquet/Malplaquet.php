@@ -1,5 +1,5 @@
 <?php
-use \UnitFactory;
+use \Mollwitz\UnitFactory;
 /*
 Copyright 2012-2015 David Rodal
 

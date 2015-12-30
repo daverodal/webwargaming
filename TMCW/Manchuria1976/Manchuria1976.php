@@ -1,5 +1,5 @@
 <?php
-use \UnitFactory;
+use \TMCW\UnitFactory;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -73,6 +73,10 @@ class Manchuria1976 extends ModernLandBattle
         $this->terrain->addTerrainFeature("mountain", "mountain", "g", 1.5, 0, 2, true);
         $this->terrain->addAltEntranceCost('mountain', 'mech', 6);
 
+    }
+
+    public static function buildUnit($data = false){
+        return UnitFactory::build($data);
     }
 
     public function init(){

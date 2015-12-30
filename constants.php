@@ -168,7 +168,7 @@ define("REPLACING_MODE",19);
 define("ATTACKER_LOSING_MODE",20);
 define("DISPLAY_MODE",21);
 define("SPEED_MODE", 22);
-define("COMBINING_MODE", 22);
+define("COMBINING_MODE", 23);
 
 
 // mode names

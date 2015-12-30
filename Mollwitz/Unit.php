@@ -1,14 +1,14 @@
 <?php
-namespace Troops;
-use \Battle;
-use \Hexagon;
+namespace Mollwitz;
 use \stdClass;
+use \Hexagon;
 use \MapData;
+use \Battle;
 /**
  * Copyright 2015 David Rodal
  * User: David Markarian Rodal
- * Date: 6/14/15
- * Time: 5:37 PM
+ * Date: 12/19/15
+ * Time: 10:19 AM
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -23,22 +23,14 @@ use \MapData;
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-class TacticalUnit extends \BaseUnit implements \JsonSerializable
+class Unit extends \BaseUnit implements \JsonSerializable
 {
 
 //    public $strength;
-    public $attackStrength;
+    public $maxStrength;
+    public $minStrength;
+    public $isReduced;
     public $range;
-    public $isImproved = false;
-    public $normalMoveAmount;
-    public $forceMarch = true;
-
-
-
-    public $isDisrupted = false;
-    public $disruptLen = 0;
-    public $supplied = true;
-
 
     public function jsonSerialize()
     {
@@ -71,8 +63,11 @@ class TacticalUnit extends \BaseUnit implements \JsonSerializable
         if ($name !== "strength" && $name !== "defStrength" && $name !== "attStrength") {
             return false;
         }
-
-        $strength = $this->attackStrength;
+        if ($this->isReduced) {
+            $strength = $this->minStrength;
+        } else {
+            $strength = $this->maxStrength;
+        }
         foreach ($this->adjustments as $adjustment) {
             switch ($adjustment) {
                 case 'floorHalf':
@@ -90,91 +85,12 @@ class TacticalUnit extends \BaseUnit implements \JsonSerializable
     }
 
 
-    public function disruptUnit($phase){
-        $this->isDisrupted = $phase;
-        $this->disruptLen = 1;
-        if($this->nationality === "Russian"){
-            $this->disruptLen = 2;
-        }
-    }
-    public function enterImproved($force = false){
-        if($force !== true && $this->moveAmountUsed > 0){
-            return false;
-        }
-        if($force !== true && $this->nationality !== "French" && $this->class === "artillery") {
-            return false;
-        }
-        $this->moveAmountUsed = 0;
-        $b = Battle::getBattle();
-        if($this->nationality === "British"){
-            if($this->isDisrupted === false){
-                $this->isImproved = true;
-            }else{
-                if(rand(1,6) <= 4){
-                    $this->isImproved = true;
-                }
-            }
-        }else{
-            $dieNeeded = 2;
-            if($this->nationality == "Russian"){
-                $dieNeeded = 1;
-            }
-            if($this->nationality == "French" && $this->class === "infantry"){
-                $dieNeeded = 1;
-            }
-            $roll = rand(1,6);
-            if($roll <= $dieNeeded){
-                $this->isImproved = true;
-            }
-        }
-        if($force === true){
-            $this->isImproved = true;
-        }
 
-        if($this->isImproved){
-            $this->maxMove = 0;
-        }
-
-
-        $b->moveRules->stopMove($this, true);
-        return true;
-    }
-
-
-    public function exitImproved($force = false){
-        if($force !== true && $this->moveAmountUsed > 0){
-            return false;
-        }
-        $b = Battle::getBattle();
-
-        switch($this->nationality) {
-            case "French":
-                $dieNeeded = 5;
-                break;
-            case "British":
-            case "German":
-            case "Belgian":
-            case "Austro-Hungarian":
-                $dieNeeded = 4;
-                break;
-            case "Russian":
-                $dieNeeded = 3;
-        }
-
-        if($force === true || rand(1,6) <= $dieNeeded){
-            $this->isImproved = false;
-            $this->maxMove = $this->normalMoveAmount;
-            $this->moveAmountUnused = $this->maxMove;
-        }else{
-            $this->moveAmountUsed = 1;
-            $b->moveRules->stopMove($this);
-        }
-        return true;
-    }
-
-    function set($unitForceId, $unitHexagon,  $attackStrength, $range, $unitMaxMove,  $unitStatus, $unitReinforceZone, $unitReinforceTurn, $nationality = "neutral",  $class, $unitDesig)
+    function set($unitId, $unitName, $unitForceId, $unitHexagon, $unitImage, $unitMaxStrength, $unitMinStrength, $unitMaxMove, $isReduced, $unitStatus, $unitReinforceZone, $unitReinforceTurn, $range, $nationality = "neutral", $forceMarch, $class, $unitDesig)
     {
         $this->dirty = true;
+        $this->id = $unitId;
+        $this->name = $unitName;
         $this->forceId = $unitForceId;
         $this->class = $class;
         $this->hexagon = new Hexagon($unitHexagon);
@@ -186,9 +102,13 @@ class TacticalUnit extends \BaseUnit implements \JsonSerializable
         if ($mapHex) {
             $mapHex->setUnit($this->forceId, $this);
         }
+        $this->image = $unitImage;
+//        $this->strength = $isReduced ? $unitMinStrength : $unitMaxStrength;
         $this->maxMove = $unitMaxMove;
-        $this->normalMoveAmount = $this->moveAmountUnused = $unitMaxMove;
-        $this->attackStrength = $attackStrength;
+        $this->moveAmountUnused = $unitMaxMove;
+        $this->maxStrength = $unitMaxStrength;
+        $this->minStrength = $unitMinStrength;
+        $this->isReduced = $isReduced;
         $this->status = $unitStatus;
         $this->moveAmountUsed = 0;
         $this->reinforceZone = $unitReinforceZone;
@@ -197,10 +117,11 @@ class TacticalUnit extends \BaseUnit implements \JsonSerializable
         $this->combatIndex = 0;
         $this->combatOdds = "";
         $this->moveCount = 0;
+        $this->retreatCountRequired = 0;
         $this->combatResults = NR;
         $this->range = $range;
         $this->nationality = $nationality;
-        $this->forceMarch = true;
+        $this->forceMarch = $forceMarch;
         $this->unitDesig = $unitDesig;
     }
 
@@ -246,16 +167,11 @@ class TacticalUnit extends \BaseUnit implements \JsonSerializable
         $mapUnit->isReduced = $this->isReduced;
         $mapUnit->parent = $this->hexagon->parent;
         $mapUnit->moveAmountUsed = $this->moveAmountUsed;
-        $mapUnit->maxMove = $this->maxMove;
-        $mapUnit->strength = $this->attackStrength;
-        $mapUnit->supplied = $this->supplied;
-        $mapUnit->reinforceZone = $this->reinforceZone;
+        $mapUnit->maxMove = $this->getMaxMove();
+        $mapUnit->strength = $this->strength;
         $mapUnit->forceId = $this->forceId;
-        $mapUnit->isImproved = $this->isImproved;
-        $mapUnit->isDisrupted = $this->isDisrupted;
-        $mapUnit->disruptLen = $this->disruptLen;
-        $mapUnit->range = $this->range;
         $mapUnit->class = $this->class;
+        $mapUnit->forceMarch = $this->forceMarch;
         $mapUnit->status = $this->status;
         return $mapUnit;
     }
@@ -263,23 +179,4 @@ class TacticalUnit extends \BaseUnit implements \JsonSerializable
     public function getRange(){
         return $this->range;
     }
-}
-
-class UnitFactory {
-    public static $id = 0;
-    public static $injector;
-    public static function build($data = false){
-
-        $sU =  new TacticalUnit($data);
-        if($data === false){
-            $sU->id = self::$id++;
-        }
-        return $sU;
-    }
-    public static function create(  $unitForceId, $unitHexagon,  $attackStrength, $range,   $unitMaxMove,  $unitStatus, $unitReinforceZone, $unitReinforceTurn, $nationality = "neutral", $class, $unitDesig = ""){
-        $unit = self::build();
-        $unit->set($unitForceId, $unitHexagon,  $attackStrength,$range,  $unitMaxMove,  $unitStatus, $unitReinforceZone, $unitReinforceTurn,  $nationality, $class, $unitDesig);
-        self::$injector->injectUnit($unit);
-    }
-
 }

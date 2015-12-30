@@ -119,21 +119,21 @@ class LandBattle extends Battle{
             $mapUnits[] = $mapUnit;
         }
         $turn = $doc->wargame->gameRules->turn;
-        foreach ($units as $i => $unit) {
-            $u = new StdClass();
-            $u->status = $unit->status;
-            $u->moveAmountUsed = $unit->moveAmountUsed;
-            $u->maxMove = $unit->maxMove;
-            $u->forceId = $unit->forceId;
-            $u->forceMarch = $unit->forceMarch;
-            $u->isDisrupted = $unit->isDisrupted;
-            $u->disruptLen = $unit->disruptLen;
-            $u->isImproved = $unit->isImproved;
-            if ($unit->reinforceTurn > $turn) {
-                $u->reinforceTurn = $unit->reinforceTurn;
-            }
-            $units[$i] = $u;
-        }
+//        foreach ($units as $i => $unit) {
+//            $u = new StdClass();
+//            $u->status = $unit->status;
+//            $u->moveAmountUsed = $unit->moveAmountUsed;
+//            $u->maxMove = $unit->maxMove;
+//            $u->forceId = $unit->forceId;
+//            $u->forceMarch = $unit->forceMarch;
+//            $u->isDisrupted = $unit->isDisrupted;
+//            $u->disruptLen = $unit->disruptLen;
+//            $u->isImproved = $unit->isImproved;
+//            if ($unit->reinforceTurn > $turn) {
+//                $u->reinforceTurn = $unit->reinforceTurn;
+//            }
+//            $units[$i] = $u;
+//        }
         if($fogDeploy) {
             if ($gameRules->phase == BLUE_DEPLOY_PHASE && $player === RED_FORCE) {
                 $moveRules->moves = new stdClass();
@@ -167,7 +167,7 @@ class LandBattle extends Battle{
                 }
             }
         }
-        $force->units = $units;
+        $force->units = [];
         $gameRules = $wargame->gameRules;
         $gameRules->display = $display;
         $gameRules->phase_name = $phase_name;

@@ -34,6 +34,9 @@ class JagCore extends \LandBattle{
 
 
 
+    public static function buildUnit($data = false){
+        return UnitFactory::build($data);
+    }
 
 
     function __construct($data = null, $arg = false, $scenario = false, $game = false)

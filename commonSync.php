@@ -214,7 +214,9 @@ function renderUnitNumbers(unit, moveAmount){
 
 x.register("force", function(force,data) {
 
-    var units = force.units;
+//    var units = force.units;
+//    debugger;
+    var units = data.mapUnits;
 
     var status = "";
     var boxShadow;

@@ -182,6 +182,8 @@ use \BaseUnit;
             $mapUnit->strength = $this->strength;
             $mapUnit->supplied = $this->supplied;
             $mapUnit->defStrength = $this->unitDefStrength;
+            $mapUnit->status = $this->status;
+            $mapUnit->forceId = $this->forceId;
             return $mapUnit;
         }
     }

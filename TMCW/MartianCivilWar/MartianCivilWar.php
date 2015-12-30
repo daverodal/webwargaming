@@ -1,5 +1,5 @@
 <?php
-use \UnitFactory;
+use \TMCW\UnitFactory;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -71,6 +71,9 @@ class MartianCivilWar extends ModernLandBattle
         return $data;
     }
 
+    public static function buildUnit($data = false){
+        return UnitFactory::build($data);
+    }
 
     public function oldInit()
     {

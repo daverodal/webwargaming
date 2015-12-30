@@ -149,8 +149,8 @@ class TinCans extends ModernNavalBattle
 
             UnitFactory::create("CA-2", BLUE_FORCE, 5724, "multiInf.png", 14, 14, 7, 39, 6, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "ca");
 
-            UnitFactory::create("CL-1", BLUE_FORCE, 5226, "multiInf.png", 3, 12, 2, 15, 6, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
-            UnitFactory::create("CL-3", BLUE_FORCE, 5127, "multiInf.png", 5, 12, 2, 10, 6, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
+            UnitFactory::create("CL-1", BLUE_FORCE, 5226, "multiInf.png", 3, 12, 2, 15, 6, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "cl");
+            UnitFactory::create("CL-3", BLUE_FORCE, 5127, "multiInf.png", 5, 12, 2, 10, 6, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "cl");
 
             UnitFactory::create("DD-1", BLUE_FORCE, 5027, "multiInf.png", 1, 12, 2, 20, 6, NorthEast,  STATUS_CAN_DEPLOY, "A", 1, "ijn",  "dd");
 

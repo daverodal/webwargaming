@@ -1,5 +1,5 @@
 <?php
-use \UnitFactory;
+use \TMCW\UnitFactory;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -63,6 +63,10 @@ class Kiev extends ModernLandBattle
         $this->terrain->addNatAltEntranceCost('road','soviet','inf',1);
 
 
+    }
+
+    public static function buildUnit($data = false){
+        return UnitFactory::build($data);
     }
 
     function terrainInit($terrainDoc){

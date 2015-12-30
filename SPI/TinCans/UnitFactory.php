@@ -332,6 +332,8 @@ class NavalUnit extends \MovableUnit implements \JsonSerializable
         $mapUnit->fire = $this->fire;
         $mapUnit->unitDefenseStrength = $this->unitDefenseStrength;
         $mapUnit->gunRange = $this->gunRange;
+        $mapUnit->status = $this->status;
+        $mapUnit->forceId = $this->forceId;
         return $mapUnit;
     }
 

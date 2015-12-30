@@ -1,6 +1,6 @@
 <?php
 namespace TMCW\Amph;
-use \UnitFactory;
+use \TMCW\UnitFactory;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -43,6 +43,10 @@ class Amph extends \ModernLandBattle
 
         @include_once "globalHeader.php";
         @include_once "amphHeader.php";
+    }
+
+    public static function buildUnit($data = false){
+        return UnitFactory::build($data);
     }
 
     static function getView($name, $mapUrl, $player = 0, $arg = false, $scenario = false)
