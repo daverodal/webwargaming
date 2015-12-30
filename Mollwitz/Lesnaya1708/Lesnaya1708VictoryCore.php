@@ -138,22 +138,6 @@ class Lesnaya1708VictoryCore extends victoryCore
         }
     }
 
-    public function postRecoverUnits($args)
-    {
-        $b = Battle::getBattle();
-        $scenario = $b->scenario;
-        if ($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE) {
-            $b->gameRules->flashMessages[] = "Swedish Movement allowance +1 this turn.";
-        }
-        if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE) {
-            if($scenario->noMovementFirstTurn) {
-                $b->gameRules->flashMessages[] = "No Saxon Polish Movement this turn.";
-            }else{
-                $b->gameRules->flashMessages[] = "Saxon Polish Movement halved this turn.";
-
-            }
-        }
-    }
     public function preCombatResults($args){
         list($defenderId, $attackers, $combatResults, $dieRoll) = $args;
         $b = Battle::getBattle();
