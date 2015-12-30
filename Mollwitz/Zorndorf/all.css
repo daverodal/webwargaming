@@ -1112,6 +1112,10 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
+.Sikh.wagon .counterWrapper .counter {
+  background-image: url("../../js/Wagon.png");
+  background-size: 14px; }
+
 .Sikh.pontoon .counterWrapper {
   border: none; }
   .Sikh.pontoon .counterWrapper .counter {
@@ -1171,6 +1175,10 @@ svg marker#head {
 .Beluchi.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Beluchi.wagon .counterWrapper .counter {
+  background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
 .Beluchi.pontoon .counterWrapper {
@@ -1234,6 +1242,10 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
+.British.wagon .counterWrapper .counter {
+  background-image: url("../../js/Wagon.png");
+  background-size: 14px; }
+
 .British.pontoon .counterWrapper {
   border: none; }
   .British.pontoon .counterWrapper .counter {
@@ -1293,6 +1305,10 @@ svg marker#head {
 .SaxonPolish.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.SaxonPolish.wagon .counterWrapper .counter {
+  background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
 .SaxonPolish.pontoon .counterWrapper {
@@ -1360,6 +1376,10 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
+.Native.wagon .counterWrapper .counter {
+  background-image: url("../../js/Wagon.png");
+  background-size: 14px; }
+
 .Native.pontoon .counterWrapper {
   border: none; }
   .Native.pontoon .counterWrapper .counter {
@@ -1419,6 +1439,10 @@ svg marker#head {
 .Austrian.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Austrian.wagon .counterWrapper .counter {
+  background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
 .Austrian.pontoon .counterWrapper {
@@ -1482,6 +1506,10 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
+.Prussian.wagon .counterWrapper .counter {
+  background-image: url("../../js/Wagon.png");
+  background-size: 14px; }
+
 .Prussian.pontoon .counterWrapper {
   border: none; }
   .Prussian.pontoon .counterWrapper .counter {
@@ -1541,6 +1569,10 @@ svg marker#head {
 .Russian.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Russian.wagon .counterWrapper .counter {
+  background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
 .Russian.pontoon .counterWrapper {
@@ -1604,6 +1636,10 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
+.French.wagon .counterWrapper .counter {
+  background-image: url("../../js/Wagon.png");
+  background-size: 14px; }
+
 .French.pontoon .counterWrapper {
   border: none; }
   .French.pontoon .counterWrapper .counter {
@@ -1663,6 +1699,10 @@ svg marker#head {
 .AngloAllied.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.AngloAllied.wagon .counterWrapper .counter {
+  background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
 .AngloAllied.pontoon .counterWrapper {
@@ -1726,6 +1766,10 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
+.Anglo.wagon .counterWrapper .counter {
+  background-image: url("../../js/Wagon.png");
+  background-size: 14px; }
+
 .Anglo.pontoon .counterWrapper {
   border: none; }
   .Anglo.pontoon .counterWrapper .counter {
@@ -1787,6 +1831,10 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
+.Allied.wagon .counterWrapper .counter {
+  background-image: url("../../js/Wagon.png");
+  background-size: 14px; }
+
 .Allied.pontoon .counterWrapper {
   border: none; }
   .Allied.pontoon .counterWrapper .counter {
@@ -1846,6 +1894,10 @@ svg marker#head {
 .Swedish.hq .counterWrapper .counter {
   background-color: lightgreen;
   background-image: url("../../js/HQBadge.png");
+  background-size: 14px; }
+
+.Swedish.wagon .counterWrapper .counter {
+  background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
 .Swedish.pontoon .counterWrapper {

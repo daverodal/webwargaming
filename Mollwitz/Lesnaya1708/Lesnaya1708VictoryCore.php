@@ -115,6 +115,17 @@ class Lesnaya1708VictoryCore extends victoryCore
         return false;
     }
 
+    public function preStartMovingUnit($arg)
+    {
+        $unit = $arg[0];
+        $battle = Battle::getBattle();
+        if ($unit->class === "wagon") {
+            $battle->moveRules->noZoc = true;
+        }else{
+            $battle->moveRules->noZoc = false;
+
+        }
+    }
 
     public function postRecoverUnits($args)
     {

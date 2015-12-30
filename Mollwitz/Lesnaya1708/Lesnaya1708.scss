@@ -15,11 +15,11 @@ You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
    */
 #map{
+  color:blue;
 }
 
-@include player(Swedish, One , $swedishColor, $swedishWrapperColor, $swedishWrapperColor);
-@include player(Saxon, Saxon-Russian, #FD4223, #FD4223);
-@include player(Russian, Three, $russianColor, $russianWrapperColor);
+@include player(Swedish, Swedish , $swedishColor, $swedishWrapperColor, $swedishWrapperColor);
+@include player(Russian, Russian, $russianColor, $russianWrapperColor);
 @include badge(Saxon, Saxon);
 
 .french.specialHexes{

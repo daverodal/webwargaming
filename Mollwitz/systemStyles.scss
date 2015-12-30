@@ -104,6 +104,11 @@ $vintage-unit-numbers-size:10px;
     background-size: $badge-size;
   }
 
+  .#{$nationality}.wagon .counterWrapper .counter {
+    background-image: url('../../js/Wagon.png');
+    background-size: $badge-size;
+  }
+
   .#{$nationality}.pontoon {
     .counterWrapper {
       border:none;

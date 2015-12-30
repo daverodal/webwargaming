@@ -169,6 +169,9 @@ class CombatResultsTable
             $terrainReason = "";
             $unit = $battle->force->units[$attackerId];
             $unitStrength = $unit->strength;
+            if($unit->class === "wagon"){
+                $unitStrength = 0;
+            }
 
             $hexagon = $unit->hexagon;
             $hexpart = new Hexpart();
