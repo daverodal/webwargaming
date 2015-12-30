@@ -18,10 +18,10 @@ You should have received a copy of the GNU General Public License
    */
 
 define("SWEDISH_FORCE", 2);
-define("SAXON_POLISH_FORCE", 1);
+define("RUSSIAN_FORCE", 1);
 
 global $force_name;
-$force_name[SAXON_POLISH_FORCE] = "Russian";
+$force_name[RUSSIAN_FORCE] = "Russian";
 $force_name[SWEDISH_FORCE] = "Swedish";
 
 class Lesnaya1708 extends \Mollwitz\JagCore
@@ -146,17 +146,19 @@ class Lesnaya1708 extends \Mollwitz\JagCore
         }
 
         $this->moveRules->stacking = function($mapHex, $forceId, $unit){
-            $armyGroup = false;
+            $wagon = false;
             if($unit->class === "wagon"){
-                return count((array)$mapHex->forces[$forceId]) >= 2;
+                $wagon = true;
             }
 
             foreach($mapHex->forces[$forceId] as $mKey => $mVal){
                 if($this->force->units[$mKey]->class === "wagon"){
-                    return count((array)$mapHex->forces[$forceId]) >= 2;
+                    if($wagon){
+                        return true;
+                    }
                 }
             }
-            return count((array)$mapHex->forces[$forceId]) >= 1;
+            return count((array)$mapHex->forces[$forceId]) >= 2;
         };
     }
 }

@@ -46,22 +46,22 @@ class Lesnaya1708VictoryCore extends victoryCore
 
         list($mapHexName, $forceId) = $args;
         if (in_array($mapHexName, $battle->specialHexA)) {
-            if ($forceId == SAXON_POLISH_FORCE) {
-                $this->victoryPoints[SAXON_POLISH_FORCE] += 5;
+            if ($forceId == RUSSIAN_FORCE) {
+                $this->victoryPoints[RUSSIAN_FORCE] += 5;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='swedish'>+5 Russian vp</span>";
             }
             if ($forceId == SWEDISH_FORCE) {
-                $this->victoryPoints[SAXON_POLISH_FORCE] -= 5;
+                $this->victoryPoints[RUSSIAN_FORCE] -= 5;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='russian'>-5 Russian vp</span>";
             }
         }
         if (in_array($mapHexName, $battle->specialHexB)) {
-            if ($forceId == SAXON_POLISH_FORCE) {
-                $this->victoryPoints[SAXON_POLISH_FORCE] += 15;
+            if ($forceId == RUSSIAN_FORCE) {
+                $this->victoryPoints[RUSSIAN_FORCE] += 15;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='russian'>+15 Russian vp</span>";
             }
             if ($forceId == SWEDISH_FORCE) {
-                $this->victoryPoints[SAXON_POLISH_FORCE] -= 15;
+                $this->victoryPoints[RUSSIAN_FORCE] -= 15;
                 $battle->mapData->specialHexesVictory->$mapHexName = "<span class='swedish'>-15 Russian vp</span>";
             }
         }
@@ -91,8 +91,13 @@ class Lesnaya1708VictoryCore extends victoryCore
                     $swedishWin = true;
             }
 
-            if ($this->victoryPoints[SAXON_POLISH_FORCE] >= $russianWinScore) {
+            if ($this->victoryPoints[RUSSIAN_FORCE] >= $russianWinScore) {
                 $russianWin = true;
+            }
+
+            if (!$swedishWin && $russianWin) {
+                $this->winner = RUSSIAN_FORCE;
+                $gameRules->flashMessages[] = "Russian Win";
             }
 
 
