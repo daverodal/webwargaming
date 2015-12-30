@@ -156,9 +156,13 @@ class Lesnaya1708 extends \Mollwitz\JagCore
                     if($wagon){
                         return true;
                     }
+                    return count((array)$mapHex->forces[$forceId]) >= 2;
                 }
             }
-            return count((array)$mapHex->forces[$forceId]) >= 2;
+            if($wagon){
+                return   count((array)$mapHex->forces[$forceId]) >= 2;
+            }
+            return count((array)$mapHex->forces[$forceId]) >= 1;
         };
     }
 }
