@@ -45,8 +45,8 @@ class Lesnaya1708 extends \Mollwitz\JagCore
 
     static function playMulti($name, $wargame, $arg = false)
     {
-        $deployTwo = $playerOne = "Russian";
-        $deployOne = $playerTwo = "Swedish";
+        $deployOne = $playerOne = "Russian";
+        $deployTwo = $playerTwo = "Swedish";
         @include_once "playMulti.php";
     }
 
@@ -54,8 +54,8 @@ class Lesnaya1708 extends \Mollwitz\JagCore
     {
         global $force_name;
         $youAre = $force_name[$player];
-        $deployTwo = $playerOne = "Russian";
-        $deployOne = $playerTwo = "Swedish";
+        $deployOne = $playerOne = "Russian";
+        $deployTwo = $playerTwo = "Swedish";
         @include_once "view.php";
     }
 
@@ -127,7 +127,7 @@ class Lesnaya1708 extends \Mollwitz\JagCore
 
             // game data
 
-            $this->gameRules->setMaxTurn(6);
+            $this->gameRules->setMaxTurn(7);
             $this->gameRules->setInitialPhaseMode(BLUE_DEPLOY_PHASE, DEPLOY_MODE);
             $this->gameRules->attackingForceId = BLUE_FORCE; /* object oriented! */
             $this->gameRules->defendingForceId = RED_FORCE; /* object oriented! */

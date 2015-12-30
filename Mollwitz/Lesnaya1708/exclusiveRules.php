@@ -49,13 +49,9 @@ You should have received a copy of the GNU General Public License
                 <li><span class="lessBig">First Player</span>
                     <p class="indent">The <?= $playerOne?> player moves first. The  <?= $playerTwo?>  player moves second.</p>
                 </li>
-                <li><span class="lessBig">Movement</span>
-                    <p class="indent">The <?= $playerOne?> units receive a 1 MP bonus on turn 1 only.</p>
-                    <p class="indent"> The  <?= $playerTwo?>  Units movement rate are halved on turn 1, normal thereafter.</p>
-                </li>
+
                 <li><span class="lessBig">Terrain</span>
-                    <p class="indent">Swamps, Rivers and Ponds: Are all frozen and have no effect on movement or combat.</p>
-                    <p class="indent"> Fortifications: The Fortifications had no impact on the Swedish infantry assault so have no effect on infantry and cost 1 MP for cavalry to cross halving cavalry attacking over them.</p>
+                    <p class="indent">Wagons may only move through clear terrain or on roads (in road mode).</p>
                 </li>
             </ol>
             <ol class="ExclusiveRules topNumbers">

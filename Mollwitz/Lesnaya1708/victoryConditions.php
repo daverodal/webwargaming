@@ -19,21 +19,24 @@ You should have received a copy of the GNU General Public License
     <ol>
 
         <li>
-        Each side is awarded one victory point for each hostile combat factor destroyed. And
-        multiple victory points for locations occupied.
-            These locations are marked with numbers in blue for Swedish objectives and red for Saxon Polish Objectives.
+        Each side is awarded one victory point for each hostile combat factor destroyed. Swedish Wagons are worth 3 Victory point if destoryed.
+            </li>
+        <li>Victory points are also awarded for locations occupied (for the <?= $playerOne?> player).
+            These locations are marked with numbers in red. Two locations worth 5 and 15 points are in the City of Lesnaya.
+            If the <?= $playerOne?> player enters either of those location they will be awarded victory points. If the <?= $playerTwo?> player retakes the
+            location the <?= $playerOne?> will lose those victory points.
+
             <p class="ruleComment">
                 Note: objectives start in the possession of the enemy, so they will have a label of the opposite color
                 of their number at the beginning of the game. It will switch back and forth depending upon whoever last occupied the objective.
             </p>
             </li>
 
-        <li><?= $playerOne?>: win at the end of any Game turn that they have 25 or more points by turn 4 inclusive or
-            30 points by turn 6 inclusive.
+        <li><?= $playerOne?>: win at the end of any Game turn that they have 35 points by turn 7 inclusive.
         </li>
 
-        <li> <?= $playerTwo?>: win at the end of any game turn that they have 30 points by turn 6 inclusive.
-            Or swedes do not win by the end of turn 6.</li>
+        <li> <?= $playerTwo?>: win at the end of any Game turn that they have 30 points by turn 7 inclusive, or if the <?= $playerOne?> fail to win
+        by turn 7.</li>
 
         <li>A draw occurs if both sides meet the above victory conditions on same turn.</li>
     </ol>

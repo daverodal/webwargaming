@@ -32,6 +32,9 @@ You should have received a copy of the GNU General Public License
         if(reduced){
             reduceDisp = "<span class='unit-info reduced'>";
         }
+        if(unit.class === "wagon"){
+            str = "("+str+")";
+        }
         var symb = unit.supplied !== false ? " - " : " <span class='reduced'>u</span> ";
 //        symb = "-"+unit.defStrength+"-";
         var html = reduceDisp + str + symb + move + "</span>";

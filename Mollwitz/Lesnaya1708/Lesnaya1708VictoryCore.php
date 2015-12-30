@@ -52,13 +52,13 @@ class Lesnaya1708VictoryCore extends victoryCore
             }
             if ($forceId == SAXON_POLISH_FORCE) {
                 $this->victoryPoints[SWEDISH_FORCE] -= 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='saxonPolish'>-5 Swedish vp</span>";
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='russian'>-5 Swedish vp</span>";
             }
         }
         if (in_array($mapHexName, $battle->specialHexB)) {
             if ($forceId == SAXON_POLISH_FORCE) {
                 $this->victoryPoints[SAXON_POLISH_FORCE] += 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='saxonPolish'>+5 Saxon Polish vp</span>";
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='russian'>+5 Saxon Polish vp</span>";
             }
             if ($forceId == SWEDISH_FORCE) {
                 $this->victoryPoints[SAXON_POLISH_FORCE] -= 5;
@@ -67,45 +67,51 @@ class Lesnaya1708VictoryCore extends victoryCore
         }
     }
 
-    protected function checkVictory( $battle)
+    public function scoreKills($unit, $mult = 1)
+    {
+        if($unit->class === "wagon"){
+            $mult = 1.5;
+        }
+
+        parent::scoreKills($unit, $mult);
+
+    }
+        protected function checkVictory( $battle)
     {
         $gameRules = $battle->gameRules;
         $scenario = $battle->scenario;
         $turn = $gameRules->turn;
-        $swedishWin = $saxonPolishWin = $draw = false;
+        $swedishWin = $russianWin = $draw = false;
 
         if (!$this->gameOver) {
             $specialHexes = $battle->mapData->specialHexes;
-            $winScore = 25;
-            $highWinScore = 30;
-            if ($this->victoryPoints[SWEDISH_FORCE] >= $winScore) {
-                if ($turn <= 4) {
-                    $swedishWin = true;
-                }
-            }
-            if ($this->victoryPoints[SWEDISH_FORCE] >= $highWinScore) {
+            $russianWinScore = 35;
+            $swedWinScore = 30;
+            if ($this->victoryPoints[SWEDISH_FORCE] >= $swedWinScore) {
                     $swedishWin = true;
             }
-            if ($this->victoryPoints[SAXON_POLISH_FORCE] >= $highWinScore) {
-                $saxonPolishWin = true;
+
+            if ($this->victoryPoints[SAXON_POLISH_FORCE] >= $russianWinScore) {
+                $russianWin = true;
             }
 
 
-            if ($swedishWin && !$saxonPolishWin) {
+            if ($swedishWin && !$russianWin) {
                 $this->winner = SWEDISH_FORCE;
                 $gameRules->flashMessages[] = "Swedish Win";
             }
 
-            if ($saxonPolishWin && $swedishWin) {
+            if ($russianWin && $swedishWin) {
                 $this->winner = 0;
                 $msg = "Tie Game";
                 $gameRules->flashMessages[] = $msg;
             }
-            if ($swedishWin || $saxonPolishWin ||  $turn == ($gameRules->maxTurn + 1)) {
-                if(!$swedishWin){
-                    $this->winner = SAXON_POLISH_FORCE;
-                    $msg = "Saxon Russian Win";
+            if ($swedishWin || $russianWin ||  $turn == ($gameRules->maxTurn + 1)) {
+                if(!$russianWin){
+                    $this->winner = SWEDISH_FORCE;
+                    $msg = "Swedish Win";
                     $gameRules->flashMessages[] = $msg;
+                    $gameRules->flashMessages[] = "Russians Fail to Win";
                 }
                 $gameRules->flashMessages[] = "Game Over";
                 $this->gameOver = true;
@@ -143,7 +149,17 @@ class Lesnaya1708VictoryCore extends victoryCore
             }
         }
     }
+    public function preCombatResults($args){
+        list($defenderId, $attackers, $combatResults, $dieRoll) = $args;
+        $b = Battle::getBattle();
+        if($b->force->units[$defenderId]->class === "wagon"){
+            if($combatResults === DR){
+                $combatResults = DE;
+            }
+        }
+        return [$defenderId, $attackers, $combatResults, $dieRoll];
 
+    }
     public function postRecoverUnit($args)
     {
         $unit = $args[0];
@@ -152,25 +168,11 @@ class Lesnaya1708VictoryCore extends victoryCore
         $id = $unit->id;
 
         parent::postRecoverUnit($args);
-        if ($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_MOVE_PHASE && $unit->status == STATUS_READY) {
-            $this->movementCache->$id = $unit->maxMove;
-            $unit->maxMove = $unit->maxMove+1;
-        }
-        if ($b->gameRules->turn == 1 && $b->gameRules->phase == BLUE_COMBAT_PHASE && isset($this->movementCache->$id)) {
-            $unit->maxMove = $this->movementCache->$id;
-            unset($this->movementCache->$id);
-        }
-        if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_MOVE_PHASE && $unit->status == STATUS_READY) {
-            $this->movementCache->$id = $unit->maxMove;
-            if($scenario->noMovementFirstTurn){
+
+        if($b->gameRules->mode === COMBAT_SETUP_MODE){
+            if($unit->class === "wagon"){
                 $unit->status = STATUS_UNAVAIL_THIS_PHASE;
-            }else{
-                $unit->maxMove = floor($unit->maxMove/2);
             }
-        }
-        if ($b->gameRules->turn == 1 && $b->gameRules->phase == RED_COMBAT_PHASE && isset($this->movementCache->$id)) {
-            $unit->maxMove = $this->movementCache->$id;
-            unset($this->movementCache->$id);
         }
     }
 }

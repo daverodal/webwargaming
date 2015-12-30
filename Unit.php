@@ -173,6 +173,7 @@ class Unit extends BaseUnit implements JsonSerializable
         $mapUnit->supplied = $this->supplied;
         $mapUnit->reinforceZone = $this->reinforceZone;
         $mapUnit->forceId = $this->forceId;
+        $mapUnit->class = $this->class;
         return $mapUnit;
     }
 
