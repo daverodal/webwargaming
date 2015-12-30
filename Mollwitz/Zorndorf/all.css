@@ -1032,6 +1032,9 @@ svg marker#head {
     .unit .unit-numbers .infoLen8 {
       font-size: 12px;
       letter-spacing: -1px; }
+    .unit .unit-numbers .infoLen9 {
+      font-size: 11px;
+      letter-spacing: -1px; }
 
 .vintage.unit .counterWrapper {
   height: 19px; }

@@ -1028,6 +1028,9 @@ svg marker#head {
     .unit .unit-numbers .infoLen8 {
       font-size: 12px;
       letter-spacing: -1px; }
+    .unit .unit-numbers .infoLen9 {
+      font-size: 11px;
+      letter-spacing: -1px; }
 
 .vintage.unit .counterWrapper {
   height: 19px; }
@@ -1108,7 +1111,7 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
-.Sikh.fjf .counterWrapper .counter {
+.Sikh.wagon .counterWrapper .counter {
   background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
@@ -1173,7 +1176,7 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
-.Beluchi.fjf .counterWrapper .counter {
+.Beluchi.wagon .counterWrapper .counter {
   background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
@@ -1238,7 +1241,7 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
-.British.fjf .counterWrapper .counter {
+.British.wagon .counterWrapper .counter {
   background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
@@ -1303,7 +1306,7 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
-.SaxonPolish.fjf .counterWrapper .counter {
+.SaxonPolish.wagon .counterWrapper .counter {
   background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
@@ -1372,7 +1375,7 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
-.Native.fjf .counterWrapper .counter {
+.Native.wagon .counterWrapper .counter {
   background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
@@ -1437,7 +1440,7 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
-.Austrian.fjf .counterWrapper .counter {
+.Austrian.wagon .counterWrapper .counter {
   background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
@@ -1502,7 +1505,7 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
-.Prussian.fjf .counterWrapper .counter {
+.Prussian.wagon .counterWrapper .counter {
   background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
@@ -1567,7 +1570,7 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
-.Russian.fjf .counterWrapper .counter {
+.Russian.wagon .counterWrapper .counter {
   background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
@@ -1632,7 +1635,7 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
-.French.fjf .counterWrapper .counter {
+.French.wagon .counterWrapper .counter {
   background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
@@ -1697,7 +1700,7 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
-.AngloAllied.fjf .counterWrapper .counter {
+.AngloAllied.wagon .counterWrapper .counter {
   background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
@@ -1762,7 +1765,7 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
-.Anglo.fjf .counterWrapper .counter {
+.Anglo.wagon .counterWrapper .counter {
   background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
@@ -1827,7 +1830,7 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
-.Allied.fjf .counterWrapper .counter {
+.Allied.wagon .counterWrapper .counter {
   background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 
@@ -1892,7 +1895,7 @@ svg marker#head {
   background-image: url("../../js/HQBadge.png");
   background-size: 14px; }
 
-.Swedish.fjf .counterWrapper .counter {
+.Swedish.wagon .counterWrapper .counter {
   background-image: url("../../js/Wagon.png");
   background-size: 14px; }
 

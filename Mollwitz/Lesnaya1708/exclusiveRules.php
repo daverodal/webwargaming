@@ -54,7 +54,7 @@ You should have received a copy of the GNU General Public License
                     <p class="indent">Wagons may only move through clear terrain or on roads (in road mode).</p>
                 </li>
                 <li><span class="lessBig">Movement</span>
-                    <p class="indent">Wagons may stack with one other unit, they may event stack with another wagon. The stacking limit is one wagon and one other unit.</p>
+                    <p class="indent">Wagons may stack with one other non-wagon unit, they may not stack with another wagon. The stacking limit is one wagon and one non-wagon unit.</p>
                 </li>
                 <li><span class="lessBig">Combat</span>
                     <p class="indent">Wagons may not attack. If stacked with another unit they add 2 to the defense of the stack.</p>
