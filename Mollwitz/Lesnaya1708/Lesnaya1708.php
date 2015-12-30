@@ -26,7 +26,7 @@ $force_name[SWEDISH_FORCE] = "Swedish";
 
 class Lesnaya1708 extends \Mollwitz\JagCore
 {
-    public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>1, 'SpecialHexC'=>0];
+    public $specialHexesMap = ['SpecialHexA'=>2, 'SpecialHexB'=>2, 'SpecialHexC'=>0];
 
     public
     static function getHeader($name, $playerData, $arg = false)

@@ -46,23 +46,23 @@ class Lesnaya1708VictoryCore extends victoryCore
 
         list($mapHexName, $forceId) = $args;
         if (in_array($mapHexName, $battle->specialHexA)) {
-            if ($forceId == SWEDISH_FORCE) {
-                $this->victoryPoints[SWEDISH_FORCE] += 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='swedish'>+5 Swedish vp</span>";
+            if ($forceId == SAXON_POLISH_FORCE) {
+                $this->victoryPoints[SAXON_POLISH_FORCE] += 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='swedish'>+5 Russian vp</span>";
             }
             if ($forceId == SAXON_POLISH_FORCE) {
-                $this->victoryPoints[SWEDISH_FORCE] -= 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='russian'>-5 Swedish vp</span>";
+                $this->victoryPoints[SAXON_POLISH_FORCE] -= 5;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='russian'>-5 Russian vp</span>";
             }
         }
         if (in_array($mapHexName, $battle->specialHexB)) {
             if ($forceId == SAXON_POLISH_FORCE) {
-                $this->victoryPoints[SAXON_POLISH_FORCE] += 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='russian'>+5 Saxon Polish vp</span>";
+                $this->victoryPoints[SAXON_POLISH_FORCE] += 15;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='russian'>+15 Russian vp</span>";
             }
             if ($forceId == SWEDISH_FORCE) {
-                $this->victoryPoints[SAXON_POLISH_FORCE] -= 5;
-                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='swedish'>-5 Saxon Polish vp</span>";
+                $this->victoryPoints[SAXON_POLISH_FORCE] -= 15;
+                $battle->mapData->specialHexesVictory->$mapHexName = "<span class='swedish'>-15 Russian vp</span>";
             }
         }
     }
