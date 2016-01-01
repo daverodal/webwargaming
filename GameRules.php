@@ -86,7 +86,7 @@ class GameRules
         return $data;
     }
 
-    function __construct($MoveRules, $CombatRules, $Force, $display, $data = null)
+    function __construct($MoveRules, $CombatRules, $Force, $data = null)
     {
         if ($data) {
             foreach ($data as $k => $v) {
@@ -102,7 +102,6 @@ class GameRules
             $this->moveRules = $MoveRules;
             $this->combatRules = $CombatRules;
             $this->force = $Force;
-            $this->display = $display;
         } else {
             $this->moveRules = $MoveRules;
             $this->combatRules = $CombatRules;
@@ -205,7 +204,7 @@ class GameRules
                             $unit = $this->force->getUnit($this->currentReplacement);
 
                             if ($unit->getReplacing($location) !== false) {
-                                $this->moveRules->stopReplacing($id);
+                                $this->moveRules->stopReplacing();
                                 $this->currentReplacement = false;
                                 $this->replacementsAvail--;
                             }
@@ -213,17 +212,15 @@ class GameRules
 
 
                         if ($this->force->attackingForceId == $this->force->units[$id]->forceId) {
-                            /* @var Unit $unit */
                             $unit = $this->force->getUnit($id);
                             if ($unit->setStatus(STATUS_CAN_REPLACE)) {
                                 $this->currentReplacement = false;
-                                $this->moveRules->stopReplacing($id);
+                                $this->moveRules->stopReplacing();
                                 break;
                             }
 
                             if ($this->force->units[$id]->status == STATUS_CAN_REPLACE) {
                                 if ($this->currentReplacement !== false && $this->currentReplacement != $id) {
-                                    /* @var Unit $unit */
                                     $unit = $this->force->getUnit($this->currentReplacement);
                                     $unit->setStatus(STATUS_CAN_REPLACE);
                                 }
@@ -236,7 +233,7 @@ class GameRules
                                 $this->replacementsAvail--;
                                 if ($this->currentReplacement !== false) {
                                     $this->force->units[$this->currentReplacement]->status = STATUS_REPLACED;
-                                    $this->moveRules->stopReplacing($id);
+                                    $this->moveRules->stopReplacing();
 
                                     $this->currentReplacement = false;
                                 }
@@ -304,14 +301,114 @@ class GameRules
                 }
                 break;
 
-            case DISPLAY_MODE:
-                if ($event == SELECT_BUTTON_EVENT) {
-                    $this->display->next();
-                    if (!$this->display->currentMessage) {
+
+            case REBASE_MODE:
+                switch ($event) {
+                    case KEYPRESS_EVENT:
+                        $c = chr($id);
+
+                        if($c == 'i' || $c == 'I'){
+                            $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+                            $unit->enterImproved(true);
+                        }
+
+                        if($c == 'u' || $c == 'U'){
+                            $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+                            $unit->exitImproved(true);
+                        }
+                        if($c == 's' || $c == 'S'){
+                            $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+
+                            if($unit->split() === false){
+                                return false;
+                            }
+                        }
+                        if($c == 'c' || $c == 'C'){
+                            $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+                            $ret = $this->force->findSimilarInHex($unit);
+
+                            if(is_array($ret) && count($ret) > 0){
+                                if($unit->combine($ret[0]) === false){
+                                    return false;
+                                }
+                            }else{
+                                return false;
+
+                            }
+                        }
+                    case SELECT_MAP_EVENT:
+                    case SELECT_COUNTER_EVENT:
+
+
+
+                        return $this->moveRules->moveUnit($event, $id, $location, $this->turn);
+                        break;
+
+                    case SELECT_BUTTON_EVENT:
+
                         $this->selectNextPhase($click);
-                    }
+                        break;
                 }
                 break;
+
+            case SUPPLY_MODE:
+                switch ($event) {
+                    case KEYPRESS_EVENT:
+                        $c = chr($id);
+
+                        if($c == 'i' || $c == 'I'){
+                            $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+                            $unit->enterImproved(true);
+                        }
+
+                        if($c == 'u' || $c == 'U'){
+                            $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+                            $unit->exitImproved(true);
+                        }
+                        if($c == 's' || $c == 'S'){
+                            $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+
+                            if($unit->split() === false){
+                                return false;
+                            }
+                        }
+                        if($c == 'c' || $c == 'C'){
+                            $unit = $this->force->getUnit($this->moveRules->movingUnitId);
+
+                            $ret = $this->force->findSimilarInHex($unit);
+
+                            if(is_array($ret) && count($ret) > 0){
+                                if($unit->combine($ret[0]) === false){
+                                    return false;
+                                }
+                            }else{
+                                return false;
+
+                            }
+                        }
+                    case SELECT_MAP_EVENT:
+                    case SELECT_COUNTER_EVENT:
+
+
+
+                        return $this->moveRules->moveUnit($event, $id, $location, $this->turn);
+                        break;
+
+                    case SELECT_BUTTON_EVENT:
+
+                        $this->selectNextPhase($click);
+                        break;
+                }
+                break;
+
+
             case COMBINING_MODE:
 
                 switch ($event) {
@@ -482,9 +579,9 @@ class GameRules
 
                 switch ($event) {
 
+                    /** @noinspection PhpMissingBreakStatementInspection */
                     case KEYPRESS_EVENT:
                         if ($this->moveRules->anyUnitIsMoving) {
-                            $c = chr($id);
 
                             if($id == 37){
                                 if(method_exists($this->moveRules, 'slower')){
@@ -502,6 +599,7 @@ class GameRules
                             }
 
                         }
+                    // Fall-through
                     case SELECT_MAP_EVENT:
                     case SELECT_COUNTER_EVENT:
                         if ($id === false) {

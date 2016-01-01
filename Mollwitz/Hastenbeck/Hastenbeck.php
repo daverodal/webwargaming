@@ -37,7 +37,7 @@ class Hastenbeck extends \Mollwitz\JagCore
     public $moveRules;
     public $combatRules;
     public $gameRules;
-    public $display;
+
     public $victory;
     public $cities;
     public $loc;
@@ -92,7 +92,6 @@ class Hastenbeck extends \Mollwitz\JagCore
         $data->gameRules = $this->gameRules->save();
         $data->combatRules = $this->combatRules->save();
         $data->players = $this->players;
-        $data->display = $this->display;
         $data->victory = $this->victory->save();
         $data->arg = $this->arg;
         $data->scenario = $this->scenario;

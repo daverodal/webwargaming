@@ -40,7 +40,7 @@ class Ferozesha extends \Mollwitz\IndiaCore
     public $moveRules;
     public $combatRules;
     public $gameRules;
-    public $display;
+
     public $victory;
     public $moodkee;
 
@@ -89,7 +89,6 @@ class Ferozesha extends \Mollwitz\IndiaCore
         $data->gameRules = $this->gameRules->save();
         $data->combatRules = $this->combatRules->save();
         $data->players = $this->players;
-        $data->display = $this->display;
         $data->victory = $this->victory->save();
         $data->terrainName = $this->terrainName;
         $data->arg = $this->arg;

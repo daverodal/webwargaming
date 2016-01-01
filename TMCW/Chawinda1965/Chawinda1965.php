@@ -45,7 +45,6 @@ class Chawinda1965 extends \ModernLandBattle
     public $moveRules;
     public $combatRules;
     public $gameRules;
-    public $display;
     public $victory;
     public $arg;
     public $scenario;

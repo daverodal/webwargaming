@@ -1,4 +1,17 @@
 <?php
+namespace Troops;
+use \stdClass;
+use \Battle;
+use \MapData;
+use \Display;
+use \Force;
+use \MapViewer;
+use \Hexagon;
+use \Terrain;
+use \MoveRules;
+use \TacticalCombatRules;
+use \GameRules;
+use \Victory;
 /**
  *
  * Copyright 2012-2015 David Rodal
@@ -18,7 +31,7 @@
  */
 global $force_name, $phase_name, $mode_name, $event_name, $status_name, $results_name, $combatRatio_name;
 
-class TroopersCore extends LandBattle{
+class TroopersCore extends \LandBattle{
 
     public $specialHexesMap = ['SpecialHexA'=>1, 'SpecialHexB'=>2, 'SpecialHexC'=>2];
     /* @var MapData $mapData */
@@ -41,7 +54,6 @@ class TroopersCore extends LandBattle{
             $this->roadHex = $data->roadHex;
             $this->game = $data->game;
 
-            $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
 
@@ -57,7 +69,7 @@ class TroopersCore extends LandBattle{
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
             $this->combatRules = new TacticalCombatRules($this->force, $this->terrain, $data->combatRules);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
+            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force,  $data->gameRules);
             $this->victory = new Victory($data);
 
             $this->players = $data->players;
@@ -66,14 +78,13 @@ class TroopersCore extends LandBattle{
             $this->scenario = $scenario;
             $this->game = $game;
 
-            $this->display = new Display();
             $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
 
             $this->moveRules = new MoveRules($this->force, $this->terrain);
             $this->combatRules = new TacticalCombatRules($this->force, $this->terrain);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
+            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force);
         }
     }
 

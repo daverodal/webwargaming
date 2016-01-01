@@ -40,7 +40,6 @@ class NapoleonsTrainingAcademy extends ModernLandBattle{
     public $moveRules;
     public $combatRules;
     public $gameRules;
-    public $display;
     public $victory;
     public $genTerrain;
 
@@ -70,7 +69,6 @@ class NapoleonsTrainingAcademy extends ModernLandBattle{
         $data->gameRules = $this->gameRules->save();
         $data->combatRules = $this->combatRules->save();
         $data->players = $this->players;
-        $data->display = $this->display;
         $data->victory = $this->victory->save();
         $data->terrainName = "terrain-".get_class($this);
         $data->genTerrain = $this->genTerrain;
@@ -165,7 +163,6 @@ class NapoleonsTrainingAcademy extends ModernLandBattle{
             $this->scenario = $data->scenario;
             $this->genTerrain = false;
             $this->victory = new Victory("NTA\\victoryCore",$data);
-            $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]),new MapViewer($data->mapViewer[1]),new MapViewer($data->mapViewer[2]));
             $units = $data->force->units;
@@ -190,7 +187,6 @@ class NapoleonsTrainingAcademy extends ModernLandBattle{
             $this->mapData->setData(19,9,"js/centre.png");
 
             $this->mapData->setSpecialHexes(array(1005=>0));
-            $this->display = new Display();
             $this->mapViewer = array(new MapViewer(),new MapViewer(),new MapViewer());
             $this->force = new Force();
             $this->force->combatRequired = true;

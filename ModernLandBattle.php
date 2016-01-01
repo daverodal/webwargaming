@@ -33,7 +33,6 @@ class ModernLandBattle extends LandBattle
     public $moveRules;
     public $combatRules;
     public $gameRules;
-    public $display;
     public $victory;
     public $arg;
     public $scenario;
@@ -48,7 +47,6 @@ class ModernLandBattle extends LandBattle
             $this->scenario = $data->scenario;
             $this->terrainName = $data->terrainName;
             $this->game = $data->game;
-            $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
             $units = $data->force->units;
@@ -60,7 +58,7 @@ class ModernLandBattle extends LandBattle
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new MoveRules($this->force, $this->terrain, $data->moveRules);
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
+            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $data->gameRules);
             $this->victory = new Victory($data);
 
             $this->players = $data->players;
@@ -69,14 +67,13 @@ class ModernLandBattle extends LandBattle
             $this->scenario = $scenario;
             $this->game = $game;
 
-            $this->display = new Display();
             $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
             $this->force = new Force();
             $this->terrain = new Terrain();
             $this->moveRules = new MoveRules($this->force, $this->terrain);
 
             $this->combatRules = new CombatRules($this->force, $this->terrain);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
+            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force);
         }
     }
     /*

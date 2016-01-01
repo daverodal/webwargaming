@@ -3,7 +3,7 @@
         "name": "Clash Over Crude",
         "path": "SPI",
         "genre": "SPI Clones",
-        "fileName": "ClashOverCrude/ClashOverCrude.php",
+        "fileName": "SPI\\ClashOverCrude\\ClashOverCrude.php",
         "description": "Attack from above.",
         "options":[
             {

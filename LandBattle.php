@@ -94,7 +94,6 @@ class LandBattle extends Battle{
                 }
             }
         }
-        $display = $doc->wargame->display;
         $units = $force->units;
         $attackingId = $doc->wargame->gameRules->attackingForceId;
         foreach ($units as $unit) {
@@ -169,7 +168,6 @@ class LandBattle extends Battle{
         }
         $force->units = [];
         $gameRules = $wargame->gameRules;
-        $gameRules->display = $display;
         $gameRules->phase_name = $phase_name;
         $gameRules->mode_name = $mode_name;
         $gameRules->exchangeAmount = $force->exchangeAmount;
@@ -314,7 +312,6 @@ class LandBattle extends Battle{
         $data->gameRules = $this->gameRules->save();
         $data->combatRules = $this->combatRules->save();
         $data->players = $this->players;
-        $data->display = $this->display;
         $data->victory = $this->victory->save();
         $data->terrainName = $this->terrainName;
         return $data;

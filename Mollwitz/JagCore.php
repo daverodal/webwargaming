@@ -49,7 +49,6 @@ class JagCore extends \LandBattle{
             $this->roadHex = $data->roadHex;
             $this->game = $data->game;
 
-            $this->display = new \Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new \MapViewer($data->mapViewer[0]), new \MapViewer($data->mapViewer[1]), new \MapViewer($data->mapViewer[2]));
 
@@ -64,7 +63,7 @@ class JagCore extends \LandBattle{
             $this->terrain = new \Terrain($data->terrain);
             $this->moveRules = new \MoveRules($this->force, $this->terrain, $data->moveRules);
             $this->combatRules = new \CombatRules($this->force, $this->terrain, $data->combatRules);
-            $this->gameRules = new \GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
+            $this->gameRules = new \GameRules($this->moveRules, $this->combatRules, $this->force, $data->gameRules);
             $this->victory = new \Victory($data);
 
             $this->players = $data->players;
@@ -73,7 +72,6 @@ class JagCore extends \LandBattle{
             $this->scenario = $scenario;
             $this->game = $game;
 
-            $this->display = new \Display();
             $this->mapViewer = array(new \MapViewer(), new \MapViewer(), new \MapViewer());
             $this->force = new \Force();
             $this->force->exchangesKill = true;
@@ -81,7 +79,7 @@ class JagCore extends \LandBattle{
 
             $this->moveRules = new \MoveRules($this->force, $this->terrain);
             $this->combatRules = new \CombatRules($this->force, $this->terrain);
-            $this->gameRules = new \GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
+            $this->gameRules = new \GameRules($this->moveRules, $this->combatRules, $this->force);
         }
         $crt = new \Mollwitz\CombatResultsTable();
         $this->combatRules->injectCrt($crt);

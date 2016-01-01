@@ -26,7 +26,7 @@ $force_name[2] = "PlayerTwo";
 
 $force_name[1] = "PlayerOne";
 
-class Troops extends TroopsCore
+class Troops extends \Troops\TroopsCore
 {
 
     public $specialHexesMap = ['SpecialHexA' => 2, 'SpecialHexB' => 1, 'SpecialHexC' => 1];
@@ -42,7 +42,6 @@ class Troops extends TroopsCore
     public $moveRules;
     public $combatRules;
     public $gameRules;
-    public $display;
     public $victory;
     public $moodkee;
 
@@ -100,7 +99,6 @@ class Troops extends TroopsCore
         $data->gameRules = $this->gameRules->save();
         $data->combatRules = $this->combatRules->save();
         $data->players = $this->players;
-        $data->display = $this->display;
         $data->victory = $this->victory->save();
         $data->terrainName = $this->terrainName;
         $data->arg = $this->arg;

@@ -188,6 +188,7 @@ namespace TMCW\Chawinda1965;
             $mapUnit->reinforceZone = $this->reinforceZone;
             $mapUnit->forceId = $this->forceId;
             $mapUnit->defStrength = $this->defStrength;
+            $mapUnit->status = $this->status;
 
             return $mapUnit;
         }

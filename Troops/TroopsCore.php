@@ -1,4 +1,5 @@
 <?php
+namespace Troops;
 /**
  *
  * Copyright 2012-2015 David Rodal

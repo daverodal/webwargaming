@@ -34,7 +34,6 @@ class ModernNavalBattle extends LandBattle
     public $moveRules;
     public $combatRules;
     public $gameRules;
-    public $display;
     public $victory;
     public $arg;
     public $scenario;
@@ -49,7 +48,6 @@ class ModernNavalBattle extends LandBattle
             $this->scenario = $data->scenario;
             $this->terrainName = $data->terrainName;
             $this->game = $data->game;
-            $this->display = new Display($data->display);
             $this->mapData->init($data->mapData);
             $this->mapViewer = array(new MapViewer($data->mapViewer[0]), new MapViewer($data->mapViewer[1]), new MapViewer($data->mapViewer[2]));
 
@@ -63,7 +61,7 @@ class ModernNavalBattle extends LandBattle
             $this->terrain = new Terrain($data->terrain);
             $this->moveRules = new NavalMoveRules($this->force, $this->terrain, $data->moveRules);
             $this->combatRules = new NavalCombatRules($this->force, $this->terrain, $data->combatRules);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
+            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force,  $data->gameRules);
             $this->victory = new Victory($data);
 
             $this->players = $data->players;
@@ -72,14 +70,13 @@ class ModernNavalBattle extends LandBattle
             $this->scenario = $scenario;
             $this->game = $game;
 
-            $this->display = new Display();
             $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
             $this->force = new NavalForce();
             $this->terrain = new Terrain();
             $this->moveRules = new NavalMoveRules($this->force, $this->terrain);
 
             $this->combatRules = new NavalCombatRules($this->force, $this->terrain);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
+            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force);
         }
     }
     /*

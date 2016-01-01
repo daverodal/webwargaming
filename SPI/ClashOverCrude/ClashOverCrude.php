@@ -1,4 +1,5 @@
 <?php
+namespace SPI\ClashOverCrude;
 use \SPI\ClashOverCrude\UnitFactory;
 /**
  *
@@ -30,7 +31,7 @@ $force_name[0] = "Neutral Observer";
 $force_name[1] = "US";
 $force_name[2] = "Arab";
 
-class ClashOverCrude extends ModernLandBattle
+class ClashOverCrude extends \ModernLandBattle
 {
     /* a comment */
 
@@ -203,11 +204,11 @@ class ClashOverCrude extends ModernLandBattle
             $this->specialHexA = $data->specialHexA;
 
         } else {
-            $this->victory = new Victory("SPI\\ClashOverCrude\\ClashOverCrudeVictoryCore");
+            $this->victory = new \Victory("SPI\\ClashOverCrude\\ClashOverCrudeVictoryCore");
             if ($scenario->supplyLen) {
                 $this->victory->setSupplyLen($scenario->supplyLen);
             }
-            $this->moveRules = new MoveRules($this->force, $this->terrain);
+            $this->moveRules = new \MoveRules($this->force, $this->terrain);
             if ($scenario && $scenario->supply === true) {
                 $this->moveRules->enterZoc = 2;
                 $this->moveRules->exitZoc = 1;
@@ -226,8 +227,11 @@ class ClashOverCrude extends ModernLandBattle
             $this->gameRules->defendingForceId = BLUE_FORCE; /* object oriented! */
             $this->force->setAttackingForceId($this->gameRules->attackingForceId); /* so object oriented */
 
-            $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_DEPLOY_PHASE, DEPLOY_MODE, BLUE_FORCE, RED_FORCE, false);
-            $this->gameRules->addPhaseChange(BLUE_DEPLOY_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(RED_DEPLOY_PHASE, BLUE_REBASE_PHASE, REBASE_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_REBASE_PHASE, BLUE_SUPPLY_PHASE, SUPPLY_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_SUPPLY_PHASE, BLUE_TRANSPORT_PHASE, REPLACING_MODE, BLUE_FORCE, RED_FORCE, false);
+            $this->gameRules->addPhaseChange(BLUE_TRANSPORT_PHASE, BLUE_MOVE_PHASE, MOVING_MODE, BLUE_FORCE, RED_FORCE, false);
+
             $this->gameRules->addPhaseChange(BLUE_MOVE_PHASE, BLUE_AIR_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_AIR_COMBAT_PHASE, BLUE_COMBAT_PHASE, COMBAT_SETUP_MODE, BLUE_FORCE, RED_FORCE, false);
             $this->gameRules->addPhaseChange(BLUE_COMBAT_PHASE, RED_MOVE_PHASE, MOVING_MODE, RED_FORCE, BLUE_FORCE, false);

@@ -133,7 +133,7 @@ class Area1
         $mapUnits = array();
         $moveRules = $doc->wargame->moveRules;
         $combatRules = $doc->wargame->combatRules;
-        $display = $doc->wargame->display;
+//        $display = $doc->wargame->display;
         $units = $force->units;
         $attackingId = $doc->wargame->gameRules->attackingForceId;
         foreach ($units as $unit) {
@@ -181,7 +181,7 @@ class Area1
         }
         $force->units = $units;
         $gameRules = $wargame->gameRules;
-        $gameRules->display = $display;
+//        $gameRules->display = $display;
         $gameRules->phase_name = $phase_name;
         $gameRules->mode_name = $mode_name;
         $gameRules->exchangeAmount = $force->exchangeAmount;
@@ -349,7 +349,7 @@ class Area1
         $data->terrainName = "terrain-Area1";
         $data->terrain = $this->terrain;
         $data->areaData = $this->areaData;
-        $data->display = $this->display;
+//        $data->display = $this->display;
         $data->moveRules = $this->moveRules->save();
         $data->gameRules = $this->gameRules->save();
         $data->force = $this->force;
@@ -450,7 +450,7 @@ class Area1
 
             $this->combatRules = new CombatRules($this->force, $this->terrain, $data->combatRules);
             $this->moveRules = new AreaMoveRules($this->force, $this->terrain, $data->moveRules);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display, $data->gameRules);
+            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force,  $data->gameRules);
             $this->victory = new Victory($data);
 
             $this->players = $data->players;
@@ -459,10 +459,9 @@ class Area1
             $this->arg = $arg;
             $this->scenario = $scenario;
             $this->game = $game;
-            $this->display = new stdClass();
+//            $this->display = new stdClass();
 
 
-//            $this->display = new Display();
 //            $this->mapViewer = array(new MapViewer(), new MapViewer(), new MapViewer());
 
             $this->force = new AreaForce();
@@ -472,7 +471,7 @@ class Area1
 
 
             $this->combatRules = new CombatRules($this->force, $this->terrain);
-            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force, $this->display);
+            $this->gameRules = new GameRules($this->moveRules, $this->combatRules, $this->force);
         }
 
 

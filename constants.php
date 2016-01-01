@@ -75,7 +75,12 @@ define("RED_COMBINE_PHASE",35);
 define("BLUE_COMBINE_PHASE",36);
 define("RED_MECH_COMBINE_PHASE",37);
 define("BLUE_MECH_COMBINE_PHASE",38);
-
+define("BLUE_REBASE_PHASE", 39);
+define("RED_REBASE_PHASE", 40);
+define("BLUE_SUPPLY_PHASE", 41);
+define("RED_SUPPLY_PHASE", 42);
+define("BLUE_TRANSPORT_PHASE", 43);
+define("RED_TRANSPORT_PHASE", 44);
 
 $phase_name = array();
 $phase_name[1] = "Rebel Move";
@@ -145,6 +150,12 @@ $phase_name[35] = "<span class='playerOneFace'>fNameTwo</span> Combining ";
 $phase_name[36] = "<span class='playerTwoFace'>fNameTwo</span> Combining ";
 $phase_name[37] = "<span class='playerOneFace'>fNameTwo</span> Mech Combining ";
 $phase_name[38] = "<span class='playerTwoFace'>fNameTwo</span> Mech Combining ";
+$phase_name[39] = "<span class='playerOneFace'>fNameOne</span> Rebase ";
+$phase_name[40] = "<span class='playerTwoFace'>fNameTwo</span> Rebase ";
+$phase_name[41] = "<span class='playerOneFace'>fNameOne</span> Supply ";
+$phase_name[42] = "<span class='playerTwoFace'>fNameTwo</span> Supply ";
+$phase_name[43] = "<span class='playerOneFace'>fNameOne</span> Air Transport ";
+$phase_name[44] = "<span class='playerTwoFace'>fNameTwo</span> Air Transport ";
 // game modes
 define("SELECT_TO_MOVE_MODE",1);
 define("MOVING_MODE",2);
@@ -169,6 +180,9 @@ define("ATTACKER_LOSING_MODE",20);
 define("DISPLAY_MODE",21);
 define("SPEED_MODE", 22);
 define("COMBINING_MODE", 23);
+define("REBASE_MODE", 24);
+define("SUPPLY_MODE", 25);
+
 
 
 // mode names
