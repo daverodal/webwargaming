@@ -35,9 +35,6 @@ class finalChapterVictoryCore extends \SPI\victoryCore
     public $victoryPoints;
     protected $movementCache;
     protected $combatCache;
-    private $landingZones;
-    private $airdropZones;
-    private $scienceCenterDestroyed = false;
     public $gameOver = false;
     public $germanySurrenders = false;
 
@@ -48,17 +45,12 @@ class finalChapterVictoryCore extends \SPI\victoryCore
             $this->victoryPoints = $data->victory->victoryPoints;
             $this->movementCache = $data->victory->movementCache;
             $this->combatCache = $data->victory->combatCache;
-            $this->landingZones = $data->victory->landingZones;
-            $this->airdropZones = $data->victory->airdropZones;
-            $this->scienceCenterDestroyed = $data->victory->scienceCenterDestroyed;
             $this->gameOver = $data->victory->gameOver;
             $this->germanySurrenders = $data->victory->germanySurrenders;
         } else {
             $this->victoryPoints = array(0, 0, 0);
             $this->movementCache = new stdClass();
             $this->combatCache = new stdClass();
-            $this->landingZones = [];
-            $this->airdropZones = [];
         }
     }
 
@@ -68,8 +60,6 @@ class finalChapterVictoryCore extends \SPI\victoryCore
         $ret->victoryPoints = $this->victoryPoints;
         $ret->movementCache = $this->movementCache;
         $ret->combatCache = $this->combatCache;
-        $ret->landingZones = $this->landingZones;
-        $ret->airdropZones = $this->airdropZones;
         $ret->gameOver = $this->gameOver;
         $ret->germanySurrenders = $this->germanySurrenders;
         return $ret;
@@ -224,27 +214,6 @@ class finalChapterVictoryCore extends \SPI\victoryCore
             $battle->force->setAttackingForceId($forceId, $defenderId);
             $gameRules->defendingForceId = $defenderId;
         }
-    }
-
-    public function preRecoverUnits($args)
-    {
-        /* @var unit $unit */
-        $unit = $args[0];
-
-        $b = Battle::getBattle();
-
-        $goal = array_merge([101], $this->airdropZones);
-        $this->rebelGoal = $goal;
-
-        $goal = array();
-        for($row = 1;$row <= 20;$row++){
-            $goal[] = 2000+$row;
-        }
-        /* Don't put lower right corner in twice! */
-        for($col = 1;$col <= 19;$col++){
-            $goal[] = ($col*100)+20;
-        }
-        $this->loyalistGoal = $goal;
     }
 
 
